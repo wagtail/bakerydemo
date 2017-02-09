@@ -122,8 +122,10 @@ class GalleryPage(Page):
     """
     This is a page to list all the locations on the site
     """
-
-    CHOICES_LIST = getImageCollections()
+    try:
+        CHOICES_LIST = getImageCollections()
+    except:
+        CHOICES_LIST = [("", "")]
     # To return our collection choices for the editor to access we need to
     # make the choices list a variable rather than a function
 
@@ -145,7 +147,7 @@ class GalleryPage(Page):
         blank=True)
 
     content_panels = Page.content_panels + [
-        # FieldPanel('choices'),
+        FieldPanel('choices'),
         ImageChooserPanel('image'),
         FieldPanel('introduction')
     ]
