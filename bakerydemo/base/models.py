@@ -2,15 +2,22 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from modelcluster.fields import ParentalKey
 from wagtail.wagtailcore.models import Page, Orderable, Collection
 from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtailadmin.edit_handlers import (
-        FieldPanel, InlinePanel, FieldRowPanel, StreamFieldPanel)
+        FieldPanel,
+        InlinePanel,
+        FieldRowPanel,
+        StreamFieldPanel,
+        MultiFieldPanel
+        )
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from blocks import BaseStreamBlock
+from .blocks import BaseStreamBlock
+from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 
 @register_snippet
@@ -138,7 +145,7 @@ class GalleryPage(Page):
         blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('choices'),
+        # FieldPanel('choices'),
         ImageChooserPanel('image'),
         FieldPanel('introduction')
     ]
@@ -153,3 +160,32 @@ class GalleryPage(Page):
     ]
 
     # api_fields = ['introduction']
+
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', related_name='form_fields')
+
+
+class FormPage(AbstractEmailForm):
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    body = StreamField(BaseStreamBlock())
+    thank_you_text = RichTextField(blank=True)
+    content_panels = AbstractEmailForm.content_panels + [
+        ImageChooserPanel('header_image'),
+        StreamFieldPanel('body'),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text', classname="full"),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email"),
+    ]

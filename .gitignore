@@ -11,3 +11,9 @@ common/CACHE
 media/*
 bakerydemodb
 __pycache__
+.*
+.vagrant/
+/.vagrant/
+/Vagrantfile.local
+!.gitignore
+
