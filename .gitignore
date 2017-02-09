@@ -8,7 +8,7 @@
 /data
 .~*
 common/CACHE
-media/*
+bakerydemo/media/*
 bakerydemodb
 __pycache__
 .*
