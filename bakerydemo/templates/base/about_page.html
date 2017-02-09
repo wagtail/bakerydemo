@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    {{ page.title }}
+
+    <div class="image">
+        {% image page.image width-500 as photo %}
+              <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" />
+    </div>
+
+    {{ page.body }}
+{% endblock content %}
