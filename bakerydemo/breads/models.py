@@ -1,6 +1,4 @@
-
 from django.db import models
-
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import StreamField
@@ -26,15 +24,6 @@ class Country(models.Model):
 
     class Meta:
         verbose_name_plural = "Countries of Origin"
-
-
-class BreadsIndexPage(Page):
-    '''
-    Home page for breads. Nothing needed in the model here - we'll just
-    create an instance, then pull its children into the template.
-    '''
-
-    subpage_types = ['BreadPage']
 
 
 @register_snippet
@@ -103,3 +92,20 @@ class BreadPage(Page):
     parent_page_types = [
        'BreadsIndexPage'
     ]
+
+
+class BreadsIndexPage(Page):
+    '''
+    Index page for breads. We don't have any fields within our model but we need
+    to alter the page models context to return the child page objects - the
+    BreadPage - so that it works as an index page
+    '''
+
+    subpage_types = ['BreadPage']
+
+    def get_context(self, request):
+        context = super(BreadsIndexPage, self).get_context(request)
+        context['breads'] = BreadPage.objects.descendant_of(
+            self).live().order_by(
+            '-first_published_at')
+        return context
