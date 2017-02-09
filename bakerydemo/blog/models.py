@@ -72,12 +72,12 @@ class BlogPage(Page):
         FieldPanel('tags'),
     ]
 
-    # def people(self):
-    #     people = [
-    #          n.people for n in self.person_blog_relationship.all()
-    #     ]
+    def people(self):
+        people = [
+             n.people for n in self.person_blog_relationship.all()
+        ]
 
-    #     return people
+        return people
 
     parent_page_types = [
        'BlogIndexPage'
