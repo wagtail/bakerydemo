@@ -111,21 +111,25 @@ class AboutPage(Page):
 
 def getImageCollections():
     # We return all collections to a list that don't have the name root.
-    return [(
-        collection.id, collection.name
-        ) for collection in Collection.objects.all().exclude(
-        name='Root'
-        )]
+    try:
+        collection_images = [(
+            collection.id, collection.name
+            ) for collection in Collection.objects.all().exclude(
+            name='Root'
+            )]
+        return collection_images
+    except:
+        return [('','')]
 
 
 class GalleryPage(Page):
     """
     This is a page to list all the locations on the site
     """
-    try:
-        CHOICES_LIST = getImageCollections()
-    except:
-        CHOICES_LIST = [("", "")]
+    # try:
+    CHOICES_LIST = getImageCollections()
+    # except:
+    #     CHOICES_LIST = [("", "")]
     # To return our collection choices for the editor to access we need to
     # make the choices list a variable rather than a function
 
