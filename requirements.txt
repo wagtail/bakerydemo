@@ -1,4 +1,5 @@
 Django
 elasticsearch
 wagtail
+wagtailfontawesome
 Pillow
