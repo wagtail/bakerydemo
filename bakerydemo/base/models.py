@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from wagtail.wagtailcore.models import Page, Orderable, Collection
 from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
@@ -21,7 +22,7 @@ from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 
 @register_snippet
-class People(models.Model):
+class People(ClusterableModel):
     first_name = models.CharField("First name", max_length=254)
     last_name = models.CharField("Last name", max_length=254)
     job_title = models.CharField("Job title", max_length=254)
