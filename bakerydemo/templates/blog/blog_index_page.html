@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    {{ page.title }}
+
+    {% for post in posts %}
+        <div><a href="{{ post.slug }}">{{ post.title }}</a></div>
+    {% endfor %}
+{% endblock content %}

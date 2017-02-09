@@ -72,12 +72,16 @@ class BlogPage(Page):
         FieldPanel('tags'),
     ]
 
-    def people(self):
-        people = [
-             n.people for n in self.person_blog_relationship.all()
+    def authors(self):
+        authors = [
+             n.people for n in self.blog_person_relationship.all()
         ]
 
-        return people
+        return authors
+
+    # def tags(self):
+    #     tags = self.tags.all()
+    #     return tags
 
     parent_page_types = [
        'BlogIndexPage'
@@ -123,4 +127,10 @@ class BlogIndexPage(Page):
         'BlogPage'
     ]
 
+    def get_context(self, request):
+        context = super(BlogIndexPage, self).get_context(request)
+        context['posts'] = BlogPage.objects.descendant_of(
+            self).live().order_by(
+            '-first_published_at')
+        return context
     # api_fields = ['introduction']
