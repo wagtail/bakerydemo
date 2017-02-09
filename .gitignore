@@ -1,0 +1,13 @@
+.DS_Store
+*.pyc
+*.log
+*.swp
+*.retry
+*~
+/logs
+/data
+.~*
+common/CACHE
+media/*
+bakerydemodb
+__pycache__
