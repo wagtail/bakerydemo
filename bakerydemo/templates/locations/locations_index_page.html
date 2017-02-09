@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    {{ page.title }}
+
+    {% for location in locations %}
+        <div><a href="{{ location.slug }}">{{ location.title }}</a></div>
+    {% endfor %}
+{% endblock content %}
