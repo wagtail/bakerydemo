@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.utils import OperationalError
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -111,34 +112,17 @@ class AboutPage(Page):
     # api_fields = ['image', 'body']
 
 
-def getImageCollections():
-    # We return all collections to a list that don't have the name root.
-    try:
-        collection_images = [(
-            collection.id, collection.name
-            ) for collection in Collection.objects.all().exclude(
-            name='Root'
-            )]
-        return collection_images
-    except:
-        return [('', '')]
-
-
 class GalleryPage(Page):
     """
     This is a page to list all the locations on the site
     """
-    # try:
-    CHOICES_LIST = getImageCollections()
-    # except:
-    #     CHOICES_LIST = [("", "")]
-    # To return our collection choices for the editor to access we need to
-    # make the choices list a variable rather than a function
-
-    choices = models.CharField(
-        max_length=255, choices=CHOICES_LIST
-        )
-
+    choices = models.ForeignKey(
+        Collection,
+        limit_choices_to=~models.Q(name__in=['Root']),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
