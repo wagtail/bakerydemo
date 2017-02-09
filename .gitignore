@@ -1,0 +1,11 @@
+*.pyc
+.DS_Store
+.idea/*
+.idea/vcs.xml
+*.swp
+/venv/
+/static/
+/media/
+/tmp/
+/.vagrant/
+/Vagrantfile.local
