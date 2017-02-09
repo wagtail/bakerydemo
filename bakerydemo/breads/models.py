@@ -28,13 +28,13 @@ class Country(models.Model):
         verbose_name_plural = "Countries of Origin"
 
 
-class BreadsLandingPage(Page):
+class BreadsIndexPage(Page):
     '''
     Home page for breads. Nothing needed in the model here - we'll just
     create an instance, then pull its children into the template.
     '''
 
-    pass
+    subpage_types = ['BreadPage']
 
 
 @register_snippet
@@ -98,4 +98,8 @@ class BreadPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('title'),
         index.SearchField('description'),
+    ]
+
+    parent_page_types = [
+       'BreadsIndexPage'
     ]

@@ -61,12 +61,12 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsLandingPage(Page):
+class LocationsIndexPage(Page):
     '''
     Home page for locations
     '''
 
-    pass
+    subpage_types = ['LocationPage']
 
 
 class LocationPage(Page):
@@ -107,3 +107,7 @@ class LocationPage(Page):
 
     def __str__(self):
         return self.name
+
+    parent_page_types = [
+       'LocationsIndexPage'
+    ]
