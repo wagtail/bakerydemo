@@ -4,7 +4,14 @@
 {% block content %}
     {{ page.title }}
 
-    {% for post in posts %}
-        <div><a href="{{ post.slug }}">{{ post.title }}</a></div>
+    {% for blog in blogs %}
+        <div>
+            <h2><a href="{{ blog.slug }}">{{ blog.title }}</a></h2>
+            {{ blog.body|truncatewords_html:10 }}
+
+            {% for tag in blog.get_tags  %}
+                <a href="{{ tag.url }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
     {% endfor %}
 {% endblock content %}

@@ -1,31 +1,33 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.shortcuts import get_list_or_404, get_object_or_404, render
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from taggit.models import TaggedItemBase
-from wagtail.wagtailcore.models import Page, Orderable, Collection
-from wagtail.wagtailsearch import index
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore.fields import StreamField, RichTextField
+
+from taggit.models import Tag, TaggedItemBase
+
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import (
-        FieldPanel,
-        InlinePanel,
-        FieldRowPanel,
-        StreamFieldPanel,
-        MultiFieldPanel
-        )
+    FieldPanel,
+    InlinePanel,
+    StreamFieldPanel,
+)
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+
+
 from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class BlogPeopleRelationship(Orderable, models.Model):
-    """
-    This defines the relationship between the `LocationPage` within the `locations`
-    app and the About page below allowing us to add locations to the about
-    section.
-    """
+    '''
+    This defines the relationship between the `Peopole` within the `base`
+    app and the BlogPage below allowing us to add people to a BlogPage.
+    '''
     page = ParentalKey(
         'BlogPage', related_name='blog_person_relationship'
     )
@@ -42,9 +44,9 @@ class BlogPageTag(TaggedItemBase):
 
 
 class BlogPage(Page):
-    """
-    The About Page
-    """
+    '''
+    A Blog Page (Post)
+    '''
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -59,8 +61,8 @@ class BlogPage(Page):
     date_published = models.DateField("Date article published", blank=True, null=True)
 
     body = StreamField(
-        BaseStreamBlock(), verbose_name="About page detail", blank=True
-        )
+        BaseStreamBlock(), verbose_name="Blog post", blank=True
+    )
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
@@ -73,19 +75,38 @@ class BlogPage(Page):
     ]
 
     def authors(self):
+        '''
+        Returns the BlogPage's related People
+        '''
         authors = [
-             n.people for n in self.blog_person_relationship.all()
+            n.people for n in self.blog_person_relationship.all()
         ]
 
         return authors
 
-    # def tags(self):
-    #     tags = self.tags.all()
-    #     return tags
+    @property
+    def get_tags(self):
+        '''
+        Returns the BlogPage's related list of Tags.
+        Each Tag is modified to include a url attribute
+        '''
+        tags = self.tags.all()
+        for tag in tags:
+            tag.url = '/'+'/'.join(s.strip('/') for s in [
+                self.get_parent().url,
+                'tags',
+                tag.slug
+            ])
+        return tags
 
-    parent_page_types = [
-       'BlogIndexPage'
-    ]
+    @property
+    def blog_index(self):
+        return self.get_ancestors().type(BlogIndexPage).last()
+
+    def get_absolute_url(self):
+        return self.full_url
+
+    parent_page_types = ['BlogIndexPage']
 
     # Defining what content type can sit under the parent
     # The empty array means that no children can be placed under the
@@ -95,10 +116,14 @@ class BlogPage(Page):
     # api_fields = ['image', 'body']
 
 
-class BlogIndexPage(Page):
-    """
-    """
+class BlogIndexPage(RoutablePageMixin, Page):
+    '''
+    Index page for blogs.
+    We need to alter the page model's context to return the child page objects - the
+    BlogPage - so that it works as an index page
 
+    The RoutablePageMixin is used to allow for a custom sub-URL
+    '''
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -123,14 +148,30 @@ class BlogIndexPage(Page):
 
     # Defining what content type can sit under the parent. Since it's a blank
     # array no subpage can be added
-    subpage_types = [
-        'BlogPage'
-    ]
+    subpage_types = ['BlogPage']
 
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
-        context['posts'] = BlogPage.objects.descendant_of(
+        context['blogs'] = BlogPage.objects.descendant_of(
             self).live().order_by(
             '-first_published_at')
         return context
+
+    @route('^tags/(\w+)/$', name='tag_archive')
+    def tag_archive(self, request, tag=None):
+        '''
+        A Custom view that utilizes Tags. This view will
+        return all related BlogPages for a given Tag.
+        '''
+        tag = get_object_or_404(Tag, slug=tag)
+        blogs = get_list_or_404(
+            BlogPage.objects.filter(tags=tag).live().descendant_of(self)
+        )
+
+        context = {
+            'title': 'Posts tagged with: {}'.format(tag.name),
+            'blogs': blogs
+        }
+        return render(request, 'blog/blog_index_page.html', context)
+
     # api_fields = ['introduction']
