@@ -46,6 +46,7 @@ class BlogPage(Page):
     """
     A Blog Page (Post)
     """
+    subtitle = models.CharField(blank=True, max_length=255)
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -64,6 +65,7 @@ class BlogPage(Page):
     )
 
     content_panels = Page.content_panels + [
+        FieldPanel('subtitle'),
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
         FieldPanel('date_published'),

@@ -15,8 +15,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # BASE_URL required for notification emails
 BASE_URL = 'http://localhost:8000'
 
-DATABASES = {'default': dj_database_url.config(default='postgres://postgres@localhost:5432/wagtaildemo')}
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 try:
     from .local import *

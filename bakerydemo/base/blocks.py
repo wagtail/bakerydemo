@@ -40,7 +40,7 @@ class BlockQuote(StructBlock):
     """
     Custom `StructBlock` that allows the user to attribute a quote to the author
     """
-    text = TextBlock(),
+    text = TextBlock()
     attribute_name = CharBlock(
         blank=True, required=False, label='e.g. Guy Picciotto')
 
@@ -54,6 +54,7 @@ class BaseStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
     """
+    intro_block = TextBlock()
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
         icon="fa-paragraph",
