@@ -4,6 +4,13 @@ body {
   padding-bottom: 0;
   font-size: 19px;
   font-family: 'Alegreya', serif;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+50,e9e4dd+100 */
+  background: rgb(255,255,255); /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(233,228,221,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 50%,rgba(233,228,221,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 50%,rgba(233,228,221,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e9e4dd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 @media (min-width: 768px) {
@@ -13,14 +20,21 @@ body {
 }
 
 h1 {
+  color: white;
   font-weight: 900;
   font-family: 'Lato', sans-serif;
-  color: #63210d;
+  position: relative;
 }
 
-.hero h1 {
-  color: white;
-}
+/*h1:before {
+  position: absolute;
+  top: -40px;
+  left: -100px;
+  width: 200px;
+  height: 1px;
+  background-color: #d4566b;
+  content: '';
+}*/
 
 h2 {
   font-weight: 900;
@@ -38,15 +52,42 @@ h4 {
   font-weight: 600;
   font-family: 'Lato', sans-serif;
   color: #63210d;
+  font-size: 22px;
 }
 
 a, a:focus, a:visited {
   color: #d4566b;
+  text-decoration: none;
 }
 
 a:hover {
   text-decoration: none;
   color: #eb7400;
+}
+
+a.btn {
+  display: inline-block;
+  background-color: #d4566b;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  padding: 15px 20px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 300;
+}
+
+a.btn:hover {
+  background-color: #eb7400;
+  color: white;
+}
+
+input {
+  border-radius: 3px;
+  border: none;
+  font-size: 18px;
+  padding: 10px;
+  width: 100%;
 }
 
 p {
@@ -58,12 +99,14 @@ p {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   margin: 0 0 40px;
+  font-size: 22px;
 }
 
 .stand-first {
   color: rgba(255,255,255,0.8);
   margin: 0;
 }
+
 
 
 /* queries for type */
@@ -88,52 +131,145 @@ p {
 
 }
 
-img {
-  display: block;
-  width: 100%;
+ul {
   margin: 0 0 30px;
 }
+
 @media (min-width: 768px) {
-  img {
+  ul {
     margin: 0 0 50px;
   }
 }
 
-.nav {
+figure {
+  margin: 0 0 30px;
+  position: relative;
+}
+@media (min-width: 768px) {
+  figure {
+    margin: 0 0 50px;
+  }
+}
+
+figcaption {
+  background-color: rgba(99,33,13,0.8);
+  position: absolute;
+  width: 75%;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
   color: white;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
+  font-weight: 300;
 }
 
-.nav a {
+img {
+  display: block;
+  width: 100%;
+}
+
+.search {
+  margin: 15px 0 0 0;
+  display: none;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .search {
+    float: right;
+    margin: 0 0 0 30px;
+    display: inline-block;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+}
+
+.search-icon svg {
+  fill: #d4566b;
+  width: 20px;
+  height: 20px;
+}
+
+nav {
+  margin: 15px 0 5px;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  nav {
+    margin: 15px 0 0 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: block;
+  }
+}
+
+.nav-pills>li+li {
+    margin-left: 0;
+}
+
+.nav-pills>li>a {
   color: white;
+  border-top: 1px solid transparent;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 300;
+  padding: 10px 10px;
+  font-size: 11px;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  margin-top: -1px;
+}
+
+@media (min-width: 768px) {
+  .nav-pills>li>a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-  color: #fff;
-  background-color: #d4566b;
+  color: #d4566b;
+  background-color: transparent;
+  border-top: 1px solid #d4566b;
+  font-weight: 600;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  text-decoration: none;
+  background-color: transparent;
+  border-top: 1px solid #d4566b;
+  color: #d4566b;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .footer {
   font-size: 16px;
   font-family: 'Lato', sans-serif;
-  background-color: #63210d;
   padding: 20px 0;
   margin: 40px 0 0;
+  font-weight: 300;
+  background-color: white;
 }
 
 .footer p {
-  color: rgba(255,255,255,0.7);
   margin: 0;
 }
 
 /* Custom page header */
 .header {
-  padding-bottom: 20px;
-  position: absolute;
+  padding: 15px 0 15px;
+/*  position: absolute;*/
   width: 100%;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(25,17,18,1);
   z-index: 10;
 }
 /* Make the masthead heading the same height as the navigation */
@@ -147,7 +283,6 @@ img {
 .footer {
   padding-top: 19px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
 }
 
 .container {
@@ -188,7 +323,9 @@ img {
 
 /* Article title and hero image */
 .hero {
+  background-image: url("img/3.jpg");
   background-size: cover;
+  background-position: center;
   padding: 200px 0 30px 0;
   position: relative;
   margin: 0 0 30px;
@@ -203,6 +340,8 @@ img {
 
 }
 
+
+
 .hero-gradient-mask {
   position: absolute;
   width: 100%;
@@ -216,18 +355,17 @@ img {
 
 /* Logo */
 .logo, .logo:visited, .logo:focus {
-  display: block;
-  width: 100%;
+  display: inline-block;
   padding: 0;
   color: white;
   font-size: 30px;
   font-weight: 300;
-  margin: 10px 0 10px;
+  margin: 0 0 0;
 }
 
 
 .logo:hover {
-  color: white;
+  color: #d4566b;
   text-decoration: none;
 }
 
@@ -248,6 +386,7 @@ cite {
   color: #888;
   font-size: 12px;
   font-style: normal;
+  letter-spacing: 0.15em;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -259,10 +398,6 @@ cite {
     padding-right: 0;
     padding-left: 0;
   }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
@@ -271,6 +406,7 @@ cite {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 1024px) {
+
 }
 
 /* Menu dropdown hack */
@@ -281,7 +417,7 @@ li.has-submenu a.allow-toggle {
 .caret-custom {
     float: right;
     display: inline-block!important;
-    padding: 15px 10px 15px 5px!important;
+    padding: 10px 10px 15px 5px!important;
 }
 .caret-custom:after {
     content: "▼"!important;

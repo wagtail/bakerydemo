@@ -49,24 +49,35 @@
 
     {% wagtailuserbar %}
 
-    <div class="container">
+    <div class="header clearfix">
+      <div class="container">
         <div class="row">
-            <div class="site-title col-lg-7 col-lg-offset-2">
-            <div class="col-lg-8">
-                <div class="navbar-header page-scroll">
-                    <h1><a class="title" href="/">Wagtail Bakery Demo 🍞</a></h1>
-                </div>
-            </div>
-            <form class="col-lg-4 navbar-form navbar-right">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
+          <div class="col-lg-12">
+            <a href="#" class="logo">The Wagtail Bakery 🍞</a>
+            <form action="/search" method="get" class="search" _lpchecked="1">
+              <input name="q" type="text" placeholder="Search the site" id="" aria-label="Search the site" autocomplete="off">
+              <a href="#" class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451"><path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"></path></svg>
+              </a>
             </form>
-            </div>
+            {% block main_navigation %}
+            <nav>
+              <ul class="nav nav-pills">
+                {% get_site_root as site_root %}
+                {% top_menu parent=site_root calling_page=self %}
+                {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                {% comment %}
+                <li role="presentation" class="active"><a href="#">Bread</a></li>
+                <li role="presentation"><a href="#">Blog</a></li>
+                <li role="presentation"><a href="#">About</a></li>
+                <li role="presentation"><a href="#">Contact</a></li>
+                {% endcomment %}
+              </ul>
+            </nav>
+          </div>
         </div>
+      </div>
+      {% endblock %}
     </div>
 
     {% if messages %}
@@ -78,18 +89,6 @@
         </ul>
     </div>
     {% endif %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-lg-offset-2">
-                {% block main_navigation %}
-                {% get_site_root as site_root %}
-                {% top_menu parent=site_root calling_page=self %}
-                {# main_menu is defined in base/templatetags/navigation_tags.py #}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
 
     <div class="container">
         <div class="row">
