@@ -25,7 +25,7 @@ from bakerydemo.base.blocks import BaseStreamBlock
 
 class BlogPeopleRelationship(Orderable, models.Model):
     '''
-    This defines the relationship between the `Peopole` within the `base`
+    This defines the relationship between the `People` within the `base`
     app and the BlogPage below allowing us to add people to a BlogPage.
     '''
     page = ParentalKey(
@@ -98,13 +98,6 @@ class BlogPage(Page):
                 tag.slug
             ])
         return tags
-
-    @property
-    def blog_index(self):
-        return self.get_ancestors().type(BlogIndexPage).last()
-
-    def get_absolute_url(self):
-        return self.full_url
 
     parent_page_types = ['BlogIndexPage']
 
