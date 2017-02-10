@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 
+from django.contrib import messages
 from django.db import models
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import redirect, render
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -150,16 +151,23 @@ class BlogIndexPage(RoutablePageMixin, Page):
             '-first_published_at')
         return context
 
+    @route('^tags/$', name='tag_archive')
     @route('^tags/(\w+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
         '''
         A Custom view that utilizes Tags. This view will
-        return all related BlogPages for a given Tag.
+        return all related BlogPages for a given Tag or redirect back to
+        the BlogIndexPage
         '''
-        tag = get_object_or_404(Tag, slug=tag)
-        blogs = get_list_or_404(
-            BlogPage.objects.filter(tags=tag).live().descendant_of(self)
-        )
+        try:
+            tag = Tag.objects.get(slug=tag)
+        except Tag.DoesNotExist:
+            if tag:
+                msg = 'There are no blog posts tagged with "{}"'.format(tag)
+                messages.add_message(request, messages.INFO, msg)
+            return redirect(self.url)
+
+        blogs = BlogPage.objects.filter(tags=tag).live().descendant_of(self)
 
         context = {
             'title': 'Posts tagged with: {}'.format(tag.name),
