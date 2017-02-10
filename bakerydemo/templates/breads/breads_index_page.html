@@ -3,7 +3,6 @@
 
 {% block content %}
     {{ page.title }}
-
     {% for bread in breads %}
         <div><a href="{{ bread.slug }}">{{ bread.title }}</a></div>
     {% endfor %}
