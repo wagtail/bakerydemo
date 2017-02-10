@@ -91,6 +91,8 @@ class BreadPage(Page):
 
     parent_page_types = ['BreadsIndexPage']
 
+    api_fields = ['title', 'bread_type', 'origin', 'image']
+
 
 class BreadsIndexPage(Page):
     """
