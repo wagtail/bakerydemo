@@ -1,28 +1,24 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.db.utils import OperationalError
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailcore.models import Page, Orderable, Collection
-from wagtail.wagtailsearch import index
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore.fields import StreamField, RichTextField
+
 from wagtail.wagtailadmin.edit_handlers import (
-        FieldPanel,
-        InlinePanel,
-        FieldRowPanel,
-        StreamFieldPanel,
-        MultiFieldPanel,
-        PageChooserPanel
-        )
-from wagtail.wagtailsnippets.models import register_snippet
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from .blocks import BaseStreamBlock
-from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
+    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel,
+    PageChooserPanel, StreamFieldPanel,
+)
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, ModelAdminGroup, modeladmin_register)
+from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.wagtailcore.models import Collection, Orderable, Page
+from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailsearch import index
+from wagtail.wagtailsnippets.models import register_snippet
+
+from .blocks import BaseStreamBlock
 
 
 @register_snippet
@@ -53,15 +49,15 @@ class People(ClusterableModel):
 
     @property
     def thumb_image(self):
-       # fail silently if there is no profile pic or the rendition file can't
-       # be found. Note @richbrennan worked out how to do this...
-       try:
-           return self.image.get_rendition('fill-50x50').img_tag()
-       except:
-           return ''
+        # fail silently if there is no profile pic or the rendition file can't
+        # be found. Note @richbrennan worked out how to do this...
+        try:
+            return self.image.get_rendition('fill-50x50').img_tag()
+        except:
+            return ''
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return '{} {}'.format(self.first_name, self.last_name)
 
     class Meta:
         verbose_name = 'Person'
@@ -100,7 +96,7 @@ class AboutPage(Page):
 
     body = StreamField(
         BaseStreamBlock(), verbose_name="About page detail", blank=True
-        )
+    )
     # We've defined the StreamBlock() within blocks.py that we've imported on
     # line 12. Defining it in a different file gives us consistency across the
     # site, though StreamFields _can_ be created on a per model basis if you
@@ -110,10 +106,10 @@ class AboutPage(Page):
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
         InlinePanel(
-           'location_about_relationship',
-           label='Locations',
-           min_num=None
-           ),
+            'location_about_relationship',
+            label='Locations',
+            min_num=None
+        ),
     ]
 
     # parent_page_types = [
@@ -126,22 +122,6 @@ class AboutPage(Page):
     subpage_types = []
 
     # api_fields = ['image', 'body']
-
-
-def getImageCollections():
-    # We return all collections to a list that don't have the name root.
-    try:
-        collection_images = [(
-            collection.id, collection.name
-            ) for collection in Collection.objects.all().exclude(
-            name='Root'
-            )]
-        return collection_images
-    except:
-        return [('', '')]
-
-    def __str__(self):
-        return self.title
 
 
 class HomePage(Page):
@@ -159,7 +139,7 @@ class HomePage(Page):
 
     body = StreamField(
         BaseStreamBlock(), verbose_name="Home page detail", blank=True
-        )
+    )
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
@@ -253,6 +233,7 @@ class MyModelAdminGroup(ModelAdminGroup):
     menu_icon = 'folder-open-inverse'  # change as required
     menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
     items = (PeopleModelAdmin,)
+
 
 # When using a ModelAdminGroup class to group several ModelAdmin classes together,
 # you only need to register the ModelAdminGroup class with Wagtail:

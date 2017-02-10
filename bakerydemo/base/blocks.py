@@ -1,14 +1,12 @@
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailcore.blocks import (
+    CharBlock,
+    ChoiceBlock,
+    RichTextBlock,
+    StreamBlock,
     StructBlock,
     TextBlock,
-    StreamBlock,
-    RichTextBlock,
-    CharBlock,
-    ListBlock,
-    ChoiceBlock,
-    PageChooserBlock
 )
 
 
@@ -25,11 +23,11 @@ class ImageBlock(StructBlock):
 class HeadingBlock(StructBlock):
     heading_text = CharBlock(classname="title", required=True)
     size = ChoiceBlock(choices=[
-            ('', 'Select a header size'),
-            ('h2', 'H2'),
-            ('h3', 'H3'),
-            ('h4', 'H4')
-        ], blank=True, required=False)
+        ('', 'Select a header size'),
+        ('h2', 'H2'),
+        ('h3', 'H3'),
+        ('h4', 'H4')
+    ], blank=True, required=False)
 
     class Meta:
         icon = "title"
@@ -39,7 +37,7 @@ class HeadingBlock(StructBlock):
 class BlockQuote(StructBlock):
     text = TextBlock(),
     attribute_name = CharBlock(
-            blank=True, required=False, label='e.g. Guy Picciotto')
+        blank=True, required=False, label='e.g. Guy Picciotto')
 
     class Meta:
         icon = "fa-quote-left"

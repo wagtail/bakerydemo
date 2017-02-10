@@ -1,6 +1,5 @@
 from django import template
-from django.template import Template
-from django.utils.http import urlencode
+
 from wagtail.wagtailcore.models import Page
 
 register = template.Library()
