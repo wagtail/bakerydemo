@@ -1,0 +1,7 @@
+{% load wagtailimages_tags %}
+
+{% for img in images %}
+{% image img max-285x200 as img_obj %}
+<div class="col-sm-6"><img src="{{img_obj.url}}" class="img-responsive" /></div>
+{{ image.title }}
+{% endfor %}
