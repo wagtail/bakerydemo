@@ -97,7 +97,7 @@ class BreadPage(Page):
 class BreadsIndexPage(Page):
     '''
     Index page for breads. We don't have any fields within our model but we need
-    to alter the page models context to return the child page objects - the
+    to alter the page model's context to return the child page objects - the
     BreadPage - so that it works as an index page
     '''
 
