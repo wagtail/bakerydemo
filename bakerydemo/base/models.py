@@ -23,6 +23,10 @@ from .blocks import BaseStreamBlock
 
 @register_snippet
 class People(ClusterableModel):
+    """
+    `People` snippets are secondary content objects that do not require their
+    own full webpage to render.
+    """
     first_name = models.CharField("First name", max_length=254)
     last_name = models.CharField("Last name", max_length=254)
     job_title = models.CharField("Job title", max_length=254)
@@ -66,6 +70,9 @@ class People(ClusterableModel):
 
 @register_snippet
 class FooterText(models.Model):
+    """
+    This provides editable text for the site footer
+    """
     body = RichTextField()
 
     panels = [
