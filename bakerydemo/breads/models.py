@@ -93,6 +93,8 @@ class BreadPage(Page):
        'BreadsIndexPage'
     ]
 
+    api_fields = ['title', 'bread_type', 'origin', 'image']
+
 
 class BreadsIndexPage(Page):
     '''
