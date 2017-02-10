@@ -2,13 +2,10 @@
 {% get_site_root as site_root %}
 
 {% if calling_page|has_protocol_parent and calling_page.content_type.model == 'standardpage' %}
-
   <div class="off-canvas position-left reveal-for-large bla" id="offCanvasLeft" data-off-canvas>
     {% protocol_menu calling_page=calling_page %}
   </div>
-
 {% elif ancestor.has_children %}
-
   <div class="off-canvas position-left reveal-for-large" id="offCanvasLeft" data-off-canvas>
     <nav class="sidebar-nav">
       <h3>In this section</h3>
@@ -32,5 +29,4 @@
       </ul>
     </nav>
   </div>
-
 {% endif %}
