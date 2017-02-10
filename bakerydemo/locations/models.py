@@ -93,8 +93,6 @@ class LocationPage(Page):
         max_length=36,
         help_text="Comma separated lat/long. (Ex. 64.144367, -21.939182) \
                    Right click Google Maps and click 'What\'s Here'"
-
-
     )
 
     # Search index configuration
@@ -116,6 +114,12 @@ class LocationPage(Page):
     def opening_hours(self):
         hours = self.hours_of_operation.all()
         return hours
+
+    def get_context(self, request):
+        context = super(LocationPage, self).get_context(request)
+        context['lat'] = self.lat_long.split(",")[0]
+        context['long'] = self.lat_long.split(",")[1]
+        return context
 
     parent_page_types = [
        'LocationsIndexPage'
