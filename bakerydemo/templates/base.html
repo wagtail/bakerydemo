@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load navigation_tags static wagtailuserbar %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -8,7 +8,18 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+        <title>
+            {% block title %}
+                {% block title_prefix %}
+                    Wagtail demo bakery
+                {% endblock %}
+                {% if self.seo_title %}
+                    {{ self.seo_title }}
+                {% else %}
+                    {{ self.title }}
+                {% endif %}
+            {% endblock %}
+        </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -16,7 +27,19 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        {% block main_navigation %}
+            {% get_site_root as site_root %}
+            {% top_menu parent=site_root calling_page=self %}
+            {# main_menu is defined in base/templatetags/navigation_tags.py #}
+        {% endblock %}
+
+        {% block breadcrumbs %}
+            {% breadcrumbs %}
+            {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
 
     </body>
 </html>
