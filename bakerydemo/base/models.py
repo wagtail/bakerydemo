@@ -1,8 +1,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.utils import OperationalError
 
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from wagtail.wagtailcore.models import Page, Orderable, Collection
 from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
@@ -12,7 +14,8 @@ from wagtail.wagtailadmin.edit_handlers import (
         InlinePanel,
         FieldRowPanel,
         StreamFieldPanel,
-        MultiFieldPanel
+        MultiFieldPanel,
+        PageChooserPanel
         )
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
@@ -21,7 +24,7 @@ from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 
 @register_snippet
-class People(models.Model):
+class People(ClusterableModel):
     first_name = models.CharField("First name", max_length=254)
     last_name = models.CharField("Last name", max_length=254)
     job_title = models.CharField("Job title", max_length=254)
@@ -49,21 +52,21 @@ class People(models.Model):
         verbose_name_plural = 'People'
 
 
-# class AboutLocationRelationship(Orderable, models.Model):
-#     """
-#     This defines the relationship between the `LocationPage` within the `locations`
-#     app and the About page below allowing us to add locations to the about
-#     section.
-#     """
-#     about = ParentalKey(
-#         'About', related_name='location_about_relationship'
-#     )
-#     locations = models.ForeignKey(
-#         'locations.LocationPage', related_name='about_location_relationship'
-#     )
-#     panels = [
-#         PageChooserPanel('locations')
-#     ]
+class AboutLocationRelationship(Orderable, models.Model):
+    """
+    This defines the relationship between the `LocationPage` within the `locations`
+    app and the About page below allowing us to add locations to the about
+    section.
+    """
+    page = ParentalKey(
+        'AboutPage', related_name='location_about_relationship'
+    )
+    locations = models.ForeignKey(
+        'locations.LocationPage', related_name='about_location_relationship'
+    )
+    panels = [
+        PageChooserPanel('locations')
+    ]
 
 
 class AboutPage(Page):
@@ -90,11 +93,11 @@ class AboutPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
-        #    InlinePanel(
-        #        'about_location_relationship',
-        #        label='Locations',
-        #        min_num=None
-        #        ),
+        InlinePanel(
+           'location_about_relationship',
+           label='Locations',
+           min_num=None
+           ),
     ]
 
     # parent_page_types = [
@@ -119,7 +122,7 @@ def getImageCollections():
             )]
         return collection_images
     except:
-        return [('','')]
+        return [('', '')]
 
     def __str__(self):
         return self.title
@@ -155,17 +158,13 @@ class GalleryPage(Page):
     """
     This is a page to list all the locations on the site
     """
-    # try:
-    CHOICES_LIST = getImageCollections()
-    # except:
-    #     CHOICES_LIST = [("", "")]
-    # To return our collection choices for the editor to access we need to
-    # make the choices list a variable rather than a function
-
-    choices = models.CharField(
-        max_length=255, choices=CHOICES_LIST
-        )
-
+    choices = models.ForeignKey(
+        Collection,
+        limit_choices_to=~models.Q(name__in=['Root']),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

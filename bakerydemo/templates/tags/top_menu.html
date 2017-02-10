@@ -1,0 +1,15 @@
+{% load navigation_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+
+<div class="navigation-bar">
+    <ul id="main-menu">
+      {% for menuitem in menuitems %}
+        <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %} {% if menuitem.active %}current{% endif %}">
+        <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+        {% top_menu_children parent=menuitem %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

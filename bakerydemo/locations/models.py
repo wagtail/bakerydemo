@@ -61,12 +61,19 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsLandingPage(Page):
+class LocationsIndexPage(Page):
     '''
-    Home page for locations
+    Index page for locations
     '''
 
-    pass
+    subpage_types = ['LocationPage']
+
+    def get_context(self, request):
+        context = super(LocationsIndexPage, self).get_context(request)
+        context['locations'] = LocationPage.objects.descendant_of(
+            self).live().order_by(
+            '-first_published_at')
+        return context
 
 
 class LocationPage(Page):
@@ -91,13 +98,11 @@ class LocationPage(Page):
     )
 
     # Search index configuration
-
     search_fields = Page.search_fields + [
         index.SearchField('address'),
     ]
 
     # Editor panels configuration
-
     content_panels = Page.content_panels + [
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
@@ -107,3 +112,11 @@ class LocationPage(Page):
 
     def __str__(self):
         return self.name
+
+    def opening_hours(self):
+        hours = self.hours_of_operation.all()
+        return hours
+
+    parent_page_types = [
+       'LocationsIndexPage'
+    ]

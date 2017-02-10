@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %}
+
+{% if ancestors %}
+  <nav class="breadcrumbs" aria-label="You are here:" role="navigation">
+    <ul>
+      {% for ancestor in ancestors %}
+        {% if forloop.last %}
+          <li>
+            <span class="show-for-sr">Current: </span> {{ ancestor }}
+          </li>
+        {% else %}
+          <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
