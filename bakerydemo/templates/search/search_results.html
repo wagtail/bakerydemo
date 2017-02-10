@@ -4,7 +4,6 @@
 {% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
 
 {% block content %}
-
     <h1>
         Search results{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}
     </h1>

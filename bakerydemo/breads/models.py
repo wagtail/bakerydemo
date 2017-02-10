@@ -1,12 +1,12 @@
 from django.db import models
 
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.models import Page
 
+from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
-from wagtail.wagtailcore import blocks
 from wagtail.wagtailsnippets.models import register_snippet
 
 
@@ -55,7 +55,7 @@ class BreadPage(Page):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        )
+    )
     description = StreamField([
         ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
@@ -89,9 +89,7 @@ class BreadPage(Page):
         index.SearchField('description'),
     ]
 
-    parent_page_types = [
-       'BreadsIndexPage'
-    ]
+    parent_page_types = ['BreadsIndexPage']
 
     api_fields = ['title', 'bread_type', 'origin', 'image']
 

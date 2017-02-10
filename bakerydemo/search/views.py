@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailsearch.models import Query
@@ -7,7 +7,6 @@ from wagtail.wagtailsearch.models import Query
 from bakerydemo.blog.models import BlogPage
 from bakerydemo.breads.models import BreadPage
 from bakerydemo.locations.models import LocationPage
-from bakerydemo.base.models import People
 
 
 def search(request):

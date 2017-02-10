@@ -121,6 +121,4 @@ class LocationPage(Page):
         context['long'] = self.lat_long.split(",")[1]
         return context
 
-    parent_page_types = [
-       'LocationsIndexPage'
-    ]
+    parent_page_types = ['LocationsIndexPage']

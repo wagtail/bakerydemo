@@ -33,6 +33,14 @@
           },
           zoom: 8
         });
+        var marker = new google.maps.Marker({
+          position: {
+              lat: {{lat}},
+              lng: {{long}}
+          },
+          map: map,
+          title: '{{page.title}}'
+        });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw&callback=initMap" async defer></script>

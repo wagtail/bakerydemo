@@ -3,11 +3,16 @@ Wagtail demo project
 
 This is a demonstration project for [Wagtail CMS](http://wagtail.io).
 
-*We do __not__ recommend using this project to start your own site*. This project is only to provide some examples of implementing common features, it is not an exemplar of Django or Wagtail best practice.
+*We do __not__ recommend using this project to start your own site*. This project is only to provide some examples of
+implementing common features, it is not an exemplar of Django or Wagtail best practice.
 
-If you're reasonably new to Python/Django, we suggest you run this project on a Virtual Machine using Vagrant, which helps  resolve common software dependency issues. However for more experienced developers, instructions to start this project without Vagrant follow below.
+If you're reasonably new to Python/Django, we suggest you run this project on a Virtual Machine using Vagrant, which
+helps  resolve common software dependency issues. However for more experienced developers, instructions to start this
+project without Vagrant follow below.
 
-Once you're familiar with the examples in this project and you want to start a real site, we strongly recommend running the ``wagtail start`` command in a fresh virtual environment, explained in the [Wagtail CMS Documentation](http://wagtail.readthedocs.org/en/latest/getting_started/).
+Once you're familiar with the examples in this project and you want to start a real site, we strongly recommend running
+the ``wagtail start`` command in a fresh virtual environment, explained in the
+[Wagtail CMS Documentation](http://wagtail.readthedocs.org/en/latest/getting_started/).
 
 Setup with Vagrant
 ------------------
@@ -26,7 +31,10 @@ Run the following commands:
       (then, within the SSH session:)
     ./manage.py runserver 0.0.0.0:8000
 
-The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin interface at [http://localhost:8000/admin/](http://localhost:8000/admin/) . Log into the admin with the credentials ``admin / changeme``.
+The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
+interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
+
+Log into the admin with the credentials ``admin / changeme``.
 
 Setup without Vagrant
 -----
@@ -44,8 +52,12 @@ With PIP installed run the following commands:
     pip install -r requirements.txt
     ./manage.py migrate
     ./manage.py load_initial_data
+      (if you want a custom superuser:)
     ./manage.py createsuperuser
     ./manage.py runserver
+
+Log into the admin with the credentials ``admin / changeme`` or, if you created a superuser,
+with the custom superuser credentials.
 
 ### Note on demo search:
 
