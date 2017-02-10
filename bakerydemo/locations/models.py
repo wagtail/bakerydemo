@@ -9,9 +9,9 @@ from wagtail.wagtailsearch import index
 
 
 class OperatingHours(models.Model):
-    '''
+    """
     Django model to capture operating hours for a Location
-    '''
+    """
     MONDAY = 'MON'
     TUESDAY = 'TUE'
     WEDNESDAY = 'WED'
@@ -52,9 +52,9 @@ class OperatingHours(models.Model):
 
 
 class LocationOperatingHours(Orderable, OperatingHours):
-    '''
+    """
     Operating Hours entry for a Location
-    '''
+    """
     location = ParentalKey(
         'LocationPage',
         related_name='hours_of_operation'
@@ -62,9 +62,9 @@ class LocationOperatingHours(Orderable, OperatingHours):
 
 
 class LocationsIndexPage(Page):
-    '''
+    """
     Index page for locations
-    '''
+    """
 
     subpage_types = ['LocationPage']
 
@@ -77,9 +77,9 @@ class LocationsIndexPage(Page):
 
 
 class LocationPage(Page):
-    '''
+    """
     Detail for a specific location
-    '''
+    """
 
     address = models.TextField()
     image = models.ForeignKey(

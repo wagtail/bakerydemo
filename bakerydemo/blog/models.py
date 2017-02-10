@@ -23,10 +23,10 @@ from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class BlogPeopleRelationship(Orderable, models.Model):
-    '''
+    """
     This defines the relationship between the `People` within the `base`
     app and the BlogPage below allowing us to add people to a BlogPage.
-    '''
+    """
     page = ParentalKey(
         'BlogPage', related_name='blog_person_relationship'
     )
@@ -43,9 +43,9 @@ class BlogPageTag(TaggedItemBase):
 
 
 class BlogPage(Page):
-    '''
+    """
     A Blog Page (Post)
-    '''
+    """
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -79,9 +79,9 @@ class BlogPage(Page):
     ]
 
     def authors(self):
-        '''
+        """
         Returns the BlogPage's related People
-        '''
+        """
         authors = [
             n.people for n in self.blog_person_relationship.all()
         ]
@@ -90,10 +90,10 @@ class BlogPage(Page):
 
     @property
     def get_tags(self):
-        '''
+        """
         Returns the BlogPage's related list of Tags.
         Each Tag is modified to include a url attribute
-        '''
+        """
         tags = self.tags.all()
         for tag in tags:
             tag.url = '/'+'/'.join(s.strip('/') for s in [
@@ -114,13 +114,13 @@ class BlogPage(Page):
 
 
 class BlogIndexPage(RoutablePageMixin, Page):
-    '''
+    """
     Index page for blogs.
     We need to alter the page model's context to return the child page objects - the
     BlogPage - so that it works as an index page
 
     The RoutablePageMixin is used to allow for a custom sub-URL
-    '''
+    """
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -157,11 +157,11 @@ class BlogIndexPage(RoutablePageMixin, Page):
     @route('^tags/$', name='tag_archive')
     @route('^tags/(\w+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
-        '''
+        """
         A Custom view that utilizes Tags. This view will
         return all related BlogPages for a given Tag or redirect back to
         the BlogIndexPage
-        '''
+        """
         try:
             tag = Tag.objects.get(slug=tag)
         except Tag.DoesNotExist:

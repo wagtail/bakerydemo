@@ -13,13 +13,13 @@ def search(request):
     # Search
     search_query = request.GET.get('query', None)
     if search_query:
-        '''
+        """
         Because we can't use ElasticSearch for the demo, we use the native db search.
         But native DB search can't search specific fields in our models on a `Page` query.
         So for demo purposes ONLY, we hard-code in the model names we want to search.
         In production, use ElasticSearch and a simplified search query, per
         http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html
-        '''
+        """
 
         blog_results = BlogPage.objects.live().search(search_query)
         blog_page_ids = [p.page_ptr.id for p in blog_results]
