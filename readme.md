@@ -54,12 +54,9 @@ With PIP installed run the following commands:
     pip install -r requirements.txt
     ./manage.py migrate
     ./manage.py load_initial_data
-      (if you want a custom superuser:)
-    ./manage.py createsuperuser
     ./manage.py runserver
 
-Log into the admin with the credentials ``admin / changeme`` or, if you created a superuser,
-with the custom superuser credentials.
+Log into the admin with the credentials ``admin / changeme``.
 
 ### Note on demo search:
 
