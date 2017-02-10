@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.db.utils import OperationalError
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -18,7 +17,6 @@ from wagtail.wagtailadmin.edit_handlers import (
         PageChooserPanel
         )
 from wagtail.wagtailsnippets.models import register_snippet
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from .blocks import BaseStreamBlock
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 

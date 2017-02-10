@@ -6,9 +6,7 @@ from wagtail.wagtailcore.blocks import (
     StreamBlock,
     RichTextBlock,
     CharBlock,
-    ListBlock,
     ChoiceBlock,
-    PageChooserBlock
 )
 
 

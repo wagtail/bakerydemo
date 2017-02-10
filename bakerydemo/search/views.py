@@ -7,7 +7,6 @@ from wagtail.wagtailsearch.models import Query
 from bakerydemo.blog.models import BlogPage
 from bakerydemo.breads.models import BreadPage
 from bakerydemo.locations.models import LocationPage
-from bakerydemo.base.models import People
 
 
 def search(request):
