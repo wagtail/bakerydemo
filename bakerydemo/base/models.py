@@ -21,6 +21,8 @@ from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from .blocks import BaseStreamBlock
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.modeladmin.options import (
+    ModelAdmin, ModelAdminGroup, modeladmin_register)
 
 
 @register_snippet
@@ -48,6 +50,15 @@ class People(ClusterableModel):
         index.SearchField('first_name'),
         index.SearchField('last_name'),
     ]
+
+    @property
+    def thumb_image(self):
+       # fail silently if there is no profile pic or the rendition file can't
+       # be found. Note @richbrennan worked out how to do this...
+       try:
+           return self.image.get_rendition('fill-50x50').img_tag()
+       except:
+           return ''
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -228,3 +239,21 @@ class FormPage(AbstractEmailForm):
             FieldPanel('subject'),
         ], "Email"),
     ]
+
+
+class PeopleModelAdmin(ModelAdmin):
+    model = People
+    menu_label = 'People'  # ditch this to use verbose_name_plural from model
+    menu_icon = 'fa-people'  # change as required
+    list_display = ('first_name', 'last_name', 'job_title', 'thumb_image')
+
+
+class MyModelAdminGroup(ModelAdminGroup):
+    menu_label = 'WagtailBakery'
+    menu_icon = 'folder-open-inverse'  # change as required
+    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
+    items = (PeopleModelAdmin,)
+
+# When using a ModelAdminGroup class to group several ModelAdmin classes together,
+# you only need to register the ModelAdminGroup class with Wagtail:
+modeladmin_register(MyModelAdminGroup)
