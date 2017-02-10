@@ -29,8 +29,6 @@ Run the following commands:
     vagrant up
     vagrant ssh
       (then, within the SSH session:)
-    ./manage.py migrate
-    ./manage.py load_initial_data
     ./manage.py runserver 0.0.0.0:8000
 
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
