@@ -55,6 +55,21 @@ class People(ClusterableModel):
         verbose_name_plural = 'People'
 
 
+@register_snippet
+class FooterText(models.Model):
+    body = RichTextField()
+
+    panels = [
+        FieldPanel('body'),
+    ]
+
+    def __str__(self):
+        return "Footer text"
+
+    class Meta:
+        verbose_name_plural = 'Footer Text'
+
+
 class AboutLocationRelationship(Orderable, models.Model):
     """
     This defines the relationship between the `LocationPage` within the `locations`
