@@ -11,9 +11,7 @@ from taggit.models import Tag, TaggedItemBase
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel,
-    InlinePanel,
-    StreamFieldPanel,
+    FieldPanel, InlinePanel, StreamFieldPanel,
 )
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page, Orderable
