@@ -26,13 +26,12 @@
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <!-- Theme CSS -->
-        {# <link href="css/clean-blog.min.css" rel="stylesheet">#}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'css/clean-blog.min.css' %}">
-
-
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Theme CSS -->
+        {# <link href="css/clean-blog.min.css" rel="stylesheet">#}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
         <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -50,70 +49,60 @@
 
     {% wagtailuserbar %}
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    Menu <i class="fa fa-bars"></i>
+    <div class="container">
+        <div class="row">
+            <div class="site-title col-lg-7 col-lg-offset-2">
+            <div class="col-lg-8">
+                <div class="navbar-header page-scroll">
+                    <h1><a class="title" href="/">Wagtail Bakery Demo 🍞</a></h1>
+                </div>
+            </div>
+            <form class="col-lg-4 navbar-form navbar-right">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Wagtail Bakery Demo</a>
+            </form>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="post.html">Sample Post</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
-    </nav>
+    </div>
 
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('/static/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-lg-offset-2">
+                {% block main_navigation %}
+                {% get_site_root as site_root %}
+                {% top_menu parent=site_root calling_page=self %}
+                {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-lg-offset-2">
+                {% block breadcrumbs %}
+                    {% breadcrumbs %}
+                {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <content> 
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
-                    </div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-7">
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
-    </header>
-
-
-    {% block main_navigation %}
-    {% get_site_root as site_root %}
-    {% top_menu parent=site_root calling_page=self %}
-    {# main_menu is defined in base/templatetags/navigation_tags.py #}
-    {% endblock %}
-
-    {% block breadcrumbs %}
-    {% breadcrumbs %}
-    {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
+    </content>
 
     <hr>
 
@@ -148,7 +137,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                    <p class="copyright text-center text-muted">Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
         </div>

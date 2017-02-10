@@ -1,0 +1,343 @@
+/* Space out content a bit */
+body {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 19px;
+  font-family: 'Alegreya', serif;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 22px;
+  }
+}
+
+h1 {
+  font-weight: 900;
+  font-family: 'Lato', sans-serif;
+  color: #63210d;
+}
+
+.hero h1 {
+  color: white;
+}
+
+h2 {
+  font-weight: 900;
+  font-family: 'Lato', sans-serif;
+  color: #63210d;
+}
+
+h3 {
+  font-weight: 900;
+  font-family: 'Lato', sans-serif;
+  color: #63210d;
+}
+
+h4 {
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  color: #63210d;
+}
+
+a, a:focus, a:visited {
+  color: #d4566b;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #eb7400;
+}
+
+p {
+  margin: 0 0 30px;
+  color: #444;
+}
+
+.intro {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  margin: 0 0 40px;
+}
+
+.stand-first {
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+}
+
+
+/* queries for type */
+@media (min-width: 768px) {
+
+  h1 {
+    font-size: 60px;
+  }
+
+  .stand-first {
+    font-size: 26px;
+  }
+
+  .intro {
+    font-size: 30px;
+    margin: 0 0 60px;
+  }
+
+  p {
+    margin: 0 0 50px;
+  }
+
+}
+
+img {
+  display: block;
+  width: 100%;
+  margin: 0 0 30px;
+}
+@media (min-width: 768px) {
+  img {
+    margin: 0 0 50px;
+  }
+}
+
+.nav {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+}
+
+.nav a {
+  color: white;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color: #fff;
+  background-color: #d4566b;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.footer {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  background-color: #63210d;
+  padding: 20px 0;
+  margin: 40px 0 0;
+}
+
+.footer p {
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 10;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container {
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 1400px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Article title and hero image */
+.hero {
+  background-size: cover;
+  padding: 200px 0 30px 0;
+  position: relative;
+  margin: 0 0 30px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .hero {
+    padding: 400px 0 60px 0;
+    margin: 0 0 40px;
+  }
+
+}
+
+.hero-gradient-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.01) 1%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+/* Logo */
+.logo, .logo:visited, .logo:focus {
+  display: block;
+  width: 100%;
+  padding: 0;
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+  margin: 10px 0 10px;
+}
+
+
+.logo:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+blockquote {
+  border-left: 5px solid #d4566b;
+  margin: 0 0 50px;
+}
+
+blockquote p {
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+cite {
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  color: #888;
+  font-size: 12px;
+  font-style: normal;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 1024px) {
+}
+
+/* Menu dropdown hack */
+li.has-submenu a.allow-toggle {
+  float: left;
+  padding-right: 0;
+}
+.caret-custom {
+    float: right;
+    display: inline-block!important;
+    padding: 15px 10px 15px 5px!important;
+}
+.caret-custom:after {
+    content: "▼"!important;
+}
+
+/* Edd styling */
+.site-title {
+  border-bottom: 1px #eee solid;
+}
+.site-title h1 {
+  font-family: 'Alegreya', serif;
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
+.navbar-form {
+  border: 1px solid #ddd;
+  padding: 0;
+  border-radius: 5px;
+  margin-right: 0px;
+}
+.navbar-form .form-group .form-control {
+  border: none;
+  box-shadow: none!important;
+  font-family: 'Lato', sans-serif;
+}
+.navbar-right button.btn.btn-default {
+  margin-left: -10px;
+  border: none;
+  border-left: 1px solid #ddd;
+  border-radius: 0;
+}
+.navbar-default {
+  background-color: transparent;
+  border-color: transparent;
+}
+.navbar-nav a {
+  font-size: 14px;
+}
+.navbar-nav a span {
+  font-size: 10px;
+}
+
+.navbar.navbar-default.navbar-custom {
+  border-bottom: 1px #eee solid;
+}
+
+.navbar-nav > li:first-of-type > a {
+  padding-left: 0;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  font-size: 14px;
+}
+.breadcrumb>li+li:before {
+  content: "\00BB";
+}
+
