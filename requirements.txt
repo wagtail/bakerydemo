@@ -3,3 +3,8 @@ elasticsearch
 wagtail
 wagtailfontawesome
 Pillow
+
+# Dependencies for Heroku deployment
+dj-database-url==0.3.0
+whitenoise>=3.1,<4.0
+uwsgi>=2.0,<2.1
