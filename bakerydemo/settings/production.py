@@ -11,16 +11,6 @@ DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = False
 
 
-# Compress static files offline and minify CSS
-# http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-COMPRESS_OFFLINE = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-]
-COMPRESS_CSS_HASHING_METHOD = 'content'
-
-
 # Configuration from environment variables
 # Alternatively, you can set these in a local.py file on the server
 

@@ -121,6 +121,35 @@ def getImageCollections():
     except:
         return [('','')]
 
+    def __str__(self):
+        return self.title
+
+
+class HomePage(Page):
+    """
+    The Home Page
+    """
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Location image'
+    )
+
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Home page detail", blank=True
+        )
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
+    ]
+
+    def __str__(self):
+        return self.title
+
 
 class GalleryPage(Page):
     """
