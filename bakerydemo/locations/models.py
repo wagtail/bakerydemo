@@ -111,7 +111,7 @@ class LocationPage(Page):
     ]
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def opening_hours(self):
         hours = self.hours_of_operation.all()

@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'bakerydemo.blog',
     'bakerydemo.breads',
     'bakerydemo.locations',
-    # 'bakerydemo.search',
+    'bakerydemo.search',
 
     'wagtail.contrib.wagtailsearchpromotions',
     'wagtail.wagtailforms',
@@ -167,6 +167,7 @@ WAGTAILSEARCH_BACKENDS = {
         'INDEX': 'bakerydemo',
     },
 }
+
 
 # Wagtail settings
 

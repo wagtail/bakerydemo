@@ -44,6 +44,11 @@ class People(ClusterableModel):
         ImageChooserPanel('image')
     ]
 
+    search_fields = Page.search_fields + [
+        index.SearchField('first_name'),
+        index.SearchField('last_name'),
+    ]
+
     def __str__(self):
         return self.first_name + " " + self.last_name
 

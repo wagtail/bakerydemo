@@ -19,7 +19,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-
+from wagtail.wagtailsearch import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -73,6 +73,11 @@ class BlogPage(Page):
             'blog_person_relationship', label="Author(s)",
             panels=None, min_num=1),
         FieldPanel('tags'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('title'),
+        index.SearchField('body'),
     ]
 
     def authors(self):
