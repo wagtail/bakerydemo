@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
+
+{% block content %}
+    <h1>
+        Search results{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}
+    </h1>
+    {% if search_results %}
+        <ul>
+            {% for result in search_results %}
+                <li>
+                    <h4>
+                        {% if result.specific.content_type.model == "blogpage" %}
+                            Blog post:
+                        {% elif result.specific.content_type.model == "locationpage" %}
+                            Location:
+                        {% else %}
+                            Bread
+                        {% endif %}
+                        <a href="{% pageurl result.specific %}">{{ result.specific }}</a>
+                    </h4>
+                        {% if result.specific.search_description %}{{ result.specific.search_description|safe }}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif search_query %}
+        No results found
+    {% else %}
+        You didn’t search for anything!
+    {% endif %}
+{% endblock %}

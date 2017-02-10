@@ -1,21 +1,21 @@
 from django.db import models
 
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore.models import Page
 
+from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
-from wagtail.wagtailcore import blocks
 from wagtail.wagtailsnippets.models import register_snippet
 
 
 @register_snippet
 class Country(models.Model):
-    '''
+    """
     Standard Django model to store set of countries of origin.
     Exposed in the Wagtail admin via Snippets.
-    '''
+    """
 
     title = models.CharField(max_length=100)
 
@@ -28,9 +28,9 @@ class Country(models.Model):
 
 @register_snippet
 class BreadType(models.Model):
-    '''
+    """
     Standard Django model used as a Snippet in the BreadPage model.
-    '''
+    """
 
     title = models.CharField(max_length=255)
 
@@ -46,16 +46,16 @@ class BreadType(models.Model):
 
 
 class BreadPage(Page):
-    '''
+    """
     Detail view for a specific bread
-    '''
+    """
 
     origin = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        )
+    )
     description = StreamField([
         ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
@@ -89,17 +89,17 @@ class BreadPage(Page):
         index.SearchField('description'),
     ]
 
-    parent_page_types = [
-       'BreadsIndexPage'
-    ]
+    parent_page_types = ['BreadsIndexPage']
+
+    api_fields = ['title', 'bread_type', 'origin', 'image']
 
 
 class BreadsIndexPage(Page):
-    '''
+    """
     Index page for breads. We don't have any fields within our model but we need
-    to alter the page models context to return the child page objects - the
+    to alter the page model's context to return the child page objects - the
     BreadPage - so that it works as an index page
-    '''
+    """
 
     subpage_types = ['BreadPage']
 

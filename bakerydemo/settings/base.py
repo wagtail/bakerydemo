@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'bakerydemo.blog',
     'bakerydemo.breads',
     'bakerydemo.locations',
-    # 'bakerydemo.search',
+    'bakerydemo.search',
 
     'wagtail.contrib.wagtailsearchpromotions',
     'wagtail.wagtailforms',
@@ -50,7 +50,9 @@ INSTALLED_APPS = [
     'wagtail.wagtailadmin',
     'wagtail.contrib.modeladmin',
     'wagtail.wagtailcore',
-
+    'wagtail.contrib.wagtailapi',
+    
+    'rest_framework',
     'modelcluster',
     'taggit',
     'wagtailfontawesome',
@@ -167,6 +169,7 @@ WAGTAILSEARCH_BACKENDS = {
         'INDEX': 'bakerydemo',
     },
 }
+
 
 # Wagtail settings
 

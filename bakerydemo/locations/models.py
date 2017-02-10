@@ -9,9 +9,9 @@ from wagtail.wagtailsearch import index
 
 
 class OperatingHours(models.Model):
-    '''
+    """
     Django model to capture operating hours for a Location
-    '''
+    """
     MONDAY = 'MON'
     TUESDAY = 'TUE'
     WEDNESDAY = 'WED'
@@ -52,9 +52,9 @@ class OperatingHours(models.Model):
 
 
 class LocationOperatingHours(Orderable, OperatingHours):
-    '''
+    """
     Operating Hours entry for a Location
-    '''
+    """
     location = ParentalKey(
         'LocationPage',
         related_name='hours_of_operation'
@@ -62,9 +62,9 @@ class LocationOperatingHours(Orderable, OperatingHours):
 
 
 class LocationsIndexPage(Page):
-    '''
+    """
     Index page for locations
-    '''
+    """
 
     subpage_types = ['LocationPage']
 
@@ -77,9 +77,9 @@ class LocationsIndexPage(Page):
 
 
 class LocationPage(Page):
-    '''
+    """
     Detail for a specific location
-    '''
+    """
 
     address = models.TextField()
     image = models.ForeignKey(
@@ -93,8 +93,6 @@ class LocationPage(Page):
         max_length=36,
         help_text="Comma separated lat/long. (Ex. 64.144367, -21.939182) \
                    Right click Google Maps and click 'What\'s Here'"
-
-
     )
 
     # Search index configuration
@@ -111,12 +109,16 @@ class LocationPage(Page):
     ]
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def opening_hours(self):
         hours = self.hours_of_operation.all()
         return hours
 
-    parent_page_types = [
-       'LocationsIndexPage'
-    ]
+    def get_context(self, request):
+        context = super(LocationPage, self).get_context(request)
+        context['lat'] = self.lat_long.split(",")[0]
+        context['long'] = self.lat_long.split(",")[1]
+        return context
+
+    parent_page_types = ['LocationsIndexPage']

@@ -20,7 +20,7 @@
                 {% endif %}
             {% endblock %}
         </title>
-        <meta name="description" content="">
+        <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Bootstrap Core CSS -->
@@ -68,6 +68,16 @@
             </div>
         </div>
     </div>
+
+    {% if messages %}
+    <div>
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 
     <div class="container">
         <div class="row">
@@ -137,7 +147,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-center text-muted">Copyright &copy; Your Website 2016</p>
+                    <p class="copyright text-center text-muted">{% get_footer_text %}</p>
                 </div>
             </div>
         </div>

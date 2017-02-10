@@ -7,12 +7,12 @@
       {% image self.image fill-600x600 %}
     </figure>
 
-    {% for tag in page.tags.all  %}
-        {{ tag }}
+    {% for tag in page.get_tags  %}
+        <a href="{{ tag.url }}">{{ tag }}</a>
     {% endfor %}
 
     <date>{{ page.date_published }}</date>
-    
+
     {% for author in page.authors %}
         <li>{{ author }}</li>
     {% endfor %}
