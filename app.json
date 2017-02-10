@@ -1,0 +1,16 @@
+{
+  "name": "WagtailBakeryDemo",
+  "description": "WagtailBakeryDemo",
+  "repository": "https://github.com/wagtail/bakerydemo",
+  "logo": "http://wagtail.io/static/wagtailsite/images/navlogo2.png",
+  "keywords": ["wagtail", "django"],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "bakerydemo.settings.heroku"
+  },
+  "scripts": {
+    "postdeploy": "django-admin.py migrate && django-admin.py load_initial_data && echo 'from wagtail.wagtailimages.models import Rendition; Rendition.objects.all().delete()' | django-admin.py shell"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ]
+}
