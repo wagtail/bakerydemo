@@ -5,7 +5,7 @@
     {{ page.title }}
     {% for blog in blogs %}
         <div>
-            <h2><a href="{{ blog.full_url }}">{{ blog.title }}</a></h2>
+            <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
             {{ blog.body|truncatewords_html:10 }}
 
             {% for tag in blog.get_tags  %}
