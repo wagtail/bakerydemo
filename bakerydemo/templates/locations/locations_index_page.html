@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
 {% block content-header %}
     {{ page.title }}
@@ -7,6 +7,6 @@
 
 {% block content-body %}
     {% for location in locations %}
-        <div><a href="{{ location.slug }}">{{ location.title }}</a></div>
+        <div><a href="{% pageurl location %}">{{ location.title }}</a></div>
     {% endfor %}
 {% endblock content-body %}
