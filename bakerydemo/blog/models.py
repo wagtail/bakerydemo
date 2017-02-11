@@ -11,7 +11,7 @@ from taggit.models import Tag, TaggedItemBase
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, InlinePanel, StreamFieldPanel,
+    FieldPanel, InlinePanel, StreamFieldPanel, MultiFieldPanel
 )
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page, Orderable
@@ -47,6 +47,7 @@ class BlogPage(Page):
     A Blog Page (Post)
     """
     subtitle = models.CharField(blank=True, max_length=255)
+    introduction = models.CharField(blank=True, max_length=255)
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -65,7 +66,10 @@ class BlogPage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('subtitle'),
+        MultiFieldPanel([
+            FieldPanel('subtitle'),
+            FieldPanel('introduction'),
+        ]),
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
         FieldPanel('date_published'),
