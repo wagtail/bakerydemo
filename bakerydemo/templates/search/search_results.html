@@ -3,11 +3,15 @@
 
 {% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
 
-{% block content %}
+{% block content-header %}
     <h1>
-        Search results{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}
+        Search results
     </h1>
+{% endblock content-header %}
+
+{% block content-body %}
     {% if search_results %}
+    You searched <p>{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}</p>
         <ul>
             {% for result in search_results %}
                 <li>
@@ -30,4 +34,4 @@
     {% else %}
         You didn’t search for anything!
     {% endif %}
-{% endblock %}
+{% endblock content-body %}

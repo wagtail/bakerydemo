@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content %}
+{% block content-header %}
     <h1>{{ page.title }}</h1>
     <figure>
       {% image self.image fill-600x600 %}
     </figure>
+{% endblock content-header %}
+
+{% endblock content %}
     <p>{{ page.origin }}</p>
     <p>{{ page.bread_type }}</p>
     {{ page.description }}
