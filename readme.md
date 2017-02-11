@@ -26,12 +26,14 @@ Setup with Vagrant
 ### Installation
 Run the following commands:
 
-    git clone https://github.com/torchbox/bakerydemo.git
-    cd wagtaildemo
-    vagrant up
-    vagrant ssh
-      (then, within the SSH session:)
-    ./manage.py runserver 0.0.0.0:8000
+```bash
+git clone git@github.com:wagtail/bakerydemo.git
+cd wagtaildemo
+vagrant up
+vagrant ssh
+# then, within the SSH session:
+./manage.py runserver 0.0.0.0:8000
+```
 
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
 interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
@@ -49,7 +51,7 @@ Don't want to set up a whole VM to try out Wagtail? No problem.
 
 With PIP installed run the following commands:
 
-    git clone https://github.com/torchbox/bakerydemo.git
+    git clone git@github.com:wagtail/bakerydemo.git
     cd wagtaildemo
     pip install -r requirements.txt
     ./manage.py migrate
