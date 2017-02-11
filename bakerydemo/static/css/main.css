@@ -491,3 +491,8 @@ li.has-submenu a.allow-toggle {
   content: "\00BB";
 }
 
+/* Mobile nav */
+.navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
