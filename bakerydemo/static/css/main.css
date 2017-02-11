@@ -10,7 +10,7 @@ body {
   background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 50%,rgba(233,228,221,1) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 50%,rgba(233,228,221,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e9e4dd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+  min-height: 100vh;
 }
 
 @media (min-width: 768px) {
