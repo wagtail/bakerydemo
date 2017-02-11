@@ -23,8 +23,12 @@
             {% if page.introduction %}
                 <p class="intro">{{ page.introduction }}</p>
             {% endif %}
-            
+
             {{ page.body }}
+
+            {% for tag in page.get_tags  %}
+                <a href="{{ tag.url }}">{{ tag }}</a>
+            {% endfor %}
         </div>
     </div>
 </div>
