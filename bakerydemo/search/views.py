@@ -11,7 +11,7 @@ from bakerydemo.locations.models import LocationPage
 
 def search(request):
     # Search
-    search_query = request.GET.get('query', None)
+    search_query = request.GET.get('q', None)
     if search_query:
         """
         Because we can't use ElasticSearch for the demo, we use the native db search.
