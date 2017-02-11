@@ -79,7 +79,7 @@ class LocationsIndexPage(Page):
 
 class LocationPage(Page):
     """
-    Detail for a specific location
+    Detail for a specific bakery location.
     """
 
     address = models.TextField()
@@ -93,11 +93,11 @@ class LocationPage(Page):
     lat_long = models.CharField(
         max_length=36,
         help_text="Comma separated lat/long. (Ex. 64.144367, -21.939182) \
-                   Right click Google Maps and click 'What\'s Here'",
+                   Right click Google Maps and select 'What\'s Here'",
         validators=[
             RegexValidator(
                 regex='^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$',
-                message='Lat Long must be a comma separated numeric lat and long',
+                message='Lat Long must be a comma-separated numeric lat and long',
                 code='invalid_lat_long'
             ),
         ]
