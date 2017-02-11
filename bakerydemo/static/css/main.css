@@ -20,21 +20,14 @@ body {
 }
 
 h1 {
-  color: white;
   font-weight: 900;
   font-family: 'Lato', sans-serif;
   position: relative;
 }
 
-/*h1:before {
-  position: absolute;
-  top: -40px;
-  left: -100px;
-  width: 200px;
-  height: 1px;
-  background-color: #d4566b;
-  content: '';
-}*/
+.hero h1 {
+  color: white;
+}
 
 h2 {
   font-weight: 900;
@@ -236,20 +229,37 @@ nav {
   }
 }
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover,
+.nav-pills>li.active, .nav-pills>li:hover, .breadcrumb>li+li:hover:before,
+.nav>li>a:focus, .nav>li>a:hover {
   color: #d4566b;
   background-color: transparent;
   border-top: 1px solid #d4566b;
   font-weight: 600;
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
-  text-decoration: none;
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
   background-color: transparent;
   border-top: 1px solid #d4566b;
-  color: #d4566b;
 }
 
+.dropdown-menu {
+  background-color: rgba(25,17,18,1);
+  border-radius: 0;
+  border: transparent;
+}
+
+.dropdown-menu > li> a {
+  border-bottom: 1px solid #371c19;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  padding: 10px 20px;
+}
+
+.dropdown-menu > li> a:hover {
+  background-color: transparent;
+  color: #d4566b;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .footer {
   font-size: 16px;
@@ -269,7 +279,11 @@ nav {
   padding: 15px 0 15px;
 /*  position: absolute;*/
   width: 100%;
-  background-color: rgba(25,17,18,1);
+  background: rgb(25,17,18); /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  rgba(25,17,18,1) 0%, rgba(55,28,25,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  rgba(25,17,18,1) 0%,rgba(55,28,25,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  rgba(25,17,18,1) 0%,rgba(55,28,25,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191112', endColorstr='#371c19',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   z-index: 10;
 }
 /* Make the masthead heading the same height as the navigation */
@@ -464,7 +478,7 @@ li.has-submenu a.allow-toggle {
   border-bottom: 1px #eee solid;
 }
 
-.navbar-nav > li:first-of-type > a {
+.nav-pills> li:first-of-type > a {
   padding-left: 0;
 }
 
