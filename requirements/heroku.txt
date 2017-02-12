@@ -1,3 +1,4 @@
+-r base.txt
 # Additional dependencies for Heroku deployment
 dj-database-url
 whitenoise

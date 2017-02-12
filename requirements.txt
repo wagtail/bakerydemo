@@ -1,5 +1,1 @@
-Django
-elasticsearch
-wagtail
-wagtailfontawesome
-Pillow
+-r requirements/heroku.txt

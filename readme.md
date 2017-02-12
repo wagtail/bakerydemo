@@ -53,7 +53,7 @@ With PIP installed run the following commands:
 
     git clone git@github.com:wagtail/bakerydemo.git
     cd wagtaildemo
-    pip install -r requirements.txt
+    pip install -r requirements/base.txt
     ./manage.py migrate
     ./manage.py load_initial_data
     ./manage.py runserver
