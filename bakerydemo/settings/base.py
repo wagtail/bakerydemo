@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.wagtailcore',
     'wagtail.contrib.wagtailapi',
-    
+
     'rest_framework',
     'modelcluster',
     'taggit',
@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'bakerydemo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bakerydemodb',
+        'NAME': os.path.join(BASE_DIR, 'bakerydemodb')
     }
 }
 

@@ -54,6 +54,16 @@ With PIP installed run the following commands:
     git clone git@github.com:wagtail/bakerydemo.git
     cd wagtaildemo
     pip install -r requirements.txt
+
+Next, we'll set up our local environment variables. We use django-dotenv to help with this. It reads environment
+variables located in a file name .env in the top level directory of the project. The only variable we need to start is
+DJANGO_SETTINGS_MODULE:
+
+    $ cp bakerydemo/settings/local.example.py bakerydemo/settings/local.py
+    $ echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env
+
+Execute the following commands:
+
     ./manage.py migrate
     ./manage.py load_initial_data
     ./manage.py runserver

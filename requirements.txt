@@ -1,4 +1,5 @@
 Django
+django-dotenv
 elasticsearch
 wagtail
 wagtailfontawesome

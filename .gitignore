@@ -9,7 +9,8 @@
 .~*
 common/CACHE
 bakerydemo/media/*
-bakerydemodb
+bakerydemo/settings/local.py
+bakerydemodb*
 __pycache__
 .*
 .vagrant/
