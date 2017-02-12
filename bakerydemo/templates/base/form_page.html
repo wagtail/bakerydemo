@@ -6,7 +6,7 @@
     {{ page.intro|richtext }}
 {% endblock content-header %}
 
-{% endblock content-body %}
+{% block content-body %}
     <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}

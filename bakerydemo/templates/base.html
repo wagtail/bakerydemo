@@ -12,11 +12,14 @@
     {# Header contains the main_navigation block #}
 {% endblock header %}
 
+{% block head-extra %}
+{% endblock head-extra %}
+
 {% block messages %}
     {% include "includes/messages.html" %}
 {% endblock messages %}
 
-    <content> 
+    <content>
         {% block content-header %}
         {% endblock content-header %}
 

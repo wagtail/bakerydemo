@@ -26,10 +26,13 @@
 {% endblock content-header %}
 
 {% block content-body %}
-    <p>{{ page.address }}</p>
-    <p>{{ page.lat_long }}</p>
-
+    <p>{{ page.address|linebreaks }}</p>
     <div id="map" class="maps embed-container"></div>
+
+    {% for hours in page.opening_hours %}
+        <li>{{ hours }}</li>
+    {% endfor %}
+
     <script>
       var map;
       function initMap() {
@@ -52,7 +55,4 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw&callback=initMap" async defer></script>
 
-    {% for hours in page.opening_hours %}
-        <li>{{ hours }}</li>
-    {% endfor %}
 {% endblock content-body %}
