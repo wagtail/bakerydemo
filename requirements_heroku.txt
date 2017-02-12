@@ -1,0 +1,5 @@
+# Additional dependencies for Heroku deployment
+dj-database-url
+whitenoise
+gunicorn
+psycopg2
