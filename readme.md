@@ -1,5 +1,3 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
-
 Wagtail demo project
 =======================
 
@@ -66,4 +64,24 @@ Because we can't (easily) use ElasticSearch for this demo, we use wagtail's nati
 However, native DB search can't search specific fields in our models on a generalized `Page` query.
 So for demo purposes ONLY, we hard-code the model names we want to search into `search.views`, which is
 not ideal. In production, use ElasticSearch and a simplified search query, per
-http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html
+[http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html](http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html).
+
+### Heroku deployment:
+
+If you need to deploy your demo site to a publicly accessible server, [https://heroku.com](Heroku)
+provides a one-click deployment solution:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
+
+If you do not have a Heroku account, clicking the above button will walk you through the steps
+to generate one.  After which, you will be presented with a screen to configure your app. For our purposes,
+we will accept all of the defaults and click `Deploy`.  The browser will update the status
+of the deployment. This will take approximately 5 minutes. Once complete, click `View` to see the public site.
+
+Log into the admin with the credentials ``admin / changeme``.
+
+To learn more about Heroku, read [https://devcenter.heroku.com/articles/deploying-python](Deploying Python and Django Apps on Heroku).
+
+
+
+
