@@ -75,8 +75,8 @@ provides a one-click deployment solution:
 
 If you do not have a Heroku account, clicking the above button will walk you through the steps
 to generate one.  After which, you will be presented with a screen to configure your app. For our purposes,
-we will accept all of the defaults and click `Deploy`.  The browser will update the status
-of the deployment. This will take approximately 5 minutes. Once complete, click `View` to see the public site.
+we will accept all of the defaults and click `Deploy`.  The status of the deployment will dynamically
+update in the browser. Once finished, click `View` to see the public site.
 
 Log into the admin with the credentials ``admin / changeme``.
 
