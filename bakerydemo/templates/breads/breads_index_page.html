@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content %}
+{% block content-header %}
     {{ page.title }}
     {% for bread in resources %}
 		<div>
@@ -10,7 +10,9 @@
 			</div>
 		</div>
 	{% endfor %}
+{% block content-header %}
 
+{% block content-body %}
 	{% if resources.has_other_pages %}
 	<div class="clearfix">
 	  <div class="pagination-wrapper">
@@ -36,5 +38,4 @@
 	  </div>
 	</div>
 	{% endif %}
-
-{% endblock content %}
+{% endblock content-body %}

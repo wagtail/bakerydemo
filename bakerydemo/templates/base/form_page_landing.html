@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
-{% block content %}
+{% block content-header %}
     <h1>{{ page.title }}</h1>
+{% endblock content-header %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block content-body %}
     {{ page.thank_you_text|richtext }}
-{% endblock content %}
+{% endblock content-body %}

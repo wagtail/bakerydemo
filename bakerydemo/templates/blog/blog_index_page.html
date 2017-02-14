@@ -1,16 +1,31 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content %}
-    {{ page.title }}
-    {% for blog in blogs %}
-        <div>
-            <h2><a href="{{ blog.full_url }}">{{ blog.title }}</a></h2>
-            {{ blog.body|truncatewords_html:10 }}
+{% block content-header %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            {{ page.title }}
+        </div>
+    </div>
+</div>
+{% endblock content-header %}
 
-            {% for tag in blog.get_tags  %}
-                <a href="{{ tag.url }}">{{ tag }}</a>
+{% block content-body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            {% for blog in blogs %}
+                <div>
+                    <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+                    {{ blog.body|truncatewords_html:10 }}
+
+                    {% for tag in blog.get_tags  %}
+                        <a href="{{ tag.url }}">{{ tag }}</a>
+                    {% endfor %}
+                </div>
             {% endfor %}
         </div>
-    {% endfor %}
-{% endblock content %}
+    </div>
+</div>
+{% endblock content-body %}

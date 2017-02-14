@@ -1,144 +1,47 @@
 {% load navigation_tags static wagtailuserbar %}
 
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>
-            {% block title %}
-                {% block title_prefix %}
-                    Wagtail demo bakery
-                {% endblock %}
-                {% if self.seo_title %}
-                    {{ self.seo_title }}
-                {% else %}
-                    {{ self.title }}
-                {% endif %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Bootstrap Core CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- Custom Fonts -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- Theme CSS -->
-        {# <link href="css/clean-blog.min.css" rel="stylesheet">#}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main2.css' %}">
-
-
-        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-</head>
+{% block head %}
+    {% include "includes/head.html" %}
+{% endblock head %}
 
 <body>
+{% wagtailuserbar %}
 
-    {% wagtailuserbar %}
+{% block header %}
+    {% include "includes/header.html" with parent=site_root calling_page=self %}
+    {# Header contains the main_navigation block #}
+{% endblock header %}
 
-    <div class="header clearfix">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <a href="#" class="logo">The Wagtail Bakery 🍞</a>
-            <form action="/search" method="get" class="search" _lpchecked="1">
-              <input name="q" type="text" placeholder="Search the site" id="" aria-label="Search the site" autocomplete="off">
-              <a href="#" class="search-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451"><path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"></path></svg>
-              </a>
-            </form>
-            {% block main_navigation %}
-            <nav>
-              <ul class="nav nav-pills">
-                {% get_site_root as site_root %}
-                {% top_menu parent=site_root calling_page=self %}
-                {# main_menu is defined in base/templatetags/navigation_tags.py #}
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-      {% endblock %}
-    </div>
+{% block head-extra %}
+{% endblock head-extra %}
 
-    {% if messages %}
-    <div>
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
+{% block messages %}
+    {% include "includes/messages.html" %}
+{% endblock messages %}
 
-    {% block breadcrumbs %}
-        {% breadcrumbs %}
-    {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
-    {% endblock %}
+    <content>
+        {% block content-header %}
+        {% endblock content-header %}
 
-    <content> 
-        {% block content %}
-        {% endblock %}
+        {% block breadcrumbs %}
+            {% breadcrumbs %}
+            {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+        {% endblock breadcrumbs %}
+
+        {% block content-body %}
+        {% endblock content-body %}
     </content>
 
     <hr>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-center text-muted">{% get_footer_text %}</p>
-                </div>
-            </div>
-        </div>
+        {% include "includes/footer.html" %}
     </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 
     <!-- Theme JavaScript -->
     <script src="{% static 'js/clean-blog.min.js' %}"></script>

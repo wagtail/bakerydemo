@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content %}
+{% block content-header %}
     {{ page.title }}
 
     <div class="image">
         {% image page.image width-500 as photo %}
-              <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" />
+        <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" />
     </div>
+{% endblock content-header %}
 
+{% block content-body %}
     {{ page.body }}
-{% endblock content %}
+{% endblock content-body %}

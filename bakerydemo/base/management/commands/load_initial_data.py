@@ -11,3 +11,4 @@ class Command(BaseCommand):
         fixture_file = os.path.join(fixtures_dir, 'bakerydemo.json')
 
         call_command('loaddata', fixture_file, verbosity=0)
+        print("Awesome. Your data is loaded! The bakery's doors are almost ready to open...")

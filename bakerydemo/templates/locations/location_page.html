@@ -1,28 +1,38 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content %}
-
-    <style>
+{% block head-extra %}
+  <style>
       /* Needed for Google map embed */
       #map {
         height: 100%;
+      }
+      .maps.embed-container {
+         pointer-events: none;
       }
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
-    </style>
+  </style>
+{% endblock head-extra %}
 
+{% block content-header %}
     <h1>{{ page.title }}</h1>
     <figure>
       {% image self.image fill-600x600 %}
     </figure>
-    <p>{{ page.address }}</p>
-    <p>{{ page.lat_long }}</p>
+{% endblock content-header %}
 
-    <div id="map"></div>
+{% block content-body %}
+    <p>{{ page.address|linebreaks }}</p>
+    <div id="map" class="maps embed-container"></div>
+
+    {% for hours in page.opening_hours %}
+        <li>{{ hours }}</li>
+    {% endfor %}
+
     <script>
       var map;
       function initMap() {
@@ -45,7 +55,4 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw&callback=initMap" async defer></script>
 
-    {% for hours in page.opening_hours %}
-        <li>{{ hours }}</li>
-    {% endfor %}
-{% endblock content %}
+{% endblock content-body %}

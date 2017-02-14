@@ -2,7 +2,6 @@
   "name": "WagtailBakeryDemo",
   "description": "WagtailBakeryDemo",
   "repository": "https://github.com/wagtail/bakerydemo",
-  "logo": "http://wagtail.io/static/wagtailsite/images/navlogo2.png",
   "keywords": ["wagtail", "django"],
   "env": {
     "DJANGO_SETTINGS_MODULE": "bakerydemo.settings.heroku"

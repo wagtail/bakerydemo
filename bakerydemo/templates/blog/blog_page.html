@@ -1,19 +1,35 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load navigation_tags wagtailimages_tags %}
 
-{% block content %}
+{% block content-header %}
 {% image self.image fill-1920x600 as hero_img %}
 <div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
+<div class="hero-gradient-mask"></div>
     <div class="container">
-        <h1>{{ page.title }}</h1>
-        <h2>{{ page.subtitle }}</h2>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-7 col-md-offset-2">
-            {{ page.body }}
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+                <h1>{{ page.title }}</h1>
+                <p class="stand-first">{{ page.subtitle }}</p>
+            </div>
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock content-header %}
+
+{% block content-body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            {% if page.introduction %}
+                <p class="intro">{{ page.introduction }}</p>
+            {% endif %}
+
+            {{ page.body }}
+
+            {% for tag in page.get_tags  %}
+                <a href="{{ tag.url }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content-body %}
