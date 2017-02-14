@@ -9,10 +9,6 @@ PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
 
-# Create database
-su - vagrant -c "createdb $PROJECT_NAME"
-
-
 # Virtualenv setup for project
 su - vagrant -c "virtualenv --python=python3 $VIRTUALENV_DIR"
 # Replace previous line with this if you are using Python 2
@@ -41,7 +37,7 @@ su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
 # Add a couple of aliases to manage.py into .bashrc
 cat << EOF >> /home/vagrant/.bashrc
 export PYTHONPATH=$PROJECT_DIR
-export DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.dev
+export DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.vagrant
 
 alias dj="django-admin.py"
 alias djrun="dj runserver 0.0.0.0:8000"
