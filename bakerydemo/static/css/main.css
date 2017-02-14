@@ -464,7 +464,7 @@ li.has-submenu a.allow-toggle {
   border-bottom: 1px #eee solid;
 }
 
-.navbar-nav > li:first-of-type > a {
+.nav-pills> li:first-of-type > a {
   padding-left: 0;
 }
 
