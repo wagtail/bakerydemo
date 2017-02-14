@@ -68,7 +68,7 @@ not ideal. In production, use ElasticSearch and a simplified search query, per
 
 ### Heroku deployment:
 
-If you need to deploy your demo site to a publicly accessible server, [https://heroku.com](Heroku)
+If you need to deploy your demo site to a publicly accessible server [Heroku](https://heroku.com)
 provides a one-click deployment solution:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
@@ -80,7 +80,7 @@ of the deployment. This will take approximately 5 minutes. Once complete, click 
 
 Log into the admin with the credentials ``admin / changeme``.
 
-To learn more about Heroku, read [https://devcenter.heroku.com/articles/deploying-python](Deploying Python and Django Apps on Heroku).
+To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](https://devcenter.heroku.com/articles/deploying-python).
 
 
 
