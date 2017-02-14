@@ -13,26 +13,26 @@ class OperatingHours(models.Model):
     """
     Django model to capture operating hours for a Location
     """
-    MONDAY = 'MON'
-    TUESDAY = 'TUE'
-    WEDNESDAY = 'WED'
-    THURSDAY = 'THU'
-    FRIDAY = 'FRI'
-    SATURDAY = 'SAT'
-    SUNDAY = 'SUN'
+    MONDAY = 'Mon'
+    TUESDAY = 'Tue'
+    WEDNESDAY = 'Wed'
+    THURSDAY = 'Thu'
+    FRIDAY = 'Fri'
+    SATURDAY = 'Sat'
+    SUNDAY = 'Sun'
 
     DAY_CHOICES = (
-        (MONDAY, 'MON'),
-        (TUESDAY, 'TUE'),
-        (WEDNESDAY, 'WED'),
-        (THURSDAY, 'THU'),
-        (FRIDAY, 'FRI'),
-        (SATURDAY, 'SAT'),
-        (SUNDAY, 'SUN'),
+        (MONDAY, 'Mon'),
+        (TUESDAY, 'Tue'),
+        (WEDNESDAY, 'Weds'),
+        (THURSDAY, 'Thu'),
+        (FRIDAY, 'Fri'),
+        (SATURDAY, 'Sat'),
+        (SUNDAY, 'Sun'),
     )
 
     day = models.CharField(
-        max_length=3,
+        max_length=4,
         choices=DAY_CHOICES,
         default=MONDAY,
     )
