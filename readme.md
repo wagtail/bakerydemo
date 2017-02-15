@@ -93,5 +93,14 @@ Log into the admin with the credentials ``admin / changeme``.
 To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](https://devcenter.heroku.com/articles/deploying-python).
 
 
+### Sending email from the contact form
 
+The following setting in `base.py` and `heroku.py` ensures that live email is not sent by the demo contact form.
 
+`EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'`
+
+In production on your own site, you'll need to change this to:
+
+`EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
+
+and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
