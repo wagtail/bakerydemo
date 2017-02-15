@@ -111,12 +111,9 @@ class BlogPage(Page):
 
     parent_page_types = ['BlogIndexPage']
 
-    # Defining what content type can sit under the parent
-    # The empty array means that no children can be placed under the
-    # LocationPage page model
+    # Define what content types can exist as children of BlogPage.
+    # Empty list means that no child content types are allowed.
     subpage_types = []
-
-    # api_fields = ['image', 'body']
 
 
 class BlogIndexPage(RoutablePageMixin, Page):
@@ -125,8 +122,9 @@ class BlogIndexPage(RoutablePageMixin, Page):
     We need to alter the page model's context to return the child page objects - the
     BlogPage - so that it works as an index page
 
-    The RoutablePageMixin is used to allow for a custom sub-URL
+    RoutablePageMixin is used to allow for a custom sub-URL for tag views.
     """
+
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -145,12 +143,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         FieldPanel('introduction')
     ]
 
-    # parent_page_types = [
-    #     'home.HomePage'
-    # ]
-
-    # Defining what content type can sit under the parent. Since it's a blank
-    # array no subpage can be added
+    # What pages types can live under this page type?
     subpage_types = ['BlogPage']
 
     def get_context(self, request):
@@ -168,6 +161,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         return all related BlogPages for a given Tag or redirect back to
         the BlogIndexPage
         """
+
         try:
             tag = Tag.objects.get(slug=tag)
         except Tag.DoesNotExist:
@@ -179,9 +173,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         blogs = BlogPage.objects.filter(tags=tag).live().descendant_of(self)
 
         context = {
-            'title': 'Posts tagged with: {}'.format(tag.name),
+            'tag': tag,
             'blogs': blogs
         }
         return render(request, 'blog/blog_index_page.html', context)
-
-    # api_fields = ['introduction']
