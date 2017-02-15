@@ -1,6 +1,6 @@
 Django==1.10.5
 # http://docs.wagtail.io/en/v1.8.1/topics/search/backends.html#elasticsearch-backend
-# Not utilized by default; uncomment and review the above document
+# Not utilized by default; uncomment and review the above document if you require elasticsearch
 # elasticsearch==5.1.0
 wagtail==1.8.1
 wagtailfontawesome==1.0.6
