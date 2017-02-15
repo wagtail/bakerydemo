@@ -1,12 +1,35 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content-header %}
-    {{ page.title }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ page.title }}
+        </div>
+    </div>
+</div>
 {% endblock content-header %}
 
 {% block content-body %}
-    {% for location in locations %}
-        <div><a href="{% pageurl location %}">{{ location.title }}</a></div>
-    {% endfor %}
+<div class="container">
+    <div class="row">
+        {% for location in locations %}
+            <div class="col-md-6 location-list">
+                <a href="{% pageurl location %}">
+                <h1 class="location-list-title">
+                
+        
+                    {% image location.image fill-480x270 as image %}
+                    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="img-thumbnail" />
+                    <span class="hero-gradient-mask"></span>
+                    <span class="title">{{ location.title }}</span>
+                
+                </h1></a>
+                    <address>{{ location.address }}</address>
+                    <a href="https://google.com/maps/?q={{ location.lat_long }}" class="btn">Map</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content-body %}
