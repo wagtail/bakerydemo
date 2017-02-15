@@ -3,10 +3,18 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    StreamFieldPanel)
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.edit_handlers import (
+    ImageChooserPanel,
+    )
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailsearch import index
+
+from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class OperatingHours(models.Model):
@@ -36,13 +44,23 @@ class OperatingHours(models.Model):
         choices=DAY_CHOICES,
         default=MONDAY,
     )
-    opening_time = models.TimeField()
-    closing_time = models.TimeField()
+    opening_time = models.TimeField(
+        blank=True,
+        null=True)
+    closing_time = models.TimeField(
+        blank=True,
+        null=True)
+    closed = models.BooleanField(
+        "Closed?",
+        blank=True,
+        help_text='Tick if location is closed on this day'
+        )
 
     panels = [
         FieldPanel('day'),
         FieldPanel('opening_time'),
         FieldPanel('closing_time'),
+        FieldPanel('closed'),
     ]
 
     class Meta:
@@ -81,7 +99,9 @@ class LocationPage(Page):
     """
     Detail for a specific bakery location.
     """
-
+    introduction = models.TextField(
+        help_text='Text to describe the index page',
+        blank=True)
     address = models.TextField()
     image = models.ForeignKey(
         'wagtailimages.Image',
@@ -102,6 +122,13 @@ class LocationPage(Page):
             ),
         ]
     )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="About page detail", blank=True
+    )
+    # We've defined the StreamBlock() within blocks.py that we've imported on
+    # line 12. Defining it in a different file gives us consistency across the
+    # site, though StreamFields _can_ be created on a per model basis if you
+    # have a use case for it
 
     # Search index configuration
     search_fields = Page.search_fields + [
@@ -110,10 +137,12 @@ class LocationPage(Page):
 
     # Editor panels configuration
     content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         ImageChooserPanel('image'),
-        InlinePanel('hours_of_operation', label="Hours of Operation")
+        InlinePanel('hours_of_operation', label="Hours of Operation"),
+        StreamFieldPanel('body')
     ]
 
     def __str__(self):

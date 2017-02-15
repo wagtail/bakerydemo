@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            {{ page.title }}
+            <h1>{{ page.title }}</h1>
         </div>
     </div>
 </div>
@@ -15,12 +15,12 @@
 <div class="container">
     <div class="row no-gutters">
         {% for location in locations %}
-            <div class="col-md-6 location-list">
+            <div class="col-md-6 location-list-item">
                 <a href="{% pageurl location %}">
                 <h1 class="location-list-title">
                 
         
-                    {% image location.image fill-480x270 as image %}
+                    {% image location.image fill-660x270-c75 as image %}
                     <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
                     
                     <span class="title">{{ location.title }}</span>
