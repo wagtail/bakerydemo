@@ -1,4 +1,5 @@
 Django==1.10.5
+django-dotenv==1.4.1
 # http://docs.wagtail.io/en/v1.8.1/topics/search/backends.html#elasticsearch-backend
 # Not utilized by default; uncomment and review the above document if you require elasticsearch
 # elasticsearch==5.1.0
