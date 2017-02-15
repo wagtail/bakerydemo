@@ -2,14 +2,26 @@
 {% load wagtailimages_tags gallery_tags %}
 
 {% block content-header %}
-    {{ page.title }}
-
-    <div class="image">
-        {% image page.image width-500 as photo %}
-              <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" />
+{% image self.image fill-1920x600 as hero_img %}
+<div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
+<div class="hero-gradient-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+                <h1>{{ page.title }}</h1>
+                <p class="stand-first">{{ page.subtitle }}</p>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock content-header %}
 
 {% block content-body %}
-    {% gallery page.choices %}
-{% endblock content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            {% gallery page.choices %}
+        </div>
+    </div>
+</div>
+{% endblock content-body %}
