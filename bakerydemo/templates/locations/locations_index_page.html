@@ -13,7 +13,7 @@
 
 {% block content-body %}
 <div class="container">
-    <div class="row">
+    <div class="row no-gutters">
         {% for location in locations %}
             <div class="col-md-6 location-list">
                 <a href="{% pageurl location %}">
@@ -21,8 +21,8 @@
                 
         
                     {% image location.image fill-480x270 as image %}
-                    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="img-thumbnail" />
-                    <span class="hero-gradient-mask"></span>
+                    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
+                    
                     <span class="title">{{ location.title }}</span>
                 
                 </h1></a>

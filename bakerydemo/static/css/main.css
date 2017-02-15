@@ -502,6 +502,7 @@ li.has-submenu a.allow-toggle {
 .location-list-title {
   line-height: 270px;
   height: 270px;
+  background-color: #eb7400;
 }
 .location-list-title img {
   background-color: rgba(233,228,221,1);
@@ -511,7 +512,7 @@ li.has-submenu a.allow-toggle {
   top: 0;
   width: 100%;
 }
-.location-list-title img:hover {
+.location-list-title:hover img {
   opacity: 0.3;
 }
 .location-list-title span.title {
@@ -520,18 +521,26 @@ li.has-submenu a.allow-toggle {
   font-weight: 300;
   position: relative;
 }
-.location-list-title:hover {
-  background-color: #eb7400;
-}
 .location-list address {
   font-weight: 300;
   font-family: 'Lato', sans-serif;
-  font-size: 1.6em;
+  font-size: 1.4em;
+  padding: 10px 40px;
 }
-.location-list-title .hero-gradient-mask {
+/*.location-list-title .hero-gradient-mask {
   left: 0;
 }
 .location-list-title .hero-gradient-mask:hover {
   display: none;
-}
+}*/
 
+/* No gutters */
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
