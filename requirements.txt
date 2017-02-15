@@ -1,12 +1,1 @@
-Django
-django-dotenv
-elasticsearch
-wagtail
-wagtailfontawesome
-Pillow
-
-# Dependencies for Heroku deployment
-dj-database-url==0.4.1
-whitenoise==3.2.2
-gunicorn==19.6.0
-psycopg2==2.6.2
+-r requirements/heroku.txt

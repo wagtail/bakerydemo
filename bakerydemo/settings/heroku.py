@@ -6,7 +6,7 @@ from .base import *
 # Accept all hostnames, since we don't know in advance which hostname will be used for any given Heroku instance.
 # IMPORTANT: Set this to a real hostname when using this in production!
 # See https://docs.djangoproject.com/en/1.10/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['*', 'wagtailbakerydemo.herokuapp.com']
+ALLOWED_HOSTS = ['*', ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

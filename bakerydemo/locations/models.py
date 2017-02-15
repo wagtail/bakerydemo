@@ -73,7 +73,7 @@ class LocationsIndexPage(Page):
         context = super(LocationsIndexPage, self).get_context(request)
         context['locations'] = LocationPage.objects.descendant_of(
             self).live().order_by(
-            '-first_published_at')
+            'title')
         return context
 
 
