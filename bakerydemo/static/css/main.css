@@ -75,6 +75,15 @@ a.btn:hover {
   color: white;
 }
 
+a.btn-sm {
+    padding: 6px 8px;
+    font-size: 10px;
+    line-height: normal;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    }
+
 input {
   border-radius: 3px;
   border: none;
@@ -495,4 +504,3 @@ li.has-submenu a.allow-toggle {
 .navbar-toggle .icon-bar {
   background-color: #fff;
 }
-

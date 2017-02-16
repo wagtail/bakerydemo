@@ -51,7 +51,16 @@ With PIP installed run the following commands:
 
     git clone git@github.com:wagtail/bakerydemo.git
     cd wagtaildemo
-    pip install -r requirements/base.txt
+    pip install -r requirements.txt
+
+Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
+to help with this. It reads environment variables located in a file name .env in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
+
+    $ cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
+    $ echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env
+
+Execute the following commands:
+
     ./manage.py migrate
     ./manage.py load_initial_data
     ./manage.py runserver
@@ -83,5 +92,14 @@ Log into the admin with the credentials ``admin / changeme``.
 To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](https://devcenter.heroku.com/articles/deploying-python).
 
 
+### Sending email from the contact form
 
+The following setting in `base.py` and `heroku.py` ensures that live email is not sent by the demo contact form.
 
+`EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'`
+
+In production on your own site, you'll need to change this to:
+
+`EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
+
+and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
