@@ -42,7 +42,7 @@ su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
 cat << EOF >> /home/vagrant/.bashrc
 export PYTHONPATH=$PROJECT_DIR
 
-alias dj="django-admin.py"
+alias dj="./manage.py"
 alias djrun="dj runserver 0.0.0.0:8000"
 
 source $VIRTUALENV_DIR/bin/activate
