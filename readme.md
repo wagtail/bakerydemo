@@ -91,6 +91,39 @@ Log into the admin with the credentials ``admin / changeme``.
 
 To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](https://devcenter.heroku.com/articles/deploying-python).
 
+### Storing Wagtail Media Files on AWS S3
+
+If you do deploy the demo site to Heroku, you may want to perform some additional setup.  Heroku uses an
+[ephemeral filesystem](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem).  In laymen's terms, this means
+that uploaded images will disappear at a minimum of once per day, and on each application deployment.  To mitigate this,
+you can host your media on S3.
+
+This documentation assumes that you have an AWS account, an IAM user, and a properly configured S3 bucket. These topics
+are outside of the scope of this documentation; the following [blog post](https://wagtail.io/blog/amazon-s3-for-media-files/)
+will walk you through those steps.
+
+Next, you will need to add `django-storages` and `boto3` to `requirements/heroku.txt`.
+
+Then you will need to edit `settings/heroku.py`:
+
+    INSTALLED_APPS.append('storages')
+
+You will also need to add the S3 bucket and access credentials for the IAM user that you created.
+
+    AWS_STORAGE_BUCKET_NAME = '####'
+    AWS_ACCESS_KEY_ID = '####'
+    AWS_SECRET_ACCESS_KEY = '####'
+    AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com.format(AWS_STORAGE_BUCKET_NAME)
+
+Do not forget to replace the `####` with the actual values for your AWS account.
+
+Finally, we need to configure the `MEDIA_URL` as well as inform Django that we want to use `boto3` for the storage
+backend:
+
+    MEDIA_URL = 'https://{}/'.format(AWS_S3_CUSTOM_DOMAIN)'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+Commit these changes and push to Heroku and you should now have persistent media storage!
 
 ### Sending email from the contact form
 
