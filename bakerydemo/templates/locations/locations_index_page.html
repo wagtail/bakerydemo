@@ -8,6 +8,8 @@
 {% endblock content-header %}
 
 {% block content-body %}
+    {{ page.introduction }}
+
     {% for location in locations %}
         <div>
             <a href="{% pageurl location %}">{{ location.title }}</a>
