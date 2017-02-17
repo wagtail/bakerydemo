@@ -2,17 +2,21 @@
 {% load wagtailimages_tags %}
 
 {% block content-header %}
-    {{ page.title }}
-    {% for bread in resources %}
-		<div>
-			<div class="col-xs-12">
-				<div><a href="{{ bread.slug }}">{{ bread.title }}</a></div>
-			</div>
-		</div>
-	{% endfor %}
+    {% include "base/include/header.html" %}
 {% endblock content-header %}
 
 {% block content-body %}
+
+    <p>{{ page.introduction}}</p>
+
+    {% for bread in resources %}
+        <div>
+            <div class="col-xs-12">
+                <div><a href="{{ bread.slug }}">{{ bread.title }}</a></div>
+            </div>
+        </div>
+    {% endfor %}
+
 	{% if resources.has_other_pages %}
 	<div class="clearfix">
 	  <div class="pagination-wrapper">

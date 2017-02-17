@@ -2,12 +2,7 @@
 {% load wagtailimages_tags %}
 
 {% block content-header %}
-    {{ page.title }}
-
-    <div class="image">
-        {% image page.image width-500 as photo %}
-        <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" />
-    </div>
+    {% include "base/include/header.html" %}
 {% endblock content-header %}
 
 {% block content-body %}

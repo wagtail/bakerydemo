@@ -2,13 +2,7 @@
 {% load wagtailimages_tags %}
 
 {% block content-header %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-7 col-md-offset-2">
-            <h2>{{ page.title }}</h2>
-        </div>
-    </div>
-</div>
+    {% include "base/include/header.html" %}
 {% endblock content-header %}
 
 {% block content-body %}

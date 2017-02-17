@@ -2,9 +2,8 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
-
 {% block content-header %}
-    {{ page.title }}
+    {% include "base/include/header.html" %}
 {% endblock content-header %}
 
 {% block content-body %}
