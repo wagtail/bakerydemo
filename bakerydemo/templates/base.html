@@ -19,18 +19,16 @@
     {% include "includes/messages.html" %}
 {% endblock messages %}
 
-    <content>
-        {% block content-header %}
-        {% endblock content-header %}
 
-        {% block breadcrumbs %}
-            {% breadcrumbs %}
-            {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
-        {% endblock breadcrumbs %}
+{% block breadcrumbs %}
+    {% breadcrumbs %}
+    {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+{% endblock breadcrumbs %}
 
-        {% block content-body %}
-        {% endblock content-body %}
-    </content>
+<content>
+    {% block content %}
+    {% endblock content %}
+</content>
 
     <hr>
 
