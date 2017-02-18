@@ -21,7 +21,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 from .blocks import BaseStreamBlock
 
 
-class CommonPageFieldsMixin(models.Model):
+class BasePageFieldsMixin(models.Model):
     """
     An abstract base class for common fields
     """
@@ -197,7 +197,7 @@ class HomePage(Page):
         return self.title
 
 
-class GalleryPage(CommonPageFieldsMixin, Page):
+class GalleryPage(BasePageFieldsMixin, Page):
     """
     This is a page to list all the locations on the site
     """
@@ -210,7 +210,7 @@ class GalleryPage(CommonPageFieldsMixin, Page):
         help_text='Select the image collection for this gallery.'
     )
 
-    content_panels = CommonPageFieldsMixin.content_panels + [
+    content_panels = BasePageFieldsMixin.content_panels + [
         FieldPanel('choices'),
     ]
 

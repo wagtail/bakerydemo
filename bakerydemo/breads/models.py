@@ -10,7 +10,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 
-from bakerydemo.base.models import CommonPageFieldsMixin
+from bakerydemo.base.models import BasePageFieldsMixin
 
 
 @register_snippet
@@ -97,7 +97,7 @@ class BreadPage(Page):
     api_fields = ['title', 'bread_type', 'origin', 'image']
 
 
-class BreadsIndexPage(CommonPageFieldsMixin, Page):
+class BreadsIndexPage(BasePageFieldsMixin, Page):
     """
     Index page for breads. We don't have any fields within our model but we need
     to alter the page model's context to return the child page objects - the

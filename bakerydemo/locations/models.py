@@ -8,7 +8,7 @@ from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
-from bakerydemo.base.models import CommonPageFieldsMixin
+from bakerydemo.base.models import BasePageFieldsMixin
 
 
 class OperatingHours(models.Model):
@@ -64,7 +64,7 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsIndexPage(CommonPageFieldsMixin, Page):
+class LocationsIndexPage(BasePageFieldsMixin, Page):
     """
     Index page for locations
     """

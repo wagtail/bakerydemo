@@ -20,7 +20,7 @@ from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
-from bakerydemo.base.models import CommonPageFieldsMixin
+from bakerydemo.base.models import BasePageFieldsMixin
 
 
 class BlogPeopleRelationship(Orderable, models.Model):
@@ -117,7 +117,7 @@ class BlogPage(Page):
     subpage_types = []
 
 
-class BlogIndexPage(CommonPageFieldsMixin, RoutablePageMixin, Page):
+class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
     """
     Index page for blogs.
     We need to alter the page model's context to return the child page objects - the
