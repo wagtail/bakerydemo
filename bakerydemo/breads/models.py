@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -8,7 +9,8 @@ from wagtail.wagtailcore import blocks
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from bakerydemo.base.models import CommonPageFieldsMixin
 
 
 @register_snippet
@@ -95,30 +97,14 @@ class BreadPage(Page):
     api_fields = ['title', 'bread_type', 'origin', 'image']
 
 
-class BreadsIndexPage(Page):
+class BreadsIndexPage(CommonPageFieldsMixin, Page):
     """
     Index page for breads. We don't have any fields within our model but we need
     to alter the page model's context to return the child page objects - the
     BreadPage - so that it works as an index page
     """
 
-    introduction = models.TextField(
-        help_text='Text to describe the index page',
-        blank=True)
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='Location listing image'
-    )
     subpage_types = ['BreadPage']
-
-    content_panels = Page.content_panels + [
-        FieldPanel('introduction'),
-        ImageChooserPanel('image'),
-    ]
 
     def get_context(self, request):
         context = super(BreadsIndexPage, self).get_context(request)
