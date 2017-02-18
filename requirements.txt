@@ -1,1 +1,1 @@
--r requirements/heroku.txt
+-r requirements/production.txt
