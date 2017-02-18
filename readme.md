@@ -93,7 +93,7 @@ To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](ht
 
 ### Storing Wagtail Media Files on AWS S3
 
-If you do deploy the demo site to Heroku, you may want to perform some additional setup.  Heroku uses an
+If you have deployed the demo site to Heroku, you may want to perform some additional setup.  Heroku uses an
 [ephemeral filesystem](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem).  In laymen's terms, this means
 that uploaded images will disappear at a minimum of once per day, and on each application deployment.  To mitigate this,
 you can host your media on S3.
@@ -113,9 +113,17 @@ You will also need to add the S3 bucket and access credentials for the IAM user 
     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'changeme')
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'changeme')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'changeme')
-    AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com.format(AWS_STORAGE_BUCKET_NAME)
+    AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
 
-Do not forget to replace the `####` with the actual values for your AWS account.
+Next, you will need to set these values in the Heroku environment.  The next steps assume that you have
+the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed and configured. You will
+execute the following commands to set the aforementioned environment variables:
+
+    heroku config:set AWS_STORAGE_BUCKET_NAME=changeme
+    heroku config:set AWS_ACCESS_KEY_ID=changeme
+    heroku config:set AWS_SECRET_ACCESS_KEY=changeme
+
+Do not forget to replace the `changeme` with the actual values for your AWS account.
 
 Finally, we need to configure the `MEDIA_URL` as well as inform Django that we want to use `boto3` for the storage
 backend:
