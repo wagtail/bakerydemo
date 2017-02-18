@@ -11,7 +11,6 @@ from wagtail.wagtailsnippets.models import register_snippet
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-
 @register_snippet
 class Country(models.Model):
     """
@@ -103,7 +102,23 @@ class BreadsIndexPage(Page):
     BreadPage - so that it works as an index page
     """
 
+    introduction = models.TextField(
+        help_text='Text to describe the index page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Location listing image'
+    )
     subpage_types = ['BreadPage']
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction'),
+        ImageChooserPanel('image'),
+    ]
 
     def get_context(self, request):
         context = super(BreadsIndexPage, self).get_context(request)
@@ -112,7 +127,7 @@ class BreadsIndexPage(Page):
         # replace this with your own query as appropriate
         all_resources = self.get_children().live()
 
-        paginator = Paginator(all_resources, 5) # Show 5 resources per page
+        paginator = Paginator(all_resources, 5)  # Show 5 resources per page
 
         page = request.GET.get('page')
         try:

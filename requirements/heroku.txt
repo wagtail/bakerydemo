@@ -1,6 +1,6 @@
 -r base.txt
 # Additional dependencies for Heroku deployment
-dj-database-url
-gunicorn
-psycopg2
-whitenoise
+dj-database-url==0.4.1
+gunicorn==19.6.0
+psycopg2==2.6.2
+whitenoise==3.2.2

@@ -2,30 +2,23 @@
 {% load wagtailimages_tags %}
 
 {% block content-header %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-7 col-md-offset-2">
-            {{ page.title }}
-        </div>
-    </div>
-</div>
+    {% include "base/include/header.html" %}
 {% endblock content-header %}
 
 {% block content-body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-7 col-md-offset-2">
-            {% for blog in blogs %}
-                <div>
-                    <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
-                    {{ blog.body|truncatewords_html:10 }}
-
-                    {% for tag in blog.get_tags  %}
-                        <a href="{{ tag.url }}">{{ tag }}</a>
-                    {% endfor %}
-                </div>
-            {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+                {% if tag %}
+                    <h3>Posts tagged with "{{ tag }}":</h3>
+                {% endif %}
+                {% for blog in blogs %}
+                    <div>
+                        <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+                        {{ blog.body|truncatewords_html:10 }}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock content-body %}

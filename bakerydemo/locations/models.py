@@ -85,13 +85,29 @@ class LocationsIndexPage(Page):
     Index page for locations
     """
 
+    introduction = models.TextField(
+        help_text='Text to describe the index page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Location listing image'
+    )
     subpage_types = ['LocationPage']
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction'),
+        ImageChooserPanel('image'),
+    ]
 
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
         context['locations'] = LocationPage.objects.descendant_of(
             self).live().order_by(
-            '-first_published_at')
+            'title')
         return context
 
 
