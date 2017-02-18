@@ -110,9 +110,9 @@ Then you will need to edit `settings/heroku.py`:
 
 You will also need to add the S3 bucket and access credentials for the IAM user that you created.
 
-    AWS_STORAGE_BUCKET_NAME = '####'
-    AWS_ACCESS_KEY_ID = '####'
-    AWS_SECRET_ACCESS_KEY = '####'
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'changeme')
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'changeme')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'changeme')
     AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com.format(AWS_STORAGE_BUCKET_NAME)
 
 Do not forget to replace the `####` with the actual values for your AWS account.
