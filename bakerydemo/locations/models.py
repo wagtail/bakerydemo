@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -49,7 +52,12 @@ class OperatingHours(models.Model):
         abstract = True
 
     def __str__(self):
-        return '{}: {} - {}'.format(self.day, self.opening_time, self.closing_time)
+        return '{}: {} - {} {}'.format(
+            self.day,
+            self.opening_time.strftime('%H:%M'),
+            self.closing_time.strftime('%H:%M'),
+            settings.TIME_ZONE
+        )
 
 
 class LocationOperatingHours(Orderable, OperatingHours):
@@ -135,9 +143,25 @@ class LocationPage(Page):
     def __str__(self):
         return self.title
 
-    def opening_hours(self):
+    @property
+    def operating_hours(self):
         hours = self.hours_of_operation.all()
         return hours
+
+    def is_open(self):
+        # Determines if the location is currently open
+        now = datetime.now()
+        current_time = now.time()
+        current_day = now.strftime('%a').upper()
+        try:
+            self.operating_hours.get(
+                day=current_day,
+                opening_time__lte=current_time,
+                closing_time__gte=current_time
+            )
+            return True
+        except LocationOperatingHours.DoesNotExist:
+            return False
 
     def get_context(self, request):
         context = super(LocationPage, self).get_context(request)

@@ -29,7 +29,13 @@
     <p>{{ page.address|linebreaks }}</p>
     <div id="map" class="maps embed-container"></div>
 
-    {% for hours in page.opening_hours %}
+    {% if page.is_open %}
+      Open Now!
+    {% else %}
+      Closed
+    {% endif %}
+
+    {% for hours in page.operating_hours %}
         <li>{{ hours }}</li>
     {% endfor %}
 
