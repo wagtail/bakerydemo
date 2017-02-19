@@ -18,14 +18,12 @@
   </style>
 {% endblock head-extra %}
 
-{% block content-header %}
+{% block content %}
     <h1>{{ page.title }}</h1>
     <figure>
       {% image self.image fill-600x600 %}
     </figure>
-{% endblock content-header %}
 
-{% block content-body %}
     <p>{{ page.address|linebreaks }}</p>
     <div id="map" class="maps embed-container"></div>
 
@@ -55,4 +53,4 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw&callback=initMap" async defer></script>
 
-{% endblock content-body %}
+{% endblock content %}

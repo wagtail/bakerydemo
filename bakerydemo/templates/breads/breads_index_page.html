@@ -1,12 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content-header %}
-    {% include "base/include/header.html" %}
-{% endblock content-header %}
-
-{% block content-body %}
-
+{% block content %}
     <p>{{ page.introduction}}</p>
 
     {% for bread in resources %}
@@ -42,4 +37,4 @@
 	  </div>
 	</div>
 	{% endif %}
-{% endblock content-body %}
+{% endblock content %}

@@ -1,12 +1,7 @@
-{% extends "base.html" %}
-{% load wagtailcore_tags %}
-{% load wagtailimages_tags %}
+{% extends "base.html" %}{% load wagtailimages_tags wagtailcore_tags %}
 
-{% block content-header %}
-    {% include "base/include/header.html" %}
-{% endblock content-header %}
-
-{% block content-body %}
+{% block content %}
+    {{ page.title }}
     {{ page.introduction }}
 
     {% for location in locations %}
@@ -15,4 +10,4 @@
             {% image location.image width-150 %}
         </div>
     {% endfor %}
-{% endblock content-body %}
+{% endblock content %}
