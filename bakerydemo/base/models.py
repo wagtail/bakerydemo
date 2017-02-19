@@ -5,8 +5,6 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin, ModelAdminGroup, modeladmin_register)
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel,
     PageChooserPanel, StreamFieldPanel,
@@ -214,16 +212,10 @@ class GalleryPage(BasePageFieldsMixin, Page):
         FieldPanel('choices'),
     ]
 
-    # parent_page_types = [
-    #     'home.HomePage'
-    # ]
-
     # Defining what content type can sit under the parent. Since it's a blank
     # array no subpage can be added
     subpage_types = [
     ]
-
-    # api_fields = ['introduction']
 
 
 class FormField(AbstractFormField):
@@ -253,22 +245,3 @@ class FormPage(AbstractEmailForm):
             FieldPanel('subject'),
         ], "Email"),
     ]
-
-
-class PeopleModelAdmin(ModelAdmin):
-    model = People
-    menu_label = 'People'  # ditch this to use verbose_name_plural from model
-    menu_icon = 'fa-people'  # change as required
-    list_display = ('first_name', 'last_name', 'job_title', 'thumb_image')
-
-
-class MyModelAdminGroup(ModelAdminGroup):
-    menu_label = 'WagtailBakery'
-    menu_icon = 'folder-open-inverse'  # change as required
-    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
-    items = (PeopleModelAdmin,)
-
-
-# When using a ModelAdminGroup class to group several ModelAdmin classes together,
-# you only need to register the ModelAdminGroup class with Wagtail:
-modeladmin_register(MyModelAdminGroup)
