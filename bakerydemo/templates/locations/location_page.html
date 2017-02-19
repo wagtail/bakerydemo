@@ -2,12 +2,17 @@
 {% load wagtailimages_tags navigation_tags %}
 
 {% block head-extra %}
-  <style>
-      /* Needed for Google map embed */
-      #map {
-        height: 100%;
-      }
-  </style>
+    <style>
+        /* Following two selectors needed for Google map embed */
+        #map {
+          height: 100%;
+        }
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+    </style>
 {% endblock head-extra %}
 
 
