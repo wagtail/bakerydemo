@@ -128,7 +128,7 @@ p {
   }
 
   p {
-    margin: 0 0 50px;
+    margin: 0 0 30px;
   }
 
 }
@@ -239,8 +239,7 @@ nav {
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover,
-.nav-pills>li.active, .nav-pills>li:hover, .breadcrumb>li+li:hover:before,
-.nav>li>a:focus, .nav>li>a:hover {
+.nav-pills>li.active, .nav-pills>li:hover, .nav>li>a:focus, .nav>li>a:hover {
   color: #d4566b;
   background-color: transparent;
   border-top: 1px solid #d4566b;
@@ -491,10 +490,32 @@ li.has-submenu a.allow-toggle {
   padding-left: 0;
 }
 
+.breadcrumb-container {
+  /*background-color: rgba(21, 38, 44, 0.8);*/
+  background: linear-gradient(to right, rgba(21,38,44,0.8) 0%,rgba(0,0,0,0.9) 100%);
+  position: relative;
+  z-index: 3;
+}
+.breadcrumb-container + content > .hero {
+  margin-top: -36px;
+}
 .breadcrumb {
   background-color: transparent;
+  color: #ccc;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+  margin-bottom: 0px; 
+  padding-left: 0px;
+}
+.breadcrumb a, .breadcrumb .active {
+  color: #ccc;
+}
+.breadcrumb .active {
+  font-weight: bold;
+}
+.breadcrumb a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 .breadcrumb>li+li:before {
   content: "\00BB";
@@ -504,3 +525,80 @@ li.has-submenu a.allow-toggle {
 .navbar-toggle .icon-bar {
   background-color: #fff;
 }
+
+/* Location list page */
+.location-list-item {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.location-list-title {
+  line-height: 270px;
+  height: 270px;
+  background-color: #eb7400;
+}
+.location-list-title img {
+  background-color: rgba(233,228,221,1);
+  height: 270px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.location-list-title:hover img {
+  opacity: 0.3;
+}
+.location-list-title span.title {
+  color: white;
+  display: inline-block;
+  font-weight: 300;
+  position: relative;
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
+}
+.location-list-title:hover span.title {
+  text-shadow: none;
+}
+.location-list-item address {
+  font-weight: 300;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.4em;
+  padding: 10px 40px;
+}
+
+/* Location detail page */
+.template-location-page .intro {
+  margin-bottom: 0;
+}
+.location-opening h3 {
+  margin-top: 0;
+}
+span.day {
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+}
+time.location-time {
+  display: block;
+}
+
+.map-container {
+  height: 550px;
+}
+
+.location-address {
+  background-color: rgba(233,228,221,1);
+  padding: 10px 30px;
+  margin-bottom: -200px;
+  position: relative;
+  z-index: 1;
+}
+
+/* No gutters */
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
