@@ -1,37 +1,102 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags navigation_tags %}
 
 {% block head-extra %}
-  <style>
-      /* Needed for Google map embed */
-      #map {
-        height: 100%;
-      }
-      .maps.embed-container {
-         pointer-events: none;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-  </style>
+    <style>
+        /* Following two selectors needed for Google map embed */
+        #map {
+          height: 100%;
+        }
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+    </style>
 {% endblock head-extra %}
 
+
 {% block content-header %}
-    <h1>{{ page.title }}</h1>
-    <figure>
-      {% image self.image fill-600x600 %}
-    </figure>
+{# @TODO This is identical to the header within blog_page.html. We should create an include #}
+{% image self.image fill-1920x600 as hero_img %}
+<div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
+<div class="hero-gradient-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>{{ page.title }}</h1>
+                <p class="stand-first">{{ page.subtitle }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content-header %}
 
 {% block content-body %}
-    <p>{{ page.address|linebreaks }}</p>
-    <div id="map" class="maps embed-container"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+          <div class="row">
+            {% if page.introduction %}
+                <div class="intro col-md-7"><p>{{ page.introduction }}</p></div>
+            {% endif %}
 
-    {% for hours in page.opening_hours %}
+            {% if page.opening_hours %}
+                <div class="col-md-4 col-md-offset-1 location-opening">
+                <h3>Opening hours</h3>
+                {% for hours in page.opening_hours %}
+                  <time itemprop="openingHours" datetime="{{ hours }}" class="location-time">
+                    <span class="day">{{ hours.day }}</span>:
+                    <span class="hours">
+                      {% if hours.closed == True %}
+                        Closed
+                        {% else %}
+                        {% if hours.opening_time %}
+                          {{ hours.opening_time }}
+                        {% endif %} -
+                        {% if hours.closing_time %}
+                          {{ hours.closing_time }}
+                        {% endif %}
+                      {% endif %}
+                      </span></time>
+                {% endfor %}
+                </div>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+</div>
+<div class="container-flex">
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5 location-address">
+      <h3>Address</h3>
+        <address>{{ page.address|linebreaks }}</address>
+    </div>
+    {# @TODO align address to opening hours? #}
+  </div>
+
+  <div class="map-container">
+    <div id="map" class="maps embed-container"></div>
+  </div>
+</div>
+
+    {% if page.is_open %}
+      Open Now!
+    {% else %}
+      Currently Closed
+    {% endif %}
+
+    {% for hours in page.operating_hours %}
         <li>{{ hours }}</li>
     {% endfor %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 location-body">
+      {{ page.body }}
+    </div>
+  </div>
+</div>
 
     <script>
       var map;
@@ -41,7 +106,8 @@
               lat: {{lat}},
               lng: {{long}}
           },
-          zoom: 8
+          zoom: 15,
+          scrollwheel:  false
         });
         var marker = new google.maps.Marker({
           position: {
