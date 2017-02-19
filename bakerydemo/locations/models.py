@@ -147,7 +147,7 @@ class LocationPage(Page):
         ]
     )
     body = StreamField(
-        BaseStreamBlock(), verbose_name="About page detail", blank=True
+        BaseStreamBlock(), verbose_name="About this location", blank=True
     )
     # We've defined the StreamBlock() within blocks.py that we've imported on
     # line 12. Defining it in a different file gives us consistency across the
@@ -162,11 +162,11 @@ class LocationPage(Page):
     # Editor panels configuration
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
+        StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         ImageChooserPanel('image'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
-        StreamFieldPanel('body')
     ]
 
     def __str__(self):
