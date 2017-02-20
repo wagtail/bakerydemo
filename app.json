@@ -4,7 +4,9 @@
   "repository": "https://github.com/wagtail/bakerydemo",
   "keywords": ["wagtail", "django"],
   "env": {
-    "DJANGO_SETTINGS_MODULE": "bakerydemo.settings.heroku"
+    "DJANGO_DEBUG": "off",
+    "DJANGO_SETTINGS_MODULE": "bakerydemo.settings.production",
+    "DJANGO_SECURE_SSL_REDIRECT": "on"
   },
   "scripts": {
     "postdeploy": "django-admin.py migrate && django-admin.py load_initial_data && echo 'from wagtail.wagtailimages.models import Rendition; Rendition.objects.all().delete()' | django-admin.py shell"

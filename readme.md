@@ -26,7 +26,7 @@ Run the following commands:
 
 ```bash
 git clone git@github.com:wagtail/bakerydemo.git
-cd wagtaildemo
+cd bakerydemo
 vagrant up
 vagrant ssh
 # then, within the SSH session:
@@ -38,9 +38,39 @@ interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
 Log into the admin with the credentials ``admin / changeme``.
 
-Setup without Vagrant
------
-Don't want to set up a whole VM to try out Wagtail? No problem.
+Setup with Docker
+-----------------
+
+### Dependencies
+* [Docker](https://docs.docker.com/engine/installation/)
+
+### Installation
+Run the following commands:
+
+```bash
+git clone git@github.com:wagtail/bakerydemo.git
+cd bakerydemo
+docker-compose up --build -d
+docker-compose run app /venv/bin/python manage.py load_initial_data
+```
+
+The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
+interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
+
+Log into the admin with the credentials ``admin / changeme``.
+
+**Important:** This `docker-compose.yml` is configured for local testing only, and is not intended for production use.
+
+### Debugging
+To tail the logs from the Docker containers in realtime, run:
+
+```bash
+docker-compose logs -f
+```
+
+Local Setup
+-----------
+Don't want to set up a whole VM nor use Docker to try out Wagtail? No problem.
 
 ### Dependencies
 * [PIP](https://github.com/pypa/pip)
@@ -89,53 +119,40 @@ update in the browser. Once finished, click `View` to see the public site.
 
 Log into the admin with the credentials ``admin / changeme``.
 
+To prevent the demo site from regenerating a new Django `SECRET_KEY` each time Heroku restarts your site, you should set
+a `DJANGO_SECRET_KEY` environment variable in Heroku using the web interace or the [CLI](https://devcenter.heroku.com/articles/heroku-cli). If using the CLI, you can set a `SECRET_KEY` like so:
+
+    heroku config:set DJANGO_SECRET_KEY=changeme
+
 To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](https://devcenter.heroku.com/articles/deploying-python).
 
 ### Storing Wagtail Media Files on AWS S3
 
-If you have deployed the demo site to Heroku, you may want to perform some additional setup.  Heroku uses an
-[ephemeral filesystem](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem).  In laymen's terms, this means
-that uploaded images will disappear at a minimum of once per day, and on each application deployment.  To mitigate this,
-you can host your media on S3.
+If you have deployed the demo site to Heroku or via Docker, you may want to perform some additional setup.  Heroku uses an
+[ephemeral filesystem](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem), and Docker-based hosting
+environments typically work in the same manner.  In laymen's terms, this means that uploaded images will disappear at a
+minimum of once per day, and on each application deployment. To mitigate this, you can host your media on S3.
 
 This documentation assumes that you have an AWS account, an IAM user, and a properly configured S3 bucket. These topics
 are outside of the scope of this documentation; the following [blog post](https://wagtail.io/blog/amazon-s3-for-media-files/)
 will walk you through those steps.
 
-Next, you will need to add `django-storages` and `boto3` to `requirements/heroku.txt`.
-
-Then you will need to edit `settings/heroku.py`:
-
-    INSTALLED_APPS.append('storages')
-
-You will also need to add the S3 bucket and access credentials for the IAM user that you created.
-
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'changeme')
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'changeme')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'changeme')
-    AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
-
-Next, you will need to set these values in the Heroku environment.  The next steps assume that you have
-the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed and configured. You will
-execute the following commands to set the aforementioned environment variables:
+This demo site comes preconfigured with a production settings file that will enable S3 for uploaded media storage if
+``AWS_STORAGE_BUCKET_NAME`` is defined in the shell environment. All you need to do is set the following environment
+variables. If using Heroku, you will first need to install and configure the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). Then, execute the following commands to set the aforementioned environment variables:
 
     heroku config:set AWS_STORAGE_BUCKET_NAME=changeme
     heroku config:set AWS_ACCESS_KEY_ID=changeme
     heroku config:set AWS_SECRET_ACCESS_KEY=changeme
 
-Do not forget to replace the `changeme` with the actual values for your AWS account.
+Do not forget to replace the `changeme` with the actual values for your AWS account. If you're using a different hosting
+environment, set the same environment variables there using the method appropriate for your environment.
 
-Finally, we need to configure the `MEDIA_URL` as well as inform Django that we want to use `boto3` for the storage
-backend:
-
-    MEDIA_URL = 'https://{}/'.format(AWS_S3_CUSTOM_DOMAIN)'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-Commit these changes and push to Heroku and you should now have persistent media storage!
+Once Heroku restarts your application or your Docker container is refreshed, you should have persistent media storage!
 
 ### Sending email from the contact form
 
-The following setting in `base.py` and `heroku.py` ensures that live email is not sent by the demo contact form.
+The following setting in `base.py` and `production.py` ensures that live email is not sent by the demo contact form.
 
 `EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'`
 

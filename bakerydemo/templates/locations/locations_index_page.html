@@ -1,13 +1,34 @@
-{% extends "base.html" %}{% load wagtailimages_tags wagtailcore_tags %}
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-    {{ page.title }}
-    {{ page.introduction }}
-
-    {% for location in locations %}
-        <div>
-            <a href="{% pageurl location %}">{{ location.title }}</a>
-            {% image location.image width-150 %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ page.title }}</h1>
+            <p>{{ page.introduction }}</p>
         </div>
-    {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row no-gutters">
+        {% for location in locations %}
+            <div class="col-md-6 location-list-item">
+                <a href="{% pageurl location %}">
+                <h1 class="location-list-title">
+                
+        
+                    {% image location.image fill-660x270-c75 as image %}
+                    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
+                    
+                    <span class="title">{{ location.title }}</span>
+                
+                </h1></a>
+                    <address>{{ location.address }}</address>
+                    <a href="https://google.com/maps/?q={{ location.lat_long }}" class="btn">Map</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}

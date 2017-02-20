@@ -1,55 +1,81 @@
+from datetime import datetime
+
+from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    StreamFieldPanel)
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.edit_handlers import (
+    ImageChooserPanel,
+    )
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailsearch import index
+
+from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class OperatingHours(models.Model):
     """
     Django model to capture operating hours for a Location
     """
-    MONDAY = 'MON'
-    TUESDAY = 'TUE'
-    WEDNESDAY = 'WED'
-    THURSDAY = 'THU'
-    FRIDAY = 'FRI'
-    SATURDAY = 'SAT'
-    SUNDAY = 'SUN'
+    MONDAY = 'Mon'
+    TUESDAY = 'Tue'
+    WEDNESDAY = 'Wed'
+    THURSDAY = 'Thu'
+    FRIDAY = 'Fri'
+    SATURDAY = 'Sat'
+    SUNDAY = 'Sun'
 
     DAY_CHOICES = (
-        (MONDAY, 'MON'),
-        (TUESDAY, 'TUE'),
-        (WEDNESDAY, 'WED'),
-        (THURSDAY, 'THU'),
-        (FRIDAY, 'FRI'),
-        (SATURDAY, 'SAT'),
-        (SUNDAY, 'SUN'),
+        (MONDAY, 'Mon'),
+        (TUESDAY, 'Tue'),
+        (WEDNESDAY, 'Weds'),
+        (THURSDAY, 'Thu'),
+        (FRIDAY, 'Fri'),
+        (SATURDAY, 'Sat'),
+        (SUNDAY, 'Sun'),
     )
 
     day = models.CharField(
-        max_length=3,
+        max_length=4,
         choices=DAY_CHOICES,
         default=MONDAY,
     )
-    opening_time = models.TimeField()
-    closing_time = models.TimeField()
+    opening_time = models.TimeField(
+        blank=True,
+        null=True)
+    closing_time = models.TimeField(
+        blank=True,
+        null=True)
+    closed = models.BooleanField(
+        "Closed?",
+        blank=True,
+        help_text='Tick if location is closed on this day'
+        )
 
     panels = [
         FieldPanel('day'),
         FieldPanel('opening_time'),
         FieldPanel('closing_time'),
+        FieldPanel('closed'),
     ]
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return '{}: {} - {}'.format(self.day, self.opening_time, self.closing_time)
+        return '{}: {} - {} {}'.format(
+            self.day,
+            self.opening_time.strftime('%H:%M'),
+            self.closing_time.strftime('%H:%M'),
+            settings.TIME_ZONE
+        )
 
 
 class LocationOperatingHours(Orderable, OperatingHours):
@@ -97,7 +123,9 @@ class LocationPage(Page):
     """
     Detail for a specific bakery location.
     """
-
+    introduction = models.TextField(
+        help_text='Text to describe the index page',
+        blank=True)
     address = models.TextField()
     image = models.ForeignKey(
         'wagtailimages.Image',
@@ -118,6 +146,13 @@ class LocationPage(Page):
             ),
         ]
     )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="About this location", blank=True
+    )
+    # We've defined the StreamBlock() within blocks.py that we've imported on
+    # line 12. Defining it in a different file gives us consistency across the
+    # site, though StreamFields _can_ be created on a per model basis if you
+    # have a use case for it
 
     # Search index configuration
     search_fields = Page.search_fields + [
@@ -126,18 +161,36 @@ class LocationPage(Page):
 
     # Editor panels configuration
     content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         ImageChooserPanel('image'),
-        InlinePanel('hours_of_operation', label="Hours of Operation")
+        InlinePanel('hours_of_operation', label="Hours of Operation"),
     ]
 
     def __str__(self):
         return self.title
 
-    def opening_hours(self):
+    @property
+    def operating_hours(self):
         hours = self.hours_of_operation.all()
         return hours
+
+    def is_open(self):
+        # Determines if the location is currently open
+        now = datetime.now()
+        current_time = now.time()
+        current_day = now.strftime('%a').upper()
+        try:
+            self.operating_hours.get(
+                day=current_day,
+                opening_time__lte=current_time,
+                closing_time__gte=current_time
+            )
+            return True
+        except LocationOperatingHours.DoesNotExist:
+            return False
 
     def get_context(self, request):
         context = super(LocationPage, self).get_context(request)

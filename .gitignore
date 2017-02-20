@@ -12,7 +12,6 @@ bakerydemo/media/*
 bakerydemo/settings/local.py
 bakerydemodb
 __pycache__
-.*
 .vagrant/
 /.vagrant/
 /Vagrantfile.local
