@@ -15,6 +15,9 @@ INSTALLED_APPS = (
 )
 
 or see http://kave.github.io/general/2015/12/06/wagtail-streamfield-icons.html
+
+This demo project includes the full font-awesome set via CDN in base.html, so the entire
+font-awesome icon set is available to you. Options are at http://fontawesome.io/icons/.
 '''
 
 
@@ -30,15 +33,15 @@ class BreadCountryAdmin(ModelAdmin):
 
 class BreadModelAdminGroup(ModelAdminGroup):
     menu_label = 'Bread Categories'
-    menu_icon = 'folder-open-inverse'  # change as required
-    menu_order = 200  # will put in 4th place (000 being 1st, 100 2nd)
+    menu_icon = 'fa-suitcase'  # change as required
+    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
     items = (BreadTypeAdmin, BreadCountryAdmin)
 
 
 class PeopleModelAdmin(ModelAdmin):
     model = People
     menu_label = 'People'  # ditch this to use verbose_name_plural from model
-    menu_icon = 'fa-people'  # change as required
+    menu_icon = 'fa-users'  # change as required
     list_display = ('first_name', 'last_name', 'job_title', 'thumb_image')
 
 
@@ -47,9 +50,9 @@ class FooterTextAdmin(ModelAdmin):
 
 
 class BakeryModelAdminGroup(ModelAdminGroup):
-    menu_label = 'Wagtail Bakery'
-    menu_icon = 'folder-open-inverse'  # change as required
-    menu_order = 300  # will put in 3rd place (000 being 1st, 100 2nd)
+    menu_label = 'Bakery Misc'
+    menu_icon = 'fa-cutlery'  # change as required
+    menu_order = 300  # will put in 4th place (000 being 1st, 100 2nd)
     items = (PeopleModelAdmin, FooterTextAdmin)
 
 
