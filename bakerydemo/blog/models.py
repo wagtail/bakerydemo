@@ -11,11 +11,10 @@ from taggit.models import Tag, TaggedItemBase
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, InlinePanel, StreamFieldPanel, MultiFieldPanel
+    FieldPanel, InlinePanel, StreamFieldPanel
 )
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
@@ -43,35 +42,17 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('BlogPage', related_name='tagged_items')
 
 
-class BlogPage(Page):
+class BlogPage(BasePageFieldsMixin, Page):
     """
     A Blog Page (Post)
     """
-    subtitle = models.CharField(blank=True, max_length=255)
-    introduction = models.CharField(blank=True, max_length=255)
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='Location image'
-    )
-
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-
     date_published = models.DateField("Date article published", blank=True, null=True)
-
     body = StreamField(
         BaseStreamBlock(), verbose_name="Blog post", blank=True
     )
 
-    content_panels = Page.content_panels + [
-        MultiFieldPanel([
-            FieldPanel('subtitle'),
-            FieldPanel('introduction'),
-        ]),
-        ImageChooserPanel('image'),
+    content_panels = BasePageFieldsMixin.content_panels + [
         StreamFieldPanel('body'),
         FieldPanel('date_published'),
         InlinePanel(

@@ -26,7 +26,7 @@ class BasePageFieldsMixin(models.Model):
     An abstract base class for common fields
     """
     introduction = models.TextField(
-        help_text='Text to describe the index page',
+        help_text='Text to describe the page',
         blank=True)
     image = models.ForeignKey(
         'wagtailimages.Image',
@@ -34,11 +34,11 @@ class BasePageFieldsMixin(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Listing image'
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('introduction'),
+        FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
     ]
 
@@ -199,7 +199,7 @@ class HomePage(Page):
 
 class GalleryPage(BasePageFieldsMixin, Page):
     """
-    This is a page to list all the locations on the site
+    This is a page to list locations from the selected Collection
     """
     choices = models.ForeignKey(
         Collection,

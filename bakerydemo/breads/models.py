@@ -5,11 +5,10 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
 
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 
+from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.base.models import BasePageFieldsMixin
 
 
@@ -48,7 +47,7 @@ class BreadType(models.Model):
         verbose_name_plural = "Bread types"
 
 
-class BreadPage(Page):
+class BreadPage(BasePageFieldsMixin, Page):
     """
     Detail view for a specific bread
     """
@@ -59,10 +58,9 @@ class BreadPage(Page):
         null=True,
         blank=True,
     )
-    description = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('paragraph', blocks.RichTextBlock()),
-    ])
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Describe the bread", blank=True
+    )
     bread_type = models.ForeignKey(
         'breads.BreadType',
         null=True,
@@ -70,26 +68,16 @@ class BreadPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='+',
-        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
-    )
 
-    content_panels = [
-        FieldPanel('title'),
+    content_panels = BasePageFieldsMixin.content_panels + [
+        StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
-        ImageChooserPanel('image'),
-        StreamFieldPanel('description'),
     ]
 
     search_fields = Page.search_fields + [
         index.SearchField('title'),
-        index.SearchField('description'),
+        index.SearchField('body'),
     ]
 
     parent_page_types = ['BreadsIndexPage']
