@@ -10,8 +10,7 @@
     </style>
 {% endblock head-extra %}
 
-
-{% block content-header %}
+{% block content %}
 {# @TODO This is identical to the header within blog_page.html. We should create an include #}
 {% image self.image fill-1920x600 as hero_img %}
 <div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
@@ -31,9 +30,7 @@
         </div>
     </div>
 </div>
-{% endblock content-header %}
 
-{% block content-body %}
 <div class="container">
     <div class="row">
         <div class="col-md-7">
@@ -111,4 +108,4 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw&callback=initMap" async defer></script>
 
-{% endblock content-body %}
+{% endblock content %}

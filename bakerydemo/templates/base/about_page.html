@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block content-header %}
+{% block content %}
     {% include "base/include/header.html" %}
-{% endblock content-header %}
 
-{% block content-body %}
     {{ page.body }}
-{% endblock content-body %}
+{% endblock content %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
-{% block content-header %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -10,9 +10,7 @@
         </div>
     </div>
 </div>
-{% endblock content-header %}
 
-{% block content-body %}
 <div class="container">
     <div class="row no-gutters">
         {% for location in locations %}
@@ -32,4 +30,4 @@
         {% endfor %}
     </div>
 </div>
-{% endblock content-body %}
+{% endblock content %}
