@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags gallery_tags %}
 
-{% block content-header %}
+{% block content %}
 {% image self.image fill-1920x600 as hero_img %}
 <div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
 <div class="hero-gradient-mask"></div>
@@ -14,9 +14,7 @@
         </div>
     </div>
 </div>
-{% endblock content-header %}
 
-{% block content-body %}
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -25,4 +23,4 @@
         </div>
     </div>
 </div>
-{% endblock content-body %}
+{% endblock content %}

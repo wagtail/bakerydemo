@@ -239,8 +239,7 @@ nav {
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover,
-.nav-pills>li.active, .nav-pills>li:hover, .breadcrumb>li+li:hover:before,
-.nav>li>a:focus, .nav>li>a:hover {
+.nav-pills>li.active, .nav-pills>li:hover, .nav>li>a:focus, .nav>li>a:hover {
   color: #d4566b;
   background-color: transparent;
   border-top: 1px solid #d4566b;
@@ -491,10 +490,32 @@ li.has-submenu a.allow-toggle {
   padding-left: 0;
 }
 
+.breadcrumb-container {
+  /*background-color: rgba(21, 38, 44, 0.8);*/
+  background: linear-gradient(to right, rgba(21,38,44,0.8) 0%,rgba(0,0,0,0.9) 100%);
+  position: relative;
+  z-index: 3;
+}
+.breadcrumb-container + content > .hero {
+  margin-top: -36px;
+}
 .breadcrumb {
   background-color: transparent;
+  color: #ccc;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+  margin-bottom: 0px; 
+  padding-left: 0px;
+}
+.breadcrumb a, .breadcrumb .active {
+  color: #ccc;
+}
+.breadcrumb .active {
+  font-weight: bold;
+}
+.breadcrumb a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 .breadcrumb>li+li:before {
   content: "\00BB";

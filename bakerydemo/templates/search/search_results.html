@@ -3,13 +3,11 @@
 
 {% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
 
-{% block content-header %}
+{% block content %}
     <h1>
         Search results
     </h1>
-{% endblock content-header %}
 
-{% block content-body %}
     {% if search_results %}
     You searched <p>{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}</p>
         <ul>
@@ -34,4 +32,4 @@
     {% else %}
         You didn’t search for anything!
     {% endif %}
-{% endblock content-body %}
+{% endblock content %}
