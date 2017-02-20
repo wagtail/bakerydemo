@@ -20,7 +20,7 @@ Please use your best judgement if committing directly to master. All non-trivial
 should be done on a branch.
 
 For all work, please cross reference and close issues in
-[commit messages](https://help.github.com/articles/closing-issues-via-commit-messages/)
+[commit messages](https://help.github.com/articles/closing-issues-via-commit-messages/).
 
 At this point you're waiting on us. We like to at least comment on pull requests
 within three business days (and, typically, one business day). We may suggest
