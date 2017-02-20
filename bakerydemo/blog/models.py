@@ -46,6 +46,7 @@ class BlogPage(BasePageFieldsMixin, Page):
     """
     A Blog Page (Post)
     """
+    subtitle = models.CharField(blank=True, max_length=255)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField("Date article published", blank=True, null=True)
     body = StreamField(
@@ -60,6 +61,9 @@ class BlogPage(BasePageFieldsMixin, Page):
             panels=None, min_num=1),
         FieldPanel('tags'),
     ]
+    # Inject subtitle panel after title field
+    title_index = next((i for i, panel in enumerate(content_panels) if panel.field_name == 'title'), -1)  # noqa
+    content_panels.insert(title_index + 1, FieldPanel('subtitle'))
 
     search_fields = Page.search_fields + [
         index.SearchField('title'),
