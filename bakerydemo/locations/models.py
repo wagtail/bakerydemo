@@ -11,12 +11,10 @@ from wagtail.wagtailadmin.edit_handlers import (
     InlinePanel,
     StreamFieldPanel)
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailimages.edit_handlers import (
-    ImageChooserPanel,
-    )
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailsearch import index
 
+from bakerydemo.base.models import BasePageFieldsMixin
 from bakerydemo.base.blocks import BaseStreamBlock
 
 
@@ -57,7 +55,7 @@ class OperatingHours(models.Model):
         "Closed?",
         blank=True,
         help_text='Tick if location is closed on this day'
-        )
+    )
 
     panels = [
         FieldPanel('day'),
@@ -70,10 +68,18 @@ class OperatingHours(models.Model):
         abstract = True
 
     def __str__(self):
+        if self.opening_time:
+            opening = self.opening_time.strftime('%H:%M')
+        else:
+            opening = '--'
+        if self.closing_time:
+            closed = self.opening_time.strftime('%H:%M')
+        else:
+            closed = '--'
         return '{}: {} - {} {}'.format(
             self.day,
-            self.opening_time.strftime('%H:%M'),
-            self.closing_time.strftime('%H:%M'),
+            opening,
+            closed,
             settings.TIME_ZONE
         )
 
@@ -88,28 +94,11 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsIndexPage(Page):
+class LocationsIndexPage(BasePageFieldsMixin, Page):
     """
     Index page for locations
     """
-
-    introduction = models.TextField(
-        help_text='Text to describe the index page',
-        blank=True)
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='Location listing image'
-    )
     subpage_types = ['LocationPage']
-
-    content_panels = Page.content_panels + [
-        FieldPanel('introduction'),
-        ImageChooserPanel('image'),
-    ]
 
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
@@ -119,21 +108,11 @@ class LocationsIndexPage(Page):
         return context
 
 
-class LocationPage(Page):
+class LocationPage(BasePageFieldsMixin, Page):
     """
     Detail for a specific bakery location.
     """
-    introduction = models.TextField(
-        help_text='Text to describe the index page',
-        blank=True)
     address = models.TextField()
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
     lat_long = models.CharField(
         max_length=36,
         help_text="Comma separated lat/long. (Ex. 64.144367, -21.939182) \
@@ -160,12 +139,10 @@ class LocationPage(Page):
     ]
 
     # Editor panels configuration
-    content_panels = Page.content_panels + [
-        FieldPanel('introduction', classname="full"),
+    content_panels = BasePageFieldsMixin.content_panels + [
         StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
-        ImageChooserPanel('image'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
     ]
 

@@ -21,6 +21,31 @@ from wagtail.wagtailsnippets.models import register_snippet
 from .blocks import BaseStreamBlock
 
 
+class BasePageFieldsMixin(models.Model):
+    """
+    An abstract base class for common fields
+    """
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
+
+    class Meta:
+        abstract = True
+
+
 @register_snippet
 class People(ClusterableModel):
     """
@@ -113,7 +138,7 @@ class AboutPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Location image'
+        help_text='About image'
     )
 
     body = StreamField(
@@ -156,7 +181,7 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Location image'
+        help_text='Homepage image'
     )
 
     body = StreamField(
@@ -172,9 +197,9 @@ class HomePage(Page):
         return self.title
 
 
-class GalleryPage(Page):
+class GalleryPage(BasePageFieldsMixin, Page):
     """
-    This is a page to list all the locations on the site
+    This is a page to list locations from the selected Collection
     """
     choices = models.ForeignKey(
         Collection,
@@ -182,24 +207,11 @@ class GalleryPage(Page):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-    )
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='Location listing image'
+        help_text='Select the image collection for this gallery.'
     )
 
-    introduction = models.TextField(
-        help_text='Text to describe the index page',
-        blank=True)
-
-    content_panels = Page.content_panels + [
+    content_panels = BasePageFieldsMixin.content_panels + [
         FieldPanel('choices'),
-        ImageChooserPanel('image'),
-        FieldPanel('introduction')
     ]
 
     # parent_page_types = [
