@@ -118,7 +118,7 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
         context = super(BlogIndexPage, self).get_context(request)
         context['blogs'] = BlogPage.objects.descendant_of(
             self).live().order_by(
-            '-first_published_at')
+            '-date_published')
         return context
 
     @route('^tags/$', name='tag_archive')

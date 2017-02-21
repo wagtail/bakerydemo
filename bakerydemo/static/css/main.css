@@ -504,7 +504,7 @@ li.has-submenu a.allow-toggle {
   color: #ccc;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
-  margin-bottom: 0px; 
+  margin-bottom: 0px;
   padding-left: 0px;
 }
 .breadcrumb a, .breadcrumb .active {
@@ -591,6 +591,20 @@ time.location-time {
   z-index: 1;
 }
 
+/* Blog styles */
+
+.blog-byline {
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+.blog-avatar {
+    width: unset;
+    display: inline;
+}
+.blog-avatars {
+    margin-bottom: 20px;
+}
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
@@ -601,4 +615,3 @@ time.location-time {
   padding-right: 0;
   padding-left: 0;
 }
-
