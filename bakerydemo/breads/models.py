@@ -1,5 +1,5 @@
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailcore.fields import StreamField
