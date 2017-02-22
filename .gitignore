@@ -3,6 +3,7 @@
 *.log
 *.swp
 *.retry
+.env
 *~
 /logs
 /data
@@ -16,4 +17,3 @@ __pycache__
 /.vagrant/
 /Vagrantfile.local
 !.gitignore
-
