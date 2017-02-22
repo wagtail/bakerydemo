@@ -1,27 +1,42 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-    {% include "base/include/header.html" %}
+    {% include "base/include/header-index.html" %}
 
     <div class="container">
+    {% if tag %}
         <div class="row">
-            <div class="col-md-7 col-md-offset-2">
-                {% if tag %}
-                    <h3>Posts tagged with "{{ tag }}":</h3>
-                {% endif %}
-                {% for blog in blogs %}
-                    <div>
-                        <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
-                        <div class="small">{{ blog.date_published }} by
-                            {% for author in blog.authors %}
-                                {{ author }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                        {{ blog.introduction }}
-                    </div>
-                {% endfor %}
+            <div class="col-md-12">
+                <ul class="tags index">
+                        <li>{{ tag }}</li>
+                </ul>
             </div>
+        </div>
+    {% endif %}
+
+        <div class="row blog-list">
+            {% for blog in blogs %}
+                <li class="col-md-3 blog-list-item">
+                <a href="{% pageurl blog %}">
+                    <div class="image">
+                        {% image blog.image fill-750x660-c100 as image %}
+                        <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
+                    </div>
+
+                    <h2 class="blog-list-title">{{ blog.title }}</h2>
+                    <p>{{ blog.introduction|truncatewords:15 }}</p>
+
+                    <div class="small blog-list-item-footer">
+                        {{ blog.date_published }} by
+                        {% for author in blog.authors %}
+                            {{ author }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    </a>
+                </li>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

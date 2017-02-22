@@ -605,6 +605,26 @@ time.location-time {
     margin-bottom: 20px;
 }
 
+/* Blog list view */
+.blog-list li {
+  list-style: none;
+}
+
+.blog-list li:first-of-type, .blogpage-listing li:first-of-type,
+.blog-list li:nth-child(6), .blogpage-listing li:nth-child(6),
+.blog-list li:nth-child(7), .blogpage-listing li:nth-child(7),
+.blog-list li:nth-child(12), .blogpage-listing li:nth-child(12) {
+    width: 48%;
+}
+
+.blog-list-item .image {
+  overflow: hidden;
+}
+
+.blog-list-item .image img {
+  width: auto;
+}
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
