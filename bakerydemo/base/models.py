@@ -201,7 +201,7 @@ class GalleryPage(BasePageFieldsMixin, Page):
     """
     This is a page to list locations from the selected Collection
     """
-    choices = models.ForeignKey(
+    collection = models.ForeignKey(
         Collection,
         limit_choices_to=~models.Q(name__in=['Root']),
         null=True,
@@ -211,19 +211,13 @@ class GalleryPage(BasePageFieldsMixin, Page):
     )
 
     content_panels = BasePageFieldsMixin.content_panels + [
-        FieldPanel('choices'),
+        FieldPanel('collection'),
     ]
-
-    # parent_page_types = [
-    #     'home.HomePage'
-    # ]
 
     # Defining what content type can sit under the parent. Since it's a blank
     # array no subpage can be added
     subpage_types = [
     ]
-
-    # api_fields = ['introduction']
 
 
 class FormField(AbstractFormField):
