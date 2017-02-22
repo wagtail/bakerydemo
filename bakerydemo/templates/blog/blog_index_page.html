@@ -15,19 +15,20 @@
         </div>
     {% endif %}
 
-        <div class="row blog-list">
+        <div class="row row-eq-height blog-list">
             {% for blog in blogs %}
                 <li class="col-md-3 blog-list-item">
                 <a href="{% pageurl blog %}">
                     <div class="image">
-                        {% image blog.image fill-750x660-c100 as image %}
+                        {% image blog.image fill-850x650-c50 as image %}
                         <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
                     </div>
+                    <div class="text">
+                        <h2 class="blog-list-title">{{ blog.title }}</h2>
+                        <p>{{ blog.introduction|truncatewords:15 }}</p>
+                    </div>
 
-                    <h2 class="blog-list-title">{{ blog.title }}</h2>
-                    <p>{{ blog.introduction|truncatewords:15 }}</p>
-
-                    <div class="small blog-list-item-footer">
+                    <div class="small footer">
                         {{ blog.date_published }} by
                         {% for author in blog.authors %}
                             {{ author }}{% if not forloop.last %}, {% endif %}

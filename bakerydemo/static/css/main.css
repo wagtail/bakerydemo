@@ -617,12 +617,57 @@ time.location-time {
     width: 48%;
 }
 
+.blog-list-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-list-item a {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-list-item:hover img {
+    opacity: 0.3;
+}
+
 .blog-list-item .image {
   overflow: hidden;
+  background-color: #eb7400;
 }
 
 .blog-list-item .image img {
   width: auto;
+}
+
+.blog-list-item .text {
+  background: linear-gradient(to bottom, rgba(100,100,100,0) 0%,rgba(100,100,100,0.9) 23%);
+  flex: 1 0 auto;
+  margin-top: -150px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-list-item .text h2 {
+  color: #fff;
+  font-weight: 200;
+  margin-top: 0;
+}
+
+.blog-list-item .text p {
+  color: #e3e3e3;
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+
+.blog-list-item .footer {
+  background-color: #333;
+  color: #fff;
+  margin-top: 0;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* No gutters */
@@ -634,4 +679,13 @@ time.location-time {
 .row.no-gutters > [class*=" col-"] {
   padding-right: 0;
   padding-left: 0;
+}
+
+/* Bootstrap Equal height rows */
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
 }
