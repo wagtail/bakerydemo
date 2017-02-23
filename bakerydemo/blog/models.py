@@ -138,10 +138,29 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
                 messages.add_message(request, messages.INFO, msg)
             return redirect(self.url)
 
-        blogs = BlogPage.objects.filter(tags=tag).live().descendant_of(self)
+        blogs = self.blogs(tag=tag)
 
         context = {
             'tag': tag,
             'blogs': blogs
         }
         return render(request, 'blog/blog_index_page.html', context)
+
+    def blogs(self, tag=None):
+        """
+        Return the child BlogPage objects for this BlogPageIndex. Optional
+        filter by tag
+        """
+        blogs = BlogPage.objects.live().descendant_of(self)
+        if tag:
+            blogs = blogs.filter(tags=tag)
+        return blogs
+
+    def get_child_tags(self):
+        """
+        Returns the list of Tags for child pages.
+        """
+        tags = [x.get_tags for x in self.blogs()]
+        tags = [item for sublist in tags for item in sublist]
+        tags = sorted(set(tags))
+        return tags
