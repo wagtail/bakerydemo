@@ -214,8 +214,7 @@ class GalleryPage(BasePageFieldsMixin, Page):
 
     # Defining what content type can sit under the parent. Since it's a blank
     # array no subpage can be added
-    subpage_types = [
-    ]
+    subpage_types = []
 
 
 class FormField(AbstractFormField):
