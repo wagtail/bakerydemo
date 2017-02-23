@@ -624,6 +624,7 @@ time.location-time {
 
 .blog-list-item a {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
 }
 
@@ -634,15 +635,17 @@ time.location-time {
 .blog-list-item .image {
   overflow: hidden;
   background-color: #eb7400;
+  flex: 1 0 auto;
 }
 
 .blog-list-item .image img {
+  min-height: 510px;
   width: auto;
+  min-width: 100%;
 }
 
 .blog-list-item .text {
-  background: linear-gradient(to bottom, rgba(100,100,100,0) 0%,rgba(100,100,100,0.9) 23%);
-  flex: 1 0 auto;
+  background: linear-gradient(to bottom, rgba(100,100,100,0) 0%,rgba(100,100,100,0.9) 23%,rgba(100,100,100,1) 50%);
   margin-top: -150px;
   padding: 20px;
   position: relative;
