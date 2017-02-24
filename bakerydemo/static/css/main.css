@@ -504,7 +504,7 @@ li.has-submenu a.allow-toggle {
   color: #ccc;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
-  margin-bottom: 0px; 
+  margin-bottom: 0px;
   padding-left: 0px;
 }
 .breadcrumb a, .breadcrumb .active {
@@ -591,6 +591,113 @@ time.location-time {
   z-index: 1;
 }
 
+/* Blog styles */
+
+.blog-byline {
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+.blog-avatar {
+    width: unset;
+    display: inline;
+}
+.blog-avatars {
+    margin-bottom: 20px;
+}
+
+/* Blog list view */
+.blog-tags>li {
+  border-right: 1px solid rgba(0,0,0,0.1);
+  font-size: 0.9em;
+  margin-left: -6px;
+  padding: 4px 18px;
+  text-transform: uppercase;
+}
+.blog-tags>li:first-child {
+  margin-left: 0;
+  border-left: 1px solid rgba(0,0,0,0.1);
+}
+.blog-tags>li:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.blog-list li {
+  list-style: none;
+}
+
+@media (min-width: 1025px) {
+.blog-list li:first-of-type, .blogpage-listing li:first-of-type,
+.blog-list li:nth-child(6), .blogpage-listing li:nth-child(6),
+.blog-list li:nth-child(7), .blogpage-listing li:nth-child(7),
+.blog-list li:nth-child(12), .blogpage-listing li:nth-child(12) {
+      width: 50%;
+    }
+}
+
+.blog-list-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.blog-list-item a {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.blog-list-item:hover img {
+    opacity: 0.3;
+}
+
+.blog-list-item .image {
+  overflow: hidden;
+  background-color: #eb7400;
+  flex: 1 0 auto;
+}
+
+.blog-list-item .image img {
+  min-height: 510px;
+  width: auto;
+  min-width: 100%;
+}
+
+.blog-list-item .text {
+  background: linear-gradient(to bottom, rgba(100,100,100,0) 0%,rgba(100,100,100,0.9) 23%,rgba(100,100,100,1) 50%);
+  margin-top: -150px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-list-item .text h2 {
+  color: #fff;
+  font-weight: 200;
+  margin-top: 0;
+}
+
+.blog-list-item .text p {
+  color: #e3e3e3;
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+
+.blog-list-item .footer {
+  background-color: #333;
+  color: #fff;
+  margin-top: 0;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+span.outline {
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-size: 0.8em;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
@@ -602,3 +709,11 @@ time.location-time {
   padding-left: 0;
 }
 
+/* Bootstrap Equal height rows */
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
