@@ -168,3 +168,7 @@ In production on your own site, you'll need to change this to:
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
 and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
+
+### Demo content
+
+Most of the images and textual content in this project are sourced from Wikipedia, and is therefore open source and copyright-free.
