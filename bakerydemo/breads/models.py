@@ -94,26 +94,27 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
 
     subpage_types = ['BreadPage']
 
+    @property
+    def breads(self):
+        return BreadPage.objects.live().descendant_of(
+            self).order_by('-first_published_at')
+
+    def paginate(self, request, *args):
+        page = request.GET.get('page')
+        paginator = Paginator(self.breads, 2)
+        try:
+            pages = paginator.page(page)
+        except PageNotAnInteger:
+            pages = paginator.page(1)
+        except EmptyPage:
+            pages = paginator.page(paginator.num_pages)
+        return pages
+
     def get_context(self, request):
         context = super(BreadsIndexPage, self).get_context(request)
 
-        # Get the full unpaginated listing of resource pages as a queryset -
-        # replace this with your own query as appropriate
-        all_resources = self.get_children().live()
+        breads = self.paginate(request, self.breads)
 
-        paginator = Paginator(all_resources, 5)  # Show 5 resources per page
+        context['breads'] = breads
 
-        page = request.GET.get('page')
-        try:
-            resources = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            resources = paginator.page(1)
-        except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
-            resources = paginator.page(paginator.num_pages)
-
-        # make the variable 'resources' available on the template
-        context['resources'] = resources
-        context['paginator'] = paginator
         return context
