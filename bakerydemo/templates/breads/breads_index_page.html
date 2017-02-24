@@ -45,31 +45,4 @@
     </div>
 </div>
 {% endif %}
-{% comment %}
-        {% if resources.has_other_pages %}
-    <div class="clearfix">
-      <div class="pagination-wrapper">
-        <ul class="pagination">
-          {% if resources.has_previous %}
-            <li class="arrows"><a href="?q={{ query_string|urlencode }}&amp;page={{ resources.previous_page_number }}" class="arrow-left"></a></li>
-          {% else %}
-            <li class="arrows disabled"><span class="arrow-left"></span></li>
-          {% endif %}
-          {% for i in resources.paginator.page_range %}
-            {% if resources.number == i %}
-              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-            {% else %}
-              <li><a href="?q={{ query_string|urlencode }}&amp;page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-          {% endfor %}
-          {% if resources.has_next %}
-            <li class="arrows"><a href="?q={{ query_string|urlencode }}&amp;page={{ resources.next_page_number }}"><i class="arrow-right"></i></a></li>
-          {% else %}
-            <li class="arrows disabled"><span><i class="arrow-right"></i></span></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-{% endcomment %}
 {% endblock content %}
