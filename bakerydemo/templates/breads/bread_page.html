@@ -9,5 +9,17 @@
 
     <p>{{ page.origin }}</p>
     <p>{{ page.bread_type }}</p>
+    {% with ingredients=page.ingredients.all %}
+        {% if ingredients %}
+            <h3>Ingredients:</h3>
+            <ul>
+                {% for ingredient in ingredients %}
+                    <li style="display: inline">
+                        {{ ingredient.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     {{ page.body }}
 {% endblock content %}

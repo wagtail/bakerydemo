@@ -1,5 +1,8 @@
+from django import forms
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailcore.fields import StreamField
@@ -26,6 +29,25 @@ class Country(models.Model):
 
     class Meta:
         verbose_name_plural = "Countries of Origin"
+
+
+@register_snippet
+class BreadIngredient(models.Model):
+    """
+    Standard Django model used as a Snippet in the BreadPage model.
+    Demonstrates ManyToMany relationship.
+    """
+    name = models.CharField(max_length=255)
+
+    panels = [
+        FieldPanel('name'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Bread ingredients'
 
 
 @register_snippet
@@ -68,11 +90,13 @@ class BreadPage(BasePageFieldsMixin, Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    ingredients = ParentalManyToManyField('BreadIngredient', blank=True)
 
     content_panels = BasePageFieldsMixin.content_panels + [
         StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
+        FieldPanel('ingredients', widget=forms.CheckboxSelectMultiple),
     ]
 
     search_fields = Page.search_fields + [

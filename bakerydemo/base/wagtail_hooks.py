@@ -1,7 +1,7 @@
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, ModelAdminGroup, modeladmin_register)
 
-from bakerydemo.breads.models import Country, BreadType
+from bakerydemo.breads.models import Country, BreadIngredient, BreadType
 from bakerydemo.base.models import People, FooterText
 
 '''
@@ -21,9 +21,13 @@ font-awesome icon set is available to you. Options are at http://fontawesome.io/
 '''
 
 
-class BreadTypeAdmin(ModelAdmin):
+class BreadIngredientAdmin(ModelAdmin):
     # These stub classes allow us to put various models into the custom "Wagtail Bakery" menu item
     # rather than under the default Snippets section.
+    model = BreadIngredient
+
+
+class BreadTypeAdmin(ModelAdmin):
     model = BreadType
 
 
@@ -35,7 +39,7 @@ class BreadModelAdminGroup(ModelAdminGroup):
     menu_label = 'Bread Categories'
     menu_icon = 'fa-suitcase'  # change as required
     menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
-    items = (BreadTypeAdmin, BreadCountryAdmin)
+    items = (BreadIngredientAdmin, BreadTypeAdmin, BreadCountryAdmin)
 
 
 class PeopleModelAdmin(ModelAdmin):
