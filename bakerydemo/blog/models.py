@@ -159,9 +159,11 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
 
     def get_child_tags(self):
         """
-        Returns the list of Tags for child pages.
+        Returns the list of Tags for all child posts of this BlogPage.
         """
-        tags = [x.get_tags for x in self.get_posts()]
-        tags = [item for sublist in tags for item in sublist]
+
+        tags = []
+        for post in self.get_posts():
+            tags += post.get_tags  # Not tags.append() because we don't want a list of lists
         tags = sorted(set(tags))
         return tags
