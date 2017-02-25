@@ -94,14 +94,13 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
 
     subpage_types = ['BreadPage']
 
-    @property
-    def breads(self):
+    def get_breads(self):
         return BreadPage.objects.live().descendant_of(
             self).order_by('-first_published_at')
 
     def paginate(self, request, *args):
         page = request.GET.get('page')
-        paginator = Paginator(self.breads, 12)
+        paginator = Paginator(self.get_breads(), 12)
         try:
             pages = paginator.page(page)
         except PageNotAnInteger:
@@ -113,7 +112,7 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
     def get_context(self, request):
         context = super(BreadsIndexPage, self).get_context(request)
 
-        breads = self.paginate(request, self.breads)
+        breads = self.paginate(request, self.get_breads())
 
         context['breads'] = breads
 
