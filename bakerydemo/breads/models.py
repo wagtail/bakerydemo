@@ -101,7 +101,7 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
 
     def paginate(self, request, *args):
         page = request.GET.get('page')
-        paginator = Paginator(self.breads, 2)
+        paginator = Paginator(self.breads, 12)
         try:
             pages = paginator.page(page)
         except PageNotAnInteger:
