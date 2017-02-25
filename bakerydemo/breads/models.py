@@ -2,9 +2,11 @@ from django import forms
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel, MultiFieldPanel, StreamFieldPanel
+)
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
 
@@ -96,7 +98,16 @@ class BreadPage(BasePageFieldsMixin, Page):
         StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
-        FieldPanel('ingredients', widget=forms.CheckboxSelectMultiple),
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    'ingredients',
+                    widget=forms.CheckboxSelectMultiple,
+                ),
+            ],
+            heading="Additional Metadata",
+            classname="collapsible collapsed"
+        ),
     ]
 
     search_fields = Page.search_fields + [
