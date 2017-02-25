@@ -12,20 +12,24 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row bread-list">
     {% for bread in breads %}
-            <div class="col-xs-12 col-md-6">
-            <a href="{% pageurl bread %}">
+            <div class="col-xs-12 col-md-6 bread-list-item">
+            
                 <div class="row">
-                    <div class="col-xs-4">
-                    {% image bread.image fill-180x180-c100 as image %}
-                                    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
-                    </div>
-                    <div class="col-xs-6">
-                        <h2>{{ bread.title }}</h2>
-                        <ul class="bread-meta list-inline">
-                            <li>{{ bread.origin }}</li>
-                            <li>{{ bread.bread_type }}</li>
+                    <div class="col-xs-4 col-sm-4">
+                    <a href="{% pageurl bread %}">
+                        {% image bread.image fill-180x180-c100 as image %}
+                                        <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
+                        </div>
+                    </a>
+                    <div class="col-xs-6 col-sm-6">
+                        <a href="{% pageurl bread %}">
+                            <h2>{{ bread.title }}</h2>
+                        </a>
+                        <ul class="bread-meta">
+                            <li><span>Origin</span> {{ bread.origin }}</li>
+                            <li><span>Type</span> {{ bread.bread_type }}</li>
                         </ul>
                     </div>
                 </div>

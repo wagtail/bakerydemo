@@ -526,6 +526,12 @@ li.has-submenu a.allow-toggle {
   background-color: #fff;
 }
 
+/* Pagination navigation */
+nav[role=pagination] {
+  margin-top: 50px;
+  text-align: center;
+}
+
 /* Location list page */
 .location-list-item {
   text-align: center;
@@ -592,7 +598,6 @@ time.location-time {
 }
 
 /* Blog styles */
-
 .blog-byline {
     margin-top: -40px;
     margin-bottom: 20px;
@@ -698,6 +703,52 @@ span.outline {
   padding: 3px 6px;
   text-transform: uppercase;
 }
+
+/* Bread styles */
+/* Bread listview */
+.bread-list-item {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 3px;
+  margin: 12px;
+  overflow: hidden;
+  padding: 0;
+  /*text-align: center;*/
+}
+
+@media (min-width: 992px) {
+  .bread-list-item {
+    width: 47%;
+  }
+}
+
+.bread-list-item img {
+  margin: 0;
+  width: auto;
+}
+
+@media (max-width: 450px) {
+  .bread-list-item img {
+    height: auto;
+    margin: 20px 10px;
+    width: 100%;
+  }
+}
+
+.bread-list-item ul {
+  padding-left: 2px;
+}
+
+.bread-list-item li {
+  list-style: none;
+}
+
+.bread-list-item li span {
+  color: #777;
+  display: inline-block;
+  font-weight: 600;
+  width: 70px;
+}
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
