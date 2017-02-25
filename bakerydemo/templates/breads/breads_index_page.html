@@ -17,19 +17,23 @@
             <div class="col-xs-12 col-md-6 bread-list-item">
             
                 <div class="row">
-                    <div class="col-xs-4 col-sm-4">
+                    <div class="col-xs-4 col-sm-4 image">
                     <a href="{% pageurl bread %}">
                         {% image bread.image fill-180x180-c100 as image %}
                                         <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
                         </div>
                     </a>
-                    <div class="col-xs-6 col-sm-6">
+                    <div class="col-xs-6 col-sm-7">
                         <a href="{% pageurl bread %}">
                             <h2>{{ bread.title }}</h2>
                         </a>
                         <ul class="bread-meta">
+                        {% if bread.origin %}
                             <li><span>Origin</span> {{ bread.origin }}</li>
-                            <li><span>Type</span> {{ bread.bread_type }}</li>
+                        {% endif %}
+                        {% if bread.bread_type %}
+                            <li><span>Type</span> {{ bread.bread_type }}</li>        
+                        {% endif %}
                         </ul>
                     </div>
                 </div>
