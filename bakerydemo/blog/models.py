@@ -116,7 +116,7 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
 
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
-        context['blogs'] = BlogPage.objects.descendant_of(
+        context['posts'] = BlogPage.objects.descendant_of(
             self).live().order_by(
             '-date_published')
         return context
@@ -125,9 +125,9 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
     @route('^tags/(\w+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
         """
-        A Custom view that utilizes Tags. This view will
-        return all related BlogPages for a given Tag or redirect back to
-        the BlogIndexPage
+        A Custom view that utilizes Tags.
+        This view will return all related BlogPages for a given Tag or
+        redirect back to the BlogIndexPage.
         """
 
         try:
@@ -138,29 +138,32 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
                 messages.add_message(request, messages.INFO, msg)
             return redirect(self.url)
 
-        blogs = self.blogs(tag=tag)
+        posts = self.get_posts(tag=tag)
 
         context = {
             'tag': tag,
-            'blogs': blogs
+            'posts': posts
         }
         return render(request, 'blog/blog_index_page.html', context)
 
-    def blogs(self, tag=None):
+    def get_posts(self, tag=None):
         """
-        Return the child BlogPage objects for this BlogPageIndex. Optional
-        filter by tag
+        Return the child BlogPage objects for this BlogPageIndex.
+        Optional filter by tag.
         """
-        blogs = BlogPage.objects.live().descendant_of(self)
+
+        posts = BlogPage.objects.live().descendant_of(self)
         if tag:
-            blogs = blogs.filter(tags=tag)
-        return blogs
+            posts = posts.filter(tags=tag)
+        return posts
 
     def get_child_tags(self):
         """
-        Returns the list of Tags for child pages.
+        Returns the list of Tags for all child posts of this BlogPage.
         """
-        tags = [x.get_tags for x in self.blogs()]
-        tags = [item for sublist in tags for item in sublist]
+
+        tags = []
+        for post in self.get_posts():
+            tags += post.get_tags  # Not tags.append() because we don't want a list of lists
         tags = sorted(set(tags))
         return tags
