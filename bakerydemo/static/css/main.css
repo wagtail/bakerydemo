@@ -757,6 +757,38 @@ span.outline {
   width: 70px;
 }
 
+/* Bread detail page */
+.bread-detail .introduction {
+  color: #777;
+  font-size: 1.4em;
+  margin-top: 40px;
+}
+
+.bread-detail figure {
+  margin: 35px auto 20px auto;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.bread-detail figure img {
+  width: auto;
+}
+
+.bread-detail ul.bread-meta {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bread-detail ul.bread-meta li ul {
+  padding-left: 0;
+}
+
+.bread-detail ul.bread-meta li ul li {
+  border-bottom: 1px solid #ccc;
+  list-style: none;
+  max-width: 450px;
+}
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
@@ -775,4 +807,15 @@ span.outline {
   display: -ms-flexbox;
   display:         flex;
   flex-wrap: wrap;
+}
+
+@media (min-width: 970px) {
+  .hidden-md-up {
+    display: none;
+  }
+}
+@media (max-width: 970px) {
+  .hidden-md-down {
+    display: none;
+  }
 }
