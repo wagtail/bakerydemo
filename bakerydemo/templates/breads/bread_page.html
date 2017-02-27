@@ -10,7 +10,7 @@
                     <h1>{{ page.title }}</h1>
                     
                     <figure class="hidden-md-up">
-                        {% image self.image width-500 %}
+                        {% image page.image width-500 %}
                     </figure>
                     
                     {% if page.introduction %}
@@ -26,7 +26,7 @@
             <div class="col-md-5 col-md-offset-1">
                 <div class="row">
                     <figure class="hidden-md-down">
-                        {% image self.image width-500 %}
+                        {% image page.image width-500 %}
                     </figure>
                     <ul class="bread-meta">
                         {% if page.origin %}
