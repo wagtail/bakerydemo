@@ -526,6 +526,12 @@ li.has-submenu a.allow-toggle {
   background-color: #fff;
 }
 
+/* Pagination navigation */
+nav[role=pagination] {
+  margin-top: 50px;
+  text-align: center;
+}
+
 /* Location list page */
 .location-list-item {
   text-align: center;
@@ -592,7 +598,6 @@ time.location-time {
 }
 
 /* Blog styles */
-
 .blog-byline {
     margin-top: -40px;
     margin-bottom: 20px;
@@ -699,6 +704,90 @@ span.outline {
   text-transform: uppercase;
 }
 
+/* Bread styles */
+/* Bread listview */
+.bread-list-item {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 3px;
+  margin: 12px;
+  overflow: hidden;
+}
+
+.bread-list-item h2 {
+  font-weight: 300;
+}
+
+@media (min-width: 992px) {
+  .bread-list-item {
+    width: 47%;
+  }
+}
+
+.bread-list-item .image {
+  background-color: #eb7400;
+  margin: 0;
+  max-width: 180px;
+  max-height: 180px;
+  min-width: 180px;
+  min-height: 180px;
+  padding: 0;
+}
+
+.bread-list-item .image:hover img {
+  opacity: 0.3;
+}
+
+.bread-list-item img {
+  margin: 0;
+  width: auto;
+}
+
+.bread-list-item ul {
+  padding-left: 2px;
+}
+
+.bread-list-item li {
+  list-style: none;
+}
+
+.bread-list-item li span {
+  color: #777;
+  display: inline-block;
+  font-weight: 600;
+  width: 70px;
+}
+
+/* Bread detail page */
+.bread-detail .introduction {
+  color: #777;
+  font-size: 1.4em;
+  margin-top: 40px;
+}
+
+.bread-detail figure {
+  margin: 35px auto 20px auto;
+  overflow: hidden;
+}
+
+.bread-detail figure img {
+  width: auto;
+}
+
+.bread-detail ul.bread-meta {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bread-detail ul.bread-meta li ul {
+  padding-left: 0;
+}
+
+.bread-detail ul.bread-meta li ul li {
+  border-bottom: 1px solid #ccc;
+  list-style: none;
+  max-width: 450px;
+}
+
 /* Forms */
 /* Form detail page */
 .form-page input, textarea, select {
@@ -748,4 +837,15 @@ span.outline {
   display: -ms-flexbox;
   display:         flex;
   flex-wrap: wrap;
+}
+
+@media (min-width: 970px) {
+  .hidden-md-up {
+    display: none;
+  }
+}
+@media (max-width: 970px) {
+  .hidden-md-down {
+    display: none;
+  }
 }

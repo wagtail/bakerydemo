@@ -1,0 +1,33 @@
+{% load navigation_tags %}
+
+<nav role="pagination" aria-label="Pagination">
+    <ul class="pagination">
+        {% if subpages.has_previous %}
+            <li class="page-item">
+                <a href="?page={{ subpages.previous_page_number }}" class="page-link previous arrows">previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link">previous</a>
+            </li>
+        {% endif %}
+
+        {% for i in subpages.paginator.page_range %}
+            {% if subpages.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li class="page-item"><a href="?page={{ query_string|urlencode }}&amp;page={{ i }}" class="page-link">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+        {% if subpages.has_next %}
+            <li class="page-item">
+                <a href="?page={{ subpages.next_page_number }}" class="page-link next arrows">next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link">next</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
