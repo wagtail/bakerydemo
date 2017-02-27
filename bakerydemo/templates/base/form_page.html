@@ -7,7 +7,9 @@
         <div class="col-md-8">
             <h1>{{ page.title }}</h1>
             
-            <p class="intro">{{ page.intro|richtext }}</p>
+            {% if page.intro %}
+                <p class="intro">{{ page.intro|richtext }}</p>
+            {% endif %}
         </div>
     </div>
 </div>

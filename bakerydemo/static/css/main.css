@@ -819,6 +819,11 @@ span.outline {
   max-width: 350px;
 }
 
+/* Form thank you page */
+.form-page-thanks h1 {
+  margin-bottom: 30px;
+}
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
