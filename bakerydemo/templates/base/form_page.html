@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
+{% include "base/include/header-hero.html" %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h1>{{ page.title }}</h1>
-            
             {% if page.intro %}
                 <p class="intro">{{ page.intro|richtext }}</p>
             {% endif %}
