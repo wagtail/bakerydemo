@@ -109,23 +109,6 @@ class FooterText(models.Model):
         verbose_name_plural = 'Footer Text'
 
 
-class AboutLocationRelationship(Orderable, models.Model):
-    """
-    This defines the relationship between the `LocationPage` within the `locations`
-    app and the About page below allowing us to add locations to the about
-    section.
-    """
-    page = ParentalKey(
-        'AboutPage', related_name='location_about_relationship'
-    )
-    locations = models.ForeignKey(
-        'locations.LocationPage', related_name='about_location_relationship'
-    )
-    panels = [
-        PageChooserPanel('locations')
-    ]
-
-
 class AboutPage(Page):
     """
     The About Page
@@ -150,11 +133,6 @@ class AboutPage(Page):
     content_panels = Page.content_panels + [
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
-        InlinePanel(
-            'location_about_relationship',
-            label='Locations',
-            min_num=None
-        ),
     ]
 
     # parent_page_types = [

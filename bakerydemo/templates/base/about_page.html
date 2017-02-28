@@ -4,5 +4,11 @@
 {% block content %}
     {% include "base/include/header.html" %}
 
-    {{ page.body }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            {{ page.body }}
+        </div>
+    </div>
+</div>
 {% endblock content %}
