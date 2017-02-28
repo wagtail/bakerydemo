@@ -788,6 +788,13 @@ span.outline {
   max-width: 450px;
 }
 
+/* Generic title image header include */
+.base-header img {
+  height: auto;
+  margin-top: 20px;
+  width: auto;
+}
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
