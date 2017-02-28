@@ -84,7 +84,7 @@ a.btn-sm {
             border-radius: 4px;
     }
 
-input {
+.header input {
   border-radius: 3px;
   border: none;
   font-size: 18px;
@@ -786,6 +786,42 @@ span.outline {
   border-bottom: 1px solid #ccc;
   list-style: none;
   max-width: 450px;
+}
+
+/* Forms */
+/* Form detail page */
+.form-page input, textarea, select {
+  display: block;
+  min-width: 350px;
+  max-width: 350px;
+}
+
+.form-page li input[type=checkbox], input[type=radio] {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.form-page .fieldWrapper ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-page .required {
+  color: red;
+}
+
+.form-page .help {
+  color: #999;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8em;
+  margin-top: 10px;
+  max-width: 350px;
+}
+
+/* Form thank you page */
+.form-page-thanks h1 {
+  margin-bottom: 30px;
 }
 
 /* Generic title image header include */

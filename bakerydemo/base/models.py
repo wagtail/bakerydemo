@@ -200,7 +200,7 @@ class FormField(AbstractFormField):
 
 
 class FormPage(AbstractEmailForm):
-    header_image = models.ForeignKey(
+    image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
@@ -210,7 +210,7 @@ class FormPage(AbstractEmailForm):
     body = StreamField(BaseStreamBlock())
     thank_you_text = RichTextField(blank=True)
     content_panels = AbstractEmailForm.content_panels + [
-        ImageChooserPanel('header_image'),
+        ImageChooserPanel('image'),
         StreamFieldPanel('body'),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text', classname="full"),
