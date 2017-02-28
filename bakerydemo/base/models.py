@@ -200,7 +200,7 @@ class HomePage(Page):
         null=True,
         blank=True,
         help_text='Write some promotional copy'
-    ) 
+    )
 
     featured_section_1_title = models.CharField(
         null=True,

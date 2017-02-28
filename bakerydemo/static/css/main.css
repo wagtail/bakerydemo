@@ -838,6 +838,91 @@ span.outline {
   }
 }
 
+/* Homepage */
+.homepage .hero {
+  margin: 0;
+  padding: 200px 0 30px 0;
+}
+
+.homepage .home-hero {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  text-align: center;
+}
+.homepage .home-hero .lead {
+  color: #ddd;
+  font-size: 1.6em;
+}
+.homepage .streamfield {
+  background-color: #eee;
+}
+.homepage .streamfield-column {
+  padding: 60px;
+  margin: 0 auto;
+  float: none;
+}
+.homepage .streamfield-column h1,
+.homepage .streamfield-column h2,
+.homepage .streamfield-column h3,
+.homepage .streamfield-column h4,
+.homepage .streamfield-column h5 {
+  text-align: center;
+}
+
+.homepage .promo-row {
+  padding-top: 40px;
+}
+.homepage .promo {
+  text-align: center;
+}
+.homepage .promo figure img {
+  border-radius: 100%;
+  margin: auto;
+  width: auto;
+}
+
+.homepage .feature-1 h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.homepage .feature-1 .featured-children li {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.homepage .feature-1 .featured-children li h3 {
+  margin-top: 40px;
+  font-weight: 300;
+  font-size: 1.4em;
+}
+
+.homepage .feature-2 {
+  padding: 40px 0 20px;
+}
+
+.homepage .feature-2 h2,
+.homepage .feature-3 h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.homepage .feature-2 img {
+  min-height: 210px;
+}
+
+.homepage .feature-3 h3 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.8em;
+  margin-bottom: 135px;
+  margin-top: -145px;
+  position: relative;
+  text-align: center;
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
+  z-index: 1;
+}
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
@@ -867,4 +952,29 @@ span.outline {
   .hidden-md-down {
     display: none;
   }
+}
+
+/* From Wagtail core */
+/* Responsive image/video classes */
+.rich-text img {
+    max-width: 100%;
+    height: auto;
+}
+.richtext-image.left{
+    float:left;
+}
+.richtext-image.right{
+    float:right;
+}
+.responsive-object {
+    position: relative;
+}
+.responsive-object iframe,
+.responsive-object object,
+.responsive-object embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

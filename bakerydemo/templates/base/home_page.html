@@ -2,6 +2,114 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
+<div class="homepage">
 
-    {{ page.body }}
+{% image page.image fill-1920x600 as image %}
+<div class="container-fluid hero" style="background-image:url('{{ image.url }}')">
+    <div class="hero-gradient-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 home-hero">
+                <h1>{{ page.title }}</h1>
+                <p class="lead">{{ page.hero_text }}</p>
+                <a href="{{ page.hero_cta_link }}" class="btn btn-lg btn-success">{{ page.hero_cta }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% if page.body %}
+<div class="container-fluid streamfield">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 streamfield-column">
+                {{ page.body }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="row promo-row">
+        <div class="col-md-5 promo">
+            {% if page.promo_image or page.promo_title or page.promo_text %}
+                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
+                <h3>{{ page.promo_title }}</h3>
+                {{ page.promo_text|safe }}
+            {% endif %}
+        </div>
+
+        <div class="col-md-6 col-md-offset-1 feature-1">
+            {% if page.featured_section_1 %}
+            <h2>{{ page.featured_section_1_title }}</h2>
+                <div class="featured-children">
+                    {% for childpage in page.featured_section_1.specific.children|slice:"4" %}
+                        <li>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="{{childpage.url}}">
+                                        {% image childpage.image fill-300x140-c100 %}
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 feature-2">
+            {% if page.featured_section_2 %}
+            <h2>{{ page.featured_section_2_title }}</h2>
+                <div class="featured-children row">
+                    {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
+                        <li class="col-md-4">
+                            {% image childpage.image height-210 %}
+                            <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
+                            <p>{{ childpage.introduction|truncatewords:15 }}</p>
+                        </li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 feature-3">
+            {% if page.featured_section_3 %}
+            <h2>{{ page.featured_section_3_title }}</h2>
+                <div class="featured-children row">
+                    {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
+                        <li class="col-md-4">
+                            <a href="{{childpage.url}}">
+                                {% image childpage.image width-380 %}
+                                <h3>{{childpage.title}}</h3>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
 {% endblock content %}
+
+HERO
+----
+promo | bread
+-----
+Blog x3
+-----
+Location x 6
