@@ -792,7 +792,14 @@ span.outline {
 .base-header img {
   height: auto;
   margin-top: 20px;
+  max-width: 100%;
   width: auto;
+}
+
+@media (max-width: 970px) {
+  .base-header img {
+    width: 100%;
+  }
 }
 
 /* No gutters */
