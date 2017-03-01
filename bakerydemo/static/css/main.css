@@ -903,7 +903,7 @@ span.outline {
 }
 
 .homepage .streamfield {
-  background-color: #eee;
+  background: linear-gradient(45deg, rgba(170,170,170,1) 0%,rgba(238,238,238,1) 44%);
 }
 .homepage .streamfield-column {
   padding: 60px;
@@ -919,11 +919,53 @@ span.outline {
 }
 
 .homepage .promo-row {
-  padding-top: 40px;
+  padding: 40px 0 40px 0;
 }
 .homepage .promo {
+  background: linear-gradient(190deg, rgba(0,4,8,1) 0%,rgba(55,28,25,1) 100%);
+  border-radius: 0px 0px 10px 10px;
+  color: #fff;
+  height: 100%;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  padding: 40px 60px;
   text-align: center;
 }
+.homepage .promo h1,
+.homepage .promo h2,
+.homepage .promo h3,
+.homepage .promo h4 {
+  color: #eb7400;
+  font-weight: 200;
+}
+.homepage .promo p,
+.homepage .promo li {
+  color: #ccc;
+  line-height: 1.6em;
+}
+.homepage .promo a {
+  color: #fff;
+}
+@media (max-width: 970px) {
+  .homepage .promo {
+    padding: 30px 40px;
+  }
+  .homepage .promo figure img {
+    max-width: 120px;
+    height: auto;
+  }
+  .homepage .promo p {
+    color: #fff;
+    font-size: 1em;
+  }
+}
+@media (max-width: 766px) {
+  .homepage .promo {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
 .homepage .promo figure img {
   border-radius: 100%;
   margin: auto;
@@ -939,6 +981,16 @@ span.outline {
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-bottom: 10px;
+}
+
+.homepage .feature-1 .featured-children li figure {
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.homepage .feature-1 .featured-children li img {
+  width: auto;
 }
 
 .homepage .feature-1 .featured-children li h3 {

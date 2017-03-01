@@ -18,6 +18,43 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row promo-row">
+        <div class="col-sm-5 promo">
+            {% if page.promo_image or page.promo_title or page.promo_text %}
+                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
+                <div class="promo-text">
+                    <h3>{{ page.promo_title }}</h3>
+                    {{ page.promo_text|safe }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-1 feature-1">
+            {% if page.featured_section_1 %}
+            <h2>{{ page.featured_section_1_title }}</h2>
+                <div class="featured-children">
+                    {% for childpage in page.featured_section_1.specific.children|slice:"4" %}
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <a href="{{childpage.url}}">
+                                        <figure>
+                                            {% image childpage.image fill-180x140-c100 %}
+                                        </figure>
+                                    </a>
+                                </div>
+                                <div class="col-xs-8">
+                                    <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% if page.body %}
 <div class="container-fluid streamfield">
@@ -30,40 +67,6 @@
     </div>
 </div>
 {% endif %}
-
-<div class="container">
-    <div class="row promo-row">
-        <div class="col-md-5 promo">
-            {% if page.promo_image or page.promo_title or page.promo_text %}
-                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
-                <h3>{{ page.promo_title }}</h3>
-                {{ page.promo_text|safe }}
-            {% endif %}
-        </div>
-
-        <div class="col-md-6 col-md-offset-1 feature-1">
-            {% if page.featured_section_1 %}
-            <h2>{{ page.featured_section_1_title }}</h2>
-                <div class="featured-children">
-                    {% for childpage in page.featured_section_1.specific.children|slice:"4" %}
-                        <li>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <a href="{{childpage.url}}">
-                                        {% image childpage.image fill-300x140-c100 %}
-                                    </a>
-                                </div>
-                                <div class="col-md-8">
-                                    <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
 
 <div class="container">
     <div class="row">
