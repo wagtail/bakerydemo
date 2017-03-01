@@ -75,7 +75,7 @@
             <h2>{{ page.featured_section_2_title }}</h2>
                 <div class="featured-children row feature-2-row">
                     {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
-                        <li class="col-md-4 feature-2-item">
+                        <li class="col-sm-4 feature-2-item">
                             <a href="{{childpage.url}}">
                                 <figure>
                                     {% image childpage.image height-210 %}

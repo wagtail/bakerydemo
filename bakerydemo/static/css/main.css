@@ -1005,17 +1005,19 @@ span.outline {
 
 .homepage .feature-2 .feature-2-row {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .homepage .feature-2 h2,
 .homepage .feature-3 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .homepage .feature-2 .feature-2-item {
   display: flex;
   flex-direction: column;
+  margin: 0 auto 20px;
 }
 
 .homepage .feature-2 .feature-2-item figure {
@@ -1038,6 +1040,13 @@ span.outline {
   background-color: #eb7400;
   margin: 0;
 }
+
+@media (max-width: 766px) {
+  .homepage .feature-2 .feature-2-row {
+    display: inline-block;
+  }
+}
+
 .homepage .feature-3 h3 {
   color: #fff;
   font-weight: 300;
