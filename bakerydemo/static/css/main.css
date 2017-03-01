@@ -20,7 +20,7 @@ body {
 }
 
 h1 {
-  font-weight: 900;
+  font-weight: 300;
   font-family: 'Lato', sans-serif;
   position: relative;
 }
@@ -844,15 +844,64 @@ span.outline {
   padding: 200px 0 30px 0;
 }
 
+.homepage .hero h1 {
+  font-size: 2.2em;
+  text-transform: uppercase;
+}
+
+.homepage .hero h1:after {
+  background-color: rgba(255,255,255, 0.7);
+  content: "";
+  display: block;
+  height: 5px;
+  margin: 20px auto;
+  width: 250px;
+}
+
 .homepage .home-hero {
   margin-bottom: 0;
-  padding-bottom: 0;
+  padding-bottom: 60px;
   text-align: center;
 }
 .homepage .home-hero .lead {
   color: #ddd;
   font-size: 1.6em;
+  margin: 40px auto;
 }
+
+.homepage .home-hero .hero-cta-link {
+  color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 10px 34px 10px 10px;
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  transition-duration: 0.1s;
+}
+.homepage .home-hero .hero-cta-link:before {
+  content: "\f18e";
+  font-family: FontAwesome;
+  font-size: 1.2em;
+  font-weight: 200;
+  opacity: 0.8;
+  padding: 0 1px;
+  position: absolute;
+  right: 0.2em;
+  top: 0.2em;
+  transform: translateZ(0);
+  transition-duration: 0.1s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+.homepage .home-hero .hero-cta-link:hover:before,
+.homepage .home-hero .hero-cta-link:focus:before,
+.homepage .home-hero .hero-cta-link:active:before {
+  transform: translateX(4px);
+}
+
 .homepage .streamfield {
   background-color: #eee;
 }
