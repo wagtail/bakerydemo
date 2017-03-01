@@ -73,12 +73,18 @@
         <div class="col-md-12 feature-2">
             {% if page.featured_section_2 %}
             <h2>{{ page.featured_section_2_title }}</h2>
-                <div class="featured-children row">
+                <div class="featured-children row feature-2-row">
                     {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
-                        <li class="col-md-4">
-                            {% image childpage.image height-210 %}
-                            <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
-                            <p>{{ childpage.introduction|truncatewords:15 }}</p>
+                        <li class="col-md-4 feature-2-item">
+                            <a href="{{childpage.url}}">
+                                <figure>
+                                    {% image childpage.image height-210 %}
+                                </figure>
+                            </a>
+                            <div class="feature-2-text">
+                                <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
+                                <p>{{ childpage.introduction|truncatewords:15 }}</p>
+                            </div>
                         </li>
                     {% endfor %}
                 </div>
@@ -96,7 +102,9 @@
                     {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
                         <li class="col-md-4">
                             <a href="{{childpage.url}}">
-                                {% image childpage.image width-380 %}
+                                <figure>
+                                    {% image childpage.image width-380 %}
+                                </figure>
                                 <h3>{{childpage.title}}</h3>
                             </a>
                         </li>
