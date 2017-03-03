@@ -113,42 +113,14 @@ class FooterText(models.Model):
         verbose_name_plural = 'Footer Text'
 
 
-class AboutPage(Page):
+class StandardPage(Page, BasePageFieldsMixin):
     """
-    The About Page
+    A fairly generic site page, to be used for About, etc.
+    Defines no fields of its own - just a wrapper for the fields defined in BasePageFieldsMixin.
     """
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='About image'
-    )
 
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="About page detail", blank=True
-    )
-    # We've defined the StreamBlock() within blocks.py that we've imported on
-    # line 12. Defining it in a different file gives us consistency across the
-    # site, though StreamFields _can_ be created on a per model basis if you
-    # have a use case for it
-
-    content_panels = Page.content_panels + [
-        ImageChooserPanel('image'),
-        StreamFieldPanel('body'),
-    ]
-
-    # parent_page_types = [
-    #    'home.HomePage'
-    # ]
-
-    # Defining what content type can sit under the parent
-    # The empty array means that no children can be placed under the
-    # LocationPage page model
-    subpage_types = []
-
-    # api_fields = ['image', 'body']
+    # Inherit the content panels from BasePageFieldsMixin
+    content_panels = BasePageFieldsMixin.content_panels + []
 
 
 class HomePage(Page):
