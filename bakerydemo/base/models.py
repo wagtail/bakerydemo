@@ -34,10 +34,14 @@ class BasePageFieldsMixin(models.Model):
         related_name='+',
         help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
     ]
 
     class Meta:

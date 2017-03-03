@@ -125,22 +125,15 @@ class LocationPage(BasePageFieldsMixin, Page):
             ),
         ]
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="About this location", blank=True
-    )
-    # We've defined the StreamBlock() within blocks.py that we've imported on
-    # line 12. Defining it in a different file gives us consistency across the
-    # site, though StreamFields _can_ be created on a per model basis if you
-    # have a use case for it
 
     # Search index configuration
     search_fields = Page.search_fields + [
         index.SearchField('address'),
+        index.SearchField('body'),
     ]
 
     # Editor panels configuration
     content_panels = BasePageFieldsMixin.content_panels + [
-        StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),

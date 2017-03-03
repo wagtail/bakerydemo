@@ -49,12 +49,8 @@ class BlogPage(BasePageFieldsMixin, Page):
     subtitle = models.CharField(blank=True, max_length=255)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField("Date article published", blank=True, null=True)
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="Blog post", blank=True
-    )
 
     content_panels = BasePageFieldsMixin.content_panels + [
-        StreamFieldPanel('body'),
         FieldPanel('date_published'),
         InlinePanel(
             'blog_person_relationship', label="Author(s)",

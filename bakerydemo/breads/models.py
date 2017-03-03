@@ -82,9 +82,6 @@ class BreadPage(BasePageFieldsMixin, Page):
         null=True,
         blank=True,
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="Describe the bread", blank=True
-    )
     bread_type = models.ForeignKey(
         'breads.BreadType',
         null=True,
@@ -95,7 +92,6 @@ class BreadPage(BasePageFieldsMixin, Page):
     ingredients = ParentalManyToManyField('BreadIngredient', blank=True)
 
     content_panels = BasePageFieldsMixin.content_panels + [
-        StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
         MultiFieldPanel(
@@ -116,8 +112,6 @@ class BreadPage(BasePageFieldsMixin, Page):
     ]
 
     parent_page_types = ['BreadsIndexPage']
-
-    api_fields = ['title', 'bread_type', 'origin', 'image']
 
 
 class BreadsIndexPage(BasePageFieldsMixin, Page):
