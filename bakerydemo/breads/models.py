@@ -133,6 +133,9 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
         return BreadPage.objects.live().descendant_of(
             self).order_by('-first_published_at')
 
+    def children(self):
+        return self.get_children().specific().live()
+
     def paginate(self, request, *args):
         page = request.GET.get('page')
         paginator = Paginator(self.get_breads(), 12)

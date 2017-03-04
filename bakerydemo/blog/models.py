@@ -114,6 +114,9 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
     # What pages types can live under this page type?
     subpage_types = ['BlogPage']
 
+    def children(self):
+        return self.get_children().specific().live()
+
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
         context['posts'] = BlogPage.objects.descendant_of(

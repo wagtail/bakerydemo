@@ -100,6 +100,9 @@ class LocationsIndexPage(BasePageFieldsMixin, Page):
     """
     subpage_types = ['LocationPage']
 
+    def children(self):
+        return self.get_children().specific().live()
+
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
         context['locations'] = LocationPage.objects.descendant_of(
