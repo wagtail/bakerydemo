@@ -4,28 +4,18 @@
 {% block content %}
 
 {% image self.image fill-1920x600 as hero_img %}
-<div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
-<div class="hero-gradient-mask"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7 col-md-offset-2">
-                <h1>{{ page.title }}</h1>
-                <p class="stand-first">{{ page.subtitle }}</p>
-            </div>
-        </div>
-    </div>
-</div>
+    {% include "base/include/header-hero.html" %}
 
 <div class="container">
     <div class="row">
-        <div class="col-md-7 col-md-offset-2">
+        <div class="col-md-8">
             {% if page.introduction %}
                 <p class="intro">{{ page.introduction }}</p>
             {% endif %}
 
             {# TODO These two loops could be consolidated into one, with styling #}
             <div class="blog-byline">
-            {{ page.date_published }} by {% for author in page.authors %}
+            {% if page.date_published %}{{ page.date_published }} by {% else %}By: {% endif %}{% for author in page.authors %}
                 {{ author }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
             </div>
