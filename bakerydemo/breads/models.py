@@ -4,16 +4,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, StreamFieldPanel
-)
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.wagtailcore.models import Page
-
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.base.models import BasePageFieldsMixin
 
 
@@ -118,7 +114,7 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
     """
     Index page for breads. We don't have any fields within our model but we need
     to alter the page model's context to return the child page objects - the
-    BreadPage - so that it works as an index page
+    BreadPage - so that it works as an index page.
     """
 
     subpage_types = ['BreadPage']
@@ -146,3 +142,8 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
         context['breads'] = breads
 
         return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]

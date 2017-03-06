@@ -10,15 +10,12 @@ from modelcluster.fields import ParentalKey
 from taggit.models import Tag, TaggedItemBase
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, InlinePanel, StreamFieldPanel
-)
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
-from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.base.models import BasePageFieldsMixin
 
 
@@ -163,3 +160,8 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
             tags += post.get_tags  # Not tags.append() because we don't want a list of lists
         tags = sorted(set(tags))
         return tags
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]

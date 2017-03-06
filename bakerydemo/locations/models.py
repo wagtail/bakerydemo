@@ -6,16 +6,12 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel,
-    InlinePanel,
-    StreamFieldPanel)
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailsearch import index
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.models import BasePageFieldsMixin
-from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class OperatingHours(models.Model):
@@ -106,6 +102,11 @@ class LocationsIndexPage(BasePageFieldsMixin, Page):
             self).live().order_by(
             'title')
         return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
 
 
 class LocationPage(BasePageFieldsMixin, Page):
