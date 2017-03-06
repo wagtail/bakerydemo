@@ -6,16 +6,12 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel,
-    InlinePanel,
-    StreamFieldPanel)
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailsearch import index
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.models import BasePageFieldsMixin
-from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class OperatingHours(models.Model):
@@ -110,6 +106,11 @@ class LocationsIndexPage(BasePageFieldsMixin, Page):
             'title')
         return context
 
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
+
 
 class LocationPage(BasePageFieldsMixin, Page):
     """
@@ -128,22 +129,15 @@ class LocationPage(BasePageFieldsMixin, Page):
             ),
         ]
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="About this location", blank=True
-    )
-    # We've defined the StreamBlock() within blocks.py that we've imported on
-    # line 12. Defining it in a different file gives us consistency across the
-    # site, though StreamFields _can_ be created on a per model basis if you
-    # have a use case for it
 
     # Search index configuration
     search_fields = Page.search_fields + [
         index.SearchField('address'),
+        index.SearchField('body'),
     ]
 
     # Editor panels configuration
     content_panels = BasePageFieldsMixin.content_panels + [
-        StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),

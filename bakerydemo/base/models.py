@@ -6,11 +6,10 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel,
-    PageChooserPanel, StreamFieldPanel,
+    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel,
 )
 from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailcore.models import Collection, Orderable, Page
+from wagtail.wagtailcore.models import Collection, Page
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
@@ -34,10 +33,14 @@ class BasePageFieldsMixin(models.Model):
         related_name='+',
         help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
     ]
 
     class Meta:
@@ -109,42 +112,14 @@ class FooterText(models.Model):
         verbose_name_plural = 'Footer Text'
 
 
-class AboutPage(Page):
+class StandardPage(Page, BasePageFieldsMixin):
     """
-    The About Page
+    A fairly generic site page, to be used for About, etc.
+    Defines no fields of its own - just a wrapper for the fields defined in BasePageFieldsMixin.
     """
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='About image'
-    )
 
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="About page detail", blank=True
-    )
-    # We've defined the StreamBlock() within blocks.py that we've imported on
-    # line 12. Defining it in a different file gives us consistency across the
-    # site, though StreamFields _can_ be created on a per model basis if you
-    # have a use case for it
-
-    content_panels = Page.content_panels + [
-        ImageChooserPanel('image'),
-        StreamFieldPanel('body'),
-    ]
-
-    # parent_page_types = [
-    #    'home.HomePage'
-    # ]
-
-    # Defining what content type can sit under the parent
-    # The empty array means that no children can be placed under the
-    # LocationPage page model
-    subpage_types = []
-
-    # api_fields = ['image', 'body']
+    # Inherit the content panels from BasePageFieldsMixin
+    content_panels = BasePageFieldsMixin.content_panels + []
 
 
 class HomePage(Page):
