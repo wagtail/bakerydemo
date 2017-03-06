@@ -20,20 +20,20 @@ class OperatingHours(models.Model):
     """
     MONDAY = 'Mon'
     TUESDAY = 'Tue'
-    WEDNESDAY = 'Wed'
+    WEDNESDAY = 'Weds'
     THURSDAY = 'Thu'
     FRIDAY = 'Fri'
     SATURDAY = 'Sat'
     SUNDAY = 'Sun'
 
     DAY_CHOICES = (
-        (MONDAY, 'Mon'),
-        (TUESDAY, 'Tue'),
-        (WEDNESDAY, 'Weds'),
-        (THURSDAY, 'Thu'),
-        (FRIDAY, 'Fri'),
-        (SATURDAY, 'Sat'),
-        (SUNDAY, 'Sun'),
+        (MONDAY, 'Monday'),
+        (TUESDAY, 'Tuesday'),
+        (WEDNESDAY, 'Wednesday'),
+        (THURSDAY, 'Thursday'),
+        (FRIDAY, 'Friday'),
+        (SATURDAY, 'Saturday'),
+        (SUNDAY, 'Sunday'),
     )
 
     day = models.CharField(
