@@ -32,7 +32,7 @@ class OperatingHours(models.Model):
     day = models.CharField(
         max_length=4,
         choices=DAY_CHOICES,
-        default='MONDAY'
+        default='MON'
     )
     opening_time = models.TimeField(
         blank=True,
