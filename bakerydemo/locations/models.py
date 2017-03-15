@@ -12,22 +12,13 @@ from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.models import BasePageFieldsMixin
+from bakerydemo.locations.choices import DAY_CHOICES
 
 
 class OperatingHours(models.Model):
     """
     Django model to capture operating hours for a Location
     """
-
-    DAY_CHOICES = (
-        ('MON', 'Monday'),
-        ('TUES', 'Tuesday'),
-        ('WED', 'Wednesday'),
-        ('THUR', 'Thursday'),
-        ('FRI', 'Friday'),
-        ('SAT', 'Saturday'),
-        ('SUN', 'Sunday'),
-    )
 
     day = models.CharField(
         max_length=4,
