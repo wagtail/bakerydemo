@@ -21,18 +21,18 @@
         You could render your form using a Django rendering shortcut such as `{{ form.as_p }}` but that will tend towards unsemantic code, and make it difficult to style. You can read more on Django form at:
         https://docs.djangoproject.com/en/1.10/topics/forms/#form-rendering-options
         {% endcomment %}
-            <form action="{% pageurl page %}" method="POST">
+            <form action="{% pageurl page %}" method="POST" role="form">
                 {% csrf_token %}
                 {% if form.subject.errors %}
-                    <ol>
+                    <ol role="alertdialog">
                     {% for error in form.subject.errors %}
-                        <li><strong>{{ error|escape }}</strong></li>
+                        <li role="alert"><strong>{{ error|escape }}</strong></li>
                     {% endfor %}
                     </ol>
                 {% endif %}
 
                 {% for field in form %}
-                    <div class="fieldWrapper">
+                    <div class="fieldWrapper" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
                         
                         {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}
 

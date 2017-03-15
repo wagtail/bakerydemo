@@ -1,19 +1,19 @@
 {% load wagtailcore_tags %}
 
 
-<div class="breadcrumb-container">
+<nav class="breadcrumb-container" aria-label="breadcrumb" role="navigation">
   <div class="container">
       <div class="row">
           <div class="col-lg-12">
             {% if ancestors %}
-              <ol class="breadcrumb" aria-label="You are here:" role="navigation">
+              <ol class="breadcrumb">
                   {% for ancestor in ancestors %}
                     {% if forloop.last %}
-                      <li class="active">
+                      <li class="active" aria-level="{{ancestors|length}}">
                         {{ ancestor }}
                       </li>
                     {% else %}
-                      <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
+                      <li><a href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor }}</a></li>
                     {% endif %}
                   {% endfor %}
               </ol>
@@ -21,4 +21,4 @@
           </div>
       </div>
   </div>
-</div>
+</nav>
