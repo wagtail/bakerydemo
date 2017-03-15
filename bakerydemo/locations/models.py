@@ -154,6 +154,7 @@ class LocationPage(BasePageFieldsMixin, Page):
         context = super(LocationPage, self).get_context(request)
         context['lat'] = self.lat_long.split(",")[0]
         context['long'] = self.lat_long.split(",")[1]
+        context['google_map_api_key'] = settings.GOOGLE_MAP_API_KEY
         return context
 
     parent_page_types = ['LocationsIndexPage']
