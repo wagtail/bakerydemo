@@ -8,8 +8,8 @@
 {% wagtailuserbar %}
 
 {% block header %}
-    {% include "includes/header.html" with parent=site_root calling_page=self %}
     {# Header contains the main_navigation block #}
+    {% include "includes/header.html" with parent=site_root calling_page=self %}
 {% endblock header %}
 
 {% block head-extra %}
@@ -21,11 +21,11 @@
 
 
 {% block breadcrumbs %}
-    {% breadcrumbs %}
     {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+    {% breadcrumbs %}
 {% endblock breadcrumbs %}
 
-<content>
+<content role="main">
     {% block content %}
     {% endblock content %}
 </content>
