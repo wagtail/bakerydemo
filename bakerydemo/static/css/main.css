@@ -801,7 +801,8 @@ span.outline {
   margin-right: 10px;
 }
 
-.form-page .fieldWrapper ul, li {
+.form-page .fieldWrapper ul, 
+.form-page .fieldWrapper li {
   list-style: none;
   padding: 0;
   margin: 0;
