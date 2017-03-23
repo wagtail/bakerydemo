@@ -204,6 +204,9 @@ nav {
   margin: 15px 0 5px;
   display: none;
 }
+#main-navigation {
+  padding-left: 0;
+}
 
 @media (min-width: 768px) {
   nav {
