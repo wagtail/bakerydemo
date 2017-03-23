@@ -2,7 +2,7 @@
 {% get_site_root as site_root %}
 
 {% for menuitem in menuitems %}
-  <li class="presentation {% if menuitem.show_dropdown %}has-submenu{% endif %} {% if menuitem.active %}active{% endif %}">
+  <li class="presentation {{ menuitem.title|lower|cut:" " }}{% if menuitem.active %} active{% endif %}{% if menuitem.show_dropdown %} has-submenu{% endif %}">
       {% if menuitem.show_dropdown %}
           <a href="{% pageurl menuitem %}" class="allow-toggle">{{ menuitem.title }} <span><a class="caret-custom dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a></span></a>
               {% top_menu_children parent=menuitem %}
