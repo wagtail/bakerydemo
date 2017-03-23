@@ -27,7 +27,7 @@
                 {% if page.authors %}
                 <div class="blog-avatars">
                     {% for author in page.authors %}
-                        {% image author.image fill-50x50-c100 class="blog-avatar" %} {{ author.first_name }} {{ author.last_name }}
+                        <div class="author">{% image author.image fill-50x50-c100 class="blog-avatar" %} {{ author.first_name }} {{ author.last_name }}</div>
                     {% endfor %}
                 </div>
                 {% endif %}

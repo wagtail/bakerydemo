@@ -610,6 +610,10 @@ time.location-time {
 .blog-avatars {
     margin-bottom: 20px;
 }
+.blog-avatars .author {
+  display: inline-block;
+  margin-right: 30px;
+}
 
 /* Blog list view */
 .blog-tags>li {
