@@ -800,8 +800,8 @@ span.outline {
 /* Form detail page */
 .form-page input, textarea, select {
   display: block;
-  min-width: 350px;
-  max-width: 350px;
+  min-width: 450px;
+  max-width: 450px;
 }
 
 .form-page li input[type=checkbox], input[type=radio] {
@@ -818,6 +818,10 @@ span.outline {
 
 .form-page .required {
   color: red;
+}
+
+.form-page .fieldWrapper {
+  margin-bottom: 30px;
 }
 
 .form-page .help {
