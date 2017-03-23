@@ -35,7 +35,9 @@
                                 <p>{{ blog.introduction|truncatewords:15 }}</p>
                             </div>
                             <div class="small footer">
-                                {{ blog.date_published }} by
+                                {% if blog.date_published %}
+                                    {{ blog.date_published }} by 
+                                {% endif %}
                                 {% for author in blog.authors %}
                                     {{ author }}{% if not forloop.last %}, {% endif %}
                                 {% endfor %}

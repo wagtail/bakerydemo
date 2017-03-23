@@ -6,44 +6,24 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel,
-    InlinePanel,
-    StreamFieldPanel)
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailsearch import index
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.models import BasePageFieldsMixin
-from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.locations.choices import DAY_CHOICES
 
 
 class OperatingHours(models.Model):
     """
     Django model to capture operating hours for a Location
     """
-    MONDAY = 'Mon'
-    TUESDAY = 'Tue'
-    WEDNESDAY = 'Wed'
-    THURSDAY = 'Thu'
-    FRIDAY = 'Fri'
-    SATURDAY = 'Sat'
-    SUNDAY = 'Sun'
-
-    DAY_CHOICES = (
-        (MONDAY, 'Mon'),
-        (TUESDAY, 'Tue'),
-        (WEDNESDAY, 'Weds'),
-        (THURSDAY, 'Thu'),
-        (FRIDAY, 'Fri'),
-        (SATURDAY, 'Sat'),
-        (SUNDAY, 'Sun'),
-    )
 
     day = models.CharField(
         max_length=4,
         choices=DAY_CHOICES,
-        default=MONDAY,
+        default='MON'
     )
     opening_time = models.TimeField(
         blank=True,
@@ -100,12 +80,20 @@ class LocationsIndexPage(BasePageFieldsMixin, Page):
     """
     subpage_types = ['LocationPage']
 
+    def children(self):
+        return self.get_children().specific().live()
+
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
         context['locations'] = LocationPage.objects.descendant_of(
             self).live().order_by(
             'title')
         return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
 
 
 class LocationPage(BasePageFieldsMixin, Page):
@@ -125,22 +113,15 @@ class LocationPage(BasePageFieldsMixin, Page):
             ),
         ]
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="About this location", blank=True
-    )
-    # We've defined the StreamBlock() within blocks.py that we've imported on
-    # line 12. Defining it in a different file gives us consistency across the
-    # site, though StreamFields _can_ be created on a per model basis if you
-    # have a use case for it
 
     # Search index configuration
     search_fields = Page.search_fields + [
         index.SearchField('address'),
+        index.SearchField('body'),
     ]
 
     # Editor panels configuration
     content_panels = BasePageFieldsMixin.content_panels + [
-        StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
@@ -173,6 +154,7 @@ class LocationPage(BasePageFieldsMixin, Page):
         context = super(LocationPage, self).get_context(request)
         context['lat'] = self.lat_long.split(",")[0]
         context['long'] = self.lat_long.split(",")[1]
+        context['google_map_api_key'] = settings.GOOGLE_MAP_API_KEY
         return context
 
     parent_page_types = ['LocationsIndexPage']

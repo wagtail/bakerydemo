@@ -4,16 +4,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, StreamFieldPanel
-)
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.wagtailcore.models import Page
-
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.base.models import BasePageFieldsMixin
 
 
@@ -82,9 +78,6 @@ class BreadPage(BasePageFieldsMixin, Page):
         null=True,
         blank=True,
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="Describe the bread", blank=True
-    )
     bread_type = models.ForeignKey(
         'breads.BreadType',
         null=True,
@@ -95,7 +88,6 @@ class BreadPage(BasePageFieldsMixin, Page):
     ingredients = ParentalManyToManyField('BreadIngredient', blank=True)
 
     content_panels = BasePageFieldsMixin.content_panels + [
-        StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
         MultiFieldPanel(
@@ -117,14 +109,12 @@ class BreadPage(BasePageFieldsMixin, Page):
 
     parent_page_types = ['BreadsIndexPage']
 
-    api_fields = ['title', 'bread_type', 'origin', 'image']
-
 
 class BreadsIndexPage(BasePageFieldsMixin, Page):
     """
     Index page for breads. We don't have any fields within our model but we need
     to alter the page model's context to return the child page objects - the
-    BreadPage - so that it works as an index page
+    BreadPage - so that it works as an index page.
     """
 
     subpage_types = ['BreadPage']
@@ -132,6 +122,9 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
     def get_breads(self):
         return BreadPage.objects.live().descendant_of(
             self).order_by('-first_published_at')
+
+    def children(self):
+        return self.get_children().specific().live()
 
     def paginate(self, request, *args):
         page = request.GET.get('page')
@@ -152,3 +145,8 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
         context['breads'] = breads
 
         return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
