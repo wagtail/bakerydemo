@@ -3,12 +3,10 @@
 {% for img in images %}
 {% image img fill-285x200-c100 as img_obj %}
 <div class="col-sm-6">
-	<a href="{{img_obj.image.get_usage.first.specific.url}}">
-		<figure class="gallery-figure">
-			<img src="{{img_obj.url}}" class="img-responsive" />
-			<figcaption>{{ img.title }}</figcaption>
-		</figure>
-	</a>
+    <figure class="gallery-figure">
+        <img src="{{img_obj.url}}" class="img-responsive" />
+        <figcaption>{{ img.title }}</figcaption>
+    </figure>
 </div>
 {{ image.title }}
 {% endfor %}
