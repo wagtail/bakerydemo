@@ -13,16 +13,20 @@
                 <p class="intro">{{ page.introduction }}</p>
             {% endif %}
 
-            <div class="blog-byline">
-                {% if page.date_published %}{{ page.date_published }} by {% else %}By: {% endif %}{% for author in page.authors %}
-                    {{ author }}{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="blog-avatars">
-                {% for author in page.authors %}
-                    {% image author.image width-100 class="blog-avatar" %}
-                {% endfor %}
+            <div class="blog-meta">
+                {% if page.authors %}
+                <div class="blog-avatars">
+                    {% for author in page.authors %}
+                        <div class="author">{% image author.image fill-50x50-c100 class="blog-avatar" %} {{ author.first_name }} {{ author.last_name }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                {% if page.date_published %}
+                    <div class="blog-byline">
+                        {{ page.date_published }}
+                    </div>
+                {% endif %}
             </div>
 
             {{ page.body }}

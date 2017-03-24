@@ -204,6 +204,9 @@ nav {
   margin: 15px 0 5px;
   display: none;
 }
+#main-navigation {
+  padding-left: 0;
+}
 
 @media (min-width: 768px) {
   nav {
@@ -237,13 +240,35 @@ nav {
     font-size: 14px;
   }
 }
-
+.nav-pills>li>a, .nav-pills>li>a:focus, .nav-pills>li>a:hover,
+.nav-pills>li, .nav-pills>li, .nav>li>a, .nav>li>a {
+  border-top: 1px solid transparent;
+}
+/* The following is to stop a pixel shift on hover */ 
+.nav-pills>li.breads {
+  width: 90px;
+}
+.nav-pills>li.locations {
+  width: 140px;
+}
+.nav-pills>li.blog {
+  width: 86px;
+}
+.nav-pills>li.gallery {
+  width: 115px;
+}
+.nav-pills>li.contactus {
+  width: 148px;
+}
+.nav-pills>li.about {
+  width: 98px;
+}
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover,
 .nav-pills>li.active, .nav-pills>li:hover, .nav>li>a:focus, .nav>li>a:hover {
   color: #d4566b;
   background-color: transparent;
   border-top: 1px solid #d4566b;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
@@ -598,16 +623,21 @@ time.location-time {
 }
 
 /* Blog styles */
-.blog-byline {
+.blog-meta {
     margin-top: -40px;
     margin-bottom: 20px;
 }
 .blog-avatar {
-    width: unset;
+    border-radius: 100%;
     display: inline;
+    width: unset;
 }
 .blog-avatars {
     margin-bottom: 20px;
+}
+.blog-avatars .author {
+  display: inline-block;
+  margin-right: 30px;
 }
 
 /* Blog list view */
@@ -668,7 +698,7 @@ time.location-time {
 }
 
 .blog-list-item .text {
-  background: linear-gradient(to bottom, rgba(100,100,100,0) 0%,rgba(100,100,100,0.9) 23%,rgba(100,100,100,1) 50%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 23%,rgba(0,0,0,1) 50%);
   margin-top: -150px;
   padding: 20px;
   position: relative;
@@ -792,8 +822,8 @@ span.outline {
 /* Form detail page */
 .form-page input, textarea, select {
   display: block;
-  min-width: 350px;
-  max-width: 350px;
+  min-width: 450px;
+  max-width: 450px;
 }
 
 .form-page li input[type=checkbox], input[type=radio] {
@@ -810,6 +840,10 @@ span.outline {
 
 .form-page .required {
   color: red;
+}
+
+.form-page .fieldWrapper {
+  margin-bottom: 30px;
 }
 
 .form-page .help {

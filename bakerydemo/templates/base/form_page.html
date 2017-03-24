@@ -10,6 +10,9 @@
             {% if page.intro %}
                 <p class="intro">{{ page.intro|richtext }}</p>
             {% endif %}
+            {% if page.body %}
+                {{ page.body }}
+            {% endif %}
         </div>
     </div>
 </div>
