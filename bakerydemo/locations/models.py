@@ -121,7 +121,10 @@ class LocationPage(BasePageFieldsMixin, Page):
     ]
 
     # Editor panels configuration
-    content_panels = BasePageFieldsMixin.content_panels + [
+    content_panels = [
+        FieldPanel('title', classname="full"),
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
