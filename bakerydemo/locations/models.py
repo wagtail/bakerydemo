@@ -6,12 +6,14 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
+
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.models import BasePageFieldsMixin
+from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.locations.choices import DAY_CHOICES
 
 
@@ -74,10 +76,23 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsIndexPage(BasePageFieldsMixin, Page):
+class LocationsIndexPage(Page):
     """
     Index page for locations
     """
+
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+
     subpage_types = ['LocationPage']
 
     def children(self):
@@ -96,10 +111,24 @@ class LocationsIndexPage(BasePageFieldsMixin, Page):
     ]
 
 
-class LocationPage(BasePageFieldsMixin, Page):
+class LocationPage(Page):
     """
     Detail for a specific bakery location.
     """
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
     address = models.TextField()
     lat_long = models.CharField(
         max_length=36,
@@ -124,6 +153,7 @@ class LocationPage(BasePageFieldsMixin, Page):
     content_panels = [
         FieldPanel('title', classname="full"),
         FieldPanel('introduction', classname="full"),
+        StreamFieldPanel('body'),
         ImageChooserPanel('image'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
