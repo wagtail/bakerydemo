@@ -16,8 +16,9 @@ from bakerydemo.base.models import BasePageFieldsMixin
 @register_snippet
 class Country(models.Model):
     """
-    Standard Django model to store set of countries of origin.
-    Exposed in the Wagtail admin via Snippets.
+    A Django model to store set of countries of origin.
+    It uses the `@register_snippet` decorator to allow it to be accessible
+    as via the Snippets UI (e.g. /admin/snippets/breads/country/)
     """
 
     title = models.CharField(max_length=100)
