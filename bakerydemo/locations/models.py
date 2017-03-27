@@ -153,8 +153,8 @@ class LocationPage(Page):
     content_panels = [
         FieldPanel('title', classname="full"),
         FieldPanel('introduction', classname="full"),
-        StreamFieldPanel('body'),
         ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),

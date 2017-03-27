@@ -103,8 +103,8 @@ class BreadPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
-        StreamFieldPanel('body'),
         ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
         MultiFieldPanel(

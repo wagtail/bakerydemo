@@ -65,8 +65,8 @@ class BlogPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('subtitle', classname="full"),
         FieldPanel('introduction', classname="full"),
-        StreamFieldPanel('body'),
         ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         FieldPanel('date_published'),
         InlinePanel(
             'blog_person_relationship', label="Author(s)",
