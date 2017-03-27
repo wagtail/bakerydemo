@@ -6,7 +6,12 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel,
+    FieldPanel,
+    FieldRowPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel,
 )
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Collection, Page
@@ -31,7 +36,8 @@ class BasePageFieldsMixin(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+        help_text='Landscape mode only; horizontal width between 1000px and '
+        '3000px.'
     )
     # The StreamField is defined within base/blocks.py
     body = StreamField(
@@ -215,7 +221,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='First featured section for the homepage. Will display up to three child items.',
+        help_text='First featured section for the homepage. Will display up to '
+        'three child items.',
         verbose_name='Featured section 1'
     )
 
@@ -231,7 +238,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Second featured section for the homepage. Will display up to three child items.',
+        help_text='Second featured section for the homepage. Will display up to '
+        'three child items.',
         verbose_name='Featured section 2'
     )
 
@@ -247,7 +255,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Third featured section for the homepage. Will display up to six child items.',
+        help_text='Third featured section for the homepage. Will display up to '
+        'six child items.',
         verbose_name='Featured section 3'
     )
 
