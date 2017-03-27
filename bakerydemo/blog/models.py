@@ -10,13 +10,14 @@ from modelcluster.fields import ParentalKey
 from taggit.models import Tag, TaggedItemBase
 
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
-from bakerydemo.base.models import BasePageFieldsMixin
+from bakerydemo.base.blocks import BaseStreamBlock
 
 
 class BlogPeopleRelationship(Orderable, models.Model):
@@ -39,24 +40,39 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('BlogPage', related_name='tagged_items')
 
 
-class BlogPage(BasePageFieldsMixin, Page):
+class BlogPage(Page):
     """
     A Blog Page (Post)
     """
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
     subtitle = models.CharField(blank=True, max_length=255)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField("Date article published", blank=True, null=True)
 
-    content_panels = BasePageFieldsMixin.content_panels + [
+    content_panels = Page.content_panels + [
+        FieldPanel('subtitle', classname="full"),
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         FieldPanel('date_published'),
         InlinePanel(
             'blog_person_relationship', label="Author(s)",
             panels=None, min_num=1),
         FieldPanel('tags'),
     ]
-    # Inject subtitle panel after title field
-    title_index = next((i for i, panel in enumerate(content_panels) if panel.field_name == 'title'), -1)  # noqa
-    content_panels.insert(title_index + 1, FieldPanel('subtitle'))
 
     search_fields = Page.search_fields + [
         index.SearchField('title'),
@@ -95,7 +111,7 @@ class BlogPage(BasePageFieldsMixin, Page):
     subpage_types = []
 
 
-class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
+class BlogIndexPage(RoutablePageMixin, Page):
     """
     Index page for blogs.
     We need to alter the page model's context to return the child page objects - the
@@ -103,6 +119,18 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
 
     RoutablePageMixin is used to allow for a custom sub-URL for tag views.
     """
+
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
 
     # What pages types can live under this page type?
     subpage_types = ['BlogPage']
