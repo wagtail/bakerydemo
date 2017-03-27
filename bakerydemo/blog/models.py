@@ -22,7 +22,10 @@ from bakerydemo.base.models import BasePageFieldsMixin
 class BlogPeopleRelationship(Orderable, models.Model):
     """
     This defines the relationship between the `People` within the `base`
-    app and the BlogPage below allowing us to add people to a BlogPage.
+    app and the BlogPage below. This allows People to be added to a BlogPage.
+
+    We have created a two way relationship between BlogPage and People using
+    the ParentalKey and ForeignKey
     """
     page = ParentalKey(
         'BlogPage', related_name='blog_person_relationship'
@@ -36,16 +39,27 @@ class BlogPeopleRelationship(Orderable, models.Model):
 
 
 class BlogPageTag(TaggedItemBase):
+    """
+    This model allows us to creates a many-to-many relationship between 
+    the BlogPage object and tags. There's a longer guide on using it at
+    http://docs.wagtail.io/en/v1.9/reference/pages/model_recipes.html#tagging
+    """
     content_object = ParentalKey('BlogPage', related_name='tagged_items')
 
 
 class BlogPage(BasePageFieldsMixin, Page):
     """
-    A Blog Page (Post)
+    A Blog Page
+
+    We access the People object with an inline panel that references the
+    ParentalKey's related_name in BlogPeopleRelationship. More docs:
+    http://docs.wagtail.io/en/v1.9/topics/pages.html#inline-models
     """
     subtitle = models.CharField(blank=True, max_length=255)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    date_published = models.DateField("Date article published", blank=True, null=True)
+    date_published = models.DateField(
+        "Date article published", blank=True, null=True
+        )
 
     content_panels = BasePageFieldsMixin.content_panels + [
         FieldPanel('date_published'),
@@ -65,7 +79,11 @@ class BlogPage(BasePageFieldsMixin, Page):
 
     def authors(self):
         """
-        Returns the BlogPage's related People
+        Returns the BlogPage's related People. Again note that we are using
+        the ParentalKey's related_name from the BlogPeopleRelationship model
+        to access these objects. This allows us to access the People objects
+        with a loop on the template. If we tried to access the blog_person_
+        relationship directly we'd print `blog.BlogPeopleRelationship.None`
         """
         authors = [
             n.people for n in self.blog_person_relationship.all()
@@ -76,8 +94,9 @@ class BlogPage(BasePageFieldsMixin, Page):
     @property
     def get_tags(self):
         """
-        Returns the BlogPage's related list of Tags.
-        Each Tag is modified to include a url attribute
+        Similar to the authors function above we're returning all the tags that
+        are related to the blog post into a list we can access on the template.
+        We're additionally adding a URL to access BlogPage objects with that tag
         """
         tags = self.tags.all()
         for tag in tags:
@@ -88,9 +107,10 @@ class BlogPage(BasePageFieldsMixin, Page):
             ])
         return tags
 
+    # Defines parent to BlogPage as being BlogIndexPages
     parent_page_types = ['BlogIndexPage']
 
-    # Define what content types can exist as children of BlogPage.
+    # Defines what content types can exist as children of BlogPage.
     # Empty list means that no child content types are allowed.
     subpage_types = []
 
@@ -98,18 +118,29 @@ class BlogPage(BasePageFieldsMixin, Page):
 class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
     """
     Index page for blogs.
-    We need to alter the page model's context to return the child page objects - the
-    BlogPage - so that it works as an index page
+    We need to alter the page model's context to return the child page objects,
+    the BlogPage objects, so that it works as an index page
 
-    RoutablePageMixin is used to allow for a custom sub-URL for tag views.
+    RoutablePageMixin is used to allow for a custom sub-URL for the tag views
+    defined above.
     """
 
-    # What pages types can live under this page type?
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
+
+    # Defines what pages types can live under this page type
     subpage_types = ['BlogPage']
 
+    # Defines a function to access the children of the page (e.g. BlogPage
+    # objects). On the demo site we use this on the HomePage
     def children(self):
         return self.get_children().specific().live()
 
+    # Overrides the context to list all child items, that are live, by the
+    # date that they were published
+    # http://docs.wagtail.io/en/v1.9/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
         context['posts'] = BlogPage.objects.descendant_of(
@@ -117,14 +148,14 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
             '-date_published')
         return context
 
+
+    # This defines a Custom view that utilizes Tags. This view will return all
+    # related BlogPages for a given Tag or redirect back to the BlogIndexPage.
+    # More information on RoutablePages is at
+    # http://docs.wagtail.io/en/v1.9/reference/contrib/routablepage.html
     @route('^tags/$', name='tag_archive')
     @route('^tags/(\w+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
-        """
-        A Custom view that utilizes Tags.
-        This view will return all related BlogPages for a given Tag or
-        redirect back to the BlogIndexPage.
-        """
 
         try:
             tag = Tag.objects.get(slug=tag)
@@ -135,36 +166,25 @@ class BlogIndexPage(BasePageFieldsMixin, RoutablePageMixin, Page):
             return redirect(self.url)
 
         posts = self.get_posts(tag=tag)
-
         context = {
             'tag': tag,
             'posts': posts
         }
         return render(request, 'blog/blog_index_page.html', context)
 
+    # Returns the child BlogPage objects for this BlogPageIndex.
+    # If a tag is used then it will filter the posts by tag.
     def get_posts(self, tag=None):
-        """
-        Return the child BlogPage objects for this BlogPageIndex.
-        Optional filter by tag.
-        """
-
         posts = BlogPage.objects.live().descendant_of(self)
         if tag:
             posts = posts.filter(tags=tag)
         return posts
 
+    # Returns the list of Tags for all child posts of this BlogPage.
     def get_child_tags(self):
-        """
-        Returns the list of Tags for all child posts of this BlogPage.
-        """
-
         tags = []
         for post in self.get_posts():
-            tags += post.get_tags  # Not tags.append() because we don't want a list of lists
+            # Not tags.append() because we don't want a list of lists
+            tags += post.get_tags
         tags = sorted(set(tags))
         return tags
-
-    content_panels = Page.content_panels + [
-        FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
-    ]
