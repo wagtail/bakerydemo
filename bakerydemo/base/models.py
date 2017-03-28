@@ -93,7 +93,7 @@ class People(ClusterableModel):
 
     @property
     def thumb_image(self):
-        # Return an empty string if there is no profile pic or the rendition
+        # Returns an empty string if there is no profile pic or the rendition
         # file can't be found.
         try:
             return self.image.get_rendition('fill-50x50').img_tag()
