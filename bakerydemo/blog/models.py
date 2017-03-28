@@ -41,9 +41,9 @@ class BlogPeopleRelationship(Orderable, models.Model):
 
 class BlogPageTag(TaggedItemBase):
     """
-    This model allows us to creates a many-to-many relationship between 
+    This model allows us to creates a many-to-many relationship between
     the BlogPage object and tags. There's a longer guide on using it at
-    http://docs.wagtail.io/en/v1.9/reference/pages/model_recipes.html#tagging
+    http://docs.wagtail.io/en/latest/reference/pages/model_recipes.html#tagging
     """
     content_object = ParentalKey('BlogPage', related_name='tagged_items')
 
@@ -54,7 +54,7 @@ class BlogPage(Page):
 
     We access the People object with an inline panel that references the
     ParentalKey's related_name in BlogPeopleRelationship. More docs:
-    http://docs.wagtail.io/en/v1.9/topics/pages.html#inline-models
+    http://docs.wagtail.io/en/latest/topics/pages.html#inline-models
     """
     introduction = models.TextField(
         help_text='Text to describe the page',
@@ -167,7 +167,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     # Overrides the context to list all child items, that are live, by the
     # date that they were published
-    # http://docs.wagtail.io/en/v1.9/getting_started/tutorial.html#overriding-context
+    # http://docs.wagtail.io/en/latest/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
         context['posts'] = BlogPage.objects.descendant_of(
@@ -178,7 +178,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     # This defines a Custom view that utilizes Tags. This view will return all
     # related BlogPages for a given Tag or redirect back to the BlogIndexPage.
     # More information on RoutablePages is at
-    # http://docs.wagtail.io/en/v1.9/reference/contrib/routablepage.html
+    # http://docs.wagtail.io/en/latest/reference/contrib/routablepage.html
     @route('^tags/$', name='tag_archive')
     @route('^tags/(\w+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
