@@ -4,13 +4,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel, MultiFieldPanel, StreamFieldPanel
+    )
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.models import BasePageFieldsMixin
+from bakerydemo.base.blocks import BaseStreamBlock
 
 
 @register_snippet
@@ -80,11 +83,24 @@ class BreadType(models.Model):
         verbose_name_plural = "Bread types"
 
 
-class BreadPage(BasePageFieldsMixin, Page):
+class BreadPage(Page):
     """
     Detail view for a specific bread
     """
-
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
     origin = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
@@ -92,9 +108,9 @@ class BreadPage(BasePageFieldsMixin, Page):
         blank=True,
     )
 
-    # We include related_name='+' to avoid name collisions on relationships. 
-    # e.g. there are two FooPage models in two different apps, 
-    # and they both have a FK to bread_type, they'll both try to create a 
+    # We include related_name='+' to avoid name collisions on relationships.
+    # e.g. there are two FooPage models in two different apps,
+    # and they both have a FK to bread_type, they'll both try to create a
     # relationship called `foopage_objects` that will throw a valueError on
     # collision.
     bread_type = models.ForeignKey(
@@ -106,7 +122,10 @@ class BreadPage(BasePageFieldsMixin, Page):
     )
     ingredients = ParentalManyToManyField('BreadIngredient', blank=True)
 
-    content_panels = BasePageFieldsMixin.content_panels + [
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
         MultiFieldPanel(
@@ -129,7 +148,7 @@ class BreadPage(BasePageFieldsMixin, Page):
     parent_page_types = ['BreadsIndexPage']
 
 
-class BreadsIndexPage(BasePageFieldsMixin, Page):
+class BreadsIndexPage(Page):
     """
     Index page for breads.
 
@@ -137,6 +156,24 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
     included pagination. We've separated the different aspects of the index page
     to be discrete functions to make it easier to follow
     """
+
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and '
+        '3000px.'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+    ]
 
     # Can only have BreadPage children
     subpage_types = ['BreadPage']
@@ -168,7 +205,7 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
         return pages
 
     # Returns the above to the get_context method that is used to populate the
-    # template
+    # template
     def get_context(self, request):
         context = super(BreadsIndexPage, self).get_context(request)
 
@@ -178,8 +215,3 @@ class BreadsIndexPage(BasePageFieldsMixin, Page):
         context['breads'] = breads
 
         return context
-
-    content_panels = Page.content_panels + [
-        FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
-    ]
