@@ -18,35 +18,6 @@ from wagtail.wagtailsnippets.models import register_snippet
 from .blocks import BaseStreamBlock
 
 
-class BasePageFieldsMixin(models.Model):
-    """
-    An abstract base class for common fields
-    """
-    introduction = models.TextField(
-        help_text='Text to describe the page',
-        blank=True)
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
-    )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="Page body", blank=True
-    )
-
-    content_panels = Page.content_panels + [
-        FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
-        StreamFieldPanel('body'),
-    ]
-
-    class Meta:
-        abstract = True
-
-
 @register_snippet
 class People(ClusterableModel):
     """
@@ -112,14 +83,30 @@ class FooterText(models.Model):
         verbose_name_plural = 'Footer Text'
 
 
-class StandardPage(Page, BasePageFieldsMixin):
+class StandardPage(Page):
     """
     A fairly generic site page, to be used for About, etc.
-    Defines no fields of its own - just a wrapper for the fields defined in BasePageFieldsMixin.
     """
 
-    # Inherit the content panels from BasePageFieldsMixin
-    content_panels = BasePageFieldsMixin.content_panels + []
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        StreamFieldPanel('body'),
+        ImageChooserPanel('image'),
+    ]
 
 
 class HomePage(Page):
@@ -235,10 +222,10 @@ class HomePage(Page):
                 ])
             ], heading="Hero section"),
         MultiFieldPanel([
-                ImageChooserPanel('promo_image'),
-                FieldPanel('promo_title'),
-                FieldPanel('promo_text'),
-            ], heading="Promo section"),
+            ImageChooserPanel('promo_image'),
+            FieldPanel('promo_title'),
+            FieldPanel('promo_text'),
+        ], heading="Promo section"),
         StreamFieldPanel('body'),
         MultiFieldPanel([
             MultiFieldPanel([
@@ -260,10 +247,25 @@ class HomePage(Page):
         return self.title
 
 
-class GalleryPage(BasePageFieldsMixin, Page):
+class GalleryPage(Page):
     """
     This is a page to list locations from the selected Collection
     """
+
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
     collection = models.ForeignKey(
         Collection,
         limit_choices_to=~models.Q(name__in=['Root']),
@@ -273,7 +275,10 @@ class GalleryPage(BasePageFieldsMixin, Page):
         help_text='Select the image collection for this gallery.'
     )
 
-    content_panels = BasePageFieldsMixin.content_panels + [
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        StreamFieldPanel('body'),
+        ImageChooserPanel('image'),
         FieldPanel('collection'),
     ]
 

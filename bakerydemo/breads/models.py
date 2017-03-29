@@ -4,13 +4,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.models import BasePageFieldsMixin
+from bakerydemo.base.blocks import BaseStreamBlock
 
 
 @register_snippet
@@ -67,11 +68,24 @@ class BreadType(models.Model):
         verbose_name_plural = "Bread types"
 
 
-class BreadPage(BasePageFieldsMixin, Page):
+class BreadPage(Page):
     """
     Detail view for a specific bread
     """
-
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
+    body = StreamField(
+        BaseStreamBlock(), verbose_name="Page body", blank=True
+    )
     origin = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
@@ -87,7 +101,10 @@ class BreadPage(BasePageFieldsMixin, Page):
     )
     ingredients = ParentalManyToManyField('BreadIngredient', blank=True)
 
-    content_panels = BasePageFieldsMixin.content_panels + [
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction', classname="full"),
+        ImageChooserPanel('image'),
+        StreamFieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
         MultiFieldPanel(
@@ -110,13 +127,24 @@ class BreadPage(BasePageFieldsMixin, Page):
     parent_page_types = ['BreadsIndexPage']
 
 
-class BreadsIndexPage(BasePageFieldsMixin, Page):
+class BreadsIndexPage(Page):
     """
     Index page for breads. We don't have any fields within our model but we need
     to alter the page model's context to return the child page objects - the
     BreadPage - so that it works as an index page.
     """
 
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+    )
     subpage_types = ['BreadPage']
 
     def get_breads(self):
