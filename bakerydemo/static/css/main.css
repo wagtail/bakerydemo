@@ -426,6 +426,14 @@ blockquote p {
   margin: 0 0 10px;
 }
 
+blockquote footer::before {
+  display: none;
+}
+blockquote footer p {
+  font-size: 1.8em;
+  font-style: italic;
+}
+
 cite {
   font-family: 'Lato', sans-serif;
   text-transform: uppercase;

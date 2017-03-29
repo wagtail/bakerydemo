@@ -42,7 +42,7 @@ class BlockQuote(StructBlock):
     """
     text = TextBlock()
     attribute_name = CharBlock(
-        blank=True, required=False, label='e.g. Guy Picciotto')
+        blank=True, required=False, label='e.g. Mary Berry')
 
     class Meta:
         icon = "fa-quote-left"
