@@ -2,27 +2,27 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>{{ page.title }}</h1>
-            <p>{{ page.introduction}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ page.title }}</h1>
+                <p>{{ page.introduction}}</p>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row bread-list">
-    {% for bread in breads %}
+    <div class="container">
+        <div class="row bread-list">
+        {% for bread in breads %}
             <div class="col-xs-12 col-md-6 bread-list-item">
-            
                 <div class="row">
                     <div class="col-xs-4 col-sm-4 image">
-                    <a href="{% pageurl bread %}">
-                        {% image bread.image fill-180x180-c100 as image %}
-                                        <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt }}" class="" />
-                        </div>
-                    </a>
+                        <a href="{% pageurl bread %}">
+                            {% image bread.image fill-180x180-c100 as image %}
+                            <img src="{{ image.url }}" width="{{ image.width }}"
+                                height="{{ image.height }}" alt="{{ image.alt }}" class="" />
+                        </a>
+                    </div>
                     <div class="col-xs-6 col-sm-7">
                         <a href="{% pageurl bread %}">
                             <h2>{{ bread.title }}</h2>
@@ -32,25 +32,23 @@
                             <li><span>Origin</span> {{ bread.origin }}</li>
                         {% endif %}
                         {% if bread.bread_type %}
-                            <li><span>Type</span> {{ bread.bread_type }}</li>        
+                            <li><span>Type</span> {{ bread.bread_type }}</li>
                         {% endif %}
                         </ul>
                     </div>
                 </div>
-            </a>
             </div>
-    {% endfor %}
-    </div>
-</div>
-
-
-{% if breads.paginator.count > 1 %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-        {% include "includes/pagination.html" with subpages=breads %}
+        {% endfor %}
         </div>
     </div>
-</div>
-{% endif %}
+
+    {% if breads.paginator.count > 1 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                {% include "includes/pagination.html" with subpages=breads %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock content %}
