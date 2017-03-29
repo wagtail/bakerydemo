@@ -1,7 +1,10 @@
 {% load wagtailimages_tags %}
 
-
-<blockquote><p class="text">{{ self.text }}</p>
-<footer><p class="attribute_name">{{ self.attribute_name}}</p></footer>
+<blockquote>
+    <p class="text">
+        {{ self.text }}<br />
+        {% if self.attribute_name %}
+            &mdash; {{ self.attribute_name}}
+        {% endif %}
+    </p>
 </blockquote>
-
