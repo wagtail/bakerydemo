@@ -1020,9 +1020,12 @@ span.outline {
   margin-bottom: 20px;
 }
 
-.homepage .feature-1 .featured-children li {
+.homepage .feature-1 .featured-children li,
+.homepage .feature-2 .featured-children li,
+.homepage .feature-3 .featured-children li {
   border: 1px solid #ccc;
   border-radius: 3px;
+  list-style: none;
   margin-bottom: 10px;
 }
 
