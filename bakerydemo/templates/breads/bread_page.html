@@ -2,66 +2,63 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
-<div class="container bread-detail">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="row">
-                    <h1>{{ page.title }}</h1>
-                    
-                    <figure class="hidden-md-up">
-                        {% image page.image width-500 %}
-                    </figure>
-                    
-                    {% if page.introduction %}
-                        <p class="introduction">
-                            {{ page.introduction }}
-                        </p>
-                    {% endif %}
+    <div class="container bread-detail">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="row">
+                        <h1>{{ page.title }}</h1>
 
-                    {{ page.body }}
+                        <figure class="hidden-md-up">
+                            {% image page.image width-500 %}
+                        </figure>
+
+                        {% if page.introduction %}
+                            <p class="introduction">
+                                {{ page.introduction }}
+                            </p>
+                        {% endif %}
+
+                        {{ page.body }}
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-5 col-md-offset-1">
-                <div class="row">
-                    <figure class="hidden-md-down">
-                        {% image page.image width-500 %}
-                    </figure>
-                    <ul class="bread-meta">
-                        {% if page.origin %}
-                            <li>
-                                <h4>Origin</h4>
-                                <p>{{ page.origin }}</p>
-                            </li>
-                        {% endif %}
-                        {% if page.bread_type %}
-                            <li>
-                                <h4>Type</h4>
-                                <p>{{ page.bread_type }}</p>
-                            </li>      
-                        {% endif %}
-                        {% with ingredients=page.ingredients.all %}
-                            {% if ingredients %}
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="row">
+                        <figure class="hidden-md-down">
+                            {% image page.image width-500 %}
+                        </figure>
+                        <ul class="bread-meta">
+                            {% if page.origin %}
                                 <li>
-                                    <h4>Ingredients</h4>
-                                    <ul>
-                                        {% for ingredient in ingredients %}
-                                            <li>
-                                                {{ ingredient.name }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                    <h4>Origin</h4>
+                                    <p>{{ page.origin }}</p>
                                 </li>
                             {% endif %}
-                        {% endwith %}
-                    </ul>
+                            {% if page.bread_type %}
+                                <li>
+                                    <h4>Type</h4>
+                                    <p>{{ page.bread_type }}</p>
+                                </li>
+                            {% endif %}
+                            {% with ingredients=page.ingredients.all %}
+                                {% if ingredients %}
+                                    <li>
+                                        <h4>Ingredients</h4>
+                                        <ul>
+                                            {% for ingredient in ingredients %}
+                                                <li>
+                                                    {{ ingredient.name }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            {% endwith %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-        </div>
     </div>
-</div>
 {% endblock content %}
