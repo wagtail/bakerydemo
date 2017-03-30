@@ -18,7 +18,7 @@ from bakerydemo.locations.choices import DAY_CHOICES
 
 class OperatingHours(models.Model):
     """
-    Django model to capture operating hours for a Location
+    A Django model to capture operating hours for a Location
     """
 
     day = models.CharField(
@@ -28,10 +28,12 @@ class OperatingHours(models.Model):
     )
     opening_time = models.TimeField(
         blank=True,
-        null=True)
+        null=True
+    )
     closing_time = models.TimeField(
         blank=True,
-        null=True)
+        null=True
+    )
     closed = models.BooleanField(
         "Closed?",
         blank=True,
@@ -67,7 +69,12 @@ class OperatingHours(models.Model):
 
 class LocationOperatingHours(Orderable, OperatingHours):
     """
-    Operating Hours entry for a Location
+    A model creating a relationship between the OperatingHours and Location
+    Note that unlike BlogPeopleRelationship we don't include a ForeignKey to
+    OperatingHours as we don't need that relationship (e.g. any Location open
+    a certain day of the week). The ParentalKey is the minimum required to
+    relate the two objects to one another. We use the ParentalKey's related_
+    name to access it from the LocationPage admin
     """
     location = ParentalKey(
         'LocationPage',
@@ -77,9 +84,8 @@ class LocationOperatingHours(Orderable, OperatingHours):
 
 class LocationsIndexPage(Page):
     """
-    Index page for locations
+    A Page model that creates an index page (a listview)
     """
-
     introduction = models.TextField(
         help_text='Text to describe the page',
         blank=True)
@@ -92,11 +98,18 @@ class LocationsIndexPage(Page):
         help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
 
+    # Only LocationPage objects can be added underneath this index page
     subpage_types = ['LocationPage']
 
+    # Allows children of this indexpage to be accessible via the indexpage
+    # object on templates. We use this on the homepage to show featured
+    # sections of the site and their child pages
     def children(self):
         return self.get_children().specific().live()
 
+    # Overrides the context to list all child
+    # items, that are live, by the date that they were published
+    # http://docs.wagtail.io/en/latest/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
         context['locations'] = LocationPage.objects.descendant_of(
@@ -148,7 +161,7 @@ class LocationPage(Page):
         index.SearchField('body'),
     ]
 
-    # Editor panels configuration
+    # Fields to show to the editor in the admin view
     content_panels = [
         FieldPanel('title', classname="full"),
         FieldPanel('introduction', classname="full"),
@@ -167,8 +180,8 @@ class LocationPage(Page):
         hours = self.hours_of_operation.all()
         return hours
 
+    # Determines if the location is currently open. It is timezone naive
     def is_open(self):
-        # Determines if the location is currently open
         now = datetime.now()
         current_time = now.time()
         current_day = now.strftime('%a').upper()
@@ -182,6 +195,8 @@ class LocationPage(Page):
         except LocationOperatingHours.DoesNotExist:
             return False
 
+    # Makes additional context available to the template so that we can access
+    # the latitude, longitude and map API key to render the map
     def get_context(self, request):
         context = super(LocationPage, self).get_context(request)
         context['lat'] = self.lat_long.split(",")[0]
@@ -189,4 +204,5 @@ class LocationPage(Page):
         context['google_map_api_key'] = settings.GOOGLE_MAP_API_KEY
         return context
 
+    # Can only be placed under a LocationsIndexPage object
     parent_page_types = ['LocationsIndexPage']

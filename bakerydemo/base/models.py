@@ -6,7 +6,12 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel,
+    FieldPanel,
+    FieldRowPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel,
 )
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Collection, Page
@@ -21,8 +26,16 @@ from .blocks import BaseStreamBlock
 @register_snippet
 class People(ClusterableModel):
     """
-    `People` snippets are secondary content objects that do not require their
-    own full webpage to render.
+    A Django model to store People objects.
+    It uses the `@register_snippet` decorator to allow it to be accessible
+    via the Snippets UI (e.g. /admin/snippets/base/people/)
+
+    `People` uses the `ClusterableModel`, which allows the relationship with
+    another model to be stored locally to the 'parent' model (e.g. a PageModel)
+    until the parent is explicitly saved. This allows the editor to use the
+    'Preview' button, to preview the content, without saving the relationships
+    to the database.
+    https://github.com/wagtail/django-modelcluster
     """
     first_name = models.CharField("First name", max_length=254)
     last_name = models.CharField("Last name", max_length=254)
@@ -50,8 +63,8 @@ class People(ClusterableModel):
 
     @property
     def thumb_image(self):
-        # fail silently if there is no profile pic or the rendition file can't
-        # be found. Note @richbrennan worked out how to do this...
+        # Returns an empty string if there is no profile pic or the rendition
+        # file can't be found.
         try:
             return self.image.get_rendition('fill-50x50').img_tag()
         except:
@@ -68,7 +81,10 @@ class People(ClusterableModel):
 @register_snippet
 class FooterText(models.Model):
     """
-    This provides editable text for the site footer
+    This provides editable text for the site footer. Again it uses the decorator
+    `register_snippet` to allow it to be accessible via the admin. It is made
+    accessible on the template via a template tag defined in base/templatetags/
+    navigation_tags.py
     """
     body = RichTextField()
 
@@ -85,7 +101,9 @@ class FooterText(models.Model):
 
 class StandardPage(Page):
     """
-    A fairly generic site page, to be used for About, etc.
+    A generic content page. On this demo site we use it for an about page but
+    it could be used for any type of page content that only needs a title,
+    image, introduction and body field
     """
 
     introduction = models.TextField(
@@ -111,8 +129,16 @@ class StandardPage(Page):
 
 class HomePage(Page):
     """
-    The Home Page
+    The Home Page. This looks slightly more complicated than it is. You can
+    see if you visit your site and edit the homepage that it is split between
+    a:
+    - Hero area
+    - Body area
+    - A promotional area
+    - Moveable featured site sections
     """
+
+    # Hero section of HomePage
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -140,10 +166,12 @@ class HomePage(Page):
         help_text='Choose a page to link to for the Call to Action'
     )
 
+    # Body section of the HomePage
     body = StreamField(
         BaseStreamBlock(), verbose_name="Home content block", blank=True
     )
 
+    # Promo section of the HomePage
     promo_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -164,6 +192,11 @@ class HomePage(Page):
         help_text='Write some promotional copy'
     )
 
+    # Featured sections on the HomePage
+    # You will see on templates/base/home_page.html that these are treated
+    # in different ways, and displayed in different areas of the page.
+    # Each list their children items that we access via the children function
+    # that we define on the individual Page models e.g. BlogIndexPage
     featured_section_1_title = models.CharField(
         null=True,
         blank=True,
@@ -176,7 +209,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='First featured section for the homepage. Will display up to three child items.',
+        help_text='First featured section for the homepage. Will display up to '
+        'three child items.',
         verbose_name='Featured section 1'
     )
 
@@ -192,7 +226,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Second featured section for the homepage. Will display up to three child items.',
+        help_text='Second featured section for the homepage. Will display up to '
+        'three child items.',
         verbose_name='Featured section 2'
     )
 
@@ -208,7 +243,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Third featured section for the homepage. Will display up to six child items.',
+        help_text='Third featured section for the homepage. Will display up to '
+        'six child items.',
         verbose_name='Featured section 3'
     )
 
@@ -249,7 +285,10 @@ class HomePage(Page):
 
 class GalleryPage(Page):
     """
-    This is a page to list locations from the selected Collection
+    This is a page to list locations from the selected Collection. We use a Q
+    object to list any Collection created (/admin/collections/) even if they
+    contain no items. In this demo we use it for a GalleryPage,
+    and is intended to show the extensibility of this aspect of Wagtail
     """
 
     introduction = models.TextField(
@@ -261,7 +300,8 @@ class GalleryPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
+        help_text='Landscape mode only; horizontal width between 1000px and '
+        '3000px.'
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True
@@ -288,6 +328,14 @@ class GalleryPage(Page):
 
 
 class FormField(AbstractFormField):
+    """
+    Wagtailforms is a module to introduce simple forms on a Wagtail site. It
+    isn't intended as a replacement to Django's form support but as a quick way
+    to generate a general purpose data-collection form or contact form
+    without having to write code. We use it on the site for a contact form. You
+    can read more about Wagtail forms at:
+    http://docs.wagtail.io/en/latest/reference/contrib/forms/index.html
+    """
     page = ParentalKey('FormPage', related_name='form_fields')
 
 
@@ -301,6 +349,9 @@ class FormPage(AbstractEmailForm):
     )
     body = StreamField(BaseStreamBlock())
     thank_you_text = RichTextField(blank=True)
+
+    # Note how we include the FormField object via an InlinePanel using the
+    # related_name value
     content_panels = AbstractEmailForm.content_panels + [
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
