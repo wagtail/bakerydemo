@@ -30,9 +30,11 @@ class People(ClusterableModel):
     It uses the `@register_snippet` decorator to allow it to be accessible
     via the Snippets UI (e.g. /admin/snippets/base/people/)
 
-    `People` uses the `ClusterableModel`, which allows the relationship to another
-    model (e.g. a PageModel) to be stored independently of the database. This
-    allows us to preview ForeignKey relationships without first saving the parent
+    `People` uses the `ClusterableModel`, which allows the relationship with
+    another model to be stored locally to the 'parent' model (e.g. a PageModel)
+    until the parent is explicitly saved. This allows the editor to use the
+    'Preview' button, to preview the content, without saving the relationships
+    to the database.
     https://github.com/wagtail/django-modelcluster
     """
     first_name = models.CharField("First name", max_length=254)
@@ -100,7 +102,8 @@ class FooterText(models.Model):
 class StandardPage(Page):
     """
     A generic content page. On this demo site we use it for an about page but
-    it could be used for any type of page content.
+    it could be used for any type of page content that only needs a title,
+    image, introduction and body field
     """
 
     introduction = models.TextField(
@@ -328,9 +331,9 @@ class FormField(AbstractFormField):
     """
     Wagtailforms is a module to introduce simple forms on a Wagtail site. It
     isn't intended as a replacement to Django's form support but as a quick way
-    to generate a general purpose data-collection form without having to write
-    code. We use it on the site for a contact form. You can read more about
-    Wagtail forms at:
+    to generate a general purpose data-collection form or contact form
+    without having to write code. We use it on the site for a contact form. You
+    can read more about Wagtail forms at:
     http://docs.wagtail.io/en/latest/reference/contrib/forms/index.html
     """
     page = ParentalKey('FormPage', related_name='form_fields')

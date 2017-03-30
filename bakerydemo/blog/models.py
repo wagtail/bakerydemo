@@ -41,7 +41,7 @@ class BlogPeopleRelationship(Orderable, models.Model):
 
 class BlogPageTag(TaggedItemBase):
     """
-    This model allows us to creates a many-to-many relationship between
+    This model allows us to create a many-to-many relationship between
     the BlogPage object and tags. There's a longer guide on using it at
     http://docs.wagtail.io/en/latest/reference/pages/model_recipes.html#tagging
     """
@@ -123,10 +123,10 @@ class BlogPage(Page):
             ])
         return tags
 
-    # Defines parent to BlogPage as being BlogIndexPages
+    # Specifies parent to BlogPage as being BlogIndexPages
     parent_page_types = ['BlogIndexPage']
 
-    # Defines what content types can exist as children of BlogPage.
+    # Specifies what content types can exist as children of BlogPage.
     # Empty list means that no child content types are allowed.
     subpage_types = []
 
@@ -157,10 +157,10 @@ class BlogIndexPage(RoutablePageMixin, Page):
         ImageChooserPanel('image'),
     ]
 
-    # Defines that only BlogPage objects can live under this index page
+    # Speficies that only BlogPage objects can live under this index page
     subpage_types = ['BlogPage']
 
-    # Defines a function to access the children of the page (e.g. BlogPage
+    # Defines a method to access the children of the page (e.g. BlogPage
     # objects). On the demo site we use this on the HomePage
     def children(self):
         return self.get_children().specific().live()
