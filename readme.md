@@ -87,7 +87,7 @@ installed, run:
     mkvirtualenv wagtailbakerydemo
     cd ~/dev [or your preferred dev directory]
     git clone git@github.com:wagtail/bakerydemo.git
-    cd wagtaildemo
+    cd bakerydemo
     pip install -r requirements.txt
 
 Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
