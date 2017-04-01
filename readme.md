@@ -24,8 +24,8 @@ Setup with Vagrant
 ------------------
 
 ### Dependencies
-* [VirtualBox](https://www.virtualbox.org/)
-* [Vagrant 1.5+](http://www.vagrantup.com)
+* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+* [VirtualenvWrapper](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) (Optional)
 
 ### Installation
 Run the following commands:
@@ -74,8 +74,8 @@ To tail the logs from the Docker containers in realtime, run:
 docker-compose logs -f
 ```
 
-Traditional (Local) Setup
------------------------
+Virtualenv Setup
+----------------
 
 Want to run the bakerydemo locally without setting up Vagrant or Docker? You'll probably want to start
 with a fresh [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
