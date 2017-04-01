@@ -189,6 +189,6 @@ followed by `delete from wagtailimages_rendition;`
 
 To generate new fixtures, run:
 
-`./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimage.rendition -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
+`./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimages.rendition  -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
 
 Make a pull request to https://github.com/wagtail/bakerydemo
