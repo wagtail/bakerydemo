@@ -24,8 +24,8 @@ Setup with Vagrant
 ------------------
 
 ### Dependencies
-* [VirtualBox](https://www.virtualbox.org/)
-* [Vagrant 1.5+](http://www.vagrantup.com)
+* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+* [VirtualenvWrapper](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) (Optional)
 
 ### Installation
 Run the following commands:
@@ -74,10 +74,11 @@ To tail the logs from the Docker containers in realtime, run:
 docker-compose logs -f
 ```
 
-Local Setup
------------
-Don't want to set up a whole Vagrant VM or use Docker to try out Wagtail? No problem. You'll probably want to start
-with a fresh virtualenv.
+Virtualenv Setup
+----------------
+
+Want to run the bakerydemo locally without setting up Vagrant or Docker? You'll probably want to start
+with a fresh [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
 
 ### Installation
 
@@ -87,11 +88,11 @@ installed, run:
     mkvirtualenv wagtailbakerydemo
     cd ~/dev [or your preferred dev directory]
     git clone git@github.com:wagtail/bakerydemo.git
-    cd wagtaildemo
+    cd bakerydemo
     pip install -r requirements.txt
 
 Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
-to help with this. It reads environment variables located in a file name .env in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
+to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
 
     $ cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
     $ echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env
@@ -169,6 +170,25 @@ In production on your own site, you'll need to change this to:
 
 and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
 
-### Demo content
+### Ownership of demo content
 
 Most of the images and textual content in this project are sourced from Wikipedia, and is therefore open source and copyright-free.
+
+### Instructions for demo developers preparing this archive for distribution
+
+If you change content or images in this repo and need to prepare it for export, do the following on a branch:
+
+```
+./manage.py dbshell
+delete from django_session;
+delete from wagtailimages_rendition;
+```
+
+It is always safe to delete the generated `media/images` dir while keeping `media/original_images`,
+followed by `delete from wagtailimages_rendition;`
+
+To generate new fixtures, run:
+
+`./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimages.rendition  -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
+
+Make a pull request to https://github.com/wagtail/bakerydemo
