@@ -1,34 +1,39 @@
 Wagtail demo project
 =======================
 
-This is a demonstration project for [Wagtail CMS](http://wagtail.io).
+This is a demonstration project for the amazing [Wagtail CMS](https://github.com/wagtail/wagtail).
 
-*We do __not__ recommend using this project to start your own site*. This project is only to provide some examples of
-implementing common features, it is not an exemplar of Django or Wagtail best practice.
+The demo site is designed to give some example of common features and recipes to introduce you to Wagtail. Beyond the code it will also let you explore the admin and editorial interface of the CMS.
 
-This project can be installed in one of three ways:
+Note we do _not_ recommend using this project to start your own site but intend it to be a springboard for you to get started.
 
-- Vagrant
-- Docker
-- Traditional/manual Django setup
+**Document contents**
 
-If you're new to Python/Django, we suggest you run this project on a Virtual Machine using Vagrant or
-via Docker, both of which help resolve common software dependency issues. Developers more familiar with
-virtualenv and traditional Django app setup instructions should use the Local Setup instructions below.
+- [Installation ](#installation)
+- [Next steps](#next-steps)
+- [Contributing](#contributing)
+- [Other notes on the demo](#other-notes-on-the-demo)
 
-Once you're familiar with the examples in this project and you want to start a real site, run
-the ``wagtail start`` command in a fresh virtual environment, explained in the
-[Wagtail CMS Documentation](http://wagtail.readthedocs.org/en/latest/getting_started/).
+# Installation
+
+- [Vagrant](#setup-with-vagrant)
+- [Docker](#setup-with-docker)
+- [Virtualenv](#setup-with-virtualenv)
+- [Heroku](#deploy-to-heroku)
+
+If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using Vagrant. If you're more comfortable 
+with Docker then you can setup with Docker. Both Vagrant and Docker will help resolve common software dependency issues. Developers more familiar with
+virtualenv and traditional Django app setup instructions can use the instructions within the [Setup with virtualenv](#setup-with-virtualenv) section below.
 
 Setup with Vagrant
 ------------------
 
-### Dependencies
-* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
-* [VirtualenvWrapper](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) (Optional)
+#### Dependencies
+* [Vagrant](https://www.vagrantup.com/)
+* [Virtualbox](https://www.virtualbox.org/)
 
-### Installation
-Run the following commands:
+#### Installation
+Once you've installed the necessary dependencies run the following commands:
 
 ```bash
 git clone git@github.com:wagtail/bakerydemo.git
@@ -44,10 +49,12 @@ interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
 Log into the admin with the credentials ``admin / changeme``.
 
+To stop the local server you can run `ctrl+c`. To stop the Vagrant environment running run `exit` then `vagrant halt`.
+
 Setup with Docker
 -----------------
 
-### Dependencies
+#### Dependencies
 * [Docker](https://docs.docker.com/engine/installation/)
 
 ### Installation
@@ -65,7 +72,7 @@ interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
 Log into the admin with the credentials ``admin / changeme``.
 
-**Important:** This `docker-compose.yml` is configured for local testing only, and is not intended for production use.
+**Important:** This `docker-compose.yml` is configured for local testing only, and is _not_ intended for production use.
 
 ### Debugging
 To tail the logs from the Docker containers in realtime, run:
@@ -74,11 +81,13 @@ To tail the logs from the Docker containers in realtime, run:
 docker-compose logs -f
 ```
 
-Virtualenv Setup
-----------------
+Setup with Virtualenv
+---------------------
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv
 
-Want to run the bakerydemo locally without setting up Vagrant or Docker? You'll probably want to start
-with a fresh [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
+#### Dependencies
+* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+* [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
 ### Installation
 
@@ -105,18 +114,11 @@ To set up your database and load initial data, run the following commands:
 
 Log into the admin with the credentials ``admin / changeme``.
 
-### Note on demo search:
+Deploy to Heroku
+----------------
 
-Because we can't (easily) use ElasticSearch for this demo, we use wagtail's native DB search.
-However, native DB search can't search specific fields in our models on a generalized `Page` query.
-So for demo purposes ONLY, we hard-code the model names we want to search into `search.views`, which is
-not ideal. In production, use ElasticSearch and a simplified search query, per
-[http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html](http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html).
-
-### Heroku deployment:
-
-If you need to deploy your demo site to a publicly accessible server [Heroku](https://heroku.com)
-provides a one-click deployment solution:
+If you don't want to test locally you can deploy a demo site to a publicly accessible server with [Heroku's](https://heroku.com)
+one-click deployment solution to their free 'Hobby' tier:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
 
@@ -158,23 +160,16 @@ environment, set the same environment variables there using the method appropria
 
 Once Heroku restarts your application or your Docker container is refreshed, you should have persistent media storage!
 
-### Sending email from the contact form
+# Next steps
 
-The following setting in `base.py` and `production.py` ensures that live email is not sent by the demo contact form.
+Hopefully after you've experimented with the demo you'll want to create your own site. To do that you'll want to run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](http://wagtail.readthedocs.io/en/latest/getting_started/index.html).
 
-`EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'`
 
-In production on your own site, you'll need to change this to:
+# Contributing
 
-`EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
+If you're a Python or Django developer, fork the repo and get stuck in! If you'd like to get involved you may find our [contributing guidelines](https://github.com/wagtail/bakerydemo/blob/master/contributing.md) a useful read.
 
-and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
-
-### Ownership of demo content
-
-Most of the images and textual content in this project are sourced from Wikipedia, and is therefore open source and copyright-free.
-
-### Instructions for demo developers preparing this archive for distribution
+### Preparing this archive for distribution
 
 If you change content or images in this repo and need to prepare it for export, do the following on a branch:
 
@@ -192,3 +187,29 @@ To generate new fixtures, run:
 `./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimages.rendition  -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
 
 Make a pull request to https://github.com/wagtail/bakerydemo
+
+# Other notes on the demo
+
+### Note on demo search
+
+Because we can't (easily) use ElasticSearch for this demo, we use wagtail's native DB search.
+However, native DB search can't search specific fields in our models on a generalized `Page` query.
+So for demo purposes ONLY, we hard-code the model names we want to search into `search.views`, which is
+not ideal. In production, use ElasticSearch and a simplified search query, per
+[http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html](http://docs.wagtail.io/en/v1.8.1/topics/search/searching.html).
+
+### Sending email from the contact form
+
+The following setting in `base.py` and `production.py` ensures that live email is not sent by the demo contact form.
+
+`EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'`
+
+In production on your own site, you'll need to change this to:
+
+`EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
+
+and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
+
+### Ownership of demo content
+
+All content in the demo is public domain. Textual content in this project is either sourced from Wikipedia or is lorem ipsum. All images are from either Wikimedia Commons or other copyright-free sources.
