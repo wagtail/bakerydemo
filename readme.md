@@ -3,16 +3,16 @@ Wagtail demo project
 
 This is a demonstration project for the amazing [Wagtail CMS](https://github.com/wagtail/wagtail).
 
-The demo site is designed to give some example of common features and recipes to introduce you to Wagtail. Beyond the code it will also let you explore the admin and editorial interface of the CMS.
+The demo site is designed to provide examples of common features and recipes to introduce you to Wagtail development. Beyond the code, it will also let you explore the admin and editorial interface of the CMS.
 
-Note we do _not_ recommend using this project to start your own site but intend it to be a springboard for you to get started.
+Note we do _not_ recommend using this project to start your own site - the demo is intended to be a springboard for you to get started. Feel free to copy code from the demo into your own project.
 
 **Document contents**
 
 - [Installation ](#installation)
 - [Next steps](#next-steps)
 - [Contributing](#contributing)
-- [Other notes on the demo](#other-notes-on-the-demo)
+- [Other notes](#other-notes)
 
 # Installation
 
@@ -21,9 +21,8 @@ Note we do _not_ recommend using this project to start your own site but intend 
 - [Virtualenv](#setup-with-virtualenv)
 - [Heroku](#deploy-to-heroku)
 
-If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using Vagrant. If you're more comfortable 
-with Docker then you can setup with Docker. Both Vagrant and Docker will help resolve common software dependency issues. Developers more familiar with
-virtualenv and traditional Django app setup instructions can use the instructions within the [Setup with virtualenv](#setup-with-virtualenv) section below.
+If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using Vagrant or Docker (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues. Developers more familiar with
+virtualenv and traditional Django app setup instructions should ski to [Setup with virtualenv](#setup-with-virtualenv).
 
 Setup with Vagrant
 ------------------
@@ -49,7 +48,7 @@ interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
 Log into the admin with the credentials ``admin / changeme``.
 
-To stop the local server you can run `ctrl+c`. To stop the Vagrant environment running run `exit` then `vagrant halt`.
+Use `Ctrl+c` to stop the local server. To stop the Vagrant environment, run `exit` then `vagrant halt`.
 
 Setup with Docker
 -----------------
@@ -83,7 +82,7 @@ docker-compose logs -f
 
 Setup with Virtualenv
 ---------------------
-You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/1.10/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
 * [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
@@ -123,7 +122,7 @@ one-click deployment solution to their free 'Hobby' tier:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
 
 If you do not have a Heroku account, clicking the above button will walk you through the steps
-to generate one.  After which, you will be presented with a screen to configure your app. For our purposes,
+to generate one.  At this point you will be presented with a screen to configure your app. For our purposes,
 we will accept all of the defaults and click `Deploy`.  The status of the deployment will dynamically
 update in the browser. Once finished, click `View` to see the public site.
 
@@ -171,24 +170,15 @@ If you're a Python or Django developer, fork the repo and get stuck in! If you'd
 
 ### Preparing this archive for distribution
 
-If you change content or images in this repo and need to prepare it for export, do the following on a branch:
-
-```
-./manage.py dbshell
-delete from django_session;
-delete from wagtailimages_rendition;
-```
-
-It is always safe to delete the generated `media/images` dir while keeping `media/original_images`,
-followed by `delete from wagtailimages_rendition;`
-
-To generate new fixtures, run:
+If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
 
 `./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimages.rendition  -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
 
+Please optimize any included images to 1200px wide with JPEG compression at 60%. Note that `media/images` is ignored in the repo by `.gitignore` but `media/original_images` is not. Wagtail's local image "renditions" are excluded in the fixture recipe above.
+
 Make a pull request to https://github.com/wagtail/bakerydemo
 
-# Other notes on the demo
+# Other notes
 
 ### Note on demo search
 
