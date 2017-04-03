@@ -909,9 +909,7 @@ span.outline {
   margin-top: 0;
   margin-bottom: 20px;
 }
-.homepage .feature-1 .featured-children li,
-.homepage .feature-2 .featured-children li,
-.homepage .feature-3 .featured-children li {
+.homepage .feature-1 .featured-children li {
   border: 1px solid #ccc;
   border-radius: 3px;
   list-style: none;
@@ -947,6 +945,9 @@ span.outline {
   flex-direction: column;
   margin: 0 auto 20px;
 }
+.homepage .feature-2 .featured-children li {
+  list-style: none;
+}
 .homepage .feature-2 .feature-2-item figure {
   margin-bottom: 0;
 }
@@ -968,6 +969,9 @@ span.outline {
   .homepage .feature-2 .feature-2-row {
     display: inline-block;
   }
+}
+.homepage .feature-3 .featured-children li {
+  list-style: none;
 }
 .homepage .feature-3 h3 {
   color: #fff;
