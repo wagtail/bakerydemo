@@ -222,14 +222,6 @@
 },
 {
   "model": "blog.blogpagetag",
-  "pk": 86,
-  "fields": {
-    "tag": 11,
-    "content_object": 77
-  }
-},
-{
-  "model": "blog.blogpagetag",
   "pk": 87,
   "fields": {
     "tag": 3,
@@ -282,6 +274,14 @@
   "fields": {
     "tag": 3,
     "content_object": 73
+  }
+},
+{
+  "model": "blog.blogpagetag",
+  "pk": 97,
+  "fields": {
+    "tag": 11,
+    "content_object": 77
   }
 },
 {
@@ -1429,7 +1429,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$30000$eIoVnauBvLhA$aPWJSlHK+F/rW7SKunxJ/RnXNQHx0uh6K/kVRyPn0XY=",
-    "last_login": "2017-04-01T17:20:02.153Z",
+    "last_login": "2017-04-23T19:58:19.460Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "Admin",
@@ -1925,7 +1925,7 @@
     "expired": false,
     "locked": false,
     "first_published_at": "2017-02-10T16:25:47.179Z",
-    "latest_revision_created_at": "2017-02-22T07:38:00.410Z"
+    "latest_revision_created_at": "2017-04-23T20:04:30.432Z"
   }
 },
 {
@@ -2316,7 +2316,7 @@
       "blogpage"
     ],
     "live": true,
-    "has_unpublished_changes": true,
+    "has_unpublished_changes": false,
     "url_path": "/home/blog/desserts-benefits/",
     "owner": [
       "admin"
@@ -2329,7 +2329,7 @@
     "expired": false,
     "locked": false,
     "first_published_at": "2017-03-22T06:31:05.324Z",
-    "latest_revision_created_at": "2017-04-01T07:35:03.669Z"
+    "latest_revision_created_at": "2017-04-23T20:03:47.050Z"
   }
 },
 {
@@ -3138,7 +3138,7 @@
   "fields": {
     "introduction": "Pie gingerbread cake caramels chocolate cake tiramisu wafer. Gummi bears chupa chups chocolate. Topping chupa chups bonbon cake pie caramels. Pie gingerbread cake caramels chocolate cake tiramisu wafer.",
     "image": 46,
-    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p><br/></p><p>Chocolate bar I love marzipan chupa chups souffl\\u00e9 chocolate bar. Biscuit caramels lollipop cookie. Macaroon I love tart pudding topping I love. Jujubes macaroon gummies pudding icing cake pastry. Candy canes candy chocolate cake I love chocolate carrot cake halvah. I love croissant I love donut. Chocolate sweet chocolate cake cotton candy souffl\\u00e9 caramels pie tiramisu I love. Lemon drops topping caramels. Pudding candy cotton candy gingerbread jelly beans jelly-o tiramisu cotton candy souffl\\u00e9. Cake bear claw cupcake pastry gummi bears cake.</p>\"}, {\"type\": \"heading_block\", \"value\": {\"size\": \"h3\", \"heading_text\": \"Never say no to more\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Muffin wafer chocolate cake bonbon icing chupa chups cupcake. Pudding drag\\u00e9e souffl\\u00e9 icing caramels chupa chups sweet muffin. Pastry fruitcake pastry dessert chupa chups. Sugar plum wafer chupa chups tootsie roll candy chocolate bar souffl\\u00e9 sesame snaps jelly-o. Dessert macaroon jelly fruitcake jujubes marshmallow cake. Gummies souffl\\u00e9 cotton candy candy pastry powder topping muffin cotton candy. I love jelly beans I love I love chocolate cake fruitcake oat cake drag\\u00e9e dessert.</p><p>Chupa chups marzipan pie caramels cotton candy jelly-o. Pie sweet cake souffl\\u00e9 apple pie cake. Chocolate cake chupa chups bear claw cotton candy. I love marshmallow chocolate sweet I love. Drag\\u00e9e donut cotton candy jujubes ice cream. Marshmallow gummies gingerbread marzipan. Caramels tootsie roll cake. Macaroon chocolate liquorice ice cream. Candy biscuit chupa chups chocolate cake cake danish. Sesame snaps I love macaroon cupcake bear claw chocolate cake I love candy canes.</p>\"}]",
+    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p><br/></p><p>Chocolate bar I love marzipan chupa chups souffl\\u00e9 chocolate bar. Biscuit caramels lollipop cookie. Macaroon I love tart pudding topping I love. Jujubes macaroon gummies pudding icing cake pastry. Candy canes candy chocolate cake I love chocolate carrot cake halvah. I love croissant I love donut. Chocolate sweet chocolate cake cotton candy souffl\\u00e9 caramels pie tiramisu I love. Lemon drops topping caramels. Pudding candy cotton candy gingerbread jelly beans jelly-o tiramisu cotton candy souffl\\u00e9. Cake bear claw cupcake pastry gummi bears cake.</p>\"}, {\"type\": \"heading_block\", \"value\": {\"heading_text\": \"Never say no to more\", \"size\": \"h3\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Muffin wafer chocolate cake bonbon icing chupa chups cupcake. Pudding drag\\u00e9e souffl\\u00e9 icing caramels chupa chups sweet muffin. Pastry fruitcake pastry dessert chupa chups. Sugar plum wafer chupa chups tootsie roll candy chocolate bar souffl\\u00e9 sesame snaps jelly-o. Dessert macaroon jelly fruitcake jujubes marshmallow cake. Gummies souffl\\u00e9 cotton candy candy pastry powder topping muffin cotton candy. I love jelly beans I love I love chocolate cake fruitcake oat cake drag\\u00e9e dessert.</p><p>Chupa chups marzipan pie caramels cotton candy jelly-o. Pie sweet cake souffl\\u00e9 apple pie cake. Chocolate cake chupa chups bear claw cotton candy. I love marshmallow chocolate sweet I love. Drag\\u00e9e donut cotton candy jujubes ice cream. Marshmallow gummies gingerbread marzipan. Caramels tootsie roll cake. Macaroon chocolate liquorice ice cream. Candy biscuit chupa chups chocolate cake cake danish. Sesame snaps I love macaroon cupcake bear claw chocolate cake I love candy canes.</p>\"}]",
     "address": "Hof 2,\r\nL\u00e6kjarh\u00fas,\r\n785 \u00d6r\u00e6fi,\r\nIceland",
     "lat_long": "63.9095213,-16.7093877"
   }
@@ -3160,7 +3160,7 @@
   "fields": {
     "introduction": "Chocolate bar tiramisu toffee. Topping pie powder candy canes jujubes liquorice. Apple pie muffin marshmallow tiramisu powder cotton candy topping. Apple pie tiramisu marshmallow sesame snaps.",
     "image": 47,
-    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p><br/></p><p>Cupcake ipsum dolor sit. Amet cake bear claw cheesecake marshmallow donut topping. Bonbon tootsie roll tiramisu drag\\u00e9e. Sweet macaroon gummies tootsie roll toffee cupcake jujubes gingerbread. Chocolate bar cupcake danish muffin donut cookie souffl\\u00e9 carrot cake. Cake cake macaroon muffin sesame snaps marzipan apple pie cheesecake.</p>\"}, {\"type\": \"heading_block\", \"value\": {\"size\": \"h3\", \"heading_text\": \"Now with sugar\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Chocolate caramels cupcake jelly beans icing gummi bears fruitcake gingerbread. Cupcake drag\\u00e9e tootsie roll cheesecake chocolate. Jelly lemon drops lemon drops chocolate. Sesame snaps chocolate bar cheesecake tiramisu gummi bears sweet sesame snaps wafer. Pie cake macaroon sugar plum toffee icing. Bonbon sweet roll cupcake sesame snaps toffee candy fruitcake.</p><p>Cupcake cupcake souffl\\u00e9 jelly beans chocolate cake lemon drops. Dessert chocolate bar cotton candy. Pastry icing oat cake wafer. Marshmallow topping gummies cotton candy cake gingerbread. Donut macaroon carrot cake. Pie candy canes cupcake powder marzipan. Sweet oat cake jelly beans apple pie ice cream. Brownie caramels chupa chups marzipan. Biscuit biscuit croissant fruitcake pastry pastry.</p>\"}]",
+    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p><br/></p><p>Cupcake ipsum dolor sit. Amet cake bear claw cheesecake marshmallow donut topping. Bonbon tootsie roll tiramisu drag\\u00e9e. Sweet macaroon gummies tootsie roll toffee cupcake jujubes gingerbread. Chocolate bar cupcake danish muffin donut cookie souffl\\u00e9 carrot cake. Cake cake macaroon muffin sesame snaps marzipan apple pie cheesecake.</p>\"}, {\"type\": \"heading_block\", \"value\": {\"heading_text\": \"Now with sugar\", \"size\": \"h3\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Chocolate caramels cupcake jelly beans icing gummi bears fruitcake gingerbread. Cupcake drag\\u00e9e tootsie roll cheesecake chocolate. Jelly lemon drops lemon drops chocolate. Sesame snaps chocolate bar cheesecake tiramisu gummi bears sweet sesame snaps wafer. Pie cake macaroon sugar plum toffee icing. Bonbon sweet roll cupcake sesame snaps toffee candy fruitcake.</p><p>Cupcake cupcake souffl\\u00e9 jelly beans chocolate cake lemon drops. Dessert chocolate bar cotton candy. Pastry icing oat cake wafer. Marshmallow topping gummies cotton candy cake gingerbread. Donut macaroon carrot cake. Pie candy canes cupcake powder marzipan. Sweet oat cake jelly beans apple pie ice cream. Brownie caramels chupa chups marzipan. Biscuit biscuit croissant fruitcake pastry pastry.</p>\"}]",
     "address": "Klettsvegi 1,\r\n870 V\u00edk,\r\nIceland",
     "lat_long": "63.419061,-19.0064982"
   }
@@ -3171,7 +3171,7 @@
   "fields": {
     "introduction": "Gummies dessert cake pastry jujubes cotton candy apple pie chocolate bar muffin. Bonbon souffl\u00e9 icing brownie cheesecake candy canes. Sesame snaps chocolate pudding souffl\u00e9 powder pastry pastry jelly beans. Chocolate cake caramels gingerbread bear claw gingerbread jelly-o.",
     "image": 44,
-    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Jelly-o marzipan fruitcake. Candy marshmallow candy canes macaroon marshmallow marshmallow sesame snaps. Cookie croissant wafer jelly beans. Bonbon sesame snaps danish chocolate bar. Pudding marzipan tootsie roll lollipop sesame snaps souffl\\u00e9 fruitcake. Tootsie roll jujubes cookie chocolate topping cupcake. Pudding cake gummies chupa chups jelly beans gingerbread sesame snaps gummi bears gummies. Chocolate chupa chups jelly candy canes carrot cake croissant ice cream. Bonbon sugar plum jelly beans cake tiramisu. Carrot cake gummies carrot cake macaroon wafer cake cupcake.</p><p>Jelly-o candy canes macaroon chocolate cake cheesecake cake lollipop cookie. Halvah candy topping sugar plum topping sesame snaps cotton candy topping. Sesame snaps brownie chocolate cake. Lemon drops sweet roll cookie drag\\u00e9e chocolate bar sugar plum jelly-o. Liquorice toffee jujubes chocolate cake cheesecake biscuit. Marshmallow chocolate bar oat cake wafer souffl\\u00e9 brownie fruitcake. Oat cake icing cheesecake liquorice caramels.</p>\"}, {\"type\": \"heading_block\", \"value\": {\"size\": \"h3\", \"heading_text\": \"An awesome heading\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Brownie marzipan marshmallow tart pudding carrot cake. Cheesecake jelly beans gingerbread lollipop. Marshmallow tiramisu jelly beans apple pie gingerbread candy bonbon carrot cake. Pastry candy gummies danish pudding topping. Tart jelly-o chocolate wafer pastry brownie chocolate bar oat cake. Cookie sugar plum liquorice jelly beans. Sweet jujubes candy canes sweet chocolate chocolate cookie chocolate cookie. Cookie pudding toffee tart.</p>\"}]",
+    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Jelly-o marzipan fruitcake. Candy marshmallow candy canes macaroon marshmallow marshmallow sesame snaps. Cookie croissant wafer jelly beans. Bonbon sesame snaps danish chocolate bar. Pudding marzipan tootsie roll lollipop sesame snaps souffl\\u00e9 fruitcake. Tootsie roll jujubes cookie chocolate topping cupcake. Pudding cake gummies chupa chups jelly beans gingerbread sesame snaps gummi bears gummies. Chocolate chupa chups jelly candy canes carrot cake croissant ice cream. Bonbon sugar plum jelly beans cake tiramisu. Carrot cake gummies carrot cake macaroon wafer cake cupcake.</p><p>Jelly-o candy canes macaroon chocolate cake cheesecake cake lollipop cookie. Halvah candy topping sugar plum topping sesame snaps cotton candy topping. Sesame snaps brownie chocolate cake. Lemon drops sweet roll cookie drag\\u00e9e chocolate bar sugar plum jelly-o. Liquorice toffee jujubes chocolate cake cheesecake biscuit. Marshmallow chocolate bar oat cake wafer souffl\\u00e9 brownie fruitcake. Oat cake icing cheesecake liquorice caramels.</p>\"}, {\"type\": \"heading_block\", \"value\": {\"heading_text\": \"An awesome heading\", \"size\": \"h3\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Brownie marzipan marshmallow tart pudding carrot cake. Cheesecake jelly beans gingerbread lollipop. Marshmallow tiramisu jelly beans apple pie gingerbread candy bonbon carrot cake. Pastry candy gummies danish pudding topping. Tart jelly-o chocolate wafer pastry brownie chocolate bar oat cake. Cookie sugar plum liquorice jelly beans. Sweet jujubes candy canes sweet chocolate chocolate cookie chocolate cookie. Cookie pudding toffee tart.</p>\"}]",
     "address": "Eyravegur,\r\n800 Selfoss,\r\nIceland",
     "lat_long": "63.9375899, -21.0419085"
   }
@@ -3423,7 +3423,7 @@
   "fields": {
     "introduction": "A Boston cream pie is a yellow butter cake that is filled with custard or cream and topped with chocolate glaze.",
     "image": 43,
-    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Despite its name, it is in fact a cake, and not a pie.[2] The dessert acquired its name when cakes and pies were cooked in the same pans, and the words were used interchangeably.[3] In the latter part of the 19th century, this type of cake was variously called a \\\"cream pie\\\", a \\\"chocolate cream pie\\\", or a \\\"custard cake\\\".[3]</p><p>Owners of the Parker House Hotel in Boston claim that the Boston cream pie was first created at the hotel by Armenian-French chef M. Sanzian in 1856.[4] Called a \\\"Chocolate Cream Pie\\\", this cake consisted of two layers of French butter sponge cake filled with cr\\u00e8me p\\u00e2tissi\\u00e8re and brushed with a rum syrup, its side coated with cr\\u00e8me p\\u00e2tissi\\u00e8re overlain with toasted sliced almonds, and the top coated with chocolate fondant.[5] However, historians dispute this claim to primacy; while this cake may have been served then, there is no specific contemporaneous evidence of it, and custard-filled cake was already popular at that time.[3]</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": null, \"attribution\": \"Creative Commons\", \"caption\": \"Central Bakery\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>The cake is likely derived from the Washington pie, a two-layer yellow cake filled with jam and topped with confectioner's sugar, for which pastry cream of custard eventually replaced the jam, and a chocolate glaze replaced the confectioner's sugar.[2] Today, the cake is topped with a chocolate glaze (such as ganache) and sometimes powdered sugar or a cherry.</p><p>The name first appeared in the 1872 Methodist Almanac.[3] Another early printed use of the term \\\"Boston cream pie\\\" occurred in the Granite Iron Ware Cook Book, printed in 1878.[2] The earliest known recipe of the modern variant was printed in Miss Parloa's Kitchen Companion in 1887 as \\\"Chocolate Cream Pie\\\".[2]</p>\"}]",
+    "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Despite its name, it is in fact a cake, and not a pie.[2] The dessert acquired its name when cakes and pies were cooked in the same pans, and the words were used interchangeably.[3] In the latter part of the 19th century, this type of cake was variously called a \\\"cream pie\\\", a \\\"chocolate cream pie\\\", or a \\\"custard cake\\\".[3]</p><p>Owners of the Parker House Hotel in Boston claim that the Boston cream pie was first created at the hotel by Armenian-French chef M. Sanzian in 1856.[4] Called a \\\"Chocolate Cream Pie\\\", this cake consisted of two layers of French butter sponge cake filled with cr\\u00e8me p\\u00e2tissi\\u00e8re and brushed with a rum syrup, its side coated with cr\\u00e8me p\\u00e2tissi\\u00e8re overlain with toasted sliced almonds, and the top coated with chocolate fondant.[5] However, historians dispute this claim to primacy; while this cake may have been served then, there is no specific contemporaneous evidence of it, and custard-filled cake was already popular at that time.[3]</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 15, \"attribution\": \"Creative Commons\", \"caption\": \"Central Bakery\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>The cake is likely derived from the Washington pie, a two-layer yellow cake filled with jam and topped with confectioner's sugar, for which pastry cream of custard eventually replaced the jam, and a chocolate glaze replaced the confectioner's sugar.[2] Today, the cake is topped with a chocolate glaze (such as ganache) and sometimes powdered sugar or a cherry.</p><p>The name first appeared in the 1872 Methodist Almanac.[3] Another early printed use of the term \\\"Boston cream pie\\\" occurred in the Granite Iron Ware Cook Book, printed in 1878.[2] The earliest known recipe of the modern variant was printed in Miss Parloa's Kitchen Companion in 1887 as \\\"Chocolate Cream Pie\\\".[2]</p>\"}]",
     "subtitle": "Banana toffee chocolate pie?",
     "date_published": "2017-02-24"
   }
