@@ -39,6 +39,9 @@ ENV UWSGI_VIRTUALENV=/venv UWSGI_WSGI_FILE=bakerydemo/wsgi_production.py UWSGI_H
 # Call collectstatic with dummy environment variables:
 RUN DATABASE_URL=postgres://none REDIS_URL=none /venv/bin/python manage.py collectstatic --noinput
 
+# make sure static files are writable by uWSGI process
+RUN chown -R 1000:2000 /code/bakerydemo/media
+
 # start uWSGI, using a wrapper script to allow us to easily add more commands to container startup:
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
-CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive"]
+CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive", "--static-map", "/media/=/code/bakerydemo/media/"]
