@@ -396,6 +396,12 @@ li.has-submenu a.allow-toggle {
     border-top: 1px solid rgba(255,255,255,.1);
     padding: 20px 0;
   }
+  li.has-submenu a.allow-toggle {
+    float: none;
+  }
+  li.has-submenu a.caret-custom {
+    display: none!important;
+  }
 }
 /* Custom page footer */
 .footer {
