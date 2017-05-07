@@ -2,23 +2,17 @@
 {% load wagtailimages_tags gallery_tags %}
 
 {% block content %}
-{% image self.image fill-1920x600 as hero_img %}
-<div class="container-fluid hero" style="background-image:url('{{ hero_img.url }}')">
-<div class="hero-gradient-mask"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7 col-md-offset-2">
-                <h1>{{ page.title }}</h1>
-                <p class="stand-first">{{ page.subtitle }}</p>
-            </div>
-        </div>
-    </div>
-</div>
+    {% image self.image fill-1920x600 as hero_img %}
+        {% include "base/include/header-hero.html" %}
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h2>{{ page.introduction }}</h2>
+        <div class="col-md-8">
+            {% if page.introduction %}
+                    <p class="intro">{{ page.introduction }}</p>
+            {% endif %}
+        </div>
+        <div class="row">
             {% gallery page.collection %}
         </div>
     </div>
