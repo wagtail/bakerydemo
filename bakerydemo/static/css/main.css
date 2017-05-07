@@ -385,6 +385,18 @@ li.has-submenu a.allow-toggle {
 .caret-custom:after {
     content: "▼"!important;
 }
+/* Mobile menu styling */
+@media (max-width: 768px) {
+  .nav-pills>li {
+    display: block;
+    float: none;
+    width: 100%!important;
+  }
+  .nav-pills> li > a {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding: 20px 0;
+  }
+}
 /* Custom page footer */
 .footer {
   padding-top: 19px;
