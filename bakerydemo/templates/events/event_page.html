@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+
+    {% image self.image fill-1920x600 as hero_img %}
+        {% include "base/include/header-hero.html" %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                {{ page.introduction }}<br>
+
+                {{ page.event_start }} - {{ page.event_end }}
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
