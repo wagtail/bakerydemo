@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'bakerydemo.base',
     'bakerydemo.blog',
     'bakerydemo.breads',
+    'bakerydemo.foo',
     'bakerydemo.locations',
     'bakerydemo.search',
 
