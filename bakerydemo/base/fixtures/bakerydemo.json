@@ -1516,6 +1516,7 @@
     "depth": 1,
     "numchild": 0,
     "title": "Root",
+    "draft_title": "Root",
     "slug": "root",
     "content_type": [
       "wagtailcore",
@@ -1544,6 +1545,7 @@
     "depth": 3,
     "numchild": 11,
     "title": "Breads",
+    "draft_title": "Breads",
     "slug": "breads",
     "content_type": [
       "breads",
@@ -1572,6 +1574,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Anadama",
+    "draft_title": "Anadama",
     "slug": "anadama-bread",
     "content_type": [
       "breads",
@@ -1600,6 +1603,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Anpan",
+    "draft_title": "Anpan",
     "slug": "anpan",
     "content_type": [
       "breads",
@@ -1628,6 +1632,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Appam",
+    "draft_title": "Appam",
     "slug": "appam-hoppers",
     "content_type": [
       "breads",
@@ -1656,6 +1661,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Arepa",
+    "draft_title": "Arepa",
     "slug": "arepa",
     "content_type": [
       "breads",
@@ -1684,6 +1690,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Bagel",
+    "draft_title": "Bagel",
     "slug": "bagel",
     "content_type": [
       "breads",
@@ -1712,6 +1719,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Baguette",
+    "draft_title": "Baguette",
     "slug": "baguette-french-stick-french-bread",
     "content_type": [
       "breads",
@@ -1740,6 +1748,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Bammy",
+    "draft_title": "Bammy",
     "slug": "bammy",
     "content_type": [
       "breads",
@@ -1768,6 +1777,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Bazin",
+    "draft_title": "Bazin",
     "slug": "bazin",
     "content_type": [
       "breads",
@@ -1796,6 +1806,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Bhakri",
+    "draft_title": "Bhakri",
     "slug": "bhakri",
     "content_type": [
       "breads",
@@ -1824,6 +1835,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Black bread",
+    "draft_title": "Black bread",
     "slug": "black-bread",
     "content_type": [
       "breads",
@@ -1852,6 +1864,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Bolani",
+    "draft_title": "Bolani",
     "slug": "bolani",
     "content_type": [
       "breads",
@@ -1880,6 +1893,7 @@
     "depth": 2,
     "numchild": 6,
     "title": "Welcome to the Wagtail Bakery!",
+    "draft_title": "Welcome to the Wagtail Bakery!",
     "slug": "home",
     "content_type": [
       "base",
@@ -1908,6 +1922,7 @@
     "depth": 3,
     "numchild": 6,
     "title": "Blog",
+    "draft_title": "Blog",
     "slug": "blog",
     "content_type": [
       "blog",
@@ -1936,6 +1951,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Tracking Wild Yeast",
+    "draft_title": "Tracking Wild Yeast",
     "slug": "wild-yeast",
     "content_type": [
       "blog",
@@ -1964,6 +1980,7 @@
     "depth": 3,
     "numchild": 6,
     "title": "Locations",
+    "draft_title": "Locations",
     "slug": "locations",
     "content_type": [
       "locations",
@@ -1992,6 +2009,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Hof",
+    "draft_title": "Hof",
     "slug": "new-york",
     "content_type": [
       "locations",
@@ -2020,6 +2038,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Reykjavik",
+    "draft_title": "Reykjavik",
     "slug": "reykjavik",
     "content_type": [
       "locations",
@@ -2048,6 +2067,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Vik",
+    "draft_title": "Vik",
     "slug": "london",
     "content_type": [
       "locations",
@@ -2076,6 +2096,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Selfoss",
+    "draft_title": "Selfoss",
     "slug": "wellington",
     "content_type": [
       "locations",
@@ -2104,6 +2125,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Bread and Circuses",
+    "draft_title": "Bread and Circuses",
     "slug": "bread-circuses",
     "content_type": [
       "blog",
@@ -2132,6 +2154,7 @@
     "depth": 3,
     "numchild": 0,
     "title": "Contact Us",
+    "draft_title": "Contact Us",
     "slug": "contact-us",
     "content_type": [
       "base",
@@ -2160,6 +2183,7 @@
     "depth": 3,
     "numchild": 0,
     "title": "Gallery",
+    "draft_title": "Gallery",
     "slug": "gallery",
     "content_type": [
       "base",
@@ -2190,6 +2214,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "The Great Icelandic Baking Show",
+    "draft_title": "The Great Icelandic Baking Show",
     "slug": "icelandic-baking",
     "content_type": [
       "blog",
@@ -2220,6 +2245,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "The Joy of (Baking) Soda",
+    "draft_title": "The Joy of (Baking) Soda",
     "slug": "joy-baking-soda",
     "content_type": [
       "blog",
@@ -2250,6 +2276,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "The Greatest Thing Since Sliced Bread",
+    "draft_title": "The Greatest Thing Since Sliced Bread",
     "slug": "sliced-bread",
     "content_type": [
       "blog",
@@ -2280,6 +2307,7 @@
     "depth": 3,
     "numchild": 0,
     "title": "About",
+    "draft_title": "About",
     "slug": "about",
     "content_type": [
       "base",
@@ -2310,6 +2338,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Desserts with Benefits",
+    "draft_title": "Desserts with Benefits",
     "slug": "desserts-benefits",
     "content_type": [
       "blog",
@@ -2340,6 +2369,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "H\u00f6fn",
+    "draft_title": "H\u00f6fn",
     "slug": "hofn",
     "content_type": [
       "locations",
@@ -2370,6 +2400,7 @@
     "depth": 4,
     "numchild": 0,
     "title": "Akranes",
+    "draft_title": "Akranes",
     "slug": "akranes",
     "content_type": [
       "locations",
