@@ -34,6 +34,49 @@ BASE_URL = 'http://localhost:8000'
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
+# AWS creds may be used for S3 and/or Elasticsearch
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '')
+AWS_REGION = os.getenv('AWS_REGION', '')
+
+# Configure Elasticsearch, if present in os.environ
+if 'ELASTICSEARCH_ENDPOINT' in os.environ:
+    from elasticsearch import RequestsHttpConnection
+    WAGTAILSEARCH_BACKENDS = {
+        'default': {
+            'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch2',
+            'HOSTS': [{
+                'host': os.getenv('ELASTICSEARCH_ENDPOINT', ''),
+                'port': os.getenv('ELASTICSEARCH_PORT', '9200'),
+            }],
+            'connection_class': RequestsHttpConnection,
+        }
+    }
+
+    if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+        from requests_aws4auth import AWS4Auth
+        WAGTAILSEARCH_BACKENDS['default']['http_auth'] = AWS4Auth(
+            AWS_ACCESS_KEY_ID,
+            AWS_SECRET_ACCESS_KEY,
+            AWS_REGION,
+            'es'
+        )
+    elif AWS_REGION:
+        # No API keys in the environ, so attempt to discover them with Boto instead, per:
+        # http://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials
+        # This may be useful if your credentials are obtained via EC2 instance meta data.
+        from botocore.session import Session
+        from requests_aws4auth import AWS4Auth
+        aws_creds = Session().get_credentials()
+        if aws_creds:
+            WAGTAILSEARCH_BACKENDS['default']['http_auth'] = AWS4Auth(
+                aws_creds.access_key,
+                aws_creds.secret_key,
+                AWS_REGION,
+                'es',
+                aws_creds.token,
+            )
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
@@ -42,8 +85,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', '')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '')
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     AWS_AUTO_CREATE_BUCKET = True
 
