@@ -15,19 +15,27 @@ services:
     image: redis:3.0
     expose:
       - "6379"
+  elasticsearch:
+    image: elasticsearch:2.3
+    restart: always
+    expose:
+      - "9200"
   app:
     environment:
       DJANGO_SECRET_KEY: changeme
       DATABASE_URL: postgres://app_user:changeme@db/app_db
-      REDIS_URL: redis://redis
+      CACHE_URL: redis://redis
+      ELASTICSEARCH_ENDPOINT: elasticsearch
     build:
       context: .
       dockerfile: ./Dockerfile
     links:
       - db:db
       - redis:redis
+      - elasticsearch:elasticsearch
     ports:
       - "8000:8000"
     depends_on:
       - db
       - redis
+      - elasticsearch
