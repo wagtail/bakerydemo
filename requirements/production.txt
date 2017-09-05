@@ -7,5 +7,5 @@ whitenoise==3.2.2
 boto==2.45.0
 django-storages==1.5.2
 # For retrieving credentials and signing requests to Elasticsearch
-botocore==1.7.2
-requests-aws4auth==0.9
+botocore==1.7.10
+aws-requests-auth==0.4.0

@@ -40,42 +40,45 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '')
 AWS_REGION = os.getenv('AWS_REGION', '')
 
 # Configure Elasticsearch, if present in os.environ
-if 'ELASTICSEARCH_ENDPOINT' in os.environ:
+ELASTICSEARCH_ENDPOINT = os.getenv('ELASTICSEARCH_ENDPOINT', '')
+
+if ELASTICSEARCH_ENDPOINT:
     from elasticsearch import RequestsHttpConnection
     WAGTAILSEARCH_BACKENDS = {
         'default': {
             'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch2',
             'HOSTS': [{
-                'host': os.getenv('ELASTICSEARCH_ENDPOINT', ''),
-                'port': os.getenv('ELASTICSEARCH_PORT', '9200'),
+                'host': ELASTICSEARCH_ENDPOINT,
+                'port': int(os.getenv('ELASTICSEARCH_PORT', '9200')),
+                'use_ssl': os.getenv('ELASTICSEARCH_USE_SSL', 'off') == 'on',
+                'verify_certs': os.getenv('ELASTICSEARCH_VERIFY_CERTS', 'off') == 'on',
             }],
-            'connection_class': RequestsHttpConnection,
+            'OPTIONS': {
+                'connection_class': RequestsHttpConnection,
+            },
         }
     }
 
     if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
-        from requests_aws4auth import AWS4Auth
-        WAGTAILSEARCH_BACKENDS['default']['http_auth'] = AWS4Auth(
-            AWS_ACCESS_KEY_ID,
-            AWS_SECRET_ACCESS_KEY,
-            AWS_REGION,
-            'es'
+        from aws_requests_auth.aws_auth import AWSRequestsAuth
+        WAGTAILSEARCH_BACKENDS['default']['HOSTS'][0]['http_auth'] = AWSRequestsAuth(
+            aws_access_key=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            aws_token=os.getenv('AWS_SESSION_TOKEN', ''),
+            aws_host=ELASTICSEARCH_ENDPOINT,
+            aws_region=AWS_REGION,
+            aws_service='es',
         )
     elif AWS_REGION:
         # No API keys in the environ, so attempt to discover them with Boto instead, per:
         # http://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials
         # This may be useful if your credentials are obtained via EC2 instance meta data.
-        from botocore.session import Session
-        from requests_aws4auth import AWS4Auth
-        aws_creds = Session().get_credentials()
-        if aws_creds:
-            WAGTAILSEARCH_BACKENDS['default']['http_auth'] = AWS4Auth(
-                aws_creds.access_key,
-                aws_creds.secret_key,
-                AWS_REGION,
-                'es',
-                aws_creds.token,
-            )
+        from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
+        WAGTAILSEARCH_BACKENDS['default']['HOSTS'][0]['http_auth'] = BotoAWSRequestsAuth(
+            aws_host=ELASTICSEARCH_ENDPOINT,
+            aws_region=AWS_REGION,
+            aws_service='es',
+        )
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
