@@ -9,7 +9,7 @@
     </h1>
 
     {% if search_results %}
-    You searched <p>{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}</p>
+    <p>You searched{% if search_query %} for “{{ search_query }}”{% endif %}</p>
         <ul>
             {% for result in search_results %}
                 <li>
