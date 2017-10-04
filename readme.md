@@ -159,6 +159,11 @@ environment, set the same environment variables there using the method appropria
 
 Once Heroku restarts your application or your Docker container is refreshed, you should have persistent media storage!
 
+To copy the initial data included with this demo to the S3 bucket (assuming you ran `./manage.py load_initial_data` per
+the above), you can use the AWS CLI included with the requirements:
+
+    heroku run aws s3 sync bakerydemo/media/original_images/ s3://<bucket-name>/original_images/
+
 # Next steps
 
 Hopefully after you've experimented with the demo you'll want to create your own site. To do that you'll want to run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](http://wagtail.readthedocs.io/en/latest/getting_started/index.html).
