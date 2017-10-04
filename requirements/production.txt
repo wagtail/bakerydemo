@@ -9,3 +9,5 @@ django-storages==1.5.2
 # For retrieving credentials and signing requests to Elasticsearch
 botocore==1.7.10
 aws-requests-auth==0.4.0
+django-redis==4.8.0
+django_cache_url==2.0.0
