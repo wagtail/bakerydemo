@@ -2,7 +2,7 @@
 
 PROJECT_NAME=$1
 
-PROJECT_DIR=/vagrant
+: ${PROJECT_DIR:=/vagrant}
 VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 
 PYTHON=$VIRTUALENV_DIR/bin/python
