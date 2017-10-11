@@ -1514,7 +1514,7 @@
   "fields": {
     "path": "0001",
     "depth": 1,
-    "numchild": 0,
+    "numchild": 1,
     "title": "Root",
     "draft_title": "Root",
     "slug": "root",
