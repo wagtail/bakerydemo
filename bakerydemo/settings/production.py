@@ -100,6 +100,17 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
+if 'CLOUDFRONT_DISTRIBUTION_ID' in os.environ:
+    CLOUDFRONT_DISTRIBUTION_ID = os.getenv('CLOUDFRONT_DISTRIBUTION_ID')
+    INSTALLED_APPS.append('wagtail.contrib.wagtailfrontendcache')
+    WAGTAILFRONTENDCACHE = {
+        'cloudfront': {
+            'BACKEND': 'wagtail.contrib.wagtailfrontendcache.backends.CloudfrontBackend',
+            'DISTRIBUTION_ID': CLOUDFRONT_DISTRIBUTION_ID,
+        },
+    }
+    ENABLE_USER_BAR = False
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

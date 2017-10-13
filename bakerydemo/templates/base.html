@@ -5,7 +5,9 @@
 {% endblock head %}
 
 <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
-{% wagtailuserbar %}
+{% if ENABLE_USER_BAR %}
+    {% wagtailuserbar %}
+{% endif %}
 
 {% block header %}
     {# Header contains the main_navigation block #}
