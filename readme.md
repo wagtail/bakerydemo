@@ -164,6 +164,16 @@ the above), you can use the AWS CLI included with the requirements:
 
     heroku run aws s3 sync bakerydemo/media/original_images/ s3://<bucket-name>/original_images/
 
+### CloudFront Support
+
+To enable CloudFront support, simply set the `CLOUDFRONT_DISTRIBUTION_ID` environment variable with the Distribution
+ID of your CloudFront distribution. For example, on Heroku:
+
+    heroku config:set CLOUDFRONT_DISTRIBUTION_ID=changeme
+
+This has the side effect of disabling the Wagtail User Bar, as this effectively breaks caching when it checks to see
+whether or not the current user is logged in.
+
 # Next steps
 
 Hopefully after you've experimented with the demo you'll want to create your own site. To do that you'll want to run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](http://wagtail.readthedocs.io/en/latest/getting_started/index.html).
