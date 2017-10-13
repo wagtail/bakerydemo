@@ -5,7 +5,7 @@ uwsgi==2.0.14
 psycopg2==2.7.3.1
 whitenoise==3.2.2
 boto==2.45.0
-django-storages==1.5.2
+django-storages==1.6.5
 # For retrieving credentials and signing requests to Elasticsearch
 botocore==1.7.10
 aws-requests-auth==0.4.0
