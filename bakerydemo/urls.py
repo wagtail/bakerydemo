@@ -8,8 +8,6 @@ from wagtail.wagtailcore import urls as wagtail_urls
 
 from bakerydemo.search import views as search_views
 
-from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
-
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
 
@@ -17,7 +15,6 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
-    url(r'^api/', include(wagtailapi_urls)),
 
 ]
 
