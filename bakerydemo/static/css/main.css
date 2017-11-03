@@ -749,6 +749,14 @@ span.outline {
   display: block;
   min-width: 450px;
   max-width: 450px;
+  padding: 5px;
+}
+@media (max-width: 766px) {
+  .form-page input, textarea, select {
+    border: 1px solid #ccc;
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .form-page li input[type=checkbox], input[type=radio] {
