@@ -89,7 +89,6 @@ class BlogPage(Page):
     ]
 
     search_fields = Page.search_fields + [
-        index.SearchField('title'),
         index.SearchField('body'),
     ]
 
