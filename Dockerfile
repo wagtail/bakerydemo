@@ -12,6 +12,7 @@ RUN set -ex \
 		pcre-dev \
 		postgresql-dev \
 		libjpeg-turbo-dev \
+		git \
 	&& pyvenv /venv \
 	&& /venv/bin/pip install -U pip \
 	&& LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "/venv/bin/pip install -r /requirements/production.txt" \
