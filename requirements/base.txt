@@ -7,6 +7,6 @@ elasticsearch==2.4.1
 # installing wagtail from git like this will fail to build admin css, but it's functional enough
 # to let us run the bakerydemo build script before swapping in a development copy of wagtail,
 # as vagrant-wagtail-develop does
--e git://github.com/wagtail/wagtail@cleanup/rename-modules#egg=wagtail
+-e git://github.com/wagtail/wagtail#egg=wagtail
 http://playground.torchboxapps.com/matthew/wagtail/wagtailfontawesome-1.1.1-py2.py3-none-any.whl
 Pillow==4.0.0
