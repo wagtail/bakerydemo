@@ -51,7 +51,7 @@ if ELASTICSEARCH_ENDPOINT:
     from elasticsearch import RequestsHttpConnection
     WAGTAILSEARCH_BACKENDS = {
         'default': {
-            'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch2',
+            'BACKEND': 'wagtail.search.backends.elasticsearch2',
             'HOSTS': [{
                 'host': ELASTICSEARCH_ENDPOINT,
                 'port': int(os.getenv('ELASTICSEARCH_PORT', '9200')),
