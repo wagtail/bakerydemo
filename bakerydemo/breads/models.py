@@ -4,14 +4,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, StreamFieldPanel
     )
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailsearch import index
-from wagtail.wagtailsnippets.models import register_snippet
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Page
+from wagtail.search import index
+from wagtail.snippets.models import register_snippet
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 

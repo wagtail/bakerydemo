@@ -1,6 +1,6 @@
 from django import template
 
-from wagtail.wagtailimages.models import Image
+from wagtail.images.models import Image
 
 register = template.Library()
 
