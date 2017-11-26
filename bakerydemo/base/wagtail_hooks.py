@@ -10,7 +10,7 @@ enable the styleguide in settings:
 
 INSTALLED_APPS = (
    ...
-   'wagtail.contrib.wagtailstyleguide',
+   'wagtail.contrib.styleguide',
    ...
 )
 
