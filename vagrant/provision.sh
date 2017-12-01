@@ -30,8 +30,6 @@ chmod a+x $PROJECT_DIR/manage.py
 
 # copy local settings file
 cp $PROJECT_DIR/bakerydemo/settings/local.py.example $PROJECT_DIR/bakerydemo/settings/local.py
-# add .env file for django-dotenv environment variable definitions
-echo DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.local > $PROJECT_DIR/.env
 
 if [ -n "$USE_POSTGRESQL" ]
 then
@@ -56,8 +54,9 @@ su - $DEV_USER -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
 # Add a couple of aliases to manage.py into .bashrc
 cat << EOF >> /home/$DEV_USER/.bashrc
 export PYTHONPATH=$PROJECT_DIR
+export DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.local
 
-alias dj="./manage.py"
+alias dj="django-admin.py"
 alias djrun="dj runserver 0.0.0.0:8000"
 
 source $VIRTUALENV_DIR/bin/activate
