@@ -78,7 +78,8 @@ class LocationOperatingHours(Orderable, OperatingHours):
     """
     location = ParentalKey(
         'LocationPage',
-        related_name='hours_of_operation'
+        related_name='hours_of_operation',
+        on_delete=models.CASCADE
     )
 
 
