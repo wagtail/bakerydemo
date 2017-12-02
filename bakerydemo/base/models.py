@@ -336,7 +336,7 @@ class FormField(AbstractFormField):
     can read more about Wagtail forms at:
     http://docs.wagtail.io/en/latest/reference/contrib/forms/index.html
     """
-    page = ParentalKey('FormPage', related_name='form_fields')
+    page = ParentalKey('FormPage', related_name='form_fields', on_delete=models.CASCADE)
 
 
 class FormPage(AbstractEmailForm):

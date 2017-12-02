@@ -29,10 +29,10 @@ class BlogPeopleRelationship(Orderable, models.Model):
     the ParentalKey and ForeignKey
     """
     page = ParentalKey(
-        'BlogPage', related_name='blog_person_relationship'
+        'BlogPage', related_name='blog_person_relationship', on_delete=models.CASCADE
     )
     people = models.ForeignKey(
-        'base.People', related_name='person_blog_relationship'
+        'base.People', related_name='person_blog_relationship', on_delete=models.CASCADE
     )
     panels = [
         SnippetChooserPanel('people')
@@ -45,7 +45,7 @@ class BlogPageTag(TaggedItemBase):
     the BlogPage object and tags. There's a longer guide on using it at
     http://docs.wagtail.io/en/latest/reference/pages/model_recipes.html#tagging
     """
-    content_object = ParentalKey('BlogPage', related_name='tagged_items')
+    content_object = ParentalKey('BlogPage', related_name='tagged_items', on_delete=models.CASCADE)
 
 
 class BlogPage(Page):
