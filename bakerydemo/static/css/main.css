@@ -747,15 +747,13 @@ span.outline {
 /* Form detail page */
 .form-page input, textarea, select {
   display: block;
-  min-width: 450px;
-  max-width: 450px;
+  width: 450px;
   padding: 5px;
 }
 @media (max-width: 766px) {
   .form-page input, textarea, select {
     border: 1px solid #ccc;
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
