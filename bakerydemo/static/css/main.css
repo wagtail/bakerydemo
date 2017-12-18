@@ -321,7 +321,7 @@ nav {
 .nav-pills>li, .nav-pills>li, .nav>li>a, .nav>li>a {
   border-top: 1px solid transparent;
 }
-/* The following is to stop a pixel shift on hover */ 
+/* The following is to stop a pixel shift on hover */
 .nav-pills>li.breads {
   width: 90px;
 }
@@ -764,7 +764,7 @@ span.outline {
   margin-right: 10px;
 }
 
-.form-page .fieldWrapper ul, 
+.form-page .fieldWrapper ul,
 .form-page .fieldWrapper li {
   list-style: none;
   padding: 0;
@@ -1048,7 +1048,7 @@ span.outline {
   flex-wrap: wrap;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
   .hidden-md-up {
     display: none;
   }
