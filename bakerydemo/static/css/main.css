@@ -751,10 +751,10 @@ span.outline {
   display: block;
   width: 450px;
   padding: 5px;
+  border: 1px solid #ccc;
 }
 @media (max-width: 766px) {
   .form-page input, textarea, select {
-    border: 1px solid #ccc;
     width: 100%;
   }
 }
