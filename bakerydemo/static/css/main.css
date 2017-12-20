@@ -322,22 +322,22 @@ nav {
   border-top: 1px solid transparent;
 }
 /* The following is to stop a pixel shift on hover */
-.nav-pills>li.breads {
+.nav-pills>.breads {
   width: 90px;
 }
-.nav-pills>li.locations {
+.nav-pills>.locations {
   width: 140px;
 }
-.nav-pills>li.blog {
+.nav-pills>.blog {
   width: 86px;
 }
-.nav-pills>li.gallery {
+.nav-pills>.gallery {
   width: 115px;
 }
-.nav-pills>li.contactus {
+.nav-pills>.contactus {
   width: 148px;
 }
-.nav-pills>li.about {
+.nav-pills>.about {
   width: 88px;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover,
@@ -387,10 +387,10 @@ li.has-submenu a.allow-toggle {
 }
 /* Mobile menu styling */
 @media (max-width: 768px) {
-  .nav-pills>li {
+  .nav-pills>.presentation {
     display: block;
     float: none;
-    width: 100%!important;
+    width: 100%;
   }
   .nav-pills> li > a {
     border-top: 1px solid rgba(255,255,255,.1);
