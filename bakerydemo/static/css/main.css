@@ -662,10 +662,12 @@ span.outline {
 /* Bread styles */
 /* Bread listview */
 .bread-list-item {
+  display: block;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 3px;
   margin: 12px;
   overflow: hidden;
+  color: inherit;
 }
 
 .bread-list-item h2 {
