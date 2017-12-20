@@ -388,7 +388,6 @@ li.has-submenu a.allow-toggle {
 /* Mobile menu styling */
 @media (max-width: 768px) {
   .nav-pills>.presentation {
-    display: block;
     float: none;
     width: 100%;
   }
