@@ -1025,8 +1025,6 @@ span.outline {
 .row.no-gutters {
   margin-right: 0;
   margin-left: 0;
-  display: flex;
-  flex-wrap: wrap;
 }
 @media (max-width: 970px) {
   .row.no-gutters {
