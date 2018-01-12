@@ -1187,7 +1187,7 @@
   "fields": {
     "hostname": "127.0.0.1",
     "port": 8000,
-    "site_name": "Main",
+    "site_name": "Wagtail Bakery",
     "root_page": 60,
     "is_default_site": true
   }
