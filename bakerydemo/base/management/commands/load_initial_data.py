@@ -9,7 +9,7 @@ from wagtail.core.models import Site, Page
 
 class Command(BaseCommand):
     def handle(self, **options):
-        fixtures_dir = os.path.join(settings.BASE_DIR, 'base', 'fixtures')
+        fixtures_dir = os.path.join(settings.PROJECT_DIR, 'base', 'fixtures')
         fixture_file = os.path.join(fixtures_dir, 'bakerydemo.json')
 
         # Wagtail creates default Site and Page instances during install, but we already have
