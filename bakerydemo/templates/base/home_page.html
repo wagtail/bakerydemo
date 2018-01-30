@@ -12,9 +12,13 @@
             <div class="col-md-8 col-md-offset-2 home-hero">
                 <h1>{{ page.title }}</h1>
                 <p class="lead">{{ page.hero_text }}</p>
-                <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link hvr-icon-forward">
+                {% if page.hero_cta_link %}
+                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link hvr-icon-forward">
+                        {{ page.hero_cta }}
+                    </a>
+                {% else %}
                     {{ page.hero_cta }}
-                </a>
+                {% endif %}
             </div>
         </div>
     </div>
