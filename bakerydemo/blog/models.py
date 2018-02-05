@@ -179,7 +179,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     # More information on RoutablePages is at
     # http://docs.wagtail.io/en/latest/reference/contrib/routablepage.html
     @route('^tags/$', name='tag_archive')
-    @route('^tags/(\w+)/$', name='tag_archive')
+    @route('^tags/([\w-]+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
 
         try:
