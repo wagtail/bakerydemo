@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.contrib.modeladmin',
+    'wagtail.contrib.wagtailroutablepage',
     'wagtail.wagtailcore',
 
     'rest_framework',
