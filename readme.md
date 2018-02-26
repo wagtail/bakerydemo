@@ -55,6 +55,7 @@ Setup with Docker
 
 #### Dependencies
 * [Docker](https://docs.docker.com/engine/installation/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Installation
 Run the following commands:
