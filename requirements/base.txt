@@ -1,12 +1,9 @@
-Django==1.11.5
+Django>=2.0,<2.1
 django-dotenv==1.4.1
 # elasticsearch==2.x.x chosen for compatibility with t2.micro.elasticsearch and t2.small.elasticsearch
 # instance types on AWS (Elasticsearch 2.3). Adjust for your deployment as needed.
 elasticsearch==2.4.1
 
-# installing wagtail from git like this will fail to build admin css, but it's functional enough
-# to let us run the bakerydemo build script before swapping in a development copy of wagtail,
-# as vagrant-wagtail-develop does
--e git://github.com/wagtail/wagtail#egg=wagtail
-http://playground.torchboxapps.com/matthew/wagtail/wagtailfontawesome-1.1.1-py2.py3-none-any.whl
+wagtail>=2.0,<2.1
+wagtailfontawesome>=1.1.3,<1.2
 Pillow==4.0.0
