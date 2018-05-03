@@ -73,4 +73,8 @@ Vagrant.configure(2) do |config|
 
   # Enable agent forwarding over SSH connections.
   config.ssh.forward_agent = true
+
+  if File.exist? "Vagrantfile.local"
+    instance_eval File.read("Vagrantfile.local"), "Vagrantfile.local"
+  end
 end
