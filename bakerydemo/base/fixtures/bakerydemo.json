@@ -2460,7 +2460,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 179102
+    "file_size": 173675
   }
 },
 {
@@ -2480,7 +2480,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 618145
+    "file_size": 506419
   }
 },
 {
@@ -2500,7 +2500,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 170790
+    "file_size": 166505
   }
 },
 {
@@ -2520,7 +2520,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 178745
+    "file_size": 174743
   }
 },
 {
@@ -2540,7 +2540,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 138091
+    "file_size": 127107
   }
 },
 {
@@ -2560,7 +2560,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 277532
+    "file_size": 247052
   }
 },
 {
@@ -2580,7 +2580,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 122348
   }
 },
 {
@@ -2620,7 +2620,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 137708
   }
 },
 {
@@ -2640,7 +2640,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 78729
+    "file_size": 73964
   }
 },
 {
@@ -2670,8 +2670,8 @@
     "collection": 4,
     "title": "Anadama_bread",
     "file": "original_images/Anadama_bread_1.jpg",
-    "width": 4752,
-    "height": 3168,
+    "width": 1200,
+    "height": 800,
     "created_at": "2017-02-23T07:48:33.730Z",
     "uploaded_by_user": [
       "admin"
@@ -2680,7 +2680,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 486289
+    "file_size": 72910
   }
 },
 {
@@ -2690,8 +2690,8 @@
     "collection": 4,
     "title": "Appam",
     "file": "original_images/Appam_served_with_Coconut_Milk_in_Tamil_Nadu.JPG",
-    "width": 2362,
-    "height": 1064,
+    "width": 1200,
+    "height": 541,
     "created_at": "2017-02-23T07:48:34.056Z",
     "uploaded_by_user": [
       "admin"
@@ -2700,7 +2700,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 205629
+    "file_size": 79398
   }
 },
 {
@@ -2710,8 +2710,8 @@
     "collection": 4,
     "title": "Arepa",
     "file": "original_images/Arepa_asada.JPG",
-    "width": 1600,
-    "height": 1200,
+    "width": 1200,
+    "height": 900,
     "created_at": "2017-02-23T07:48:34.189Z",
     "uploaded_by_user": [
       "admin"
@@ -2720,7 +2720,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 95602
+    "file_size": 56891
   }
 },
 {
@@ -2730,8 +2730,8 @@
     "collection": 4,
     "title": "Bagel",
     "file": "original_images/Bagel.jpg",
-    "width": 1920,
-    "height": 1660,
+    "width": 1200,
+    "height": 1038,
     "created_at": "2017-02-23T07:48:34.296Z",
     "uploaded_by_user": [
       "admin"
@@ -2740,7 +2740,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 244476
+    "file_size": 104030
   }
 },
 {
@@ -2750,8 +2750,8 @@
     "collection": 4,
     "title": "Baguette",
     "file": "original_images/Baguette_de_pain_WikiCheese_Lausanne.jpg",
-    "width": 4032,
-    "height": 1958,
+    "width": 1200,
+    "height": 583,
     "created_at": "2017-02-23T07:48:34.417Z",
     "uploaded_by_user": [
       "admin"
@@ -2760,7 +2760,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 328940
+    "file_size": 41014
   }
 },
 {
@@ -2770,8 +2770,8 @@
     "collection": 4,
     "title": "Bammies",
     "file": "original_images/Bammies.jpg",
-    "width": 1700,
-    "height": 1527,
+    "width": 1200,
+    "height": 1078,
     "created_at": "2017-02-23T07:48:34.498Z",
     "uploaded_by_user": [
       "admin"
@@ -2780,7 +2780,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 225077
+    "file_size": 137317
   }
 },
 {
@@ -2790,8 +2790,8 @@
     "collection": 4,
     "title": "Bazin",
     "file": "original_images/Bazin.jpg",
-    "width": 1600,
-    "height": 1200,
+    "width": 1200,
+    "height": 900,
     "created_at": "2017-02-23T07:48:34.571Z",
     "uploaded_by_user": [
       "admin"
@@ -2800,7 +2800,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 159993
+    "file_size": 112991
   }
 },
 {
@@ -2830,8 +2830,8 @@
     "collection": 4,
     "title": "Belgian Waffle",
     "file": "original_images/Belgische_waffeln.jpg",
-    "width": 2025,
-    "height": 1536,
+    "width": 1200,
+    "height": 910,
     "created_at": "2017-02-23T07:48:34.735Z",
     "uploaded_by_user": [
       "admin"
@@ -2840,7 +2840,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 317562
+    "file_size": 151259
   }
 },
 {
@@ -2860,7 +2860,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 105801
+    "file_size": 104969
   }
 },
 {
@@ -2870,8 +2870,8 @@
     "collection": 4,
     "title": "Misc Breads",
     "file": "original_images/Breads_1.jpg",
-    "width": 2700,
-    "height": 1792,
+    "width": 1200,
+    "height": 796,
     "created_at": "2017-02-23T07:48:34.909Z",
     "uploaded_by_user": [
       "admin"
@@ -2880,7 +2880,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 534217
+    "file_size": 167917
   }
 },
 {
@@ -2890,8 +2890,8 @@
     "collection": 4,
     "title": "Rye Bread",
     "file": "original_images/Sourdough_rye_with_walnuts.jpg",
-    "width": 2222,
-    "height": 1431,
+    "width": 1200,
+    "height": 773,
     "created_at": "2017-02-23T08:18:10.895Z",
     "uploaded_by_user": [
       "admin"
@@ -2900,7 +2900,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": 697587
+    "file_size": 213288
   }
 },
 {
@@ -2910,8 +2910,8 @@
     "collection": 4,
     "title": "Bhakri",
     "file": "original_images/Bhakri_1.jpg",
-    "width": 1920,
-    "height": 1440,
+    "width": 1200,
+    "height": 900,
     "created_at": "2017-02-23T08:25:03.822Z",
     "uploaded_by_user": [
       "admin"
@@ -2920,7 +2920,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 193665
   }
 },
 {
@@ -3000,7 +3000,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 167793
   }
 },
 {
@@ -3020,7 +3020,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 206071
   }
 },
 {
@@ -3030,17 +3030,17 @@
     "collection": 1,
     "title": "Glacier descending near Hof",
     "file": "original_images/hof-cornell-university-filter.jpg",
-    "width": 1400,
-    "height": 1106,
+    "width": 1200,
+    "height": 948,
     "created_at": "2017-03-29T17:46:14.914Z",
     "uploaded_by_user": [
       "admin"
     ],
-    "focal_point_x": 604,
-    "focal_point_y": 301,
-    "focal_point_width": 1203,
-    "focal_point_height": 602,
-    "file_size": 358165
+    "focal_point_x": 518,
+    "focal_point_y": 248,
+    "focal_point_width": 1031,
+    "focal_point_height": 496,
+    "file_size": 279068
   }
 },
 {
@@ -3060,7 +3060,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 207895
   }
 },
 {
@@ -3070,8 +3070,8 @@
     "collection": 1,
     "title": "Hofn from above",
     "file": "original_images/Hofn.jpg",
-    "width": 2048,
-    "height": 1365,
+    "width": 1200,
+    "height": 800,
     "created_at": "2017-03-29T18:04:27.068Z",
     "uploaded_by_user": [
       "admin"
@@ -3080,7 +3080,7 @@
     "focal_point_y": null,
     "focal_point_width": null,
     "focal_point_height": null,
-    "file_size": null
+    "file_size": 369123
   }
 },
 {
@@ -3090,17 +3090,17 @@
     "collection": 1,
     "title": "Arkranes",
     "file": "original_images/Akranes.jpg",
-    "width": 2048,
-    "height": 1365,
+    "width": 1200,
+    "height": 800,
     "created_at": "2017-03-29T18:08:27.770Z",
     "uploaded_by_user": [
       "admin"
     ],
-    "focal_point_x": 986,
-    "focal_point_y": 813,
-    "focal_point_width": 1759,
-    "focal_point_height": 917,
-    "file_size": 511480
+    "focal_point_x": 578,
+    "focal_point_y": 476,
+    "focal_point_width": 1031,
+    "focal_point_height": 537,
+    "file_size": 225856
   }
 },
 {
