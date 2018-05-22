@@ -31,7 +31,7 @@ def has_children(page):
 
 def is_active(page, current_page):
     # To give us active state on main navigation
-    return (current_page.url.startswith(page.url) if current_page else False)
+    return (current_page.url_path.startswith(page.url_path) if current_page else False)
 
 
 # Retrieves the top menu items - the immediate children of the parent page
@@ -45,7 +45,7 @@ def top_menu(context, parent, calling_page=None):
         # We don't directly check if calling_page is None since the template
         # engine can pass an empty string to calling_page
         # if the variable passed as calling_page does not exist.
-        menuitem.active = (calling_page.url.startswith(menuitem.url)
+        menuitem.active = (calling_page.url_path.startswith(menuitem.url_path)
                            if calling_page else False)
     return {
         'calling_page': calling_page,
@@ -65,7 +65,7 @@ def top_menu_children(context, parent, calling_page=None):
         # We don't directly check if calling_page is None since the template
         # engine can pass an empty string to calling_page
         # if the variable passed as calling_page does not exist.
-        menuitem.active = (calling_page.url.startswith(menuitem.url)
+        menuitem.active = (calling_page.url_path.startswith(menuitem.url_path)
                            if calling_page else False)
         menuitem.children = menuitem.get_children().live().in_menu()
     return {
