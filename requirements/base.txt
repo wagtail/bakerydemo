@@ -4,6 +4,6 @@ django-dotenv==1.4.1
 # instance types on AWS (Elasticsearch 2.3). Adjust for your deployment as needed.
 elasticsearch==2.4.1
 
-wagtail>=2.0,<2.1
+wagtail>=2.1,<2.2
 wagtailfontawesome>=1.1.3,<1.2
 Pillow==4.0.0
