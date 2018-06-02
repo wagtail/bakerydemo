@@ -24,7 +24,7 @@ from .blocks import BaseStreamBlock
 
 
 @register_snippet
-class People(ClusterableModel):
+class People(index.Indexed, ClusterableModel):
     """
     A Django model to store People objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -56,7 +56,7 @@ class People(ClusterableModel):
         ImageChooserPanel('image')
     ]
 
-    search_fields = Page.search_fields + [
+    search_fields = [
         index.SearchField('first_name'),
         index.SearchField('last_name'),
     ]
