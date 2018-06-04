@@ -9,6 +9,7 @@ env:
 before_install:
   - sudo apt-get update
   - sudo apt-get install -qy -o Dpkg::Options::="--force-confold" docker-ce coreutils
+  - sudo apt-get install -y zlib-dev
 
 script:
   # Bring up the postgres, redis, and app containers
