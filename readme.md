@@ -9,7 +9,7 @@ Note we do _not_ recommend using this project to start your own site - the demo 
 
 **Document contents**
 
-- [Installation ](#installation)
+- [Installation](#installation)
 - [Next steps](#next-steps)
 - [Contributing](#contributing)
 - [Other notes](#other-notes)
@@ -35,7 +35,7 @@ Setup with Vagrant
 Once you've installed the necessary dependencies run the following commands:
 
 ```bash
-git clone git@github.com:wagtail/bakerydemo.git
+git clone https://github.com/wagtail/bakerydemo.git
 cd bakerydemo
 vagrant up
 vagrant ssh
@@ -60,7 +60,7 @@ Setup with Docker
 Run the following commands:
 
 ```bash
-git clone git@github.com:wagtail/bakerydemo.git
+git clone https://github.com/wagtail/bakerydemo.git
 cd bakerydemo
 docker-compose up --build -d
 docker-compose run app /venv/bin/python manage.py load_initial_data
@@ -96,7 +96,7 @@ installed, run:
 
     mkvirtualenv wagtailbakerydemo
     cd ~/dev [or your preferred dev directory]
-    git clone git@github.com:wagtail/bakerydemo.git
+    git clone https://github.com/wagtail/bakerydemo.git
     cd bakerydemo
     pip install -r requirements.txt
 
