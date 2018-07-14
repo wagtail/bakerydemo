@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'wagtail.core',
 
     'rest_framework',
+    'graphene_django',
     'modelcluster',
     'taggit',
     'wagtailfontawesome',
@@ -173,6 +174,10 @@ WAGTAILSEARCH_BACKENDS = {
         'BACKEND': 'wagtail.search.backends.db',
         'INDEX': 'bakerydemo',
     },
+}
+
+GRAPHENE = {
+    'SCHEMA': 'bakerydemo.graphql.schema',
 }
 
 # Wagtail settings
