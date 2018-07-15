@@ -50,8 +50,12 @@ class People(index.Indexed, ClusterableModel):
     )
 
     panels = [
-        FieldPanel('first_name', classname="col6"),
-        FieldPanel('last_name', classname="col6"),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('first_name', classname="col6"),
+                FieldPanel('last_name', classname="col6"),
+            ])
+        ], "Name"),
         FieldPanel('job_title'),
         ImageChooserPanel('image')
     ]
