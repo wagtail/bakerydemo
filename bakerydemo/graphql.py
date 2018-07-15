@@ -1,18 +1,14 @@
 from __future__ import unicode_literals
+import bakerydemo.helpers
 import graphene
-from graphene_django import DjangoObjectType
-from bakerydemo.breads.models import BreadType
+
+from bakerydemo.breads.schema import Query as BreadQuery
+from bakerydemo.locations.schema import Query as LocationQuery
+from bakerydemo.blog.schema import Query as BlogQuery
 
 
-class Bread(DjangoObjectType):
-    class Meta:
-        model = BreadType
+class Query(BlogQuery, LocationQuery, BreadQuery, graphene.ObjectType):
+    pass
 
-
-class Query(graphene.ObjectType):
-    breads = graphene.List(Bread)
-
-    def resolve_breads(self, info):
-        return BreadType.objects.all()
 
 schema = graphene.Schema(query=Query)
