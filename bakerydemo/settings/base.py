@@ -177,7 +177,7 @@ WAGTAILSEARCH_BACKENDS = {
 }
 
 GRAPHENE = {
-    'SCHEMA': 'bakerydemo.graphql.schema',
+    'SCHEMA': 'bakerydemo.graphql.schema.schema',
 }
 
 # Wagtail settings

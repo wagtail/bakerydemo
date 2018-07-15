@@ -1,6 +1,7 @@
 import graphene
 from graphene_django.types import DjangoObjectType
 from . import models
+import bakerydemo.graphql.helpers
 
 
 class Bread(DjangoObjectType):

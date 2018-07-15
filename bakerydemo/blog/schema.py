@@ -3,7 +3,6 @@ from graphene_django.types import DjangoObjectType
 from bakerydemo.base.models import People
 
 from . import models
-import bakerydemo.helpers
 
 
 class Author(DjangoObjectType):

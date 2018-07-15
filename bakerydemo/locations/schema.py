@@ -1,6 +1,8 @@
-import graphene
 from graphene_django.types import DjangoObjectType
 from . import models
+
+import graphene
+import bakerydemo.graphql.helpers
 
 
 class Location(DjangoObjectType):
