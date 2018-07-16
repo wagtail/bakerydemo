@@ -23,8 +23,8 @@ urlpatterns = [
     url('^sitemap\.xml$', sitemap),
     url(r'^api/v2/', api_router.urls),
 
-    url(r'^api/_graphql', csrf_exempt(GraphQLView.as_view())),
-    url(r'^api/graphiql', csrf_exempt(GraphQLView.as_view(graphiql=True, pretty=True)))
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view())),
+    url(r'^graphiql', csrf_exempt(GraphQLView.as_view(graphiql=True, pretty=True)))
 ]
 
 
