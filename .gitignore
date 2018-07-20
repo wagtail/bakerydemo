@@ -17,3 +17,4 @@ __pycache__
 /.vagrant/
 /Vagrantfile.local
 !.gitignore
+.idea
