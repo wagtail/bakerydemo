@@ -16,6 +16,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from bakerydemo.base.blocks import BaseStreamBlock
 
 
+
 @register_snippet
 class Country(models.Model):
     """
