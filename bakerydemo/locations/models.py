@@ -56,7 +56,7 @@ class OperatingHours(models.Model):
         else:
             opening = '--'
         if self.closing_time:
-            closed = self.opening_time.strftime('%H:%M')
+            closed = self.closing_time.strftime('%H:%M')
         else:
             closed = '--'
         return '{}: {} - {} {}'.format(
