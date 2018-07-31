@@ -36,11 +36,11 @@ echo DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.local > $PROJECT_DIR/.env
 if [ -n "$USE_POSTGRESQL" ]
 then
     su - $DEV_USER -c "createdb $PROJECT_NAME"
-    su - $DEV_USER -c "$PIP install \"psycopg2>=2.7,<3\""
+    su - $DEV_USER -c "$PIP install \"psycopg2-binary>=2.7,<3\""
     cat << EOF >> $PROJECT_DIR/bakerydemo/settings/local.py
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': '$PROJECT_NAME',
     }
 }
