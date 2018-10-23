@@ -1,9 +1,9 @@
-Django>=2.0,<2.1
+Django>=2.1,<2.2
 django-dotenv==1.4.1
 # elasticsearch==2.x.x chosen for compatibility with t2.micro.elasticsearch and t2.small.elasticsearch
 # instance types on AWS (Elasticsearch 2.3). Adjust for your deployment as needed.
 elasticsearch==2.4.1
 
-wagtail>=2.1,<2.2
+wagtail>=2.3,<2.4
 wagtailfontawesome>=1.1.3,<1.2
 Pillow==4.0.0
