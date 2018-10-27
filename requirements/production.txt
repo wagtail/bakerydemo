@@ -7,9 +7,9 @@ whitenoise==3.2.2
 boto==2.45.0
 django-storages==1.6.5
 # For retrieving credentials and signing requests to Elasticsearch
-botocore==1.7.10
+botocore==1.12.33
 aws-requests-auth==0.4.0
 django-redis==4.8.0
 django_cache_url==2.0.0
 # For copying initial media to S3 bucket
-awscli==1.11.23
+awscli==1.16.43
