@@ -87,6 +87,7 @@ Setup with Virtualenv
 You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/1.10/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
+* Python 3.4, 3.5 or 3.6
 * [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
 * [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
@@ -96,10 +97,21 @@ With [PIP](https://github.com/pypa/pip) and [virtualenvwrapper](https://virtuale
 installed, run:
 
     mkvirtualenv wagtailbakerydemo
+    python --version
+
+Confirm that this is showing a compatible version of Python 3.x. If not, and you have multiple versions of Python installed on your system, you may need to specify the appropriate version when creating the virtualenv:
+
+    deactivate
+    rmvirtualenv wagtailbakerydemo
+    mkvirtualenv wagtailbakerydemo --python=python3.6
+    python --version
+
+Now we're ready to set up the bakery demo project itself:
+
     cd ~/dev [or your preferred dev directory]
     git clone https://github.com/wagtail/bakerydemo.git
     cd bakerydemo
-    pip install -r requirements.txt
+    pip install -r requirements/base.txt
 
 Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
 to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
