@@ -64,13 +64,35 @@ su - $DEV_USER -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
 
 
 # Add a couple of aliases to manage.py into .bashrc
-cat << EOF >> /home/$DEV_USER/.bashrc
-export PYTHONPATH=$PROJECT_DIR
 
-alias dj="$PROJECT_DIR/manage.py"
-alias djrun="dj runserver 0.0.0.0:8000"
+BASHRC="/home/$DEV_USER/.bashrc"
 
-source $VIRTUALENV_DIR/bin/activate
-export PS1="[$PROJECT_NAME \W]\\$ "
-cd $PROJECT_DIR
-EOF
+# Just put these values BASHRC_LINE_* to .bashrc:
+BASHRC_LINE_1="export PYTHONPATH=$PROJECT_DIR"
+BASHRC_LINE_2="alias dj='$PROJECT_DIR/manage.py'"
+BASHRC_LINE_3="alias djrun='dj runserver 0.0.0.0:8000'"
+BASHRC_LINE_4="export PS1='[$PROJECT_NAME \W]\\$ '"
+BASHRC_LINE_5="cd $PROJECT_DIR"
+BASHRC_LINE_ACTIVATE="source $VIRTUALENV_DIR/bin/activate"
+
+NEEDS_UPDATE_BASHRC_ACTIVATE=no
+
+# Prevent duplicate values in .bashrc from repeat provision
+# "seq 1 2" is used just in case: if the number of lines will increase
+for i in $(seq 1 5);
+do
+    eval "CURRENT_LINE=\$BASHRC_LINE_$i"
+    LINE_EXISTS=$(cat $BASHRC | grep -q "^$CURRENT_LINE" && echo yes || echo no)
+    if [[ "$LINE_EXISTS" == "no" ]];
+    then
+        echo $CURRENT_LINE >> $BASHRC
+        NEEDS_UPDATE_BASHRC_ACTIVATE=yes
+    fi
+done
+
+# Prevent a situation when "source" had called before env vars were provided
+if [[ "$NEEDS_UPDATE_BASHRC_ACTIVATE" == "yes" ]];
+then
+	cat $BASHRC | grep -v "^$BASHRC_LINE_ACTIVATE" > "${BASHRC}.tmp" && mv ${BASHRC}.tmp $BASHRC
+	echo $BASHRC_LINE_ACTIVATE >> $BASHRC
+fi
