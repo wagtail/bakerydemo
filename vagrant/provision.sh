@@ -35,7 +35,17 @@ echo DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.local > $PROJECT_DIR/.env
 
 if [ -n "$USE_POSTGRESQL" ]
 then
-    su - $DEV_USER -c "createdb $PROJECT_NAME"
+    echo Creating database.....
+    DB_EXISTS=$(
+        su - $DEV_USER -c \
+        "psql -lqt | cut -d \| -f 1 | grep -q '^ $PROJECT_NAME $' && echo yes || echo no"
+    )
+    if [[ "$DB_EXISTS" == "no" ]]; then
+        echo Database does not exist, creating...
+        su - $DEV_USER -c "createdb $PROJECT_NAME"
+    else
+        echo Database already exists, skipping...
+    fi
     su - $DEV_USER -c "$PIP install \"psycopg2-binary>=2.7,<3\""
     cat << EOF >> $PROJECT_DIR/bakerydemo/settings/local.py
 DATABASES = {
