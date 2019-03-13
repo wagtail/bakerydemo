@@ -110,6 +110,11 @@ class CaptionedImageBlock(StructBlock):
         help_text = 'Select an image and add a caption (optional).'
 
 
+class CollapsibleCaptionedImageBlock(CaptionedImageBlock):
+    def get_layout(self):
+        return 'COLLAPSIBLE'
+
+
 class LimitedStreamBlock(StreamBlock):
     paragraph = RichTextBlock(icon='pilcrow')
     smaller_heading = TextBlock(
@@ -119,6 +124,15 @@ class LimitedStreamBlock(StreamBlock):
     class Meta:
         # template = 'blocks/streamfield.html'
         pass
+
+class CollapsibleLimitedStreamBlock(LimitedStreamBlock):
+    def get_layout(self):
+        return 'COLLAPSIBLE'
+
+
+class CollapsibleBlockQuoteBlock(BlockQuoteBlock):
+    def get_layout(self):
+        return 'COLLAPSIBLE'
 
 
 class EveryBlockUnderTheSun(StreamBlock):
@@ -140,6 +154,7 @@ class EveryBlockUnderTheSun(StreamBlock):
     richtext = RichTextBlock()
     blah = RawHTMLBlock()
     blockquote = BlockQuoteBlock()
+    collapsible_blockquote = CollapsibleBlockQuoteBlock()
     choices = ChoiceBlock(choices=[
                             ('tea', 'Tea'),
                             ('coffee', 'Coffee'),
@@ -152,7 +167,9 @@ class EveryBlockUnderTheSun(StreamBlock):
     staticblock = StaticBlock(admin_text='Tom is hot.')
     listblock = AccordionBlock()
     structblock = CaptionedImageBlock()
+    collapsible_structblock = CollapsibleCaptionedImageBlock()
     streamblock = LimitedStreamBlock()
+    collapsible_streamblock = LimitedStreamBlock()
 
 
 class PersonBlock(StructBlock):
