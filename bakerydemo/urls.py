@@ -1,3 +1,4 @@
+from csp.decorators import csp
 from django.conf.urls import include, url
 from django.conf import settings
 from django.contrib import admin
@@ -6,14 +7,20 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
+from wagtail.utils.urlpatterns import decorate_urlpatterns
 
 from bakerydemo.search import views as search_views
 from .api import api_router
 
-urlpatterns = [
+admin_urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
-
     url(r'^admin/', include(wagtailadmin_urls)),
+]
+
+admin_urlpatterns = decorate_urlpatterns(admin_urlpatterns, csp(SCRIPT_SRC=["'self'", "'unsafe-inline'"]))
+
+urlpatterns = admin_urlpatterns + [
+
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
