@@ -1,4 +1,4 @@
-FROM python:3.5-alpine
+FROM python:3.7-alpine
 
 ADD requirements/ /requirements/
 RUN set -ex \
