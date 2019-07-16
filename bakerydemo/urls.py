@@ -6,6 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
+from wagtail_review import urls as wagtailreview_urls
 
 from bakerydemo.search import views as search_views
 from .api import api_router
@@ -20,6 +21,8 @@ urlpatterns = [
 
     url('^sitemap\.xml$', sitemap),
     url(r'^api/v2/', api_router.urls),
+
+    url(r'^review/', include(wagtailreview_urls)),
 ]
 
 
