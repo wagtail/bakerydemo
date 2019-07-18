@@ -10,14 +10,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 home-hero">
-                <h1>{{ page.title }}</h1>
-                <p class="lead">{{ page.hero_text }}</p>
+                <h1 data-contentpath-field="title">{{ page.title }}</h1>
+                <p class="lead" data-contentpath-field="hero_text">{{ page.hero_text }}</p>
                 {% if page.hero_cta_link %}
-                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link hvr-icon-forward">
+                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link hvr-icon-forward" data-contentpath-field="hero_cta">
                         {{ page.hero_cta }}
                     </a>
                 {% else %}
-                    {{ page.hero_cta }}
+                    <div data-contentpath-field="hero_cta">
+                        {{ page.hero_cta }}
+                    </div>
                 {% endif %}
             </div>
         </div>
@@ -30,15 +32,15 @@
             {% if page.promo_image or page.promo_title or page.promo_text %}
                 <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
                 <div class="promo-text">
-                    <h3>{{ page.promo_title }}</h3>
-                    {{ page.promo_text|safe }}
+                    <h3 data-contentpath-field="promo_title">{{ page.promo_title }}</h3>
+                    <div data-contentpath-field="promo_text">{{ page.promo_text|safe }}</div>
                 </div>
             {% endif %}
         </div>
 
         <div class="col-sm-6 col-sm-offset-1 feature-1">
             {% if page.featured_section_1 %}
-            <h2>{{ page.featured_section_1_title }}</h2>
+            <h2 data-contentpath-field="featured_section_1_title">{{ page.featured_section_1_title }}</h2>
                 <div class="featured-children">
                     {% for childpage in page.featured_section_1.specific.children|slice:"4" %}
                         <li>
@@ -66,7 +68,7 @@
 <div class="container-fluid streamfield">
     <div class="container">
         <div class="row">
-            <div class="col-md-7 streamfield-column">
+            <div class="col-md-7 streamfield-column" data-contentpath-field="body">
                 {{ page.body }}
             </div>
         </div>
@@ -78,7 +80,7 @@
     <div class="row">
         <div class="col-md-12 feature-2">
             {% if page.featured_section_2 %}
-            <h2>{{ page.featured_section_2_title }}</h2>
+            <h2 data-contentpath-field="featured_section_2_title">{{ page.featured_section_2_title }}</h2>
                 <div class="featured-children row feature-2-row">
                     {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
                         <li class="col-sm-4 feature-2-item">
@@ -103,7 +105,7 @@
     <div class="row">
         <div class="col-md-12 feature-3">
             {% if page.featured_section_3 %}
-            <h2>{{ page.featured_section_3_title }}</h2>
+            <h2 data-contentpath-field="featured_section_3_title">{{ page.featured_section_3_title }}</h2>
                 <div class="featured-children row">
                     {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
                         <li class="col-md-4">
