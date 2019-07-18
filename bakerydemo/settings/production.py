@@ -98,7 +98,7 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
 
     INSTALLED_APPS.append('storages')
     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
 
 LOGGING = {
     'version': 1,
