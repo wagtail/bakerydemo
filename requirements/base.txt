@@ -3,4 +3,4 @@ django-dotenv==1.4.1
 wagtail>=2.5,<2.6
 wagtailfontawesome>=1.1.3,<1.2
 Pillow==4.0.0
--e git://github.com/wagtail/wagtail-review.git@2c41d4789f83dad0d4c74f4b411c83608db22abc#egg=wagtail-review
+-e git://github.com/wagtail/wagtail-review.git@7340f6b0cd87be89df7648520271342a3856aa13#egg=wagtail-review
