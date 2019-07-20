@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'modelcluster',
     'taggit',
-    'wagtailfontawesome',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -159,10 +158,10 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'collect_static')
-STATIC_URL = '/static/'
+STATIC_URL = os.getenv('STATIC_URL', '/static/')
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
 
 # Override in local settings or replace with your own key. Please don't use our demo key in production!
 GOOGLE_MAP_API_KEY = 'AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw'

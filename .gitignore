@@ -9,6 +9,7 @@
 /data
 .~*
 common/CACHE
+bakerydemo/collect_static/
 bakerydemo/media/images/*
 bakerydemo/settings/local.py
 bakerydemodb
@@ -17,3 +18,4 @@ __pycache__
 /.vagrant/
 /Vagrantfile.local
 !.gitignore
+.vscode/

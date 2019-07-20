@@ -1,4 +1,4 @@
 Dockerfile
+Dockerfile.base
 docker-compose.yml
-Procfile
-Vagrantfile
+collect_static

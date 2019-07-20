@@ -1,25 +1,10 @@
 version: '2'
 
 services:
-  db:
-    environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: changeme
-    restart: always
-    image: postgres:9.6
-    expose:
-      - "5432"
-  redis:
-    restart: always
-    image: redis:3.0
-    expose:
-      - "6379"
-  elasticsearch:
-    image: elasticsearch:2.3
-    restart: always
-    expose:
-      - "9200"
+  app-base:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.base
   app:
     environment:
       DJANGO_SECRET_KEY: changeme
@@ -39,3 +24,59 @@ services:
       - db
       - redis
       - elasticsearch
+    volumes:
+      - ./:/code
+      - app_static_data:/code/bakerydemo/collect_static
+      - app_media_data:/code/bakerydemo/media
+    # Super useful command to keep the container alive while developing
+    # You need to go in the container and `make runserver`
+    command: ["tail", "-f", "/dev/null"]
+  bucket:
+    image: nginx:1.17.0-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - app_static_data:/srv/static
+      - app_media_data:/srv/media
+    depends_on:
+      - app
+  db:
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: changeme
+    restart: always
+    image: postgres:9.6
+    ports:
+      - "13001:5432"
+    volumes:
+      - db_data:/var/lib/postgresl/data
+  redis:
+    restart: always
+    image: redis:3.0
+    ports:
+      - "13002:6379"
+    volumes:
+        - redis_data:/data
+  elasticsearch:
+    image: elasticsearch:2.3
+    restart: always
+    ports:
+      - "13003:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+volumes:
+    # Data volume for storing PostgreSQL data folder
+    # It still persits after stopping the container
+    # @Ref: https://docs.docker.com/compose/compose-file/#volume-configuration-reference
+    db_data:
+    # Target a volume will make service up and run faster
+    redis_data:
+    # Elaticsearch Data
+    es_data:
+    # Static files shared by app container
+    app_static_data:
+    # Media assets shared by app container
+    app_media_data:
