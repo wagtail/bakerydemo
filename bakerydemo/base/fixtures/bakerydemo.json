@@ -43,7 +43,7 @@
   "model": "base.footertext",
   "pk": 1,
   "fields": {
-    "body": "<p>Copyright <b>The Wagtail Bakery</b>, 2017. All rights reserved.<br/><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
+    "body": "<p>Copyright <b>The Wagtail Bakery</b>, 2019. All rights reserved.<br/><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
   }
 },
 {
@@ -1130,7 +1130,7 @@
   "fields": {
     "form_data": "{\"purpose\": \"Feedback\", \"subject\": \"What's up?\", \"body\": \"Love what you guys are doing with the site so far.\", \"your-name\": \"Scot Hacker\", \"your-email\": \"shacker@birdhouse.org\"}",
     "page": 69,
-    "submit_time": "2017-02-15T16:56:48.939Z"
+    "submit_time": "2019-02-15T16:56:48.939Z"
   }
 },
 {
@@ -1159,7 +1159,7 @@
   "pk": 1,
   "fields": {
     "query": 1,
-    "date": "2017-02-11",
+    "date": "2019-02-11",
     "hits": 2
   }
 },
@@ -1168,7 +1168,7 @@
   "pk": 2,
   "fields": {
     "query": 2,
-    "date": "2017-02-15",
+    "date": "2019-02-15",
     "hits": 1
   }
 },
@@ -1177,7 +1177,7 @@
   "pk": 3,
   "fields": {
     "query": 3,
-    "date": "2017-02-24",
+    "date": "2019-02-24",
     "hits": 1
   }
 },
@@ -1429,7 +1429,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$30000$eIoVnauBvLhA$aPWJSlHK+F/rW7SKunxJ/RnXNQHx0uh6K/kVRyPn0XY=",
-    "last_login": "2017-04-23T19:58:19.460Z",
+    "last_login": "2019-04-23T19:58:19.460Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "Admin",
@@ -1437,7 +1437,7 @@
     "email": "admin@example.com",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2017-02-17T07:37:53.700Z",
+    "date_joined": "2019-02-17T07:37:53.700Z",
     "groups": [],
     "user_permissions": []
   }
@@ -1562,8 +1562,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T11:34:11.560Z",
-    "latest_revision_created_at": "2017-03-22T06:54:24.677Z"
+    "first_published_at": "2019-02-10T11:34:11.560Z",
+    "latest_revision_created_at": "2019-03-22T06:54:24.677Z"
   }
 },
 {
@@ -1591,8 +1591,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:21.882Z",
-    "latest_revision_created_at": "2017-02-25T08:27:47.625Z"
+    "first_published_at": "2019-02-10T13:00:21.882Z",
+    "latest_revision_created_at": "2019-02-25T08:27:47.625Z"
   }
 },
 {
@@ -1620,8 +1620,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:21.931Z",
-    "latest_revision_created_at": "2017-02-23T08:31:07.640Z"
+    "first_published_at": "2019-02-10T13:00:21.931Z",
+    "latest_revision_created_at": "2019-02-23T08:31:07.640Z"
   }
 },
 {
@@ -1649,8 +1649,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:21.980Z",
-    "latest_revision_created_at": "2017-02-23T08:14:23.196Z"
+    "first_published_at": "2019-02-10T13:00:21.980Z",
+    "latest_revision_created_at": "2019-02-23T08:14:23.196Z"
   }
 },
 {
@@ -1678,8 +1678,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:22.029Z",
-    "latest_revision_created_at": "2017-02-23T08:10:31.068Z"
+    "first_published_at": "2019-02-10T13:00:22.029Z",
+    "latest_revision_created_at": "2019-02-23T08:10:31.068Z"
   }
 },
 {
@@ -1707,8 +1707,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:22.127Z",
-    "latest_revision_created_at": "2017-02-23T08:01:54.867Z"
+    "first_published_at": "2019-02-10T13:00:22.127Z",
+    "latest_revision_created_at": "2019-02-23T08:01:54.867Z"
   }
 },
 {
@@ -1736,8 +1736,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:22.180Z",
-    "latest_revision_created_at": "2017-02-23T08:04:51.407Z"
+    "first_published_at": "2019-02-10T13:00:22.180Z",
+    "latest_revision_created_at": "2019-02-23T08:04:51.407Z"
   }
 },
 {
@@ -1765,8 +1765,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:22.274Z",
-    "latest_revision_created_at": "2017-02-23T08:01:15.242Z"
+    "first_published_at": "2019-02-10T13:00:22.274Z",
+    "latest_revision_created_at": "2019-02-23T08:01:15.242Z"
   }
 },
 {
@@ -1794,8 +1794,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:22.655Z",
-    "latest_revision_created_at": "2017-02-23T08:28:25.337Z"
+    "first_published_at": "2019-02-10T13:00:22.655Z",
+    "latest_revision_created_at": "2019-02-23T08:28:25.337Z"
   }
 },
 {
@@ -1823,8 +1823,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:22.866Z",
-    "latest_revision_created_at": "2017-02-23T08:26:10.026Z"
+    "first_published_at": "2019-02-10T13:00:22.866Z",
+    "latest_revision_created_at": "2019-02-23T08:26:10.026Z"
   }
 },
 {
@@ -1852,8 +1852,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:23.065Z",
-    "latest_revision_created_at": "2017-02-23T08:20:09.645Z"
+    "first_published_at": "2019-02-10T13:00:23.065Z",
+    "latest_revision_created_at": "2019-02-23T08:20:09.645Z"
   }
 },
 {
@@ -1881,8 +1881,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T13:00:23.169Z",
-    "latest_revision_created_at": "2017-02-23T08:08:39.568Z"
+    "first_published_at": "2019-02-10T13:00:23.169Z",
+    "latest_revision_created_at": "2019-02-23T08:08:39.568Z"
   }
 },
 {
@@ -1910,8 +1910,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T16:24:31.388Z",
-    "latest_revision_created_at": "2017-03-29T18:24:51.618Z"
+    "first_published_at": "2019-02-10T16:24:31.388Z",
+    "latest_revision_created_at": "2019-03-29T18:24:51.618Z"
   }
 },
 {
@@ -1939,8 +1939,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T16:25:47.179Z",
-    "latest_revision_created_at": "2017-04-23T20:04:30.432Z"
+    "first_published_at": "2019-02-10T16:25:47.179Z",
+    "latest_revision_created_at": "2019-04-23T20:04:30.432Z"
   }
 },
 {
@@ -1968,8 +1968,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T16:26:58.040Z",
-    "latest_revision_created_at": "2017-04-01T07:35:45.288Z"
+    "first_published_at": "2019-02-10T16:26:58.040Z",
+    "latest_revision_created_at": "2019-04-01T07:35:45.288Z"
   }
 },
 {
@@ -1997,8 +1997,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T16:39:04.527Z",
-    "latest_revision_created_at": "2017-03-06T02:26:16.335Z"
+    "first_published_at": "2019-02-10T16:39:04.527Z",
+    "latest_revision_created_at": "2019-03-06T02:26:16.335Z"
   }
 },
 {
@@ -2026,8 +2026,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-10T16:39:55.909Z",
-    "latest_revision_created_at": "2017-03-29T17:50:19.047Z"
+    "first_published_at": "2019-02-10T16:39:55.909Z",
+    "latest_revision_created_at": "2019-03-29T17:50:19.047Z"
   }
 },
 {
@@ -2055,8 +2055,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-11T23:10:22.386Z",
-    "latest_revision_created_at": "2017-03-29T17:33:10.041Z"
+    "first_published_at": "2019-02-11T23:10:22.386Z",
+    "latest_revision_created_at": "2019-03-29T17:33:10.041Z"
   }
 },
 {
@@ -2084,8 +2084,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-11T23:13:20.488Z",
-    "latest_revision_created_at": "2017-03-29T18:03:09.098Z"
+    "first_published_at": "2019-02-11T23:13:20.488Z",
+    "latest_revision_created_at": "2019-03-29T18:03:09.098Z"
   }
 },
 {
@@ -2113,8 +2113,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-11T23:15:58.149Z",
-    "latest_revision_created_at": "2017-03-29T17:29:33.457Z"
+    "first_published_at": "2019-02-11T23:15:58.149Z",
+    "latest_revision_created_at": "2019-03-29T17:29:33.457Z"
   }
 },
 {
@@ -2142,8 +2142,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-15T07:42:52.978Z",
-    "latest_revision_created_at": "2017-03-29T06:19:57.009Z"
+    "first_published_at": "2019-02-15T07:42:52.978Z",
+    "latest_revision_created_at": "2019-03-29T06:19:57.009Z"
   }
 },
 {
@@ -2171,8 +2171,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-15T16:55:56.085Z",
-    "latest_revision_created_at": "2017-02-15T17:08:05.684Z"
+    "first_published_at": "2019-02-15T16:55:56.085Z",
+    "latest_revision_created_at": "2019-02-15T17:08:05.684Z"
   }
 },
 {
@@ -2202,8 +2202,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-17T07:51:47.230Z",
-    "latest_revision_created_at": "2017-02-22T07:57:12.151Z"
+    "first_published_at": "2019-02-17T07:51:47.230Z",
+    "latest_revision_created_at": "2019-02-22T07:57:12.151Z"
   }
 },
 {
@@ -2233,8 +2233,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-21T08:07:11.832Z",
-    "latest_revision_created_at": "2017-03-29T06:52:34.448Z"
+    "first_published_at": "2019-02-21T08:07:11.832Z",
+    "latest_revision_created_at": "2019-03-29T06:52:34.448Z"
   }
 },
 {
@@ -2264,8 +2264,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-21T08:12:04.176Z",
-    "latest_revision_created_at": "2017-03-29T06:58:56.151Z"
+    "first_published_at": "2019-02-21T08:12:04.176Z",
+    "latest_revision_created_at": "2019-03-29T06:58:56.151Z"
   }
 },
 {
@@ -2295,8 +2295,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-21T08:17:21.604Z",
-    "latest_revision_created_at": "2017-04-01T07:35:26.199Z"
+    "first_published_at": "2019-02-21T08:17:21.604Z",
+    "latest_revision_created_at": "2019-04-01T07:35:26.199Z"
   }
 },
 {
@@ -2326,8 +2326,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-03-17T07:03:16.637Z",
-    "latest_revision_created_at": "2017-03-17T07:47:50.894Z"
+    "first_published_at": "2019-03-17T07:03:16.637Z",
+    "latest_revision_created_at": "2019-03-17T07:47:50.894Z"
   }
 },
 {
@@ -2357,8 +2357,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-03-22T06:31:05.324Z",
-    "latest_revision_created_at": "2017-04-23T20:03:47.050Z"
+    "first_published_at": "2019-03-22T06:31:05.324Z",
+    "latest_revision_created_at": "2019-04-23T20:03:47.050Z"
   }
 },
 {
@@ -2388,8 +2388,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-11T23:10:22.386Z",
-    "latest_revision_created_at": "2017-03-29T18:05:47.930Z"
+    "first_published_at": "2019-02-11T23:10:22.386Z",
+    "latest_revision_created_at": "2019-03-29T18:05:47.930Z"
   }
 },
 {
@@ -2419,8 +2419,8 @@
     "expire_at": null,
     "expired": false,
     "locked": false,
-    "first_published_at": "2017-02-11T23:10:22.386Z",
-    "latest_revision_created_at": "2017-03-29T18:09:44.290Z"
+    "first_published_at": "2019-02-11T23:10:22.386Z",
+    "latest_revision_created_at": "2019-03-29T18:09:44.290Z"
   }
 },
 {
@@ -2432,7 +2432,7 @@
     "file": "original_images/robert_johnson2.jpg",
     "width": 300,
     "height": 282,
-    "created_at": "2017-02-17T07:43:46.304Z",
+    "created_at": "2019-02-17T07:43:46.304Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2452,7 +2452,7 @@
     "file": "original_images/breads1.jpg",
     "width": 1080,
     "height": 831,
-    "created_at": "2017-02-17T08:10:34.237Z",
+    "created_at": "2019-02-17T08:10:34.237Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2472,7 +2472,7 @@
     "file": "original_images/breads2.jpg",
     "width": 1080,
     "height": 1151,
-    "created_at": "2017-02-17T08:10:34.344Z",
+    "created_at": "2019-02-17T08:10:34.344Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2492,7 +2492,7 @@
     "file": "original_images/breads3.jpg",
     "width": 1080,
     "height": 1080,
-    "created_at": "2017-02-17T08:10:34.580Z",
+    "created_at": "2019-02-17T08:10:34.580Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2512,7 +2512,7 @@
     "file": "original_images/breads4.jpg",
     "width": 1080,
     "height": 1240,
-    "created_at": "2017-02-17T08:10:34.723Z",
+    "created_at": "2019-02-17T08:10:34.723Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2532,7 +2532,7 @@
     "file": "original_images/bread5.jpg",
     "width": 800,
     "height": 600,
-    "created_at": "2017-02-19T08:08:37.723Z",
+    "created_at": "2019-02-19T08:08:37.723Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2552,7 +2552,7 @@
     "file": "original_images/bread6.jpg",
     "width": 1008,
     "height": 756,
-    "created_at": "2017-02-19T08:08:38.028Z",
+    "created_at": "2019-02-19T08:08:38.028Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2572,7 +2572,7 @@
     "file": "original_images/yeast.jpg",
     "width": 1024,
     "height": 682,
-    "created_at": "2017-02-21T07:50:10.793Z",
+    "created_at": "2019-02-21T07:50:10.793Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2592,7 +2592,7 @@
     "file": "original_images/Bedouins_making_bread.jpg",
     "width": 1000,
     "height": 669,
-    "created_at": "2017-02-21T07:59:50.671Z",
+    "created_at": "2019-02-21T07:59:50.671Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2612,7 +2612,7 @@
     "file": "original_images/Olandshvedebrod_6082070226.jpg",
     "width": 1000,
     "height": 664,
-    "created_at": "2017-02-21T08:05:08.529Z",
+    "created_at": "2019-02-21T08:05:08.529Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2632,7 +2632,7 @@
     "file": "original_images/soda_bread.jpg",
     "width": 733,
     "height": 481,
-    "created_at": "2017-02-21T08:10:30.772Z",
+    "created_at": "2019-02-21T08:10:30.772Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2652,7 +2652,7 @@
     "file": "original_images/sliced.jpg",
     "width": 1024,
     "height": 677,
-    "created_at": "2017-02-21T08:15:16.080Z",
+    "created_at": "2019-02-21T08:15:16.080Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2672,7 +2672,7 @@
     "file": "original_images/Anadama_bread_1.jpg",
     "width": 1200,
     "height": 800,
-    "created_at": "2017-02-23T07:48:33.730Z",
+    "created_at": "2019-02-23T07:48:33.730Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2692,7 +2692,7 @@
     "file": "original_images/Appam_served_with_Coconut_Milk_in_Tamil_Nadu.JPG",
     "width": 1200,
     "height": 541,
-    "created_at": "2017-02-23T07:48:34.056Z",
+    "created_at": "2019-02-23T07:48:34.056Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2712,7 +2712,7 @@
     "file": "original_images/Arepa_asada.JPG",
     "width": 1200,
     "height": 900,
-    "created_at": "2017-02-23T07:48:34.189Z",
+    "created_at": "2019-02-23T07:48:34.189Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2732,7 +2732,7 @@
     "file": "original_images/Bagel.jpg",
     "width": 1200,
     "height": 1038,
-    "created_at": "2017-02-23T07:48:34.296Z",
+    "created_at": "2019-02-23T07:48:34.296Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2752,7 +2752,7 @@
     "file": "original_images/Baguette_de_pain_WikiCheese_Lausanne.jpg",
     "width": 1200,
     "height": 583,
-    "created_at": "2017-02-23T07:48:34.417Z",
+    "created_at": "2019-02-23T07:48:34.417Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2772,7 +2772,7 @@
     "file": "original_images/Bammies.jpg",
     "width": 1200,
     "height": 1078,
-    "created_at": "2017-02-23T07:48:34.498Z",
+    "created_at": "2019-02-23T07:48:34.498Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2792,7 +2792,7 @@
     "file": "original_images/Bazin.jpg",
     "width": 1200,
     "height": 900,
-    "created_at": "2017-02-23T07:48:34.571Z",
+    "created_at": "2019-02-23T07:48:34.571Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2812,7 +2812,7 @@
     "file": "original_images/Bean-jam-bunanpankatori-cityjapan.JPG",
     "width": 800,
     "height": 640,
-    "created_at": "2017-02-23T07:48:34.650Z",
+    "created_at": "2019-02-23T07:48:34.650Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2832,7 +2832,7 @@
     "file": "original_images/Belgische_waffeln.jpg",
     "width": 1200,
     "height": 910,
-    "created_at": "2017-02-23T07:48:34.735Z",
+    "created_at": "2019-02-23T07:48:34.735Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2852,7 +2852,7 @@
     "file": "original_images/Bolani_Afghan_bread_01.jpg",
     "width": 1280,
     "height": 960,
-    "created_at": "2017-02-23T07:48:34.809Z",
+    "created_at": "2019-02-23T07:48:34.809Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2872,7 +2872,7 @@
     "file": "original_images/Breads_1.jpg",
     "width": 1200,
     "height": 796,
-    "created_at": "2017-02-23T07:48:34.909Z",
+    "created_at": "2019-02-23T07:48:34.909Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2892,7 +2892,7 @@
     "file": "original_images/Sourdough_rye_with_walnuts.jpg",
     "width": 1200,
     "height": 773,
-    "created_at": "2017-02-23T08:18:10.895Z",
+    "created_at": "2019-02-23T08:18:10.895Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2912,7 +2912,7 @@
     "file": "original_images/Bhakri_1.jpg",
     "width": 1200,
     "height": 900,
-    "created_at": "2017-02-23T08:25:03.822Z",
+    "created_at": "2019-02-23T08:25:03.822Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2932,7 +2932,7 @@
     "file": "original_images/sprint_crew.jpg",
     "width": 1000,
     "height": 750,
-    "created_at": "2017-02-24T08:01:50.590Z",
+    "created_at": "2019-02-24T08:01:50.590Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2952,7 +2952,7 @@
     "file": "original_images/bakingsoda.jpg",
     "width": 1024,
     "height": 678,
-    "created_at": "2017-03-22T06:13:09.773Z",
+    "created_at": "2019-03-22T06:13:09.773Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2972,7 +2972,7 @@
     "file": "original_images/bostoncream.jpg",
     "width": 1024,
     "height": 683,
-    "created_at": "2017-03-22T06:29:18.751Z",
+    "created_at": "2019-03-22T06:29:18.751Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -2992,7 +2992,7 @@
     "file": "original_images/aevar-gudmundsson-selfoss.jpg",
     "width": 1400,
     "height": 932,
-    "created_at": "2017-03-29T17:27:55.769Z",
+    "created_at": "2019-03-29T17:27:55.769Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3012,7 +3012,7 @@
     "file": "original_images/reykjavik-sverrir-thorolfsson.jpg",
     "width": 992,
     "height": 971,
-    "created_at": "2017-03-29T17:31:36.429Z",
+    "created_at": "2019-03-29T17:31:36.429Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3032,7 +3032,7 @@
     "file": "original_images/hof-cornell-university-filter.jpg",
     "width": 1200,
     "height": 948,
-    "created_at": "2017-03-29T17:46:14.914Z",
+    "created_at": "2019-03-29T17:46:14.914Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3052,7 +3052,7 @@
     "file": "original_images/vik.jpg",
     "width": 1400,
     "height": 981,
-    "created_at": "2017-03-29T18:00:33.977Z",
+    "created_at": "2019-03-29T18:00:33.977Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3072,7 +3072,7 @@
     "file": "original_images/Hofn.jpg",
     "width": 1200,
     "height": 800,
-    "created_at": "2017-03-29T18:04:27.068Z",
+    "created_at": "2019-03-29T18:04:27.068Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3092,7 +3092,7 @@
     "file": "original_images/Akranes.jpg",
     "width": 1200,
     "height": 800,
-    "created_at": "2017-03-29T18:08:27.770Z",
+    "created_at": "2019-03-29T18:08:27.770Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3112,7 +3112,7 @@
     "file": "original_images/muddy_waters_hUPkmSW.jpg",
     "width": 611,
     "height": 672,
-    "created_at": "2017-03-31T06:36:23.486Z",
+    "created_at": "2019-03-31T06:36:23.486Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3132,7 +3132,7 @@
     "file": "original_images/howlin.jpg",
     "width": 300,
     "height": 294,
-    "created_at": "2017-04-01T07:30:10.713Z",
+    "created_at": "2019-04-01T07:30:10.713Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3152,7 +3152,7 @@
     "file": "original_images/lightnin_hopkins.jpg",
     "width": 150,
     "height": 162,
-    "created_at": "2017-04-01T07:31:21.251Z",
+    "created_at": "2019-04-01T07:31:21.251Z",
     "uploaded_by_user": [
       "admin"
     ],
@@ -3401,7 +3401,7 @@
     "image": 21,
     "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Yeasts are eukaryotic, single-celled microorganisms classified as members of the fungus kingdom. The yeast lineage[which?] originated hundreds of millions of years ago, and 1,500 species are currently identified.[1][2][3] They are estimated to constitute 1% of all described fungal species.[4] Yeasts are unicellular organisms which evolved from multicellular ancestors,[5] with some species having the ability to develop multicellular characteristics by forming strings of connected budding cells known as pseudohyphae or false hyphae.[6] Yeast sizes vary greatly, depending on species and environment, typically measuring 3\\u20134 \\u00b5m in diameter, although some yeasts can grow to 40 \\u00b5m in size.[7] Most yeasts reproduce asexually by mitosis, and many do so by the asymmetric division process known as budding.</p><h3>Contrast with Molds</h3><p>Yeasts, with their single-celled growth habit, can be contrasted with molds, which grow hyphae. Fungal species that can take both forms (depending on temperature or other conditions) are called dimorphic fungi (\\\"dimorphic\\\" means \\\"having two forms\\\").<br/></p><p>By fermentation, the yeast species Saccharomyces cerevisiae converts carbohydrates to carbon dioxide and alcohols \\u2013 for thousands of years the carbon dioxide has been used in baking and the alcohol in alcoholic beverages.[8] It is also a centrally important model organism in modern cell biology research, and is one of the most thoroughly researched eukaryotic microorganisms. Researchers have used it to gather information about the biology of the eukaryotic cell and ultimately human biology.[9] Other species of yeasts, such as Candida albicans, are opportunistic pathogens and can cause infections in humans. Yeasts have recently been used to generate electricity in microbial fuel cells,[10] and produce ethanol for the biofuel industry.<br/></p><p>Yeasts do not form a single taxonomic or phylogenetic grouping. The term \\\"yeast\\\" is often taken as a synonym for Saccharomyces cerevisiae,[11] but the phylogenetic diversity of yeasts is shown by their placement in two separate phyla: the Ascomycota and the Basidiomycota. The budding yeasts (\\\"true yeasts\\\") are classified in the order Saccharomycetales,[12] within the phylum Ascomycota.<br/></p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 39, \"attribution\": \"Creative Commons\", \"caption\": \"Raised Yummy\"}}]",
     "subtitle": "The art of cultivating yeast",
-    "date_published": "2017-01-12"
+    "date_published": "2019-01-12"
   }
 },
 {
@@ -3412,7 +3412,7 @@
     "image": 22,
     "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Heat is <b>gradually</b> transferred \\\"from the surface of cakes, cookies, and breads to their centre. As heat travels through it transforms batters and doughs into baked goods with a firm dry crust and a softer centre\\\".[2] Baking can be combined with grilling to produce a hybrid barbecue variant by using both methods simultaneously, or one after the other. Baking is related to barbecuing because the concept of the masonry oven is similar to that of a smoke pit.</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 24, \"attribution\": \"Creative Commons\", \"caption\": \"Soda Bread\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Because of historical social and familial roles,\\u00a0<a href=\\\"https://en.wikipedia.org/wiki/Baking\\\">baking</a>\\u00a0has traditionally been performed at home by women for domestic consumption and by men in bakeries and restaurants for local consumption. When production was industrialized, baking was automated by machines in large factories. The art of baking remains a fundamental skill and is important for nutrition, as baked goods, especially breads, are a common but important food, both from an economic and cultural point of view. A person who prepares baked goods as a profession is called a baker.</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 12, \"attribution\": \"\", \"caption\": \"\"}}]",
     "subtitle": "The art of baking",
-    "date_published": "2017-02-14"
+    "date_published": "2019-02-14"
   }
 },
 {
@@ -3423,7 +3423,7 @@
     "image": 23,
     "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Four grain types dominated in the Nordic countries: barley and rye are the oldest; wheat and oats are more recent. During the Iron Age (500 AD \\u2013 1050 AD), rye became the most commonly used grain, followed by barley and oats. Rye was also the most commonly used grain for bread up until the beginning of the 20th century. Today, older grain types such as emmer and spelt are once again being cultivated and new bread types are being developed from these grains.</p><p>Archaeological finds in Denmark indicate use of the two triticum (wheat) species, emmer and einkorn, during the Mesolithic Period (8900 BC \\u2013 3900 BC). There is no direct evidence of bread-making, but cereals have been crushed, cooked and served as porridge since at least 4,200 BC. During the Neolithic Period (3900 BC \\u2013 1800 BC), when agriculture was introduced, barley seems to have taken over to some extent, and ceramic plates apparently used for baking are found. Moulded cereals, with water added to make a dough and baked or fried in the shape of bread, are known as burial gifts in Iron Age graves (200 AD onwards) in the M\\u00e4lardalen area of central Sweden. However, it is not certain that this bread was eaten; it could just have been a burial gift. During the Bronze Age (1800 BC \\u2013 500 AD), oats and the triticum species spelt seem to have been the most commonly used grains, and we see the first real ovens, probably used for baking small loaves and perhaps the first bread (probably around 400 AD).</p><p><br/></p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 42, \"attribution\": \"Creative Commons\", \"caption\": \"Baking Soda\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Scandinavian soldiers in Roman times apparently learned baking techniques when working as mercenaries in the Roman army (200\\u2013400 AD). They subsequently took the technique home with them to show that they had been employed in high status work on the continent[citation needed]. Early Christian traditions promoted an interest in bread. Culturally, German traditions have influenced most of the bread types in the Nordic countries. In the eastern part of Finland, there is a cultural link to Russia and Slavic bread traditions.</p><p>In the Nordic countries, bread was the main part of a meal until the late 18th century. Four different bread regions can be found in the Nordic area in the late 19th century. In the south, soft rye bread dominated. Further north came crisp bread, usually baked with rye, then thin and crispy barley bread. In the far north, soft barley loaves dominated. During the 19th century, potatoes began to become the centrepiece of meals and bread was put aside as an extra source of carbohydrates in a meal. Bread still retained its key function for breakfast, as the open sandwich is a starter for most Nordic people today and potatoes are used as a centrepiece in lunches and dinners.</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 14, \"attribution\": \"Creative Commons\", \"caption\": \"Fresh baked\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>A history of Nordic bread from around 1000 AD and some contemporary types and bread innovations is presented below. Countries are presented in alphabetic order (Denmark, Finland, Iceland, Norway and Sweden). The names of the bread types are mostly given in both the contemporary national language and in English.</p>\"}]",
     "subtitle": "Viking bakeries and Norse donuts",
-    "date_published": "2017-03-21"
+    "date_published": "2019-03-21"
   }
 },
 {
@@ -3434,7 +3434,7 @@
     "image": 42,
     "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Since it has long been known and is widely used, the salt has many related names such as baking soda, bread soda, cooking soda, and bicarbonate of soda. In colloquial usage, the names sodium bicarbonate and bicarbonate of soda are often truncated. Forms such as sodium bicarb, bicarb soda, bicarbonate, bicarb, or even bica are common. The word saleratus, from Latin <i>sal \\u00e6ratus</i> meaning \\\"aerated salt\\\", was widely used in the 19th century for both sodium bicarbonate and potassium bicarbonate.</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 15, \"attribution\": \"Creative Commons\", \"caption\": \"Fresh baked\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>The prefix, bi, in bicarbonate comes from an outdated naming system and is based on the observation that there is twice as much carbonate (CO3) per sodium in\\u00a0<a href=\\\"https://en.wikipedia.org/wiki/Sodium_bicarbonate\\\">sodium bicarbonate</a>\\u00a0(NaHCO3) as there is carbonate per sodium in sodium carbonate (Na2CO3) and other carbonates. The modern way of analyzing the situation based on the exact chemical composition (which was unknown when the name sodium bicarbonate was coined) says this the other way around: there is half as much sodium in NaHCO3 as in Na2CO3 (Na versus Na2).</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 37, \"attribution\": \"Creative Commons\", \"caption\": \"Cornucopia of Breads\"}}]",
     "subtitle": "The ingredients of traditional soda bread are flour, bread soda, salt, and buttermilk.",
-    "date_published": "2017-02-08"
+    "date_published": "2019-02-08"
   }
 },
 {
@@ -3445,7 +3445,7 @@
     "image": 25,
     "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich breads are produced in many varieties, such as white, whole wheat, sourdough, rye, multigrain and others. Sandwich bread may be formulated to slice easily,[8] cleanly or uniformly, and may have a fine crumb (the soft, inner part of bread) and a light texture.[4] Sandwich bread may be designed to have a balanced proportion of crumb and crust, whereby the bread holds and supports fillings in place and reduces drips and messiness. <a href=\\\"https://en.wikipedia.org/wiki/Sandwich_bread\\\">Some may be designed</a> to not become crumbly, hardened, dried or have too squishy a texture.</p>\"}, {\"type\": \"block_quote\", \"value\": {\"attribute_name\": \"Jim Davis\", \"text\": \"Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.\"}}, {\"type\": \"image_block\", \"value\": {\"image\": 35, \"attribution\": \"Creative Commons\", \"caption\": \"Belgian Waffle\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich bread can refer to cross-sectionally square, sliced white and wheat bread, which has been described as \\\"perfectly designed for holding square luncheon meat\\\".[10] The bread used for preparing finger sandwiches is sometimes referred to as sandwich bread.[10] Pan de molde is a sandwich loaf.[11][12] Some sandwich breads are designed for use in the creation of specific types of sandwiches, such as the submarine sandwich.[13] For barbecuing, use of a high-quality white sandwich bread has been described as suitable for toasting over a fire.[14] Gluten-free sandwich bread may be prepared using gluten-free flour, teff flour.[15][16] and other ingredients.<br/></p><p>In the 1930s in the United States, the term sandwich loaf referred to sliced bread.[10] In contemporary times, U.S. consumers sometimes refer to white bread such as Wonder Bread as sandwich bread and sandwich loaf.[1] Wonder Bread produced and marketed a bread called Wonder Round sandwich bread, which was designed to be used with round-shaped cold cuts and other fillings such as eggs and hamburgers, but it was discontinued due to low consumer demand.[17] American sandwich breads have historically included some fat derived from the use of milk or oil to enrich the bread.</p>\"}]",
     "subtitle": "Innovation in the brick oven",
-    "date_published": "2017-02-02"
+    "date_published": "2019-02-02"
   }
 },
 {
@@ -3456,7 +3456,7 @@
     "image": 43,
     "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Despite its name, it is in fact a cake, and not a pie.[2] The dessert acquired its name when cakes and pies were cooked in the same pans, and the words were used interchangeably.[3] In the latter part of the 19th century, this type of cake was variously called a \\\"cream pie\\\", a \\\"chocolate cream pie\\\", or a \\\"custard cake\\\".[3]</p><p>Owners of the Parker House Hotel in Boston claim that the Boston cream pie was first created at the hotel by Armenian-French chef M. Sanzian in 1856.[4] Called a \\\"Chocolate Cream Pie\\\", this cake consisted of two layers of French butter sponge cake filled with cr\\u00e8me p\\u00e2tissi\\u00e8re and brushed with a rum syrup, its side coated with cr\\u00e8me p\\u00e2tissi\\u00e8re overlain with toasted sliced almonds, and the top coated with chocolate fondant.[5] However, historians dispute this claim to primacy; while this cake may have been served then, there is no specific contemporaneous evidence of it, and custard-filled cake was already popular at that time.[3]</p>\"}, {\"type\": \"image_block\", \"value\": {\"image\": 15, \"attribution\": \"Creative Commons\", \"caption\": \"Central Bakery\"}}, {\"type\": \"paragraph_block\", \"value\": \"<p>The cake is likely derived from the Washington pie, a two-layer yellow cake filled with jam and topped with confectioner's sugar, for which pastry cream of custard eventually replaced the jam, and a chocolate glaze replaced the confectioner's sugar.[2] Today, the cake is topped with a chocolate glaze (such as ganache) and sometimes powdered sugar or a cherry.</p><p>The name first appeared in the 1872 Methodist Almanac.[3] Another early printed use of the term \\\"Boston cream pie\\\" occurred in the Granite Iron Ware Cook Book, printed in 1878.[2] The earliest known recipe of the modern variant was printed in Miss Parloa's Kitchen Companion in 1887 as \\\"Chocolate Cream Pie\\\".[2]</p>\"}]",
     "subtitle": "Banana toffee chocolate pie?",
-    "date_published": "2017-02-24"
+    "date_published": "2019-02-24"
   }
 },
 {
