@@ -7,6 +7,21 @@ The demo site is designed to provide examples of common features and recipes to 
 
 Note we do _not_ recommend using this project to start your own site - the demo is intended to be a springboard to get you started. Feel free to copy code from the demo into your own project.
 
+### Wagtail Features Demonstrated in This Demo
+
+This demo is aimed primarily at developers wanting to learn more about the internals of Wagtail, and assumes you'll be reading its source code. After browsing the features, pay special attention to code we've used for:
+
+-   Dividing a project up into multiple apps
+-   Custom content models and "contexts" in the "breads" and "locations" apps
+-   A typical weblog in the "blog" app
+-   Example of using a "base" app to contain misc additional functionality (e.g. Contact Form, About, etc.)
+-   "StandardPage" model using mixins borrowed from other apps
+-   Example of customizing the Wagtail Admin via _wagtail_hooks_
+-   Example of using the Wagtail "snippets" system to represent bread categories, countries and ingredients
+-   Example of a custom "Galleries" feature that pulls in images used in other content types in the system
+-   Example of creating ManyToMany relationships via the Ingredients feature on BreadPage
+-   Lots more
+
 **Document contents**
 
 - [Installation](#installation)
