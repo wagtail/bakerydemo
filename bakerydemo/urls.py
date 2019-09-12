@@ -18,7 +18,7 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
 
-    url('^sitemap\.xml$', sitemap),
+    url(r'^sitemap\.xml$', sitemap),
     url(r'^api/v2/', api_router.urls),
 ]
 
@@ -36,8 +36,8 @@ if settings.DEBUG:
         url(
             r'^favicon\.ico$', RedirectView.as_view(
                 url=settings.STATIC_URL + 'img/bread-favicon.ico'
-                )
             )
+        )
     ]
 
     # Add views for testing 404 and 500 templates

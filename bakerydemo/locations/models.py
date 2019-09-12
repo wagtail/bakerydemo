@@ -149,7 +149,7 @@ class LocationPage(Page):
                    Right click Google Maps and select 'What\'s Here'",
         validators=[
             RegexValidator(
-                regex='^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$',
+                regex=r'^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$',
                 message='Lat Long must be a comma-separated numeric lat and long',
                 code='invalid_lat_long'
             ),

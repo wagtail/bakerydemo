@@ -5,7 +5,7 @@ import string
 import dj_database_url
 import django_cache_url
 
-from .base import *
+from .base import *  # noqa: F403
 
 DEBUG = os.getenv('DJANGO_DEBUG', 'off') == 'on'
 
