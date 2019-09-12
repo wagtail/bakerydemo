@@ -71,7 +71,7 @@ class People(index.Indexed, ClusterableModel):
         # file can't be found.
         try:
             return self.image.get_rendition('fill-50x50').img_tag()
-        except:
+        except:  # noqa: E722 FIXME: remove bare 'except:'
             return ''
 
     def __str__(self):
@@ -154,12 +154,12 @@ class HomePage(Page):
     hero_text = models.CharField(
         max_length=255,
         help_text='Write an introduction for the bakery'
-        )
+    )
     hero_cta = models.CharField(
         verbose_name='Hero CTA',
         max_length=255,
         help_text='Text to display on Call to Action'
-        )
+    )
     hero_cta_link = models.ForeignKey(
         'wagtailcore.Page',
         null=True,
@@ -259,8 +259,8 @@ class HomePage(Page):
             MultiFieldPanel([
                 FieldPanel('hero_cta'),
                 PageChooserPanel('hero_cta_link'),
-                ])
-            ], heading="Hero section"),
+            ]),
+        ], heading="Hero section"),
         MultiFieldPanel([
             ImageChooserPanel('promo_image'),
             FieldPanel('promo_title'),
@@ -271,15 +271,15 @@ class HomePage(Page):
             MultiFieldPanel([
                 FieldPanel('featured_section_1_title'),
                 PageChooserPanel('featured_section_1'),
-                ]),
+            ]),
             MultiFieldPanel([
                 FieldPanel('featured_section_2_title'),
                 PageChooserPanel('featured_section_2'),
-                ]),
+            ]),
             MultiFieldPanel([
                 FieldPanel('featured_section_3_title'),
                 PageChooserPanel('featured_section_3'),
-                ])
+            ]),
         ], heading="Featured homepage sections", classname="collapsible")
     ]
 

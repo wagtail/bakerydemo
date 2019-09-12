@@ -17,6 +17,7 @@ script:
 
   - timeout $GREP_TIMEOUT grep -m 1 'Running migrations' <(docker-compose logs --follow app 2>&1)
   - timeout $GREP_TIMEOUT grep -m 1 'spawned uWSGI http 1' <(docker-compose logs --follow app 2>&1)
+  - docker-compose run app /bin/sh -c "/venv/bin/pip install flake8 && /venv/bin/flake8 ."
   - docker-compose run app /venv/bin/python /code/manage.py check
   - docker-compose run app /venv/bin/python /code/manage.py makemigrations --check
 

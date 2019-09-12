@@ -74,7 +74,7 @@ class BlogPage(Page):
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField(
         "Date article published", blank=True, null=True
-        )
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('subtitle', classname="full"),
@@ -115,7 +115,7 @@ class BlogPage(Page):
         """
         tags = self.tags.all()
         for tag in tags:
-            tag.url = '/'+'/'.join(s.strip('/') for s in [
+            tag.url = '/' + '/'.join(s.strip('/') for s in [
                 self.get_parent().url,
                 'tags',
                 tag.slug
@@ -178,8 +178,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
     # related BlogPages for a given Tag or redirect back to the BlogIndexPage.
     # More information on RoutablePages is at
     # http://docs.wagtail.io/en/latest/reference/contrib/routablepage.html
-    @route('^tags/$', name='tag_archive')
-    @route('^tags/([\w-]+)/$', name='tag_archive')
+    @route(r'^tags/$', name='tag_archive')
+    @route(r'^tags/([\w-]+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
 
         try:
