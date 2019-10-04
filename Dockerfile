@@ -60,7 +60,7 @@ ENV UWSGI_STATIC_MAP="/media/=/code/bakerydemo/media/"
 RUN DATABASE_URL=postgres://none REDIS_URL=none /venv/bin/python manage.py collectstatic --noinput
 
 # make sure static files are writable by uWSGI process
-RUN chown -R 1000:2000 /code/bakerydemo/media
+RUN mkdir -p /code/bakerydemo/media/images && chown -R 1000:2000 /code/bakerydemo/media
 
 # mark the destination for images as a volume
 VOLUME ["/code/bakerydemo/media/images/"]
