@@ -11,6 +11,7 @@ RUN set -ex \
         libpq5 \
         mime-support \
         postgresql-client \
+        procps \
         zlib1g \
     " \
     && seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} \
