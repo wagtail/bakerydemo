@@ -4,8 +4,8 @@
 elasticsearch==2.4.1
 # Additional dependencies for Heroku deployment
 dj-database-url==0.4.1
-uwsgi==2.0.17.1
-psycopg2==2.7.3.1
+uwsgi>=2.0.17,<2.1
+psycopg2>=2.7,<3.0
 whitenoise==3.2.2
 boto3==1.9.189
 django-storages==1.7.1
