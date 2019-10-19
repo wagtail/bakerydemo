@@ -100,6 +100,15 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
 
+if 'GS_BUCKET_NAME' in os.environ:
+    GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME')
+    GS_PROJECT_ID = os.getenv('GS_PROJECT_ID')
+    GS_DEFAULT_ACL = 'publicRead'
+    GS_AUTO_CREATE_BUCKET = True
+
+    INSTALLED_APPS.append('storages')
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
