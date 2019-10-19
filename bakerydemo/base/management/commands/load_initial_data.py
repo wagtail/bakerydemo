@@ -12,8 +12,9 @@ class Command(BaseCommand):
     def _copy_files(self, local_storage, path):
         """
         Recursively copy files from local_storage to default_storage. Used
-        to automatically bootstrap buckets on cloud providers with the
-        images linked from the initial data (and included in MEDIA_ROOT).
+        to automatically bootstrap the media directory (both locally and on
+        cloud providers) with the images linked from the initial data (and
+        included in MEDIA_ROOT).
         """
         directories, file_names = local_storage.listdir(path)
         for directory in directories:
