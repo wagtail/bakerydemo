@@ -98,7 +98,7 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
 
     INSTALLED_APPS.append('storages')
     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 if 'GS_BUCKET_NAME' in os.environ:
     GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME')
