@@ -23,13 +23,12 @@ class Command(BaseCommand):
                 default_storage.save(path + file_name, file_)
 
     def handle(self, **options):
-        if not isinstance(default_storage, FileSystemStorage):
-            print("It looks like you're using a non-local file storage. Copying media files to remote...")
-            local_storage = FileSystemStorage(settings.MEDIA_ROOT)
-            self._copy_files(local_storage, '')  # file storage paths are relative
-
         fixtures_dir = os.path.join(settings.PROJECT_DIR, 'base', 'fixtures')
         fixture_file = os.path.join(fixtures_dir, 'bakerydemo.json')
+
+        print("Copying media files to configured storage...")
+        local_storage = FileSystemStorage(os.path.join(fixtures_dir, 'media'))
+        self._copy_files(local_storage, '')  # file storage paths are relative
 
         # Wagtail creates default Site and Page instances during install, but we already have
         # them in the data load. Remove the auto-generated ones.
