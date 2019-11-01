@@ -57,7 +57,7 @@ su - $DEV_USER -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
 cat << EOF >> /home/$DEV_USER/.bashrc
 export PYTHONPATH=$PROJECT_DIR
 
-alias dj="./manage.py"
+alias dj="$PROJECT_DIR/manage.py"
 alias djrun="dj runserver 0.0.0.0:8000"
 
 source $VIRTUALENV_DIR/bin/activate
