@@ -9,7 +9,6 @@
 /data
 .~*
 common/CACHE
-bakerydemo/media/images/*
 bakerydemo/settings/local.py
 bakerydemodb
 __pycache__

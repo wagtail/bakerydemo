@@ -22,6 +22,9 @@ script:
   - docker-compose run app /bin/sh -c "/venv/bin/pip install flake8 && /venv/bin/flake8 ."
   - docker-compose run app /venv/bin/python /code/manage.py check
   - docker-compose run app /venv/bin/python /code/manage.py makemigrations --check
+  - docker-compose run app /venv/bin/python /code/manage.py load_initial_data
+  # Check for broken image links (wget will have a non-zero exit code if it encounters a 404)
+  - wget -m http://localhost:8000
 
 after_script:
   - docker-compose logs

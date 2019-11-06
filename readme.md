@@ -188,10 +188,8 @@ environment, set the same environment variables there using the method appropria
 
 Once Heroku restarts your application or your Docker container is refreshed, you should have persistent media storage!
 
-To copy the initial data included with this demo to the S3 bucket (assuming you ran `./manage.py load_initial_data` per
-the above), you can use the AWS CLI included with the requirements:
-
-    heroku run aws s3 sync bakerydemo/media/original_images/ s3://<bucket-name>/original_images/
+Running `./manage.py load_initial_data` will copy local images to S3, but if you set up S3 after you ran it the first
+time you might need to run it again.
 
 # Next steps
 
