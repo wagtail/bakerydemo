@@ -1,0 +1,100 @@
+/* open-sans-300 - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Open Sans Light'), local('OpenSans-Light'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-300italic - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Open Sans Light Italic'), local('OpenSans-LightItalic'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-300italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-regular - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-italic - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-600 - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-600italic - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: local('Open Sans SemiBold Italic'), local('OpenSans-SemiBoldItalic'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-600italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-600italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-700 - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-700italic - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-800 - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* open-sans-800italic - vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 800;
+    src: local('Open Sans ExtraBold Italic'), local('OpenSans-ExtraBoldItalic'),
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-800italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/open-sans-v17-vietnamese_greek_cyrillic-ext_cyrillic_latin_greek-ext_latin-ext-800italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  

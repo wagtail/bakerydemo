@@ -1,0 +1,40 @@
+/* lora-regular - vietnamese_cyrillic-ext_cyrillic_latin_latin-ext */
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lora Regular'), local('Lora-Regular'),
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* lora-italic - vietnamese_cyrillic-ext_cyrillic_latin_latin-ext */
+  @font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lora Italic'), local('Lora-Italic'),
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* lora-700 - vietnamese_cyrillic-ext_cyrillic_latin_latin-ext */
+  @font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lora Bold'), local('Lora-Bold'),
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* lora-700italic - vietnamese_cyrillic-ext_cyrillic_latin_latin-ext */
+  @font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/lora-v14-vietnamese_cyrillic-ext_cyrillic_latin_latin-ext-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
