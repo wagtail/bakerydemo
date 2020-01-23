@@ -25,14 +25,17 @@ class BreadIngredientAdmin(ModelAdmin):
     # These stub classes allow us to put various models into the custom "Wagtail Bakery" menu item
     # rather than under the default Snippets section.
     model = BreadIngredient
+    search_fields = ('name', )
 
 
 class BreadTypeAdmin(ModelAdmin):
     model = BreadType
+    search_fields = ('title', )
 
 
 class BreadCountryAdmin(ModelAdmin):
     model = Country
+    search_fields = ('title', )
 
 
 class BreadModelAdminGroup(ModelAdminGroup):
@@ -47,10 +50,13 @@ class PeopleModelAdmin(ModelAdmin):
     menu_label = 'People'  # ditch this to use verbose_name_plural from model
     menu_icon = 'fa-users'  # change as required
     list_display = ('first_name', 'last_name', 'job_title', 'thumb_image')
+    list_filter = ('job_title', )
+    search_fields = ('first_name', 'last_name', 'job_title')
 
 
 class FooterTextAdmin(ModelAdmin):
     model = FooterText
+    search_fields = ('body',)
 
 
 class BakeryModelAdminGroup(ModelAdminGroup):
