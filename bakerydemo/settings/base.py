@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'media',
     'bakerydemo.base',
     'bakerydemo.blog',
     'bakerydemo.breads',
@@ -177,3 +178,6 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "bakerydemo"
+
+WAGTAILDOCS_DOCUMENT_MODEL = 'media.Document'
+WAGTAILIMAGES_IMAGE_MODEL = 'media.Image'

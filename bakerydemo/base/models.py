@@ -42,7 +42,7 @@ class People(index.Indexed, ClusterableModel):
     job_title = models.CharField("Job title", max_length=254)
 
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -114,7 +114,7 @@ class StandardPage(Page):
         help_text='Text to describe the page',
         blank=True)
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -144,7 +144,7 @@ class HomePage(Page):
 
     # Hero section of HomePage
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -177,7 +177,7 @@ class HomePage(Page):
 
     # Promo section of the HomePage
     promo_image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -299,7 +299,7 @@ class GalleryPage(Page):
         help_text='Text to describe the page',
         blank=True)
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -345,7 +345,7 @@ class FormField(AbstractFormField):
 
 class FormPage(AbstractEmailForm):
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,

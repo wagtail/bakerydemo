@@ -91,7 +91,7 @@ class BreadPage(Page):
         help_text='Text to describe the page',
         blank=True)
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -160,7 +160,7 @@ class BreadsIndexPage(Page):
         help_text='Text to describe the page',
         blank=True)
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'media.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
