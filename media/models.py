@@ -12,6 +12,7 @@ class Image(AbstractImage):
         'file',
         'collection',
         'tags',
+        'default_alt_text'
         'focal_point_x',
         'focal_point_y',
         'focal_point_width',
@@ -19,6 +20,14 @@ class Image(AbstractImage):
     )
 
     tags = TaggableManager(help_text=None, blank=True, verbose_name=_('tags'), related_name='images')
+    generic_alt_text = models.CharField(max_length=600, verbose_name=_('default alt text'), blank=True)
+
+    @property
+    def default_alt_text(self):
+        if self.generic_alt_text:
+            return self.generic_alt_text
+        else:
+            return super().default_alt_text
 
     class Meta:
         verbose_name = _('image')
@@ -27,6 +36,10 @@ class Image(AbstractImage):
 
 class Rendition(AbstractRendition):
     image = models.ForeignKey(Image, related_name='renditions', on_delete=models.CASCADE)
+
+    @property
+    def alt(self):
+        return self.image.default_alt_text
 
     class Meta:
         unique_together = (
