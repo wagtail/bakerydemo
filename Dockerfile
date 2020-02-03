@@ -45,7 +45,7 @@ EXPOSE 8000
 ENV DJANGO_SETTINGS_MODULE=bakerydemo.settings.production DJANGO_DEBUG=off
 
 # Tell uWSGI where to find your wsgi file:
-ENV UWSGI_WSGI_FILE=bakerydemo/wsgi_production.py
+ENV UWSGI_WSGI_FILE=bakerydemo/wsgi.py
 
 # Base uWSGI configuration (you shouldn't need to change these):
 ENV UWSGI_VIRTUALENV=/venv UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_HTTP_AUTO_CHUNKED=1 UWSGI_HTTP_KEEPALIVE=1 UWSGI_UID=1000 UWSGI_GID=2000 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy
