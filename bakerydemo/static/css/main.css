@@ -441,14 +441,6 @@ li.has-submenu a.allow-toggle {
   position: relative;
   z-index: 3;
 }
-.breadcrumb-container + content > .hero {
-  margin-top: -36px;
-}
-@media (max-width: 768px) {
-  .breadcrumb-container + content > .hero {
-    margin-top: 0px;
-  }
-}
 .breadcrumb {
   background-color: transparent;
   color: #ccc;
