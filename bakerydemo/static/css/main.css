@@ -161,6 +161,11 @@ img {
   display: block;
   width: 100%;
 }
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 /* Generic detail page styles */
 .intro {
