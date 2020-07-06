@@ -13,7 +13,7 @@
   "model": "base.people",
   "pk": 2,
   "fields": {
-    "first_name": "Howling",
+    "first_name": "Howlin'",
     "last_name": "Wolf",
     "job_title": "Director",
     "image": 52
@@ -23,7 +23,7 @@
   "model": "base.people",
   "pk": 3,
   "fields": {
-    "first_name": "Lightning",
+    "first_name": "Lightnin'",
     "last_name": "Hopkins",
     "job_title": "Designer",
     "image": 53
@@ -3068,7 +3068,7 @@
   "pk": 48,
   "fields": {
     "collection": 1,
-    "title": "Hofn from above",
+    "title": "Höfn from above",
     "file": "original_images/Hofn.jpg",
     "width": 1200,
     "height": 800,
@@ -3088,7 +3088,7 @@
   "pk": 49,
   "fields": {
     "collection": 1,
-    "title": "Arkranes",
+    "title": "Akranes",
     "file": "original_images/Akranes.jpg",
     "width": 1200,
     "height": 800,
@@ -3128,7 +3128,7 @@
   "pk": 52,
   "fields": {
     "collection": 3,
-    "title": "Howlin Wolf",
+    "title": "Howlin' Wolf",
     "file": "original_images/howlin.jpg",
     "width": 300,
     "height": 294,
