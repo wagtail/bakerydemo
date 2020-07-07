@@ -5,6 +5,7 @@
 *.retry
 .env
 .idea
+.vscode
 *~
 /logs
 /data
