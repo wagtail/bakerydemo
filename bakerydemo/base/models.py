@@ -14,7 +14,7 @@ from wagtail.admin.edit_handlers import (
     StreamFieldPanel,
 )
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Collection, Page
+from wagtail.core.models import Collection, Page, TranslatableMixin
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
@@ -24,7 +24,7 @@ from .blocks import BaseStreamBlock
 
 
 @register_snippet
-class People(index.Indexed, ClusterableModel):
+class People(index.Indexed, TranslatableMixin, ClusterableModel):
     """
     A Django model to store People objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -83,7 +83,7 @@ class People(index.Indexed, ClusterableModel):
 
 
 @register_snippet
-class FooterText(models.Model):
+class FooterText(TranslatableMixin, models.Model):
     """
     This provides editable text for the site footer. Again it uses the decorator
     `register_snippet` to allow it to be accessible via the admin. It is made
@@ -331,7 +331,7 @@ class GalleryPage(Page):
     subpage_types = []
 
 
-class FormField(AbstractFormField):
+class FormField(TranslatableMixin, AbstractFormField):
     """
     Wagtailforms is a module to introduce simple forms on a Wagtail site. It
     isn't intended as a replacement to Django's form support but as a quick way

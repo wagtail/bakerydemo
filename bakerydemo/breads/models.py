@@ -8,7 +8,7 @@ from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, StreamFieldPanel
 )
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
+from wagtail.core.models import Page, TranslatableMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -17,7 +17,7 @@ from bakerydemo.base.blocks import BaseStreamBlock
 
 
 @register_snippet
-class Country(models.Model):
+class Country(TranslatableMixin, models.Model):
     """
     A Django model to store set of countries of origin.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -38,7 +38,7 @@ class Country(models.Model):
 
 
 @register_snippet
-class BreadIngredient(models.Model):
+class BreadIngredient(TranslatableMixin, models.Model):
     """
     Standard Django model that is displayed as a snippet within the admin due
     to the `@register_snippet` decorator. We use a new piece of functionality
@@ -60,7 +60,7 @@ class BreadIngredient(models.Model):
 
 
 @register_snippet
-class BreadType(models.Model):
+class BreadType(TranslatableMixin, models.Model):
     """
     A Django model to define the bread type
     It uses the `@register_snippet` decorator to allow it to be accessible
