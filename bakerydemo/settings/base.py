@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'bakerydemo.locations',
     'bakerydemo.search',
 
+    'wagtail_localize',
+
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
     'wagtail.sites',
+    'wagtail.locales',
     'wagtail.users',
     'wagtail.snippets',
     'wagtail.documents',
@@ -75,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
@@ -134,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -176,3 +180,10 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "bakerydemo"
+
+LANGUAGES = [
+    ('en', "English"),
+    ('fr', "French"),
+]
+
+WAGTAIL_I18N_ENABLED = True

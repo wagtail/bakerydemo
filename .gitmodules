@@ -1,0 +1,6 @@
+[submodule "wagtail"]
+	path = wagtail
+	url = https://github.com/kaedroho/wagtail.git
+[submodule "wagtail-localize"]
+	path = wagtail-localize
+	url = https://github.com/wagtail/wagtail-localize.git
