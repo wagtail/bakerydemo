@@ -11,6 +11,7 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPane
 from wagtail.core.models import Orderable, Page
 from wagtail.search import index
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail_localize.fields import TranslatableField, SynchronizedField
 
 from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.locations.choices import DAY_CHOICES
@@ -99,6 +100,14 @@ class LocationsIndexPage(Page):
         help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
 
+    translatable_fields = [
+        TranslatableField("title"),
+        TranslatableField("seo_title"),
+        TranslatableField("search_description"),
+        TranslatableField("introduction"),
+        SynchronizedField("image"),
+    ]
+
     # Only LocationPage objects can be added underneath this index page
     subpage_types = ['LocationPage']
 
@@ -171,6 +180,18 @@ class LocationPage(Page):
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
+    ]
+
+    translatable_fields = [
+        TranslatableField("title"),
+        TranslatableField("seo_title"),
+        TranslatableField("search_description"),
+        TranslatableField("introduction"),
+        SynchronizedField("image"),
+        TranslatableField("body"),
+        SynchronizedField("address"),
+        SynchronizedField("lat_long"),
+        # SynchronizedField('hours_of_operation'),
     ]
 
     def __str__(self):

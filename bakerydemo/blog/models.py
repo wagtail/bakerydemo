@@ -16,6 +16,7 @@ from wagtail.core.models import Page, Orderable, TranslatableMixin
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail_localize.fields import TranslatableField, SynchronizedField
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -36,6 +37,10 @@ class BlogPeopleRelationship(Orderable, TranslatableMixin, models.Model):
     )
     panels = [
         SnippetChooserPanel('people')
+    ]
+
+    translatable_fields = [
+        TranslatableField('people'),
     ]
 
 
@@ -90,6 +95,18 @@ class BlogPage(Page):
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
+    ]
+
+    translatable_fields = [
+        TranslatableField('title'),
+        TranslatableField('seo_title'),
+        TranslatableField('search_description'),
+        TranslatableField('subtitle'),
+        TranslatableField('introduction'),
+        SynchronizedField('image'),
+        TranslatableField('body'),
+        #SynchronizedField('tags'),
+        SynchronizedField('date_published'),
     ]
 
     def authors(self):
@@ -154,6 +171,14 @@ class BlogIndexPage(RoutablePageMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
+    ]
+
+    translatable_fields = [
+        TranslatableField('title'),
+        TranslatableField('seo_title'),
+        TranslatableField('search_description'),
+        TranslatableField('introduction'),
+        SynchronizedField('image'),
     ]
 
     # Speficies that only BlogPage objects can live under this index page

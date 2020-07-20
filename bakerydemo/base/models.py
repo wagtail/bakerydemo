@@ -19,6 +19,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+from wagtail_localize.fields import TranslatableField, SynchronizedField
 
 from .blocks import BaseStreamBlock
 
@@ -65,6 +66,13 @@ class People(index.Indexed, TranslatableMixin, ClusterableModel):
         index.SearchField('last_name'),
     ]
 
+    translatable_fields = [
+        SynchronizedField('first_name'),
+        SynchronizedField('last_name'),
+        TranslatableField('job_title'),
+        SynchronizedField('image'),
+    ]
+
     @property
     def thumb_image(self):
         # Returns an empty string if there is no profile pic or the rendition
@@ -94,6 +102,10 @@ class FooterText(TranslatableMixin, models.Model):
 
     panels = [
         FieldPanel('body'),
+    ]
+
+    translatable_fields = [
+        TranslatableField('body'),
     ]
 
     def __str__(self):
@@ -128,6 +140,15 @@ class StandardPage(Page):
         FieldPanel('introduction', classname="full"),
         StreamFieldPanel('body'),
         ImageChooserPanel('image'),
+    ]
+
+    translatable_fields = [
+        TranslatableField('title'),
+        TranslatableField('seo_title'),
+        TranslatableField('search_description'),
+        TranslatableField('introduction'),
+        SynchronizedField('image'),
+        TranslatableField('body'),
     ]
 
 
@@ -283,6 +304,25 @@ class HomePage(Page):
         ], heading="Featured homepage sections", classname="collapsible")
     ]
 
+    translatable_fields = [
+        TranslatableField('title'),
+        TranslatableField('seo_title'),
+        TranslatableField('search_description'),
+        TranslatableField('hero_text'),
+        TranslatableField('hero_cta'),
+        SynchronizedField('hero_cta_link'),
+        TranslatableField('body'),
+        SynchronizedField('promo_image'),
+        TranslatableField('promo_title'),
+        TranslatableField('promo_text'),
+        TranslatableField('featured_section_1_title'),
+        SynchronizedField('featured_section_1'),
+        TranslatableField('featured_section_2_title'),
+        SynchronizedField('featured_section_2'),
+        TranslatableField('featured_section_3_title'),
+        SynchronizedField('featured_section_3'),
+    ]
+
     def __str__(self):
         return self.title
 
@@ -330,6 +370,16 @@ class GalleryPage(Page):
     # array no subpage can be added
     subpage_types = []
 
+    translatable_fields = [
+        TranslatableField('title'),
+        TranslatableField('seo_title'),
+        TranslatableField('search_description'),
+        TranslatableField('introduction'),
+        SynchronizedField('image'),
+        TranslatableField('body'),
+        SynchronizedField('collection'),
+    ]
+
 
 class FormField(TranslatableMixin, AbstractFormField):
     """
@@ -341,6 +391,15 @@ class FormField(TranslatableMixin, AbstractFormField):
     http://docs.wagtail.io/en/latest/reference/contrib/forms/index.html
     """
     page = ParentalKey('FormPage', related_name='form_fields', on_delete=models.CASCADE)
+
+    translatable_fields = [
+        TranslatableField('label'),
+        SynchronizedField('field_type'),
+        SynchronizedField('required'),
+        TranslatableField('choices'),
+        TranslatableField('default_value'),
+        TranslatableField('help_text'),
+    ]
 
 
 class FormPage(AbstractEmailForm):
@@ -368,4 +427,14 @@ class FormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+    ]
+
+    translatable_fields = [
+        TranslatableField('title'),
+        TranslatableField('seo_title'),
+        TranslatableField('search_description'),
+        SynchronizedField('image'),
+        TranslatableField('body'),
+        TranslatableField('thank_you_text'),
+        TranslatableField('form_fields'),
     ]
