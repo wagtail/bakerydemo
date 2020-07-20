@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags i18n %}
 
-{% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
+{% block title %}{% if search_results %}{% trans "Search results" %}{% else %}{% trans "Search" %}{% endif %}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -12,17 +12,17 @@
             </h1>
 
             {% if search_results %}
-                <p>You searched{% if search_query %} for “{{ search_query }}”{% endif %}</p>
+                <p>{% blocktrans with search_query=search_query %}You searched for “{{ search_query }}”{% endblocktrans %}</p>
                 <ul>
                     {% for result in search_results %}
                         <li>
                             <h4>
                                 {% if result.specific.content_type.model == "blogpage" %}
-                                    Blog post:
+                                    {% trans "Blog post:" %}
                                 {% elif result.specific.content_type.model == "locationpage" %}
-                                    Location:
+                                    {% trans "Location:" %}
                                 {% else %}
-                                    Bread
+                                    {% trans "Bread" %}
                                 {% endif %}
                                 <a href="{% pageurl result.specific %}">{{ result.specific }}</a>
                             </h4>
@@ -31,9 +31,9 @@
                     {% endfor %}
                 </ul>
             {% elif search_query %}
-                No results found
+                {% trans "No results found" %}
             {% else %}
-                You didn’t search for anything!
+                {% trans "You didn’t search for anything!" %}
             {% endif %}
         </div>
     </div>

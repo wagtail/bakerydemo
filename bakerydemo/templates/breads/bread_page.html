@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags i18n %}
 
 {% block content %}
     <div class="container bread-detail">
@@ -31,20 +31,20 @@
                         <ul class="bread-meta">
                             {% if page.origin %}
                                 <li>
-                                    <h4>Origin</h4>
+                                    <h4>{% trans "Origin" %}</h4>
                                     <p>{{ page.origin }}</p>
                                 </li>
                             {% endif %}
                             {% if page.bread_type %}
                                 <li>
-                                    <h4>Type</h4>
+                                    <h4>{% trans "Type" %}</h4>
                                     <p>{{ page.bread_type }}</p>
                                 </li>
                             {% endif %}
                             {% with ingredients=page.ingredients.all %}
                                 {% if ingredients %}
                                     <li>
-                                        <h4>Ingredients</h4>
+                                        <h4>>{% trans "Ingredients" %}</h4>
                                         <ul>
                                             {% for ingredient in ingredients %}
                                                 <li>

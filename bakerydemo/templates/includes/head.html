@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -11,7 +11,7 @@
     <title>
         {% block title %}
             {% block title_prefix %}
-                Wagtail demo bakery
+            {% trans "Wagtail demo bakery" %}
             {% endblock %}
             {% if self.seo_title %}
                 {{ self.seo_title }}
@@ -28,7 +28,7 @@
 
     <!-- Font Awesome Icons -->
     {% load wagtailfontawesome %}
-    {% fontawesome_css %}    
+    {% fontawesome_css %}
 
     <!-- Custom Fonts -->
     <link href="{% static 'css/font-alegreya.css' %}" rel="stylesheet">

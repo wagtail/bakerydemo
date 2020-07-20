@@ -1,3 +1,4 @@
+{% load i18n %}
 <form action="{% url 'search' %}" class="form-inline" method="get">
     <div class="row">
         <div class="col-sm-12">
@@ -5,7 +6,7 @@
                 <input type="text" name="query" class="form-control" />
                 <div class="input-group-btn">
                     <button type="submit" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-search"></i> Search
+                        <i class="glyphicon glyphicon-search"></i> {% trans "Search" %}
                     </button>
                 </div>
             </div>

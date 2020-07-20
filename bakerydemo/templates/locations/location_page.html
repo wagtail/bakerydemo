@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags navigation_tags %}
+{% load wagtailimages_tags navigation_tags i18n %}
 
 {% block head-extra %}
     <style>
@@ -20,9 +20,9 @@
                         <h1>{{ page.title }}</h1>
                         <p class="stand-first">
                             {% if page.is_open %}
-                                This location is currently open
+                                {% trans "This location is currently open" %}
                             {% else %}
-                                Sorry, this location is currently closed
+                                {% trans "Sorry, this location is currently closed" %}
                             {% endif %}
                         </p>
                     </div>
@@ -40,13 +40,13 @@
 
                     {% if page.operating_hours %}
                         <div class="col-md-4 col-md-offset-1 location-opening">
-                        <h3>Opening hours</h3>
+                        <h3>{% trans "Opening hours" %}</h3>
                         {% for hours in page.operating_hours %}
                             <time itemprop="openingHours" datetime="{{ hours }}" class="location-time">
                             <span class="day">{{ hours.day }}</span>:
                             <span class="hours">
                                 {% if hours.closed == True %}
-                                    Closed
+                                    {% trans "Closed" %}
                                 {% else %}
                                 {% if hours.opening_time %}
                                     {{ hours.opening_time }}
@@ -66,7 +66,7 @@
         <div class="container-flex">
             <div class="row">
                 <div class="col-md-2 col-md-offset-5 location-address">
-                    <h3>Address</h3>
+                    <h3>{% trans "Address" %</h3>
                     <address>{{ page.address|linebreaks }}</address>
                 </div>
             </div>

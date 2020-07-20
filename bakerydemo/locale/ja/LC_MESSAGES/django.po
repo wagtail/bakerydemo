@@ -1,0 +1,385 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-20 22:15+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/404.html:4
+msgid "404 - Page not found"
+msgstr "404-ページが見つかりません"
+
+#: templates/404.html:9
+msgid "Page not found"
+msgstr "ページが見つかりません"
+
+#: templates/404.html:11
+msgid "Sorry, this page could not be found."
+msgstr "このページは見つかりませんでした。"
+
+#: templates/blog/blog_index_page.html:11
+#, python-format
+msgid "Viewing all blog posts by %(tag)s"
+msgstr "%(tag)sによるすべてのブログ投稿の表示"
+
+#: templates/blog/blog_index_page.html:39
+#, python-format
+msgid "%(date_published)s by"
+msgstr "%(date_published)s by"
+
+#: templates/blog/blog_index_page.html:50
+msgid ""
+"Oh, snap. Looks like we were too busy baking to write any blog posts. Sorry."
+msgstr ""
+"ああスナップ。私たちはブログの投稿を書くのに忙しくて忙しかったようです。ごめ"
+"んなさい。"
+
+#: templates/blog/blog_page.html:36
+msgid "Tagged with:"
+msgstr "タグ付き："
+
+#: templates/breads/bread_page.html:34
+#: templates/breads/breads_index_page.html:28
+msgid "Origin"
+msgstr "原点"
+
+#: templates/breads/bread_page.html:40
+#: templates/breads/breads_index_page.html:31
+msgid "Type"
+msgstr "タイプ"
+
+#: templates/breads/bread_page.html:47
+msgid "Ingredients"
+msgstr "材料"
+
+#: templates/includes/head.html:14
+msgid "Wagtail demo bakery"
+msgstr "セキレイデモベーカリー"
+
+#: templates/includes/header.html:8
+msgid "The Wagtail Bakery"
+msgstr "ザセキレイベーカリー"
+
+#: templates/includes/header.html:9
+msgid "Mobile menu"
+msgstr "モバイルメニュー"
+
+#: templates/includes/header.html:10
+msgid "Toggle navigation"
+msgstr "ナビゲーションを切り替える"
+
+#: templates/includes/header.html:17
+msgid "Search the site"
+msgstr "サイトを検索"
+
+#: templates/includes/header.html:44
+msgid "Primary site navigation"
+msgstr "プライマリサイトナビゲーション"
+
+#: templates/includes/pagination.html:7 templates/includes/pagination.html:11
+msgid "previous"
+msgstr "前"
+
+#: templates/includes/pagination.html:17
+msgid "current"
+msgstr "現在"
+
+#: templates/includes/pagination.html:25 templates/includes/pagination.html:29
+msgid "next"
+msgstr "次"
+
+#: templates/locations/location_page.html:23
+msgid "This location is currently open"
+msgstr "この場所は現在開いています"
+
+#: templates/locations/location_page.html:25
+msgid "Sorry, this location is currently closed"
+msgstr "この場所は現在閉鎖されています"
+
+#: templates/locations/location_page.html:43
+msgid "Opening hours"
+msgstr "営業時間"
+
+#: templates/locations/location_page.html:49
+msgid "Closed"
+msgstr ""
+
+#: templates/locations/locations_index_page.html:28
+msgid "Map"
+msgstr "地図"
+
+#: templates/search/search_box.html:9 templates/search/search_results.html:4
+msgid "Search"
+msgstr "調べる"
+
+#: templates/search/search_results.html:4
+msgid "Search results"
+msgstr "の検索結果"
+
+#: templates/search/search_results.html:15
+#, python-format
+msgid "You searched for “%(search_query)s”"
+msgstr "「%(search_query)s」を検索しました"
+
+#: templates/search/search_results.html:21
+msgid "Blog post:"
+msgstr "ブログ投稿："
+
+#: templates/search/search_results.html:23
+msgid "Location:"
+msgstr "ロケーション："
+
+#: templates/search/search_results.html:25
+msgid "Bread"
+msgstr "パン"
+
+#: templates/search/search_results.html:34
+msgid "No results found"
+msgstr "結果が見つかりません"
+
+#: templates/search/search_results.html:36
+msgid "You didn’t search for anything!"
+msgstr "何も検索しませんでした！"
+
+#: templates/tags/breadcrumbs.html:11
+msgid "Home"
+msgstr "ホーム"
+
+#: templates/tags/sidebar_menu.html:11
+#: templates/tags/table_of_contents_menu.html:5
+msgid "In this section"
+msgstr "このセクションで"
+
+#: templates/tags/table_of_contents_menu.html:19
+msgid "On this page"
+msgstr "このページ"
+
+#~ msgid "Address"
+#~ msgstr "住所"
+
+#~ msgid "Translations"
+#~ msgstr "翻訳"
+
+#~ msgid ""
+#~ "\n"
+#~ "                %(counter)s language\n"
+#~ "            "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                %(counter)s languages\n"
+#~ "            "
+#~ msgstr[0] ""
+#~ "\n"
+#~ " %(counter)s 言語 \n"
+#~ "            "
+#~ msgstr[1] ""
+#~ "\n"
+#~ " %(counter)s 言語 \n"
+#~ "            "
+
+#~ msgid "Language"
+#~ msgstr "言語"
+
+#~ msgid "Page"
+#~ msgstr "ページ"
+
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#~ msgid "View draft"
+#~ msgstr "下書きを表示"
+
+#~ msgid "Edit lock"
+#~ msgstr "ロックを編集"
+
+#~ msgid "Locked"
+#~ msgstr "ロック済み"
+
+#~ msgid "Unlocked"
+#~ msgstr "ロック解除"
+
+#~ msgid "Save"
+#~ msgstr "セーブ"
+
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#~ msgid "Regions"
+#~ msgstr "地域"
+
+#~ msgid "Add a region"
+#~ msgstr "地域を追加する"
+
+#~ msgid "Add region"
+#~ msgstr "地域を追加"
+
+#~ msgid "Region '{0}' created."
+#~ msgstr "領域 ' {0} 'が作成されました。"
+
+#~ msgid "Region '{0}' updated."
+#~ msgstr "領域 ' {0} 'が更新されました。"
+
+#~ msgid "The site could not be saved due to errors."
+#~ msgstr "エラーのため、サイトを保存できませんでした。"
+
+#~ msgid "Delete region"
+#~ msgstr "地域を削除"
+
+#~ msgid "Region '{0}' deleted."
+#~ msgstr "領域 ' {0} 'が削除されました。"
+
+#~ msgid "Are you sure you want to delete this region?"
+#~ msgstr "この地域を削除してもよろしいですか？"
+
+#~ msgid "Submit"
+#~ msgstr "提出する"
+
+#~ msgid "Go back"
+#~ msgstr "戻る"
+
+#~ msgid "View changes"
+#~ msgstr "変更を表示"
+
+#~ msgid "Copy for translation"
+#~ msgstr "翻訳用にコピー"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Source locale"
+#~ msgstr "ソースロケール"
+
+#~ msgid "Target locale"
+#~ msgstr "ターゲットロケール"
+
+#~ msgid "Number of pages"
+#~ msgstr "ページ数"
+
+#~ msgid "Status"
+#~ msgstr "状態"
+
+#~ msgid "Translaton requests"
+#~ msgstr "トランスラトンリクエスト"
+
+#~ msgid "Translation request '{0}' updated."
+#~ msgstr "翻訳リクエスト ' {0} 'が更新されました。"
+
+#~ msgid "The translation request could not be saved due to errors."
+#~ msgstr "エラーのため、翻訳リクエストを保存できませんでした。"
+
+#~ msgid "Please specify at least one language for this site."
+#~ msgstr "このサイトには少なくとも1つの言語を指定してください。"
+
+#~ msgid "hostname"
+#~ msgstr "ホスト名"
+
+#~ msgid "port"
+#~ msgstr "港"
+
+#~ msgid ""
+#~ "Set this to something other than 80 if you need a specific port number to "
+#~ "appear in URLs (e.g. development on port 8000). Does not affect request "
+#~ "handling (so port forwarding still works)."
+#~ msgstr ""
+#~ "URLに特定のポート番号を表示する必要がある場合は、これを80以外に設定します"
+#~ "（ポート8000での開発など）。要求の処理には影響しません（したがって、ポート"
+#~ "転送は引き続き機能します）。"
+
+#~ msgid "site name"
+#~ msgstr "サイト名"
+
+#~ msgid "Human-readable name for the site."
+#~ msgstr "人間が読めるサイトの名前。"
+
+#~ msgid "is default site"
+#~ msgstr "デフォルトのサイトです"
+
+#~ msgid ""
+#~ "If true, this site will handle requests for all other hostnames that do "
+#~ "not have a site entry of their own"
+#~ msgstr ""
+#~ "trueの場合、このサイトは、独自のサイトエントリを持たない他のすべてのホスト"
+#~ "名に対するリクエストを処理します"
+
+#~ msgid "site"
+#~ msgstr "サイト"
+
+#~ msgid "sites"
+#~ msgstr "サイト"
+
+#~ msgid ""
+#~ "%(hostname)s is already configured as the default site. You must unset "
+#~ "that before you can save this site as default."
+#~ msgstr ""
+#~ "%(hostname)sは既にデフォルトサイトとして構成されています。このサイトをデ"
+#~ "フォルトとして保存する前に、設定を解除する必要があります。"
+
+#~ msgid "region"
+#~ msgstr "領域"
+
+#~ msgid "language"
+#~ msgstr "言語"
+
+#~ msgid "root page"
+#~ msgstr "ルートページ"
+
+#~ msgid "is active"
+#~ msgstr "アクティブです"
+
+#~ msgid "Delete"
+#~ msgstr "削除する"
+
+#~ msgid "Add Language"
+#~ msgstr "言語を追加"
+
+#~ msgid "Site"
+#~ msgstr "サイト"
+
+#~ msgid "Port"
+#~ msgstr "港"
+
+#~ msgid "Site name"
+#~ msgstr "サイト名"
+
+#~ msgid "Default?"
+#~ msgstr "デフォルト？"
+
+#~ msgid "Default"
+#~ msgstr "デフォルト"
+
+#~ msgid "Sites"
+#~ msgstr "サイト"
+
+#~ msgid "Add a site"
+#~ msgstr "サイトを追加する"
+
+#~ msgid "Add site"
+#~ msgstr "サイトを追加"
+
+#~ msgid "Site '{0}' created."
+#~ msgstr "サイト ' {0} 'が作成されました。"
+
+#~ msgid "Site '{0}' updated."
+#~ msgstr "サイト ' {0} 'が更新されました。"
+
+#~ msgid "Delete site"
+#~ msgstr "サイトを削除"
+
+#~ msgid "Site '{0}' deleted."
+#~ msgstr "サイト ' {0} 'が削除されました。"
+
+#~ msgid "Are you sure you want to delete this site?"
+#~ msgstr "このサイトを削除してもよろしいですか？"

@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-20 22:15+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/404.html:4
+msgid "404 - Page not found"
+msgstr ""
+
+#: templates/404.html:9
+msgid "Page not found"
+msgstr ""
+
+#: templates/404.html:11
+msgid "Sorry, this page could not be found."
+msgstr ""
+
+#: templates/blog/blog_index_page.html:11
+#, python-format
+msgid "Viewing all blog posts by %(tag)s"
+msgstr ""
+
+#: templates/blog/blog_index_page.html:39
+#, python-format
+msgid "%(date_published)s by"
+msgstr ""
+
+#: templates/blog/blog_index_page.html:50
+msgid ""
+"Oh, snap. Looks like we were too busy baking to write any blog posts. Sorry."
+msgstr ""
+
+#: templates/blog/blog_page.html:36
+msgid "Tagged with:"
+msgstr ""
+
+#: templates/breads/bread_page.html:34
+#: templates/breads/breads_index_page.html:28
+msgid "Origin"
+msgstr ""
+
+#: templates/breads/bread_page.html:40
+#: templates/breads/breads_index_page.html:31
+msgid "Type"
+msgstr ""
+
+#: templates/breads/bread_page.html:47
+msgid "Ingredients"
+msgstr ""
+
+#: templates/includes/head.html:14
+msgid "Wagtail demo bakery"
+msgstr ""
+
+#: templates/includes/header.html:8
+msgid "The Wagtail Bakery"
+msgstr ""
+
+#: templates/includes/header.html:9
+msgid "Mobile menu"
+msgstr ""
+
+#: templates/includes/header.html:10
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/includes/header.html:17
+msgid "Search the site"
+msgstr ""
+
+#: templates/includes/header.html:44
+msgid "Primary site navigation"
+msgstr ""
+
+#: templates/includes/pagination.html:7 templates/includes/pagination.html:11
+msgid "previous"
+msgstr ""
+
+#: templates/includes/pagination.html:17
+msgid "current"
+msgstr ""
+
+#: templates/includes/pagination.html:25 templates/includes/pagination.html:29
+msgid "next"
+msgstr ""
+
+#: templates/locations/location_page.html:23
+msgid "This location is currently open"
+msgstr ""
+
+#: templates/locations/location_page.html:25
+msgid "Sorry, this location is currently closed"
+msgstr ""
+
+#: templates/locations/location_page.html:43
+msgid "Opening hours"
+msgstr ""
+
+#: templates/locations/location_page.html:49
+msgid "Closed"
+msgstr ""
+
+#: templates/locations/locations_index_page.html:28
+msgid "Map"
+msgstr ""
+
+#: templates/search/search_box.html:9 templates/search/search_results.html:4
+msgid "Search"
+msgstr ""
+
+#: templates/search/search_results.html:4
+msgid "Search results"
+msgstr ""
+
+#: templates/search/search_results.html:15
+#, python-format
+msgid "You searched for “%(search_query)s”"
+msgstr ""
+
+#: templates/search/search_results.html:21
+msgid "Blog post:"
+msgstr ""
+
+#: templates/search/search_results.html:23
+msgid "Location:"
+msgstr ""
+
+#: templates/search/search_results.html:25
+msgid "Bread"
+msgstr ""
+
+#: templates/search/search_results.html:34
+msgid "No results found"
+msgstr ""
+
+#: templates/search/search_results.html:36
+msgid "You didn’t search for anything!"
+msgstr ""
+
+#: templates/tags/breadcrumbs.html:11
+msgid "Home"
+msgstr ""
+
+#: templates/tags/sidebar_menu.html:11
+#: templates/tags/table_of_contents_menu.html:5
+msgid "In this section"
+msgstr ""
+
+#: templates/tags/table_of_contents_menu.html:19
+msgid "On this page"
+msgstr ""

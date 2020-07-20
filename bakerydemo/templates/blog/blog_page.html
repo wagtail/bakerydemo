@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load navigation_tags wagtailimages_tags %}
+{% load navigation_tags wagtailimages_tags i18n %}
 
 {% block content %}
 
@@ -33,7 +33,7 @@
                 {{ page.body }}
 
                 {% if page.get_tags %}
-                    Tagged with:<br />
+                    {% trans "Tagged with:" %}<br />
                     {% for tag in page.get_tags  %}
                         <a href="{{ tag.url }}" class="btn btn-sm">{{ tag }}</a>
                     {% endfor %}

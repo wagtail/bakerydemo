@@ -187,6 +187,10 @@ LANGUAGES = [
     ('es', "Spanish"),
 ]
 
+LOCALE_PATHS = [
+    os.path.join(PROJECT_DIR, "locale"),
+]
+
 WAGTAIL_I18N_ENABLED = True
 
 WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
