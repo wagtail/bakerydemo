@@ -184,6 +184,11 @@ WAGTAIL_SITE_NAME = "bakerydemo"
 LANGUAGES = [
     ('en', "English"),
     ('fr', "French"),
+    ('es', "Spanish"),
 ]
 
 WAGTAIL_I18N_ENABLED = True
+
+WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
+    'CLASS': 'wagtail_localize.machine_translators.dummy.DummyTranslator',
+}

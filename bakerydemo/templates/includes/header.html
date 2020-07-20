@@ -1,10 +1,11 @@
-{% load navigation_tags %}
+{% load wagtailcore_tags navigation_tags i18n %}
 
 <div class="header clearfix" role="banner">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <a href="/" class="logo">The Wagtail Bakery</a>
+                {% get_site_root as site_root %}
+                <a href="{% pageurl site_root %}" class="logo">The Wagtail Bakery</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation" aria-label="Mobile menu" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -12,11 +13,30 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                <form action="/search" method="get" class="search" role="search">
+                <form action="{% url 'search' %}" method="get" class="search" role="search">
                     <input name="q" type="text" placeholder="Search the site" aria-label="Search the site" autocomplete="off">
                     <a href="#" class="search-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451"><path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"></path></svg>
                     </a>
+
+                    {% if page %}
+                        {% for translation in page.get_translations.live %}
+                            {% get_language_info for translation.locale.language_code as lang %}
+                            <a href="{{ translation.url }}">{{ lang.name_local }}</a>
+                        {% endfor %}
+                    {% else %}
+                        {% get_current_language as current_language_code %}
+                        {% get_available_languages as languages %}
+                        {% for language_code, language_name in languages %}
+                            {% if language_code != current_language_code %}
+                                {% get_language_info for language_code as lang %}
+                                {% language language_code %}
+                                    {# HACK: Assuming only the search page needs this #}
+                                    <a href="{% url 'search' %}?{{ request.GET.urlencode }}">{{ lang.name_local }}</a>
+                                {% endlanguage %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </form>
 
                 {% block main_navigation %}
