@@ -4,6 +4,8 @@ import string
 
 import dj_database_url
 import django_cache_url
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from .base import *  # noqa: F403
 
@@ -16,6 +18,16 @@ else:
     # Use if/else rather than a default value to avoid calculating this if we don't need it
     print("WARNING: DJANGO_SECRET_KEY not found in os.environ. Generating ephemeral SECRET_KEY.")
     SECRET_KEY = ''.join([random.SystemRandom().choice(string.printable) for i in range(50)])
+
+if 'SENTRY_DSN' in os.environ:
+    sentry_sdk.init(
+        dsn=os.environ['SENTRY_DSN'],
+        integrations=[DjangoIntegration()],
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
 
 # Make sure Django can detect a secure connection properly on Heroku:
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -94,7 +106,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-    AWS_AUTO_CREATE_BUCKET = True
+    AWS_DEFAULT_ACL = 'public-read'
 
     INSTALLED_APPS.append('storages')
     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
@@ -124,3 +136,16 @@ LOGGING = {
         },
     },
 }
+
+WAGTAILLOCALIZE_PONTOON_GIT_CLONE_DIR = os.getenv('WAGTAILLOCALIZE_PONTOON_GIT_CLONE_DIR', None)
+WAGTAILLOCALIZE_PONTOON_GIT_URL = os.getenv('WAGTAILLOCALIZE_PONTOON_GIT_URL', None)
+
+
+# Security stuff
+
+SECURE_HSTS_SECONDS = 3600
+SECURE_SSL_REDIRECT = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'

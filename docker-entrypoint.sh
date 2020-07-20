@@ -1,19 +1,13 @@
-#!/bin/sh
-set -e
+#!/bin/sh -e
 
-until psql $DATABASE_URL -c '\l'; do
-  >&2 echo "Postgres is unavailable - sleeping"
-  sleep 1
-done
+# Copy SSH private key to file, if set
+# This is used for talking to GitHub over an SSH connection
+echo $SSH_PRIVATE_KEY | base64 --decode > $HOME/.ssh/id_rsa
 
->&2 echo "Postgres is up - continuing"
-
-if [ "$1" = '/venv/bin/uwsgi' ]; then
-    /venv/bin/python manage.py migrate --noinput
-fi
-
-if [ "x$DJANGO_LOAD_INITIAL_DATA" = 'xon' ]; then
-	/venv/bin/python manage.py load_initial_data
-fi
+cat << EOF > $HOME/.ssh/config
+Host *
+   StrictHostKeyChecking no
+   UserKnownHostsFile=/dev/null
+EOF
 
 exec "$@"
