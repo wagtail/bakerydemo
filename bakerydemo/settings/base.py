@@ -193,6 +193,16 @@ LOCALE_PATHS = [
 
 WAGTAIL_I18N_ENABLED = True
 
-WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
-    'CLASS': 'wagtail_localize.machine_translators.dummy.DummyTranslator',
-}
+
+if 'DEEPL_AUTH_KEY' in os.environ:
+    WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
+        'CLASS': 'wagtail_localize.machine_translators.deepl.DeepLTranslator',
+        'OPTIONS': {
+            'AUTH_KEY': os.environ['DEEPL_AUTH_KEY'],
+        }
+    }
+
+else:
+    WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
+        'CLASS': 'wagtail_localize.machine_translators.dummy.DummyTranslator',
+    }
