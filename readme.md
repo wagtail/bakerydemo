@@ -102,7 +102,7 @@ Setup with Virtualenv
 You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/1.10/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
-* Python 3.4, 3.5 or 3.6
+* Python 3.6, 3.7 or 3.8
 * [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
 * [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
