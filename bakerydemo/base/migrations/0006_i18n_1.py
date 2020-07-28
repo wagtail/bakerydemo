@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0051_page_locale_fields_notnull'),
+        ('wagtailcore', '0057_page_locale_fields_notnull'),
         ('base', '0005_formfield_clean_name'),
     ]
 

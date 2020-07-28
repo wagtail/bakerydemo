@@ -8,7 +8,7 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0051_page_locale_fields_notnull'),
+        ('wagtailcore', '0057_page_locale_fields_notnull'),
         ('breads', '0005_i18n_2'),
     ]
 
