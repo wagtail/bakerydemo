@@ -1,6 +1,6 @@
 Django>=3.0,<3.1
 django-dotenv==1.4.1
--e ./wagtail
--e ./wagtail-localize
+-e ./wagtail[testing]
+-e ./wagtail-localize[testing,google_translate,git]
 wagtailfontawesome>=1.1.3,<1.2
 Pillow>=6.2.0,<6.3
