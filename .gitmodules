@@ -1,0 +1,3 @@
+[submodule "wagtail-experiments"]
+	path = wagtail-experiments
+	url = https://github.com/kaedroho/wagtail-experiments.git
