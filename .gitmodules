@@ -4,6 +4,3 @@
 [submodule "wagtail-localize"]
 	path = wagtail-localize
 	url = https://github.com/wagtail/wagtail-localize.git
-[submodule "wagtail-localize-pontoon"]
-	path = wagtail-localize-pontoon
-	url = https://github.com/wagtail/wagtail-localize-pontoon.git

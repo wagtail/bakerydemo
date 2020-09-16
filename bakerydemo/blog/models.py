@@ -43,6 +43,11 @@ class BlogPeopleRelationship(Orderable, TranslatableMixin, models.Model):
         TranslatableField('people'),
     ]
 
+    class Meta:
+        unique_together = [
+            ('translation_key', 'locale')
+        ]
+
 
 class BlogPageTag(TaggedItemBase):
     """

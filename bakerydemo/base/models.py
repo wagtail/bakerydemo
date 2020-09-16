@@ -16,6 +16,7 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Collection, Page, TranslatableMixin
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
@@ -88,6 +89,9 @@ class People(index.Indexed, TranslatableMixin, ClusterableModel):
     class Meta:
         verbose_name = 'Person'
         verbose_name_plural = 'People'
+        unique_together = [
+            ('translation_key', 'locale'),
+        ]
 
 
 @register_snippet
@@ -113,6 +117,9 @@ class FooterText(TranslatableMixin, models.Model):
 
     class Meta:
         verbose_name_plural = 'Footer Text'
+        unique_together = [
+            ('translation_key', 'locale'),
+        ]
 
 
 class StandardPage(Page):
@@ -273,6 +280,14 @@ class HomePage(Page):
         verbose_name='Featured section 3'
     )
 
+    document = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             ImageChooserPanel('image'),
@@ -301,7 +316,8 @@ class HomePage(Page):
                 FieldPanel('featured_section_3_title'),
                 PageChooserPanel('featured_section_3'),
             ]),
-        ], heading="Featured homepage sections", classname="collapsible")
+        ], heading="Featured homepage sections", classname="collapsible"),
+        DocumentChooserPanel('document'),
     ]
 
     translatable_fields = [
@@ -321,6 +337,7 @@ class HomePage(Page):
         SynchronizedField('featured_section_2'),
         TranslatableField('featured_section_3_title'),
         SynchronizedField('featured_section_3'),
+        SynchronizedField('document'),
     ]
 
     def __str__(self):
@@ -437,4 +454,7 @@ class FormPage(AbstractEmailForm):
         TranslatableField('body'),
         TranslatableField('thank_you_text'),
         TranslatableField('form_fields'),
+        SynchronizedField('from_address'),
+        SynchronizedField('to_address'),
+        TranslatableField('subject'),
     ]

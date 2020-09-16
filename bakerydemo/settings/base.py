@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'bakerydemo.search',
 
     'wagtail_localize',
+    'wagtail_localize.git',
 
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.forms',
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'wagtail.api.v2',
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.routable_page',
+    'wagtail.contrib.styleguide',
     'wagtail.core',
 
     'rest_framework',
@@ -181,7 +183,7 @@ WAGTAILSEARCH_BACKENDS = {
 # Wagtail settings
 WAGTAIL_SITE_NAME = "bakerydemo"
 
-LANGUAGES = [
+LANGUAGES = WAGTAIL_CONTENT_LANGUAGES = [
     ('en', "English"),
     ('fr', "French"),
     ('es', "Spanish"),
