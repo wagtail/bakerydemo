@@ -12,7 +12,6 @@ from wagtail.core.models import Page, TranslatableMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail_localize.fields import TranslatableField, SynchronizedField
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -30,10 +29,6 @@ class Country(TranslatableMixin, models.Model):
     """
 
     title = models.CharField(max_length=100)
-
-    translatable_fields = [
-        TranslatableField('title'),
-    ]
 
     def __str__(self):
         return self.title
@@ -58,10 +53,6 @@ class BreadIngredient(TranslatableMixin, models.Model):
 
     panels = [
         FieldPanel('name'),
-    ]
-
-    translatable_fields = [
-        TranslatableField('name'),
     ]
 
     def __str__(self):
@@ -89,10 +80,6 @@ class BreadType(TranslatableMixin, models.Model):
 
     panels = [
         FieldPanel('title'),
-    ]
-
-    translatable_fields = [
-        TranslatableField('title'),
     ]
 
     def __str__(self):
@@ -168,18 +155,6 @@ class BreadPage(Page):
 
     parent_page_types = ['BreadsIndexPage']
 
-    translatable_fields = [
-        TranslatableField('title'),
-        TranslatableField('seo_title'),
-        TranslatableField('search_description'),
-        TranslatableField('introduction'),
-        SynchronizedField('image'),
-        TranslatableField('body'),
-        TranslatableField('origin'),
-        TranslatableField('bread_type'),
-        TranslatableField('ingredients'),
-    ]
-
 
 class BreadsIndexPage(Page):
     """
@@ -206,14 +181,6 @@ class BreadsIndexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
-    ]
-
-    translatable_fields = [
-        TranslatableField('title'),
-        TranslatableField('seo_title'),
-        TranslatableField('search_description'),
-        TranslatableField('introduction'),
-        SynchronizedField('image'),
     ]
 
     # Can only have BreadPage children
