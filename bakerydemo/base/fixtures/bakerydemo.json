@@ -1221,7 +1221,7 @@
   "model": "wagtailcore.collection",
   "pk": 3,
   "fields": {
-    "path": "00010002",
+    "path": "00010003",
     "depth": 2,
     "numchild": 0,
     "name": "Other"
@@ -1231,7 +1231,7 @@
   "model": "wagtailcore.collection",
   "pk": 4,
   "fields": {
-    "path": "00010003",
+    "path": "00010002",
     "depth": 2,
     "numchild": 0,
     "name": "BreadPage Images"
