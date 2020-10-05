@@ -1,3 +1,6 @@
 [submodule "wagtail-experiments"]
 	path = wagtail-experiments
 	url = https://github.com/kaedroho/wagtail-experiments.git
+[submodule "wagtail-seo"]
+	path = wagtail-seo
+	url = https://github.com/coderedcorp/wagtail-seo

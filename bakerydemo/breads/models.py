@@ -12,6 +12,7 @@ from wagtail.core.models import Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtailseo.models import SeoMixin, SeoType, TwitterCard
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -83,7 +84,7 @@ class BreadType(models.Model):
         verbose_name_plural = "Bread types"
 
 
-class BreadPage(Page):
+class BreadPage(SeoMixin, Page):
     """
     Detail view for a specific bread
     """
@@ -122,6 +123,7 @@ class BreadPage(Page):
     )
     ingredients = ParentalManyToManyField('BreadIngredient', blank=True)
 
+    promote_panels = SeoMixin.seo_panels
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
@@ -146,8 +148,14 @@ class BreadPage(Page):
 
     parent_page_types = ['BreadsIndexPage']
 
+    # Indicate this is article-style content.
+    seo_content_type = SeoType.ARTICLE
 
-class BreadsIndexPage(Page):
+    # Change the Twitter card style.
+    seo_twitter_card = TwitterCard.LARGE
+
+
+class BreadsIndexPage(SeoMixin, Page):
     """
     Index page for breads.
 
@@ -169,6 +177,7 @@ class BreadsIndexPage(Page):
         '3000px.'
     )
 
+    promote_panels = SeoMixin.seo_panels
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),

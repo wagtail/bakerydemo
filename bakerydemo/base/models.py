@@ -19,6 +19,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+from wagtailseo.models import SeoMixin, SeoType
 
 from .blocks import BaseStreamBlock
 
@@ -103,7 +104,7 @@ class FooterText(models.Model):
         verbose_name_plural = 'Footer Text'
 
 
-class StandardPage(Page):
+class StandardPage(SeoMixin, Page):
     """
     A generic content page. On this demo site we use it for an about page but
     it could be used for any type of page content that only needs a title,
@@ -124,14 +125,19 @@ class StandardPage(Page):
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True
     )
+
+    promote_panels = SeoMixin.seo_panels
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
         StreamFieldPanel('body'),
         ImageChooserPanel('image'),
     ]
 
+    # Indicate this is article-style content.
+    seo_content_type = SeoType.ARTICLE
 
-class HomePage(Page):
+
+class HomePage(SeoMixin, Page):
     """
     The Home Page. This looks slightly more complicated than it is. You can
     see if you visit your site and edit the homepage that it is split between
@@ -252,6 +258,7 @@ class HomePage(Page):
         verbose_name='Featured section 3'
     )
 
+    promote_panels = SeoMixin.seo_panels
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             ImageChooserPanel('image'),

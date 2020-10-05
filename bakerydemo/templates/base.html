@@ -2,6 +2,9 @@
 
 {% block head %}
     {% include "includes/head.html" %}
+
+    <!-- Open Graph Data -->
+    {% include "wagtailseo/meta.html" %}
 {% endblock head %}
 
 <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
@@ -42,6 +45,8 @@
     <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
+    <!-- Extra SEO Data -->
+    {% include "wagtailseo/struct_data.html" %}
 </body>
 
 </html>
