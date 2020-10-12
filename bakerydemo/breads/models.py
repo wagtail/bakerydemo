@@ -11,6 +11,7 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, TranslatableMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
@@ -135,8 +136,8 @@ class BreadPage(Page):
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
-        FieldPanel('origin'),
-        FieldPanel('bread_type'),
+        SnippetChooserPanel('origin'),
+        SnippetChooserPanel('bread_type'),
         MultiFieldPanel(
             [
                 FieldPanel(
