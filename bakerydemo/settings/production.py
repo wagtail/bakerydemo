@@ -93,6 +93,13 @@ if ELASTICSEARCH_ENDPOINT:
             aws_service='es',
         )
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'django_cache',
+    }
+}
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
