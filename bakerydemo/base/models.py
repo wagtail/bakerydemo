@@ -290,6 +290,11 @@ class HomePage(Page):
         ], heading="Featured homepage sections", classname="collapsible")
     ]
 
+    api_fields = [
+        APIField('image'),
+        APIField('body'),
+    ]
+
     def __str__(self):
         return self.title
 
