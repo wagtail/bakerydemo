@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 from modelcluster.fields import ParentalKey
+from wagtail.api import APIField
 
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
@@ -45,6 +46,13 @@ class OperatingHours(models.Model):
         FieldPanel('opening_time'),
         FieldPanel('closing_time'),
         FieldPanel('closed'),
+    ]
+
+    api_fields = [
+        APIField('day'),
+        APIField('opening_time'),
+        APIField('closing_time'),
+        APIField('closed'),
     ]
 
     class Meta:
@@ -171,6 +179,16 @@ class LocationPage(Page):
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
+    ]
+
+    api_fields = [
+        APIField('title'),
+        APIField('introduction'),
+        APIField('image'),
+        APIField('body'),
+        APIField('address'),
+        APIField('lat_long'),
+        APIField('hours_of_operation'),
     ]
 
     def __str__(self):

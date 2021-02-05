@@ -4,6 +4,7 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from rest_framework import serializers
 
 from wagtail.admin.edit_handlers import (
     FieldPanel,
@@ -13,6 +14,7 @@ from wagtail.admin.edit_handlers import (
     PageChooserPanel,
     StreamFieldPanel,
 )
+from wagtail.api import APIField
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Collection, Page
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
@@ -128,6 +130,12 @@ class StandardPage(Page):
         FieldPanel('introduction', classname="full"),
         StreamFieldPanel('body'),
         ImageChooserPanel('image'),
+    ]
+
+    api_fields = [
+        APIField('introduction'),
+        APIField('body'),
+        APIField('image'),
     ]
 
 
@@ -283,6 +291,11 @@ class HomePage(Page):
         ], heading="Featured homepage sections", classname="collapsible")
     ]
 
+    api_fields = [
+        APIField('image'),
+        APIField('body'),
+    ]
+
     def __str__(self):
         return self.title
 
@@ -330,6 +343,12 @@ class GalleryPage(Page):
     # array no subpage can be added
     subpage_types = []
 
+    api_fields = [
+        APIField('introduction'),
+        APIField('body'),
+        APIField('image'),
+        APIField('collection',serializer=serializers.StringRelatedField()),
+    ]
 
 class FormField(AbstractFormField):
     """
@@ -368,4 +387,9 @@ class FormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+    ]
+
+    api_fields = [
+        APIField('image'),
+        APIField('body'),
     ]

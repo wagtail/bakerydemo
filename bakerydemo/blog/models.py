@@ -8,6 +8,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 
 from taggit.models import Tag, TaggedItemBase
+from wagtail.api import APIField
 
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
@@ -129,6 +130,15 @@ class BlogPage(Page):
     # Empty list means that no child content types are allowed.
     subpage_types = []
 
+    api_fields = [
+        APIField('subtitle'),
+        APIField('introduction'),
+        APIField('image'),
+        APIField('body'),
+        APIField('date_published'),
+        APIField('tags'),
+    ]
+
 
 class BlogIndexPage(RoutablePageMixin, Page):
     """
@@ -158,6 +168,11 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     # Speficies that only BlogPage objects can live under this index page
     subpage_types = ['BlogPage']
+
+    api_fields = [
+        APIField('introduction'),
+        APIField('image'),
+    ]
 
     # Defines a method to access the children of the page (e.g. BlogPage
     # objects). On the demo site we use this on the HomePage
