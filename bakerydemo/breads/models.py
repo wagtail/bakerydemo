@@ -7,6 +7,7 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, StreamFieldPanel
 )
+from wagtail.api import APIField
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.search import index
@@ -146,6 +147,13 @@ class BreadPage(Page):
 
     parent_page_types = ['BreadsIndexPage']
 
+    api_fields = [
+        APIField('introduction'),
+        APIField('image'),
+        APIField('body'),
+        APIField('origin'),
+        APIField('bread_type'),
+    ]
 
 class BreadsIndexPage(Page):
     """
