@@ -4,6 +4,7 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from rest_framework import serializers
 
 from wagtail.admin.edit_handlers import (
     FieldPanel,
@@ -346,7 +347,7 @@ class GalleryPage(Page):
         APIField('introduction'),
         APIField('body'),
         APIField('image'),
-        APIField('collection'),
+        APIField('collection',serializer=serializers.StringRelatedField()),
     ]
 
 class FormField(AbstractFormField):

@@ -3,6 +3,7 @@ from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from modelcluster.fields import ParentalManyToManyField
+from rest_framework import serializers
 
 from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, StreamFieldPanel
@@ -152,7 +153,7 @@ class BreadPage(Page):
         APIField('image'),
         APIField('body'),
         APIField('origin'),
-        APIField('bread_type'),
+        APIField('bread_type',serializer=serializers.StringRelatedField()),
     ]
 
 class BreadsIndexPage(Page):
@@ -184,6 +185,11 @@ class BreadsIndexPage(Page):
 
     # Can only have BreadPage children
     subpage_types = ['BreadPage']
+
+    api_fields = [
+        APIField('introduction'),
+        APIField('image'),
+    ]
 
     # Returns a queryset of BreadPage objects that are live, that are direct
     # descendants of this index page with most recent first
