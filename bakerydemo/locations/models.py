@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 from modelcluster.fields import ParentalKey
+from wagtail.api import APIField
 
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
@@ -173,6 +174,15 @@ class LocationPage(Page):
         InlinePanel('hours_of_operation', label="Hours of Operation"),
     ]
 
+    api_fields = [
+        APIField('title'),
+        APIField('introduction'),
+        APIField('image'),
+        APIField('body'),
+        APIField('address'),
+        APIField('lat_long'),
+        APIField('hours_of_operation'),
+    ]
     def __str__(self):
         return self.title
 
