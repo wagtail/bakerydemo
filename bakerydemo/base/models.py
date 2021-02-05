@@ -342,6 +342,12 @@ class GalleryPage(Page):
     # array no subpage can be added
     subpage_types = []
 
+    api_fields = [
+        APIField('introduction'),
+        APIField('body'),
+        APIField('image'),
+        APIField('collection'),
+    ]
 
 class FormField(AbstractFormField):
     """
@@ -380,4 +386,9 @@ class FormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+    ]
+
+    api_fields = [
+        APIField('image'),
+        APIField('body'),
     ]
