@@ -13,6 +13,7 @@ from wagtail.admin.edit_handlers import (
     PageChooserPanel,
     StreamFieldPanel,
 )
+from wagtail.api import APIField
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Collection, Page
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
@@ -128,6 +129,12 @@ class StandardPage(Page):
         FieldPanel('introduction', classname="full"),
         StreamFieldPanel('body'),
         ImageChooserPanel('image'),
+    ]
+
+    api_fields = [
+        APIField('introduction'),
+        APIField('body'),
+        APIField('image'),
     ]
 
 
