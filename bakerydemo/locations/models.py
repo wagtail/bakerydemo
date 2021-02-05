@@ -48,6 +48,13 @@ class OperatingHours(models.Model):
         FieldPanel('closed'),
     ]
 
+    api_fields = [
+        APIField('day'),
+        APIField('opening_time'),
+        APIField('closing_time'),
+        APIField('closed'),
+    ]
+
     class Meta:
         abstract = True
 
@@ -183,6 +190,7 @@ class LocationPage(Page):
         APIField('lat_long'),
         APIField('hours_of_operation'),
     ]
+
     def __str__(self):
         return self.title
 
