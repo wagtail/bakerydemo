@@ -90,6 +90,12 @@ class ImageBlock(blocks.StructBlock):
 
 
 class GalleryBlock(blocks.StructBlock):
+    style = blocks.ChoiceBlock(
+        choices=[
+            ('slider', 'Slider'),
+            ('carousel', 'Carousel')
+        ], default='slider'
+    )
     images = blocks.ListBlock(ImageBlock())
 
     class Meta:
