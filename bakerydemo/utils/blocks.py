@@ -56,8 +56,16 @@ class LongBlock(blocks.StructBlock):
 
 
 class LogoBlock(blocks.StructBlock):
-    logo = ImageChooserBlock()
-    size = blocks.ChoiceBlock(choices=['large', 'small'])
+    logo = ImageChooserBlock(required=True)
+    size = blocks.ChoiceBlock(
+        choices=[
+            ('large', 'Large'),
+            ('small', 'Small')
+        ], default='small'
+    )
+
+    class Meta:
+        icon = "fa-file-image-o"
 
 
 class TabsBlock(blocks.StructBlock):
@@ -68,12 +76,20 @@ class GalleryBlock(blocks.StructBlock):
     pass
 
 
-class HighlightsBlock(blocks.StructBlock):
-    pass
+class HighlightBlock(blocks.StructBlock):
+    image = ImageChooserBlock(required=True)
+    title = blocks.CharBlock(required=True)
+    blocks.RichTextBlock(required=True)
+
+    class Meta:
+        icon = "fa-bold"
 
 
 class MuseumMapBlock(blocks.StructBlock):
     map_button = ButtonBlock()
+
+    class Meta:
+        icon = "fa-map"
 
 
 class GettingHereBlock(blocks.StructBlock):
@@ -82,13 +98,16 @@ class GettingHereBlock(blocks.StructBlock):
         ('accordion', blocks.ListBlock(AccordionBlock())),
     ], required=True)
 
+    class Meta:
+        icon = "fa-location-arrow"
+
 
 class LandingBlock(blocks.StreamBlock):
     card_sequence = blocks.ListBlock(CardBlock(), icon="fa-list")
     long = LongBlock()
-    logos = blocks.ListBlock(LogoBlock())
+    logos = blocks.ListBlock(LogoBlock(), icon="fa-file-image-o")
     tabs = TabsBlock()
     gallery = GalleryBlock()
-    highlights = HighlightsBlock()
+    highlights = blocks.ListBlock(HighlightBlock())
     museum_map = MuseumMapBlock()
     getting_here = GettingHereBlock()
