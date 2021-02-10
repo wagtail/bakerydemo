@@ -1,7 +1,4 @@
-from django.db import models
 from wagtail.core import blocks
-
-# Struct blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -29,6 +26,16 @@ class AccordionBlock(blocks.StructBlock):
         icon = "fa-list"
 
 
+class ExhibitionShortBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    image = ImageChooserBlock()
+    start_date = blocks.DateBlock()
+    end_date = blocks.DateBlock()
+
+    class Meta:
+        icon = "fa-picture-o"
+
+
 class CardBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.CharBlock(required=True)
@@ -36,18 +43,12 @@ class CardBlock(blocks.StructBlock):
         ('paragraph', blocks.RichTextBlock()),
         ('button', ButtonBlock()),
         ('accordion', blocks.ListBlock(AccordionBlock())),
-        ('link', LinkBlock())
-    ],required=True)
+        ('link', LinkBlock()),
+        ('exhibition', ExhibitionShortBlock())
+    ], required=True)
 
     class Meta:
         icon = "fa-square-o"
-
-
-class CardSequenceBlock(blocks.StructBlock):
-    cards = blocks.ListBlock(CardBlock())
-
-    class Meta:
-        icon = "fa-list"
 
 
 class LongBlock(blocks.StructBlock):
@@ -75,7 +76,7 @@ class GettingHereBlock(blocks.StructBlock):
 
 
 class LandingBlock(blocks.StreamBlock):
-    card_sequence = CardSequenceBlock()
+    card_sequence = blocks.ListBlock(CardBlock(), icon="fa-list")
     long = LongBlock()
     tabs = TabsBlock()
     gallery = GalleryBlock()
