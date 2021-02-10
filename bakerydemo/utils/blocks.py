@@ -79,10 +79,10 @@ class GalleryBlock(blocks.StructBlock):
 class HighlightBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=True)
     title = blocks.CharBlock(required=True)
-    blocks.RichTextBlock(required=True)
+    description = blocks.RichTextBlock(required=True)
 
     class Meta:
-        icon = "fa-bold"
+        icon = "fa-bullhorn"
 
 
 class MuseumMapBlock(blocks.StructBlock):
@@ -108,6 +108,6 @@ class LandingBlock(blocks.StreamBlock):
     logos = blocks.ListBlock(LogoBlock(), icon="fa-file-image-o")
     tabs = TabsBlock()
     gallery = GalleryBlock()
-    highlights = blocks.ListBlock(HighlightBlock())
+    highlights = blocks.ListBlock(HighlightBlock(), icon="fa-bullhorn")
     museum_map = MuseumMapBlock()
     getting_here = GettingHereBlock()
