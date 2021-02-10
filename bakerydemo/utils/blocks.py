@@ -119,6 +119,7 @@ class HighlightsBlock(blocks.StructBlock):
 
 
 class MuseumMapBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
     map_button = ButtonBlock()
 
     class Meta:
@@ -126,6 +127,7 @@ class MuseumMapBlock(blocks.StructBlock):
 
 
 class GettingHereBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', blocks.ListBlock(AccordionBlock())),
