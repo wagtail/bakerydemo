@@ -56,7 +56,8 @@ class LongBlock(blocks.StructBlock):
 
 
 class LogoBlock(blocks.StructBlock):
-    logo = ImageChooserBlock(required=True)
+    title = blocks.CharBlock()
+    image = ImageChooserBlock(required=True)
     size = blocks.ChoiceBlock(
         choices=[
             ('large', 'Large'),
@@ -68,18 +69,44 @@ class LogoBlock(blocks.StructBlock):
         icon = "fa-file-image-o"
 
 
+class LogosBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    logos = blocks.ListBlock(LogoBlock())
+
+    class Meta:
+        icon = "fa-file-image-o"
+
+
 class TabsBlock(blocks.StructBlock):
     pass
 
 
+class ImageBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    description = blocks.CharBlock()
+
+    class Meta:
+        icon = "fa-picture-o"
+
+
 class GalleryBlock(blocks.StructBlock):
-    pass
+    images = blocks.ListBlock(ImageBlock())
+
+    class Meta:
+        icon = "fa-picture-o"
 
 
 class HighlightBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=True)
     title = blocks.CharBlock(required=True)
     description = blocks.RichTextBlock(required=True)
+
+    class Meta:
+        icon = "fa-bullhorn"
+
+class HighlightsBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
+    highlights = blocks.ListBlock(HighlightBlock())
 
     class Meta:
         icon = "fa-bullhorn"
@@ -105,9 +132,9 @@ class GettingHereBlock(blocks.StructBlock):
 class LandingBlock(blocks.StreamBlock):
     card_sequence = blocks.ListBlock(CardBlock(), icon="fa-list")
     long = LongBlock()
-    logos = blocks.ListBlock(LogoBlock(), icon="fa-file-image-o")
+    logos = LogosBlock()
     tabs = TabsBlock()
     gallery = GalleryBlock()
-    highlights = blocks.ListBlock(HighlightBlock(), icon="fa-bullhorn")
+    highlights = HighlightsBlock()
     museum_map = MuseumMapBlock()
     getting_here = GettingHereBlock()
