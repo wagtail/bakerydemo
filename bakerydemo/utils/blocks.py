@@ -68,11 +68,14 @@ class HighlightsBlock(blocks.StructBlock):
 
 
 class MuseumMapBlock(blocks.StructBlock):
-    pass
+    map_button = ButtonBlock()
 
 
 class GettingHereBlock(blocks.StructBlock):
-    pass
+    body = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('accordion', blocks.ListBlock(AccordionBlock())),
+    ], required=True)
 
 
 class LandingBlock(blocks.StreamBlock):
