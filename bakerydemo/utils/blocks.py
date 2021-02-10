@@ -55,6 +55,10 @@ class LongBlock(blocks.StructBlock):
     pass
 
 
+class LogosBlock(blocks.StructBlock):
+    logos = blocks.ListBlock(ImageChooserBlock())
+
+
 class TabsBlock(blocks.StructBlock):
     pass
 
@@ -81,6 +85,7 @@ class GettingHereBlock(blocks.StructBlock):
 class LandingBlock(blocks.StreamBlock):
     card_sequence = blocks.ListBlock(CardBlock(), icon="fa-list")
     long = LongBlock()
+    logoes = LogosBlock()
     tabs = TabsBlock()
     gallery = GalleryBlock()
     highlights = HighlightsBlock()
