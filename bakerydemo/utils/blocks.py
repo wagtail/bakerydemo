@@ -56,16 +56,16 @@ class EventsBlock(blocks.StructBlock):
     events = blocks.ListBlock(
         blocks.StructBlock(
             [
-                ('image', ImageChooserBlock(required=True)),
-                ('title', blocks.CharBlock(required=True)),
-                ('description', blocks.StreamBlock([
-                    ('paragraph', blocks.CharBlock()),
-                    ('link', LinkBlock()),
-                ], required=True)),
+                ('schedule', blocks.DateTimeBlock(required=True)),
+                ('Event', blocks.CharBlock(required=True)),
+                ('description', blocks.CharBlock(required=True)),
 
             ]
         )
     )
+
+    class Meta:
+        icon = "fa-street-view"
 
 
 class ExhibitionCardBlock(blocks.StructBlock):
@@ -91,6 +91,7 @@ class StandardCardBlock(blocks.StructBlock):
         ('paragraph', blocks.RichTextBlock()),
         ('button', ButtonBlock()),
         ('accordion', AccordionBlock()),
+        ('events', EventsBlock()),
         ('link', LinkBlock()),
     ], required=True)
 
@@ -105,7 +106,6 @@ class LongBlock(blocks.StructBlock):
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
         ('collections', CollectionsBlock()),
-        ('events', EventsBlock()),
         ('button', ButtonBlock()),
     ], required=True)
 
