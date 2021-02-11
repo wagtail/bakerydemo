@@ -74,8 +74,8 @@ class LogoBlock(blocks.StructBlock):
         icon = "fa-file-image-o"
 
 
-class LogosBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
+class LogoSequenceBlock(blocks.StructBlock):
+    sequence_title = blocks.CharBlock()
     logos = blocks.ListBlock(LogoBlock())
 
     class Meta:
@@ -112,6 +112,7 @@ class HighlightBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=True)
     title = blocks.CharBlock(required=True)
     description = blocks.RichTextBlock(required=True)
+
 
     class Meta:
         icon = "fa-bullhorn"
@@ -150,7 +151,7 @@ class LandingBlock(blocks.StreamBlock):
         ('exhibition', ExhibitionCardBlock()),
     ], icon="fa-list")
     long = LongBlock()
-    logos = LogosBlock()
+    logo_sequence = LogoSequenceBlock()
     tabs = TabsBlock()
     gallery = GalleryBlock()
     highlights = HighlightsBlock()
