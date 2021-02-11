@@ -110,7 +110,7 @@ class GalleryBlock(blocks.StructBlock):
         icon = "fa-picture-o"
 
 
-class HighlightNoImageBlock(blocks.StructBlock):
+class HighlightWithoutImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     description = blocks.RichTextBlock(required=True)
     label = blocks.CharBlock(required=True, default="View Detail")
@@ -120,7 +120,7 @@ class HighlightNoImageBlock(blocks.StructBlock):
         icon = "fa-times"
 
 
-class HightLightImageBlock(HighlightNoImageBlock):
+class HighLightImageBlock(HighlightWithoutImageBlock):
     image = ImageChooserBlock(required=True)
 
     class Meta:
@@ -129,18 +129,20 @@ class HightLightImageBlock(HighlightNoImageBlock):
 
 class HighlightsWithImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
-    highlights = blocks.ListBlock(HightLightImageBlock())
+    highlights = blocks.ListBlock(HighLightImageBlock())
 
     class Meta:
         icon = "fa-check"
+        label = "Highlights with Image"
 
 
 class HighlightsWithoutImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
-    highlights = blocks.ListBlock(HighlightNoImageBlock())
+    highlights = blocks.ListBlock(HighlightWithoutImageBlock())
 
     class Meta:
         icon = "fa-times"
+        label = "Highlights without Image"
 
 
 class MuseumMapBlock(blocks.StructBlock):
