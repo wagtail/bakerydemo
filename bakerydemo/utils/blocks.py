@@ -110,23 +110,37 @@ class GalleryBlock(blocks.StructBlock):
         icon = "fa-picture-o"
 
 
-class HighlightBlock(blocks.StructBlock):
-    image = ImageChooserBlock(required=True)
+class HighlightNoImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     description = blocks.RichTextBlock(required=True)
     label = blocks.CharBlock(required=True, default="View Detail")
     link = blocks.URLBlock(required=True)
 
     class Meta:
-        icon = "fa-bullhorn"
+        icon = "fa-times"
 
 
-class HighlightsBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
-    highlights = blocks.ListBlock(HighlightBlock())
+class HightLightImageBlock(HighlightNoImageBlock):
+    image = ImageChooserBlock(required=True)
 
     class Meta:
-        icon = "fa-bullhorn"
+        icon = "fa-check"
+
+
+class HighlightsWithImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
+    highlights = blocks.ListBlock(HightLightImageBlock())
+
+    class Meta:
+        icon = "fa-check"
+
+
+class HighlightsWithoutImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
+    highlights = blocks.ListBlock(HighlightNoImageBlock())
+
+    class Meta:
+        icon = "fa-times"
 
 
 class MuseumMapBlock(blocks.StructBlock):
@@ -157,6 +171,7 @@ class LandingBlock(blocks.StreamBlock):
     logo_sequence = LogoSequenceBlock()
     tabs = TabsBlock()
     gallery = GalleryBlock()
-    highlights = HighlightsBlock()
+    highlights_with_image = HighlightsWithImageBlock()
+    highlights_without_image = HighlightsWithoutImageBlock()
     museum_map = MuseumMapBlock()
     getting_here = GettingHereBlock()
