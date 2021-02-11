@@ -65,6 +65,7 @@ class StandardCardBlock(blocks.StructBlock):
 class LongBlock(blocks.StructBlock):
     pass
 
+
 class LogoSequenceBlock(blocks.StructBlock):
     sequence_title = blocks.CharBlock()
     logos = blocks.ListBlock(
@@ -89,14 +90,6 @@ class TabsBlock(blocks.StructBlock):
     pass
 
 
-class ImageBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
-    description = blocks.CharBlock()
-
-    class Meta:
-        icon = "fa-picture-o"
-
-
 class GalleryBlock(blocks.StructBlock):
     style = blocks.ChoiceBlock(
         choices=[
@@ -104,7 +97,14 @@ class GalleryBlock(blocks.StructBlock):
             ('carousel', 'Carousel')
         ], default='slider'
     )
-    images = blocks.ListBlock(ImageBlock())
+    images = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock()),
+                ('description', blocks.CharBlock()),
+            ]
+        )
+    )
 
     class Meta:
         icon = "fa-picture-o"
