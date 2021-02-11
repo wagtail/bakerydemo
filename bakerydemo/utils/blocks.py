@@ -98,7 +98,7 @@ class LongBlock(blocks.StructBlock):
 
 class LogoSequenceBlock(blocks.StructBlock):
     sequence_title = blocks.CharBlock()
-    logos = blocks.ListBlock(
+    logos = blocks.ListBlock(blocks.ListBlock(
         blocks.StructBlock(
             [
                 ('title', blocks.CharBlock()),
@@ -109,10 +109,10 @@ class LogoSequenceBlock(blocks.StructBlock):
                 ], default='small')),
             ]
         )
-    )
+    ))
 
     class Meta:
-        icon = "fa-file-image-o"
+        icon = "fa-apple"
 
 
 class TabsBlock(blocks.StructBlock):
