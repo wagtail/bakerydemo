@@ -65,24 +65,20 @@ class StandardCardBlock(blocks.StructBlock):
 class LongBlock(blocks.StructBlock):
     pass
 
-
-class LogoBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    image = ImageChooserBlock(required=True)
-    size = blocks.ChoiceBlock(
-        choices=[
-            ('large', 'Large'),
-            ('small', 'Small')
-        ], default='small'
-    )
-
-    class Meta:
-        icon = "fa-file-image-o"
-
-
 class LogoSequenceBlock(blocks.StructBlock):
     sequence_title = blocks.CharBlock()
-    logos = blocks.ListBlock(LogoBlock())
+    logos = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('title', blocks.CharBlock()),
+                ('image', ImageChooserBlock(required=True)),
+                ('size', blocks.ChoiceBlock(choices=[
+                    ('large', 'Large'),
+                    ('small', 'Small')
+                ], default='small')),
+            ]
+        )
+    )
 
     class Meta:
         icon = "fa-file-image-o"
