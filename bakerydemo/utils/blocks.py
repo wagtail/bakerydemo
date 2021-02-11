@@ -19,8 +19,14 @@ class LinkBlock(blocks.StructBlock):
 
 
 class AccordionBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
-    content = blocks.RichTextBlock(required=True)
+    accordion = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('title', blocks.CharBlock(required=True)),
+                ('content', blocks.RichTextBlock(required=True)),
+            ]
+        )
+    )
 
     class Meta:
         icon = "fa-list"
@@ -34,7 +40,7 @@ class ExhibitionCardBlock(blocks.StructBlock):
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('button', ButtonBlock()),
-        ('accordion', blocks.ListBlock(AccordionBlock())),
+        ('accordion', AccordionBlock()),
         ('link', LinkBlock()),
     ], required=True)
 
@@ -48,7 +54,7 @@ class StandardCardBlock(blocks.StructBlock):
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('button', ButtonBlock()),
-        ('accordion', blocks.ListBlock(AccordionBlock())),
+        ('accordion', AccordionBlock()),
         ('link', LinkBlock()),
     ], required=True)
 
@@ -112,7 +118,8 @@ class HighlightBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=True)
     title = blocks.CharBlock(required=True)
     description = blocks.RichTextBlock(required=True)
-
+    label = blocks.CharBlock(required=True, default="View Detail")
+    link = blocks.URLBlock(required=True)
 
     class Meta:
         icon = "fa-bullhorn"
@@ -138,7 +145,7 @@ class GettingHereBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
-        ('accordion', blocks.ListBlock(AccordionBlock())),
+        ('accordion', AccordionBlock()),
     ], required=True)
 
     class Meta:
