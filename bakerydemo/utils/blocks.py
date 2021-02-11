@@ -52,6 +52,22 @@ class CollectionsBlock(blocks.StructBlock):
         icon = "fa-picture-o"
 
 
+class EventsBlock(blocks.StructBlock):
+    events = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock(required=True)),
+                ('title', blocks.CharBlock(required=True)),
+                ('description', blocks.StreamBlock([
+                    ('paragraph', blocks.CharBlock()),
+                    ('link', LinkBlock()),
+                ], required=True)),
+
+            ]
+        )
+    )
+
+
 class ExhibitionCardBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     image = ImageChooserBlock()
@@ -89,6 +105,7 @@ class LongBlock(blocks.StructBlock):
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
         ('collections', CollectionsBlock()),
+        ('events', EventsBlock()),
         ('button', ButtonBlock()),
     ], required=True)
 
@@ -142,7 +159,10 @@ class GalleryBlock(blocks.StructBlock):
 
 class HighlightWithoutImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
-    description = blocks.RichTextBlock(required=True)
+    description = blocks.StreamBlock([
+        ('paragraph', blocks.CharBlock()),
+        ('link', LinkBlock()),
+    ], required=True)
     label = blocks.CharBlock(required=True, default="View Detail")
     link = blocks.URLBlock(required=True)
 
