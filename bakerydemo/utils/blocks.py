@@ -26,17 +26,23 @@ class AccordionBlock(blocks.StructBlock):
         icon = "fa-list"
 
 
-class ExhibitionShortBlock(blocks.StructBlock):
+class ExhibitionCardBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     image = ImageChooserBlock()
     start_date = blocks.DateBlock()
     end_date = blocks.DateBlock()
+    body = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('button', ButtonBlock()),
+        ('accordion', blocks.ListBlock(AccordionBlock())),
+        ('link', LinkBlock()),
+    ], required=True)
 
     class Meta:
         icon = "fa-picture-o"
 
 
-class CardBlock(blocks.StructBlock):
+class StandardCardBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.CharBlock(required=True)
     body = blocks.StreamBlock([
@@ -44,7 +50,6 @@ class CardBlock(blocks.StructBlock):
         ('button', ButtonBlock()),
         ('accordion', blocks.ListBlock(AccordionBlock())),
         ('link', LinkBlock()),
-        ('exhibition', ExhibitionShortBlock())
     ], required=True)
 
     class Meta:
@@ -78,6 +83,7 @@ class LogosBlock(blocks.StructBlock):
 
 
 class TabsBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
     pass
 
 
@@ -110,6 +116,7 @@ class HighlightBlock(blocks.StructBlock):
     class Meta:
         icon = "fa-bullhorn"
 
+
 class HighlightsBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     highlights = blocks.ListBlock(HighlightBlock())
@@ -138,7 +145,10 @@ class GettingHereBlock(blocks.StructBlock):
 
 
 class LandingBlock(blocks.StreamBlock):
-    card_sequence = blocks.ListBlock(CardBlock(), icon="fa-list")
+    card_sequence = blocks.StreamBlock([
+        ('standard', StandardCardBlock()),
+        ('exhibition', ExhibitionCardBlock()),
+    ], icon="fa-list")
     long = LongBlock()
     logos = LogosBlock()
     tabs = TabsBlock()
