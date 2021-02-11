@@ -168,7 +168,7 @@ class HighlightWithoutImageBlock(blocks.StructBlock):
         ('paragraph', blocks.CharBlock()),
         ('link', LinkBlock()),
     ], required=True)
-    label = blocks.CharBlock(required=True, default="View Detail")
+    label = blocks.CharBlock(required=True, default="View Details")
     link = blocks.URLBlock(required=True)
 
     class Meta:
