@@ -1,5 +1,8 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
+
+from bakerydemo.base.models import People
 
 
 class ButtonBlock(blocks.StructBlock):
@@ -30,6 +33,23 @@ class AccordionBlock(blocks.StructBlock):
 
     class Meta:
         icon = "fa-list"
+
+
+class CollectionsBlock(blocks.StructBlock):
+    collections = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock(required=True)),
+                ('title', blocks.CharBlock(required=True)),
+                ('description', blocks.CharBlock(required=True)),
+                ('artist', SnippetChooserBlock(People, required=True)),
+                ('year', blocks.IntegerBlock(min_value=0, required=True)),
+            ]
+        )
+    )
+
+    class Meta:
+        icon = "fa-picture-o"
 
 
 class ExhibitionCardBlock(blocks.StructBlock):
@@ -63,7 +83,17 @@ class StandardCardBlock(blocks.StructBlock):
 
 
 class LongBlock(blocks.StructBlock):
-    pass
+    title = blocks.CharBlock(required=True)
+    description = blocks.RichTextBlock()
+    body = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('accordion', AccordionBlock()),
+        ('collections', CollectionsBlock()),
+        ('button', ButtonBlock()),
+    ], required=True)
+
+    class Meta:
+        icon = "fa-arrows-h"
 
 
 class LogoSequenceBlock(blocks.StructBlock):
