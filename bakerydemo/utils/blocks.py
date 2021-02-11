@@ -115,18 +115,14 @@ class LongBlock(blocks.StructBlock):
 
 class LogoSequenceBlock(blocks.StructBlock):
     sequence_title = blocks.CharBlock()
-    logos = blocks.ListBlock(blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('title', blocks.CharBlock(required=True)),
-                ('image', ImageChooserBlock(required=True)),
-                ('size', blocks.ChoiceBlock(choices=[
-                    ('large', 'Large'),
-                    ('small', 'Small')
-                ], default='small')),
-            ]
-        )
-    ))
+    logo_group = blocks.ListBlock(blocks.StructBlock([
+        ('sequence_title', blocks.CharBlock()),
+        ('logo_sequence', blocks.ListBlock(blocks.StructBlock([
+            ('title', blocks.CharBlock(required=True)),
+            ('image', ImageChooserBlock(required=True))
+        ])))
+
+    ]))
 
     class Meta:
         icon = "fa-apple"
