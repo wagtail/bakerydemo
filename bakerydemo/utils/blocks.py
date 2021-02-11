@@ -1,5 +1,8 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
+
+from bakerydemo.base.models import People
 
 
 class ButtonBlock(blocks.StructBlock):
@@ -19,32 +22,77 @@ class LinkBlock(blocks.StructBlock):
 
 
 class AccordionBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
-    content = blocks.RichTextBlock(required=True)
+    accordion = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('title', blocks.CharBlock(required=True)),
+                ('content', blocks.RichTextBlock(required=True)),
+            ]
+        )
+    )
 
     class Meta:
         icon = "fa-list"
 
 
-class ExhibitionShortBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    image = ImageChooserBlock()
-    start_date = blocks.DateBlock()
-    end_date = blocks.DateBlock()
+class CollectionsBlock(blocks.StructBlock):
+    collections = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock(required=True)),
+                ('title', blocks.CharBlock(required=True)),
+                ('description', blocks.CharBlock(required=True)),
+                ('artist', SnippetChooserBlock(People, required=True)),
+                ('year', blocks.IntegerBlock(min_value=0, required=True)),
+            ]
+        )
+    )
 
     class Meta:
         icon = "fa-picture-o"
 
 
-class CardBlock(blocks.StructBlock):
+class EventsBlock(blocks.StructBlock):
+    events = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('schedule', blocks.DateTimeBlock(required=True)),
+                ('Event', blocks.CharBlock(required=True)),
+                ('description', blocks.CharBlock(required=True)),
+
+            ]
+        )
+    )
+
+    class Meta:
+        icon = "fa-street-view"
+
+
+class ExhibitionCardBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    image = ImageChooserBlock()
+    start_date = blocks.DateBlock()
+    end_date = blocks.DateBlock()
+    body = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('button', ButtonBlock()),
+        ('accordion', AccordionBlock()),
+        ('link', LinkBlock()),
+    ], required=True)
+
+    class Meta:
+        icon = "fa-picture-o"
+
+
+class StandardCardBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.CharBlock(required=True)
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('button', ButtonBlock()),
-        ('accordion', blocks.ListBlock(AccordionBlock())),
+        ('accordion', AccordionBlock()),
+        ('events', EventsBlock()),
         ('link', LinkBlock()),
-        ('exhibition', ExhibitionShortBlock())
     ], required=True)
 
     class Meta:
@@ -52,41 +100,50 @@ class CardBlock(blocks.StructBlock):
 
 
 class LongBlock(blocks.StructBlock):
-    pass
-
-
-class LogoBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    image = ImageChooserBlock(required=True)
-    size = blocks.ChoiceBlock(
-        choices=[
-            ('large', 'Large'),
-            ('small', 'Small')
-        ], default='small'
-    )
+    title = blocks.CharBlock(required=True)
+    description = blocks.RichTextBlock()
+    body = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('accordion', AccordionBlock()),
+        ('collections', CollectionsBlock()),
+        ('button', ButtonBlock()),
+    ], required=True)
 
     class Meta:
-        icon = "fa-file-image-o"
+        icon = "fa-arrows-h"
 
 
-class LogosBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    logos = blocks.ListBlock(LogoBlock())
+class LogoSequenceBlock(blocks.StructBlock):
+    sequence_title = blocks.CharBlock()
+    logos = blocks.ListBlock(blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('title', blocks.CharBlock(required=True)),
+                ('image', ImageChooserBlock(required=True)),
+                ('size', blocks.ChoiceBlock(choices=[
+                    ('large', 'Large'),
+                    ('small', 'Small')
+                ], default='small')),
+            ]
+        )
+    ))
 
     class Meta:
-        icon = "fa-file-image-o"
+        icon = "fa-apple"
 
 
 class TabsBlock(blocks.StructBlock):
-    pass
-
-
-class ImageBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
-    description = blocks.CharBlock()
+    tab_1_title = blocks.CharBlock()
+    tab_1_content = blocks.StreamBlock([
+        ('accordion', AccordionBlock()),
+    ], required=True)
+    tab_2_content = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('accordion', AccordionBlock()),
+    ], required=True)
 
     class Meta:
-        icon = "fa-picture-o"
+        icon = "fa-columns"
 
 
 class GalleryBlock(blocks.StructBlock):
@@ -96,29 +153,59 @@ class GalleryBlock(blocks.StructBlock):
             ('carousel', 'Carousel')
         ], default='slider'
     )
-    images = blocks.ListBlock(ImageBlock())
+    images = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('image', ImageChooserBlock()),
+                ('description', blocks.CharBlock()),
+            ]
+        )
+    )
 
     class Meta:
         icon = "fa-picture-o"
 
 
-class HighlightBlock(blocks.StructBlock):
+class HighlightWithoutImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
+    description = blocks.StreamBlock([
+        ('paragraph', blocks.CharBlock()),
+        ('link', LinkBlock()),
+    ], required=True)
+    label = blocks.CharBlock(required=True, default="View Detail")
+    link = blocks.URLBlock(required=True)
+
+    class Meta:
+        icon = "fa-times"
+
+
+class HighLightImageBlock(HighlightWithoutImageBlock):
     image = ImageChooserBlock(required=True)
-    title = blocks.CharBlock(required=True)
-    description = blocks.RichTextBlock(required=True)
 
     class Meta:
-        icon = "fa-bullhorn"
+        icon = "fa-check"
 
-class HighlightsBlock(blocks.StructBlock):
+
+class HighlightsWithImageBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
-    highlights = blocks.ListBlock(HighlightBlock())
+    highlights = blocks.ListBlock(HighLightImageBlock())
 
     class Meta:
-        icon = "fa-bullhorn"
+        icon = "fa-check"
+        label = "Highlights with Image"
+
+
+class HighlightsWithoutImageBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
+    highlights = blocks.ListBlock(HighlightWithoutImageBlock())
+
+    class Meta:
+        icon = "fa-times"
+        label = "Highlights without Image"
 
 
 class MuseumMapBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
     map_button = ButtonBlock()
 
     class Meta:
@@ -126,9 +213,10 @@ class MuseumMapBlock(blocks.StructBlock):
 
 
 class GettingHereBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
-        ('accordion', blocks.ListBlock(AccordionBlock())),
+        ('accordion', AccordionBlock()),
     ], required=True)
 
     class Meta:
@@ -136,11 +224,15 @@ class GettingHereBlock(blocks.StructBlock):
 
 
 class LandingBlock(blocks.StreamBlock):
-    card_sequence = blocks.ListBlock(CardBlock(), icon="fa-list")
+    card_sequence = blocks.StreamBlock([
+        ('standard', StandardCardBlock()),
+        ('exhibition', ExhibitionCardBlock()),
+    ], icon="fa-list")
     long = LongBlock()
-    logos = LogosBlock()
+    logo_sequence = LogoSequenceBlock()
     tabs = TabsBlock()
     gallery = GalleryBlock()
-    highlights = HighlightsBlock()
+    highlights_with_image = HighlightsWithImageBlock()
+    highlights_without_image = HighlightsWithoutImageBlock()
     museum_map = MuseumMapBlock()
     getting_here = GettingHereBlock()
