@@ -118,7 +118,7 @@ class LogoSequenceBlock(blocks.StructBlock):
     logos = blocks.ListBlock(blocks.ListBlock(
         blocks.StructBlock(
             [
-                ('title', blocks.CharBlock()),
+                ('title', blocks.CharBlock(required=True)),
                 ('image', ImageChooserBlock(required=True)),
                 ('size', blocks.ChoiceBlock(choices=[
                     ('large', 'Large'),
@@ -133,8 +133,17 @@ class LogoSequenceBlock(blocks.StructBlock):
 
 
 class TabsBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    pass
+    tab_1_title = blocks.CharBlock()
+    tab_1_content = blocks.StreamBlock([
+        ('accordion', AccordionBlock()),
+    ], required=True)
+    tab_2_content = blocks.StreamBlock([
+        ('paragraph', blocks.RichTextBlock()),
+        ('accordion', AccordionBlock()),
+    ], required=True)
+
+    class Meta:
+        icon = "fa-columns"
 
 
 class GalleryBlock(blocks.StructBlock):
