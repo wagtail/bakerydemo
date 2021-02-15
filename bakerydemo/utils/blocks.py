@@ -1,8 +1,18 @@
 from wagtail.core import blocks
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 from bakerydemo.base.models import People
+
+
+class ImageChooserBlock(DefaultImageChooserBlock):
+    def get_api_representation(self, value, context=None):
+        if value:
+            return {
+                "id": value.id,
+                "title": value.title,
+                "original": value.get_rendition("original").attrs_dict,
+            }
 
 
 class ButtonBlock(blocks.StructBlock):
