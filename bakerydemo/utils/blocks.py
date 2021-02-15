@@ -16,16 +16,16 @@ class ImageChooserBlock(DefaultImageChooserBlock):
 
 
 class ButtonBlock(blocks.StructBlock):
-    label = blocks.CharBlock(required=True)
-    link = blocks.URLBlock(required=True)
+    label = blocks.CharBlock()
+    link = blocks.URLBlock()
 
     class Meta:
         icon = "fa-play-circle"
 
 
 class LinkBlock(blocks.StructBlock):
-    label = blocks.CharBlock(required=True)
-    link = blocks.URLBlock(required=True)
+    label = blocks.CharBlock()
+    link = blocks.URLBlock()
 
     class Meta:
         icon = "fa-link"
@@ -49,11 +49,11 @@ class CollectionsBlock(blocks.StructBlock):
     collections = blocks.ListBlock(
         blocks.StructBlock(
             [
-                ('image', ImageChooserBlock(required=True)),
-                ('title', blocks.CharBlock(required=True)),
-                ('description', blocks.CharBlock(required=True)),
-                ('artist', SnippetChooserBlock(People, required=True)),
-                ('year', blocks.IntegerBlock(min_value=0, required=True)),
+                ('image', ImageChooserBlock()),
+                ('title', blocks.CharBlock()),
+                ('description', blocks.CharBlock()),
+                ('artist', SnippetChooserBlock(People)),
+                ('year', blocks.IntegerBlock(min_value=0)),
             ]
         )
     )
@@ -95,8 +95,8 @@ class ExhibitionCardBlock(blocks.StructBlock):
 
 
 class StandardCardBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
-    title = blocks.CharBlock(required=True)
+    image = ImageChooserBlock(required=False)
+    title = blocks.CharBlock()
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('button', ButtonBlock()),
@@ -128,8 +128,8 @@ class LogoSequenceBlock(blocks.StructBlock):
     logo_group = blocks.ListBlock(blocks.StructBlock([
         ('sequence_title', blocks.CharBlock()),
         ('logo_sequence', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock(required=True)),
-            ('image', ImageChooserBlock(required=True))
+            ('title', blocks.CharBlock()),
+            ('image', ImageChooserBlock())
         ])))
 
     ]))
@@ -186,7 +186,7 @@ class HighlightWithoutImageBlock(blocks.StructBlock):
 
 
 class HighLightImageBlock(HighlightWithoutImageBlock):
-    image = ImageChooserBlock(required=True)
+    image = ImageChooserBlock()
 
     class Meta:
         icon = "fa-check"
