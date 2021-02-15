@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+from django.forms.utils import ErrorList
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
@@ -93,6 +95,16 @@ class ExhibitionCardBlock(blocks.StructBlock):
     class Meta:
         icon = "fa-picture-o"
 
+    def clean(self, value):
+        errors = {}
+        if value['start_date'] > value['end_date']:
+            errors['start_date'] = ErrorList(['Start date should be less than End Date.'])
+            errors['end_date'] = ErrorList(['End date should be greater than Start Date.'])
+
+        if errors:
+            raise ValidationError('Validation error in ExhibitionCardBlock', params=errors)
+
+        return super().clean(value)
 
 class StandardCardBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
