@@ -35,8 +35,8 @@ class AccordionBlock(blocks.StructBlock):
     accordion = blocks.ListBlock(
         blocks.StructBlock(
             [
-                ('title', blocks.CharBlock(required=True)),
-                ('content', blocks.RichTextBlock(required=True)),
+                ('title', blocks.CharBlock()),
+                ('content', blocks.RichTextBlock()),
             ]
         )
     )
@@ -66,9 +66,9 @@ class EventsBlock(blocks.StructBlock):
     events = blocks.ListBlock(
         blocks.StructBlock(
             [
-                ('schedule', blocks.DateTimeBlock(required=True)),
-                ('Event', blocks.CharBlock(required=True)),
-                ('description', blocks.CharBlock(required=True)),
+                ('schedule', blocks.DateTimeBlock()),
+                ('Event', blocks.CharBlock()),
+                ('description', blocks.CharBlock()),
 
             ]
         )
@@ -88,7 +88,7 @@ class ExhibitionCardBlock(blocks.StructBlock):
         ('button', ButtonBlock()),
         ('accordion', AccordionBlock()),
         ('link', LinkBlock()),
-    ], required=True)
+    ])
 
     class Meta:
         icon = "fa-picture-o"
@@ -103,21 +103,21 @@ class StandardCardBlock(blocks.StructBlock):
         ('accordion', AccordionBlock()),
         ('events', EventsBlock()),
         ('link', LinkBlock()),
-    ], required=True)
+    ])
 
     class Meta:
         icon = "fa-square-o"
 
 
 class LongBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
+    title = blocks.CharBlock()
     description = blocks.RichTextBlock()
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
         ('collections', CollectionsBlock()),
         ('button', ButtonBlock()),
-    ], required=True)
+    ])
 
     class Meta:
         icon = "fa-arrows-h"
@@ -142,11 +142,11 @@ class TabsBlock(blocks.StructBlock):
     tab_1_title = blocks.CharBlock()
     tab_1_content = blocks.StreamBlock([
         ('accordion', AccordionBlock()),
-    ], required=True)
+    ])
     tab_2_content = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
-    ], required=True)
+    ])
 
     class Meta:
         icon = "fa-columns"
@@ -173,13 +173,13 @@ class GalleryBlock(blocks.StructBlock):
 
 
 class HighlightWithoutImageBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
+    title = blocks.CharBlock()
     description = blocks.StreamBlock([
         ('paragraph', blocks.CharBlock()),
         ('link', LinkBlock()),
-    ], required=True)
-    label = blocks.CharBlock(required=True, default="View Details")
-    link = blocks.URLBlock(required=True)
+    ])
+    label = blocks.CharBlock(default="View Details")
+    link = blocks.URLBlock()
 
     class Meta:
         icon = "fa-times"
@@ -193,7 +193,7 @@ class HighLightImageBlock(HighlightWithoutImageBlock):
 
 
 class HighlightsWithImageBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
+    title = blocks.CharBlock()
     highlights = blocks.ListBlock(HighLightImageBlock())
 
     class Meta:
@@ -202,7 +202,7 @@ class HighlightsWithImageBlock(blocks.StructBlock):
 
 
 class HighlightsWithoutImageBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
+    title = blocks.CharBlock()
     highlights = blocks.ListBlock(HighlightWithoutImageBlock())
 
     class Meta:
@@ -211,7 +211,7 @@ class HighlightsWithoutImageBlock(blocks.StructBlock):
 
 
 class MuseumMapBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
+    title = blocks.CharBlock()
     map_button = ButtonBlock()
 
     class Meta:
@@ -219,11 +219,11 @@ class MuseumMapBlock(blocks.StructBlock):
 
 
 class GettingHereBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
+    title = blocks.CharBlock()
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
-    ], required=True)
+    ])
 
     class Meta:
         icon = "fa-location-arrow"
