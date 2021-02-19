@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.routable_page',
     'wagtail.core',
     'wagtail.locales',
+    "wagtail_localize",
 
     'rest_framework',
     'modelcluster',
@@ -182,13 +183,14 @@ WAGTAILSEARCH_BACKENDS = {
 WAGTAIL_SITE_NAME = "bakerydemo"
 
 # Internationalization
+LANGUAGE_CODE = "en"  # Or your preferred default language
 USE_I18N = True
 WAGTAIL_I18N_ENABLED = True
 
 USE_L10N = True
 
-WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
+WAGTAIL_CONTENT_LANGUAGES= LANGUAGES = [
     ('en', "English"),
-    ('es', "Spanish"),
+    ('fr', "French"),
     ('ch', "Chinese"),
 ]
