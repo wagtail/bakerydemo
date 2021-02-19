@@ -189,7 +189,6 @@ USE_L10N = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('en', "English"),
-    ('fr', "French"),
     ('es', "Spanish"),
     ('ch', "Chinese"),
 ]
