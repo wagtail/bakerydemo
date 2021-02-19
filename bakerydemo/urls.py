@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
@@ -46,6 +47,6 @@ if settings.DEBUG:
         url(r'^test500/$', TemplateView.as_view(template_name='500.html')),
     ]
 
-urlpatterns += [
+urlpatterns += i18n_patterns(
     url(r'', include(wagtail_urls)),
-]
+)

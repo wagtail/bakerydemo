@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.routable_page',
     'wagtail.core',
+    'wagtail.locales',
+    "wagtail_localize",
 
     'rest_framework',
     'modelcluster',
@@ -77,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
@@ -178,3 +181,27 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "bakerydemo"
+
+# Internationalization
+LANGUAGE_CODE = "en"  # Or your preferred default language
+USE_I18N = True
+WAGTAIL_I18N_ENABLED = True
+
+USE_L10N = True
+
+LANGUAGES = [
+    ('en-GB', "English (Great Britain)"),
+    ('en-US', "English (United States)"),
+    ('en-CA', "English (Canada)"),
+    ('en-HK', "English (Hong Kong)"),
+    ('fr-FR', "French (France)"),
+    ('fr-CA', "French (Canada)"),
+    ('zh-HK', "Chinese (Hong Kong)"),
+    ('zh-TW', "Chinese (Taiwan)"),
+]
+
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
+    ('en', "English"),
+    ('fr', "French"),
+    ('zh', "Chinese (Traditional)"),
+]
