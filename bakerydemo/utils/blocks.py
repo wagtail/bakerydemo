@@ -34,8 +34,8 @@ class LinkBlock(blocks.StructBlock):
 
 
 class AccordionBlock(blocks.StructBlock):
-    accordion = blocks.StreamBlock([
-        ("accordion", blocks.StructBlock([
+    accordion_items = blocks.StreamBlock([
+        ("accordion_item", blocks.StructBlock([
             ('title', blocks.CharBlock()),
             ('content', blocks.RichTextBlock()),
         ]))
@@ -45,18 +45,16 @@ class AccordionBlock(blocks.StructBlock):
         icon = "fa-list"
 
 
-class CollectionsBlock(blocks.StructBlock):
-    collections = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('image', ImageChooserBlock()),
-                ('title', blocks.CharBlock()),
-                ('description', blocks.CharBlock()),
-                ('artist', SnippetChooserBlock(People)),
-                ('year', blocks.IntegerBlock(min_value=0)),
-            ]
-        )
-    )
+class CollectionBlock(blocks.StructBlock):
+    collection_items = blocks.StreamBlock([
+        ("collection_item", blocks.StructBlock([
+            ('image', ImageChooserBlock()),
+            ('title', blocks.CharBlock()),
+            ('description', blocks.CharBlock()),
+            ('artist', SnippetChooserBlock(People)),
+            ('year', blocks.IntegerBlock(min_value=0)),
+        ]))
+    ])
 
     class Meta:
         icon = "fa-picture-o"
@@ -125,7 +123,7 @@ class LongBlock(blocks.StructBlock):
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
-        ('collections', CollectionsBlock()),
+        ('collection', CollectionBlock()),
         ('button', ButtonBlock()),
     ])
 
