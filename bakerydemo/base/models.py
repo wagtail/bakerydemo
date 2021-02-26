@@ -16,7 +16,7 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.api import APIField
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Collection, Page, BootstrapTranslatableMixin
+from wagtail.core.models import Collection, Page, TranslatableMixin
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
@@ -26,7 +26,7 @@ from .blocks import BaseStreamBlock
 
 
 @register_snippet
-class People(BootstrapTranslatableMixin,index.Indexed, ClusterableModel):
+class People(TranslatableMixin, index.Indexed, ClusterableModel):
     """
     A Django model to store People objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -79,13 +79,13 @@ class People(BootstrapTranslatableMixin,index.Indexed, ClusterableModel):
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
-    class Meta(BootstrapTranslatableMixin.Meta):
+    class Meta(TranslatableMixin.Meta):
         verbose_name = 'Person'
         verbose_name_plural = 'People'
 
 
 @register_snippet
-class FooterText(BootstrapTranslatableMixin,models.Model):
+class FooterText(TranslatableMixin, models.Model):
     """
     This provides editable text for the site footer. Again it uses the decorator
     `register_snippet` to allow it to be accessible via the admin. It is made
@@ -101,7 +101,7 @@ class FooterText(BootstrapTranslatableMixin,models.Model):
     def __str__(self):
         return "Footer text"
 
-    class Meta(BootstrapTranslatableMixin.Meta):
+    class Meta(TranslatableMixin.Meta):
         verbose_name_plural = 'Footer Text'
 
 
@@ -222,7 +222,7 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
         help_text='First featured section for the homepage. Will display up to '
-        'three child items.',
+                  'three child items.',
         verbose_name='Featured section 1'
     )
 
@@ -239,7 +239,7 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
         help_text='Second featured section for the homepage. Will display up to '
-        'three child items.',
+                  'three child items.',
         verbose_name='Featured section 2'
     )
 
@@ -256,7 +256,7 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
         help_text='Third featured section for the homepage. Will display up to '
-        'six child items.',
+                  'six child items.',
         verbose_name='Featured section 3'
     )
 
@@ -318,7 +318,7 @@ class GalleryPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
         help_text='Landscape mode only; horizontal width between 1000px and '
-        '3000px.'
+                  '3000px.'
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True
@@ -347,8 +347,9 @@ class GalleryPage(Page):
         APIField('introduction'),
         APIField('body'),
         APIField('image'),
-        APIField('collection',serializer=serializers.StringRelatedField()),
+        APIField('collection', serializer=serializers.StringRelatedField()),
     ]
+
 
 class FormField(AbstractFormField):
     """
