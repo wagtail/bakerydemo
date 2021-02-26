@@ -33,12 +33,33 @@ class LinkBlock(blocks.StructBlock):
         icon = "fa-link"
 
 
+class LogoBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    image = ImageChooserBlock()
+
+
+class AccordionItemBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    content = blocks.RichTextBlock()
+
+
+class CollectionItemBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    title = blocks.CharBlock()
+    description = blocks.CharBlock()
+    artist = SnippetChooserBlock(People)
+    year = blocks.IntegerBlock(min_value=0)
+
+
+class EventItemBlock(blocks.StructBlock):
+    schedule = blocks.DateTimeBlock()
+    event = blocks.CharBlock()
+    description = blocks.CharBlock()
+
+
 class AccordionBlock(blocks.StructBlock):
     accordion_items = blocks.StreamBlock([
-        ("accordion_item", blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('content', blocks.RichTextBlock()),
-        ]))
+        ("accordion_item", AccordionItemBlock())
     ])
 
     class Meta:
@@ -47,13 +68,7 @@ class AccordionBlock(blocks.StructBlock):
 
 class CollectionBlock(blocks.StructBlock):
     collection_items = blocks.StreamBlock([
-        ("collection_item", blocks.StructBlock([
-            ('image', ImageChooserBlock()),
-            ('title', blocks.CharBlock()),
-            ('description', blocks.CharBlock()),
-            ('artist', SnippetChooserBlock(People)),
-            ('year', blocks.IntegerBlock(min_value=0)),
-        ]))
+        ("collection_item", CollectionItemBlock())
     ])
 
     class Meta:
@@ -61,16 +76,9 @@ class CollectionBlock(blocks.StructBlock):
 
 
 class EventsBlock(blocks.StructBlock):
-    events = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('schedule', blocks.DateTimeBlock()),
-                ('Event', blocks.CharBlock()),
-                ('description', blocks.CharBlock()),
-
-            ]
-        )
-    )
+    event_items = blocks.StreamBlock([
+        ("event_item", EventItemBlock())
+    ])
 
     class Meta:
         icon = "fa-street-view"
@@ -101,6 +109,7 @@ class ExhibitionCardBlock(blocks.StructBlock):
             raise ValidationError('Validation error in ExhibitionCardBlock', params=errors)
 
         return super().clean(value)
+
 
 class StandardCardBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
