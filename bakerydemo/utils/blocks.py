@@ -170,11 +170,12 @@ class TabsBlock(blocks.StructBlock):
 
 
 class GalleryBlock(blocks.StructBlock):
+    STYLE_CHOICES = [
+        ('slider', 'Slider'),
+        ('carousel', 'Carousel')
+    ]
     style = blocks.ChoiceBlock(
-        choices=[
-            ('slider', 'Slider'),
-            ('carousel', 'Carousel')
-        ], default='slider'
+        choices=STYLE_CHOICES, default='slider'
     )
     images = blocks.ListBlock(
         blocks.StructBlock(
