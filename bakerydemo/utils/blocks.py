@@ -44,6 +44,9 @@ class LogoSequenceBlock(blocks.StructBlock):
         ('logo', LogoBlock())
     ])
 
+    class Meta:
+        icon = "fa-apple"
+
 
 class LogoGroupBlock(blocks.StructBlock):
     group_title = blocks.CharBlock()
@@ -156,7 +159,7 @@ class LongBlock(blocks.StructBlock):
 
 class LogoSequenceBlock(blocks.StructBlock):
     section_title = blocks.CharBlock()
-    logo_group = blocks.StreamBlock([
+    logo_groups = blocks.StreamBlock([
         ('logo_group', LogoGroupBlock())
     ])
 
