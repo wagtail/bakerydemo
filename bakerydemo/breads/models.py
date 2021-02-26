@@ -1,25 +1,23 @@
 from django import forms
-from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.db import models
 from modelcluster.fields import ParentalManyToManyField
 from rest_framework import serializers
-
 from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, StreamFieldPanel
 )
 from wagtail.api import APIField
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
+from wagtail.core.models import Page, TranslatableMixin
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
 
 @register_snippet
-class Country(models.Model):
+class Country(TranslatableMixin, models.Model):
     """
     A Django model to store set of countries of origin.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -35,12 +33,12 @@ class Country(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
+    class Meta(TranslatableMixin.Meta):
         verbose_name_plural = "Countries of Origin"
 
 
 @register_snippet
-class BreadIngredient(models.Model):
+class BreadIngredient(TranslatableMixin, models.Model):
     """
     Standard Django model that is displayed as a snippet within the admin due
     to the `@register_snippet` decorator. We use a new piece of functionality
@@ -57,12 +55,12 @@ class BreadIngredient(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
+    class Meta(TranslatableMixin.Meta):
         verbose_name_plural = 'Bread ingredients'
 
 
 @register_snippet
-class BreadType(models.Model):
+class BreadType(TranslatableMixin, models.Model):
     """
     A Django model to define the bread type
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -81,7 +79,7 @@ class BreadType(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
+    class Meta(TranslatableMixin.Meta):
         verbose_name_plural = "Bread types"
 
 
@@ -153,8 +151,9 @@ class BreadPage(Page):
         APIField('image'),
         APIField('body'),
         APIField('origin'),
-        APIField('bread_type',serializer=serializers.StringRelatedField()),
+        APIField('bread_type', serializer=serializers.StringRelatedField()),
     ]
+
 
 class BreadsIndexPage(Page):
     """
@@ -175,7 +174,7 @@ class BreadsIndexPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
         help_text='Landscape mode only; horizontal width between 1000px and '
-        '3000px.'
+                  '3000px.'
     )
 
     content_panels = Page.content_panels + [
