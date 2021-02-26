@@ -34,8 +34,22 @@ class LinkBlock(blocks.StructBlock):
 
 
 class LogoBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
+    title = blocks.CharBlock(required=False)
     image = ImageChooserBlock()
+
+
+class LogoSequenceBlock(blocks.StructBlock):
+    sequence_title = blocks.CharBlock()
+    logos = blocks.StreamBlock([
+        ('logo', LogoBlock())
+    ])
+
+
+class LogoGroupBlock(blocks.StructBlock):
+    group_title = blocks.CharBlock()
+    logo_sequences = blocks.StreamBlock([
+        ('logo_sequence', LogoSequenceBlock())
+    ])
 
 
 class AccordionItemBlock(blocks.StructBlock):
@@ -141,15 +155,10 @@ class LongBlock(blocks.StructBlock):
 
 
 class LogoSequenceBlock(blocks.StructBlock):
-    sequence_title = blocks.CharBlock()
-    logo_group = blocks.ListBlock(blocks.StructBlock([
-        ('sequence_title', blocks.CharBlock()),
-        ('logo_sequence', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('image', ImageChooserBlock())
-        ])))
-
-    ]))
+    section_title = blocks.CharBlock()
+    logo_group = blocks.StreamBlock([
+        ('logo_group', LogoGroupBlock())
+    ])
 
     class Meta:
         icon = "fa-apple"
