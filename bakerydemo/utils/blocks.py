@@ -34,14 +34,12 @@ class LinkBlock(blocks.StructBlock):
 
 
 class AccordionBlock(blocks.StructBlock):
-    accordion = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('title', blocks.CharBlock()),
-                ('content', blocks.RichTextBlock()),
-            ]
-        )
-    )
+    accordion = blocks.StreamBlock([
+        ("accordion", blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('content', blocks.RichTextBlock()),
+        ]))
+    ])
 
     class Meta:
         icon = "fa-list"
