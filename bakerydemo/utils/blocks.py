@@ -189,14 +189,14 @@ class GalleryBlock(blocks.StructBlock):
     style = blocks.ChoiceBlock(
         choices=STYLE_CHOICES, default='slider'
     )
-    images = blocks.ListBlock(
-        blocks.StructBlock(
+    images = blocks.StreamBlock([
+        ("image", blocks.StructBlock(
             [
                 ('image', ImageChooserBlock()),
                 ('description', blocks.CharBlock()),
             ]
-        )
-    )
+        ))
+    ])
 
     class Meta:
         icon = "fa-picture-o"
@@ -224,7 +224,9 @@ class HighLightImageBlock(HighlightWithoutImageBlock):
 
 class HighlightsWithImageBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    highlights = blocks.ListBlock(HighLightImageBlock())
+    highlights = blocks.StreamBlock([
+        ('image', HighLightImageBlock()),
+    ])
 
     class Meta:
         icon = "fa-check"
@@ -233,7 +235,9 @@ class HighlightsWithImageBlock(blocks.StructBlock):
 
 class HighlightsWithoutImageBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    highlights = blocks.ListBlock(HighlightWithoutImageBlock())
+    highlights = blocks.StreamBlock([
+        ('image', HighlightWithoutImageBlock()),
+    ])
 
     class Meta:
         icon = "fa-times"
