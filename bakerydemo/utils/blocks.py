@@ -33,48 +33,69 @@ class LinkBlock(blocks.StructBlock):
         icon = "fa-link"
 
 
+class LogoBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=False)
+    image = ImageChooserBlock()
+
+
+class LogoSequenceBlock(blocks.StructBlock):
+    sequence_title = blocks.CharBlock()
+    logos = blocks.StreamBlock([
+        ('logo', LogoBlock())
+    ])
+
+    class Meta:
+        icon = "fa-apple"
+
+
+class LogoGroupBlock(blocks.StructBlock):
+    group_title = blocks.CharBlock()
+    logo_sequences = blocks.StreamBlock([
+        ('logo_sequence', LogoSequenceBlock())
+    ])
+
+
+class AccordionItemBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    content = blocks.RichTextBlock()
+
+
+class CollectionItemBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    title = blocks.CharBlock()
+    description = blocks.CharBlock()
+    artist = SnippetChooserBlock(People)
+    year = blocks.IntegerBlock(min_value=0)
+
+
+class EventItemBlock(blocks.StructBlock):
+    schedule = blocks.DateTimeBlock()
+    event = blocks.CharBlock()
+    description = blocks.CharBlock()
+
+
 class AccordionBlock(blocks.StructBlock):
-    accordion = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('title', blocks.CharBlock()),
-                ('content', blocks.RichTextBlock()),
-            ]
-        )
-    )
+    accordion_items = blocks.StreamBlock([
+        ("accordion_item", AccordionItemBlock())
+    ])
 
     class Meta:
         icon = "fa-list"
 
 
-class CollectionsBlock(blocks.StructBlock):
-    collections = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('image', ImageChooserBlock()),
-                ('title', blocks.CharBlock()),
-                ('description', blocks.CharBlock()),
-                ('artist', SnippetChooserBlock(People)),
-                ('year', blocks.IntegerBlock(min_value=0)),
-            ]
-        )
-    )
+class CollectionBlock(blocks.StructBlock):
+    collection_items = blocks.StreamBlock([
+        ("collection_item", CollectionItemBlock())
+    ])
 
     class Meta:
         icon = "fa-picture-o"
 
 
 class EventsBlock(blocks.StructBlock):
-    events = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ('schedule', blocks.DateTimeBlock()),
-                ('Event', blocks.CharBlock()),
-                ('description', blocks.CharBlock()),
-
-            ]
-        )
-    )
+    event_items = blocks.StreamBlock([
+        ("event_item", EventItemBlock())
+    ])
 
     class Meta:
         icon = "fa-street-view"
@@ -106,6 +127,7 @@ class ExhibitionCardBlock(blocks.StructBlock):
 
         return super().clean(value)
 
+
 class StandardCardBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     title = blocks.CharBlock()
@@ -127,7 +149,7 @@ class LongBlock(blocks.StructBlock):
     body = blocks.StreamBlock([
         ('paragraph', blocks.RichTextBlock()),
         ('accordion', AccordionBlock()),
-        ('collections', CollectionsBlock()),
+        ('collection', CollectionBlock()),
         ('button', ButtonBlock()),
     ])
 
@@ -136,15 +158,10 @@ class LongBlock(blocks.StructBlock):
 
 
 class LogoSequenceBlock(blocks.StructBlock):
-    sequence_title = blocks.CharBlock()
-    logo_group = blocks.ListBlock(blocks.StructBlock([
-        ('sequence_title', blocks.CharBlock()),
-        ('logo_sequence', blocks.ListBlock(blocks.StructBlock([
-            ('title', blocks.CharBlock()),
-            ('image', ImageChooserBlock())
-        ])))
-
-    ]))
+    section_title = blocks.CharBlock()
+    logo_groups = blocks.StreamBlock([
+        ('logo_group', LogoGroupBlock())
+    ])
 
     class Meta:
         icon = "fa-apple"
@@ -165,20 +182,21 @@ class TabsBlock(blocks.StructBlock):
 
 
 class GalleryBlock(blocks.StructBlock):
+    STYLE_CHOICES = [
+        ('slider', 'Slider'),
+        ('carousel', 'Carousel')
+    ]
     style = blocks.ChoiceBlock(
-        choices=[
-            ('slider', 'Slider'),
-            ('carousel', 'Carousel')
-        ], default='slider'
+        choices=STYLE_CHOICES, default='slider'
     )
-    images = blocks.ListBlock(
-        blocks.StructBlock(
+    images = blocks.StreamBlock([
+        ("image", blocks.StructBlock(
             [
                 ('image', ImageChooserBlock()),
                 ('description', blocks.CharBlock()),
             ]
-        )
-    )
+        ))
+    ])
 
     class Meta:
         icon = "fa-picture-o"
@@ -206,7 +224,9 @@ class HighLightImageBlock(HighlightWithoutImageBlock):
 
 class HighlightsWithImageBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    highlights = blocks.ListBlock(HighLightImageBlock())
+    highlights = blocks.StreamBlock([
+        ('image', HighLightImageBlock()),
+    ])
 
     class Meta:
         icon = "fa-check"
@@ -215,7 +235,9 @@ class HighlightsWithImageBlock(blocks.StructBlock):
 
 class HighlightsWithoutImageBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    highlights = blocks.ListBlock(HighlightWithoutImageBlock())
+    highlights = blocks.StreamBlock([
+        ('image', HighlightWithoutImageBlock()),
+    ])
 
     class Meta:
         icon = "fa-times"
