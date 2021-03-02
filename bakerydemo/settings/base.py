@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.routable_page',
     'wagtail.core',
-    'wagtail.locales',
     "wagtail_localize",
+    "wagtail_localize.locales",  # This replaces "wagtail.locales"
 
     'rest_framework',
     'modelcluster',
