@@ -1,7 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.forms.utils import ErrorList
 from wagtail.core import blocks
-
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 from bakerydemo.base.blocks import ImageChooserBlock, RichTextBlock
@@ -48,7 +47,7 @@ class LogoGroupBlock(blocks.StructBlock):
 
 class AccordionItemBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    content = blocks.RichTextBlock()
+    content = RichTextBlock()
 
 
 class CollectionItemBlock(blocks.StructBlock):
@@ -98,7 +97,7 @@ class ExhibitionCardBlock(blocks.StructBlock):
     start_date = blocks.DateBlock()
     end_date = blocks.DateBlock()
     body = blocks.StreamBlock([
-        ('paragraph', blocks.RichTextBlock()),
+        ('paragraph', RichTextBlock()),
         ('button', ButtonBlock()),
         ('accordion', AccordionBlock()),
         ('link', LinkBlock()),

@@ -1,9 +1,10 @@
-from wagtail.core.templatetags.wagtailcore_tags import richtext
-from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
-from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core.blocks import (
-    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock,
+    CharBlock, ChoiceBlock, StreamBlock, StructBlock, TextBlock,
 )
+from wagtail.core.blocks import RichTextBlock as DefaultRichTextBlock
+from wagtail.core.templatetags.wagtailcore_tags import richtext
+from wagtail.embeds.blocks import EmbedBlock
+from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 
 
 class ImageChooserBlock(DefaultImageChooserBlock):
@@ -16,7 +17,7 @@ class ImageChooserBlock(DefaultImageChooserBlock):
             }
 
 
-class RichTextBlock(RichTextBlock):
+class RichTextBlock(DefaultRichTextBlock):
     def get_api_representation(self, value, context=None):
         return richtext(value.source)
 
