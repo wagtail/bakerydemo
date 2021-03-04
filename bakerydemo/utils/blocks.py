@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.forms.utils import ErrorList
 from wagtail.core import blocks
+from wagtail.core.templatetags.wagtailcore_tags import richtext
 from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 
@@ -15,6 +16,11 @@ class ImageChooserBlock(DefaultImageChooserBlock):
                 "title": value.title,
                 "original": value.get_rendition("original").attrs_dict,
             }
+
+
+class RichTextBlock(blocks.RichTextBlock):
+    def get_api_representation(self, value, context=None):
+        return richtext(value.source)
 
 
 class ButtonBlock(blocks.StructBlock):
@@ -132,7 +138,7 @@ class StandardCardBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     title = blocks.CharBlock()
     body = blocks.StreamBlock([
-        ('paragraph', blocks.RichTextBlock()),
+        ('paragraph', RichTextBlock()),
         ('button', ButtonBlock()),
         ('accordion', AccordionBlock()),
         ('events', EventsBlock()),
@@ -145,9 +151,9 @@ class StandardCardBlock(blocks.StructBlock):
 
 class LongBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    description = blocks.RichTextBlock()
+    description = RichTextBlock()
     body = blocks.StreamBlock([
-        ('paragraph', blocks.RichTextBlock()),
+        ('paragraph', RichTextBlock()),
         ('accordion', AccordionBlock()),
         ('collection', CollectionBlock()),
         ('button', ButtonBlock()),
@@ -173,7 +179,7 @@ class TabsBlock(blocks.StructBlock):
         ('accordion', AccordionBlock()),
     ])
     tab_2_content = blocks.StreamBlock([
-        ('paragraph', blocks.RichTextBlock()),
+        ('paragraph', RichTextBlock()),
         ('accordion', AccordionBlock()),
     ])
 
@@ -255,7 +261,7 @@ class MuseumMapBlock(blocks.StructBlock):
 class GettingHereBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     body = blocks.StreamBlock([
-        ('paragraph', blocks.RichTextBlock()),
+        ('paragraph', RichTextBlock()),
         ('accordion', AccordionBlock()),
     ])
 
