@@ -1,26 +1,11 @@
 from django.core.exceptions import ValidationError
 from django.forms.utils import ErrorList
 from wagtail.core import blocks
-from wagtail.core.templatetags.wagtailcore_tags import richtext
-from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
+
 from wagtail.snippets.blocks import SnippetChooserBlock
 
+from bakerydemo.base.blocks import ImageChooserBlock, RichTextBlock
 from bakerydemo.base.models import People
-
-
-class ImageChooserBlock(DefaultImageChooserBlock):
-    def get_api_representation(self, value, context=None):
-        if value:
-            return {
-                "id": value.id,
-                "title": value.title,
-                "original": value.get_rendition("original").attrs_dict,
-            }
-
-
-class RichTextBlock(blocks.RichTextBlock):
-    def get_api_representation(self, value, context=None):
-        return richtext(value.source)
 
 
 class ButtonBlock(blocks.StructBlock):

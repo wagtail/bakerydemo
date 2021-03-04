@@ -1,9 +1,24 @@
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.core.templatetags.wagtailcore_tags import richtext
+from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.core.blocks import (
-    CharBlock, ChoiceBlock, StreamBlock, StructBlock, TextBlock,
+    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock,
 )
-from bakerydemo.utils.blocks import RichTextBlock
+
+
+class ImageChooserBlock(DefaultImageChooserBlock):
+    def get_api_representation(self, value, context=None):
+        if value:
+            return {
+                "id": value.id,
+                "title": value.title,
+                "original": value.get_rendition("original").attrs_dict,
+            }
+
+
+class RichTextBlock(RichTextBlock):
+    def get_api_representation(self, value, context=None):
+        return richtext(value.source)
 
 
 class ImageBlock(StructBlock):
