@@ -198,7 +198,7 @@ LANGUAGES = (
 
 WAGTAIL_CONTENT_LANGUAGES = [
     ('en', "English"),
-    ('zh-Hans', "Chinese Simplified"),
-    ('zh-hant', "Chinese Traditional"),
-    ('fr', "French"),
+    ('zh-Hans', "Chinese Simplified （中文简体)"),
+    ('zh-hant', "Chinese Traditional （中文繁體)"),
+    ('fr', "French (Francais)"),
 ]
