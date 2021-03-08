@@ -191,14 +191,14 @@ USE_L10N = True
 
 LANGUAGES = (
     ('en', "English"),
-    ('zh-Hans', "Chinese Simplified"),
+    ('zh-hans', "Chinese Simplified"),
     ('zh-hant', "Chinese Traditional"),
     ('fr', "French"),
 )
 
 WAGTAIL_CONTENT_LANGUAGES = [
     ('en', "English"),
-    ('zh-Hans', "Chinese Simplified （中文简体)"),
+    ('zh-hans', "Chinese Simplified （中文简体)"),
     ('zh-hant', "Chinese Traditional （中文繁體)"),
     ('fr', "French (Francais)"),
 ]
