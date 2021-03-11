@@ -16,4 +16,3 @@ aws-requests-auth==0.4.0
 django-redis==4.11.0
 django_cache_url==2.0.0
 wagtail-localize==0.9.4
-drf-yasg==1.20.0
