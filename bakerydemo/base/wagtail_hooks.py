@@ -1,8 +1,10 @@
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, ModelAdminGroup, modeladmin_register)
 
+from bakerydemo.base.views import PersonChooserViewSet
 from bakerydemo.breads.models import Country, BreadIngredient, BreadType
 from bakerydemo.base.models import People, FooterText
+from wagtail.core import hooks
 
 '''
 N.B. To see what icons are available for use in Wagtail menus and StreamField block types,
@@ -45,28 +47,15 @@ class BreadModelAdminGroup(ModelAdminGroup):
     items = (BreadIngredientAdmin, BreadTypeAdmin, BreadCountryAdmin)
 
 
-class PeopleModelAdmin(ModelAdmin):
-    model = People
-    menu_label = 'People'  # ditch this to use verbose_name_plural from model
-    menu_icon = 'fa-users'  # change as required
-    list_display = ('first_name', 'last_name', 'job_title', 'thumb_image')
-    list_filter = ('job_title', )
-    search_fields = ('first_name', 'last_name', 'job_title')
-
-
 class FooterTextAdmin(ModelAdmin):
     model = FooterText
     search_fields = ('body',)
 
 
-class BakeryModelAdminGroup(ModelAdminGroup):
-    menu_label = 'Bakery Misc'
-    menu_icon = 'fa-cutlery'  # change as required
-    menu_order = 300  # will put in 4th place (000 being 1st, 100 2nd)
-    items = (PeopleModelAdmin, FooterTextAdmin)
-
-
 # When using a ModelAdminGroup class to group several ModelAdmin classes together,
 # you only need to register the ModelAdminGroup class with Wagtail:
 modeladmin_register(BreadModelAdminGroup)
-modeladmin_register(BakeryModelAdminGroup)
+
+@hooks.register('register_admin_viewset')
+def register_person_chooser_viewset():
+    return PersonChooserViewSet('person_chooser', url_prefix='person-chooser')
