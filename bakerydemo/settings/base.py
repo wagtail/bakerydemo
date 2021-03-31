@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'wagtail.core',
     "wagtail_localize",
     "wagtail_localize.locales",  # This replaces "wagtail.locales"
+    "generic_chooser",
 
     'rest_framework',
     'modelcluster',
