@@ -31,13 +31,26 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 
 # Installation
 
+- [Gitpod](#setup-with-gitpod)
 - [Vagrant](#setup-with-vagrant)
 - [Docker](#setup-with-docker)
 - [Virtualenv](#setup-with-virtualenv)
 - [Heroku](#deploy-to-heroku)
 
-If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using Vagrant or Docker (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues. Developers more familiar with
-virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
+If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
+If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
+Developers more familiar with virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
+If you want a publicly accessible demo site, [deploy to Heroku](#deploy-to-heroku).
+
+Setup with Gitpod
+-----------------
+
+Setup a development environment and run this demo website with a single click (requires a Github account):
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
+
+Once Gitpod has fully started, and a preview of the bakery website has appeared in the "Simple Browser" panel, click the arrow button to the right of the URL bar to open the website in a new tab.
+Go to ``/admin/`` and login with ``admin / changeme``.
 
 Setup with Vagrant
 ------------------
@@ -145,8 +158,7 @@ Log into the admin with the credentials ``admin / changeme``.
 Deploy to Heroku
 ----------------
 
-If you don't want to test locally you can deploy a demo site to a publicly accessible server with [Heroku's](https://heroku.com)
-one-click deployment solution to their free 'Hobby' tier:
+If you want a publicly accessible demo site, use [Heroku's](https://heroku.com) one-click deployment solution to the free 'Hobby' tier:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
 
