@@ -39,6 +39,16 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using Vagrant or Docker (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues. Developers more familiar with
 virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
 
+Setup with Gitpod
+-----------------
+
+Setup a development environment and run this demo website with a single click (requires a Github account):
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/allcaps/bakerydemo/)
+
+Once Gitpod has started, click the preview url to open the website in a new tab.
+Go to ``/admin/`` and login with ``admin / changeme``.
+
 Setup with Vagrant
 ------------------
 

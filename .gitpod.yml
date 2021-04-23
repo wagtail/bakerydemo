@@ -1,0 +1,16 @@
+ports:
+- port: 8080
+  onOpen: open-preview
+tasks:
+- init: >
+    cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py &&
+    echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env &&
+    python -m pip install -r requirements.txt &&
+    python manage.py makemigrations &&
+    python manage.py migrate &&
+    python manage.py load_initial_data
+  command: >
+    python manage.py runserver 0.0.0.0:8080
+github:
+    prebuilds:
+        pullRequestsFromForks: true
