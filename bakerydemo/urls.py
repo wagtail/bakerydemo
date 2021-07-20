@@ -1,6 +1,6 @@
-from django.conf.urls import include, url
 from django.conf import settings
 from django.contrib import admin
+from django.urls import include, path
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
@@ -11,15 +11,15 @@ from bakerydemo.search import views as search_views
 from .api import api_router
 
 urlpatterns = [
-    url(r'^django-admin/', admin.site.urls),
+    path('django-admin/', admin.site.urls),
 
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
+    path('admin/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
 
-    url(r'^search/$', search_views.search, name='search'),
+    path('search/', search_views.search, name='search'),
 
-    url(r'^sitemap\.xml$', sitemap),
-    url(r'^api/v2/', api_router.urls),
+    path('sitemap.xml', sitemap),
+    path('api/v2/', api_router.urls),
 ]
 
 
@@ -33,8 +33,8 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += [
-        url(
-            r'^favicon\.ico$', RedirectView.as_view(
+        path(
+            'favicon.ico', RedirectView.as_view(
                 url=settings.STATIC_URL + 'img/bread-favicon.ico'
             )
         )
@@ -42,10 +42,10 @@ if settings.DEBUG:
 
     # Add views for testing 404 and 500 templates
     urlpatterns += [
-        url(r'^test404/$', TemplateView.as_view(template_name='404.html')),
-        url(r'^test500/$', TemplateView.as_view(template_name='500.html')),
+        path('test404/', TemplateView.as_view(template_name='404.html')),
+        path('test500/', TemplateView.as_view(template_name='500.html')),
     ]
 
 urlpatterns += [
-    url(r'', include(wagtail_urls)),
+    path('', include(wagtail_urls)),
 ]
