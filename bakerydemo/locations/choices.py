@@ -1,9 +1,9 @@
 
 DAY_CHOICES = (
     ('MON', 'Monday'),
-    ('TUES', 'Tuesday'),
+    ('TUE', 'Tuesday'),
     ('WED', 'Wednesday'),
-    ('THUR', 'Thursday'),
+    ('THU', 'Thursday'),
     ('FRI', 'Friday'),
     ('SAT', 'Saturday'),
     ('SUN', 'Sunday'),
