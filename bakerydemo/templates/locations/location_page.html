@@ -19,6 +19,7 @@
                     <div class="col-md-7">
                         <h1>{{ page.title }}</h1>
                         <p class="stand-first">
+                            It is {{ page.loc_datetime }}<br>
                             {% if page.is_open %}
                                 This location is currently open
                             {% else %}
@@ -33,14 +34,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <div class="row">
                     {% if page.introduction %}
-                        <div class="intro col-md-7"><p>{{ page.introduction }}</p></div>
+                        <div class="intro col-sm-6"><p>{{ page.introduction }}</p></div>
                     {% endif %}
-
                     {% if page.operating_hours %}
-                        <div class="col-md-4 col-md-offset-1 location-opening">
-                        <h3>Opening hours</h3>
+                        <div class="col-sm-5 col-md-offset-1 location-opening">
+                        <h4>Hours:</h4>
                         {% for hours in page.operating_hours %}
                             <time itemprop="openingHours" datetime="{{ hours }}" class="location-time">
                             <span class="day">{{ hours.day }}</span>:
@@ -60,27 +59,24 @@
                         </div>
                     {% endif %}
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-flex">
-            <div class="row">
-                <div class="col-md-2 col-md-offset-5 location-address">
+                <div class="col-sm-2 col-sm-offset-1 location-address">
                     <h3>Address</h3>
                     <address>{{ page.address|linebreaks }}</address>
-                </div>
-            </div>
+                </div> 
 
-            <div class="map-container">
-                <div id="map" class="maps embed-container"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="mw-75" alt="Max-width 75%" location-body"> 
+                    {{ page.body }}
+                </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 location-body">
-                    {{ page.body }}
-                </div>
+        <div class="container-flex">
+            <div class="map-container">
+                <div id="map" class="maps embed-container"></div>
             </div>
         </div>
     </div>
