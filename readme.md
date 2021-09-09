@@ -112,7 +112,7 @@ docker-compose logs -f
 
 Setup with Virtualenv
 ---------------------
-You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/1.10/topics/install/#install-the-django-code) for Django itself.
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/3.2/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
 * Python 3.6, 3.7, 3.8 or 3.9
@@ -242,7 +242,7 @@ In production on your own site, you'll need to change this to:
 
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
-and configure [SMTP settings](https://docs.djangoproject.com/en/1.10/topics/email/#smtp-backend) appropriate for your email provider.
+and configure [SMTP settings](https://docs.djangoproject.com/en/3.2/topics/email/#smtp-backend) appropriate for your email provider.
 
 ### Ownership of demo content
 
