@@ -44,7 +44,7 @@ class BreadIngredient(models.Model):
     to the `@register_snippet` decorator. We use a new piece of functionality
     available to Wagtail called the ParentalManyToManyField on the BreadPage
     model to display this. The Wagtail Docs give a slightly more detailed example
-    http://docs.wagtail.io/en/latest/getting_started/tutorial.html#categories
+    https://docs.wagtail.io/en/latest/getting_started/tutorial.html#categories
     """
     name = models.CharField(max_length=255)
 
