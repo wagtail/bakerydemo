@@ -54,7 +54,7 @@ class BlogPage(Page):
 
     We access the People object with an inline panel that references the
     ParentalKey's related_name in BlogPeopleRelationship. More docs:
-    http://docs.wagtail.io/en/latest/topics/pages.html#inline-models
+    https://docs.wagtail.io/en/latest/topics/pages.html#inline-models
     """
     introduction = models.TextField(
         help_text='Text to describe the page',
