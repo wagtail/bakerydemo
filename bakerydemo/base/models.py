@@ -185,7 +185,6 @@ class HomePage(Page):
         help_text='Promo image'
     )
     promo_title = models.CharField(
-        null=True,
         blank=True,
         max_length=255,
         help_text='Title to display above the promo copy'
@@ -202,7 +201,6 @@ class HomePage(Page):
     # Each list their children items that we access via the children function
     # that we define on the individual Page models e.g. BlogIndexPage
     featured_section_1_title = models.CharField(
-        null=True,
         blank=True,
         max_length=255,
         help_text='Title to display above the promo copy'
@@ -219,7 +217,6 @@ class HomePage(Page):
     )
 
     featured_section_2_title = models.CharField(
-        null=True,
         blank=True,
         max_length=255,
         help_text='Title to display above the promo copy'
@@ -236,7 +233,6 @@ class HomePage(Page):
     )
 
     featured_section_3_title = models.CharField(
-        null=True,
         blank=True,
         max_length=255,
         help_text='Title to display above the promo copy'
