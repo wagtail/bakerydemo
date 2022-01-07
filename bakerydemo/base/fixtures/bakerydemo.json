@@ -3383,7 +3383,7 @@
   }
 },
 {
-  "model": "blog.blogindexpage",
+  "model": "breads.breadsindexpage",
   "pk": 3,
   "fields": {
     "introduction": "",
