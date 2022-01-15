@@ -16,7 +16,7 @@ def search(request):
     if search_query:
         if 'elasticsearch' in settings.WAGTAILSEARCH_BACKENDS['default']['BACKEND']:
             # In production, use ElasticSearch and a simplified search query, per
-            # https://docs.wagtail.io/en/latest/topics/search/backends.html
+            # https://docs.wagtail.org/en/stable/topics/search/backends.html
             # like this:
             search_results = Page.objects.live().search(search_query)
         else:

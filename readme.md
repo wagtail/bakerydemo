@@ -184,7 +184,7 @@ environments typically work in the same manner.  In laymen's terms, this means t
 minimum of once per day, and on each application deployment. To mitigate this, you can host your media on S3.
 
 This documentation assumes that you have an AWS account, an IAM user, and a properly configured S3 bucket. These topics
-are outside of the scope of this documentation; the following [blog post](https://wagtail.io/blog/amazon-s3-for-media-files/)
+are outside of the scope of this documentation; the following [blog post](https://wagtail.org/blog/amazon-s3-for-media-files/)
 will walk you through those steps.
 
 This demo site comes preconfigured with a production settings file that will enable S3 for uploaded media storage if
@@ -205,8 +205,7 @@ time you might need to run it again.
 
 # Next steps
 
-Hopefully after you've experimented with the demo you'll want to create your own site. To do that you'll want to run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](http://wagtail.readthedocs.io/en/latest/getting_started/index.html).
-
+Hopefully after you've experimented with the demo you'll want to create your own site. To do that you'll want to run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](https://docs.wagtail.org/en/stable/getting_started/index.html).
 
 # Contributing
 
@@ -230,7 +229,7 @@ Because we can't (easily) use ElasticSearch for this demo, we use wagtail's nati
 However, native DB search can't search specific fields in our models on a generalized `Page` query.
 So for demo purposes ONLY, we hard-code the model names we want to search into `search.views`, which is
 not ideal. In production, use ElasticSearch and a simplified search query, per
-[https://docs.wagtail.io/en/latest/topics/search/searching.html](https://docs.wagtail.io/en/latest/topics/search/searching.html).
+[https://docs.wagtail.org/en/stable/topics/search/searching.html](https://docs.wagtail.org/en/stable/topics/search/searching.html).
 
 ### Sending email from the contact form
 
