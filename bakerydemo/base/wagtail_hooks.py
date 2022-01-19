@@ -14,10 +14,10 @@ INSTALLED_APPS = (
    ...
 )
 
-or see http://kave.github.io/general/2015/12/06/wagtail-streamfield-icons.html
+or see https://thegrouchy.dev/general/2015/12/06/wagtail-streamfield-icons.html
 
 This demo project includes the full font-awesome set via CDN in base.html, so the entire
-font-awesome icon set is available to you. Options are at http://fontawesome.io/icons/.
+font-awesome icon set is available to you. Options are at https://fontawesome.com/icons .
 '''
 
 

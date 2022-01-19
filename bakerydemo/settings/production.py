@@ -76,7 +76,7 @@ if ELASTICSEARCH_ENDPOINT:
         )
     elif AWS_REGION:
         # No API keys in the environ, so attempt to discover them with Boto instead, per:
-        # http://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials
+        # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#configuring-credentials
         # This may be useful if your credentials are obtained via EC2 instance meta data.
         from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
         WAGTAILSEARCH_BACKENDS['default']['HOSTS'][0]['http_auth'] = BotoAWSRequestsAuth(
