@@ -338,7 +338,7 @@ class FormField(AbstractFormField):
     to generate a general purpose data-collection form or contact form
     without having to write code. We use it on the site for a contact form. You
     can read more about Wagtail forms at:
-    https://docs.wagtail.io/en/latest/reference/contrib/forms/index.html
+    https://docs.wagtail.org/en/stable/reference/contrib/forms/index.html
     """
     page = ParentalKey('FormPage', related_name='form_fields', on_delete=models.CASCADE)
 

@@ -43,7 +43,7 @@ class BlogPageTag(TaggedItemBase):
     """
     This model allows us to create a many-to-many relationship between
     the BlogPage object and tags. There's a longer guide on using it at
-    https://docs.wagtail.io/en/latest/reference/pages/model_recipes.html#tagging
+    https://docs.wagtail.org/en/stable/reference/pages/model_recipes.html#tagging
     """
     content_object = ParentalKey('BlogPage', related_name='tagged_items', on_delete=models.CASCADE)
 
@@ -54,7 +54,7 @@ class BlogPage(Page):
 
     We access the People object with an inline panel that references the
     ParentalKey's related_name in BlogPeopleRelationship. More docs:
-    https://docs.wagtail.io/en/latest/topics/pages.html#inline-models
+    https://docs.wagtail.org/en/stable/topics/pages.html#inline-models
     """
     introduction = models.TextField(
         help_text='Text to describe the page',
@@ -166,7 +166,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     # Overrides the context to list all child items, that are live, by the
     # date that they were published
-    # https://docs.wagtail.io/en/latest/getting_started/tutorial.html#overriding-context
+    # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
         context['posts'] = BlogPage.objects.descendant_of(
@@ -177,7 +177,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     # This defines a Custom view that utilizes Tags. This view will return all
     # related BlogPages for a given Tag or redirect back to the BlogIndexPage.
     # More information on RoutablePages is at
-    # https://docs.wagtail.io/en/latest/reference/contrib/routablepage.html
+    # https://docs.wagtail.org/en/stable/reference/contrib/routablepage.html
     @route(r'^tags/$', name='tag_archive')
     @route(r'^tags/([\w-]+)/$', name='tag_archive')
     def tag_archive(self, request, tag=None):
