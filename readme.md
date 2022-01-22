@@ -1,5 +1,4 @@
-Wagtail demo project
-=======================
+# Wagtail demo project
 
 This is a demonstration project for the amazing [Wagtail CMS](https://github.com/wagtail/wagtail).
 
@@ -11,16 +10,16 @@ Note we do _not_ recommend using this project to start your own site - the demo 
 
 This demo is aimed primarily at developers wanting to learn more about the internals of Wagtail, and assumes you'll be reading its source code. After browsing the features, pay special attention to code we've used for:
 
--   Dividing a project up into multiple apps
--   Custom content models and "contexts" in the "breads" and "locations" apps
--   A typical weblog in the "blog" app
--   Example of using a "base" app to contain misc additional functionality (e.g. Contact Form, About, etc.)
--   "StandardPage" model using mixins borrowed from other apps
--   Example of customizing the Wagtail Admin via _wagtail_hooks_
--   Example of using the Wagtail "snippets" system to represent bread categories, countries and ingredients
--   Example of a custom "Galleries" feature that pulls in images used in other content types in the system
--   Example of creating ManyToMany relationships via the Ingredients feature on BreadPage
--   Lots more
+- Dividing a project up into multiple apps
+- Custom content models and "contexts" in the "breads" and "locations" apps
+- A typical weblog in the "blog" app
+- Example of using a "base" app to contain misc additional functionality (e.g. Contact Form, About, etc.)
+- "StandardPage" model using mixins borrowed from other apps
+- Example of customizing the Wagtail Admin via _wagtail_hooks_
+- Example of using the Wagtail "snippets" system to represent bread categories, countries and ingredients
+- Example of a custom "Galleries" feature that pulls in images used in other content types in the system
+- Example of creating ManyToMany relationships via the Ingredients feature on BreadPage
+- Lots more
 
 **Document contents**
 
@@ -42,24 +41,24 @@ If you want to set up Wagtail locally instead, and you're new to Python and/or D
 Developers more familiar with virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
 If you want a publicly accessible demo site, [deploy to Heroku](#deploy-to-heroku).
 
-Setup with Gitpod
------------------
+## Setup with Gitpod
 
 Setup a development environment and run this demo website with a single click (requires a Github account):
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
 
 Once Gitpod has fully started, and a preview of the bakery website has appeared in the "Simple Browser" panel, click the arrow button to the right of the URL bar to open the website in a new tab.
-Go to ``/admin/`` and login with ``admin / changeme``.
+Go to `/admin/` and login with `admin / changeme`.
 
-Setup with Vagrant
-------------------
+## Setup with Vagrant
 
 #### Dependencies
-* [Vagrant](https://www.vagrantup.com/)
-* [Virtualbox](https://www.virtualbox.org/)
+
+- [Vagrant](https://www.vagrantup.com/)
+- [Virtualbox](https://www.virtualbox.org/)
 
 #### Installation
+
 Once you've installed the necessary dependencies run the following commands:
 
 ```bash
@@ -74,18 +73,19 @@ vagrant ssh
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
 interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
-Log into the admin with the credentials ``admin / changeme``.
+Log into the admin with the credentials `admin / changeme`.
 
 Use `Ctrl+c` to stop the local server. To stop the Vagrant environment, run `exit` then `vagrant halt`.
 
-Setup with Docker
------------------
+## Setup with Docker
 
 #### Dependencies
-* [Docker](https://docs.docker.com/engine/installation/)
-* [Docker Compose](https://docs.docker.com/compose/install/)
+
+- [Docker](https://docs.docker.com/engine/installation/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Installation
+
 Run the following commands:
 
 ```bash
@@ -99,25 +99,27 @@ docker-compose up
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
 interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
-Log into the admin with the credentials ``admin / changeme``.
+Log into the admin with the credentials `admin / changeme`.
 
 **Important:** This `docker-compose.yml` is configured for local testing only, and is _not_ intended for production use.
 
 ### Debugging
+
 To tail the logs from the Docker containers in realtime, run:
 
 ```bash
 docker-compose logs -f
 ```
 
-Setup with Virtualenv
----------------------
+## Setup with Virtualenv
+
 You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/3.2/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
-* Python 3.6, 3.7, 3.8 or 3.9
-* [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
-* [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
+
+- Python 3.6, 3.7, 3.8 or 3.9
+- [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+- [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
 ### Installation
 
@@ -153,21 +155,20 @@ To set up your database and load initial data, run the following commands:
     ./manage.py load_initial_data
     ./manage.py runserver
 
-Log into the admin with the credentials ``admin / changeme``.
+Log into the admin with the credentials `admin / changeme`.
 
-Deploy to Heroku
-----------------
+## Deploy to Heroku
 
 If you want a publicly accessible demo site, use [Heroku's](https://heroku.com) one-click deployment solution to the free 'Hobby' tier:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/wagtail/bakerydemo)
 
 If you do not have a Heroku account, clicking the above button will walk you through the steps
-to generate one.  At this point you will be presented with a screen to configure your app. For our purposes,
-we will accept all of the defaults and click `Deploy`.  The status of the deployment will dynamically
+to generate one. At this point you will be presented with a screen to configure your app. For our purposes,
+we will accept all of the defaults and click `Deploy`. The status of the deployment will dynamically
 update in the browser. Once finished, click `View` to see the public site.
 
-Log into the admin with the credentials ``admin / changeme``.
+Log into the admin with the credentials `admin / changeme`.
 
 To prevent the demo site from regenerating a new Django `SECRET_KEY` each time Heroku restarts your site, you should set
 a `DJANGO_SECRET_KEY` environment variable in Heroku using the web interace or the [CLI](https://devcenter.heroku.com/articles/heroku-cli). If using the CLI, you can set a `SECRET_KEY` like so:
@@ -178,9 +179,9 @@ To learn more about Heroku, read [Deploying Python and Django Apps on Heroku](ht
 
 ### Storing Wagtail Media Files on AWS S3
 
-If you have deployed the demo site to Heroku or via Docker, you may want to perform some additional setup.  Heroku uses an
+If you have deployed the demo site to Heroku or via Docker, you may want to perform some additional setup. Heroku uses an
 [ephemeral filesystem](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem), and Docker-based hosting
-environments typically work in the same manner.  In laymen's terms, this means that uploaded images will disappear at a
+environments typically work in the same manner. In laymen's terms, this means that uploaded images will disappear at a
 minimum of once per day, and on each application deployment. To mitigate this, you can host your media on S3.
 
 This documentation assumes that you have an AWS account, an IAM user, and a properly configured S3 bucket. These topics
@@ -188,7 +189,7 @@ are outside of the scope of this documentation; the following [blog post](https:
 will walk you through those steps.
 
 This demo site comes preconfigured with a production settings file that will enable S3 for uploaded media storage if
-``AWS_STORAGE_BUCKET_NAME`` is defined in the shell environment. All you need to do is set the following environment
+`AWS_STORAGE_BUCKET_NAME` is defined in the shell environment. All you need to do is set the following environment
 variables. If using Heroku, you will first need to install and configure the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). Then, execute the following commands to set the aforementioned environment variables:
 
     heroku config:set AWS_STORAGE_BUCKET_NAME=changeme
@@ -215,7 +216,7 @@ If you're a Python or Django developer, fork the repo and get stuck in! If you'd
 
 If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
 
-`./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimages.rendition  -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
+`./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.filter -e wagtailcore.pagerevision -e wagtailimages.rendition -e sessions > bakerydemo/base/fixtures/bakerydemo.json`
 
 Please optimize any included images to 1200px wide with JPEG compression at 60%. Note that `media/images` is ignored in the repo by `.gitignore` but `media/original_images` is not. Wagtail's local image "renditions" are excluded in the fixture recipe above.
 
