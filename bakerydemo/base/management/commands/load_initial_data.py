@@ -39,5 +39,6 @@ class Command(BaseCommand):
             Page.objects.get(title='Welcome to your new Wagtail site!').delete()
 
         call_command('loaddata', fixture_file, verbosity=0)
+        call_command('update_index', verbosity=0)
 
         print("Awesome. Your data is loaded! The bakery's doors are almost ready to open...")
