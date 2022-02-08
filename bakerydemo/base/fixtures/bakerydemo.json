@@ -3383,14 +3383,6 @@
   }
 },
 {
-  "model": "breads.breadsindexpage",
-  "pk": 3,
-  "fields": {
-    "introduction": "",
-    "image": null
-  }
-},
-{
   "model": "blog.blogindexpage",
   "pk": 61,
   "fields": {
