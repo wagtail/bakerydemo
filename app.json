@@ -9,7 +9,7 @@
     "DJANGO_SECURE_SSL_REDIRECT": "on"
   },
   "scripts": {
-    "postdeploy": "django-admin.py migrate && django-admin.py load_initial_data && echo 'from wagtail.images.models import Rendition; Rendition.objects.all().delete()' | django-admin.py shell"
+    "postdeploy": "django-admin migrate && django-admin load_initial_data && echo 'from wagtail.images.models import Rendition; Rendition.objects.all().delete()' | django-admin shell"
   },
   "addons": [
     "heroku-postgresql:hobby-dev"
