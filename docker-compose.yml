@@ -7,12 +7,12 @@ services:
       POSTGRES_USER: app_user
       POSTGRES_PASSWORD: changeme
     restart: always
-    image: postgres:9.6
+    image: postgres:14.1
     expose:
       - "5432"
   redis:
     restart: always
-    image: redis:3.0
+    image: redis:6.2
     expose:
       - "6379"
   elasticsearch:
