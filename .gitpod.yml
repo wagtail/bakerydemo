@@ -11,7 +11,8 @@ tasks:
     python manage.py makemigrations
     python manage.py migrate
     python manage.py load_initial_data
-  command: >
+    echo "CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']" >> bakerydemo/settings/local.py
+  command: |
     python manage.py runserver 0.0.0.0:8080
 github:
     prebuilds:
