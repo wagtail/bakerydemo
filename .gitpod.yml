@@ -17,3 +17,6 @@ tasks:
 github:
     prebuilds:
         pullRequestsFromForks: true
+vscode:
+  extensions:
+    - ms-python.python
