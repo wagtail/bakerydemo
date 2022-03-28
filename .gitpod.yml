@@ -1,16 +1,22 @@
+image:
+  file: .gitpod.dockerfile
 ports:
 - port: 8080
   onOpen: open-preview
 tasks:
-- init: >
-    cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py &&
-    echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env &&
-    python -m pip install -r requirements.txt &&
-    python manage.py makemigrations &&
-    python manage.py migrate &&
+- init: |
+    cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
+    echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env
+    python -m pip install -r requirements.txt
+    python manage.py makemigrations
+    python manage.py migrate
     python manage.py load_initial_data
-  command: >
+    echo "CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']" >> bakerydemo/settings/local.py
+  command: |
     python manage.py runserver 0.0.0.0:8080
 github:
     prebuilds:
         pullRequestsFromForks: true
+vscode:
+  extensions:
+    - ms-python.python
