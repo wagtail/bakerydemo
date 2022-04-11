@@ -53,8 +53,10 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.api.v2',
+    'wagtail.locales',
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.routable_page',
+    'wagtail.contrib.simple_translation',
     'wagtail.core',
 
     'rest_framework',
@@ -183,3 +185,11 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "bakerydemo"
+
+WAGTAIL_I18N_ENABLED = True
+
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
+    ("en", "English"),
+    ("de", "Deutsch"),
+    ("ar", "العربيّة"),
+]
