@@ -3,7 +3,7 @@
   "model": "base.people",
   "pk": 1,
   "fields": {
-    "first_name": "Robert",
+    "first_name": "Roberta",
     "last_name": "Johnson",
     "job_title": "Editorial Manager",
     "image": 8
@@ -13,8 +13,8 @@
   "model": "base.people",
   "pk": 2,
   "fields": {
-    "first_name": "Howlin'",
-    "last_name": "Wolf",
+    "first_name": "Olivia",
+    "last_name": "Ava",
     "job_title": "Director",
     "image": 52
   }
@@ -2433,8 +2433,8 @@
   "pk": 8,
   "fields": {
     "collection": 3,
-    "title": "Robert Johnson",
-    "file": "original_images/robert_johnson2.jpg",
+    "title": "Roberta Johnson",
+    "file": "original_images/roberta_johnson.jpeg",
     "width": 300,
     "height": 282,
     "created_at": "2019-02-17T07:43:46.304Z",
@@ -3133,8 +3133,8 @@
   "pk": 52,
   "fields": {
     "collection": 3,
-    "title": "Howlin' Wolf",
-    "file": "original_images/howlin.jpg",
+    "title": "Olivia Ava",
+    "file": "original_images/olivia_ava.jpeg",
     "width": 300,
     "height": 294,
     "created_at": "2019-04-01T07:30:10.713Z",
