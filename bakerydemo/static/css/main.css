@@ -251,9 +251,9 @@ figure img {
 .hero {
   background-size: cover;
   background-position: center;
-  padding: 200px 0 30px 0;
+  padding: 200px 0 0 0;
   position: relative;
-  margin: 0 0 30px;
+  margin: 0 0 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -268,7 +268,13 @@ figure img {
   width: 100%;
   height: 100%;
   bottom: 0;
-  background: linear-gradient(90deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(0deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
+}
+
+@media (min-width: 766px) {
+  .hero-gradient-mask {
+    background: linear-gradient(90deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
+  }
 }
 
 blockquote {
@@ -977,7 +983,7 @@ input[type="radio"] {
 
 .homepage .home-hero {
   margin-bottom: 0;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
 }
 
 @media (min-width: 766px) {
@@ -985,7 +991,6 @@ input[type="radio"] {
     padding-bottom: 140px;
   }
 }
-
 
 .homepage .home-hero .lead {
   font-family: "Marcellus", serif;
@@ -1069,15 +1074,17 @@ input[type="radio"] {
 .homepage .promo {
   background: var(--light-brown);
   height: 100%;
-  margin-bottom: 20px;
-  margin-top: -40px;
-  padding: 30px 40px;
-  margin-left: 15px;
-  margin-right: 15px;
+  padding: 60px 40px;
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.homepage .promo-text {
+  padding: 0;
 }
 
 .homepage .promo figure img {
-  margin: auto;
+  margin: 40px 0 -200px 0;
   width: 100%;
   height: auto;
 }
@@ -1090,7 +1097,7 @@ input[type="radio"] {
   }
 
   .homepage .promo figure img {
-    width: calc(100% + 45px);
+    width: calc(100% + 60px);
     height: auto;
     margin-right: -60px;
     margin-bottom: -280px;
@@ -1103,20 +1110,41 @@ input[type="radio"] {
   }
 }
 
-
-
 .homepage .feature-cta-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
   font-family: "Marcellus", serif;
-  width: 100%;
-  text-align: center;
+  margin: 0 auto;
+  width: max-content;
   font-size: 18px;
   line-height: 23px;
+}
+
+.feature-cta-link__icon {
+  margin-left: 8px;
+  width: 9px;
+  height: 23px;
+  transition: transform ease 0.1s;
+}
+
+.homepage .feature-cta-link:hover .feature-cta-link__icon {
+  transform: translateX(10px);
+}
+.homepage .feature-cta-link:hover .feature-cta-link__icon path {
+  fill: var(--dark-orange);
 }
 
 @media (min-width: 766px){
   .homepage .feature-cta-link {
     font-size: 24px;
     line-height: 30px;
+    margin: unset;
+  }
+
+  .feature-cta-link__icon {
+    width: 11px;
+    height: 30px;
   }
 }
 
@@ -1130,46 +1158,7 @@ input[type="radio"] {
   margin-bottom: 30px;
 }
 
-.listing-card {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--border-grey);
-}
 
-.listing-card__contents {
-  padding-top: 10px;
-  padding-left: 25px;
-}
-
-@media (min-width: 766px){
-  .listing-card__contents {
-    padding-left: 45px;
-  }
-}
-
-.listing-card__title {
-  color: var(--orange);
-  margin-top: 0;
-}
-
-.listing-card__image {
-  width: 100%;
-  overflow: hidden;
-  margin: 0;
-  max-width: 100px;
-  max-height: 110px;
-}
-
-@media (min-width: 766px){
-  .listing-card__image {
-    width: 100%;
-    overflow: hidden;
-    margin: 0;
-    max-width: 180px;
-    max-height: 180px;
-  }
-}
 
 .homepage .feature-1 .featured-children li img {
   width: auto;
@@ -1295,4 +1284,58 @@ input[type="radio"] {
 .richtext-image.right {
   float: right;
   width: 50%;
+}
+
+
+/* Component styles */
+
+.listing-card {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border-grey);
+}
+
+.listing-card__contents {
+  padding-top: 10px;
+  padding-left: 25px;
+}
+
+.listing-card__title {
+  color: var(--orange);
+  margin-top: 0;
+}
+
+.listing-card__image {
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  max-width: 100px;
+  max-height: 110px;
+}
+
+.listing-card__image img {
+  transition: transform ease 0.2s;
+}
+
+.listing-card:hover .listing-card__image img {
+  transform: scale(1.1);
+}
+
+.listing-card:hover .listing-card__title {
+  color: var(--dark-orange);
+}
+
+@media (min-width: 766px){
+  .listing-card__contents {
+    padding-left: 45px;
+  }
+
+  .listing-card__image {
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    max-width: 180px;
+    max-height: 180px;
+  }
 }
