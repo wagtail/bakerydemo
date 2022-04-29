@@ -1046,26 +1046,13 @@ input[type="radio"] {
 @media (min-width: 766px) {
   .homepage .promo-row {
     padding-top: 80px;
+    margin-right: -45px;
   }
 }
 
-.homepage .promo-text {
-  color: var(--white);
-}
-
-.homepage .promo {
-  background: var(--light-brown);
-  color: var(--white);
-  height: 100%;
+.homepage .promo h2 {
+  margin-top: 0;
   margin-bottom: 20px;
-  margin-top: -40px;
-  padding: 40px 60px;
-}
-
-.homepage .promo h1,
-.homepage .promo h2,
-.homepage .promo h3,
-.homepage .promo h4 {
   color: var(--white);
 }
 
@@ -1075,31 +1062,18 @@ input[type="radio"] {
 }
 
 .homepage .promo a {
-  color: #fff;
+  color: var(--white);
   text-decoration: underline;
 }
 
-@media (max-width: 970px) {
-  .homepage .promo {
-    padding: 30px 40px;
-  }
-
-  .homepage .promo figure img {
-    max-width: 120px;
-    height: auto;
-  }
-
-  .homepage .promo p {
-    color: #fff;
-    font-size: 1em;
-  }
-}
-
-@media (max-width: 766px) {
-  .homepage .promo {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+.homepage .promo {
+  background: var(--light-brown);
+  height: 100%;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  padding: 30px 40px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .homepage .promo figure img {
@@ -1107,6 +1081,29 @@ input[type="radio"] {
   width: 100%;
   height: auto;
 }
+
+@media (min-width: 766px) {
+  .homepage .promo {
+    margin-top: -180px;
+    margin-right: -120px;
+    padding: 180px 60px 40px 60px;
+  }
+
+  .homepage .promo figure img {
+    width: calc(100% + 45px);
+    height: auto;
+    margin-right: -60px;
+    margin-bottom: -280px;
+    padding-top: 20px;
+  }
+
+  .homepage .promo p {
+    font-size: 20px;
+    line-height: 27px;
+  }
+}
+
+
 
 .homepage .feature-cta-link {
   font-family: "Marcellus", serif;

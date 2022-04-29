@@ -49,16 +49,14 @@
             {% endif %}
         </div>
 
-        <div class="col-sm-5 col-sm-offset-1 promo">
+        <div class="col-sm-6 promo">
             {% if page.promo_image or page.promo_title or page.promo_text %}
-                
-                <div class="promo-text">
+                <div class="col-lg-10">
                     <h2>{{ page.promo_title }}</h2>
                     {{ page.promo_text|safe }}
                 </div>
-                -
-                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
             {% endif %}
+            <figure>{% image page.promo_image fill-590x413-c100 %}</figure>
         </div>
     </div>
 </div>
