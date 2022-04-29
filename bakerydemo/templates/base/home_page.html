@@ -9,11 +9,11 @@
     <div class="hero-gradient-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-1 col-lg-4 home-hero">
+            <div class="col-md-6 col-md-offset-1 col-lg-5 home-hero">
                 <h1>{{ page.title }}</h1>
                 <p class="lead">{{ page.hero_text }}</p>
                 {% if page.hero_cta_link %}
-                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link hvr-icon-forward">
+                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link">
                         {{ page.hero_cta }}
                     </a>
                 {% else %}
@@ -26,37 +26,38 @@
 
 <div class="container">
     <div class="row promo-row">
-        <div class="col-sm-5 promo">
-            {% if page.promo_image or page.promo_title or page.promo_text %}
-                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
-                <div class="promo-text">
-                    <h3>{{ page.promo_title }}</h3>
-                    {{ page.promo_text|safe }}
-                </div>
-            {% endif %}
-        </div>
-
-        <div class="col-sm-6 col-sm-offset-1 feature-1">
+        <div class="col-sm-5 col-sm-offset-1 feature-1">
             {% if page.featured_section_1 %}
-            <h2>{{ page.featured_section_1_title }}</h2>
+                <h2>{{ page.featured_section_1_title }}</h2>
                 <div class="featured-children">
-                    {% for childpage in page.featured_section_1.specific.children|slice:"4" %}
+                    {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
                         <li>
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <a href="{{childpage.url}}">
-                                        <figure>
-                                            {% image childpage.image fill-180x140-c100 %}
-                                        </figure>
-                                    </a>
+                            <a class="listing-card" href="{{childpage.url}}">
+                                <figure class="listing-card__image">
+                                    {% image childpage.image fill-180x180-c100 %}
+                                </figure>
+                                <div class="listing-card__contents">
+                                    <h3 class="listing-card__title">{{childpage.title}}</h3>
                                 </div>
-                                <div class="col-xs-8">
-                                    <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
-                                </div>
-                            </div>
+                            </a>
                         </li>
                     {% endfor %}
                 </div>
+                <a class="feature-cta-link" href="/breads">
+                    View more of our breads
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-5 col-sm-offset-1 promo">
+            {% if page.promo_image or page.promo_title or page.promo_text %}
+                
+                <div class="promo-text">
+                    <h2>{{ page.promo_title }}</h2>
+                    {{ page.promo_text|safe }}
+                </div>
+                -
+                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
             {% endif %}
         </div>
     </div>
