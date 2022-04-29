@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Marcellus';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Marcellus-Regular'), local('Marcellus Regular'),
+       url('../fonts/Marcellus-Regular.ttf') 
+       
+}
