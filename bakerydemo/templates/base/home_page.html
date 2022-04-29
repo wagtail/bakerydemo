@@ -26,29 +26,17 @@
 
 <div class="container">
     <div class="row promo-row">
-        <div class="col-sm-5 col-sm-offset-1 feature-1">
+        <div class="featured-cards col-sm-5 col-sm-offset-1 ">
             {% if page.featured_section_1 %}
-                <h2>{{ page.featured_section_1_title }}</h2>
-                <div class="featured-children">
+                <h2 class="featured-cards__title">{{ page.featured_section_1_title }}</h2>
+                <ul class="featured-cards__list">
                     {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
-                        <li>
-                            <a class="listing-card" href="{{childpage.url}}">
-                                <figure class="listing-card__image">
-                                    {% image childpage.image fill-180x180-c100 %}
-                                </figure>
-                                <div class="listing-card__contents">
-                                    <h3 class="listing-card__title">{{childpage.title}}</h3>
-                                </div>
-                            </a>
-                        </li>
+                        {% include "includes/card/listing-card.html" with title=childpage.title card_image=childpage.image %}
                     {% endfor %}
-                </div>
-                <a class="feature-cta-link" href="/breads">
+                </ul>
+                <a class="featured-cards__link" href="/breads">
                     <span>View more of our breads</span>
-                    <svg class="feature-cta-link__icon" width="11" height="30" viewBox="0 0 11 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.41669 23.2091L7.76243 17L11 17L4.13954 25L0.302327 25C0.453036 24.9651 0.617043 24.8867 0.794348 24.7647C0.971652 24.6427 1.15339 24.4989 1.33956 24.3333C1.52573 24.1678 1.7119 23.9891 1.89807 23.7974C2.08424 23.5969 2.25711 23.4009 2.41669 23.2091Z" fill="#C55302"/>
-                        <path d="M2.41669 10.7908L7.76243 17L11 17L4.13954 9L0.302327 9C0.453036 9.03486 0.617043 9.11329 0.794348 9.23529C0.971652 9.3573 1.15339 9.50109 1.33956 9.66667C1.52573 9.83224 1.7119 10.0109 1.89807 10.2026C2.08424 10.403 2.25711 10.5991 2.41669 10.7908Z" fill="#C55302"/>
-                    </svg>
+                    {% include "includes/chevron-icon.html" with class="featured-cards__chevron-icon" %}
                 </a>
             {% endif %}
         </div>
