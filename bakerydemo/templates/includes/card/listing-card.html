@@ -1,12 +1,12 @@
 {% load wagtailimages_tags %}
 
 <li class="listing-card">
-    <a class="listing-card__link" href="{{childpage.url}}">
+    <a class="listing-card__link" href="{{ childpage.url }}">
         <figure class="listing-card__image">
-            {% image card_image fill-180x180-c100 %}
+            {% image childpage.image fill-180x180-c100 %}
         </figure>
         <div class="listing-card__contents">
-            <h3 class="listing-card__title">{{childpage.title}}</h3>
+            <h3 class="listing-card__title">{{ childpage.title }}</h3>
         </div>
     </a>
 </li>
