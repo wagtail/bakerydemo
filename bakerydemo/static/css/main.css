@@ -1111,9 +1111,57 @@ input[type="radio"] {
 }
 
 /* Featured Cards */
+.homepage .featured-cards__list {
+  list-style: none;
+  padding-left: 0;
+}
+
 .homepage .featured-cards__title {
   margin-top: 0;
   margin-bottom: 40px;
+}
+
+.homepage .featured-cards__link {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  font-family: "Marcellus", serif;
+  margin: 0 auto;
+  width: max-content;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.homepage .featured-cards__chevron-icon {
+  margin-left: 8px;
+  width: 9px;
+  height: 23px;
+  transition: transform ease 0.1s;
+}
+
+.homepage .featured-cards__link:hover .featured-cards__chevron-icon {
+  transform: translateX(10px);
+}
+
+.homepage .featured-cards__link:hover .featured-cards__chevron-icon path {
+  fill: var(--dark-orange);
+}
+
+@media (min-width: 766px){
+  .homepage .featured-cards {
+    padding-right: 50px;
+  }
+
+  .homepage .featured-cards__link {
+    font-size: 24px;
+    line-height: 30px;
+    margin: unset;
+  }
+
+  .featured-cards__chevron-icon {
+    width: 11px;
+    height: 30px;
+  }
 }
 
 .homepage .locations-section {
