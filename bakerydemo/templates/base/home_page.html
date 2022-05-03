@@ -26,12 +26,12 @@
 
 <div class="container">
     <div class="row promo-row">
-        <div class="featured-cards col-sm-5 col-sm-offset-1 ">
+        <div class="featured-cards col-sm-5 col-sm-offset-1">
             {% if page.featured_section_1 %}
                 <h2 class="featured-cards__title">{{ page.featured_section_1_title }}</h2>
                 <ul class="featured-cards__list">
                     {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
-                        {% include "includes/card/listing-card.html" with title=childpage.title card_image=childpage.image %}
+                        {% include "includes/card/listing-card.html" %}
                     {% endfor %}
                 </ul>
                 <a class="featured-cards__link" href="/breads">
@@ -44,11 +44,17 @@
         <div class="col-sm-6 promo">
             {% if page.promo_image or page.promo_title or page.promo_text %}
                 <div class="col-lg-10 promo-text">
-                    <h2>{{ page.promo_title }}</h2>
-                    {{ page.promo_text|safe }}
+                    {% if page.promo_title %}
+                        <h2>{{ page.promo_title }}</h2>
+                    {% endif %}
+                    {% if page.promo_text %}
+                        {{ page.promo_text|safe }}
+                    {% endif %}
                 </div>
             {% endif %}
-            <figure>{% image page.promo_image fill-590x413-c100 %}</figure>
+            {% if page.promo_image %}
+                <figure>{% image page.promo_image fill-590x413-c100 %}</figure>
+            {% endif %}
         </div>
     </div>
 </div>
