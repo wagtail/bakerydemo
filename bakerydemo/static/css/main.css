@@ -1238,18 +1238,18 @@ input[type="radio"] {
   .homepage .blog-section {
     padding: 90px 0 110px 0;
   }
+}
+
+@media (min-width: 966px) {
+  .homepage .blog-section__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   .homepage .blog-section__title {
     margin-bottom: 90px;
     font-size: 182px;
     line-height: 195px;
     opacity: 0.25;
-  }
-}
-
-@media (min-width: 966px) {
-  .homepage .blog-section__grid {
-    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
