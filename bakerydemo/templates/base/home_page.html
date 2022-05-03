@@ -76,24 +76,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 feature-2">
+        <div class="col-md-12 locations-section">
             {% if page.featured_section_2 %}
-            <h2>{{ page.featured_section_2_title }}</h2>
-                <div class="featured-children row feature-2-row">
-                    {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
-                        <li class="col-sm-4 feature-2-item">
-                            <a href="{{childpage.url}}">
-                                <figure>
-                                    {% image childpage.image fill-430x210-c100 %}
-                                </figure>
-                            </a>
-                            <div class="feature-2-text">
-                                <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
-                                <p>{{ childpage.introduction|truncatewords:15 }}</p>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </div>
+                <h2 class="locations-section__title">{{ page.featured_section_2_title }}</h2>
+                {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
+                    {% include "includes/card/location-card.html" with page=childpage %}
+                {% endfor %}
             {% endif %}
         </div>
     </div>
