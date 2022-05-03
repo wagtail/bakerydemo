@@ -401,9 +401,10 @@ cite {
 .navigation__items > li.active > a,
 .navigation__items > li.active > a:focus,
 .navigation__items > li.active > a:hover {
-  background-color: var(--cream);
   color: var(--black);
   border-radius: 0;
+  border-bottom: 4px solid var(--orange);
+  background-color: transparent;
 }
 
 .navigation__items > li:hover,
@@ -562,41 +563,43 @@ li.has-submenu a.allow-toggle {
 
 /* Breadcrumbs */
 .breadcrumb-container {
-  background: linear-gradient(
-    to right,
-    rgba(21, 38, 44, 0.8) 0%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-  margin-top: -1px;
   position: relative;
   z-index: 3;
 }
 
 .breadcrumb {
-  background-color: transparent;
-  color: #ccc;
+  color: var(--dark);
   font-family: var(--font--secondary);
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 24px;
   margin-bottom: 0px;
   padding-left: 0px;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.breadcrumb>li+li:before {
+  display: none;
+}
+
+.breadcrumb__chevron-icon {
+  width: 8px;
+  height: 16px;
+  margin: 0 10px;
+}
+
+.breadcrumb__chevron-icon path {
+  fill: var(--dark);
 }
 
 .breadcrumb a,
 .breadcrumb .active {
-  color: #ccc;
-}
-
-.breadcrumb .active {
-  font-weight: bold;
+  color: var(--black);
+  text-decoration: underline;
 }
 
 .breadcrumb a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.breadcrumb > li + li:before {
-  content: "\00BB";
+  color: var(--dark-orange);
 }
 
 /* Pagination navigation */
