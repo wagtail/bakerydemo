@@ -1289,6 +1289,7 @@ input[type="radio"] {
 
 /* ---- Component Styles ---- */
 
+/* ---- Listing Card ---- */
 .listing-card {
   padding-bottom: 40px;
 }
@@ -1327,7 +1328,7 @@ input[type="radio"] {
 }
 
 .listing-card:hover .listing-card__image img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .listing-card:hover .listing-card__title {
