@@ -7,7 +7,9 @@
         </figure>
         <div class="location-card__contents">
             <h3 class="location-card__title">{{page.title}}</h3>
-            <p class="location-card__text">{{ page.introduction|truncatewords:15 }}</p>
+            {% if page.introduction %}
+                <p class="location-card__text">{{ page.introduction|truncatewords:15 }}</p>
+            {% endif %}
         </div>
     </a>
 </div>
