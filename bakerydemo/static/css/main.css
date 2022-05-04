@@ -21,7 +21,7 @@
   --grey: #6e6e6e;
   --border-grey: #E1DCD3;
   --white: #ffffff;
-  --cream: #f5f3f9;
+  --cream: #f5f3e9;
   --light-brown: #87744f;
   --mid-brown: #825600;
   --dark-brown: #553801;
@@ -976,6 +976,8 @@ input[type="radio"] {
 }
 
 /* Homepage */
+
+/* #region -- Hero -- */
 .homepage .hero {
   margin: 0;
   padding: 200px 0 30px 0;
@@ -1021,7 +1023,9 @@ input[type="radio"] {
 .homepage .home-hero .hero-cta-link:hover {
   background-color: var(--dark);
 }
+/* #endregion */
 
+/* #region -- Body -- */
 .homepage .streamfield {
   background: linear-gradient(
     45deg,
@@ -1043,7 +1047,9 @@ input[type="radio"] {
 .homepage .streamfield-column h5 {
   text-align: center;
 }
+/* #endregion */
 
+/* #region -- Promo Section */
 .homepage .promo-row {
   padding: 40px 0 40px 0;
 }
@@ -1109,8 +1115,9 @@ input[type="radio"] {
     line-height: 27px;
   }
 }
+/* #endregion */
 
-/* Featured Cards */
+/* #region -- Featured Cards Section -- */
 .homepage .featured-cards__list {
   list-style: none;
   padding-left: 0;
@@ -1164,6 +1171,9 @@ input[type="radio"] {
   }
 }
 
+/* #endregion */
+
+/* #region -- Location Section -- */
 .homepage .locations-section {
   padding: 40px 0 20px;
   text-align: center;
@@ -1191,30 +1201,57 @@ input[type="radio"] {
     padding-left: 10px;
   }
 }
+/* #endregion */
 
-.homepage .feature-3 h2 {
-  margin: 20px;
+/* #region -- Blog Section -- */
+.homepage .blog-section {
+  padding: 80px 20px 100px 20px;
+  text-align: center;
 }
 
-.homepage .feature-3 .featured-children li {
-  list-style: none;
+.homepage .blog-section__background {
+  background-color: var(--cream);
 }
 
-.homepage .feature-3 h3 {
-  color: #fff;
-  font-weight: 300;
-  font-size: 1.8em;
-  margin-bottom: 135px;
-  margin-top: -145px;
-  position: relative;
-  text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
-  z-index: 1;
+.homepage .blog-section__title {
+  color: var(--dark-brown);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 44px;
+  margin-bottom: 60px;
+  margin-top: 0;
 }
 
-.homepage .feature-2 li:hover img,
-.homepage .feature-3 li:hover img {
-  opacity: 0.3;
+.homepage .blog-section__grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
 }
+
+@media (min-width: 566px) {
+  .homepage .blog-section__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 766px) {
+  .homepage .blog-section {
+    padding: 90px 0 110px 0;
+  }
+}
+
+@media (min-width: 966px) {
+  .homepage .blog-section__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .homepage .blog-section__title {
+    margin-bottom: 90px;
+    font-size: 120px;
+    line-height: 145px;
+  }
+}
+/* #endregion */
 
 /* Miscellaneous helper styles */
 /* No gutters */
@@ -1269,7 +1306,71 @@ input[type="radio"] {
 
 /* ---- Component Styles ---- */
 
-/* ---- Listing Card ---- */
+/* #region ---- Picture Card ---- */
+.picture-card {
+  position: relative;
+}
+
+.picture-card__link:hover .picture-card__image img {
+  transform: scale(1.05);
+}
+
+.picture-card__link:hover .picture-card__title {
+  text-decoration: underline;
+}
+
+.picture-card__title {
+  color: var(--white);
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.picture-card__image {
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.picture-card__image img {
+  transition: transform 0.2s ease;
+}
+
+.picture-card__image:before {
+  content: "";
+  position: absolute;
+  height: 200px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 67.69%);
+  z-index: 2;
+}
+
+.picture-card__contents {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: left;
+  display: flex;
+  align-items: end;
+  padding: 20px;
+  z-index: 2;
+}
+
+@media (min-width: 766px) {
+  .picture-card__title {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .picture-card__contents {
+    padding: 30px 40px;
+  }
+}
+/* #endregion */
+
+/* #region ---- Listing Card ---- */
 .listing-card {
   padding-bottom: 40px;
 }
@@ -1329,7 +1430,9 @@ input[type="radio"] {
   }
 }
 
-/* ---- Location Card ---- */
+/* #endregion */
+
+/* #region ---- Location Card ---- */
 
 .location-card {
   display: flex;
@@ -1396,3 +1499,5 @@ input[type="radio"] {
     line-height: 28px;
   }
 }
+
+/* #endregion */
