@@ -96,21 +96,21 @@
     </div>
 </div>
 
-<div class="blog-section__background">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 blog-section">
-                {% if page.featured_section_3 %}
-                <h2 class="blog-section__title">{{ page.featured_section_3_title }}</h2>
+{% if page.featured_section_3 %}
+    <div class="blog-section__background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 blog-section">
+                    <h2 class="blog-section__title">{{ page.featured_section_3_title }}</h2>
                     <div class="blog-section__grid">
                         {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
                             {% include "includes/card/picture-card.html" %}
                         {% endfor %}
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endif %}
 </div>
 {% endblock content %}
