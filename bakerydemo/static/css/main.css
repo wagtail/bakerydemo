@@ -757,6 +757,11 @@ time.location-time {
   color: var(--white);
 }
 
+.blog-tags__tag {
+  color: var(--orange);
+  text-transform: capitalize;
+}
+
 .blog-list {
   padding: 0;
 }
@@ -821,16 +826,6 @@ time.location-time {
   padding: 20px;
   position: relative;
   z-index: 1;
-}
-
-/* used to style tags on blog */
-span.outline {
-  color: var(--dark-orange);
-  border-radius: 3px;
-  border: 1px solid var(--dark-orange);
-  padding: 3px 6px;
-  text-transform: capitalize;
-  margin-left: 5px;
 }
 
 /* Blog detail page */

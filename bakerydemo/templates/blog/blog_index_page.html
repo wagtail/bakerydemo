@@ -2,13 +2,18 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-    {% include "base/include/header-index.html" %}
+    {% if not tag %}
+        {% include "base/include/header-index.html" %}
+    {% endif %}
 
     <div class="container">
         {% if tag %}
             <div class="row">
                 <div class="col-md-12">
-                    <p>Viewing all blog posts sorted by the tag <span class="outline">{{ tag }}</span></p>
+                    <h1 class="index-header__title">Blog</h1>
+                </div>
+                <div class="col-md-12">
+                    <p class="index-header__introduction">Viewing all blog posts sorted by the tag <span class="blog-tags__tag">{{ tag }}</span>.</p>
                 </div>
             </div>
         {% endif %}
