@@ -535,22 +535,34 @@ li.has-submenu a.allow-toggle {
 }
 
 /* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
+hr {
+  margin: 0;
+  border-top: 1px solid var(--light-brown);
+  opacity: 0.25;
 }
 
-.footer {
+footer {
   font-size: 16px;
   font-family: var(--font--secondary);
-  padding: 20px 0;
-  margin: 40px 0 0;
-  font-weight: 300;
-  background-color: white;
+  padding: 55px 0 30px 0;
+  background-color: var(--white);
 }
 
-.footer p {
-  margin: 0;
+.footer__icon a {
+  color: var(--cream);
+  font-size: 24px;
+}
+
+.footer__icon .fa-inverse {
+  color: var(--orange);
+}
+
+.footer__icon:hover a {
+  color: var(--orange);
+}
+
+.footer__icon:hover .fa-inverse {
+  color: var(--cream);
 }
 
 .container {
