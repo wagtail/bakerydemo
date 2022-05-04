@@ -542,8 +542,6 @@ hr {
 }
 
 footer {
-  font-size: 16px;
-  font-family: var(--font--secondary);
   padding: 55px 0 30px 0;
   background-color: var(--white);
 }
@@ -563,6 +561,20 @@ footer {
 
 .footer__icon:hover .fa-inverse {
   color: var(--cream);
+}
+
+.copyright p {
+  color: var(--dark);
+  font-family: var(--font--secondary);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@media (min-width: 768px) {
+  .copyright p {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
 
 .container {
