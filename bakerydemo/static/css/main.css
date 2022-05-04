@@ -1229,7 +1229,6 @@ input[type="radio"] {
 
 .homepage .blog-section__grid {
   display: grid;
-  grid-gap: 10px;
   gap: 10px;
   grid-template-columns: 1fr;
 }
@@ -1253,9 +1252,8 @@ input[type="radio"] {
 
   .homepage .blog-section__title {
     margin-bottom: 90px;
-    font-size: 182px;
-    line-height: 195px;
-    opacity: 0.25;
+    font-size: 120px;
+    line-height: 145px;
   }
 }
 
