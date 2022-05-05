@@ -2,9 +2,11 @@
 
 <li class="listing-card">
     <a class="listing-card__link" href="{{ page.url }}">
-        <figure class="listing-card__image">
-            {% image page.image fill-180x180-c100 %}
-        </figure>
+        {% if page.image %}
+            <figure class="listing-card__image">
+                {% image page.image fill-180x180-c100 %}
+            </figure>
+        {% endif %}
         <div class="listing-card__contents">
             <h3 class="listing-card__title">{{ page.title }}</h3>
             <table class="listing-card__meta">
