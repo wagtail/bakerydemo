@@ -31,7 +31,7 @@
                 <h2 class="featured-cards__title">{{ page.featured_section_1_title }}</h2>
                 <ul class="featured-cards__list">
                     {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
-                        {% include "includes/card/listing-card.html" %}
+                        {% include "includes/card/listing-card.html" with page=childpage %}
                     {% endfor %}
                 </ul>
                 <a class="featured-cards__link" href="/breads">
