@@ -678,47 +678,19 @@ nav[role="pagination"] {
 }
 
 /* Location list page */
-.location-list-item {
-  text-align: center;
-  margin-bottom: 30px;
+.location-list-page {
+  padding: 0 0 70px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
-.location-list-title {
-  line-height: 270px;
-  height: 270px;
-  background-color: #eb7400;
-}
-
-.location-list-title img {
-  background-color: rgba(233, 228, 221, 1);
-  height: 270px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-.location-list-title:hover img {
-  opacity: 0.3;
-}
-
-.location-list-title span.title {
-  color: white;
-  display: inline-block;
-  font-weight: 300;
-  position: relative;
-  text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
-}
-
-.location-list-title:hover span.title {
-  text-shadow: none;
-}
-
-.location-list-item address {
-  font-weight: 300;
-  font-family: var(--font--secondary);
-  font-size: 1.4em;
-  padding: 10px 40px;
+@media (min-width: 766px) {
+  .location-list-page {
+    padding: 50px 0 110px 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
 }
 
 /* Location detail page */
