@@ -350,20 +350,6 @@ cite {
   margin-bottom: 60px;
 }
 
-.index-header__body-introduction p:first-child {
-  color: var(--dark);
-  font-family: var(--font--primary);
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 30px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
-.index-header__body-introduction {
-  margin-bottom: 30px;
-}
-
 @media (min-width: 766px) {
   .index-header__title {
     font-size: 100px;
@@ -377,18 +363,6 @@ cite {
     margin-top: 40px;
     margin-bottom: 40px;
   }
-
-  .index-header__body-introduction p:first-child {
-    font-size: 32px;
-    line-height: 42px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-
-  .index-header__body-introduction {
-    margin-bottom: 30px;
-  }
-  
 }
 
 /* Logo */
@@ -987,33 +961,21 @@ time.location-time {
 
 /* Forms */
 /* Form detail page */
-.form-page {
-  padding-bottom: 60px;
-}
-
 .form-page input,
 textarea,
 select {
   display: block;
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--dark);
+  width: 450px;
+  padding: 5px;
+  border: 1px solid #ccc;
 }
 
-.form-page input[type="submit"]{
-  border: none;
-  color: var(--white);
-  background-color: var(--orange);
-  font-weight: 700;
-  padding: 15px 25px;
-  display: inline-block;
-  vertical-align: middle;
-  transition-duration: 0.1s;
-  width: max-content;
-}
-  
-.form-page input[type="submit"]:hover {
-  background-color: var(--dark);
+@media (max-width: 766px) {
+  .form-page input,
+  textarea,
+  select {
+    width: 100%;
+  }
 }
 
 .form-page li input[type="checkbox"],
@@ -1022,48 +984,32 @@ input[type="radio"] {
   margin-right: 10px;
 }
 
-.form-page__field ul,
-.form-page__field li {
+.form-page .fieldWrapper ul,
+.form-page .fieldWrapper li {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .form-page .required {
-  color: var(--orange);
+  color: red;
 }
 
-.form-page__field {
-  color: var(--dark);
+.form-page .fieldWrapper {
   margin-bottom: 30px;
 }
 
-.form-page__field label {
-  margin-bottom: 10px;
-}
-
-.form-page__help-text {
-  color: var(--grey);
+.form-page .help {
+  color: #999;
   font-family: var(--font--secondary);
-  font-size: 18px;
-  line-height: 28px;
-  margin: -10px 0 10px 0;
+  font-size: 0.8em;
+  margin-top: 10px;
+  max-width: 350px;
 }
 
-@media (min-width: 766px){
-  .form-page input,
-  textarea,
-  select {
-    width: 100%;
-  }
-
-  .form-page {
-    padding-bottom: 140px;
-  }
-
-  .form-page__field {
-      margin-bottom: 50px;
-  }
+/* Form thank you page */
+.form-page-thanks h1 {
+  margin-bottom: 30px;
 }
 
 /* Generic title image header include */
