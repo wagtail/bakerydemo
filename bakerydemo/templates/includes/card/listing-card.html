@@ -1,12 +1,26 @@
 {% load wagtailimages_tags %}
 
 <li class="listing-card">
-    <a class="listing-card__link" href="{{ childpage.url }}">
+    <a class="listing-card__link" href="{{ page.url }}">
         <figure class="listing-card__image">
-            {% image childpage.image fill-180x180-c100 %}
+            {% image page.image fill-180x180-c100 %}
         </figure>
         <div class="listing-card__contents">
-            <h3 class="listing-card__title">{{ childpage.title }}</h3>
+            <h3 class="listing-card__title">{{ page.title }}</h3>
+            <table class="listing-card__meta">
+                {% if page.origin %}
+                    <tr>
+                        <td class="listing-card__meta-category">Origin</td>
+                        <td class="listing-card__meta-content">{{ page.origin }}</td>
+                    </tr>
+                {% endif %}
+                {% if page.bread_type %}
+                    <tr>
+                        <td class="listing-card__meta-category">Type</td>
+                        <td class="listing-card__meta-content">{{ page.bread_type }}</td>
+                    </tr>
+                {% endif %}
+            </table>
         </div>
     </a>
 </li>
