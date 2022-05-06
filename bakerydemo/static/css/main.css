@@ -58,7 +58,7 @@ h2,
 h3 {
   font-family: var(--font--primary);
   font-weight: 400;
-  color: var(--black);
+  color: var(--dark);
 }
 
 h1 {
@@ -82,7 +82,7 @@ h4 {
   font-weight: 600;
   font-size: 20px;
   line-height: 27px;
-  color: var(--black);
+  color: var(--dark);
 }
 
 p {
@@ -125,6 +125,10 @@ p {
     line-height: 28px;
     margin: 0 0 30px;
   }
+}
+
+ol, ul {
+  margin-bottom: 30px;
 }
 
 .hero h1 {
@@ -251,15 +255,15 @@ figure img {
 .hero {
   background-size: cover;
   background-position: center;
-  padding: 200px 0 0 0;
+  padding: 300px 0 0 0;
   position: relative;
   margin: 0 0 10px;
 }
 
 @media screen and (min-width: 768px) {
   .hero {
-    padding: 400px 0 60px 0;
-    margin: 0 0 40px;
+    padding: 250px 0 0 0;
+    margin: 0;
   }
 }
 
@@ -277,23 +281,95 @@ figure img {
   }
 }
 
-blockquote {
-  border-left: 5px solid #d4566b;
-  margin: 0 0 50px;
+.hero__container {
+  width: 100%;
+  padding: 30px 20px 100px 20px;
+  background-color: var(--orange);
+  margin: 0 auto;
 }
 
-blockquote p {
-  font-size: 30px;
-  margin: 0 0 10px;
+@media (min-width: 768px) {
+  .hero__container {
+    background-color: transparent;
+    max-width: 1400px;
+    padding: 0 40px;
+  }
 }
+
+.hero__title {
+  color: var(--white);
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 50px;
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 766px) {
+  .hero__title {
+    background-color: var(--orange);
+    width: max-content;
+    max-width: 100%;
+    font-size: 100px;
+    line-height: 64px;
+    padding: 75px 65px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(50%);
+  }
+}
+
+blockquote {
+  border-left: 3px solid var(--orange);
+  margin: 40px 0 30px 0;
+  padding: 0 0 0 20px;
+}
+
+blockquote .text {
+  color: var(--orange);
+  margin: 0 0 30px 0;
+  font-family: var(--font--primary);
+  font-size: 26px;
+  line-height: 30px;
+}
+
+blockquote footer {
+  margin: 0;
+  padding: 0;
+}
+
+blockquote .attribute_name {
+  color: var(--dark);
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@media (min-width: 766px) {
+  blockquote {
+    border-left: 3px solid var(--orange);
+    margin: 50px 0;
+    padding: 0 40px;
+  }
+
+  blockquote .text {
+    font-size: 32px;
+    line-height: 42px;
+  }
+}
+
 
 blockquote footer::before {
   display: none;
 }
 
 blockquote footer p {
-  font-size: 1.8em;
-  font-style: italic;
+  
+}
+
+/* Richtext Styles */
+.block-paragraph_block p {
+  color: var(--dark);
 }
 
 cite {
@@ -898,10 +974,25 @@ time.location-time {
 }
 
 /* Bread detail page */
-.bread-detail .introduction {
-  color: #777;
-  font-size: 1.4em;
-  margin-top: 40px;
+.bread-detail {
+  padding-bottom: 60px;
+}
+
+.bread-detail__introduction {
+  color: var(--dark);
+  font-family: var(--font--primary);
+  font-size: 26px;
+  line-height: 30px;
+  margin-top: 50px;
+  margin-bottom: 65px;
+}
+
+@media (min-width: 766px) {
+  .bread-detail__introduction {
+    font-size: 32px;
+    line-height: 42px;
+    margin-top: 160px;
+  }
 }
 
 .bread-detail figure {
@@ -913,19 +1004,42 @@ time.location-time {
   height: auto;
 }
 
-.bread-detail ul.bread-meta {
-  list-style: none;
-  padding-left: 0;
+.bread-detail__meta {
+  background-color: var(--cream);
+  padding: 40px;
+  margin-right: -15px;
+  margin-bottom: 60px;
 }
 
-.bread-detail ul.bread-meta li ul {
-  padding-left: 0;
-}
-
-.bread-detail ul.bread-meta li ul li {
-  border-bottom: 1px solid #ccc;
+.bread-detail__meta ul li {
+  border-bottom: 1px solid var(--border-grey);
   list-style: none;
+  color: var(--grey);
   max-width: 450px;
+  margin-bottom: 15px;
+}
+
+.bread-detail__meta-title {
+  font-family: var(--font--primary);
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0 0 5px 0;
+}
+
+.bread-detail__meta-content {
+  font-family: var(--font--secondary);
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0 0 20px 0;
+}
+
+@media (min-width: 992px) {
+  .bread-detail__meta {
+    background-color: var(--cream);
+    padding: 240px 60px 60px 60px;
+    margin-right: -40px;
+    margin-bottom: 0;
+  }
 }
 
 /* Forms */

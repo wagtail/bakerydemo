@@ -2,60 +2,56 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
+    {% image page.image fill-1920x600 as hero_img %}
+    {% include "base/include/header-hero.html" %}
+
     <div class="container bread-detail">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="row">
-                        <h1>{{ page.title }}</h1>
-
-                        <figure class="hidden-md-up">
-                            {% image page.image width-500 %}
-                        </figure>
-
                         {% if page.introduction %}
-                            <p class="introduction">
+                            <p class="bread-detail__introduction">
                                 {{ page.introduction }}
                             </p>
                         {% endif %}
 
-                        {{ page.body }}
+                        <div class="hidden-md-down">
+                            {{ page.body }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-4 col-md-offset-1">
                     <div class="row">
-                        <figure class="hidden-md-down">
-                            {% image page.image width-500 %}
-                        </figure>
-                        <ul class="bread-meta">
+                        <div class="bread-detail__meta">
                             {% if page.origin %}
-                                <li>
-                                    <h4>Origin</h4>
-                                    <p>{{ page.origin }}</p>
-                                </li>
+                                <p class="bread-detail__meta-title">Origin</p>
+                                <p class="bread-detail__meta-content">{{ page.origin }}</p>
                             {% endif %}
                             {% if page.bread_type %}
-                                <li>
-                                    <h4>Type</h4>
-                                    <p>{{ page.bread_type }}</p>
-                                </li>
+                                <p class="bread-detail__meta-title">Type</p>
+                                <p class="bread-detail__meta-content">{{ page.bread_type }}</p>
                             {% endif %}
                             {% with ingredients=page.ingredients.all %}
                                 {% if ingredients %}
-                                    <li>
-                                        <h4>Ingredients</h4>
-                                        <ul>
-                                            {% for ingredient in ingredients %}
-                                                <li>
-                                                    {{ ingredient.name }}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
+                                    <h4>Ingredients</h4>
+                                    <ul>
+                                        {% for ingredient in ingredients %}
+                                            <li>
+                                                {{ ingredient.name }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
                                 {% endif %}
                             {% endwith %}
-                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="row hidden-md-up">
+                    {{ page.body }}
                     </div>
                 </div>
             </div>
