@@ -127,7 +127,8 @@ p {
   }
 }
 
-ol, ul {
+ol,
+ul {
   margin-bottom: 30px;
 }
 
@@ -358,13 +359,8 @@ blockquote .attribute_name {
   }
 }
 
-
 blockquote footer::before {
   display: none;
-}
-
-blockquote footer p {
-  
 }
 
 /* Richtext Styles */
@@ -934,7 +930,7 @@ time.location-time {
   z-index: 1;
 }
 
-/* Blog detail page */
+/* ---- Blog Page ---- */
 .blog-meta {
   margin-top: -40px;
   margin-bottom: 20px;
@@ -955,8 +951,36 @@ time.location-time {
   margin-right: 30px;
 }
 
-/* Bread styles */
-/* Bread listview */
+/* ---- Gallery Page ---- */
+
+.gallery {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.gallery__introduction {
+  color: var(--dark);
+  font-family: var(--font--primary);
+  font-size: 26px;
+  line-height: 30px;
+  margin: 0 0 60px 0;
+}
+
+@media (min-width: 766px) {
+  .gallery {
+    padding-top: 180px;
+    padding-bottom: 80px;
+
+  }
+
+  .gallery__introduction {
+    font-size: 32px;
+    line-height: 42px;
+    margin: 0 0 85px 0;
+  }
+}
+
+/* ---- Bread Index Page ---- */
 .bread-list {
   list-style-type: none;
   padding-left: 0;
@@ -973,7 +997,7 @@ time.location-time {
   }
 }
 
-/* Bread detail page */
+/* ---- Bread Detail Page ---- */
 .bread-detail {
   padding-bottom: 60px;
 }
