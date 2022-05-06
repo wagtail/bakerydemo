@@ -127,7 +127,8 @@ p {
   }
 }
 
-ol, ul {
+ol,
+ul {
   margin-bottom: 30px;
 }
 
@@ -203,13 +204,13 @@ ul {
 }
 
 figure {
-  margin: 0 0 30px;
+  margin: 30px 0;
   position: relative;
 }
 
 @media (min-width: 768px) {
   figure {
-    margin: 0 0 50px;
+    margin: 40px 0;
   }
 }
 
@@ -264,6 +265,10 @@ figure img {
   .hero {
     padding: 250px 0 0 0;
     margin: 0;
+  }
+
+  .hero.hero--blog {
+    padding: 400px 0 0 0;
   }
 }
 
@@ -363,9 +368,7 @@ blockquote footer::before {
   display: none;
 }
 
-blockquote footer p {
-  
-}
+blockquote footer p {}
 
 /* Richtext Styles */
 .block-paragraph_block p {
@@ -425,6 +428,10 @@ cite {
   margin-bottom: 60px;
 }
 
+.index-header__introduction.index-header__introduction--blog {
+  margin-bottom: 20px;
+}
+
 @media (min-width: 766px) {
   .index-header__title {
     font-size: 100px;
@@ -437,6 +444,13 @@ cite {
     line-height: 42px;
     margin-top: 40px;
     margin-bottom: 40px;
+  }
+}
+
+
+@media (min-width: 766px) {
+  .index-header__title.index-header__title--blog {
+    line-height: 110px;
   }
 }
 
@@ -846,6 +860,10 @@ time.location-time {
   margin-bottom: 70px;
 }
 
+.blog-tags.blog-tags--condensed {
+  column-gap: 0;
+}
+
 .blog-tags__pill {
   padding: 10px 18px;
   font-size: 18px;
@@ -935,24 +953,55 @@ time.location-time {
 }
 
 /* Blog detail page */
-.blog-meta {
-  margin-top: -40px;
+.blog__meta {
   margin-bottom: 20px;
 }
 
-.blog-avatar {
+.blog__avatar {
   border-radius: 100%;
   display: inline;
   width: unset;
+  margin-right: 10px;
 }
 
-.blog-avatars {
+.blog__avatars {
   margin-bottom: 20px;
 }
 
-.blog-avatars .author {
+.blog__author {
+  font-family: var(--font--primary);
+  font-size: 22px;
+  line-height: 26px;
   display: inline-block;
-  margin-right: 30px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+.blog__published {
+  color: var(--grey);
+  margin-bottom: 30px;
+}
+
+.blog__tag-introduction {
+  font-size: 18px;
+  color: var(--grey);
+  margin-bottom: 20px;
+  margin-top: 60px;
+}
+
+@media (min-width: 766px) {
+  .blog__published {
+    margin-bottom: 40px;
+  }
+
+  .blog__avatars {
+    margin-bottom: 40px;
+  }
+
+  .blog__tag-introduction {
+    margin-top: 100px;
+  }
+
 }
 
 /* Bread styles */
