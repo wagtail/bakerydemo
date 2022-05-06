@@ -953,7 +953,7 @@ time.location-time {
 
 /* ---- Gallery Page ---- */
 
-.gallery {
+.gallery__container {
   padding-top: 40px;
   padding-bottom: 60px;
 }
@@ -966,8 +966,14 @@ time.location-time {
   margin: 0 0 60px 0;
 }
 
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
 @media (min-width: 766px) {
-  .gallery {
+  .gallery__container {
     padding-top: 180px;
     padding-bottom: 80px;
 
@@ -977,6 +983,11 @@ time.location-time {
     font-size: 32px;
     line-height: 42px;
     margin: 0 0 85px 0;
+  }
+
+  .gallery__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
   }
 }
 
