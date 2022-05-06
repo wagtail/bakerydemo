@@ -307,7 +307,6 @@ figure img {
 
 @media (min-width: 766px) {
   .hero__title {
-    color: var(--white);
     background-color: var(--orange);
     width: max-content;
     max-width: 100%;
@@ -317,7 +316,6 @@ figure img {
     position: absolute;
     bottom: 0;
     left: 0;
-    margin: 0;
     transform: translateY(50%);
   }
 }
