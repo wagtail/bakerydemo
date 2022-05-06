@@ -12,7 +12,7 @@
             <div class="blog__meta">
                 {% if page.authors %}
                 <div class="blog__avatars">
-                    {% for author in page.authors %}
+                    {% for author in page.authors|slice:":1" %}
                     <div class="blog__author">{% image author.image fill-50x50-c100 class="blog__avatar" %}
                         {{ author.first_name }} {{ author.last_name }}</div>
                     {% endfor %}
