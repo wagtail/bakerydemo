@@ -215,16 +215,18 @@ figure {
 }
 
 figcaption {
-  background-color: rgba(99, 33, 13, 0.8);
-  bottom: 0;
-  color: white;
+  color: var(--grey);
   font-family: var(--font--secondary);
-  font-size: 16px;
-  font-weight: 300;
-  left: 0;
-  padding: 10px;
-  position: absolute;
-  width: 75%;
+  font-size: 14px;
+  line-height: 22px;
+  padding-top: 10px;
+}
+
+@media (min-width: 766px) {
+  figcaption {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 img {
