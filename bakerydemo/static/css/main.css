@@ -127,7 +127,8 @@ p {
   }
 }
 
-ol, ul {
+ol,
+ul {
   margin-bottom: 30px;
 }
 
@@ -363,9 +364,7 @@ blockquote footer::before {
   display: none;
 }
 
-blockquote footer p {
-  
-}
+blockquote footer p {}
 
 /* Richtext Styles */
 .block-paragraph_block p {
@@ -806,33 +805,25 @@ nav[role="pagination"] {
 }
 
 /* Location detail page */
-.template-location-page .intro {
-  margin-bottom: 0;
+.location__meta-title {
+  font-family: var(--font--primary);
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 26px;
+  line-height: 32px;
 }
 
-.location-opening h3 {
+.location__meta-title:first-child {
   margin-top: 0;
 }
 
-span.day {
+.location__day {
   font-weight: bold;
   font-family: var(--font--secondary);
 }
 
-time.location-time {
+.location__time {
   display: block;
-}
-
-.map-container {
-  height: 550px;
-}
-
-.location-address {
-  background-color: rgba(233, 228, 221, 1);
-  padding: 10px 30px;
-  margin-bottom: -200px;
-  position: relative;
-  z-index: 1;
 }
 
 /* ---- Blog Index Page ---- */
