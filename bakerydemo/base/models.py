@@ -348,7 +348,7 @@ class FormPage(AbstractEmailForm):
         related_name='+'
     )
     body = StreamField(BaseStreamBlock())
-    thank_you_text = RichTextField(blank=False)
+    thank_you_text = RichTextField(blank=True)
 
     # Note how we include the FormField object via an InlinePanel using the
     # related_name value
