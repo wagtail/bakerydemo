@@ -460,22 +460,6 @@ cite {
   padding: 25px 0;
 }
 
-/* Logo */
-.logo,
-.logo:visited,
-.logo:focus {
-  display: inline-block;
-  padding: 0;
-  color: white;
-  font-size: 30px;
-  font-weight: 300;
-  margin: 0 0 0;
-}
-
-.logo:hover {
-  color: #d4566b;
-  text-decoration: none;
-}
 
 .navigation__search {
   display: none;
