@@ -90,7 +90,7 @@
                     <h2 class="blog-section__title">{{ page.featured_section_3_title }}</h2>
                     <div class="blog-section__grid">
                         {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
-                        {% include "includes/card/picture-card.html" %}
+                            {% include "includes/card/picture-card.html" with page=childpage portrait=True %}
                         {% endfor %}
                     </div>
                 </div>
