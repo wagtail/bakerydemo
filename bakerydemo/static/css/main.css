@@ -367,15 +367,15 @@ cite {
   }
 }
 
+.navigation__items > li {
+  padding: 10px 0;
+}
+
 .navigation__items > li > a {
   color: var(--dark);
   font-family: var(--font--secondary);
   font-size: 18px;
   line-height: 28px;
-  padding: 10px 0;
-}
-
-.navigation__items > li {
   padding: 10px 0;
 }
 
@@ -387,6 +387,7 @@ cite {
   .navigation__items > li {
     padding: 0 0 0 20px;
   }
+
   .navigation__items > li > a {
     padding: 10px;
   }
