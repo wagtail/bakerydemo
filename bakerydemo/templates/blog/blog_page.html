@@ -25,8 +25,9 @@
             {% if page.get_tags %}
             <p class="blog__tag-introduction">Find more blog posts with similar tags</p>
             <div class="blog-tags blog-tags--condensed">
+                <span class="u-sr-only">Filter blog posts by tag</span>
                 {% for tag in page.get_tags %}
-                <a href="{{ tag.url }}" class="blog-tags__pill" aria-label="Filter blog posts by tag">{{ tag }}</a>
+                <a href="{{ tag.url }}" class="blog-tags__pill">{{ tag }}</a>
                 {% endfor %}
             </div>
             {% endif %}
