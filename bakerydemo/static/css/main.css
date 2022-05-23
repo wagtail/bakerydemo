@@ -1373,9 +1373,8 @@ input[type="radio"] {
 
 .homepage .featured-cards__chevron-icon {
   margin-left: 8px;
-  width: 12px;
-  height: 28px;
-  align-self: center;
+  width: 8px;
+  height: 22px;
   transition: transform ease 0.1s;
 }
 
@@ -1402,9 +1401,10 @@ input[type="radio"] {
     margin: unset;
   }
 
-  .featured-cards__chevron-icon {
-    width: 11px;
-    height: 30px;
+  .homepage .featured-cards__chevron-icon {
+    width: 12px;
+    height: 28px;
+    align-self: center;
   }
 }
 
