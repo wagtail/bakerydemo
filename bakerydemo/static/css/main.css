@@ -1846,27 +1846,14 @@ input[type="radio"] {
   position: absolute;
   left: 0;
   right: 0;
-  transform-origin: center right;
   height: 2px;
-  background-color: var(--orange);
-  transform: scaleX(0);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-@media (prefers-reduced-motion) {
-  .location-card:hover .location-card__title {
-    text-decoration: underline;
-  }
-
-  .location-card:hover .location-card__title::before {
-    display: none;
-  }
+  background-color: var(--dark-orange);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .location-card:hover .location-card__title::before {
-  transform-origin: center left;
-  background-color: var(--dark-orange);
-  transform: scaleX(1);
+  opacity: 1;
 }
 
 .location-card__text {
