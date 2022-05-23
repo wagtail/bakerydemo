@@ -2,11 +2,13 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-{% include "base/include/header-hero.html" %}
 
 <div class="container form-page-thanks">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
+            <h1 class="index-header__title">{{ page.title }}</h1>
+        </div>
+        <div class="col-md-7 index-header__body-introduction">
             {{ page.thank_you_text|richtext }}
         </div>
     </div>
