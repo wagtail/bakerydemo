@@ -844,6 +844,16 @@ nav[role="pagination"] {
   text-transform: capitalize;
 }
 
+.blog-tags__pill--selected {
+  background-color: var(--dark-orange);
+  border: 1px solid var(--dark-orange);
+  color: var(--white);
+}
+
+.blog-tags__pill:hover.blog-tags__pill--selected{
+  background-color: var(--dark-orange);
+}
+
 .blog-tags__pill:first-child {
   margin-left: 0;
 }
