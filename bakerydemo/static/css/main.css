@@ -58,6 +58,10 @@ body {
   min-height: 100vh;
 }
 
+body.no-scroll {
+  overflow-y: hidden;
+}
+
 @media (min-width: 768px) {
   body {
     font-size: 18px;
@@ -507,12 +511,66 @@ cite {
 /* Main menu */
 .navigation {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   padding: 25px 0;
 }
 
+.navigation__mobile[data-active="closed"] {
+  display: none;
+}
+
+.navigation__mobile[data-active="opened"] {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: var(--white);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.navigation__mobile-toggle {
+  background-color: transparent;
+  border: none;
+}
+
+.navigation__mobile-toggle[data-active="opened"] {
+  position: absolute;
+  z-index: 15;
+  top: 30px;
+  right: 20px;
+}
+
+@media (min-width: 1150px) {
+  .navigation__mobile[data-active="opened"] {
+    display: none;
+  }
+}
+
+.navigation__mobile-toggle[data-active="opened"] .navigation__toggle-icon-bar {
+  opacity: 0;
+}
+
+.navigation__mobile-toggle[data-active="opened"] .navigation__toggle-icon-bar:first-of-type {
+  transform: translateY(10px) rotate(45deg);
+  opacity: 1;
+}
+
+.navigation__mobile-toggle[data-active="opened"] .navigation__toggle-icon-bar:last-child {
+  transform: translateY(-10px) rotate(-45deg);
+  opacity: 1;
+}
+
+.navigation__mobile-search {
+  margin-top: 20px;
+  position: relative;
+}
 
 .navigation__search {
   display: none;
@@ -524,7 +582,13 @@ cite {
   display: block;
   position: absolute;
   right: 13px;
-  top: 11px;
+  top: 13px;
+}
+
+@media (min-width: 768px) {
+  .navigation__search-icon {
+    top: 11px;
+  }
 }
 
 .navigation__search-input {
@@ -536,15 +600,18 @@ cite {
 }
 
 .navigation__items {
-  display: none;
   list-style: none;
   margin: 0;
   padding: 20px 0 0 0;
 }
 
+.navigation__desktop {
+  display: none;
+}
+
 @media (min-width: 1150px) {
-  .navigation {
-    flex-wrap: nowrap;
+  .navigation__desktop {
+    display: block;
   }
 
   .navigation__search {
@@ -569,6 +636,8 @@ cite {
   padding: 10px 0;
 }
 
+
+
 @media (min-width: 1150px) {
   .navigation__items {
     display: block;
@@ -583,7 +652,7 @@ cite {
   }
 
   .navigation__items>li:first-child {
-    padding: 0;
+    padding: 0 0 0 20px;
   }
 }
 
@@ -594,7 +663,7 @@ cite {
 .navigation__items>li.active>a:hover {
   color: var(--black);
   border-radius: 0;
-  border-bottom: 4px solid var(--orange);
+  border: none;
   background-color: transparent;
 }
 
@@ -780,6 +849,7 @@ footer {
 .breadcrumb-container {
   position: relative;
   z-index: 3;
+  margin-bottom: 15px;
 }
 
 .breadcrumb {

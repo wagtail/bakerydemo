@@ -8,7 +8,6 @@
 {% wagtailuserbar %}
 
 {% block header %}
-    {# Header contains the main_navigation block #}
     {% include "includes/header.html" with parent=site_root calling_page=self %}
 {% endblock header %}
 
@@ -38,9 +37,8 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     {% load static %}
-    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+    <script src="{% static 'js/main.js' %}"></script>
+    
 </body>
 
 </html>
