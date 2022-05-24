@@ -847,18 +847,31 @@ footer {
 /* Pagination navigation */
 .pagination {
   display: block;
-  margin-top: 0;
-  text-align: center;
-  margin-bottom: 40px;
+  margin: 0 auto 40px auto;
 }
 
-.pagination .page-item {
+.pagination__list {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.pagination .page-item a {
   text-transform: capitalize;
+  text-decoration: underline;
 }
 
-.pagination .active span,
-.pagination .active span:hover {
-  background-color: var(--dark-orange);
+.pagination .page-item.active span {
+  color: var(--grey);
+}
+
+.pagination .page-item.disabled a {
+  color: var(--grey);
+  text-decoration: none;
+  cursor: default;
 }
 
 /* Location list page */
