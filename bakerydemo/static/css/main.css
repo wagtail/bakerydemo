@@ -529,7 +529,13 @@ cite {
   display: block;
   position: absolute;
   right: 13px;
-  top: 11px;
+  top: 13px;
+}
+
+@media (min-width: 768px) {
+  .navigation__search-icon {
+    top: 11px;
+  }
 }
 
 .navigation__search-input {
