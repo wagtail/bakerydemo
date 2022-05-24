@@ -19,6 +19,7 @@
   --dark: #333333;
   --grey: #6e6e6e;
   --border-grey: #E1DCD3;
+  --transparent-border: rgba(135, 116, 79, 0.25);
   --white: #ffffff;
   --cream: #f5f3e9;
   --light-brown: #87744f;
@@ -1665,7 +1666,7 @@ input[type="radio"] {
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
-  border-bottom: 1px solid rgba(135, 116, 79, 0.25);
+  border-bottom: 1px solid var(--transparent-border);
 }
 
 .blog-listing-card__contents {
