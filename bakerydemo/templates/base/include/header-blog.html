@@ -1,8 +1,9 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% if page.image %}
-{% image page.image fill-1920x600 as image %}
-<div class="container-fluid hero hero--blog" style="background-image:url('{{ image.url }}')"></div>
+    {% image page.image fill-1920x600 as image %}
+    <div class="container-fluid hero hero--blog" style="background-image:url('{{ image.url }}')"></div>
+{% endif %}
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-9">
@@ -20,4 +21,3 @@
         </div>
     </div>
 </div>
-{% endif %}
