@@ -333,15 +333,12 @@ blockquote .text {
   line-height: 30px;
 }
 
-blockquote footer {
-  margin: 0;
-  padding: 0;
-}
-
 blockquote .attribute_name {
   color: var(--dark);
   font-size: 18px;
   line-height: 28px;
+  margin: 0;
+  padding: 0;
 }
 
 @media (min-width: 766px) {
@@ -355,10 +352,6 @@ blockquote .attribute_name {
     font-size: 32px;
     line-height: 42px;
   }
-}
-
-blockquote footer::before {
-  display: none;
 }
 
 /* Richtext Styles */
