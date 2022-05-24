@@ -1508,8 +1508,10 @@ input[type="radio"] {
 
 .picture-card__title {
   color: var(--white);
+  font-family: var(--font--primary);
   font-size: 2.6rem;
   line-height: 1.15;
+  margin: 0;
 }
 
 .picture-card__image {
