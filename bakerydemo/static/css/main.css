@@ -153,11 +153,12 @@ a,
 a:focus,
 a:visited {
   color: var(--orange);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:hover {
   color: var(--dark-orange);
+  text-decoration: none;
 }
 
 a.btn {
@@ -169,13 +170,11 @@ a.btn {
   line-height: 1.55;
   font-weight: 700;
   padding: 15px 20px;
-  text-decoration: none;
 }
 
 a.btn:hover {
   background-color: var(--grey);
   color: var(--white);
-  text-decoration: none;
 }
 
 a.btn-sm {
@@ -183,7 +182,6 @@ a.btn-sm {
   font-size: 1rem;
   line-height: normal;
   padding: 6px 8px;
-  text-decoration: none;
 }
 
 ul {
@@ -353,6 +351,10 @@ blockquote .attribute_name {
 /* Richtext Styles */
 .block-paragraph_block p {
   color: var(--dark);
+}
+
+.block-paragraph_block a {
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 768px) {
