@@ -4,6 +4,6 @@
   font-weight: 400;
   font-display: swap;
   src: local('Marcellus-Regular'), local('Marcellus Regular'),
-       url('../fonts/Marcellus-Regular.ttf') 
-       
+      url('../fonts/Marcellus-Regular.woff2') format('woff2'),
+      url('../fonts/Marcellus-Regular.woff') format('woff');
 }
