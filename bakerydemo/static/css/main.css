@@ -26,7 +26,7 @@
   --dark-brown: #553801;
   --orange: #c55302;
   --dark-orange: #833701;
-  --font--primary: "Marcellus", sans-serif;
+  --font--primary: "Marcellus", serif;
   --font--secondary: "Open Sans", sans-serif;
 
   /* Used as the basis for all REM font sizing across the site. 1rem = 10px */
@@ -1154,7 +1154,7 @@ input[type="radio"] {
 }
 
 .homepage .home-hero .lead {
-  font-family: "Marcellus", serif;
+  font-family: var(--font--primary);
   font-weight: 400;
   color: var(--white);
   margin: 40px auto;
@@ -1316,7 +1316,7 @@ input[type="radio"] {
   display: flex;
   flex-direction: row;
   justify-content: baseline;
-  font-family: "Marcellus", serif;
+  font-family: var(--font--primary);
   margin: 0 auto;
   width: max-content;
   font-size: 1.8rem;
