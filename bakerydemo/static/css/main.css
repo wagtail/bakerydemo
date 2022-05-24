@@ -16,7 +16,6 @@
 /* Global styles */
 /* CSS Variables */
 :root {
-  --black: #000000;
   --dark: #333333;
   --grey: #6e6e6e;
   --border-grey: #E1DCD3;
@@ -43,7 +42,7 @@ body {
   padding-top: 0;
   padding-bottom: 0;
   background: var(--white);
-  color: var(--black);
+  color: var(--dark);
   min-height: 100vh;
 }
 
@@ -94,7 +93,7 @@ p {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.5;
-  color: var(--black);
+  color: var(--dark);
 }
 
 @media (min-width: 768px) {
@@ -502,7 +501,7 @@ blockquote .attribute_name {
 .navigation__items>li.active>a,
 .navigation__items>li.active>a:focus,
 .navigation__items>li.active>a:hover {
-  color: var(--black);
+  color: var(--dark);
   border-radius: 0;
   border-bottom: 4px solid var(--orange);
   background-color: transparent;
@@ -719,7 +718,7 @@ footer {
 
 .breadcrumb a,
 .breadcrumb .active {
-  color: var(--black);
+  color: var(--dark);
   text-decoration: underline;
 }
 
