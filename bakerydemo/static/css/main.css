@@ -214,7 +214,7 @@ figcaption {
   padding-top: 10px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   figcaption {
     font-size: 1.6rem;
     line-height: 1.5;
@@ -269,7 +269,7 @@ figure img {
   background: linear-gradient(0deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .hero-gradient-mask {
     background: linear-gradient(90deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
   }
@@ -299,7 +299,7 @@ figure img {
   width: 100%;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) { 
   .hero__title {
     background-color: var(--orange);
     width: max-content;
@@ -336,7 +336,7 @@ blockquote .attribute_name {
   padding: 0;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   blockquote {
     border-left: 3px solid var(--orange);
     margin: 50px 0;
@@ -392,7 +392,7 @@ blockquote .attribute_name {
   margin-bottom: 20px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .index-header__title {
     font-size: 10rem;
     line-height: 0.64;
@@ -408,7 +408,7 @@ blockquote .attribute_name {
 }
 
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .index-header__title.index-header__title--blog {
     line-height: 1.1;
   }
@@ -753,7 +753,7 @@ nav[role="pagination"] {
   gap: 10px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .location-list-page {
     padding: 50px 0 110px 0;
     grid-template-columns: 1fr 1fr;
@@ -924,7 +924,7 @@ nav[role="pagination"] {
   margin-top: 60px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .blog__published {
     margin-bottom: 40px;
   }
@@ -960,7 +960,7 @@ nav[role="pagination"] {
   gap: 10px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .gallery__container {
     padding-top: 180px;
     padding-bottom: 80px;
@@ -1009,7 +1009,7 @@ nav[role="pagination"] {
   margin-bottom: 65px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .bread-detail__introduction {
     font-size: 3.2rem;
     line-height: 1.31;
@@ -1078,7 +1078,7 @@ select {
   border: 1px solid #ccc;
 }
 
-@media (max-width: 766px) {
+@media (max-width: 768px) {
   .form-page input,
   textarea,
   select {
@@ -1147,7 +1147,7 @@ input[type="radio"] {
   padding-bottom: 20px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .home-hero {
     padding-bottom: 140px;
   }
@@ -1162,7 +1162,7 @@ input[type="radio"] {
   line-height: 1.15;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .home-hero .lead {
     font-size: 3.2rem;
     line-height: 1.31;
@@ -1211,7 +1211,7 @@ input[type="radio"] {
   margin-bottom: 0;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .streamfield-column p {
     font-size: 1.8rem;
     line-height: 1.55;
@@ -1237,7 +1237,7 @@ input[type="radio"] {
   padding: 40px 0 40px 0;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .promo-row {
     padding-top: 80px;
     margin-right: -45px;
@@ -1278,7 +1278,7 @@ input[type="radio"] {
   height: auto;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .promo {
     margin-top: -180px;
     margin-right: -120px;
@@ -1338,7 +1338,7 @@ input[type="radio"] {
   fill: var(--dark-orange);
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .featured-cards {
     padding-right: 50px;
   }
@@ -1372,7 +1372,7 @@ input[type="radio"] {
   margin-bottom: 40px;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .locations-section {
     text-align: left;
     padding: 120px 0 160px 0;
@@ -1419,7 +1419,7 @@ input[type="radio"] {
   }
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .homepage .blog-section {
     padding: 90px 0 110px 0;
   }
@@ -1544,7 +1544,7 @@ input[type="radio"] {
   z-index: 2;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .picture-card__title {
     font-size: 3.2rem;
     line-height: 1.31;
@@ -1627,7 +1627,7 @@ input[type="radio"] {
   color: var(--dark-orange);
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .listing-card__contents {
     padding-left: 45px;
     padding-top: 30px;
@@ -1714,7 +1714,7 @@ input[type="radio"] {
   text-decoration: underline;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .blog-listing-card:last-child {
     padding-bottom: 200px;
   }
@@ -1792,7 +1792,7 @@ input[type="radio"] {
   line-height: 1.5;
 }
 
-@media (min-width: 766px) {
+@media (min-width: 768px) {
   .location-card {
     margin-bottom: 0;
   }
