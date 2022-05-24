@@ -15,15 +15,14 @@
 {% block head-extra %}
 {% endblock head-extra %}
 
-{% block messages %}
-    {% include "includes/messages.html" %}
-{% endblock messages %}
-
-
 {% block breadcrumbs %}
     {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
     {% breadcrumbs %}
 {% endblock breadcrumbs %}
+
+{% block messages %}
+    {% include "includes/messages.html" %}
+{% endblock messages %}
 
 <main role="main">
     {% block content %}

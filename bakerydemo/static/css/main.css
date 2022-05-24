@@ -260,6 +260,28 @@ figure img {
   margin: 0;
 }
 
+.alert {
+  margin: 40px auto 0 auto;
+  max-width: 1400px;
+  border-radius: 0;
+  background-color: var(--orange);
+  color: var(--white);
+  padding: 40px 40px;
+}
+
+.alert > .alert__title {
+  color: var(--white);
+  font-family: var(--font--primary);
+  font-size: 2.6rem;
+  margin-bottom: 5px;
+}
+
+.alert__messages {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
 /* Hero image area */
 .hero {
   background-size: cover;
