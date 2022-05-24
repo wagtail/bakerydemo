@@ -402,6 +402,10 @@ blockquote footer::before {
   color: var(--dark);
 }
 
+.block-paragraph_block a {
+  text-decoration: underline;
+}
+
 cite {
   font-family: var(--font--secondary);
   text-transform: uppercase;
@@ -1303,11 +1307,12 @@ input[type="radio"] {
   padding: 15px 25px;
   display: inline-block;
   vertical-align: middle;
-  transition-duration: 0.1s;
+  transition: color ease 0.1s, background-color ease 0.1s;
 }
 
 .homepage .home-hero .hero-cta-link:hover {
-  background-color: var(--dark);
+  background-color: var(--white);
+  color: var(--dark-orange);
 }
 
 /* #endregion */
@@ -1327,6 +1332,12 @@ input[type="radio"] {
   font-size: 32px;
   line-height: 40px;
   margin-bottom: 30px;
+}
+
+.homepage .streamfield-column p:first-child a {
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
 }
 
 .homepage .streamfield-column p {
@@ -1361,7 +1372,7 @@ input[type="radio"] {
 
 /* #region -- Promo Section */
 .homepage .promo-row {
-  padding: 40px 0 40px 0;
+  padding: 40px 0 80px 0;
 }
 
 @media (min-width: 766px) {
@@ -1452,13 +1463,17 @@ input[type="radio"] {
 
 .homepage .featured-cards__chevron-icon {
   margin-left: 8px;
-  width: 9px;
-  height: 23px;
+  width: 8px;
+  height: 22px;
   transition: transform ease 0.1s;
 }
 
+.homepage .featured-cards__link:hover {
+  text-decoration: underline;
+}
+
 .homepage .featured-cards__link:hover .featured-cards__chevron-icon {
-  transform: translateX(10px);
+  transform: translateX(5px);
 }
 
 .homepage .featured-cards__link:hover .featured-cards__chevron-icon path {
@@ -1476,9 +1491,10 @@ input[type="radio"] {
     margin: unset;
   }
 
-  .featured-cards__chevron-icon {
-    width: 11px;
-    height: 30px;
+  .homepage .featured-cards__chevron-icon {
+    width: 12px;
+    height: 28px;
+    align-self: center;
   }
 }
 
@@ -1558,7 +1574,6 @@ input[type="radio"] {
   }
 
   .homepage .blog-section__title {
-    margin-bottom: 90px;
     font-size: 120px;
     line-height: 145px;
   }
@@ -1752,6 +1767,7 @@ input[type="radio"] {
 
 .listing-card:hover .listing-card__title {
   color: var(--dark-orange);
+  text-decoration: underline;
 }
 
 @media (min-width: 766px) {
@@ -1891,7 +1907,6 @@ input[type="radio"] {
 
 .location-card:hover .location-card__title {
   color: var(--dark-orange);
-  text-decoration: underline;
 }
 
 .location-card__image {
@@ -1911,6 +1926,24 @@ input[type="radio"] {
   line-height: 30px;
   margin-bottom: 10px;
   font-weight: 400;
+  width: max-content;
+  position: relative;
+}
+
+.location-card__title::before {
+  content: '';
+  bottom: 3px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--dark-orange);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.location-card:hover .location-card__title::before {
+  opacity: 1;
 }
 
 .location-card__text {
