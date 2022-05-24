@@ -15,7 +15,7 @@
             {{ ancestor }}
           </li>
           {% else %}
-          <li><a href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor }}</a>
+          <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a>
             {% include "includes/chevron-icon.html" with class="breadcrumb__chevron-icon" %}</li>
           {% endif %}
           {% endfor %}
