@@ -874,6 +874,33 @@ footer {
   cursor: default;
 }
 
+/* Search page */
+.search__introduction {
+  color: var(--dark);
+  font-family: var(--font--primary);
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.search__results {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 90px;
+}
+
+@media (min-width: 768px) {
+  .search__introduction {
+    margin-bottom: 60px;
+  }
+
+  .search__results {
+    margin-bottom: 120px;
+  }
+}
+
 /* Location list page */
 .location-list-page {
   padding: 0 0 70px 0;
@@ -1758,10 +1785,6 @@ input[type="radio"] {
 .listing-card__meta {
   border-collapse: separate;
   border-spacing: 5px;
-}
-
-.listing-card:last-child {
-  margin-bottom: 0;
 }
 
 .listing-card__link {

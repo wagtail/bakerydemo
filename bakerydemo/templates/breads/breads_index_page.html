@@ -7,7 +7,9 @@
     <div class="container">
         <ul class="bread-list">
             {% for bread in breads %}
-                {% include "includes/card/listing-card.html" with page=bread %}
+                <li>
+                    {% include "includes/card/listing-card.html" with page=bread %}
+                </li>
             {% endfor %}
         </ul>
     </div>
