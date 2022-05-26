@@ -1208,7 +1208,8 @@ footer {
 }
 
 .bread-detail__meta-title {
-  font-family: var(--font--primary);
+  font-family: var(--font--secondary);
+  font-weight: 700;
   font-size: 1.8rem;
   line-height: 1.55;
   margin: 0 0 5px 0;
