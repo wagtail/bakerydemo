@@ -2,11 +2,13 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-{% include "base/include/header-hero.html" %}
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
+            <h1 class="index-header__title">{{ page.title }}</h1>
+        </div>
+        <div class="col-md-8 index-header__body-introduction">
             {% if page.intro %}
                 <p class="intro">{{ page.intro|richtext }}</p>
             {% endif %}
@@ -24,26 +26,26 @@
         You could render your form using a Django rendering shortcut such as `{{ form.as_p }}` but that will tend towards unsemantic code, and make it difficult to style. You can read more on Django form at:
         https://docs.djangoproject.com/en/3.2/topics/forms/#form-rendering-options
         {% endcomment %}
-            <form action="{% pageurl page %}" method="POST" role="form">
+            <form action="{% pageurl page %}" method="POST">
                 {% csrf_token %}
                 {% if form.subject.errors %}
-                    <ol role="alertdialog">
+                    <ol>
                     {% for error in form.subject.errors %}
-                        <li role="alert"><strong>{{ error|escape }}</strong></li>
+                        <li><strong>{{ error|escape }}</strong></li>
                     {% endfor %}
                     </ol>
                 {% endif %}
 
                 {% for field in form %}
-                    <div class="fieldWrapper" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
-                        
+                    <div class="form-page__field" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+
                         {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}
 
-                        {{ field }}
-                        
                         {% if field.help_text %}
-                            <p class="help">{{ field.help_text|safe }}</p>
+                            <p class="help">{{ field.help_text }}</p>
                         {% endif %}
+
+                        {{ field }}
                     </div>
                 {% endfor %}
 

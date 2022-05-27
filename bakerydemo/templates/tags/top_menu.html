@@ -8,7 +8,7 @@
               {% top_menu_children parent=menuitem %}
               {# Used to display child menu items #}
       {% else %}
-          <a href="{% pageurl menuitem %}" role="menuitem">{{ menuitem.title }}</a>
+          <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
       {% endif %}
   </li>
 {% endfor %}

@@ -1,11 +1,12 @@
 {% load wagtailimages_tags %}
 
 {% for img in images %}
-{% image img fill-285x200-c100 as img_obj %}
-<div class="col-sm-6">
-    <figure class="gallery-figure">
-        <img src="{{img_obj.url}}" class="img-responsive" />
-        <figcaption>{{ img.title }}</figcaption>
+<div class="picture-card">
+    <figure class="picture-card__image">
+        {% image img fill-645x480-c100 loading="lazy" %}
+        <div class="picture-card__contents">
+            <p class="picture-card__title">{{ img.title }}</p>
+        </div>
     </figure>
 </div>
 {{ image.title }}

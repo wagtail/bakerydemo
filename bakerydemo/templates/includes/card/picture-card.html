@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+
+<div class="picture-card">
+    <a class="picture-card__link" href="{{ page.url }}">
+        <figure class="picture-card__image">
+            {% if portrait %}
+                {% image page.image fill-433x487-c100 loading="lazy" %}
+            {% else %}
+                {% image page.image fill-645x480-c75 loading="lazy" %}
+            {% endif %}
+            <div class="picture-card__contents">
+                <h3 class="picture-card__title">{{ page.title }}</h3>
+            </div>
+        </figure>
+    </a>
+</div>

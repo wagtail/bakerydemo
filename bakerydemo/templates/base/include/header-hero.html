@@ -3,16 +3,8 @@
 {% if page.image %}
     {% image page.image fill-1920x600 as image %}
     <div class="container-fluid hero" style="background-image:url('{{ image.url }}')">
-    <div class="hero-gradient-mask"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <h1>{{ page.title }}</h1>
-                    {% if page.subtitle %}
-                        <p class="stand-first">{{ page.subtitle }}</p>
-                    {% endif %}
-                </div>
-            </div>
+        <div class="hero__container">
+            <h1 class="hero__title">{{ page.title }}</h1>
         </div>
     </div>
 {% else %}
@@ -20,9 +12,6 @@
         <div class="row">
             <div class="col-md-7">
                 <h1>{{ page.title }}</h1>
-                {% if page.subtitle %}
-                    <p class="stand-first">{{ page.subtitle }}</p>
-                {% endif %}
             </div>
         </div>
     </div>

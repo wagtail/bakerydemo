@@ -2,47 +2,23 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ page.title }}</h1>
-                <p>{{ page.introduction}}</p>
-            </div>
-        </div>
-    </div>
+    {% include "base/include/header-index.html" %}
 
     <div class="container">
-        <div class="row bread-list">
-        {% for bread in breads %}
-            <a href="{% pageurl bread %}" class="col-xs-12 col-md-6 bread-list-item">
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 image">
-                        {% image bread.image fill-180x180-c100 as image %}
-                        <img src="{{ image.url }}" width="{{ image.width }}"
-                            height="{{ image.height }}" alt="{{ image.alt }}" class="" />
-                    </div>
-                    <div class="col-xs-6 col-sm-7">
-                        <h2>{{ bread.title }}</h2>
-                        <ul class="bread-meta">
-                        {% if bread.origin %}
-                            <li><span>Origin</span> {{ bread.origin }}</li>
-                        {% endif %}
-                        {% if bread.bread_type %}
-                            <li><span>Type</span> {{ bread.bread_type }}</li>
-                        {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-        </div>
+        <ul class="bread-list">
+            {% for bread in breads %}
+                <li>
+                    {% include "includes/card/listing-card.html" with page=bread %}
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 
-    {% if breads.paginator.count > 1 %}
+    {% if breads.paginator.count > 12 %}
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                {% include "includes/pagination.html" with subpages=breads %}
+                <div class="col-sm-12">
+                    {% include "includes/pagination.html" with subpages=breads %}
                 </div>
             </div>
         </div>

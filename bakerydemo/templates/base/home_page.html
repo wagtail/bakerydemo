@@ -4,121 +4,101 @@
 {% block content %}
 <div class="homepage">
 
-{% image page.image fill-1920x600 as image %}
-<div class="container-fluid hero" style="background-image:url('{{ image.url }}')">
-    <div class="hero-gradient-mask"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 home-hero">
-                <h1>{{ page.title }}</h1>
-                <p class="lead">{{ page.hero_text }}</p>
-                {% if page.hero_cta_link %}
-                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link hvr-icon-forward">
+    {% image page.image fill-1920x600 as image %}
+    <div class="container-fluid hero" style="background-image:url('{{ image.url }}')">
+        <div class="hero-gradient-mask"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-1 col-lg-5 home-hero">
+                    <h1>{{ page.title }}</h1>
+                    <p class="lead">{{ page.hero_text }}</p>
+                    {% if page.hero_cta_link %}
+                    <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link">
                         {{ page.hero_cta }}
                     </a>
-                {% else %}
+                    {% else %}
                     {{ page.hero_cta }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row promo-row">
+            <div class="featured-cards col-sm-5 col-sm-offset-1">
+                {% if page.featured_section_1 %}
+                <h2 class="featured-cards__title">{{ page.featured_section_1_title }}</h2>
+                <ul class="featured-cards__list">
+                    {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
+                    <li>
+                        {% include "includes/card/listing-card.html" with page=childpage %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a class="featured-cards__link" href="/breads">
+                    <span>View more of our breads</span>
+                    {% include "includes/chevron-icon.html" with class="featured-cards__chevron-icon" %}
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-6 promo">
+                {% if page.promo_image or page.promo_title or page.promo_text %}
+                <div class="col-lg-10 promo-text">
+                    {% if page.promo_title %}
+                    <h2>{{ page.promo_title }}</h2>
+                    {% endif %}
+                    {% if page.promo_text %}
+                    {{ page.promo_text|richtext }}
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if page.promo_image %}
+                <figure>{% image page.promo_image fill-590x413-c100 %}</figure>
                 {% endif %}
             </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row promo-row">
-        <div class="col-sm-5 promo">
-            {% if page.promo_image or page.promo_title or page.promo_text %}
-                <figure>{% image page.promo_image fill-200x200-c100 %}</figure>
-                <div class="promo-text">
-                    <h3>{{ page.promo_title }}</h3>
-                    {{ page.promo_text|safe }}
-                </div>
-            {% endif %}
-        </div>
-
-        <div class="col-sm-6 col-sm-offset-1 feature-1">
-            {% if page.featured_section_1 %}
-            <h2>{{ page.featured_section_1_title }}</h2>
-                <div class="featured-children">
-                    {% for childpage in page.featured_section_1.specific.children|slice:"4" %}
-                        <li>
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <a href="{{childpage.url}}">
-                                        <figure>
-                                            {% image childpage.image fill-180x140-c100 %}
-                                        </figure>
-                                    </a>
-                                </div>
-                                <div class="col-xs-8">
-                                    <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
-
-{% if page.body %}
-<div class="container-fluid streamfield">
-    <div class="container">
+    {% if page.body %}
+    <div class="container-fluid streamfield">
         <div class="row">
-            <div class="col-md-7 streamfield-column">
+            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 streamfield-column">
                 {{ page.body }}
             </div>
         </div>
     </div>
-</div>
-{% endif %}
+    {% endif %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 feature-2">
-            {% if page.featured_section_2 %}
-            <h2>{{ page.featured_section_2_title }}</h2>
-                <div class="featured-children row feature-2-row">
-                    {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
-                        <li class="col-sm-4 feature-2-item">
-                            <a href="{{childpage.url}}">
-                                <figure>
-                                    {% image childpage.image fill-430x210-c100 %}
-                                </figure>
-                            </a>
-                            <div class="feature-2-text">
-                                <h3><a href="{{childpage.url}}">{{childpage.title}}</a></h3>
-                                <p>{{ childpage.introduction|truncatewords:15 }}</p>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </div>
-            {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 locations-section">
+                {% if page.featured_section_2 %}
+                <h2 class="locations-section__title">{{ page.featured_section_2_title }}</h2>
+                {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
+                {% include "includes/card/location-card.html" with page=childpage %}
+                {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 feature-3">
-            {% if page.featured_section_3 %}
-            <h2>{{ page.featured_section_3_title }}</h2>
-                <div class="featured-children row">
-                    {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
-                        <li class="col-md-4">
-                            <a href="{{childpage.url}}">
-                                <figure>
-                                    {% image childpage.image fill-430x254-c100 %}
-                                </figure>
-                                <h3>{{childpage.title}}</h3>
-                            </a>
-                        </li>
-                    {% endfor %}
+    {% if page.featured_section_3 %}
+    <div class="blog-section__background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 blog-section">
+                    <h2 class="blog-section__title">{{ page.featured_section_3_title }}</h2>
+                    <div class="blog-section__grid">
+                        {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
+                        {% include "includes/card/picture-card.html" with page=childpage portrait=True %}
+                        {% endfor %}
+                    </div>
                 </div>
-            {% endif %}
+            </div>
         </div>
     </div>
-</div>
+    {% endif %}
 </div>
 {% endblock content %}

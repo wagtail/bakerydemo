@@ -1,27 +1,27 @@
 {% load navigation_tags static %}
 
-<div class="container" role="contentinfo">
+<footer class="container">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <ul class="list-inline text-center">
-                <li>
-                    <a href="https://github.com/wagtail/wagtail">
+        <div class="col-sm-12">
+            <ul class="list-inline">
+                <li class="footer__icon">
+                    <a href="https://github.com/wagtail/wagtail" target="_blank" rel="noreferrer" aria-label="View Wagtail's source code on GitHub">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a href="https://twitter.com/wagtailcms" target="_blank">
+                <li class="footer__icon">
+                    <a href="https://twitter.com/wagtailcms" target="_blank" rel="noreferrer" aria-label="Wagtail's official Twitter account">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a href="https://wagtail.org/" target="_blank">
+                <li class="footer__icon">
+                    <a href="https://wagtail.org/" target="_blank" rel="noreferrer" aria-label="Wagtail's official website">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-link fa-stack-1x fa-inverse"></i>
@@ -32,4 +32,4 @@
             {% get_footer_text %}
         </div>
     </div>
-</div>
+</footer>
