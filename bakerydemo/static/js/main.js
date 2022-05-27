@@ -1,26 +1,23 @@
-
 const navigation = document.querySelector('[data-navigation]');
 const mobileNavigation = navigation.querySelector('[data-mobile-navigation]');
 const body = document.querySelector('body');
 const mobileNavigationToggle = navigation.querySelector('[data-mobile-navigation-toggle]');
 
-let mobileNavigationIsOpen = false;
-
 function toggleMobileNavigation() {
-    if (mobileNavigationIsOpen) {
-        body.classList.remove('no-scroll');
-        mobileNavigation.setAttribute('data-active', 'closed');
-        mobileNavigationToggle.setAttribute('data-active', 'closed');
+    if (mobileNavigation.hidden) {
+      body.classList.add('no-scroll');
+      mobileNavigation.hidden = false;
+      mobileNavigationToggle.setAttribute('aria-expanded', 'true');
     } else {
-        body.classList.add('no-scroll');
-        mobileNavigation.setAttribute('data-active', 'opened');
-        mobileNavigationToggle.setAttribute('data-active', 'opened');
+      body.classList.remove('no-scroll');
+      mobileNavigation.hidden = true;
+      mobileNavigationToggle.setAttribute('aria-expanded', 'false');
     }
-    mobileNavigationIsOpen = !mobileNavigationIsOpen;
 }
 
-mobileNavigationToggle.addEventListener('click', (e) => {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  mobileNavigationToggle.addEventListener('click', () => {
     toggleMobileNavigation();
-});
-    
+  });
+})
+

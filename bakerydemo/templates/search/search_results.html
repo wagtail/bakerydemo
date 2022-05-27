@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
+{% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -9,14 +9,14 @@
         <div class="col-md-8">
             <h1>Search results</h1>
             {% if search_results %}
-                <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} results found.</p>
+                <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
                 <ul class="search__results">
                     {% for result in search_results %}
                         <li class="listing-card">
                             <a class="listing-card__link" href="{% pageurl result.specific %}">
                                 {% if result.specific.image %}
                                     <figure class="listing-card__image">
-                                        {% image result.specific.image fill-180x180-c100 %}
+                                        {% image result.specific.image fill-180x180-c100 loading="lazy" %}
                                     </figure>
                                 {% endif %}
                                 <div class="listing-card__contents">
@@ -31,7 +31,7 @@
                                         {% endif %}
                                     </p>
                                     <p class="listing-card__description">
-                                        {% if result.specific.search_description %}{{ result.specific.search_description|safe }}{% endif %}
+                                        {% if result.specific.search_description %}{{ result.specific.search_description|richtext }}{% endif %}
                                     </p>
                                 </div>
                             </a>

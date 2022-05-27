@@ -1,18 +1,23 @@
 {% load navigation_tags %}
 
-<div class="header clearfix" role="banner">
+<div class="header clearfix">
     <div class="container">
         <div class="navigation" data-navigation>
             <a href="/" class="navigation__logo">The Wagtail Bakery</a>
 
-            <button type="button" class="navigation__mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false" 
-               data-mobile-navigation-toggle data-active="closed">
-                <div class="navigation__toggle-icon-bar"></div>
-                <div class="navigation__toggle-icon-bar"></div>
-                <div class="navigation__toggle-icon-bar"></div>
+            <button
+              type="button"
+              class="navigation__mobile-toggle"
+              aria-label="Toggle mobile menu"
+              aria-expanded="false"
+              data-mobile-navigation-toggle
+            >
+                <span class="navigation__toggle-icon-bar"></span>
+                <span class="navigation__toggle-icon-bar"></span>
+                <span class="navigation__toggle-icon-bar"></span>
             </button>
 
-            <nav class="navigation__mobile" data-mobile-navigation data-active="closed">
+            <nav class="navigation__mobile" data-mobile-navigation hidden>
                 <a href="/" class="navigation__logo">The Wagtail Bakery</a>
                 <ul class="navigation__items nav-pills">
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}

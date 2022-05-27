@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
+{% if tag %}
+  {% block title %}
+    Viewing all blog posts sorted by the tag {{ tag }}
+  {% endblock %}
+{% endif %}
+
 {% block content %}
     {% if not tag %}
         {% include "base/include/header-index.html" %}

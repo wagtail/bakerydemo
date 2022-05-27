@@ -1,19 +1,16 @@
 {% load wagtailcore_tags %}
 
 {% if ancestors %}
-<nav class="breadcrumb-container" aria-label="breadcrumb" role="navigation">
+<nav class="breadcrumb-container" aria-label="Breadcrumb">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <ol class="breadcrumb">
-          <li><a href="/">Home</a> {% include "includes/chevron-icon.html" with class="breadcrumb__chevron-icon" %}</li>
-          {% for ancestor in ancestors|slice:"1:" %}
+          {% for ancestor in ancestors %}
           {% if forloop.last %}
-          <li class="active" aria-level="{{ancestors|length}}">
-            {{ ancestor }}
-          </li>
+          <li aria-current="page">{{ ancestor }}</li>
           {% else %}
-          <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a>
+          <li><a href="{% pageurl ancestor %}">{% if forloop.first %}Home{% else %}{{ ancestor }}{% endif %}</a>
             {% include "includes/chevron-icon.html" with class="breadcrumb__chevron-icon" %}</li>
           {% endif %}
           {% endfor %}
