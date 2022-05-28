@@ -1,6 +1,6 @@
 from django import template
 
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 
 from bakerydemo.base.models import FooterText
 

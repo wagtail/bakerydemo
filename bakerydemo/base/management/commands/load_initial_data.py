@@ -5,7 +5,7 @@ from django.core.files.storage import default_storage, FileSystemStorage
 from django.core.management.base import BaseCommand
 from django.core.management import call_command
 
-from wagtail.core.models import Site, Page
+from wagtail.models import Site, Page
 
 
 class Command(BaseCommand):
