@@ -98,7 +98,7 @@ class BreadPage(Page):
         help_text='Landscape mode only; horizontal width between 1000px and 3000px.'
     )
     body = StreamField(
-        BaseStreamBlock(), verbose_name="Page body", blank=True
+        BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
     origin = models.ForeignKey(
         Country,
