@@ -10,13 +10,10 @@ from wagtail.admin.panels import (
     FieldRowPanel,
     InlinePanel,
     MultiFieldPanel,
-    PageChooserPanel,
-    StreamFieldPanel,
 )
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Collection, Page
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -57,7 +54,7 @@ class People(index.Indexed, ClusterableModel):
             ])
         ], "Name"),
         FieldPanel('job_title'),
-        ImageChooserPanel('image')
+        FieldPanel('image')
     ]
 
     search_fields = [
@@ -126,8 +123,8 @@ class StandardPage(Page):
     )
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
-        StreamFieldPanel('body'),
-        ImageChooserPanel('image'),
+        FieldPanel('body'),
+        FieldPanel('image'),
     ]
 
 
@@ -250,31 +247,31 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            ImageChooserPanel('image'),
+            FieldPanel('image'),
             FieldPanel('hero_text', classname="full"),
             MultiFieldPanel([
                 FieldPanel('hero_cta'),
-                PageChooserPanel('hero_cta_link'),
+                FieldPanel('hero_cta_link'),
             ]),
         ], heading="Hero section"),
         MultiFieldPanel([
-            ImageChooserPanel('promo_image'),
+            FieldPanel('promo_image'),
             FieldPanel('promo_title'),
             FieldPanel('promo_text'),
         ], heading="Promo section"),
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
         MultiFieldPanel([
             MultiFieldPanel([
                 FieldPanel('featured_section_1_title'),
-                PageChooserPanel('featured_section_1'),
+                FieldPanel('featured_section_1'),
             ]),
             MultiFieldPanel([
                 FieldPanel('featured_section_2_title'),
-                PageChooserPanel('featured_section_2'),
+                FieldPanel('featured_section_2'),
             ]),
             MultiFieldPanel([
                 FieldPanel('featured_section_3_title'),
-                PageChooserPanel('featured_section_3'),
+                FieldPanel('featured_section_3'),
             ]),
         ], heading="Featured homepage sections", classname="collapsible")
     ]
@@ -317,8 +314,8 @@ class GalleryPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
-        StreamFieldPanel('body'),
-        ImageChooserPanel('image'),
+        FieldPanel('body'),
+        FieldPanel('image'),
         FieldPanel('collection'),
     ]
 
@@ -353,8 +350,8 @@ class FormPage(AbstractEmailForm):
     # Note how we include the FormField object via an InlinePanel using the
     # related_name value
     content_panels = AbstractEmailForm.content_panels + [
-        ImageChooserPanel('image'),
-        StreamFieldPanel('body'),
+        FieldPanel('image'),
+        FieldPanel('body'),
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text', classname="full"),
         MultiFieldPanel([

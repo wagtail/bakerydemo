@@ -5,13 +5,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from modelcluster.fields import ParentalManyToManyField
 
 from wagtail.admin.panels import (
-    FieldPanel, MultiFieldPanel, StreamFieldPanel
+    FieldPanel, MultiFieldPanel
 )
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -124,8 +123,8 @@ class BreadPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
-        StreamFieldPanel('body'),
+        FieldPanel('image'),
+        FieldPanel('body'),
         FieldPanel('origin'),
         FieldPanel('bread_type'),
         MultiFieldPanel(
@@ -171,7 +170,7 @@ class BreadsIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
     ]
 
     # Can only have BreadPage children

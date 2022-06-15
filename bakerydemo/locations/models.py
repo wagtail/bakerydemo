@@ -7,10 +7,9 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 
 from wagtail.fields import StreamField
-from wagtail.admin.panels import FieldPanel, InlinePanel, StreamFieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.models import Orderable, Page
 from wagtail.search import index
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.locations.choices import DAY_CHOICES
@@ -120,7 +119,7 @@ class LocationsIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
     ]
 
 
@@ -166,8 +165,8 @@ class LocationPage(Page):
     content_panels = [
         FieldPanel('title', classname="full"),
         FieldPanel('introduction', classname="full"),
-        ImageChooserPanel('image'),
-        StreamFieldPanel('body'),
+        FieldPanel('image'),
+        FieldPanel('body'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
