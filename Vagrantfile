@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "torchbox/wagtail-stretch64"
+  config.vm.box = "wagtail/buster64"
   config.vm.box_version = "~> 1.0"
 
   # Disable automatic box update checking. If you disable this, then
