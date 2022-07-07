@@ -1133,7 +1133,7 @@
   "model": "wagtailforms.formsubmission",
   "pk": 1,
   "fields": {
-    "form_data": "{\"purpose\": \"Feedback\", \"subject\": \"What's up?\", \"body\": \"Love what you guys are doing with the site so far.\", \"your_name\": \"Scot Hacker\", \"your_email\": \"shacker@birdhouse.org\"}",
+    "form_data": {"purpose": "Feedback", "subject": "What's up?", "body": "Love what you guys are doing with the site so far.", "your_name": "Scot Hacker", "your_email": "shacker@birdhouse.org"},
     "page": 69,
     "submit_time": "2019-02-15T16:56:48.939Z"
   }
