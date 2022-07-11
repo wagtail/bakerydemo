@@ -52,6 +52,7 @@ class PeopleModelAdmin(ModelAdmin):
     list_display = ('first_name', 'last_name', 'job_title', 'thumb_image')
     list_filter = ('job_title', )
     search_fields = ('first_name', 'last_name', 'job_title')
+    inspect_view_enabled = True
 
 
 class FooterTextAdmin(ModelAdmin):
