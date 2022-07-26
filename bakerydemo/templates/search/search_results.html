@@ -4,46 +4,46 @@
 {% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <h1>Search results</h1>
-            {% if search_results %}
-                <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
-                <ul class="search__results">
-                    {% for result in search_results %}
-                        <li class="listing-card">
-                            <a class="listing-card__link" href="{% pageurl result.specific %}">
-                                {% if result.specific.image %}
-                                    <figure class="listing-card__image">
-                                        {% image result.specific.image fill-180x180-c100 loading="lazy" %}
-                                    </figure>
-                                {% endif %}
-                                <div class="listing-card__contents">
-                                    <h3 class="listing-card__title">{{ result.specific }}</h3>
-                                    <p class="listing-card__content-type">
-                                        {% if result.specific.content_type.model == "blogpage" %}
-                                            Blog Post
-                                        {% elif result.specific.content_type.model == "locationpage" %}
-                                            Location
-                                        {% else %}
-                                            Bread
-                                        {% endif %}
-                                    </p>
-                                    <p class="listing-card__description">
-                                        {% if result.specific.search_description %}{{ result.specific.search_description|richtext }}{% endif %}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% elif search_query %}
-                <p class="search__introduction">No results found for “{{ search_query }}”.</p>
-            {% else %}
-                <p class="search__introduction">You didn&apos;t search for anything!</p>
-            {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Search results</h1>
+                {% if search_results %}
+                    <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
+                    <ul class="search__results">
+                        {% for result in search_results %}
+                            <li class="listing-card">
+                                <a class="listing-card__link" href="{% pageurl result.specific %}">
+                                    {% if result.specific.image %}
+                                        <figure class="listing-card__image">
+                                            {% image result.specific.image fill-180x180-c100 loading="lazy" %}
+                                        </figure>
+                                    {% endif %}
+                                    <div class="listing-card__contents">
+                                        <h3 class="listing-card__title">{{ result.specific }}</h3>
+                                        <p class="listing-card__content-type">
+                                            {% if result.specific.content_type.model == "blogpage" %}
+                                                Blog Post
+                                            {% elif result.specific.content_type.model == "locationpage" %}
+                                                Location
+                                            {% else %}
+                                                Bread
+                                            {% endif %}
+                                        </p>
+                                        <p class="listing-card__description">
+                                            {% if result.specific.search_description %}{{ result.specific.search_description|richtext }}{% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% elif search_query %}
+                    <p class="search__introduction">No results found for “{{ search_query }}”.</p>
+                {% else %}
+                    <p class="search__introduction">You didn&apos;t search for anything!</p>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock content %}
