@@ -1,0 +1,27 @@
+default_language_version:
+  node: system
+  python: python3
+repos:
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+        language_version: python3
+        args: ["--target-version", "py37"]
+  - repo: https://github.com/timothycrosley/isort
+    # isort config is in setup.cfg
+    rev: 5.6.4
+    hooks:
+      - id: isort
+  - repo: https://gitlab.com/pycqa/flake8
+    # flake8 config is in setup.cfg
+    rev: 3.8.4
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-comprehensions
+          - flake8-assertive
+  - repo: https://github.com/rtts/djhtml
+    rev: v1.4.13
+    hooks:
+      - id: djhtml
