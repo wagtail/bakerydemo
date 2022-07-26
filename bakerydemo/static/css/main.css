@@ -1,26 +1,31 @@
-/* The bakery demo avoids using tooling so doesn't use SASS. This is a static */
-/* CSS file that extends Bootstrap. It's deliberately verbose to aid          */
-/* readability with global themes, themes for each list view and themes for   */
-/* each detail view                                                           */
-/* 1. Global styles --------------------------------------------------------- */
-/* 2. Page header ----------------------------------------------------------- */
-/* 3. Main menu ------------------------------------------------------------- */
-/* 4. Breadcrumb ------------------------------------------------------------ */
-/* 5. Location styles ------------------------------------------------------- */
-/* 6. Blog styles ----------------------------------------------------------- */
-/* 7. Bread styles ---------------------------------------------------------- */
-/* 8. Form styles ----------------------------------------------------------- */
-/* 9. Homepage styles ------------------------------------------------------- */
-/* 9. Miscellaneous/ Helper styles ------------------------------------------ */
+/*
+
+The bakery demo avoids using tooling so doesn't use SASS. This is a static
+CSS file that extends Bootstrap. It's deliberately verbose to aid
+readability with global themes, themes for each list view and themes for
+each detail view
+1. Global styles ---------------------------------------------------------
+2. Page header -----------------------------------------------------------
+3. Main menu -------------------------------------------------------------
+4. Breadcrumb ------------------------------------------------------------
+5. Location styles -------------------------------------------------------
+6. Blog styles -----------------------------------------------------------
+7. Bread styles ----------------------------------------------------------
+8. Form styles -----------------------------------------------------------
+9. Homepage styles -------------------------------------------------------
+9. Miscellaneous/ Helper styles ------------------------------------------
+
+*/
 
 /* Global styles */
+
 /* CSS Variables */
 :root {
-  --dark: #333333;
+  --dark: #333;
   --grey: #6e6e6e;
   --border-grey: #e1dcd3;
-  --transparent-border: rgba(135, 116, 79, 0.25);
-  --white: #ffffff;
+  --transparent-border: rgb(135 116 79 / 25%);
+  --white: #fff;
   --cream: #f5f3e9;
   --light-brown: #87744f;
   --mid-brown: #825600;
@@ -252,12 +257,12 @@ figure img {
 }
 
 .alert {
-  margin: 40px auto 0 auto;
+  margin: 40px auto 0;
   max-width: 1400px;
   border-radius: 0;
   background-color: var(--orange);
   color: var(--white);
-  padding: 40px 40px;
+  padding: 40px;
 }
 
 .alert > .alert__title {
@@ -277,19 +282,19 @@ figure img {
 .hero {
   background-size: cover;
   background-position: center;
-  padding: 300px 0 0 0;
+  padding: 300px 0 0;
   position: relative;
   margin: 0 0 10px;
 }
 
 @media screen and (min-width: 768px) {
   .hero {
-    padding: 250px 0 0 0;
+    padding: 250px 0 0;
     margin: 0;
   }
 
   .hero.hero--blog {
-    padding: 400px 0 0 0;
+    padding: 400px 0 0;
   }
 }
 
@@ -298,18 +303,18 @@ figure img {
   width: 100%;
   height: 100%;
   bottom: 0;
-  background: linear-gradient(0deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(0deg, #000 11.33%, rgb(0 0 0 / 0%) 100%);
 }
 
 @media (min-width: 768px) {
   .hero-gradient-mask {
-    background: linear-gradient(90deg, #000000 11.33%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(90deg, #000 11.33%, rgb(0 0 0 / 0%) 100%);
   }
 }
 
 .hero__container {
   width: 100%;
-  padding: 30px 20px 100px 20px;
+  padding: 30px 20px 100px;
   background-color: var(--orange);
   margin: 0 auto;
 }
@@ -348,13 +353,13 @@ figure img {
 
 blockquote {
   border-left: 3px solid var(--orange);
-  margin: 40px 0 30px 0;
+  margin: 40px 0 30px;
   padding: 0 0 0 20px;
 }
 
 blockquote .text {
   color: var(--orange);
-  margin: 0 0 30px 0;
+  margin: 0 0 30px;
   font-family: var(--font--primary);
   font-size: 1.625rem;
   line-height: 1.15;
@@ -536,7 +541,7 @@ blockquote .attribute_name {
 
 .navigation__search {
   display: none;
-  margin: 15px 0 0 0;
+  margin: 15px 0 0;
   position: relative;
 }
 
@@ -564,7 +569,7 @@ blockquote .attribute_name {
 .navigation__items {
   list-style: none;
   margin: 0;
-  padding: 20px 0 0 0;
+  padding: 20px 0 0;
 }
 
 .navigation__desktop {
@@ -686,7 +691,7 @@ blockquote .attribute_name {
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 1.25;
-  margin: 0 0 0;
+  margin: 0;
   position: relative;
 }
 
@@ -731,7 +736,7 @@ li.has-submenu a.allow-toggle {
   padding: 10px 10px 15px 5px !important;
 }
 
-.caret-custom:after {
+.caret-custom::after {
   content: '▼' !important;
 }
 
@@ -751,7 +756,7 @@ hr {
 }
 
 footer {
-  padding: 55px 0 30px 0;
+  padding: 55px 0 30px;
   background-color: var(--white);
 }
 
@@ -816,13 +821,13 @@ footer {
   font-family: var(--font--secondary);
   font-size: var(--font-sm);
   line-height: 1.5;
-  margin-bottom: 0px;
-  padding-left: 0px;
+  margin-bottom: 0;
+  padding-left: 0;
   text-decoration: underline;
   background-color: transparent;
 }
 
-.breadcrumb > li + li:before {
+.breadcrumb > li + li::before {
   display: none;
 }
 
@@ -849,7 +854,7 @@ footer {
 /* Pagination navigation */
 .pagination {
   display: block;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 40px;
 }
 
 .pagination__list {
@@ -905,7 +910,7 @@ footer {
 
 /* Location list page */
 .location-list-page {
-  padding: 0 0 70px 0;
+  padding: 0 0 70px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
@@ -913,7 +918,7 @@ footer {
 
 @media (min-width: 768px) {
   .location-list-page {
-    padding: 50px 0 110px 0;
+    padding: 50px 0 110px;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
@@ -1025,9 +1030,9 @@ footer {
 .blog-list-item .text {
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.6) 23%,
-    rgba(0, 0, 0, 1) 50%
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0 / 60%) 23%,
+    rgb(0 0 0 / 100%) 50%
   );
   margin-top: -150px;
   padding: 20px;
@@ -1120,7 +1125,7 @@ footer {
   font-family: var(--font--primary);
   font-size: 1.625rem;
   line-height: 1.15;
-  margin: 0 0 60px 0;
+  margin: 0 0 60px;
 }
 
 .gallery__grid {
@@ -1138,7 +1143,7 @@ footer {
   .gallery__introduction {
     font-size: 2rem;
     line-height: 1.31;
-    margin: 0 0 85px 0;
+    margin: 0 0 85px;
   }
 
   .gallery__grid {
@@ -1187,7 +1192,7 @@ footer {
 }
 
 .bread-detail figure {
-  margin: 35px auto 20px auto;
+  margin: 35px auto 20px;
   overflow: hidden;
 }
 
@@ -1215,20 +1220,20 @@ footer {
   font-weight: 700;
   font-size: var(--font-md);
   line-height: 1.55;
-  margin: 0 0 5px 0;
+  margin: 0 0 5px;
 }
 
 .bread-detail__meta-content {
   font-family: var(--font--secondary);
   font-size: var(--font-md);
   line-height: 1.55;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
 }
 
 @media (min-width: 992px) {
   .bread-detail__meta {
     background-color: var(--cream);
-    padding: 240px 60px 60px 60px;
+    padding: 240px 60px 60px;
     margin-right: -40px;
     margin-bottom: 0;
   }
@@ -1311,7 +1316,7 @@ input[type='radio'] {
   font-family: var(--font--secondary);
   font-size: var(--font-md);
   line-height: 28px;
-  margin: -10px 0 10px 0;
+  margin: -10px 0 10px;
 }
 
 @media (min-width: 766px) {
@@ -1349,7 +1354,7 @@ input[type='radio'] {
 /* #region -- Hero -- */
 .homepage .hero {
   margin: 0;
-  padding: 200px 0 30px 0;
+  padding: 200px 0 30px;
 }
 
 .homepage .home-hero {
@@ -1455,7 +1460,7 @@ input[type='radio'] {
 
 /* #region -- Promo Section */
 .homepage .promo-row {
-  padding: 40px 0 80px 0;
+  padding: 40px 0 80px;
 }
 
 @media (min-width: 768px) {
@@ -1494,7 +1499,7 @@ input[type='radio'] {
 }
 
 .homepage .promo figure img {
-  margin: 40px 0 -200px 0;
+  margin: 40px 0 -200px;
   width: 100%;
   height: auto;
 }
@@ -1503,7 +1508,7 @@ input[type='radio'] {
   .homepage .promo {
     margin-top: -180px;
     margin-right: -120px;
-    padding: 180px 60px 40px 60px;
+    padding: 180px 60px 40px;
   }
 
   .homepage .promo figure img {
@@ -1601,12 +1606,13 @@ input[type='radio'] {
 @media (min-width: 768px) {
   .homepage .locations-section {
     text-align: left;
-    padding: 120px 0 160px 0;
+    padding: 120px 0 160px;
   }
 
   .homepage .locations-section__title {
     font-size: 3.75rem;
     line-height: 1.07;
+
     /* Aligns title with below cards */
     padding-left: 10px;
   }
@@ -1616,7 +1622,7 @@ input[type='radio'] {
 
 /* #region -- Blog Section -- */
 .homepage .blog-section {
-  padding: 80px 20px 100px 20px;
+  padding: 80px 20px 100px;
   text-align: center;
 }
 
@@ -1647,7 +1653,7 @@ input[type='radio'] {
 
 @media (min-width: 768px) {
   .homepage .blog-section {
-    padding: 90px 0 110px 0;
+    padding: 90px 0 110px;
   }
 }
 
@@ -1666,6 +1672,7 @@ input[type='radio'] {
 /* #endregion */
 
 /* Miscellaneous helper styles */
+
 /* No gutters */
 .row.no-gutters {
   margin-right: 0;
@@ -1686,9 +1693,9 @@ input[type='radio'] {
 
 /* Bootstrap Equal height rows */
 .row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  display: flexbox;
   display: flex;
   flex-wrap: wrap;
 }
@@ -1748,14 +1755,14 @@ input[type='radio'] {
   transition: transform 0.2s ease;
 }
 
-.picture-card__image:before {
+.picture-card__image::before {
   content: '';
   position: absolute;
   height: 200px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 67.69%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, #000 67.69%);
   z-index: 2;
 }
 
