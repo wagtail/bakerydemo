@@ -3,16 +3,13 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django.db import models
 from django.shortcuts import redirect, render
-
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
-
 from taggit.models import Tag, TaggedItemBase
-
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
-from wagtail.models import Page, Orderable
+from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock

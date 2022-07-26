@@ -1,9 +1,7 @@
 from django import forms
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from modelcluster.fields import ParentalManyToManyField
-
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
 from wagtail.models import Page

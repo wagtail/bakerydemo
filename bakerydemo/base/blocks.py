@@ -1,5 +1,3 @@
-from wagtail.images.blocks import ImageChooserBlock
-from wagtail.embeds.blocks import EmbedBlock
 from wagtail.blocks import (
     CharBlock,
     ChoiceBlock,
@@ -8,6 +6,8 @@ from wagtail.blocks import (
     StructBlock,
     TextBlock,
 )
+from wagtail.embeds.blocks import EmbedBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class ImageBlock(StructBlock):

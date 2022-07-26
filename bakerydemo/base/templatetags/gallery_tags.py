@@ -1,5 +1,4 @@
 from django import template
-
 from wagtail.images.models import Image
 
 register = template.Library()

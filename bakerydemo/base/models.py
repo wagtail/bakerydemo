@@ -1,19 +1,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-
-from wagtail.admin.panels import (
-    FieldPanel,
-    FieldRowPanel,
-    InlinePanel,
-    MultiFieldPanel,
-)
+from wagtail.admin.panels import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Collection, Page
-from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
