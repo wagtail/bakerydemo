@@ -16,146 +16,783 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailimages', '0018_remove_rendition_filter'),
-        ('wagtailcore', '0032_add_bulk_delete_page_permission'),
+        ("wagtailimages", "0018_remove_rendition_filter"),
+        ("wagtailcore", "0032_add_bulk_delete_page_permission"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='FooterText',
+            name="FooterText",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('body', wagtail.fields.RichTextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("body", wagtail.fields.RichTextField()),
             ],
             options={
-                'verbose_name_plural': 'Footer Text',
+                "verbose_name_plural": "Footer Text",
             },
         ),
         migrations.CreateModel(
-            name='FormField',
+            name="FormField",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
-                ('label', models.CharField(help_text='The label of the form field', max_length=255, verbose_name='label')),
-                ('field_type', models.CharField(choices=[('singleline', 'Single line text'), ('multiline', 'Multi-line text'), ('email', 'Email'), ('number', 'Number'), ('url', 'URL'), ('checkbox', 'Checkbox'), ('checkboxes', 'Checkboxes'), ('dropdown', 'Drop down'), ('radio', 'Radio buttons'), ('date', 'Date'), ('datetime', 'Date/time')], max_length=16, verbose_name='field type')),
-                ('required', models.BooleanField(default=True, verbose_name='required')),
-                ('choices', models.TextField(blank=True, help_text='Comma separated list of choices. Only applicable in checkboxes, radio and dropdown.', verbose_name='choices')),
-                ('default_value', models.CharField(blank=True, help_text='Default value. Comma separated values supported for checkboxes.', max_length=255, verbose_name='default value')),
-                ('help_text', models.CharField(blank=True, max_length=255, verbose_name='help text')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "sort_order",
+                    models.IntegerField(blank=True, editable=False, null=True),
+                ),
+                (
+                    "label",
+                    models.CharField(
+                        help_text="The label of the form field",
+                        max_length=255,
+                        verbose_name="label",
+                    ),
+                ),
+                (
+                    "field_type",
+                    models.CharField(
+                        choices=[
+                            ("singleline", "Single line text"),
+                            ("multiline", "Multi-line text"),
+                            ("email", "Email"),
+                            ("number", "Number"),
+                            ("url", "URL"),
+                            ("checkbox", "Checkbox"),
+                            ("checkboxes", "Checkboxes"),
+                            ("dropdown", "Drop down"),
+                            ("radio", "Radio buttons"),
+                            ("date", "Date"),
+                            ("datetime", "Date/time"),
+                        ],
+                        max_length=16,
+                        verbose_name="field type",
+                    ),
+                ),
+                (
+                    "required",
+                    models.BooleanField(default=True, verbose_name="required"),
+                ),
+                (
+                    "choices",
+                    models.TextField(
+                        blank=True,
+                        help_text="Comma separated list of choices. Only applicable in checkboxes, radio and dropdown.",
+                        verbose_name="choices",
+                    ),
+                ),
+                (
+                    "default_value",
+                    models.CharField(
+                        blank=True,
+                        help_text="Default value. Comma separated values supported for checkboxes.",
+                        max_length=255,
+                        verbose_name="default value",
+                    ),
+                ),
+                (
+                    "help_text",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="help text"
+                    ),
+                ),
             ],
             options={
-                'ordering': ['sort_order'],
-                'abstract': False,
+                "ordering": ["sort_order"],
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='FormPage',
+            name="FormPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('to_address', models.CharField(blank=True, help_text='Optional - form submissions will be emailed to these addresses. Separate multiple addresses by comma.', max_length=255, verbose_name='to address')),
-                ('from_address', models.CharField(blank=True, max_length=255, verbose_name='from address')),
-                ('subject', models.CharField(blank=True, max_length=255, verbose_name='subject')),
-                ('body', wagtail.fields.StreamField((('heading_block', wagtail.blocks.StructBlock((('heading_text', wagtail.blocks.CharBlock(classname='title', required=True)), ('size', wagtail.blocks.ChoiceBlock(blank=True, choices=[('', 'Select a header size'), ('h2', 'H2'), ('h3', 'H3'), ('h4', 'H4')], required=False))))), ('paragraph_block', wagtail.blocks.RichTextBlock(icon='fa-paragraph', template='blocks/paragraph_block.html')), ('image_block', wagtail.blocks.StructBlock((('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('caption', wagtail.blocks.CharBlock(required=False)), ('attribution', wagtail.blocks.CharBlock(required=False))))), ('block_quote', wagtail.blocks.StructBlock((('text', wagtail.blocks.TextBlock()), ('attribute_name', wagtail.blocks.CharBlock(blank=True, label='e.g. Guy Picciotto', required=False))))), ('embed_block', wagtail.embeds.blocks.EmbedBlock(help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks', icon='fa-s15', template='blocks/embed_block.html'))))),
-                ('thank_you_text', wagtail.fields.RichTextField(blank=True)),
-                ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "to_address",
+                    models.CharField(
+                        blank=True,
+                        help_text="Optional - form submissions will be emailed to these addresses. Separate multiple addresses by comma.",
+                        max_length=255,
+                        verbose_name="to address",
+                    ),
+                ),
+                (
+                    "from_address",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="from address"
+                    ),
+                ),
+                (
+                    "subject",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="subject"
+                    ),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        (
+                            (
+                                "heading_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "heading_text",
+                                            wagtail.blocks.CharBlock(
+                                                classname="title", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.blocks.ChoiceBlock(
+                                                blank=True,
+                                                choices=[
+                                                    ("", "Select a header size"),
+                                                    ("h2", "H2"),
+                                                    ("h3", "H3"),
+                                                    ("h4", "H4"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "paragraph_block",
+                                wagtail.blocks.RichTextBlock(
+                                    icon="fa-paragraph",
+                                    template="blocks/paragraph_block.html",
+                                ),
+                            ),
+                            (
+                                "image_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                        (
+                                            "attribution",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "block_quote",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        ("text", wagtail.blocks.TextBlock()),
+                                        (
+                                            "attribute_name",
+                                            wagtail.blocks.CharBlock(
+                                                blank=True,
+                                                label="e.g. Guy Picciotto",
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "embed_block",
+                                wagtail.embeds.blocks.EmbedBlock(
+                                    help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+                                    icon="fa-s15",
+                                    template="blocks/embed_block.html",
+                                ),
+                            ),
+                        )
+                    ),
+                ),
+                ("thank_you_text", wagtail.fields.RichTextField(blank=True)),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='GalleryPage',
+            name="GalleryPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('introduction', models.TextField(blank=True, help_text='Text to describe the page')),
-                ('body', wagtail.fields.StreamField((('heading_block', wagtail.blocks.StructBlock((('heading_text', wagtail.blocks.CharBlock(classname='title', required=True)), ('size', wagtail.blocks.ChoiceBlock(blank=True, choices=[('', 'Select a header size'), ('h2', 'H2'), ('h3', 'H3'), ('h4', 'H4')], required=False))))), ('paragraph_block', wagtail.blocks.RichTextBlock(icon='fa-paragraph', template='blocks/paragraph_block.html')), ('image_block', wagtail.blocks.StructBlock((('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('caption', wagtail.blocks.CharBlock(required=False)), ('attribution', wagtail.blocks.CharBlock(required=False))))), ('block_quote', wagtail.blocks.StructBlock((('text', wagtail.blocks.TextBlock()), ('attribute_name', wagtail.blocks.CharBlock(blank=True, label='e.g. Guy Picciotto', required=False))))), ('embed_block', wagtail.embeds.blocks.EmbedBlock(help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks', icon='fa-s15', template='blocks/embed_block.html'))), blank=True, verbose_name='Page body')),
-                ('collection', models.ForeignKey(blank=True, help_text='Select the image collection for this gallery.', null=True, on_delete=django.db.models.deletion.SET_NULL, to='wagtailcore.Collection')),
-                ('image', models.ForeignKey(blank=True, help_text='Landscape mode only; horizontal width between 1000px and 3000px.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "introduction",
+                    models.TextField(blank=True, help_text="Text to describe the page"),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        (
+                            (
+                                "heading_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "heading_text",
+                                            wagtail.blocks.CharBlock(
+                                                classname="title", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.blocks.ChoiceBlock(
+                                                blank=True,
+                                                choices=[
+                                                    ("", "Select a header size"),
+                                                    ("h2", "H2"),
+                                                    ("h3", "H3"),
+                                                    ("h4", "H4"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "paragraph_block",
+                                wagtail.blocks.RichTextBlock(
+                                    icon="fa-paragraph",
+                                    template="blocks/paragraph_block.html",
+                                ),
+                            ),
+                            (
+                                "image_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                        (
+                                            "attribution",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "block_quote",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        ("text", wagtail.blocks.TextBlock()),
+                                        (
+                                            "attribute_name",
+                                            wagtail.blocks.CharBlock(
+                                                blank=True,
+                                                label="e.g. Guy Picciotto",
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "embed_block",
+                                wagtail.embeds.blocks.EmbedBlock(
+                                    help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+                                    icon="fa-s15",
+                                    template="blocks/embed_block.html",
+                                ),
+                            ),
+                        ),
+                        blank=True,
+                        verbose_name="Page body",
+                    ),
+                ),
+                (
+                    "collection",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Select the image collection for this gallery.",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="wagtailcore.Collection",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page', models.Model),
+            bases=("wagtailcore.page", models.Model),
         ),
         migrations.CreateModel(
-            name='HomePage',
+            name="HomePage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('hero_text', models.CharField(help_text='Write an introduction for the bakery', max_length=255)),
-                ('hero_cta', models.CharField(help_text='Text to display on Call to Action', max_length=255, verbose_name='Hero CTA')),
-                ('body', wagtail.fields.StreamField((('heading_block', wagtail.blocks.StructBlock((('heading_text', wagtail.blocks.CharBlock(classname='title', required=True)), ('size', wagtail.blocks.ChoiceBlock(blank=True, choices=[('', 'Select a header size'), ('h2', 'H2'), ('h3', 'H3'), ('h4', 'H4')], required=False))))), ('paragraph_block', wagtail.blocks.RichTextBlock(icon='fa-paragraph', template='blocks/paragraph_block.html')), ('image_block', wagtail.blocks.StructBlock((('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('caption', wagtail.blocks.CharBlock(required=False)), ('attribution', wagtail.blocks.CharBlock(required=False))))), ('block_quote', wagtail.blocks.StructBlock((('text', wagtail.blocks.TextBlock()), ('attribute_name', wagtail.blocks.CharBlock(blank=True, label='e.g. Guy Picciotto', required=False))))), ('embed_block', wagtail.embeds.blocks.EmbedBlock(help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks', icon='fa-s15', template='blocks/embed_block.html'))), blank=True, verbose_name='Home content block')),
-                ('promo_title', models.CharField(blank=True, help_text='Title to display above the promo copy', max_length=255, null=True)),
-                ('promo_text', wagtail.fields.RichTextField(blank=True, help_text='Write some promotional copy', null=True)),
-                ('featured_section_1_title', models.CharField(blank=True, help_text='Title to display above the promo copy', max_length=255, null=True)),
-                ('featured_section_2_title', models.CharField(blank=True, help_text='Title to display above the promo copy', max_length=255, null=True)),
-                ('featured_section_3_title', models.CharField(blank=True, help_text='Title to display above the promo copy', max_length=255, null=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "hero_text",
+                    models.CharField(
+                        help_text="Write an introduction for the bakery", max_length=255
+                    ),
+                ),
+                (
+                    "hero_cta",
+                    models.CharField(
+                        help_text="Text to display on Call to Action",
+                        max_length=255,
+                        verbose_name="Hero CTA",
+                    ),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        (
+                            (
+                                "heading_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "heading_text",
+                                            wagtail.blocks.CharBlock(
+                                                classname="title", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.blocks.ChoiceBlock(
+                                                blank=True,
+                                                choices=[
+                                                    ("", "Select a header size"),
+                                                    ("h2", "H2"),
+                                                    ("h3", "H3"),
+                                                    ("h4", "H4"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "paragraph_block",
+                                wagtail.blocks.RichTextBlock(
+                                    icon="fa-paragraph",
+                                    template="blocks/paragraph_block.html",
+                                ),
+                            ),
+                            (
+                                "image_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                        (
+                                            "attribution",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "block_quote",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        ("text", wagtail.blocks.TextBlock()),
+                                        (
+                                            "attribute_name",
+                                            wagtail.blocks.CharBlock(
+                                                blank=True,
+                                                label="e.g. Guy Picciotto",
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "embed_block",
+                                wagtail.embeds.blocks.EmbedBlock(
+                                    help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+                                    icon="fa-s15",
+                                    template="blocks/embed_block.html",
+                                ),
+                            ),
+                        ),
+                        blank=True,
+                        verbose_name="Home content block",
+                    ),
+                ),
+                (
+                    "promo_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Title to display above the promo copy",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    "promo_text",
+                    wagtail.fields.RichTextField(
+                        blank=True, help_text="Write some promotional copy", null=True
+                    ),
+                ),
+                (
+                    "featured_section_1_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Title to display above the promo copy",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    "featured_section_2_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Title to display above the promo copy",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
+                (
+                    "featured_section_3_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Title to display above the promo copy",
+                        max_length=255,
+                        null=True,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='People',
+            name="People",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=254, verbose_name='First name')),
-                ('last_name', models.CharField(max_length=254, verbose_name='Last name')),
-                ('job_title', models.CharField(max_length=254, verbose_name='Job title')),
-                ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "first_name",
+                    models.CharField(max_length=254, verbose_name="First name"),
+                ),
+                (
+                    "last_name",
+                    models.CharField(max_length=254, verbose_name="Last name"),
+                ),
+                (
+                    "job_title",
+                    models.CharField(max_length=254, verbose_name="Job title"),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.Image",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'People',
-                'verbose_name': 'Person',
+                "verbose_name_plural": "People",
+                "verbose_name": "Person",
             },
         ),
         migrations.CreateModel(
-            name='StandardPage',
+            name="StandardPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('introduction', models.TextField(blank=True, help_text='Text to describe the page')),
-                ('body', wagtail.fields.StreamField((('heading_block', wagtail.blocks.StructBlock((('heading_text', wagtail.blocks.CharBlock(classname='title', required=True)), ('size', wagtail.blocks.ChoiceBlock(blank=True, choices=[('', 'Select a header size'), ('h2', 'H2'), ('h3', 'H3'), ('h4', 'H4')], required=False))))), ('paragraph_block', wagtail.blocks.RichTextBlock(icon='fa-paragraph', template='blocks/paragraph_block.html')), ('image_block', wagtail.blocks.StructBlock((('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('caption', wagtail.blocks.CharBlock(required=False)), ('attribution', wagtail.blocks.CharBlock(required=False))))), ('block_quote', wagtail.blocks.StructBlock((('text', wagtail.blocks.TextBlock()), ('attribute_name', wagtail.blocks.CharBlock(blank=True, label='e.g. Guy Picciotto', required=False))))), ('embed_block', wagtail.embeds.blocks.EmbedBlock(help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks', icon='fa-s15', template='blocks/embed_block.html'))), blank=True, verbose_name='Page body')),
-                ('image', models.ForeignKey(blank=True, help_text='Landscape mode only; horizontal width between 1000px and 3000px.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "introduction",
+                    models.TextField(blank=True, help_text="Text to describe the page"),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        (
+                            (
+                                "heading_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "heading_text",
+                                            wagtail.blocks.CharBlock(
+                                                classname="title", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.blocks.ChoiceBlock(
+                                                blank=True,
+                                                choices=[
+                                                    ("", "Select a header size"),
+                                                    ("h2", "H2"),
+                                                    ("h3", "H3"),
+                                                    ("h4", "H4"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "paragraph_block",
+                                wagtail.blocks.RichTextBlock(
+                                    icon="fa-paragraph",
+                                    template="blocks/paragraph_block.html",
+                                ),
+                            ),
+                            (
+                                "image_block",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                        (
+                                            "attribution",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "block_quote",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        ("text", wagtail.blocks.TextBlock()),
+                                        (
+                                            "attribute_name",
+                                            wagtail.blocks.CharBlock(
+                                                blank=True,
+                                                label="e.g. Guy Picciotto",
+                                                required=False,
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                            (
+                                "embed_block",
+                                wagtail.embeds.blocks.EmbedBlock(
+                                    help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+                                    icon="fa-s15",
+                                    template="blocks/embed_block.html",
+                                ),
+                            ),
+                        ),
+                        blank=True,
+                        verbose_name="Page body",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page', models.Model),
+            bases=("wagtailcore.page", models.Model),
         ),
         migrations.AddField(
-            model_name='homepage',
-            name='featured_section_1',
-            field=models.ForeignKey(blank=True, help_text='First featured section for the homepage. Will display up to three child items.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page', verbose_name='Featured section 1'),
+            model_name="homepage",
+            name="featured_section_1",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="First featured section for the homepage. Will display up to three child items.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailcore.Page",
+                verbose_name="Featured section 1",
+            ),
         ),
         migrations.AddField(
-            model_name='homepage',
-            name='featured_section_2',
-            field=models.ForeignKey(blank=True, help_text='Second featured section for the homepage. Will display up to three child items.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page', verbose_name='Featured section 2'),
+            model_name="homepage",
+            name="featured_section_2",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Second featured section for the homepage. Will display up to three child items.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailcore.Page",
+                verbose_name="Featured section 2",
+            ),
         ),
         migrations.AddField(
-            model_name='homepage',
-            name='featured_section_3',
-            field=models.ForeignKey(blank=True, help_text='Third featured section for the homepage. Will display up to six child items.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page', verbose_name='Featured section 3'),
+            model_name="homepage",
+            name="featured_section_3",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Third featured section for the homepage. Will display up to six child items.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailcore.Page",
+                verbose_name="Featured section 3",
+            ),
         ),
         migrations.AddField(
-            model_name='homepage',
-            name='hero_cta_link',
-            field=models.ForeignKey(blank=True, help_text='Choose a page to link to for the Call to Action', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page', verbose_name='Hero CTA link'),
+            model_name="homepage",
+            name="hero_cta_link",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Choose a page to link to for the Call to Action",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailcore.Page",
+                verbose_name="Hero CTA link",
+            ),
         ),
         migrations.AddField(
-            model_name='homepage',
-            name='image',
-            field=models.ForeignKey(blank=True, help_text='Homepage image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
+            model_name="homepage",
+            name="image",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Homepage image",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailimages.Image",
+            ),
         ),
         migrations.AddField(
-            model_name='homepage',
-            name='promo_image',
-            field=models.ForeignKey(blank=True, help_text='Promo image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image'),
+            model_name="homepage",
+            name="promo_image",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Promo image",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailimages.Image",
+            ),
         ),
         migrations.AddField(
-            model_name='formfield',
-            name='page',
-            field=modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='form_fields', to='base.FormPage'),
+            model_name="formfield",
+            name="page",
+            field=modelcluster.fields.ParentalKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="form_fields",
+                to="base.FormPage",
+            ),
         ),
     ]

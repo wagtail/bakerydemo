@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('locations', '0003_auto_20170329_0055'),
+        ("locations", "0003_auto_20170329_0055"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='locationoperatinghours',
-            name='closed',
-            field=models.BooleanField(blank=True, help_text='Tick if location is closed on this day', verbose_name='Closed?'),
+            model_name="locationoperatinghours",
+            name="closed",
+            field=models.BooleanField(
+                blank=True,
+                help_text="Tick if location is closed on this day",
+                verbose_name="Closed?",
+            ),
         ),
     ]
