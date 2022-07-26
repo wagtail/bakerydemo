@@ -365,7 +365,7 @@ blockquote .text {
   line-height: 1.15;
 }
 
-blockquote .attribute_name {
+blockquote .attribute-name {
   color: var(--dark);
   font-size: var(--font-md);
   line-height: 1.56;
@@ -387,10 +387,12 @@ blockquote .attribute_name {
 }
 
 /* Richtext Styles */
+/* stylelint-disable-next-line selector-class-pattern */
 .block-paragraph_block p {
   color: var(--dark);
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .block-paragraph_block a {
   text-decoration: underline;
 }
@@ -503,6 +505,7 @@ blockquote .attribute_name {
 .navigation__mobile-toggle {
   background-color: transparent;
   border: none;
+  margin: 0 0 0 auto;
 }
 
 .navigation__mobile-toggle[aria-expanded='true'] {
@@ -636,10 +639,6 @@ blockquote .attribute_name {
 .navigation__items > li > a:focus,
 .navigation__items > li > a:hover {
   text-decoration: underline;
-}
-
-.navigation__mobile-toggle {
-  margin: 0 0 0 auto;
 }
 
 /* Required as bootstrap nav automatically hides this otherwise */
@@ -1283,11 +1282,7 @@ input[type='radio'] {
 }
 
 .form-page .required {
-  color: red;
-}
-
-.form-page .fieldWrapper {
-  margin-bottom: 30px;
+  color: var(--orange);
 }
 
 .form-page .help {
@@ -1296,10 +1291,6 @@ input[type='radio'] {
   font-size: var(--font-sm);
   margin-top: 10px;
   max-width: 350px;
-}
-
-.form-page .required {
-  color: var(--orange);
 }
 
 .form-page__field {
