@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0004_auto_20180522_1856'),
+        ("base", "0004_auto_20180522_1856"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='formfield',
-            name='clean_name',
-            field=models.CharField(blank=True, default='', help_text='Safe name of the form field, the label converted to ascii_snake_case', max_length=255, verbose_name='name'),
+            model_name="formfield",
+            name="clean_name",
+            field=models.CharField(
+                blank=True,
+                default="",
+                help_text="Safe name of the form field, the label converted to ascii_snake_case",
+                max_length=255,
+                verbose_name="name",
+            ),
         ),
     ]

@@ -12,16 +12,13 @@ from bakerydemo.search import views as search_views
 from .api import api_router
 
 urlpatterns = [
-    path('django-admin/', admin.site.urls),
-
-    path('admin/', include(wagtailadmin_urls)),
-    path('documents/', include(wagtaildocs_urls)),
-
-    path('search/', search_views.search, name='search'),
-
-    path('sitemap.xml', sitemap),
-    path('api/v2/', api_router.urls),
-    path('__debug__/', include(debug_toolbar.urls)),
+    path("django-admin/", admin.site.urls),
+    path("admin/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
+    path("search/", search_views.search, name="search"),
+    path("sitemap.xml", sitemap),
+    path("api/v2/", api_router.urls),
+    path("__debug__/", include(debug_toolbar.urls)),
 ]
 
 
@@ -36,18 +33,17 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += [
         path(
-            'favicon.ico', RedirectView.as_view(
-                url=settings.STATIC_URL + 'img/bread-favicon.ico'
-            )
+            "favicon.ico",
+            RedirectView.as_view(url=settings.STATIC_URL + "img/bread-favicon.ico"),
         )
     ]
 
     # Add views for testing 404 and 500 templates
     urlpatterns += [
-        path('test404/', TemplateView.as_view(template_name='404.html')),
-        path('test500/', TemplateView.as_view(template_name='500.html')),
+        path("test404/", TemplateView.as_view(template_name="404.html")),
+        path("test500/", TemplateView.as_view(template_name="500.html")),
     ]
 
 urlpatterns += [
-    path('', include(wagtail_urls)),
+    path("", include(wagtail_urls)),
 ]
