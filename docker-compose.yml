@@ -9,12 +9,12 @@ services:
     restart: always
     image: postgres:14.1
     expose:
-      - "5432"
+      - '5432'
   redis:
     restart: always
     image: redis:6.2
     expose:
-      - "6379"
+      - '6379'
   app:
     environment:
       DJANGO_SECRET_KEY: changeme
@@ -29,7 +29,7 @@ services:
       - db:db
       - redis:redis
     ports:
-      - "8000:8000"
+      - '8000:8000'
     depends_on:
       - db
       - redis
