@@ -4,12 +4,12 @@
 {% endcomment %}
 
 {% if self.size == 'h2' %}
-        <h2>{{ self.heading_text }}</h2>
+    <h2>{{ self.heading_text }}</h2>
 
-    {% elif self.size == 'h3' %}
-        <h3>{{ self.heading_text }}</h3>
+{% elif self.size == 'h3' %}
+    <h3>{{ self.heading_text }}</h3>
 
-    {% elif self.size == 'h4' %}
-        <h4>{{ self.heading_text }}</h4>
+{% elif self.size == 'h4' %}
+    <h4>{{ self.heading_text }}</h4>
 
 {% endif %}

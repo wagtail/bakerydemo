@@ -2,19 +2,19 @@
 {% load wagtailimages_tags gallery_tags %}
 
 {% block content %}
-{% image self.image fill-1920x600 as hero_img %}
-{% include "base/include/header-hero.html" %}
+    {% image self.image fill-1920x600 as hero_img %}
+    {% include "base/include/header-hero.html" %}
 
-<div class="container gallery__container">
-    <div class="row">
-        <div class="col-md-8">
-            {% if page.introduction %}
-            <p class="gallery__introduction">{{ page.introduction }}</p>
-            {% endif %}
+    <div class="container gallery__container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if page.introduction %}
+                    <p class="gallery__introduction">{{ page.introduction }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="gallery__grid">
+            {% gallery page.collection %}
         </div>
     </div>
-    <div class="gallery__grid">
-        {% gallery page.collection %}
-    </div>
-</div>
 {% endblock content %}
