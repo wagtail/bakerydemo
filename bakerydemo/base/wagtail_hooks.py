@@ -4,8 +4,8 @@ from wagtail.contrib.modeladmin.options import (
     modeladmin_register,
 )
 
-from bakerydemo.breads.models import Country, BreadIngredient, BreadType
-from bakerydemo.base.models import People, FooterText
+from bakerydemo.base.models import FooterText, People
+from bakerydemo.breads.models import BreadIngredient, BreadType, Country
 
 """
 N.B. To see what icons are available for use in Wagtail menus and StreamField block types,

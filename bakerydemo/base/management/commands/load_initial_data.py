@@ -1,11 +1,10 @@
 import os
 
 from django.conf import settings
-from django.core.files.storage import default_storage, FileSystemStorage
-from django.core.management.base import BaseCommand
+from django.core.files.storage import FileSystemStorage, default_storage
 from django.core.management import call_command
-
-from wagtail.models import Site, Page
+from django.core.management.base import BaseCommand
+from wagtail.models import Page, Site
 
 
 class Command(BaseCommand):

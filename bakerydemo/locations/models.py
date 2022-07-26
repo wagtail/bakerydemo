@@ -3,11 +3,9 @@ from datetime import datetime
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
-
 from modelcluster.fields import ParentalKey
-
-from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
