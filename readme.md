@@ -141,7 +141,7 @@ Now we're ready to set up the bakery demo project itself:
     cd ~/dev [or your preferred dev directory]
     git clone https://github.com/wagtail/bakerydemo.git
     cd bakerydemo
-    pip install -r requirements/base.txt
+    pip install -r requirements/development.txt
 
 Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
 to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
