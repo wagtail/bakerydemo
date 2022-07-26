@@ -22,7 +22,7 @@
               {% if heading.children %}
                 <ul>
                   {% for subheading in heading.children %}
-                    <li><a href="#{{subheading|slugify}}">{{subheading}}</a>
+                    <li><a href="#{{subheading|slugify}}">{{subheading}}</a></li>
                   {% endfor %}
                 </ul>
               {% endif %}
