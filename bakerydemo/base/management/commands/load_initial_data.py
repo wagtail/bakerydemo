@@ -26,7 +26,7 @@ class Command(BaseCommand):
         fixtures_dir = os.path.join(settings.PROJECT_DIR, "base", "fixtures")
         fixture_file = os.path.join(fixtures_dir, "bakerydemo.json")
 
-        print("Copying media files to configured storage...")
+        print("Copying media files to configured storage...")  # noqa: T201
         local_storage = FileSystemStorage(os.path.join(fixtures_dir, "media"))
         self._copy_files(local_storage, "")  # file storage paths are relative
 
@@ -40,6 +40,6 @@ class Command(BaseCommand):
         call_command("loaddata", fixture_file, verbosity=0)
         call_command("update_index", verbosity=0)
 
-        print(
+        print(  # noqa: T201
             "Awesome. Your data is loaded! The bakery's doors are almost ready to open..."
         )

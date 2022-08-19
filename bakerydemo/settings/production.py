@@ -14,7 +14,7 @@ if "DJANGO_SECRET_KEY" in os.environ:
     SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 else:
     # Use if/else rather than a default value to avoid calculating this if we don't need it
-    print(
+    print(  # noqa: T201
         "WARNING: DJANGO_SECRET_KEY not found in os.environ. Generating ephemeral SECRET_KEY."
     )
     SECRET_KEY = "".join(
