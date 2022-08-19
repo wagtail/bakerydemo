@@ -21,6 +21,7 @@ repos:
         additional_dependencies:
           - flake8-comprehensions
           - flake8-assertive
+          - flake8-print
   - repo: https://github.com/rtts/djhtml
     rev: v1.4.13
     hooks:
