@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils.translation import gettext as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import (
@@ -26,7 +27,13 @@ from .blocks import BaseStreamBlock
 
 
 @register_snippet
-class Person(DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel):
+class Person(
+    DraftStateMixin,
+    RevisionMixin,
+    PreviewableMixin,
+    index.Indexed,
+    ClusterableModel,
+):
     """
     A Django model to store Person objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
@@ -83,8 +90,45 @@ class Person(DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel):
         except:  # noqa: E722 FIXME: remove bare 'except:'
             return ""
 
+    @property
+    def preview_modes(self):
+        return PreviewableMixin.DEFAULT_PREVIEW_MODES + [("blog_post", _("Blog post"))]
+
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+    def get_preview_template(self, request, mode_name):
+        from bakerydemo.blog.models import BlogPage
+
+        if mode_name == "blog_post":
+            return BlogPage.template
+        return "base/preview/person.html"
+
+    def get_preview_context(self, request, mode_name):
+        from bakerydemo.blog.models import BlogPage
+
+        context = super().get_preview_context(request, mode_name)
+        if mode_name == self.default_preview_mode:
+            return context
+
+        page = BlogPage.objects.filter(blog_person_relationship__person=self).first()
+        if page:
+            # Use the page authored by this person if available,
+            # and replace the instance from the database with the edited instance
+            page.authors = [
+                self if author.pk == self.pk else author for author in page.authors()
+            ]
+            # The authors() method only shows live authors, so make sure the instance
+            # is included even if it's not live as this is just a preview
+            if not self.live:
+                page.authors.append(self)
+        else:
+            # Otherwise, get the first page and simulate the person as the author
+            page = BlogPage.objects.first()
+            page.authors = [self]
+
+        context["page"] = page
+        return context
 
     class Meta:
         verbose_name = "Person"
