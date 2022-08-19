@@ -1,0 +1,18 @@
+# git-blame ignored revisions
+# To configure, run
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+# Requires Git > 2.23
+# See https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt
+
+# Reformatting PR was primarily done in #347
+
+# Initial black reformatting
+40696f941ca2a2b30938fbd2bcb8e197a46024d5
+# Initial isort reformatting
+6732b719834fc3a7d72dfd78f684f066a1fcf11f
+# Initial djhtml reformatting
+707ac77ba190742a6c4bd3d019e64e684eb67276
+# Initial Prettier reformatting
+dfa2c511b1ad1fe9030e9d1772c24f3473b1dbda
+# Initial Stylelint reformatting
+c02c9116a85a4919be087c0355193ca3c30921f1
