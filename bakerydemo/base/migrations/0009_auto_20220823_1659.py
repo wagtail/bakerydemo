@@ -9,7 +9,7 @@ import wagtail_editable_help.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0076_modellogentry_revision'),
+        ('wagtailcore', '0040_page_draft_title'),
         ('wagtailimages', '0024_index_image_file_hash'),
         ('base', '0008_use_json_field_for_body_streamfield'),
     ]
