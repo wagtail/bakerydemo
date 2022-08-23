@@ -10,6 +10,8 @@ from wagtail.models import Collection, Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
+from wagtail_editable_help.models import HelpText
+
 from .blocks import BaseStreamBlock
 
 
@@ -107,14 +109,17 @@ class StandardPage(Page):
     image, introduction and body field
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(
+        help_text=HelpText("Standard page introduction", default="Text to describe the page"),
+        blank=True,
+    )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
@@ -144,15 +149,16 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Homepage image",
+        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
     )
     hero_text = models.CharField(
-        max_length=255, help_text="Write an introduction for the bakery"
+        max_length=255,
+        help_text=HelpText("Home page hero text", default="Write an introduction for the bakery"),
     )
     hero_cta = models.CharField(
         verbose_name="Hero CTA",
         max_length=255,
-        help_text="Text to display on Call to Action",
+        help_text=HelpText("Home page hero CTA", default="Text to display on Call to Action"),
     )
     hero_cta_link = models.ForeignKey(
         "wagtailcore.Page",
@@ -161,7 +167,7 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         verbose_name="Hero CTA link",
-        help_text="Choose a page to link to for the Call to Action",
+        help_text=HelpText("Home page CTA link", default="Choose a page to link to for the Call to Action"),
     )
 
     # Body section of the HomePage
@@ -179,13 +185,15 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Promo image",
+        help_text=HelpText("Home page promo image", default="Promo image"),
     )
     promo_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255,
+        help_text=HelpText("Home page promo title", default="Title to display above the promo copy"),
     )
     promo_text = RichTextField(
-        null=True, blank=True, help_text="Write some promotional copy"
+        null=True, blank=True,
+        help_text=HelpText("Home page promo text", default="Write some promotional copy"),
     )
 
     # Featured sections on the HomePage
@@ -194,7 +202,8 @@ class HomePage(Page):
     # Each list their children items that we access via the children function
     # that we define on the individual Page models e.g. BlogIndexPage
     featured_section_1_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255,
+        help_text=HelpText("Home page featured section title 1", default="Title to display above the promo copy"),
     )
     featured_section_1 = models.ForeignKey(
         "wagtailcore.Page",
@@ -202,13 +211,16 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="First featured section for the homepage. Will display up to "
-        "three child items.",
+        help_text=HelpText(
+            "Home page featured section 1",
+            default="First featured section for the homepage. Will display up to three child items."
+        ),
         verbose_name="Featured section 1",
     )
 
     featured_section_2_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255,
+        help_text=HelpText("Home page featured section title 2", default="Title to display above the promo copy"),
     )
     featured_section_2 = models.ForeignKey(
         "wagtailcore.Page",
@@ -216,13 +228,16 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Second featured section for the homepage. Will display up to "
-        "three child items.",
+        help_text=HelpText(
+            "Home page featured section 2",
+            default="Second featured section for the homepage. Will display up to three child items."
+        ),
         verbose_name="Featured section 2",
     )
 
     featured_section_3_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255,
+        help_text=HelpText("Home page featured section title 3", default="Title to display above the promo copy"),
     )
     featured_section_3 = models.ForeignKey(
         "wagtailcore.Page",
@@ -230,8 +245,10 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Third featured section for the homepage. Will display up to "
-        "six child items.",
+        help_text=HelpText(
+            "Home page featured section 3",
+            default="Third featured section for the homepage. Will display up to six child items."
+        ),
         verbose_name="Featured section 3",
     )
 
@@ -296,14 +313,16 @@ class GalleryPage(Page):
     and is intended to show the extensibility of this aspect of Wagtail
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(
+        help_text=HelpText("Gallery page introduction", default="Text to describe the page"),
+        blank=True)
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and " "3000px.",
+        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
@@ -314,7 +333,7 @@ class GalleryPage(Page):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text="Select the image collection for this gallery.",
+        help_text=HelpText("Gallery page collection", default="Select the image collection for this gallery."),
     )
 
     content_panels = Page.content_panels + [

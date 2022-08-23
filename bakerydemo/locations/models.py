@@ -9,6 +9,8 @@ from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
+from wagtail_editable_help.models import HelpText
+
 from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.locations.choices import DAY_CHOICES
 
@@ -22,7 +24,8 @@ class OperatingHours(models.Model):
     opening_time = models.TimeField(blank=True, null=True)
     closing_time = models.TimeField(blank=True, null=True)
     closed = models.BooleanField(
-        "Closed?", blank=True, help_text="Tick if location is closed on this day"
+        "Closed?", blank=True,
+        help_text=HelpText("Operating hours closed", default="Tick if location is closed on this day"),
     )
 
     panels = [
@@ -67,14 +70,17 @@ class LocationsIndexPage(Page):
     A Page model that creates an index page (a listview)
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(
+        help_text=HelpText("Locations index page introduction", default="Text to describe the page"),
+        blank=True,
+    )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
     )
 
     # Only LocationPage objects can be added underneath this index page
@@ -107,14 +113,17 @@ class LocationPage(Page):
     Detail for a specific bakery location.
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(
+        help_text=HelpText("Location page introduction", default="Text to describe the page"),
+        blank=True
+    )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
@@ -122,8 +131,10 @@ class LocationPage(Page):
     address = models.TextField()
     lat_long = models.CharField(
         max_length=36,
-        help_text="Comma separated lat/long. (Ex. 64.144367, -21.939182) \
-                   Right click Google Maps and select 'What's Here'",
+        help_text=HelpText(
+            "Location page lat/long",
+            default="Comma separated lat/long. (Ex. 64.144367, -21.939182) Right click Google Maps and select 'What's Here'",
+        ),
         validators=[
             RegexValidator(
                 regex=r"^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$",
