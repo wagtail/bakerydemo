@@ -45,7 +45,7 @@ If you want a publicly accessible demo site, [deploy to Heroku](#deploy-to-herok
 
 Setup a development environment and run this demo website with a single click (requires a Github account):
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gasman/bakerydemo/tree/editable-help)
 
 Once Gitpod has fully started, and a preview of the bakery website has appeared in the "Simple Browser" panel, click the arrow button to the right of the URL bar to open the website in a new tab.
 Go to `/admin/` and login with `admin / changeme`.
