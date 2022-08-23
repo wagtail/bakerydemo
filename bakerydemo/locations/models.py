@@ -8,7 +8,6 @@ from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
-
 from wagtail_editable_help.models import HelpText
 
 from bakerydemo.base.blocks import BaseStreamBlock
@@ -24,8 +23,11 @@ class OperatingHours(models.Model):
     opening_time = models.TimeField(blank=True, null=True)
     closing_time = models.TimeField(blank=True, null=True)
     closed = models.BooleanField(
-        "Closed?", blank=True,
-        help_text=HelpText("Operating hours closed", default="Tick if location is closed on this day"),
+        "Closed?",
+        blank=True,
+        help_text=HelpText(
+            "Operating hours closed", default="Tick if location is closed on this day"
+        ),
     )
 
     panels = [
@@ -71,7 +73,9 @@ class LocationsIndexPage(Page):
     """
 
     introduction = models.TextField(
-        help_text=HelpText("Locations index page introduction", default="Text to describe the page"),
+        help_text=HelpText(
+            "Locations index page introduction", default="Text to describe the page"
+        ),
         blank=True,
     )
     image = models.ForeignKey(
@@ -80,7 +84,10 @@ class LocationsIndexPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
+        help_text=HelpText(
+            "Hero image",
+            default="Landscape mode only; horizontal width between 1000px and 3000px.",
+        ),
     )
 
     # Only LocationPage objects can be added underneath this index page
@@ -114,8 +121,10 @@ class LocationPage(Page):
     """
 
     introduction = models.TextField(
-        help_text=HelpText("Location page introduction", default="Text to describe the page"),
-        blank=True
+        help_text=HelpText(
+            "Location page introduction", default="Text to describe the page"
+        ),
+        blank=True,
     )
     image = models.ForeignKey(
         "wagtailimages.Image",
@@ -123,7 +132,10 @@ class LocationPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
+        help_text=HelpText(
+            "Hero image",
+            default="Landscape mode only; horizontal width between 1000px and 3000px.",
+        ),
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True

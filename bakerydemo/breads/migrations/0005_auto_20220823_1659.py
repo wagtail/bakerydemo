@@ -8,29 +8,60 @@ import wagtail_editable_help.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0024_index_image_file_hash'),
-        ('breads', '0004_use_json_field_for_body_streamfield'),
+        ("wagtailimages", "0024_index_image_file_hash"),
+        ("breads", "0004_use_json_field_for_body_streamfield"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='breadpage',
-            name='image',
-            field=models.ForeignKey(blank=True, help_text=wagtail_editable_help.models.HelpText('Hero image', default='Landscape mode only; horizontal width between 1000px and 3000px.'), null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image'),
+            model_name="breadpage",
+            name="image",
+            field=models.ForeignKey(
+                blank=True,
+                help_text=wagtail_editable_help.models.HelpText(
+                    "Hero image",
+                    default="Landscape mode only; horizontal width between 1000px and 3000px.",
+                ),
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailimages.image",
+            ),
         ),
         migrations.AlterField(
-            model_name='breadpage',
-            name='introduction',
-            field=models.TextField(blank=True, help_text=wagtail_editable_help.models.HelpText('Bread page introduction', default='Text to describe the page')),
+            model_name="breadpage",
+            name="introduction",
+            field=models.TextField(
+                blank=True,
+                help_text=wagtail_editable_help.models.HelpText(
+                    "Bread page introduction", default="Text to describe the page"
+                ),
+            ),
         ),
         migrations.AlterField(
-            model_name='breadsindexpage',
-            name='image',
-            field=models.ForeignKey(blank=True, help_text=wagtail_editable_help.models.HelpText('Hero image', default='Landscape mode only; horizontal width between 1000px and 3000px.'), null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image'),
+            model_name="breadsindexpage",
+            name="image",
+            field=models.ForeignKey(
+                blank=True,
+                help_text=wagtail_editable_help.models.HelpText(
+                    "Hero image",
+                    default="Landscape mode only; horizontal width between 1000px and 3000px.",
+                ),
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="wagtailimages.image",
+            ),
         ),
         migrations.AlterField(
-            model_name='breadsindexpage',
-            name='introduction',
-            field=models.TextField(blank=True, help_text=wagtail_editable_help.models.HelpText('Breads index page introduction', default='Text to describe the page')),
+            model_name="breadsindexpage",
+            name="introduction",
+            field=models.TextField(
+                blank=True,
+                help_text=wagtail_editable_help.models.HelpText(
+                    "Breads index page introduction",
+                    default="Text to describe the page",
+                ),
+            ),
         ),
     ]

@@ -11,7 +11,6 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
-
 from wagtail_editable_help.models import HelpText
 
 from bakerydemo.base.blocks import BaseStreamBlock
@@ -57,7 +56,9 @@ class BlogPage(Page):
     """
 
     introduction = models.TextField(
-        help_text=HelpText("Blog page introduction", default="Text to describe the page"),
+        help_text=HelpText(
+            "Blog page introduction", default="Text to describe the page"
+        ),
         blank=True,
     )
     image = models.ForeignKey(
@@ -66,7 +67,10 @@ class BlogPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
+        help_text=HelpText(
+            "Hero image",
+            default="Landscape mode only; horizontal width between 1000px and 3000px.",
+        ),
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
@@ -136,8 +140,10 @@ class BlogIndexPage(RoutablePageMixin, Page):
     """
 
     introduction = models.TextField(
-        help_text=HelpText("Blog index page introduction", default="Text to describe the page"),
-        blank=True
+        help_text=HelpText(
+            "Blog index page introduction", default="Text to describe the page"
+        ),
+        blank=True,
     )
     image = models.ForeignKey(
         "wagtailimages.Image",
@@ -145,7 +151,10 @@ class BlogIndexPage(RoutablePageMixin, Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text=HelpText("Hero image", default="Landscape mode only; horizontal width between 1000px and 3000px."),
+        help_text=HelpText(
+            "Hero image",
+            default="Landscape mode only; horizontal width between 1000px and 3000px.",
+        ),
     )
 
     content_panels = Page.content_panels + [
