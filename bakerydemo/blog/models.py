@@ -54,7 +54,9 @@ class BlogPage(Page):
     https://docs.wagtail.org/en/stable/topics/pages.html#inline-models
     """
 
-    introduction = RichTextField(help_text="Text to describe the page", blank=True, max_length=1000)
+    introduction = RichTextField(
+        help_text="Text to describe the page", blank=True, max_length=1000
+    )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
