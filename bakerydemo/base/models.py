@@ -185,7 +185,7 @@ class HomePage(Page):
         blank=True, max_length=255, help_text="Title to display above the promo copy"
     )
     promo_text = RichTextField(
-        null=True, blank=True, help_text="Write some promotional copy"
+        null=True, blank=True, max_length=1000, help_text="Write some promotional copy"
     )
 
     # Featured sections on the HomePage
