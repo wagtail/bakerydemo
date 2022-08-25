@@ -8,7 +8,7 @@ from modelcluster.fields import ParentalKey
 from taggit.models import Tag, TaggedItemBase
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.fields import StreamField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
@@ -54,7 +54,7 @@ class BlogPage(Page):
     https://docs.wagtail.org/en/stable/topics/pages.html#inline-models
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = RichTextField(help_text="Text to describe the page", blank=True, max_length=1000)
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
