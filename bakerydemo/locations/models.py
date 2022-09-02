@@ -50,7 +50,7 @@ class OperatingHours(models.Model):
 class LocationOperatingHours(Orderable, OperatingHours):
     """
     A model creating a relationship between the OperatingHours and Location
-    Note that unlike BlogPeopleRelationship we don't include a ForeignKey to
+    Note that unlike BlogPersonRelationship we don't include a ForeignKey to
     OperatingHours as we don't need that relationship (e.g. any Location open
     a certain day of the week). The ParentalKey is the minimum required to
     relate the two objects to one another. We use the ParentalKey's related_

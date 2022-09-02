@@ -15,22 +15,22 @@ from wagtail.search import index
 from bakerydemo.base.blocks import BaseStreamBlock
 
 
-class BlogPeopleRelationship(Orderable, models.Model):
+class BlogPersonRelationship(Orderable, models.Model):
     """
-    This defines the relationship between the `People` within the `base`
-    app and the BlogPage below. This allows People to be added to a BlogPage.
+    This defines the relationship between the `Person` within the `base`
+    app and the BlogPage below. This allows people to be added to a BlogPage.
 
-    We have created a two way relationship between BlogPage and People using
+    We have created a two way relationship between BlogPage and Person using
     the ParentalKey and ForeignKey
     """
 
     page = ParentalKey(
         "BlogPage", related_name="blog_person_relationship", on_delete=models.CASCADE
     )
-    people = models.ForeignKey(
-        "base.People", related_name="person_blog_relationship", on_delete=models.CASCADE
+    person = models.ForeignKey(
+        "base.Person", related_name="person_blog_relationship", on_delete=models.CASCADE
     )
-    panels = [FieldPanel("people")]
+    panels = [FieldPanel("person")]
 
 
 class BlogPageTag(TaggedItemBase):
@@ -49,8 +49,8 @@ class BlogPage(Page):
     """
     A Blog Page
 
-    We access the People object with an inline panel that references the
-    ParentalKey's related_name in BlogPeopleRelationship. More docs:
+    We access the Person object with an inline panel that references the
+    ParentalKey's related_name in BlogPersonRelationship. More docs:
     https://docs.wagtail.org/en/stable/topics/pages.html#inline-models
     """
 
@@ -88,13 +88,13 @@ class BlogPage(Page):
 
     def authors(self):
         """
-        Returns the BlogPage's related People. Again note that we are using
-        the ParentalKey's related_name from the BlogPeopleRelationship model
-        to access these objects. This allows us to access the People objects
+        Returns the BlogPage's related people. Again note that we are using
+        the ParentalKey's related_name from the BlogPersonRelationship model
+        to access these objects. This allows us to access the Person objects
         with a loop on the template. If we tried to access the blog_person_
-        relationship directly we'd print `blog.BlogPeopleRelationship.None`
+        relationship directly we'd print `blog.BlogPersonRelationship.None`
         """
-        authors = [n.people for n in self.blog_person_relationship.all()]
+        authors = [n.person for n in self.blog_person_relationship.all()]
 
         return authors
 

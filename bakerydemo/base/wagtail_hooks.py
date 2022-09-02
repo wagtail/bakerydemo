@@ -4,7 +4,7 @@ from wagtail.contrib.modeladmin.options import (
     modeladmin_register,
 )
 
-from bakerydemo.base.models import FooterText, People
+from bakerydemo.base.models import FooterText, Person
 from bakerydemo.breads.models import BreadIngredient, BreadType, Country
 
 """
@@ -48,8 +48,8 @@ class BreadModelAdminGroup(ModelAdminGroup):
     items = (BreadIngredientAdmin, BreadTypeAdmin, BreadCountryAdmin)
 
 
-class PeopleModelAdmin(ModelAdmin):
-    model = People
+class PersonModelAdmin(ModelAdmin):
+    model = Person
     menu_label = "People"  # ditch this to use verbose_name_plural from model
     menu_icon = "fa-users"  # change as required
     list_display = ("first_name", "last_name", "job_title", "thumb_image")
@@ -67,7 +67,7 @@ class BakeryModelAdminGroup(ModelAdminGroup):
     menu_label = "Bakery Misc"
     menu_icon = "fa-cutlery"  # change as required
     menu_order = 300  # will put in 4th place (000 being 1st, 100 2nd)
-    items = (PeopleModelAdmin, FooterTextAdmin)
+    items = (PersonModelAdmin, FooterTextAdmin)
 
 
 # When using a ModelAdminGroup class to group several ModelAdmin classes together,

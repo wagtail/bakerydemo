@@ -14,13 +14,13 @@ from .blocks import BaseStreamBlock
 
 
 @register_snippet
-class People(index.Indexed, ClusterableModel):
+class Person(index.Indexed, ClusterableModel):
     """
-    A Django model to store People objects.
+    A Django model to store Person objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
-    via the Snippets UI (e.g. /admin/snippets/base/people/)
+    via the Snippets UI (e.g. /admin/snippets/base/person/)
 
-    `People` uses the `ClusterableModel`, which allows the relationship with
+    `Person` uses the `ClusterableModel`, which allows the relationship with
     another model to be stored locally to the 'parent' model (e.g. a PageModel)
     until the parent is explicitly saved. This allows the editor to use the
     'Preview' button, to preview the content, without saving the relationships
