@@ -19,7 +19,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -34,7 +35,9 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Blog index page introduction", default="Text to describe the page"
+                    "Blog index page",
+                    "introduction",
+                    default="Text to describe the page",
                 ),
             ),
         ),
@@ -44,7 +47,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -59,7 +63,7 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Blog page introduction", default="Text to describe the page"
+                    "Blog page", "introduction", default="Text to describe the page"
                 ),
             ),
         ),

@@ -83,6 +83,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "wagtail_editable_help.middleware.EditableHelpMiddleware",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"

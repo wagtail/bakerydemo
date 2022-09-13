@@ -57,7 +57,7 @@ class BlogPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Blog page introduction", default="Text to describe the page"
+            "Blog page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -68,7 +68,8 @@ class BlogPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
@@ -141,7 +142,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Blog index page introduction", default="Text to describe the page"
+            "Blog index page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -152,7 +153,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )

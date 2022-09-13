@@ -110,7 +110,7 @@ class StandardPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Standard page introduction", default="Text to describe the page"
+            "Standard page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -121,7 +121,8 @@ class StandardPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
@@ -154,21 +155,22 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
     hero_text = models.CharField(
         max_length=255,
         help_text=HelpText(
-            "Home page hero text", default="Write an introduction for the bakery"
+            "Home page", "hero text", default="Write an introduction for the bakery"
         ),
     )
     hero_cta = models.CharField(
         verbose_name="Hero CTA",
         max_length=255,
         help_text=HelpText(
-            "Home page hero CTA", default="Text to display on Call to Action"
+            "Home page", "hero CTA", default="Text to display on Call to Action"
         ),
     )
     hero_cta_link = models.ForeignKey(
@@ -179,7 +181,8 @@ class HomePage(Page):
         related_name="+",
         verbose_name="Hero CTA link",
         help_text=HelpText(
-            "Home page CTA link",
+            "Home page",
+            "CTA link",
             default="Choose a page to link to for the Call to Action",
         ),
     )
@@ -199,20 +202,20 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text=HelpText("Home page promo image", default="Promo image"),
+        help_text=HelpText("Home page", "promo image", default="Promo image"),
     )
     promo_title = models.CharField(
         blank=True,
         max_length=255,
         help_text=HelpText(
-            "Home page promo title", default="Title to display above the promo copy"
+            "Home page", "promo title", default="Title to display above the promo copy"
         ),
     )
     promo_text = RichTextField(
         null=True,
         blank=True,
         help_text=HelpText(
-            "Home page promo text", default="Write some promotional copy"
+            "Home page", "promo text", default="Write some promotional copy"
         ),
     )
 
@@ -225,7 +228,8 @@ class HomePage(Page):
         blank=True,
         max_length=255,
         help_text=HelpText(
-            "Home page featured section title 1",
+            "Home page",
+            "featured section title 1",
             default="Title to display above the promo copy",
         ),
     )
@@ -236,7 +240,8 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Home page featured section 1",
+            "Home page",
+            "featured section 1",
             default="First featured section for the homepage. Will display up to three child items.",
         ),
         verbose_name="Featured section 1",
@@ -246,7 +251,8 @@ class HomePage(Page):
         blank=True,
         max_length=255,
         help_text=HelpText(
-            "Home page featured section title 2",
+            "Home page",
+            "featured section title 2",
             default="Title to display above the promo copy",
         ),
     )
@@ -257,7 +263,8 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Home page featured section 2",
+            "Home page",
+            "featured section 2",
             default="Second featured section for the homepage. Will display up to three child items.",
         ),
         verbose_name="Featured section 2",
@@ -267,7 +274,8 @@ class HomePage(Page):
         blank=True,
         max_length=255,
         help_text=HelpText(
-            "Home page featured section title 3",
+            "Home page",
+            "featured section title 3",
             default="Title to display above the promo copy",
         ),
     )
@@ -278,7 +286,8 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Home page featured section 3",
+            "Home page",
+            "featured section 3",
             default="Third featured section for the homepage. Will display up to six child items.",
         ),
         verbose_name="Featured section 3",
@@ -347,7 +356,7 @@ class GalleryPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Gallery page introduction", default="Text to describe the page"
+            "Gallery page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -358,7 +367,8 @@ class GalleryPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
@@ -372,7 +382,8 @@ class GalleryPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         help_text=HelpText(
-            "Gallery page collection",
+            "Gallery page",
+            "collection",
             default="Select the image collection for this gallery.",
         ),
     )

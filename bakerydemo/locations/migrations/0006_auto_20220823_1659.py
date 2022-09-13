@@ -20,7 +20,8 @@ class Migration(migrations.Migration):
             field=models.BooleanField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Operating hours closed",
+                    "Location page",
+                    "operating hours closed",
                     default="Tick if location is closed on this day",
                 ),
                 verbose_name="Closed?",
@@ -32,7 +33,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -47,7 +49,7 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Location page introduction", default="Text to describe the page"
+                    "Location page", "introduction", default="Text to describe the page"
                 ),
             ),
         ),
@@ -56,7 +58,8 @@ class Migration(migrations.Migration):
             name="lat_long",
             field=models.CharField(
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Location page lat/long",
+                    "Location page",
+                    "lat/long",
                     default="Comma separated lat/long. (Ex. 64.144367, -21.939182) Right click Google Maps and select 'What's Here'",
                 ),
                 max_length=36,
@@ -75,7 +78,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -90,7 +94,8 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Locations index page introduction",
+                    "Locations index page",
+                    "introduction",
                     default="Text to describe the page",
                 ),
             ),

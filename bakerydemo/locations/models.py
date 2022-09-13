@@ -26,7 +26,9 @@ class OperatingHours(models.Model):
         "Closed?",
         blank=True,
         help_text=HelpText(
-            "Operating hours closed", default="Tick if location is closed on this day"
+            "Location page",
+            "operating hours closed",
+            default="Tick if location is closed on this day",
         ),
     )
 
@@ -74,7 +76,7 @@ class LocationsIndexPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Locations index page introduction", default="Text to describe the page"
+            "Locations index page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -85,7 +87,8 @@ class LocationsIndexPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
@@ -122,7 +125,7 @@ class LocationPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Location page introduction", default="Text to describe the page"
+            "Location page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -133,7 +136,8 @@ class LocationPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
@@ -144,7 +148,8 @@ class LocationPage(Page):
     lat_long = models.CharField(
         max_length=36,
         help_text=HelpText(
-            "Location page lat/long",
+            "Location page",
+            "lat/long",
             default="Comma separated lat/long. (Ex. 64.144367, -21.939182) Right click Google Maps and select 'What's Here'",
         ),
         validators=[

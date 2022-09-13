@@ -21,7 +21,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Gallery page collection",
+                    "Gallery page",
+                    "collection",
                     default="Select the image collection for this gallery.",
                 ),
                 limit_choices_to=models.Q(("name__in", ["Root"]), _negated=True),
@@ -36,7 +37,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -51,7 +53,7 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Gallery page introduction", default="Text to describe the page"
+                    "Gallery page", "introduction", default="Text to describe the page"
                 ),
             ),
         ),
@@ -61,7 +63,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page featured section 1",
+                    "Home page",
+                    "featured section 1",
                     default="First featured section for the homepage. Will display up to three child items.",
                 ),
                 null=True,
@@ -77,7 +80,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page featured section title 1",
+                    "Home page",
+                    "featured section title 1",
                     default="Title to display above the promo copy",
                 ),
                 max_length=255,
@@ -89,7 +93,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page featured section 2",
+                    "Home page",
+                    "featured section 2",
                     default="Second featured section for the homepage. Will display up to three child items.",
                 ),
                 null=True,
@@ -105,7 +110,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page featured section title 2",
+                    "Home page",
+                    "featured section title 2",
                     default="Title to display above the promo copy",
                 ),
                 max_length=255,
@@ -117,7 +123,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page featured section 3",
+                    "Home page",
+                    "featured section 3",
                     default="Third featured section for the homepage. Will display up to six child items.",
                 ),
                 null=True,
@@ -133,7 +140,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page featured section title 3",
+                    "Home page",
+                    "featured section title 3",
                     default="Title to display above the promo copy",
                 ),
                 max_length=255,
@@ -144,7 +152,7 @@ class Migration(migrations.Migration):
             name="hero_cta",
             field=models.CharField(
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page hero CTA", default="Text to display on Call to Action"
+                    "Home page", "hero CTA", default="Text to display on Call to Action"
                 ),
                 max_length=255,
                 verbose_name="Hero CTA",
@@ -156,7 +164,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page CTA link",
+                    "Home page",
+                    "CTA link",
                     default="Choose a page to link to for the Call to Action",
                 ),
                 null=True,
@@ -171,7 +180,8 @@ class Migration(migrations.Migration):
             name="hero_text",
             field=models.CharField(
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page hero text",
+                    "Home page",
+                    "hero text",
                     default="Write an introduction for the bakery",
                 ),
                 max_length=255,
@@ -183,7 +193,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -198,7 +209,7 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page promo image", default="Promo image"
+                    "Home page", "promo image", default="Promo image"
                 ),
                 null=True,
                 on_delete=django.db.models.deletion.SET_NULL,
@@ -212,7 +223,7 @@ class Migration(migrations.Migration):
             field=wagtail.fields.RichTextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page promo text", default="Write some promotional copy"
+                    "Home page", "promo text", default="Write some promotional copy"
                 ),
                 null=True,
             ),
@@ -223,7 +234,8 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Home page promo title",
+                    "Home page",
+                    "promo title",
                     default="Title to display above the promo copy",
                 ),
                 max_length=255,
@@ -235,7 +247,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Hero image",
+                    "Common",
+                    "hero image",
                     default="Landscape mode only; horizontal width between 1000px and 3000px.",
                 ),
                 null=True,
@@ -250,7 +263,7 @@ class Migration(migrations.Migration):
             field=models.TextField(
                 blank=True,
                 help_text=wagtail_editable_help.models.HelpText(
-                    "Standard page introduction", default="Text to describe the page"
+                    "Standard page", "introduction", default="Text to describe the page"
                 ),
             ),
         ),

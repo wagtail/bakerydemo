@@ -87,7 +87,7 @@ class BreadPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Bread page introduction", default="Text to describe the page"
+            "Bread page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -98,7 +98,8 @@ class BreadPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )
@@ -162,7 +163,7 @@ class BreadsIndexPage(Page):
 
     introduction = models.TextField(
         help_text=HelpText(
-            "Breads index page introduction", default="Text to describe the page"
+            "Breads index page", "introduction", default="Text to describe the page"
         ),
         blank=True,
     )
@@ -173,7 +174,8 @@ class BreadsIndexPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
         help_text=HelpText(
-            "Hero image",
+            "Common",
+            "hero image",
             default="Landscape mode only; horizontal width between 1000px and 3000px.",
         ),
     )

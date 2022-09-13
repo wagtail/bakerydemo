@@ -8,6 +8,7 @@ from wagtail.blocks import (
 )
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail_editable_help.models import HelpText
 
 
 class ImageBlock(StructBlock):
@@ -73,7 +74,11 @@ class BaseStreamBlock(StreamBlock):
     image_block = ImageBlock()
     block_quote = BlockQuote()
     embed_block = EmbedBlock(
-        help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+        help_text=HelpText(
+            "Common",
+            "embed block",
+            default="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+        ),
         icon="fa-s15",
         template="blocks/embed_block.html",
     )
