@@ -134,7 +134,7 @@ class Migration(migrations.Migration):
                             (
                                 "embed_block",
                                 wagtail.embeds.blocks.EmbedBlock(
-                                    help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+                                    help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
                                     icon="fa-s15",
                                     template="blocks/embed_block.html",
                                 ),
@@ -245,7 +245,7 @@ class Migration(migrations.Migration):
                             (
                                 "embed_block",
                                 wagtail.embeds.blocks.EmbedBlock(
-                                    help_text="Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks",
+                                    help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
                                     icon="fa-s15",
                                     template="blocks/embed_block.html",
                                 ),
