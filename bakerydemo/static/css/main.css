@@ -397,6 +397,13 @@ blockquote .attribute-name {
   text-decoration: underline;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
+.block-embed_block iframe {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 100%;
+}
+
 @media screen and (min-width: 768px) {
   .header,
   .footer {
