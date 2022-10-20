@@ -3,7 +3,13 @@ from __future__ import unicode_literals
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.admin.panels import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.panels import (
+    FieldPanel,
+    FieldRowPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PublishingPanel,
+)
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Collection, DraftStateMixin, Page, RevisionMixin
@@ -91,6 +97,7 @@ class FooterText(DraftStateMixin, RevisionMixin, models.Model):
 
     panels = [
         FieldPanel("body"),
+        PublishingPanel(),
     ]
 
     def __str__(self):
