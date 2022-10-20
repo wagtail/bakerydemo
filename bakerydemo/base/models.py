@@ -12,7 +12,13 @@ from wagtail.admin.panels import (
 )
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Collection, DraftStateMixin, Page, RevisionMixin
+from wagtail.models import (
+    Collection,
+    DraftStateMixin,
+    Page,
+    PreviewableMixin,
+    RevisionMixin,
+)
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -85,7 +91,7 @@ class Person(index.Indexed, ClusterableModel):
 
 
 @register_snippet
-class FooterText(DraftStateMixin, RevisionMixin, models.Model):
+class FooterText(DraftStateMixin, RevisionMixin, PreviewableMixin, models.Model):
     """
     This provides editable text for the site footer. Again it uses the decorator
     `register_snippet` to allow it to be accessible via the admin. It is made
@@ -102,6 +108,12 @@ class FooterText(DraftStateMixin, RevisionMixin, models.Model):
 
     def __str__(self):
         return "Footer text"
+
+    def get_preview_template(self, request, mode_name):
+        return "base.html"
+
+    def get_preview_context(self, request, mode_name):
+        return {"footer_text": self.body}
 
     class Meta:
         verbose_name_plural = "Footer Text"
