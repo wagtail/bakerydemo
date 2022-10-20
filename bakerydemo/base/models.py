@@ -6,7 +6,7 @@ from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Collection, Page
+from wagtail.models import Collection, DraftStateMixin, Page, RevisionMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -79,7 +79,7 @@ class Person(index.Indexed, ClusterableModel):
 
 
 @register_snippet
-class FooterText(models.Model):
+class FooterText(DraftStateMixin, RevisionMixin, models.Model):
     """
     This provides editable text for the site footer. Again it uses the decorator
     `register_snippet` to allow it to be accessible via the admin. It is made
