@@ -4,7 +4,7 @@ from django.db import models
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
-from wagtail.models import Page
+from wagtail.models import Page, RevisionMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -56,7 +56,7 @@ class BreadIngredient(models.Model):
 
 
 @register_snippet
-class BreadType(models.Model):
+class BreadType(RevisionMixin, models.Model):
     """
     A Django model to define the bread type
     It uses the `@register_snippet` decorator to allow it to be accessible
