@@ -1,6 +1,6 @@
 [
   {
-    "model": "base.people",
+    "model": "base.person",
     "pk": 1,
     "fields": {
       "first_name": "Roberta",
@@ -10,7 +10,7 @@
     }
   },
   {
-    "model": "base.people",
+    "model": "base.person",
     "pk": 2,
     "fields": {
       "first_name": "Olivia",
@@ -20,7 +20,7 @@
     }
   },
   {
-    "model": "base.people",
+    "model": "base.person",
     "pk": 3,
     "fields": {
       "first_name": "Lightnin'",
@@ -30,7 +30,7 @@
     }
   },
   {
-    "model": "base.people",
+    "model": "base.person",
     "pk": 4,
     "fields": {
       "first_name": "Muddy",
@@ -122,75 +122,75 @@
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 2,
     "fields": {
       "sort_order": 0,
       "page": 62,
-      "people": 1
+      "person": 1
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 3,
     "fields": {
       "sort_order": 0,
       "page": 68,
-      "people": 2
+      "person": 2
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 4,
     "fields": {
       "sort_order": 0,
       "page": 72,
-      "people": 3
+      "person": 3
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 5,
     "fields": {
       "sort_order": 0,
       "page": 73,
-      "people": 3
+      "person": 3
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 6,
     "fields": {
       "sort_order": 0,
       "page": 74,
-      "people": 1
+      "person": 1
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 7,
     "fields": {
       "sort_order": 1,
       "page": 74,
-      "people": 3
+      "person": 3
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 8,
     "fields": {
       "sort_order": 1,
       "page": 73,
-      "people": 1
+      "person": 1
     }
   },
   {
-    "model": "blog.blogpeoplerelationship",
+    "model": "blog.blogpersonrelationship",
     "pk": 9,
     "fields": {
       "sort_order": 0,
       "page": 77,
-      "people": 2
+      "person": 2
     }
   },
   {

@@ -9,7 +9,7 @@ from wagtail.core.rich_text import RichText
 from wagtail.images.models import Image
 from willow.image import Image as WillowImage
 
-from bakerydemo.base.models import FooterText, HomePage, People, StandardPage
+from bakerydemo.base.models import FooterText, HomePage, Person, StandardPage
 from bakerydemo.blog.models import BlogIndexPage, BlogPage
 from bakerydemo.breads.models import (
     BreadIngredient,
@@ -140,7 +140,7 @@ class Command(BaseCommand):
 
         self.stdout.write("Creating people...")
         for _ in range(snippet_count):
-            People.objects.create(
+            Person.objects.create(
                 first_name=lorem_ipsum.words(1, common=False),
                 last_name=lorem_ipsum.words(1, common=False),
                 job_title=lorem_ipsum.words(1, common=False),
