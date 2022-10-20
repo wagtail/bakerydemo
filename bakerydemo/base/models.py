@@ -66,6 +66,7 @@ class Person(DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel):
         ),
         FieldPanel("job_title"),
         FieldPanel("image"),
+        PublishingPanel(),
     ]
 
     search_fields = [
