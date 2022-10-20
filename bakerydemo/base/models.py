@@ -26,7 +26,7 @@ from .blocks import BaseStreamBlock
 
 
 @register_snippet
-class Person(index.Indexed, ClusterableModel):
+class Person(DraftStateMixin, RevisionMixin, index.Indexed, ClusterableModel):
     """
     A Django model to store Person objects.
     It uses the `@register_snippet` decorator to allow it to be accessible
