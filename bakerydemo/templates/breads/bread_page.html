@@ -39,7 +39,16 @@
                                     <ul>
                                         {% for ingredient in ingredients %}
                                             <li>
-                                                {{ ingredient.name }}
+                                                {% if ingredient.live %}
+                                                    {# If it's live, show as-is #}
+                                                    {{ ingredient.name }}
+                                                {% else %}
+                                                    {# EXAMPLE: we can show a placeholder element for instances that are not live #}
+                                                    <span class="bread-detail__meta-ingredient--draft">
+                                                        Draft ingredient
+                                                    </span>
+                                                    (draft)
+                                                {% endif %}
                                             </li>
                                         {% endfor %}
                                     </ul>

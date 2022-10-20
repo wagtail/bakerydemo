@@ -4,7 +4,7 @@ from django.db import models
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
-from wagtail.models import Page, RevisionMixin
+from wagtail.models import DraftStateMixin, Page, RevisionMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -33,7 +33,7 @@ class Country(models.Model):
 
 
 @register_snippet
-class BreadIngredient(models.Model):
+class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
     """
     Standard Django model that is displayed as a snippet within the admin due
     to the `@register_snippet` decorator. We use a new piece of functionality

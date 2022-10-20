@@ -1236,6 +1236,13 @@ footer {
   margin: 0 0 20px;
 }
 
+.bread-detail__meta-ingredient--draft {
+  color: transparent;
+  user-select: none;
+  cursor: help;
+  text-shadow: 0 0 7px rgb(0 0 0 / 50%);
+}
+
 @media (min-width: 992px) {
   .bread-detail__meta {
     background-color: var(--cream);
