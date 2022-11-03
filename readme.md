@@ -43,7 +43,7 @@ If you want a publicly accessible demo site, [deploy to Heroku](#deploy-to-herok
 
 ## Setup with Gitpod
 
-Setup a development environment and run this demo website with a single click (requires a Github account):
+Set up a development environment and run this demo website with a single click (requires a Github account):
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
 
