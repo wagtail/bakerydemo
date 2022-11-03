@@ -48,7 +48,10 @@ Setup a development environment and run this demo website with a single click (r
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
 
 Once Gitpod has fully started, and a preview of the bakery website has appeared in the "Simple Browser" panel, click the arrow button to the right of the URL bar to open the website in a new tab.
-Go to `/admin/` and login with `admin / changeme`.
+Append `/admin/` to the URL and login with username `admin` and password `changeme`.
+
+Gitpod uses [prebuilds](https://www.gitpod.io/docs/prebuilds) to reduce wait time, by installing dependencies and running builds **before** you start a new workspace.
+Unfortunately, prebuilds work as a cache. You could get an outdated build. If that is the case, [trigger a new prebuild](https://gitpod.io/#prebuild/https://github.com/wagtail/bakerydemo).
 
 ## Setup with Vagrant
 
