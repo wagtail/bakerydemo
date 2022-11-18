@@ -22,46 +22,13 @@ su - $DEV_USER -c "echo $PROJECT_DIR > $VIRTUALENV_DIR/.project"
 su - $DEV_USER -c "$PIP install --upgrade pip"
 
 # Install PIP requirements
-su - $DEV_USER -c "cd $PROJECT_DIR && $PIP install -r requirements/base.txt"
-
+su - $DEV_USER -c "cd $PROJECT_DIR && $PIP install -r requirements/development.txt"
 
 # Set execute permissions on manage.py as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py
 
-# copy local settings file
-cp $PROJECT_DIR/bakerydemo/settings/local.py.example $PROJECT_DIR/bakerydemo/settings/local.py
-# add .env file for django-dotenv environment variable definitions
-echo DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.local > $PROJECT_DIR/.env
-
-if [ -n "$USE_POSTGRESQL" ]
-then
-    echo Creating database.....
-    DB_EXISTS=$(
-        su - $DEV_USER -c \
-        "psql -lqt | cut -d \| -f 1 | grep -q '^ $PROJECT_NAME $' && echo yes || echo no"
-    )
-    if [[ "$DB_EXISTS" == "no" ]]; then
-        echo Database does not exist, creating...
-        su - $DEV_USER -c "createdb $PROJECT_NAME"
-    else
-        echo Database already exists, skipping...
-    fi
-    su - $DEV_USER -c "$PIP install \"psycopg2-binary>=2.7,<3\""
-    cat << EOF >> $PROJECT_DIR/bakerydemo/settings/local.py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '$PROJECT_NAME',
-    }
-}
-EOF
-fi
-
 # Run syncdb/migrate/load_initial_data/update_index
-su - $DEV_USER -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
-                   $PYTHON $PROJECT_DIR/manage.py load_initial_data && \
-                   $PYTHON $PROJECT_DIR/manage.py update_index"
-
+su - $DEV_USER -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && $PYTHON $PROJECT_DIR/manage.py load_initial_data"
 
 # Add a couple of aliases to manage.py into .bashrc
 
