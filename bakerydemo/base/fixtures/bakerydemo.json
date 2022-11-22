@@ -1253,6 +1253,44 @@
     }
   },
   {
+    "model": "wagtailembeds.embed",
+    "pk": 1,
+    "fields": {
+      "url": "https://www.youtube.com/watch?v=mwrGSfiB1Mg",
+      "max_width": null,
+      "hash": "38d4e3d21edf927c9e686fe858c0d8c5",
+      "type": "video",
+      "html": "<iframe width=\"200\" height=\"150\" src=\"https://www.youtube.com/embed/mwrGSfiB1Mg?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen title=\"Afghan Bread Production\"></iframe>",
+      "title": "Afghan Bread Production",
+      "author_name": "Wagtail",
+      "provider_name": "YouTube",
+      "thumbnail_url": "https://i.ytimg.com/vi/mwrGSfiB1Mg/hqdefault.jpg",
+      "width": 200,
+      "height": 150,
+      "last_updated": "2019-02-23T08:08:39.568Z",
+      "cache_until": null
+    }
+  },
+  {
+    "model": "wagtailembeds.embed",
+    "pk": 2,
+    "fields": {
+      "url": "https://www.youtube.com/watch?v=ofCHfv2lOTE",
+      "max_width": null,
+      "hash": "9f9c6591141e7768f00d77533f4ca447",
+      "type": "video",
+      "html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/ofCHfv2lOTE?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen title=\"Baking cookies\"></iframe>",
+      "title": "Baking cookies",
+      "author_name": "Wagtail",
+      "provider_name": "YouTube",
+      "thumbnail_url": "https://i.ytimg.com/vi/ofCHfv2lOTE/hqdefault.jpg",
+      "width": 200,
+      "height": 113,
+      "last_updated": "2019-04-23T20:03:47.050Z",
+      "cache_until": null
+    }
+  },
+  {
     "model": "wagtailsearch.query",
     "pk": 1,
     "fields": {
@@ -3580,7 +3618,7 @@
     "fields": {
       "introduction": "Perakai is made for special occasions like birthday parties, engagement parties or holidays.",
       "image": 36,
-      "body": "[]",
+      "body": "[{\"type\": \"embed_block\", \"value\": \"https://www.youtube.com/watch?v=mwrGSfiB1Mg\", \"id\": \"90411c51-e84c-421e-aae0-d190e8430281\"}]",
       "origin": 24,
       "bread_type": 2,
       "ingredients": []
@@ -3655,7 +3693,7 @@
     "fields": {
       "introduction": "A Boston cream pie is a yellow butter cake that is filled with custard or cream and topped with chocolate glaze.",
       "image": 43,
-      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Despite its name, it is in fact a cake, and not a pie.[2] The dessert acquired its name when cakes and pies were cooked in the same pans, and the words were used interchangeably.[3] In the latter part of the 19th century, this type of cake was variously called a \\\"cream pie\\\", a \\\"chocolate cream pie\\\", or a \\\"custard cake\\\".[3]</p><p>Owners of the Parker House Hotel in Boston claim that the Boston cream pie was first created at the hotel by Armenian-French chef M. Sanzian in 1856.[4] Called a \\\"Chocolate Cream Pie\\\", this cake consisted of two layers of French butter sponge cake filled with cr\\u00e8me p\\u00e2tissi\\u00e8re and brushed with a rum syrup, its side coated with cr\\u00e8me p\\u00e2tissi\\u00e8re overlain with toasted sliced almonds, and the top coated with chocolate fondant.[5] However, historians dispute this claim to primacy; while this cake may have been served then, there is no specific contemporaneous evidence of it, and custard-filled cake was already popular at that time.[3]</p>\", \"id\": \"b793eb57-cf99-4c2e-abc5-e3d5a8ea486b\"}, {\"type\": \"image_block\", \"value\": {\"image\": 15, \"attribution\": \"Creative Commons\", \"caption\": \"Central Bakery\"}, \"id\": \"556e76b0-0f5a-42bb-b039-653f3d6b1f0b\"}, {\"type\": \"paragraph_block\", \"value\": \"<p>The cake is likely derived from the Washington pie, a two-layer yellow cake filled with jam and topped with confectioner's sugar, for which pastry cream of custard eventually replaced the jam, and a chocolate glaze replaced the confectioner's sugar.[2] Today, the cake is topped with a chocolate glaze (such as ganache) and sometimes powdered sugar or a cherry.</p><p>The name first appeared in the 1872 Methodist Almanac.[3] Another early printed use of the term \\\"Boston cream pie\\\" occurred in the Granite Iron Ware Cook Book, printed in 1878.[2] The earliest known recipe of the modern variant was printed in Miss Parloa's Kitchen Companion in 1887 as \\\"Chocolate Cream Pie\\\".[2]</p>\", \"id\": \"ac48af95-b3be-4602-8c2f-5c43fc080f17\"}]",
+      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"2t5ek\\\">Despite its name, it is in fact a cake, and not a pie.[2] The dessert acquired its name when cakes and pies were cooked in the same pans, and the words were used interchangeably.[3] In the latter part of the 19th century, this type of cake was variously called a &quot;cream pie&quot;, a &quot;chocolate cream pie&quot;, or a &quot;custard cake&quot;.[3]</p><p data-block-key=\\\"3lq30\\\">Owners of the Parker House Hotel in Boston claim that the Boston cream pie was first created at the hotel by Armenian-French chef M. Sanzian in 1856.[4] Called a &quot;Chocolate Cream Pie&quot;, this cake consisted of two layers of French butter sponge cake filled with cr\\u00e8me p\\u00e2tissi\\u00e8re and brushed with a rum syrup, its side coated with cr\\u00e8me p\\u00e2tissi\\u00e8re overlain with toasted sliced almonds, and the top coated with chocolate fondant.[5] However, historians dispute this claim to primacy; while this cake may have been served then, there is no specific contemporaneous evidence of it, and custard-filled cake was already popular at that time.[3]</p>\", \"id\": \"b793eb57-cf99-4c2e-abc5-e3d5a8ea486b\"}, {\"type\": \"image_block\", \"value\": {\"image\": 15, \"caption\": \"Central Bakery\", \"attribution\": \"Creative Commons\"}, \"id\": \"556e76b0-0f5a-42bb-b039-653f3d6b1f0b\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"lhqbi\\\">The cake is likely derived from the Washington pie, a two-layer yellow cake filled with jam and topped with confectioner&#x27;s sugar, for which pastry cream of custard eventually replaced the jam, and a chocolate glaze replaced the confectioner&#x27;s sugar.[2] Today, the cake is topped with a chocolate glaze (such as ganache) and sometimes powdered sugar or a cherry.</p><p data-block-key=\\\"oauyc\\\">The name first appeared in the 1872 Methodist Almanac.[3] Another early printed use of the term &quot;Boston cream pie&quot; occurred in the Granite Iron Ware Cook Book, printed in 1878.[2] The earliest known recipe of the modern variant was printed in Miss Parloa&#x27;s Kitchen Companion in 1887 as &quot;Chocolate Cream Pie&quot;.[2]</p><p data-block-key=\\\"11hv6\\\">And on another note, here are cookies baking in the oven:</p><embed embedtype=\\\"media\\\" url=\\\"https://www.youtube.com/watch?v=ofCHfv2lOTE\\\"/><p data-block-key=\\\"dlchc\\\"></p>\", \"id\": \"ac48af95-b3be-4602-8c2f-5c43fc080f17\"}]",
       "subtitle": "Banana toffee chocolate pie?",
       "date_published": "2019-02-24"
     }
