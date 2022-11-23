@@ -1,8 +1,8 @@
 import re
 
-from django.template.loader import render_to_string
-from django.core.exceptions import MiddlewareNotUsed
 from django.conf import settings
+from django.core.exceptions import MiddlewareNotUsed
+from django.template.loader import render_to_string
 
 
 class DemoBannerMiddleware:
