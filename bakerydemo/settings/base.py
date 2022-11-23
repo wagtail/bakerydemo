@@ -465,6 +465,8 @@ if os.environ.get("BASIC_AUTH_ENABLED", "false").lower().strip() == "true":
             "BASIC_AUTH_WHITELISTED_HTTP_HOSTS"
         ].split(",")
 
+    BASIC_AUTH_RESPONSE_TEMPLATE = "base/basic_auth.html"
+
 
 # Logging
 # This logging is configured to be used with Sentry and console logs. Console
