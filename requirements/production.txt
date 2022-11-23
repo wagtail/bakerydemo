@@ -1,3 +1,5 @@
+-r base.txt
+
 elasticsearch==5.5.3
 # Additional dependencies for Heroku, AWS, and Google Cloud deployment
 psycopg2>=2.7,<3.0
