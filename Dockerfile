@@ -32,7 +32,7 @@ ENV PATH=$VIRTUAL_ENV/bin:$PATH \
     DJANGO_SETTINGS_MODULE=bakerydemo.settings.production \
     PORT=8000 \
     WEB_CONCURRENCY=3 \
-    GUNICORN_CMD_ARGS="-c gunicorn-conf.py --max-requests 1200 --max-requests-jitter 50 --access-logfile - --timeout 25"
+    GUNICORN_CMD_ARGS="-c gunicorn-conf.py --max-requests 1200 --max-requests-jitter 50 --access-logfile - --timeout 25 --reload"
 
 # Make $BUILD_ENV available at runtime
 ARG BUILD_ENV
