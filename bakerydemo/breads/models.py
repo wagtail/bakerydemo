@@ -118,7 +118,7 @@ class BreadPage(Page):
     ingredients = ParentalManyToManyField("BreadIngredient", blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("origin"),
@@ -162,7 +162,7 @@ class BreadsIndexPage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
     ]
 

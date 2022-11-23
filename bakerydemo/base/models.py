@@ -184,7 +184,7 @@ class StandardPage(Page):
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
     ]
@@ -303,7 +303,7 @@ class HomePage(Page):
         MultiFieldPanel(
             [
                 FieldPanel("image"),
-                FieldPanel("hero_text", classname="full"),
+                FieldPanel("hero_text"),
                 MultiFieldPanel(
                     [
                         FieldPanel("hero_cta"),
@@ -382,7 +382,7 @@ class GalleryPage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
         FieldPanel("collection"),
@@ -423,7 +423,7 @@ class FormPage(AbstractEmailForm):
         FieldPanel("image"),
         FieldPanel("body"),
         InlinePanel("form_fields", label="Form fields"),
-        FieldPanel("thank_you_text", classname="full"),
+        FieldPanel("thank_you_text"),
         MultiFieldPanel(
             [
                 FieldRowPanel(

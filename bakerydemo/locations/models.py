@@ -97,7 +97,7 @@ class LocationsIndexPage(Page):
         return context
 
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
     ]
 
@@ -141,11 +141,11 @@ class LocationPage(Page):
 
     # Fields to show to the editor in the admin view
     content_panels = [
-        FieldPanel("title", classname="full"),
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("title"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
-        FieldPanel("address", classname="full"),
+        FieldPanel("address"),
         FieldPanel("lat_long"),
         InlinePanel("hours_of_operation", label="Hours of Operation"),
     ]
