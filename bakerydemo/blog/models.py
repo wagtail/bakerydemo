@@ -72,8 +72,8 @@ class BlogPage(Page):
     date_published = models.DateField("Date article published", blank=True, null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("subtitle", classname="full"),
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("subtitle"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("date_published"),
@@ -140,7 +140,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
     ]
 
