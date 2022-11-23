@@ -17,6 +17,11 @@
         </title>
         <meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% endif %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+            <base target="_blank">
+        {% endif %}
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         {% fontawesome_css %}
