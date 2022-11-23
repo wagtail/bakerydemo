@@ -435,6 +435,8 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ("ar", "العربيّة"),
 ]
 
+WAGTAILIMAGES_MAX_IMAGE_PIXELS = 10_000_000
+
 # This is used by Wagtail's email notifications for constructing absolute
 # URLs. Please set to the domain that users will access the admin site.
 if "PRIMARY_HOST" in os.environ:
