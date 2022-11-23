@@ -1,0 +1,10 @@
+elasticsearch==5.5.3
+# Additional dependencies for Heroku, AWS, and Google Cloud deployment
+psycopg2>=2.7,<3.0
+boto3==1.9.189
+google-cloud-storage==1.20.0
+django-storages==1.13.1
+# For retrieving credentials and signing requests to Elasticsearch
+botocore>=1.12.33,<1.13
+aws-requests-auth==0.4.0
+django-redis==5.2.0

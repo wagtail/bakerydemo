@@ -51,7 +51,7 @@ USER bakerydemo
 RUN python -m venv $VIRTUAL_ENV
 COPY --chown=bakerydemo requirements.txt ./
 COPY --chown=bakerydemo requirements/ ./requirements
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements/production.txt
 
 # Copy application code.
 COPY --chown=bakerydemo . .
