@@ -9,16 +9,16 @@
 }
 
 #wagtail #demo-banner {
-  /* Add some padding to prevent interfering with Wagtail's mobile nav */
-  padding-left: 50px;
-
+  padding-left: 50px; /* Add some padding to prevent interfering with Wagtail's mobile nav */
   position: fixed;
   z-index: 100;
   width: 100%;
 }
 
 /* Ensure the banner doesn't sit on top of existing admin content */
-#wagtail #main, #wagtail .sidebar, #wagtail .sidebar-panel {
+#wagtail #main,
+#wagtail .sidebar,
+#wagtail .sidebar-panel {
   margin-top: 50px;
   height: calc(100% - 50px);
 }
@@ -27,7 +27,7 @@
   margin: 0;
   color: white;
   font-size: 20px;
-  font-family: Arial;
+  font-family: sans-serif;
   font-weight: 700;
 }
 
