@@ -15,6 +15,7 @@ WORKDIR /app
 # If you specify your own environment variables on Heroku, they will
 # override the ones set here. The ones below serve as sane defaults only.
 #  * PATH - Make sure that Poetry is on the PATH, along with our venv
+#  * PYTHONPATH - Ensure `django-admin` works correctly.
 #  * PYTHONUNBUFFERED - This is useful so Python does not hold any messages
 #    from being output.
 #    https://docs.python.org/3.9/using/cmdline.html#envvar-PYTHONUNBUFFERED
@@ -28,6 +29,7 @@ WORKDIR /app
 #  * GUNICORN_CMD_ARGS - additional arguments to be passed to Gunicorn. This
 #    variable is read by Gunicorn
 ENV PATH=$VIRTUAL_ENV/bin:$PATH \
+    PYTHONPATH=/app \
     PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=bakerydemo.settings.production \
     PORT=8000 \
