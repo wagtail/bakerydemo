@@ -1,16 +1,27 @@
-{% load wagtailadmin_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Authentication Required</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Authentication Required</title>
-<style>
-    h1 { font-size: 50px; }
-    body { font: 20px sans-serif; color: #333; }
-    article { display: block; text-align: center; margin: 0 auto; }
-    a { color: #dc8100; text-decoration: none; }
-    a:hover { color: #333; text-decoration: none; }
-</style>
+        {# Prevent the demo site from being indexed #}
+        <meta name="robots" content="noindex" />
 
-<article>
-    <h1>Authentication Required</h1>
-    <p>You must login to view this site</p>
-    <h3>Looking for Wagtail's demo instance? <a href="https://demo.wagtail.org">Click here</a>.</h3>
-</article>
+        <style>
+            h1 { font-size: 3rem; }
+            body { font: 1rem sans-serif; color: #333; }
+            article { display: block; text-align: center; margin: 0 auto; }
+            a { color: #dc8100; }
+            a:hover { color: #333; }
+        </style>
+    </head>
+
+    <body>
+        <article>
+            <h1>Authentication Required</h1>
+            <p>You must login to view this site</p>
+            <h3>Looking for Wagtail's demo instance? Visit <a href="https://demo.wagtail.org">demo.wagtail.org</a>.</h3>
+        </article>
+    </body>
+</html>
