@@ -525,3 +525,7 @@ SHOW_DEMO_BANNER = os.getenv("SHOW_DEMO_BANNER", "false").lower() == "true"
 DEFAULT_ADMIN_PASSWORD = "changeme"
 DEFAULT_ADMIN_USERNAME = "admin"
 DEFAULT_ADMIN_PK = 3
+
+PREVENT_ADMIN_CREDENTIALS_CHANGE = (
+    os.getenv("PREVENT_ADMIN_CREDENTIALS_CHANGE", "false").lower() == "true"
+)

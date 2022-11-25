@@ -84,72 +84,71 @@ class BakeryModelAdminGroup(ModelAdminGroup):
 modeladmin_register(BreadModelAdminGroup)
 modeladmin_register(BakeryModelAdminGroup)
 
+if settings.PREVENT_ADMIN_CREDENTIALS_CHANGE:
 
-@hooks.register("after_edit_user")
-def notify_rejected_admin_changes(request, user):
-    """
-    Notify the user when they attempt to change the admin user's password that it won't work.
+    @hooks.register("after_edit_user")
+    def notify_rejected_admin_changes(request, user):
+        """
+        Notify the user when they attempt to change the admin user's password that it won't work.
 
-    See the `prevent_user_password_change` signal below for where the noop is done.
-    """
+        See the `prevent_user_password_change` signal below for where the noop is done.
+        """
 
-    if user.id != settings.DEFAULT_ADMIN_PK:
-        return
+        if user.id != settings.DEFAULT_ADMIN_PK:
+            return
 
-    if request.POST.get("password1"):
-        messages.add_message(
-            request,
-            messages.ERROR,
-            "You can't change the admin user's password. The password change was ignored.",
-        )
+        if request.POST.get("password1"):
+            messages.add_message(
+                request,
+                messages.ERROR,
+                "You can't change the admin user's password. The password change was ignored.",
+            )
 
-    if (
-        request.POST.get("username", settings.DEFAULT_ADMIN_USERNAME)
-        != settings.DEFAULT_ADMIN_USERNAME
-    ):
-        messages.add_message(
-            request,
-            messages.ERROR,
-            "You can't change the admin user's username. The username change was ignored.",
-        )
+        if (
+            request.POST.get("username", settings.DEFAULT_ADMIN_USERNAME)
+            != settings.DEFAULT_ADMIN_USERNAME
+        ):
+            messages.add_message(
+                request,
+                messages.ERROR,
+                "You can't change the admin user's username. The username change was ignored.",
+            )
 
+    @receiver(pre_save, sender=User)
+    def prevent_admin_changes(sender, instance, *args, **kwargs):
+        """
+        Prevent the "admin" user's password from being changed.
+        """
 
-@receiver(pre_save, sender=User)
-def prevent_admin_changes(sender, instance, *args, **kwargs):
-    """
-    Prevent the "admin" user's password from being changed.
-    """
+        if instance.id != settings.DEFAULT_ADMIN_PK:
+            return
 
-    if instance.id != settings.DEFAULT_ADMIN_PK:
-        return
+        # Check that `set_password` was called
+        if instance._password:
+            instance.set_password(settings.DEFAULT_ADMIN_PASSWORD)
 
-    # Check that `set_password` was called
-    if instance._password:
-        instance.set_password(settings.DEFAULT_ADMIN_PASSWORD)
+        if instance.username != settings.DEFAULT_ADMIN_USERNAME:
+            instance.username = settings.DEFAULT_ADMIN_USERNAME
 
-    if instance.username != settings.DEFAULT_ADMIN_USERNAME:
-        instance.username = settings.DEFAULT_ADMIN_USERNAME
-
-
-@hooks.register("before_delete_user")
-def prevent_admin_delete(request, user):
-    if user.id == settings.DEFAULT_ADMIN_PK:
-        messages.add_message(
-            request,
-            messages.ERROR,
-            "You can't delete the default admin user",
-        )
-        return redirect("wagtailusers_users:index")
-
-
-class DemoBannerPanel(Component):
-    order = 150
-
-    def render_html(self, parent_context):
-        return render_to_string("base/demo_banner.html", {})
+    @hooks.register("before_delete_user")
+    def prevent_admin_delete(request, user):
+        if user.id == settings.DEFAULT_ADMIN_PK:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                "You can't delete the default admin user",
+            )
+            return redirect("wagtailusers_users:index")
 
 
-@hooks.register("construct_homepage_panels")
-def add_another_welcome_panel(request, panels):
-    if settings.SHOW_DEMO_BANNER:
+if settings.SHOW_DEMO_BANNER:
+
+    class DemoBannerPanel(Component):
+        order = 150
+
+        def render_html(self, parent_context):
+            return render_to_string("base/demo_banner.html", {})
+
+    @hooks.register("construct_homepage_panels")
+    def add_another_welcome_panel(request, panels):
         panels.append(DemoBannerPanel())
