@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     "wagtailfontawesome",
     "debug_toolbar",
     "django_extensions",
+    "simple_robots",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

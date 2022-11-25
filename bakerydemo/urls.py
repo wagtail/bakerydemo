@@ -2,6 +2,7 @@ import debug_toolbar
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
+from simple_robots.views import serve_robots
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
@@ -19,6 +20,7 @@ urlpatterns = [
     path("sitemap.xml", sitemap),
     path("api/v2/", api_router.urls),
     path("__debug__/", include(debug_toolbar.urls)),
+    path("robots.txt", serve_robots),
 ]
 
 

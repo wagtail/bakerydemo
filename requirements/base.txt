@@ -8,3 +8,4 @@ gunicorn==20.1.0
 django-extensions==3.2.1
 whitenoise>=5.0,<5.1
 django-basic-auth-ip-whitelist==0.5
+django-simple-robots==1.1.0
