@@ -101,7 +101,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "bakerydemo.base.middleware.DemoBannerMiddleware",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"

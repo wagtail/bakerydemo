@@ -3,6 +3,10 @@
 {% load wagtailadmin_tags %}
 
 {% block above_login %}
+    {% if SHOW_DEMO_BANNER %}
+        {% include "base/demo_banner.html" %}
+    {% endif %}
+
     {% help_block status="info" %}
         <p>Demo credentials:</p>
         <p><strong>User</strong>: <code>{{ DEFAULT_ADMIN_USERNAME }}</code>. <strong>Password</strong>: <code>{{ DEFAULT_ADMIN_PASSWORD }}</code></p>

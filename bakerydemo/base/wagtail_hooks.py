@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
+from wagtail.admin.ui.components import Component
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
@@ -138,3 +140,16 @@ def prevent_admin_delete(request, user):
             "You can't delete the default admin user",
         )
         return redirect("wagtailusers_users:index")
+
+
+class DemoBannerPanel(Component):
+    order = 150
+
+    def render_html(self, parent_context):
+        return render_to_string("base/demo_banner.html", {})
+
+
+@hooks.register("construct_homepage_panels")
+def add_another_welcome_panel(request, panels):
+    if settings.SHOW_DEMO_BANNER:
+        panels.append(DemoBannerPanel())
