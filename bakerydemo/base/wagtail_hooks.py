@@ -1,8 +1,14 @@
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
     modeladmin_register,
 )
+from wagtail.core import hooks
 
 from bakerydemo.base.models import FooterText, Person
 from bakerydemo.breads.models import BreadIngredient, BreadType, Country
@@ -74,3 +80,49 @@ class BakeryModelAdminGroup(ModelAdminGroup):
 # you only need to register the ModelAdminGroup class with Wagtail:
 modeladmin_register(BreadModelAdminGroup)
 modeladmin_register(BakeryModelAdminGroup)
+
+
+@hooks.register("after_edit_user")
+def notify_rejected_admin_changes(request, user):
+    """
+    Notify the user when they attempt to change the admin user's password that it won't work.
+
+    See the `prevent_user_password_change` signal below for where the noop is done.
+    """
+
+    if user.id != settings.DEFAULT_ADMIN_PK:
+        return
+
+    if request.POST.get("password1"):
+        messages.add_message(
+            request,
+            messages.ERROR,
+            "You can't change the admin user's password. The password change was ignored.",
+        )
+
+    if (
+        request.POST.get("username", settings.DEFAULT_ADMIN_USERNAME)
+        != settings.DEFAULT_ADMIN_USERNAME
+    ):
+        messages.add_message(
+            request,
+            messages.ERROR,
+            "You can't change the admin user's username. The username change was ignored.",
+        )
+
+
+@receiver(pre_save, sender=User)
+def prevent_admin_changes(sender, instance, *args, **kwargs):
+    """
+    Prevent the "admin" user's password from being changed.
+    """
+
+    if instance.id != settings.DEFAULT_ADMIN_PK:
+        return
+
+    # Check that `set_password` was called
+    if instance._password:
+        instance.set_password(settings.DEFAULT_ADMIN_PASSWORD)
+
+    if instance.username != settings.DEFAULT_ADMIN_USERNAME:
+        instance.username = settings.DEFAULT_ADMIN_USERNAME

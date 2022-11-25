@@ -120,6 +120,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "bakerydemo.base.context_processors.settings_injector",
             ],
         },
     },
@@ -517,3 +518,8 @@ LOGGING = {
 }
 
 SHOW_DEMO_BANNER = os.getenv("SHOW_DEMO_BANNER", "off") == "on"
+
+# Changing this? Be sure to update the initial data fixture
+DEFAULT_ADMIN_PASSWORD = "changeme"
+DEFAULT_ADMIN_USERNAME = "admin"
+DEFAULT_ADMIN_PK = 3
