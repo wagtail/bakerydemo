@@ -387,9 +387,12 @@ if ELASTICSEARCH_ENDPOINT:
                 {
                     "host": ELASTICSEARCH_ENDPOINT,
                     "port": int(os.getenv("ELASTICSEARCH_PORT", "9200")),
-                    "use_ssl": os.getenv("ELASTICSEARCH_USE_SSL", "off") == "on",
-                    "verify_certs": os.getenv("ELASTICSEARCH_VERIFY_CERTS", "off")
-                    == "on",
+                    "use_ssl": os.getenv("ELASTICSEARCH_USE_SSL", "false").lower()
+                    == "true",
+                    "verify_certs": os.getenv(
+                        "ELASTICSEARCH_VERIFY_CERTS", "false"
+                    ).lower()
+                    == "true",
                 }
             ],
             "OPTIONS": {
@@ -516,7 +519,7 @@ LOGGING = {
     },
 }
 
-SHOW_DEMO_BANNER = os.getenv("SHOW_DEMO_BANNER", "off") == "on"
+SHOW_DEMO_BANNER = os.getenv("SHOW_DEMO_BANNER", "false").lower() == "true"
 
 # Changing this? Be sure to update the initial data fixture
 DEFAULT_ADMIN_PASSWORD = "changeme"
