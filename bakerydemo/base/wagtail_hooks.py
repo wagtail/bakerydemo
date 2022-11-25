@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.shortcuts import redirect
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
@@ -126,3 +127,14 @@ def prevent_admin_changes(sender, instance, *args, **kwargs):
 
     if instance.username != settings.DEFAULT_ADMIN_USERNAME:
         instance.username = settings.DEFAULT_ADMIN_USERNAME
+
+
+@hooks.register("before_delete_user")
+def prevent_admin_delete(request, user):
+    if user.id == settings.DEFAULT_ADMIN_PK:
+        messages.add_message(
+            request,
+            messages.ERROR,
+            "You can't delete the default admin user",
+        )
+        return redirect("wagtailusers_users:index")
