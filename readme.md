@@ -38,7 +38,6 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
 If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
 Developers more familiar with virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
-If you want a publicly accessible demo site, [deploy to Heroku](#deploy-to-heroku).
 
 ## Setup with Gitpod
 
