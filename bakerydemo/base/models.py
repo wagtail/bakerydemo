@@ -421,7 +421,7 @@ class FormPage(AbstractEmailForm):
     content_panels = AbstractEmailForm.content_panels + [
         FieldPanel("image"),
         FieldPanel("body"),
-        InlinePanel("form_fields", label="Form fields"),
+        InlinePanel("form_fields", heading="Form fields", label="Field"),
         FieldPanel("thank_you_text"),
         MultiFieldPanel(
             [
