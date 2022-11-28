@@ -131,7 +131,7 @@ class BreadPage(Page):
                 ),
             ],
             heading="Additional Metadata",
-            classname="collapsible collapsed",
+            classname="collapsed",
         ),
     ]
 

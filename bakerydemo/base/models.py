@@ -344,7 +344,6 @@ class HomePage(Page):
                 ),
             ],
             heading="Featured homepage sections",
-            classname="collapsible",
         ),
     ]
 
