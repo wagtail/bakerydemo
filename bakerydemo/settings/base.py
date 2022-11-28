@@ -530,3 +530,5 @@ DEFAULT_ADMIN_PK = 3
 PREVENT_ADMIN_CREDENTIALS_CHANGE = (
     os.getenv("PREVENT_ADMIN_CREDENTIALS_CHANGE", "false").lower() == "true"
 )
+
+ALLOW_DJANGO_ADMIN = os.getenv("ALLOW_DJANGO_ADMIN", "true").lower() == "true"
