@@ -147,7 +147,7 @@ class LocationPage(Page):
         FieldPanel("body"),
         FieldPanel("address"),
         FieldPanel("lat_long"),
-        InlinePanel("hours_of_operation", label="Hours of Operation"),
+        InlinePanel("hours_of_operation", heading="Hours of Operation", label="Slot"),
     ]
 
     def __str__(self):
