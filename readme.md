@@ -2,6 +2,8 @@
 
 This is a demonstration project for the amazing [Wagtail CMS](https://github.com/wagtail/wagtail).
 
+View Demo: https://demo.wagtail.org.
+
 The demo site is designed to provide examples of common features and recipes to introduce you to Wagtail development. Beyond the code, it will also let you explore the admin / editorial interface of the CMS.
 
 Note we do _not_ recommend using this project to start your own site - the demo is intended to be a springboard to get you started. Feel free to copy code from the demo into your own project.
@@ -38,6 +40,14 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
 If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
 Developers more familiar with virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
+
+## Public demo instance
+
+You can view the demo at https://demo.wagtail.org. Note that this environment is reset periodically, and that some protections are in place to prevent abuse.
+
+The demo environment is deployed as a production-grade application by [Torchbox](https://torchbox.com) and should serve as an example of what a final Wagtail site might look like.
+
+Go to `/admin/` and login with `admin / admin`.
 
 ## Setup with Gitpod
 
