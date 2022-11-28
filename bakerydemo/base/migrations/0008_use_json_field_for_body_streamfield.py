@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                     (
                         "paragraph_block",
                         wagtail.blocks.RichTextBlock(
-                            icon="fa-paragraph", template="blocks/paragraph_block.html"
+                            icon="pilcrow", template="blocks/paragraph_block.html"
                         ),
                     ),
                     (
@@ -89,7 +89,7 @@ class Migration(migrations.Migration):
                         "embed_block",
                         wagtail.embeds.blocks.EmbedBlock(
                             help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
-                            icon="fa-s15",
+                            icon="media",
                             template="blocks/embed_block.html",
                         ),
                     ),
@@ -131,7 +131,7 @@ class Migration(migrations.Migration):
                     (
                         "paragraph_block",
                         wagtail.blocks.RichTextBlock(
-                            icon="fa-paragraph", template="blocks/paragraph_block.html"
+                            icon="pilcrow", template="blocks/paragraph_block.html"
                         ),
                     ),
                     (
@@ -172,7 +172,7 @@ class Migration(migrations.Migration):
                         "embed_block",
                         wagtail.embeds.blocks.EmbedBlock(
                             help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
-                            icon="fa-s15",
+                            icon="media",
                             template="blocks/embed_block.html",
                         ),
                     ),
@@ -216,7 +216,7 @@ class Migration(migrations.Migration):
                     (
                         "paragraph_block",
                         wagtail.blocks.RichTextBlock(
-                            icon="fa-paragraph", template="blocks/paragraph_block.html"
+                            icon="pilcrow", template="blocks/paragraph_block.html"
                         ),
                     ),
                     (
@@ -257,7 +257,7 @@ class Migration(migrations.Migration):
                         "embed_block",
                         wagtail.embeds.blocks.EmbedBlock(
                             help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
-                            icon="fa-s15",
+                            icon="media",
                             template="blocks/embed_block.html",
                         ),
                     ),
@@ -301,7 +301,7 @@ class Migration(migrations.Migration):
                     (
                         "paragraph_block",
                         wagtail.blocks.RichTextBlock(
-                            icon="fa-paragraph", template="blocks/paragraph_block.html"
+                            icon="pilcrow", template="blocks/paragraph_block.html"
                         ),
                     ),
                     (
@@ -342,7 +342,7 @@ class Migration(migrations.Migration):
                         "embed_block",
                         wagtail.embeds.blocks.EmbedBlock(
                             help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
-                            icon="fa-s15",
+                            icon="media",
                             template="blocks/embed_block.html",
                         ),
                     ),

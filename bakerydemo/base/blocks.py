@@ -56,7 +56,7 @@ class BlockQuote(StructBlock):
     attribute_name = CharBlock(blank=True, required=False, label="e.g. Mary Berry")
 
     class Meta:
-        icon = "fa-quote-left"
+        icon = "openquote"
         template = "blocks/blockquote.html"
 
 
@@ -68,12 +68,12 @@ class BaseStreamBlock(StreamBlock):
 
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
-        icon="fa-paragraph", template="blocks/paragraph_block.html"
+        icon="pilcrow", template="blocks/paragraph_block.html"
     )
     image_block = ImageBlock()
     block_quote = BlockQuote()
     embed_block = EmbedBlock(
         help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
-        icon="fa-s15",
+        icon="media",
         template="blocks/embed_block.html",
     )
