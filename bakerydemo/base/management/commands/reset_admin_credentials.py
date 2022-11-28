@@ -20,3 +20,17 @@ class Command(BaseCommand):
             )
             admin.username = settings.DEFAULT_ADMIN_USERNAME
             admin.save(update_fields=["username"])
+
+        if not admin.is_superuser:
+            self.stdout.write(
+                self.style.ERROR("Admin user wasn't a superuser - resetting...")
+            )
+            admin.is_superuser = True
+            admin.save(update_fields=["is_superuser"])
+
+        if not admin.is_active:
+            self.stdout.write(
+                self.style.ERROR("Admin user wasn't active - resetting...")
+            )
+            admin.is_active = True
+            admin.save(update_fields=["is_active"])

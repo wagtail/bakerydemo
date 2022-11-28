@@ -93,7 +93,6 @@ if settings.PREVENT_ADMIN_CREDENTIALS_CHANGE:
 
         See the `prevent_admin_changes` signal below for where the noop is done.
         """
-
         if user.id != settings.DEFAULT_ADMIN_PK:
             return
 
@@ -114,6 +113,21 @@ if settings.PREVENT_ADMIN_CREDENTIALS_CHANGE:
                 "You can't change the admin user's username. The username change was ignored.",
             )
 
+        # NOTE: Unchecking checkboxes in the Admin results in the fields being omitted from the POST.
+        if "is_superuser" not in request.POST:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                "The admin must always be a superuser. This change was ignored",
+            )
+
+        if "is_active" not in request.POST:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                "The admin must always be active. This change was ignored",
+            )
+
     @receiver(pre_save, sender=User)
     def prevent_admin_changes(sender, instance, *args, **kwargs):
         """
@@ -129,6 +143,12 @@ if settings.PREVENT_ADMIN_CREDENTIALS_CHANGE:
 
         if instance.username != settings.DEFAULT_ADMIN_USERNAME:
             instance.username = settings.DEFAULT_ADMIN_USERNAME
+
+        if not instance.is_active:
+            instance.is_active = True
+
+        if not instance.is_superuser:
+            instance.is_superuser = True
 
     @hooks.register("before_delete_user")
     def prevent_admin_delete(request, user):
