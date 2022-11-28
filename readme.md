@@ -46,7 +46,7 @@ Set up a development environment and run this demo website with a single click (
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
 
 Once Gitpod has fully started, and a preview of the bakery website has appeared in the "Simple Browser" panel, click the arrow button to the right of the URL bar to open the website in a new tab.
-Go to `/admin/` and login with `admin / changeme`.
+Go to `/admin/` and login with `admin / admin`.
 
 ## Setup with Vagrant
 
@@ -71,7 +71,7 @@ vagrant ssh
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
 interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
-Log into the admin with the credentials `admin / changeme`.
+Log into the admin with the credentials `admin / admin`.
 
 Use `Ctrl+c` to stop the local server. To stop the Vagrant environment, run `exit` then `vagrant halt`.
 
@@ -97,7 +97,7 @@ docker-compose up
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
 interface at [http://localhost:8000/admin/](http://localhost:8000/admin/).
 
-Log into the admin with the credentials `admin / changeme`.
+Log into the admin with the credentials `admin / admin`.
 
 **Important:** This `docker-compose.yml` is configured for local testing only, and is _not_ intended for production use.
 
@@ -144,7 +144,7 @@ To set up your database and load initial data, run the following commands:
     ./manage.py load_initial_data
     ./manage.py runserver
 
-Log into the admin with the credentials `admin / changeme`.
+Log into the admin with the credentials `admin / admin`.
 
 # Next steps
 

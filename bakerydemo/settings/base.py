@@ -523,7 +523,7 @@ LOGGING = {
 SHOW_DEMO_BANNER = os.getenv("SHOW_DEMO_BANNER", "false").lower() == "true"
 
 # Changing this? Be sure to update the initial data fixture
-DEFAULT_ADMIN_PASSWORD = "changeme"
+DEFAULT_ADMIN_PASSWORD = "admin"
 DEFAULT_ADMIN_USERNAME = "admin"
 DEFAULT_ADMIN_PK = 3
 
