@@ -64,8 +64,8 @@ class Person(
             [
                 FieldRowPanel(
                     [
-                        FieldPanel("first_name", classname="col6"),
-                        FieldPanel("last_name", classname="col6"),
+                        FieldPanel("first_name"),
+                        FieldPanel("last_name"),
                     ]
                 )
             ],
@@ -427,8 +427,8 @@ class FormPage(AbstractEmailForm):
             [
                 FieldRowPanel(
                     [
-                        FieldPanel("from_address", classname="col6"),
-                        FieldPanel("to_address", classname="col6"),
+                        FieldPanel("from_address"),
+                        FieldPanel("to_address"),
                     ]
                 ),
                 FieldPanel("subject"),
