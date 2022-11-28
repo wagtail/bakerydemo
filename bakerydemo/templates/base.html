@@ -21,6 +21,11 @@
         {# Prevent the demo site from being indexed #}
         <meta name="robots" content="noindex" />
 
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+            <base target="_blank">
+        {% endif %}
+
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         {% fontawesome_css %}
         <link rel="stylesheet" href="{% static 'css/font-marcellus.css' %}">
