@@ -91,7 +91,7 @@ if settings.PREVENT_ADMIN_CREDENTIALS_CHANGE:
         """
         Notify the user when they attempt to change the admin user's password that it won't work.
 
-        See the `prevent_user_password_change` signal below for where the noop is done.
+        See the `prevent_admin_changes` signal below for where the noop is done.
         """
 
         if user.id != settings.DEFAULT_ADMIN_PK:
