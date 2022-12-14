@@ -7,9 +7,9 @@ from wagtail.models import Orderable, Page
 from .blocks import BLOCKS
 
 
-class SpecialPage(Page):
+class RecipePage(Page):
     """
-    SpecialPage, to illustrate some special Wagtail scenario's
+    RecipePage, to illustrate some Recipe Wagtail scenario's
     """
 
     title_1 = models.CharField(max_length=255, default="Title 1")
@@ -44,7 +44,7 @@ class SpecialPage(Page):
 
 
 class Item(Orderable):
-    page = ParentalKey(SpecialPage, on_delete=models.CASCADE, related_name="items")
+    page = ParentalKey(RecipePage, on_delete=models.CASCADE, related_name="items")
     title_1 = models.CharField(max_length=255, default="Title 1")
     section_1 = StreamField(
         BLOCKS,
