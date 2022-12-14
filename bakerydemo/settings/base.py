@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "bakerydemo.blog",
     "bakerydemo.breads",
     "bakerydemo.locations",
-    "bakerydemo.specials",
+    "bakerydemo.recipes",
     "bakerydemo.search",
     "wagtail.contrib.search_promotions",
     "wagtail.contrib.forms",

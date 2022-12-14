@@ -16,7 +16,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
-class SpecialTableBlock(StructBlock):
+class RecipeTableBlock(StructBlock):
     title = CharBlock()
     description = TextBlock()
     table = TypedTableBlock(
@@ -29,7 +29,7 @@ class SpecialTableBlock(StructBlock):
     )
 
 
-class SpecialStreamBlock(StreamBlock):
+class RecipeStreamBlock(StreamBlock):
     page = PageChooserBlock()
     embed = EmbedBlock()
     image = ImageChooserBlock()
@@ -49,6 +49,6 @@ BLOCKS = [
     ("document", DocumentChooserBlock()),
     ("embed", EmbedBlock()),
     ("image", ImageChooserBlock()),
-    ("table", SpecialTableBlock()),
-    ("stream", SpecialStreamBlock()),
+    ("table", RecipeTableBlock()),
+    ("stream", RecipeStreamBlock()),
 ]

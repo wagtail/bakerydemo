@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="SpecialPage",
+            name="RecipePage",
             fields=[
                 (
                     "page_ptr",
@@ -393,7 +393,7 @@ class Migration(migrations.Migration):
                     modelcluster.fields.ParentalKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="items",
-                        to="specials.specialpage",
+                        to="recipes.recipepage",
                     ),
                 ),
             ],
