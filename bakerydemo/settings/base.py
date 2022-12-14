@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "wagtail.admin",
     "wagtail.api.v2",
     "wagtail.locales",
+    "wagtail.contrib.table_block",
     "wagtail.contrib.typed_table_block",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.routable_page",

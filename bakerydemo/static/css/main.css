@@ -404,6 +404,17 @@ blockquote .attribute-name {
   height: 100%;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
+:is(.block-table_block, .block-typed_table_block) :is(table, tr, td, th) {
+  border: 1px solid currentColor;
+  padding: 0.25em;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+:is(.block-table_block, .block-typed_table_block) table {
+  margin-bottom: 30px;
+}
+
 @media screen and (min-width: 768px) {
   .header,
   .footer {
