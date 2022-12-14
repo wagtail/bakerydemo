@@ -87,7 +87,7 @@ class LocationsIndexPage(Page):
         return self.get_children().specific().live()
 
     # Overrides the context to list all child
-    # items, that are live, by the date that they were published
+    # items, that are live, by the title alphabetical order.
     # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
