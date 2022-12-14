@@ -147,7 +147,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         FieldPanel("image"),
     ]
 
-    # Speficies that only BlogPage objects can live under this index page
+    # Specifies that only BlogPage objects can live under this index page
     subpage_types = ["BlogPage"]
 
     # Defines a method to access the children of the page (e.g. BlogPage
