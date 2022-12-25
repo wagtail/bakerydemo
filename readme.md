@@ -92,6 +92,7 @@ Run the following commands:
 git clone https://github.com/wagtail/bakerydemo.git
 cd bakerydemo
 docker-compose up --build -d
+docker-compose run app /venv/bin/python manage.py migrate
 docker-compose run app /venv/bin/python manage.py load_initial_data
 docker-compose up
 ```
