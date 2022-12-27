@@ -108,7 +108,7 @@ Log into the admin with the credentials `admin / changeme`.
 To tail the logs from the Docker containers in realtime, run:
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 ## Setup with Virtualenv
