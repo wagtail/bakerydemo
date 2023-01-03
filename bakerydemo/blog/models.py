@@ -110,8 +110,12 @@ class BlogPage(Page):
         """
         tags = self.tags.all()
         for tag in tags:
-            tag.url = "/" + "/".join(
-                s.strip("/") for s in [self.get_parent().url, "tags", tag.slug]
+            tag.url = (
+                "/"
+                + "/".join(
+                    s.strip("/") for s in [self.get_parent().url, "tags", tag.slug]
+                )
+                + "/"
             )
         return tags
 
