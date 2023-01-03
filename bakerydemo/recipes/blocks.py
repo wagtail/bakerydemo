@@ -25,8 +25,8 @@ class RecipeStepBlock(StructBlock):
     )
 
     class Meta:
-        template = 'blocks/recipe_step_block.html'
-        icon = 'tick'
+        template = "blocks/recipe_step_block.html"
+        icon = "tick"
 
 
 class RecipeStreamBlock(StreamBlock):
