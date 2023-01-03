@@ -406,7 +406,7 @@ blockquote .attribute-name {
 
 /* stylelint-disable-next-line selector-class-pattern */
 :is(.block-table_block, .block-typed_table_block) :is(table, tr, td, th) {
-  border: 1px solid currentColor;
+  border: 1px solid var(--dark);
   padding: 0.25em;
 }
 
