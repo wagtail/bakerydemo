@@ -92,7 +92,16 @@ Run the following commands:
 git clone https://github.com/wagtail/bakerydemo.git
 cd bakerydemo
 docker compose up --build -d
+```
+
+Wait 10 seconds for the database setup to complete. Then run:
+
+```bash
 docker compose run app /venv/bin/python manage.py load_initial_data
+```
+If this fails with a database error, wait 10 more seconds and re-try. Finally, run:
+
+```bash
 docker compose up
 ```
 
