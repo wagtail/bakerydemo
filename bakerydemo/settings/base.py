@@ -521,3 +521,5 @@ LOGGING = {
         },
     },
 }
+
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "changeme")
