@@ -1,138 +1,47 @@
-import os
-import random
-import string
+from .base import *  # noqa
 
-import dj_database_url
-import django_cache_url
+DEBUG = False
 
-from .base import *  # noqa: F403
+# Force HTTPS redirect (enabled by default!)
+# https://docs.djangoproject.com/en/stable/ref/settings/#secure-ssl-redirect
+SECURE_SSL_REDIRECT = True
 
-DEBUG = os.getenv("DJANGO_DEBUG", "off") == "on"
-
-# DJANGO_SECRET_KEY *should* be specified in the environment. If it's not, generate an ephemeral key.
-if "DJANGO_SECRET_KEY" in os.environ:
-    SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
-else:
-    # Use if/else rather than a default value to avoid calculating this if we don't need it
-    print(  # noqa: T201
-        "WARNING: DJANGO_SECRET_KEY not found in os.environ. Generating ephemeral SECRET_KEY."
-    )
-    SECRET_KEY = "".join(
-        [random.SystemRandom().choice(string.printable) for i in range(50)]
-    )
-
-# Make sure Django can detect a secure connection properly on Heroku:
+# This will allow the cache to swallow the fact that the website is behind TLS
+# and inform the Django using "X-Forwarded-Proto" HTTP header.
+# https://docs.djangoproject.com/en/stable/ref/settings/#secure-proxy-ssl-header
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# Redirect all requests to HTTPS
-SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT", "off") == "on"
+# This is a setting activating the HSTS header. This will enforce the visitors to use
+# HTTPS for an amount of time specified in the header. Since we are expecting our apps
+# to run via TLS by default, this header is activated by default.
+# The header can be deactivated by setting this setting to 0, as it is done in the
+# dev and testing settings.
+# https://docs.djangoproject.com/en/stable/ref/settings/#secure-hsts-seconds
+DEFAULT_HSTS_SECONDS = 30 * 24 * 60 * 60  # 30 days
+SECURE_HSTS_SECONDS = int(
+    os.environ.get("SECURE_HSTS_SECONDS", DEFAULT_HSTS_SECONDS)
+)  # noqa
 
-# Accept all hostnames, since we don't know in advance which hostname will be used for any given Heroku instance.
-# IMPORTANT: Set this to a real hostname when using this in production!
-# See https://docs.djangoproject.com/en/3.2/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(";")
+# Do not use the `includeSubDomains` directive for HSTS. This needs to be prevented
+# because the apps are running on client domains (or our own for staging), that are
+# being used for other applications as well. We should therefore not impose any
+# restrictions on these unrelated applications.
+# https://docs.djangoproject.com/en/3.2/ref/settings/#secure-hsts-include-subdomains
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# https://docs.djangoproject.com/en/stable/ref/settings/#secure-browser-xss-filter
+SECURE_BROWSER_XSS_FILTER = True
 
-# WAGTAILADMIN_BASE_URL required for notification emails
-WAGTAILADMIN_BASE_URL = "http://localhost:8000"
+# https://docs.djangoproject.com/en/stable/ref/settings/#secure-content-type-nosniff
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES["default"].update(db_from_env)
+# Referrer-policy header settings.
+# https://django-referrer-policy.readthedocs.io/en/1.0/
 
-# AWS creds may be used for S3 and/or Elasticsearch
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
-AWS_REGION = os.getenv("AWS_REGION", "")
+REFERRER_POLICY = os.environ.get(  # noqa
+    "SECURE_REFERRER_POLICY", "no-referrer-when-downgrade"
+).strip()
 
-# configure CACHES from CACHE_URL environment variable (defaults to locmem if no CACHE_URL is set)
-CACHES = {"default": django_cache_url.config()}
-
-# Configure Elasticsearch, if present in os.environ
-ELASTICSEARCH_ENDPOINT = os.getenv("ELASTICSEARCH_ENDPOINT", "")
-
-if ELASTICSEARCH_ENDPOINT:
-    from elasticsearch import RequestsHttpConnection
-
-    WAGTAILSEARCH_BACKENDS = {
-        "default": {
-            "BACKEND": "wagtail.search.backends.elasticsearch5",
-            "HOSTS": [
-                {
-                    "host": ELASTICSEARCH_ENDPOINT,
-                    "port": int(os.getenv("ELASTICSEARCH_PORT", "9200")),
-                    "use_ssl": os.getenv("ELASTICSEARCH_USE_SSL", "off") == "on",
-                    "verify_certs": os.getenv("ELASTICSEARCH_VERIFY_CERTS", "off")
-                    == "on",
-                }
-            ],
-            "OPTIONS": {
-                "connection_class": RequestsHttpConnection,
-            },
-        }
-    }
-
-    if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
-        from aws_requests_auth.aws_auth import AWSRequestsAuth
-
-        WAGTAILSEARCH_BACKENDS["default"]["HOSTS"][0]["http_auth"] = AWSRequestsAuth(
-            aws_access_key=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-            aws_token=os.getenv("AWS_SESSION_TOKEN", ""),
-            aws_host=ELASTICSEARCH_ENDPOINT,
-            aws_region=AWS_REGION,
-            aws_service="es",
-        )
-    elif AWS_REGION:
-        # No API keys in the environ, so attempt to discover them with Boto instead, per:
-        # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#configuring-credentials
-        # This may be useful if your credentials are obtained via EC2 instance meta data.
-        from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
-
-        WAGTAILSEARCH_BACKENDS["default"]["HOSTS"][0][
-            "http_auth"
-        ] = BotoAWSRequestsAuth(
-            aws_host=ELASTICSEARCH_ENDPOINT,
-            aws_region=AWS_REGION,
-            aws_service="es",
-        )
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-
-MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-if "AWS_STORAGE_BUCKET_NAME" in os.environ:
-    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
-    AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
-    AWS_AUTO_CREATE_BUCKET = True
-
-    INSTALLED_APPS.append("storages")
-    MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-if "GS_BUCKET_NAME" in os.environ:
-    GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME")
-    GS_PROJECT_ID = os.getenv("GS_PROJECT_ID")
-    GS_DEFAULT_ACL = "publicRead"
-    GS_AUTO_CREATE_BUCKET = True
-
-    INSTALLED_APPS.append("storages")
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
-        },
-    },
-}
+# Allow the redirect importer to work in load-balanced / cloud environments.
+# https://docs.wagtail.io/en/v2.13/reference/settings.html#redirects
+WAGTAIL_REDIRECTS_FILE_STORAGE = "cache"
