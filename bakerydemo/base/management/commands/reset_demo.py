@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
@@ -38,6 +37,4 @@ class Command(BaseCommand):
         call_command("load_initial_data")
 
         # 5. Change the admin password (in case it's different in this environment)
-        admin_user = User.objects.get(username="admin")
-        admin_user.set_password(settings.ADMIN_PASSWORD)
-        admin_user.save()
+        call_command("reset_admin_password")
