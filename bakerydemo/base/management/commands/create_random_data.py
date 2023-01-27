@@ -5,8 +5,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils import lorem_ipsum, timezone
 from django.utils.text import slugify
-from wagtail.core.rich_text import RichText
 from wagtail.images.models import Image
+from wagtail.rich_text import RichText
 from willow.image import Image as WillowImage
 
 from bakerydemo.base.models import FooterText, HomePage, Person, StandardPage
