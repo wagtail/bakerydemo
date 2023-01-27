@@ -1,3 +1,4 @@
+from wagtail import hooks
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
@@ -19,9 +20,17 @@ INSTALLED_APPS = (
 
 or see https://thegrouchy.dev/general/2015/12/06/wagtail-streamfield-icons.html
 
-This demo project includes the full font-awesome set via CDN in base.html, so the entire
-font-awesome icon set is available to you. Options are at https://fontawesome.com/icons .
+This demo project also includes the wagtail-font-awesome-svg package, allowing further icons to be
+installed as detailed here: https://github.com/allcaps/wagtail-font-awesome-svg#usage
 """
+
+
+@hooks.register("register_icons")
+def register_icons(icons):
+    return icons + [
+        "wagtailfontawesomesvg/solid/suitcase.svg",
+        "wagtailfontawesomesvg/solid/utensils.svg",
+    ]
 
 
 class BreadIngredientAdmin(ModelAdmin):
@@ -43,7 +52,7 @@ class BreadCountryAdmin(ModelAdmin):
 
 class BreadModelAdminGroup(ModelAdminGroup):
     menu_label = "Bread Categories"
-    menu_icon = "fa-suitcase"  # change as required
+    menu_icon = "suitcase"  # change as required
     menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
     items = (BreadIngredientAdmin, BreadTypeAdmin, BreadCountryAdmin)
 
@@ -51,7 +60,7 @@ class BreadModelAdminGroup(ModelAdminGroup):
 class PersonModelAdmin(ModelAdmin):
     model = Person
     menu_label = "People"  # ditch this to use verbose_name_plural from model
-    menu_icon = "fa-users"  # change as required
+    menu_icon = "group"  # change as required
     list_display = ("first_name", "last_name", "job_title", "thumb_image")
     list_filter = ("job_title",)
     search_fields = ("first_name", "last_name", "job_title")
@@ -65,7 +74,7 @@ class FooterTextAdmin(ModelAdmin):
 
 class BakeryModelAdminGroup(ModelAdminGroup):
     menu_label = "Bakery Misc"
-    menu_icon = "fa-cutlery"  # change as required
+    menu_icon = "utensils"  # change as required
     menu_order = 300  # will put in 4th place (000 being 1st, 100 2nd)
     items = (PersonModelAdmin, FooterTextAdmin)
 
