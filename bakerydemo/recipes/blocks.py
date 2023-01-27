@@ -1,7 +1,5 @@
 from django import forms
-from wagtail.contrib.table_block.blocks import TableBlock
-from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     CharBlock,
     ChoiceBlock,
     FloatBlock,
@@ -10,6 +8,8 @@ from wagtail.core.blocks import (
     StreamBlock,
     StructBlock,
 )
+from wagtail.contrib.table_block.blocks import TableBlock
+from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
