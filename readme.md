@@ -98,6 +98,7 @@ Wait 10 seconds for the database setup to complete. Then run:
 
 ```bash
 docker compose run app /venv/bin/python manage.py load_initial_data
+docker compose run app /venv/bin/python manage.py wagtail_update_image_renditions
 ```
 If this fails with a database error, wait 10 more seconds and re-try. Finally, run:
 
