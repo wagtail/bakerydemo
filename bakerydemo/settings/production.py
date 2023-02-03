@@ -33,8 +33,10 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(";")
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# WAGTAILADMIN_BASE_URL required for notification emails
-WAGTAILADMIN_BASE_URL = "http://localhost:8000"
+# This is used by Wagtail's email notifications for constructing absolute
+# URLs. Please set to the domain that users will access the admin site.
+if "PRIMARY_HOST" in os.environ:
+    WAGTAILADMIN_BASE_URL = "https://{}".format(os.environ["PRIMARY_HOST"])
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
