@@ -194,3 +194,5 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ("de", "Deutsch"),
     ("ar", "العربيّة"),
 ]
+
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "changeme")
