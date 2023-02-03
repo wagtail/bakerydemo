@@ -224,3 +224,27 @@ if (
         WAGTAILFRONTENDCACHE["default"].update(
             {"BEARER_TOKEN": os.environ["FRONTEND_CACHE_CLOUDFLARE_BEARER_TOKEN"]}
         )
+
+# Basic authentication settings
+# These are settings to configure the third-party library:
+# https://gitlab.com/tmkn/django-basic-auth-ip-whitelist
+if os.environ.get("BASIC_AUTH_ENABLED", "false").lower().strip() == "true":
+    # Insert basic auth as a first middleware to be checked first, before
+    # anything else.
+    MIDDLEWARE.insert(0, "baipw.middleware.BasicAuthIPWhitelistMiddleware")
+
+    # This is the credentials users will have to use to access the site.
+    BASIC_AUTH_LOGIN = os.environ.get("BASIC_AUTH_LOGIN", "wagtail")
+    BASIC_AUTH_PASSWORD = os.environ.get("BASIC_AUTH_PASSWORD", "wagtail")
+
+    # Wagtail requires Authorization header to be present for the previews
+    BASIC_AUTH_DISABLE_CONSUMING_AUTHORIZATION_HEADER = True
+
+    # This is the list of hosts that website can be accessed without basic auth
+    # check.
+    if "BASIC_AUTH_WHITELISTED_HTTP_HOSTS" in os.environ:
+        BASIC_AUTH_WHITELISTED_HTTP_HOSTS = os.environ[
+            "BASIC_AUTH_WHITELISTED_HTTP_HOSTS"
+        ].split(",")
+
+    BASIC_AUTH_RESPONSE_TEMPLATE = "base/basic_auth.html"
