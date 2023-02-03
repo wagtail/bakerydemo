@@ -157,6 +157,10 @@ if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = "private"
+    if "AWS_S3_CUSTOM_DOMAIN" in os.environ:
+        AWS_S3_CUSTOM_DOMAIN = os.environ["AWS_S3_CUSTOM_DOMAIN"]
+    if "AWS_S3_REGION_NAME" in os.environ:
+        AWS_S3_REGION_NAME = os.environ["AWS_S3_REGION_NAME"]
 
 if "GS_BUCKET_NAME" in os.environ:
     GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME")
