@@ -22,6 +22,7 @@ ADD requirements/ /requirements/
 RUN set -ex \
     && BUILD_DEPS=" \
         build-essential \
+        curl \
         git \
         libexpat1-dev \
         libjpeg62-turbo-dev \
