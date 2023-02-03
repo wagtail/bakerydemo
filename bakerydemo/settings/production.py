@@ -181,3 +181,45 @@ LOGGING = {
         },
     },
 }
+
+# Front-end cache
+# This configuration is used to allow purging pages from cache when they are
+# published.
+# These settings are usually used only on the production sites.
+# This is a configuration of the CDN/front-end cache that is used to cache the
+# production websites.
+# https://docs.wagtail.org/en/latest/reference/contrib/frontendcache.html
+# The backend can be configured to use an account-wide API key, or an API token with
+# restricted access.
+if (
+    "FRONTEND_CACHE_CLOUDFLARE_TOKEN" in os.environ
+    or "FRONTEND_CACHE_CLOUDFLARE_BEARER_TOKEN" in os.environ
+):
+    INSTALLED_APPS.append("wagtail.contrib.frontend_cache")
+    WAGTAILFRONTENDCACHE = {
+        "default": {
+            "BACKEND": "wagtail.contrib.frontend_cache.backends.CloudflareBackend",
+            "ZONEID": os.environ["FRONTEND_CACHE_CLOUDFLARE_ZONEID"],
+        }
+    }
+
+    if "FRONTEND_CACHE_CLOUDFLARE_TOKEN" in os.environ:
+        # To use an account-wide API key, set the following:
+        #  * $FRONTEND_CACHE_CLOUDFLARE_TOKEN
+        #  * $FRONTEND_CACHE_CLOUDFLARE_EMAIL
+        #  * $FRONTEND_CACHE_CLOUDFLARE_ZONEID
+        # These can be obtained from a sysadmin.
+        WAGTAILFRONTENDCACHE["default"].update(
+            {
+                "EMAIL": os.environ["FRONTEND_CACHE_CLOUDFLARE_EMAIL"],
+                "TOKEN": os.environ["FRONTEND_CACHE_CLOUDFLARE_TOKEN"],
+            }
+        )
+
+    else:
+        # To use an API token with restricted access, set the following:
+        #  * $FRONTEND_CACHE_CLOUDFLARE_BEARER_TOKEN
+        #  * $FRONTEND_CACHE_CLOUDFLARE_ZONEID
+        WAGTAILFRONTENDCACHE["default"].update(
+            {"BEARER_TOKEN": os.environ["FRONTEND_CACHE_CLOUDFLARE_BEARER_TOKEN"]}
+        )
