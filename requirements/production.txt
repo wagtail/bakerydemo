@@ -12,3 +12,4 @@ django-storages>=1.8,<1.9
 botocore>=1.12.33,<1.13
 aws-requests-auth==0.4.0
 django-redis==5.2.0
+django-basic-auth-ip-whitelist==0.5
