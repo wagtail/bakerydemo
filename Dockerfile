@@ -19,6 +19,8 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/*
 
 ADD requirements/ /requirements/
+ENV VIRTUAL_ENV=/venv PATH=/venv/bin:$PATH
+
 RUN set -ex \
     && BUILD_DEPS=" \
         build-essential \
@@ -31,9 +33,9 @@ RUN set -ex \
         zlib1g-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
-    && python3.9 -m venv /venv \
-    && /venv/bin/pip install -U pip \
-    && /venv/bin/pip install --no-cache-dir -r /requirements/production.txt \
+    && python3.9 -m venv ${VIRTUAL_ENV} \
+    && pip install -U pip \
+    && pip install --no-cache-dir -r /requirements/production.txt \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
@@ -47,7 +49,7 @@ EXPOSE 8000
 ENV DJANGO_SETTINGS_MODULE=bakerydemo.settings.production DJANGO_DEBUG=off
 
 # Call collectstatic with dummy environment variables:
-RUN DATABASE_URL=postgres://none REDIS_URL=none /venv/bin/python manage.py collectstatic --noinput
+RUN DATABASE_URL=postgres://none REDIS_URL=none python manage.py collectstatic --noinput
 
 # make sure static files are writable by uWSGI process
 RUN mkdir -p /code/bakerydemo/media/images && chown -R 1000:2000 /code/bakerydemo/media
@@ -59,4 +61,4 @@ VOLUME ["/code/bakerydemo/media/images/"]
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
-CMD ["/venv/bin/uwsgi", "/code/etc/uwsgi.ini"]
+CMD ["uwsgi", "/code/etc/uwsgi.ini"]
