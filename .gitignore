@@ -21,3 +21,4 @@ __pycache__
 /.vagrant/
 /Vagrantfile.local
 !.gitignore
+bakerydemo/collect_static

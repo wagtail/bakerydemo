@@ -7,3 +7,4 @@ venv
 *.md
 # Files which contain incompatible syntax.
 *.html
+bakerydemo/collect_static
