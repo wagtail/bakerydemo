@@ -3,7 +3,6 @@ import random
 import string
 
 import dj_database_url
-import django_cache_url
 
 from .base import *  # noqa: F403
 
@@ -45,8 +44,54 @@ AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 AWS_REGION = os.getenv("AWS_REGION", "")
 
-# configure CACHES from CACHE_URL environment variable (defaults to locmem if no CACHE_URL is set)
-CACHES = {"default": django_cache_url.config()}
+# Server-side cache settings. Do not confuse with front-end cache.
+# https://docs.djangoproject.com/en/stable/topics/cache/
+# If the server has a Redis instance exposed via a URL string in the REDIS_URL
+# environment variable, prefer that. Otherwise use the database backend. We
+# usually use Redis in production and database backend on staging and dev. In
+# order to use database cache backend you need to run
+# "./manage.py createcachetable" to create a table for the cache.
+#
+# Do not use the same Redis instance for other things like Celery!
+
+# Prefer the TLS connection URL over non
+REDIS_URL = os.environ.get("REDIS_TLS_URL", os.environ.get("REDIS_URL"))
+
+if REDIS_URL:
+    connection_pool_kwargs = {}
+
+    if REDIS_URL.startswith("rediss"):
+        # Heroku Redis uses self-signed certificates for secure redis connections
+        # When using TLS, we need to disable certificate validation checks.
+        connection_pool_kwargs["ssl_cert_reqs"] = None
+
+    redis_options = {
+        "IGNORE_EXCEPTIONS": True,
+        "SOCKET_CONNECT_TIMEOUT": 2,  # seconds
+        "SOCKET_TIMEOUT": 2,  # seconds
+        "CONNECTION_POOL_KWARGS": connection_pool_kwargs,
+    }
+
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL + "/0",
+            "OPTIONS": redis_options,
+        },
+        "renditions": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL + "/1",
+            "OPTIONS": redis_options,
+        },
+    }
+    DJANGO_REDIS_LOG_IGNORED_EXCEPTIONS = True
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "bakerydemo",
+        }
+    }
 
 # Configure Elasticsearch, if present in os.environ
 ELASTICSEARCH_ENDPOINT = os.getenv("ELASTICSEARCH_ENDPOINT", "")
