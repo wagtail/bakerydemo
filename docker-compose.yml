@@ -10,21 +10,24 @@ services:
     image: postgres:14.1
     expose:
       - '5432'
+
   redis:
     restart: unless-stopped
     image: redis:6.2
     expose:
       - '6379'
+
   app:
     environment:
       DJANGO_SECRET_KEY: changeme
       DATABASE_URL: postgres://app_user:changeme@db/app_db
-      CACHE_URL: redis://redis
+      REDIS_URL: redis://redis
+      DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
     build:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - media-root:/code/bakerydemo/media
+      - ./bakerydemo:/app/bakerydemo
     links:
       - db:db
       - redis:redis
@@ -33,5 +36,3 @@ services:
     depends_on:
       - db
       - redis
-volumes:
-  media-root:
