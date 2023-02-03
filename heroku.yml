@@ -1,0 +1,9 @@
+build:
+  docker:
+    web:
+      dockerfile: Dockerfile
+
+release:
+  image: web
+  command:
+    - /venv/bin/python manage.py migrate --noinput
