@@ -6,7 +6,6 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
-from bakerydemo.base.models import Person
 
 from .blocks import RecipeStreamBlock
 
@@ -104,13 +103,19 @@ class RecipePage(Page):
 
     def authors(self):
         """
-        Returns the BlogPage's related people. Again note that we are using
-        the ParentalKey's related_name from the BlogPersonRelationship model
+        Returns the RecipePage's related people. Again note that we are using
+        the ParentalKey's related_name from the RecipePersonRelationship model
         to access these objects. This allows us to access the Person objects
-        with a loop on the template. If we tried to access the blog_person_
-        relationship directly we'd print `blog.BlogPersonRelationship.None`
+        with a loop on the template. If we tried to access the recipe_person_
+        relationship directly we'd print `recipe.RecipePersonRelationship.None`
         """
-        return Person.objects.filter(live=True, person_recipe_relationship__page=self)
+        # Only return authors that are not in draft
+        return [
+            n.person
+            for n in self.recipe_person_relationship.filter(
+                person__live=True
+            ).select_related("person")
+        ]
 
     # Specifies parent to Recipe as being RecipeIndexPages
     parent_page_types = ["RecipeIndexPage"]

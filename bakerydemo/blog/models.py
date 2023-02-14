@@ -13,7 +13,6 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
-from bakerydemo.base.models import Person
 
 
 class BlogPersonRelationship(Orderable, models.Model):
@@ -99,7 +98,13 @@ class BlogPage(Page):
         with a loop on the template. If we tried to access the blog_person_
         relationship directly we'd print `blog.BlogPersonRelationship.None`
         """
-        return Person.objects.filter(live=True, person_blog_relationship__page=self)
+        # Only return authors that are not in draft
+        return [
+            n.person
+            for n in self.blog_person_relationship.filter(
+                person__live=True
+            ).select_related("person")
+        ]
 
     @property
     def get_tags(self):
