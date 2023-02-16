@@ -154,6 +154,7 @@ Next, we'll set up our local environment variables. We use [django-dotenv](https
 to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
 
     cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
+    touch .env
 
 To set up your database and load initial data, run the following commands:
 
