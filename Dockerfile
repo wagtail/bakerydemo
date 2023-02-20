@@ -19,7 +19,7 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/*
 
 ADD requirements/ /requirements/
-ENV VIRTUAL_ENV=/venv PATH=/venv/bin:$PATH
+ENV VIRTUAL_ENV=/venv PATH=/venv/bin:$PATH PYTHONPATH=/code/
 
 RUN set -ex \
     && BUILD_DEPS=" \
