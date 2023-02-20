@@ -6,7 +6,7 @@ ports:
 tasks:
   - init: |
       cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
-      echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.local" > .env
+      echo "DJANGO_SETTINGS_MODULE=bakerydemo.settings.dev" > .env
       python -m pip install -r requirements.txt
       python manage.py makemigrations
       python manage.py migrate

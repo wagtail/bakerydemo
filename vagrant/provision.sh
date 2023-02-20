@@ -31,7 +31,7 @@ chmod a+x $PROJECT_DIR/manage.py
 # copy local settings file
 cp $PROJECT_DIR/bakerydemo/settings/local.py.example $PROJECT_DIR/bakerydemo/settings/local.py
 # add .env file for django-dotenv environment variable definitions
-echo DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.local > $PROJECT_DIR/.env
+echo DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.dev > $PROJECT_DIR/.env
 
 if [ -n "$USE_POSTGRESQL" ]
 then
