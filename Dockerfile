@@ -61,4 +61,4 @@ VOLUME ["/code/bakerydemo/media/images/"]
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
-CMD ["uwsgi", "/code/etc/uwsgi.ini"]
+CMD ["/venv/bin/uwsgi", "/code/etc/uwsgi.ini"]

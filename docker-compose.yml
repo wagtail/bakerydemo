@@ -23,6 +23,7 @@ services:
       DATABASE_URL: postgres://app_user:changeme@db/app_db
       REDIS_URL: redis://redis
       DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
+      DJANGO_LOAD_INITIAL_DATA: "on"
     build:
       context: .
       dockerfile: ./Dockerfile
