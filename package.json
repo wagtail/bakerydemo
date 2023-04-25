@@ -9,8 +9,8 @@
   "devDependencies": {
     "eslint": "^8.8.0",
     "prettier": "^2.5.1",
-    "stylelint": "^14.2.0",
-    "stylelint-config-standard": "^26.0.0",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^33.0.0",
     "stylelint-config-prettier": "^9.0.3"
   },
   "scripts": {
