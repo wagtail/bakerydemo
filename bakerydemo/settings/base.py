@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "taggit",
     "wagtailfontawesomesvg",
     "debug_toolbar",
+    "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

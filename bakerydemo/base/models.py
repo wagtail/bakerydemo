@@ -79,6 +79,8 @@ class Person(
     search_fields = [
         index.SearchField("first_name"),
         index.SearchField("last_name"),
+        index.AutocompleteField("first_name"),
+        index.AutocompleteField("last_name"),
     ]
 
     @property
