@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import dj_database_url
 import os
 
 # Build paths inside the project like this: os.path.join(PROJECT_DIR, ...)
@@ -115,12 +116,17 @@ WSGI_APPLICATION = "bakerydemo.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "bakerydemodb"),
+if "DATABASE_URL" in os.environ:
+    DATABASES = {
+        "default": dj_database_url.config(conn_max_age=500)
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "bakerydemodb"),
+        }
+    }
 
 
 # Password validation

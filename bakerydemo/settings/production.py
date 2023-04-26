@@ -2,8 +2,6 @@ import os
 import random
 import string
 
-import dj_database_url
-
 from .base import *  # noqa: F403
 
 DEBUG = False
@@ -34,9 +32,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # URLs. Please set to the domain that users will access the admin site.
 if "PRIMARY_HOST" in os.environ:
     WAGTAILADMIN_BASE_URL = "https://{}".format(os.environ["PRIMARY_HOST"])
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES["default"].update(db_from_env)
 
 # AWS creds may be used for S3 and/or Elasticsearch
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
