@@ -1,0 +1,23 @@
+name: Bakerydemo CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build container
+        run: docker-compose build && docker-compose pull
+      - name: Run migrations
+        run: docker-compose run app /venv/bin/python manage.py migrate
+      - name: Load initial data
+        run: docker-compose run app /venv/bin/python manage.py load_initial_data
+      - name: Run tests
+        run: docker-compose run app /venv/bin/python manage.py test
