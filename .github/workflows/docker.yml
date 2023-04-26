@@ -1,4 +1,4 @@
-name: Bakerydemo CI
+name: Docker build
 
 on:
   push:
