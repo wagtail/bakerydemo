@@ -95,6 +95,7 @@ docker compose up --build -d
 After this command completes and returns to the command prompt, wait 10 more seconds for the database setup to complete. Then run:
 
 ```bash
+docker compose run app /venv/bin/python manage.py migrate
 docker compose run app /venv/bin/python manage.py load_initial_data
 ```
 If this fails with a database error, wait 10 more seconds and re-try. Finally, run:
