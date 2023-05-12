@@ -21,12 +21,10 @@ from wagtail.models import (
     RevisionMixin,
 )
 from wagtail.search import index
-from wagtail.snippets.models import register_snippet
 
 from .blocks import BaseStreamBlock
 
 
-@register_snippet
 class Person(
     DraftStateMixin,
     RevisionMixin,
@@ -36,8 +34,8 @@ class Person(
 ):
     """
     A Django model to store Person objects.
-    It uses the `@register_snippet` decorator to allow it to be accessible
-    via the Snippets UI (e.g. /admin/snippets/base/person/)
+    It is registered using `register_snippet` as a function in wagtail_hooks.py
+    to allow it to have a menu item within a custom menu item group.
 
     `Person` uses the `ClusterableModel`, which allows the relationship with
     another model to be stored locally to the 'parent' model (e.g. a PageModel)
@@ -79,6 +77,7 @@ class Person(
     search_fields = [
         index.SearchField("first_name"),
         index.SearchField("last_name"),
+        index.FilterField("job_title"),
         index.AutocompleteField("first_name"),
         index.AutocompleteField("last_name"),
     ]
@@ -137,11 +136,11 @@ class Person(
         verbose_name_plural = "People"
 
 
-@register_snippet
 class FooterText(DraftStateMixin, RevisionMixin, PreviewableMixin, models.Model):
     """
-    This provides editable text for the site footer. Again it uses the decorator
-    `register_snippet` to allow it to be accessible via the admin. It is made
+    This provides editable text for the site footer. Again it is registered
+    using `register_snippet` as a function in wagtail_hooks.py to be grouped
+    together with the Person model inside the same main menu item. It is made
     accessible on the template via a template tag defined in base/templatetags/
     navigation_tags.py
     """
