@@ -16,6 +16,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.models import (
     Collection,
     DraftStateMixin,
+    LockableMixin,
     Page,
     PreviewableMixin,
     RevisionMixin,
@@ -27,6 +28,7 @@ from .blocks import BaseStreamBlock
 
 class Person(
     DraftStateMixin,
+    LockableMixin,
     RevisionMixin,
     PreviewableMixin,
     index.Indexed,
