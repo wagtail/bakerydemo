@@ -20,6 +20,7 @@ from wagtail.models import (
     Page,
     PreviewableMixin,
     RevisionMixin,
+    TranslatableMixin,
     WorkflowMixin,
 )
 from wagtail.search import index
@@ -140,7 +141,13 @@ class Person(
         verbose_name_plural = "People"
 
 
-class FooterText(DraftStateMixin, RevisionMixin, PreviewableMixin, models.Model):
+class FooterText(
+    DraftStateMixin,
+    RevisionMixin,
+    PreviewableMixin,
+    TranslatableMixin,
+    models.Model,
+):
     """
     This provides editable text for the site footer. Again it is registered
     using `register_snippet` as a function in wagtail_hooks.py to be grouped
@@ -165,7 +172,7 @@ class FooterText(DraftStateMixin, RevisionMixin, PreviewableMixin, models.Model)
     def get_preview_context(self, request, mode_name):
         return {"footer_text": self.body}
 
-    class Meta:
+    class Meta(TranslatableMixin.Meta):
         verbose_name_plural = "Footer Text"
 
 
