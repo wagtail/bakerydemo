@@ -91,6 +91,8 @@
     "model": "base.footertext",
     "pk": 1,
     "fields": {
+      "translation_key": "ec7d7b66-559e-4ca8-8ece-bc23cd3c2a00",
+      "locale": 1,
       "latest_revision": null,
       "live": true,
       "has_unpublished_changes": false,
