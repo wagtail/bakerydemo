@@ -20,6 +20,7 @@ from wagtail.models import (
     Page,
     PreviewableMixin,
     RevisionMixin,
+    WorkflowMixin,
 )
 from wagtail.search import index
 
@@ -27,6 +28,7 @@ from .blocks import BaseStreamBlock
 
 
 class Person(
+    WorkflowMixin,
     DraftStateMixin,
     LockableMixin,
     RevisionMixin,
