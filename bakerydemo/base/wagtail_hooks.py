@@ -99,3 +99,108 @@ class BakerySnippetViewSetGroup(SnippetViewSetGroup):
 # you only need to register the ModelAdminGroup class with Wagtail:
 modeladmin_register(BreadModelAdminGroup)
 register_snippet(BakerySnippetViewSetGroup)
+
+from draftjs_exporter.dom import DOM
+from wagtail.admin.rich_text.converters.html_to_contentstate import InlineEntityElementHandler
+from wagtail.admin.rich_text.editors.draftail.features import ControlFeature, DecoratorFeature, EntityFeature, PluginFeature
+
+
+def stock_entity_decorator(props):
+    """
+    Draft.js ContentState to database HTML.
+    Converts the STOCK entities into a span tag.
+    """
+    return DOM.create_element('span', {
+        'data-stock': props['stock'],
+    }, props['children'])
+
+
+class StockEntityElementHandler(InlineEntityElementHandler):
+    """
+    Database HTML to Draft.js ContentState.
+    Converts the span tag into a STOCK entity, with the right data.
+    """
+    mutability = 'IMMUTABLE'
+
+    def get_attribute_data(self, attrs):
+        """
+        Take the `stock` value from the `data-stock` HTML attribute.
+        """
+        return {'stock': attrs['data-stock']}
+
+
+@hooks.register('register_rich_text_features')
+def register_stock_feature(features):
+    features.default_features.append('stock')
+    """
+    Registering the `stock` feature, which uses the `STOCK` Draft.js entity type,
+    and is stored as HTML with a `<span data-stock>` tag.
+    """
+    feature_name = 'stock'
+    type_ = 'STOCK'
+
+    control = {
+        'type': type_,
+        'label': '$',
+        'description': 'Stock',
+    }
+
+    features.register_editor_plugin(
+        'draftail', feature_name, EntityFeature(
+            control,
+            js=['draftail_stock.js'],
+        )
+    )
+
+    features.register_converter_rule('contentstate', feature_name, {
+        # Note here that the conversion is more complicated than for blocks and inline styles.
+        'from_database_format': {'span[data-stock]': StockEntityElementHandler(type_)},
+        'to_database_format': {'entity_decorators': {type_: stock_entity_decorator}},
+    })
+
+
+@hooks.register('register_rich_text_features')
+def register_sentences_counter(features):
+    feature_name = 'sentences'
+    features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail',
+        feature_name,
+        ControlFeature({
+            'type': feature_name,
+        },
+            js=['draftail_sentences.js'],
+        ),
+    )
+
+@hooks.register('register_rich_text_features')
+def register_punctuation_highlighter(features):
+    feature_name = 'punctuation'
+    features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail',
+        feature_name,
+        DecoratorFeature({
+            'type': feature_name,
+        },
+            js=['draftail_punctuation.js'],
+        ),
+    )
+
+
+@hooks.register('register_rich_text_features')
+def register_anchorify(features):
+    feature_name = 'anchorify'
+    features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail',
+        feature_name,
+        PluginFeature({
+            'type': feature_name,
+        },
+            js=['draftail_anchorify.js'],
+        ),
+    )
