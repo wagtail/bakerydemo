@@ -12,7 +12,7 @@
                 {% endif %}
             {% endblock %}
             {% block title_suffix %}
-                | The Wagtail Bakery
+                | {{ settings.base.SiteSettings.title_suffix }}
             {% endblock %}
         </title>
         <meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% endif %}">

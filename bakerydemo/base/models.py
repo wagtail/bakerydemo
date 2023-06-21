@@ -12,6 +12,11 @@ from wagtail.admin.panels import (
     PublishingPanel,
 )
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.settings.models import (
+    BaseGenericSetting,
+    BaseSiteSetting,
+    register_setting,
+)
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import (
     Collection,
@@ -447,4 +452,36 @@ class FormPage(AbstractEmailForm):
             ],
             "Email",
         ),
+    ]
+
+
+@register_setting
+class GenericSettings(ClusterableModel, BaseGenericSetting):
+    twitter_url = models.URLField(verbose_name="Twitter URL", blank=True)
+    github_url = models.URLField(verbose_name="GitHub URL", blank=True)
+    organisation_url = models.URLField(verbose_name="Organisation URL", blank=True)
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel("github_url"),
+                FieldPanel("twitter_url"),
+                FieldPanel("organisation_url"),
+            ],
+            "Social settings",
+        )
+    ]
+
+
+@register_setting
+class SiteSettings(BaseSiteSetting):
+    title_suffix = models.CharField(
+        verbose_name="Title suffix",
+        max_length=255,
+        help_text="The suffix for the title meta tag e.g. ' | The Wagtail Bakery'",
+        default="The Wagtail Bakery",
+    )
+
+    panels = [
+        FieldPanel("title_suffix"),
     ]
