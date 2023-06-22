@@ -1,93 +1,5 @@
 [
   {
-    "model": "base.person",
-    "pk": 1,
-    "fields": {
-      "latest_revision": null,
-      "live": true,
-      "has_unpublished_changes": false,
-      "first_published_at": null,
-      "last_published_at": null,
-      "live_revision": null,
-      "go_live_at": null,
-      "expire_at": null,
-      "expired": false,
-      "locked": false,
-      "locked_at": null,
-      "locked_by": null,
-      "first_name": "Roberta",
-      "last_name": "Johnson",
-      "job_title": "Editorial Manager",
-      "image": 8
-    }
-  },
-  {
-    "model": "base.person",
-    "pk": 2,
-    "fields": {
-      "latest_revision": null,
-      "live": true,
-      "has_unpublished_changes": false,
-      "first_published_at": null,
-      "last_published_at": null,
-      "live_revision": null,
-      "go_live_at": null,
-      "expire_at": null,
-      "expired": false,
-      "locked": false,
-      "locked_at": null,
-      "locked_by": null,
-      "first_name": "Olivia",
-      "last_name": "Ava",
-      "job_title": "Director",
-      "image": 52
-    }
-  },
-  {
-    "model": "base.person",
-    "pk": 3,
-    "fields": {
-      "latest_revision": null,
-      "live": true,
-      "has_unpublished_changes": false,
-      "first_published_at": null,
-      "last_published_at": null,
-      "live_revision": null,
-      "go_live_at": null,
-      "expire_at": null,
-      "expired": false,
-      "locked": false,
-      "locked_at": null,
-      "locked_by": null,
-      "first_name": "Lightnin'",
-      "last_name": "Hopkins",
-      "job_title": "Designer",
-      "image": 53
-    }
-  },
-  {
-    "model": "base.person",
-    "pk": 4,
-    "fields": {
-      "latest_revision": null,
-      "live": true,
-      "has_unpublished_changes": false,
-      "first_published_at": null,
-      "last_published_at": null,
-      "live_revision": null,
-      "go_live_at": null,
-      "expire_at": null,
-      "expired": false,
-      "locked": false,
-      "locked_at": null,
-      "locked_by": null,
-      "first_name": "Muddy",
-      "last_name": "Waters",
-      "job_title": "Assistant Editor",
-      "image": 51
-    }
-  },
-  {
     "model": "base.footertext",
     "pk": 1,
     "fields": {
@@ -178,6 +90,15 @@
       "default_value": "",
       "help_text": "What's on your mind?",
       "page": 69
+    }
+  },
+  {
+    "model": "base.genericsettings",
+    "pk": 1,
+    "fields": {
+      "twitter_url": "https://twitter.com/wagtailcms",
+      "github_url": "https://github.com/wagtail/wagtail",
+      "organisation_url": "https://wagtail.org/"
     }
   },
   {
@@ -1279,21 +1200,6 @@
     }
   },
   {
-    "model": "wagtailforms.formsubmission",
-    "pk": 1,
-    "fields": {
-      "form_data": {
-        "purpose": "Feedback",
-        "subject": "What's up?",
-        "body": "Love what you guys are doing with the site so far.",
-        "your_name": "Scot Hacker",
-        "your_email": "shacker@birdhouse.org"
-      },
-      "page": 69,
-      "submit_time": "2019-02-15T16:56:48.939Z"
-    }
-  },
-  {
     "model": "wagtailembeds.embed",
     "pk": 1,
     "fields": {
@@ -1380,6 +1286,21 @@
     }
   },
   {
+    "model": "wagtailforms.formsubmission",
+    "pk": 1,
+    "fields": {
+      "form_data": {
+        "purpose": "Feedback",
+        "subject": "What's up?",
+        "body": "Love what you guys are doing with the site so far.",
+        "your_name": "Scot Hacker",
+        "your_email": "shacker@birdhouse.org"
+      },
+      "page": 69,
+      "submit_time": "2019-02-15T16:56:48.939Z"
+    }
+  },
+  {
     "model": "wagtailcore.locale",
     "pk": 1,
     "fields": {
@@ -1440,6 +1361,13 @@
   {
     "model": "wagtailcore.workflowpage",
     "pk": 1,
+    "fields": {
+      "workflow": 1
+    }
+  },
+  {
+    "model": "wagtailcore.workflowcontenttype",
+    "pk": 4,
     "fields": {
       "workflow": 1
     }
@@ -3588,6 +3516,22 @@
     }
   },
   {
+    "model": "wagtailusers.userprofile",
+    "pk": 1,
+    "fields": {
+      "user": ["admin"],
+      "submitted_notifications": true,
+      "approved_notifications": true,
+      "rejected_notifications": true,
+      "updated_comments_notifications": true,
+      "preferred_language": "",
+      "current_time_zone": "",
+      "avatar": "",
+      "dismissibles": {},
+      "theme": "system"
+    }
+  },
+  {
     "model": "recipes.recipeindexpage",
     "pk": 80,
     "fields": {
@@ -3919,6 +3863,14 @@
     }
   },
   {
+    "model": "base.sitesettings",
+    "pk": 1,
+    "fields": {
+      "site": ["127.0.0.1", 8000],
+      "title_suffix": "The Wagtail Bakery"
+    }
+  },
+  {
     "model": "base.formpage",
     "pk": 69,
     "fields": {
@@ -3967,6 +3919,94 @@
       "introduction": "Things to know about this demo site",
       "image": 41,
       "body": "[{\"type\": \"paragraph_block\", \"value\": \"<h2>Welcome to the Wagtail Demo Site!</h2><p>If you've gotten this far, congratulations - you're running an instance of a killer content management system written for and on top of Django, <i>the framework for perfectionists with deadlines.</i></p><p>What does Wagtail get you that Django alone does not?\\u00a0</p><p></p><ul><li>Focus on content creators/managers, rather than developers (but developer-friendly!)</li><li>\\\"Page-centric\\\" content modeling</li><li>Beautiful, modern, intuitive user interface optimized for content people</li><li>Super-powerful hierarchical content management (\\\"content trees\\\")</li><li>User- and group-based permissions system attached to content hierarchies</li><li>Flexible image resizing with a ton of image display helpers</li><li>Innovative \\\"<a href=\\\"https://torchbox.com/blog/rich-text-fields-and-faster-horses/\\\">StreamFields</a>\\\" as an alternative to traditional \\\"anything goes\\\" rich text fields</li><li>Intuitive choosers for embedded Pages, Images, Documents and other content</li><li>Native integration with ElasticSearch to help you build powerful search features</li><li>Template tags to help create image renditions, smart links, and to navigate content trees</li></ul><p>If you're new to Wagtail, there are two primary paths to learning:</p><p></p><ul><li>The source code that powers this demo site</li><li>The official <a href=\\\"https://docs.wagtail.org/en/stable/getting_started/index.html\\\">tutorial</a></li></ul><p></p><p></p>\", \"id\": \"c6629b9b-3e70-4e30-a00c-b1ab878c8df9\"}]"
+    }
+  },
+  {
+    "model": "base.person",
+    "pk": 1,
+    "fields": {
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": null,
+      "last_published_at": null,
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "first_name": "Roberta",
+      "last_name": "Johnson",
+      "job_title": "Editorial Manager",
+      "image": 8
+    }
+  },
+  {
+    "model": "base.person",
+    "pk": 2,
+    "fields": {
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": null,
+      "last_published_at": null,
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "first_name": "Olivia",
+      "last_name": "Ava",
+      "job_title": "Director",
+      "image": 52
+    }
+  },
+  {
+    "model": "base.person",
+    "pk": 3,
+    "fields": {
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": null,
+      "last_published_at": null,
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "first_name": "Lightnin'",
+      "last_name": "Hopkins",
+      "job_title": "Designer",
+      "image": 53
+    }
+  },
+  {
+    "model": "base.person",
+    "pk": 4,
+    "fields": {
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": null,
+      "last_published_at": null,
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "first_name": "Muddy",
+      "last_name": "Waters",
+      "job_title": "Assistant Editor",
+      "image": 51
     }
   }
 ]

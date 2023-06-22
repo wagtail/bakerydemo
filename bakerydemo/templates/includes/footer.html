@@ -3,32 +3,42 @@
 <footer class="container">
     <div class="row">
         <div class="col-sm-12">
-            <ul class="list-inline">
-                <li class="footer__icon">
-                    <a href="https://github.com/wagtail/wagtail" target="_blank" rel="noreferrer" aria-label="View Wagtail's source code on GitHub">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                <li class="footer__icon">
-                    <a href="https://twitter.com/wagtailcms" target="_blank" rel="noreferrer" aria-label="Wagtail's official Twitter account">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                <li class="footer__icon">
-                    <a href="https://wagtail.org/" target="_blank" rel="noreferrer" aria-label="Wagtail's official website">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-link fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            </ul>
+            {% with twitter_url=settings.base.GenericSettings.twitter_url github_url=settings.base.GenericSettings.github_url organisation_url=settings.base.GenericSettings.organisation_url %}
+                {% if twitter_url or github_url or organisation_url %}
+                    <ul class="list-inline">
+                        {% if github_url %}
+                            <li class="footer__icon">
+                                <a href="{{ github_url }}" target="_blank" rel="noreferrer" aria-label="View Wagtail's source code on GitHub">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if twitter_url %}
+                            <li class="footer__icon">
+                                <a href="{{ twitter_url }}" target="_blank" rel="noreferrer" aria-label="Wagtail's official Twitter account">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if organisation_url %}
+                            <li class="footer__icon">
+                                <a href="{{ organisation_url }}" target="_blank" rel="noreferrer" aria-label="Wagtail's official website">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-link fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
             {% get_footer_text %}
         </div>
     </div>
