@@ -1538,8 +1538,8 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "password": "pbkdf2_sha256$600000$YPQGcDm5Snr8prYZtjFQ4F$8Lj9r/D0CaOLnWZN7AaeX3LkVuDrHxgOoXY/8Vp7MqI=",
-      "last_login": "2023-06-21T15:34:01.905Z",
+      "password": "pbkdf2_sha256$30000$eIoVnauBvLhA$aPWJSlHK+F/rW7SKunxJ/RnXNQHx0uh6K/kVRyPn0XY=",
+      "last_login": "2019-04-23T19:58:19.460Z",
       "is_superuser": true,
       "username": "admin",
       "first_name": "Admin",
