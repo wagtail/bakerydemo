@@ -1260,6 +1260,32 @@ footer {
   text-shadow: 0 0 7px rgb(0 0 0 / 50%);
 }
 
+.details-block {
+  margin-bottom: 0px;
+  background-color: var(--cream);
+  padding: 20px;
+  border: 1px solid var(--border-grey);
+}
+
+.details-block summary {
+  font-family: var(--font--secondary);
+  font-weight: 700;
+  font-size: var(--font-md);
+  line-height: 1.55;
+  cursor: pointer;
+}
+
+.details-block .details-content {
+  font-family: var(--font--secondary);
+  font-size: var(--font-md);
+  line-height: 1.55;
+  padding-top: 10px;
+}
+
+.details-block .details-content p {
+  margin-bottom: 0;
+}
+
 @media (min-width: 992px) {
   .bread-detail__meta {
     background-color: var(--cream);
