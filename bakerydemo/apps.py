@@ -9,4 +9,3 @@ class CustomImagesAppConfig(WagtailImagesAppConfig):
     default_attrs = {"decoding": "async", "loading": "lazy"}
 
 
-default_app_config = "bakerydemo.base.apps.CustomImagesAppConfig"
