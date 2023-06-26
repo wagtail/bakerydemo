@@ -1954,9 +1954,9 @@
       "locked_by": null,
       "title": "Appam",
       "draft_title": "Appam",
-      "slug": "appam-hoppers",
+      "slug": "appam",
       "content_type": ["breads", "breadpage"],
-      "url_path": "/home/breads/appam-hoppers/",
+      "url_path": "/home/breads/appam/",
       "owner": null,
       "seo_title": "",
       "show_in_menus": false,
@@ -2056,9 +2056,9 @@
       "locked_by": null,
       "title": "Baguette",
       "draft_title": "Baguette",
-      "slug": "baguette-french-stick-french-bread",
+      "slug": "baguette",
       "content_type": ["breads", "breadpage"],
-      "url_path": "/home/breads/baguette-french-stick-french-bread/",
+      "url_path": "/home/breads/baguette/",
       "owner": null,
       "seo_title": "",
       "show_in_menus": false,
@@ -2396,9 +2396,9 @@
       "locked_by": null,
       "title": "Hof",
       "draft_title": "Hof",
-      "slug": "new-york",
+      "slug": "hof",
       "content_type": ["locations", "locationpage"],
-      "url_path": "/home/locations/new-york/",
+      "url_path": "/home/locations/hof/",
       "owner": null,
       "seo_title": "",
       "show_in_menus": false,
@@ -2464,9 +2464,9 @@
       "locked_by": null,
       "title": "Vik",
       "draft_title": "Vik",
-      "slug": "london",
+      "slug": "vik",
       "content_type": ["locations", "locationpage"],
-      "url_path": "/home/locations/london/",
+      "url_path": "/home/locations/vik/",
       "owner": null,
       "seo_title": "",
       "show_in_menus": false,
@@ -2498,9 +2498,9 @@
       "locked_by": null,
       "title": "Selfoss",
       "draft_title": "Selfoss",
-      "slug": "wellington",
+      "slug": "selfoss",
       "content_type": ["locations", "locationpage"],
-      "url_path": "/home/locations/wellington/",
+      "url_path": "/home/locations/selfoss/",
       "owner": null,
       "seo_title": "",
       "show_in_menus": false,
@@ -2983,6 +2983,118 @@
       "search_description": "",
       "latest_revision_created_at": "2019-04-01T07:35:45.288Z",
       "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 1,
+    "fields": {
+      "old_path": "/locations/wellington",
+      "site": ["127.0.0.1", 8000],
+      "is_permanent": true,
+      "redirect_page": 67,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": true,
+      "created_at": "2019-06-23T09:02:31.074Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 3,
+    "fields": {
+      "old_path": "/locations/london",
+      "site": ["127.0.0.1", 8000],
+      "is_permanent": true,
+      "redirect_page": 66,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": true,
+      "created_at": "2019-06-23T09:02:36.735Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 5,
+    "fields": {
+      "old_path": "/locations/new-york",
+      "site": ["127.0.0.1", 8000],
+      "is_permanent": true,
+      "redirect_page": 64,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": true,
+      "created_at": "2019-06-23T09:02:42.453Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 7,
+    "fields": {
+      "old_path": "/breads/baguette-french-stick-french-bread",
+      "site": ["127.0.0.1", 8000],
+      "is_permanent": true,
+      "redirect_page": 40,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": true,
+      "created_at": "2019-06-23T09:03:48.304Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 8,
+    "fields": {
+      "old_path": "/breads/appam-hoppers",
+      "site": ["127.0.0.1", 8000],
+      "is_permanent": true,
+      "redirect_page": 36,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": true,
+      "created_at": "2019-06-23T09:04:10.810Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 9,
+    "fields": {
+      "old_path": "/github",
+      "site": null,
+      "is_permanent": true,
+      "redirect_page": null,
+      "redirect_page_route_path": "",
+      "redirect_link": "https://github.com/wagtail/bakerydemo",
+      "automatically_created": false,
+      "created_at": "2019-06-23T09:06:27.319Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 10,
+    "fields": {
+      "old_path": "/latest",
+      "site": null,
+      "is_permanent": false,
+      "redirect_page": 62,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": false,
+      "created_at": "2019-06-23T09:07:34.359Z"
+    }
+  },
+  {
+    "model": "wagtailredirects.redirect",
+    "pk": 11,
+    "fields": {
+      "old_path": "/breads/baguete",
+      "site": null,
+      "is_permanent": true,
+      "redirect_page": 40,
+      "redirect_page_route_path": "",
+      "redirect_link": "",
+      "automatically_created": false,
+      "created_at": "2019-06-23T09:08:36.064Z"
     }
   },
   {
