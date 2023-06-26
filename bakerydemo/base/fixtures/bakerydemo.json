@@ -2926,35 +2926,35 @@
   },
   {
     "model": "wagtailcore.page",
-    "pk": 84,
+    "pk": 87,
     "fields": {
       "path": "00010002000A",
       "depth": 3,
       "numchild": 0,
-      "translation_key": "0a226869-f7d2-42c7-b374-bb28689a9512",
+      "translation_key": "b0899639-6d67-44a3-a260-ca20622c9f7a",
       "locale": 1,
-      "latest_revision": 19,
+      "latest_revision": 25,
       "live": true,
       "has_unpublished_changes": false,
-      "first_published_at": "2023-06-25T12:28:33.089Z",
-      "last_published_at": "2023-06-26T17:02:08.382Z",
-      "live_revision": 19,
+      "first_published_at": "2023-06-26T20:18:04.033Z",
+      "last_published_at": "2023-06-26T20:18:04.033Z",
+      "live_revision": 25,
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
       "locked": false,
       "locked_at": null,
       "locked_by": null,
-      "title": "Frequently Asked Questions (FAQ)",
-      "draft_title": "Frequently Asked Questions (FAQ)",
-      "slug": "faq-page",
+      "title": "FAQ",
+      "draft_title": "FAQ",
+      "slug": "faq",
       "content_type": ["base", "standardpage"],
-      "url_path": "/home/faq-page/",
+      "url_path": "/home/faq/",
       "owner": ["admin"],
       "seo_title": "",
-      "show_in_menus": false,
+      "show_in_menus": true,
       "search_description": "",
-      "latest_revision_created_at": "2023-06-26T17:02:08.311Z",
+      "latest_revision_created_at": "2023-06-26T20:18:03.970Z",
       "alias_of": null
     }
   },
@@ -4070,12 +4070,12 @@
   },
   {
     "model": "base.standardpage",
-    "pk": 84,
+    "pk": 87,
     "fields": {
       "introduction": "Welcome to the FAQ page of BakeryDemo! Here you'll find answers to commonly asked questions about BakeryDemo, Wagtail CMS, and how to contribute. Browse the questions below to find the information you need. Click on a question to reveal the answer.\r\n\r\nIf you have any other questions or need further assistance, feel free to reach out to us. Enjoy your experience with BakeryDemo and Wagtail!",
       "image": null,
       "body": "[]",
-      "questions": "[{\"type\": \"details_block\", \"value\": {\"summary\": \"What is BakeryDemo?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">BakeryDemo is a Wagtail-powered website that serves as a demonstration of the features and functionalities of the Wagtail Content Management System.</p>\", \"open\": true}, \"id\": \"bdc8d962-b2e0-43f6-bc33-607710eba376\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"What is Wagtail?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">Wagtail is a flexible and user-friendly open-source CMS built on the Python web framework Django. It allows you to create and manage websites with ease.</p>\", \"open\": true}, \"id\": \"c05d26a8-bd82-4d05-8a57-767ac27581b3\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"Where can I find the Wagtail documentation?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">You can find the official Wagtail documentation at the following link: <a href=\\\"https://docs.wagtail.org/en/stable/index.html\\\"><b>Wagtail Documentation</b></a></p>\", \"open\": true}, \"id\": \"e2040d5f-9eb3-4176-a930-bb05d5836a54\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to BakeryDemo?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">We welcome contributions to BakeryDemo! You can find detailed guidelines and instructions on how to contribute in our <a href=\\\"https://github.com/wagtail/bakerydemo/blob/main/contributing.md\\\"><b>BakeryDemo Contribution Guide</b></a>.</p>\", \"open\": true}, \"id\": \"471ce463-3c64-4ecc-bb77-ade69d2ea716\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to the Wagtail project?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">If you&#x27;re interested in contributing to the Wagtail project itself, you can find information on how to get involved and contribute in the official <a href=\\\"https://docs.wagtail.org/en/latest/contributing/index.html\\\"><b>Wagtail Contribution Guide</b></a>.</p>\", \"open\": false}, \"id\": \"cabfcdd9-ae8e-4b54-90ca-e9a729394db9\"}]"
+      "questions": "[{\"type\": \"details_block\", \"value\": {\"summary\": \"What is BakeryDemo?\", \"content\": \"<p data-block-key=\\\"n7mge\\\">BakeryDemo is a sample website designed to showcase the capabilities of the Wagtail Content Management System.</p>\", \"open\": true}, \"id\": \"7e9eed6f-4fbf-40bc-8f97-da2d9dbc3c30\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"What is Wagtail?\", \"content\": \"<p data-block-key=\\\"n7mge\\\">Wagtail is a flexible and user-friendly open-source CMS built on the Python web framework Django. It allows you to create and manage websites with ease.</p>\", \"open\": true}, \"id\": \"578d9793-583a-4fb9-87a1-852567509289\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"Where can I find the Wagtail documentation?\", \"content\": \"<p data-block-key=\\\"n7mge\\\">You can find the official Wagtail documentation at the following link: <a href=\\\"https://docs.wagtail.org/en/stable/index.html\\\"><b>Wagtail Documentation</b></a></p>\", \"open\": true}, \"id\": \"c336165e-cdbe-4318-a684-24c2bab11e05\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to BakeryDemo?\", \"content\": \"<p data-block-key=\\\"n7mge\\\">We welcome contributions to BakeryDemo! You can find detailed guidelines and instructions on how to contribute in our <a href=\\\"https://github.com/wagtail/bakerydemo/blob/main/contributing.md\\\"><b>BakeryDemo Contribution Guide</b></a>.</p>\", \"open\": true}, \"id\": \"9a3e7be1-2dc3-4ebb-bb4b-e6168e27460a\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to the Wagtail project?\", \"content\": \"<p data-block-key=\\\"n7mge\\\">If you&#x27;re interested in contributing to the Wagtail project itself, you can find information on how to get involved and contribute in the official <a href=\\\"https://docs.wagtail.org/en/latest/contributing/index.html\\\"><b>Wagtail Contribution Guide</b></a>.</p>\", \"open\": true}, \"id\": \"ab2af4da-ca7a-4abc-9240-5fc0c9c91f55\"}]"
     }
   },
   {
