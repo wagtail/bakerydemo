@@ -30,7 +30,7 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
-from .blocks import BaseStreamBlock
+from .blocks import BaseStreamBlock, DetailsBlock, DetailsStreamBlock
 
 
 class Person(
@@ -200,10 +200,14 @@ class StandardPage(Page):
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
+    questions = StreamField(
+        DetailsStreamBlock(), verbose_name="Questions", blank=True, use_json_field=True
+    )
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
+        FieldPanel("questions")
     ]
 
 

@@ -69,7 +69,7 @@ class DetailsBlock(StructBlock):
 
     summary = CharBlock(required=True)
     content = RichTextBlock(required=True)
-    open = BooleanBlock(required=False, default=False)
+    open = BooleanBlock(required=False, default=True, label="Open", help_text="Open by default")
 
     class Meta:
         icon = "collapse-down"
@@ -93,4 +93,11 @@ class BaseStreamBlock(StreamBlock):
         icon="media",
         template="blocks/embed_block.html",
     )
+    details_block = DetailsBlock()
+
+# StreamBlocks for Details
+class DetailsStreamBlock(StreamBlock):
+    """
+    Define the custom blocks that `StreamField` will utilize
+    """
     details_block = DetailsBlock()
