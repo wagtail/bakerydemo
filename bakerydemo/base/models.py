@@ -29,6 +29,7 @@ from wagtail.models import (
     WorkflowMixin,
 )
 from wagtail.search import index
+
 from .blocks import BaseStreamBlock, DetailsStreamBlock
 
 
