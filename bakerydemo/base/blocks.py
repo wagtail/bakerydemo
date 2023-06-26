@@ -6,9 +6,9 @@ from wagtail.blocks import (
     StructBlock,
     TextBlock,
 )
+from wagtail.blocks.field_block import BooleanBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.blocks.field_block import BooleanBlock
 
 
 class ImageBlock(StructBlock):
