@@ -30,7 +30,7 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
-from .blocks import BaseStreamBlock, DetailsBlock, DetailsStreamBlock
+from .blocks import BaseStreamBlock, DetailsStreamBlock
 
 
 class Person(
