@@ -3545,10 +3545,10 @@
       "height": 773,
       "created_at": "2019-02-23T08:18:10.895Z",
       "uploaded_by_user": ["admin"],
-      "focal_point_x": null,
-      "focal_point_y": null,
-      "focal_point_width": null,
-      "focal_point_height": null,
+      "focal_point_x": 519,
+      "focal_point_y": 414,
+      "focal_point_width": 632,
+      "focal_point_height": 567,
       "file_size": 213288,
       "file_hash": ""
     }
@@ -3602,10 +3602,10 @@
       "height": 678,
       "created_at": "2019-03-22T06:13:09.773Z",
       "uploaded_by_user": ["admin"],
-      "focal_point_x": null,
-      "focal_point_y": null,
-      "focal_point_width": null,
-      "focal_point_height": null,
+      "focal_point_x": 322,
+      "focal_point_y": 319,
+      "focal_point_width": 601,
+      "focal_point_height": 570,
       "file_size": 87095,
       "file_hash": ""
     }
@@ -3621,10 +3621,10 @@
       "height": 683,
       "created_at": "2019-03-22T06:29:18.751Z",
       "uploaded_by_user": ["admin"],
-      "focal_point_x": null,
-      "focal_point_y": null,
-      "focal_point_width": null,
-      "focal_point_height": null,
+      "focal_point_x": 465,
+      "focal_point_y": 291,
+      "focal_point_width": 923,
+      "focal_point_height": 582,
       "file_size": 117057,
       "file_hash": ""
     }
