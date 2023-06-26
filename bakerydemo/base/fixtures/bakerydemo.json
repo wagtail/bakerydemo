@@ -96,9 +96,9 @@
     "model": "base.genericsettings",
     "pk": 1,
     "fields": {
-      "twitter_url": "https://twitter.com/wagtailcms",
-      "github_url": "https://github.com/wagtail/wagtail",
-      "organisation_url": "https://wagtail.org/"
+      "twitter_url": "",
+      "github_url": "",
+      "organisation_url": ""
     }
   },
   {
@@ -1301,6 +1301,118 @@
     }
   },
   {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 1,
+    "fields": {
+      "query_string": "hot bun"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 2,
+    "fields": {
+      "query_string": "hot gross"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 3,
+    "fields": {
+      "query_string": "cross"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 4,
+    "fields": {
+      "query_string": "hot cross"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 5,
+    "fields": {
+      "query_string": "bolani"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 6,
+    "fields": {
+      "query_string": "black bread"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 7,
+    "fields": {
+      "query_string": "breads"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 1,
+    "fields": {
+      "query": 1,
+      "date": "2023-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 2,
+    "fields": {
+      "query": 2,
+      "date": "2023-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 3,
+    "fields": {
+      "query": 3,
+      "date": "2023-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 4,
+    "fields": {
+      "query": 4,
+      "date": "2023-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 5,
+    "fields": {
+      "query": 5,
+      "date": "2023-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 6,
+    "fields": {
+      "query": 6,
+      "date": "2023-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 7,
+    "fields": {
+      "query": 7,
+      "date": "2023-06-26",
+      "hits": 1
+    }
+  },
+  {
     "model": "wagtailcore.locale",
     "pk": 1,
     "fields": {
@@ -1538,8 +1650,8 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "password": "pbkdf2_sha256$30000$eIoVnauBvLhA$aPWJSlHK+F/rW7SKunxJ/RnXNQHx0uh6K/kVRyPn0XY=",
-      "last_login": "2019-04-23T19:58:19.460Z",
+      "password": "pbkdf2_sha256$600000$2VSATQ4haBclzsL7pJedON$hD7CRqSErn5KkoMM6r+DEQUcqn5CyjwPdfwbtESukVc=",
+      "last_login": "2023-06-26T14:04:59.220Z",
       "is_superuser": true,
       "username": "admin",
       "first_name": "Admin",
@@ -1699,12 +1811,12 @@
       "numchild": 0,
       "translation_key": "8c3db6f9-d293-4275-baf9-840132947d36",
       "locale": 1,
-      "latest_revision": null,
+      "latest_revision": 16,
       "live": true,
       "has_unpublished_changes": false,
       "first_published_at": "2019-02-10T13:00:21.882Z",
-      "last_published_at": null,
-      "live_revision": null,
+      "last_published_at": "2023-06-26T15:00:44.177Z",
+      "live_revision": 16,
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
@@ -1720,7 +1832,7 @@
       "seo_title": "",
       "show_in_menus": false,
       "search_description": "",
-      "latest_revision_created_at": "2019-02-25T08:27:47.625Z",
+      "latest_revision_created_at": "2023-06-26T15:00:44.108Z",
       "alias_of": null
     }
   },
@@ -2070,7 +2182,7 @@
     "fields": {
       "path": "00010002",
       "depth": 2,
-      "numchild": 7,
+      "numchild": 9,
       "translation_key": "0a325c4d-e292-46ba-b4f1-c4b7e4663c77",
       "locale": 1,
       "latest_revision": null,
@@ -2809,6 +2921,40 @@
       "show_in_menus": false,
       "search_description": "",
       "latest_revision_created_at": "2019-04-01T07:35:45.288Z",
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 84,
+    "fields": {
+      "path": "00010002000A",
+      "depth": 3,
+      "numchild": 0,
+      "translation_key": "0a226869-f7d2-42c7-b374-bb28689a9512",
+      "locale": 1,
+      "latest_revision": 19,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2023-06-25T12:28:33.089Z",
+      "last_published_at": "2023-06-26T17:02:08.382Z",
+      "live_revision": 19,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Frequently Asked Questions (FAQ)",
+      "draft_title": "Frequently Asked Questions (FAQ)",
+      "slug": "faq-page",
+      "content_type": ["base", "standardpage"],
+      "url_path": "/home/faq-page/",
+      "owner": ["admin"],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": "2023-06-26T17:02:08.311Z",
       "alias_of": null
     }
   },
@@ -3662,7 +3808,7 @@
     "fields": {
       "introduction": "It is not readily agreed exactly when or where the bread originated, except it existed before 1850 in Rockport, Massachusetts. It is thought to have come from the local fishing community, but it may have come through the Finnish community of local stonecutters.",
       "image": 26,
-      "body": "[]",
+      "body": "[{\"type\": \"details_block\", \"value\": {\"summary\": \"Why is it called Anadama bread?\", \"content\": \"<p data-block-key=\\\"3uddq\\\">One day when he came in from fishing, he found the same corn meal mush and molasses for dinner and being very tired of it, he decided to mix it with bread flour and yeast and baked it saying, &quot;Anna Damn Her.&quot; The bread was so delicious that his neighbors baked it calling it Anadama Bread.</p>\", \"open\": false}, \"id\": \"7051d31f-444c-4c71-8320-414bb4042ea6\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"What is the origin of Anadama bread?\", \"content\": \"<p data-block-key=\\\"3uddq\\\">Anadama bread is believed to have originated in New England, particularly in Massachusetts, USA. It is named after a local fisherman&#x27;s wife, Anna, who is said to have created the recipe. Anadama bread has a rich history and has become a beloved traditional bread in the region, known for its unique flavor and texture.</p>\", \"open\": false}, \"id\": \"15c76799-398a-454d-a035-82930fe8e8f7\"}]",
       "origin": 3,
       "bread_type": 4,
       "ingredients": []
@@ -3918,7 +4064,18 @@
     "fields": {
       "introduction": "Things to know about this demo site",
       "image": 41,
-      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<h2>Welcome to the Wagtail Demo Site!</h2><p>If you've gotten this far, congratulations - you're running an instance of a killer content management system written for and on top of Django, <i>the framework for perfectionists with deadlines.</i></p><p>What does Wagtail get you that Django alone does not?\\u00a0</p><p></p><ul><li>Focus on content creators/managers, rather than developers (but developer-friendly!)</li><li>\\\"Page-centric\\\" content modeling</li><li>Beautiful, modern, intuitive user interface optimized for content people</li><li>Super-powerful hierarchical content management (\\\"content trees\\\")</li><li>User- and group-based permissions system attached to content hierarchies</li><li>Flexible image resizing with a ton of image display helpers</li><li>Innovative \\\"<a href=\\\"https://torchbox.com/blog/rich-text-fields-and-faster-horses/\\\">StreamFields</a>\\\" as an alternative to traditional \\\"anything goes\\\" rich text fields</li><li>Intuitive choosers for embedded Pages, Images, Documents and other content</li><li>Native integration with ElasticSearch to help you build powerful search features</li><li>Template tags to help create image renditions, smart links, and to navigate content trees</li></ul><p>If you're new to Wagtail, there are two primary paths to learning:</p><p></p><ul><li>The source code that powers this demo site</li><li>The official <a href=\\\"https://docs.wagtail.org/en/stable/getting_started/index.html\\\">tutorial</a></li></ul><p></p><p></p>\", \"id\": \"c6629b9b-3e70-4e30-a00c-b1ab878c8df9\"}]"
+      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<h2>Welcome to the Wagtail Demo Site!</h2><p>If you've gotten this far, congratulations - you're running an instance of a killer content management system written for and on top of Django, <i>the framework for perfectionists with deadlines.</i></p><p>What does Wagtail get you that Django alone does not?\\u00a0</p><p></p><ul><li>Focus on content creators/managers, rather than developers (but developer-friendly!)</li><li>\\\"Page-centric\\\" content modeling</li><li>Beautiful, modern, intuitive user interface optimized for content people</li><li>Super-powerful hierarchical content management (\\\"content trees\\\")</li><li>User- and group-based permissions system attached to content hierarchies</li><li>Flexible image resizing with a ton of image display helpers</li><li>Innovative \\\"<a href=\\\"https://torchbox.com/blog/rich-text-fields-and-faster-horses/\\\">StreamFields</a>\\\" as an alternative to traditional \\\"anything goes\\\" rich text fields</li><li>Intuitive choosers for embedded Pages, Images, Documents and other content</li><li>Native integration with ElasticSearch to help you build powerful search features</li><li>Template tags to help create image renditions, smart links, and to navigate content trees</li></ul><p>If you're new to Wagtail, there are two primary paths to learning:</p><p></p><ul><li>The source code that powers this demo site</li><li>The official <a href=\\\"https://docs.wagtail.org/en/stable/getting_started/index.html\\\">tutorial</a></li></ul><p></p><p></p>\", \"id\": \"c6629b9b-3e70-4e30-a00c-b1ab878c8df9\"}]",
+      "questions": "[]"
+    }
+  },
+  {
+    "model": "base.standardpage",
+    "pk": 84,
+    "fields": {
+      "introduction": "Welcome to the FAQ page of BakeryDemo! Here you'll find answers to commonly asked questions about BakeryDemo, Wagtail CMS, and how to contribute. Browse the questions below to find the information you need. Click on a question to reveal the answer.\r\n\r\nIf you have any other questions or need further assistance, feel free to reach out to us. Enjoy your experience with BakeryDemo and Wagtail!",
+      "image": null,
+      "body": "[]",
+      "questions": "[{\"type\": \"details_block\", \"value\": {\"summary\": \"What is BakeryDemo?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">BakeryDemo is a Wagtail-powered website that serves as a demonstration of the features and functionalities of the Wagtail Content Management System.</p>\", \"open\": true}, \"id\": \"bdc8d962-b2e0-43f6-bc33-607710eba376\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"What is Wagtail?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">Wagtail is a flexible and user-friendly open-source CMS built on the Python web framework Django. It allows you to create and manage websites with ease.</p>\", \"open\": true}, \"id\": \"c05d26a8-bd82-4d05-8a57-767ac27581b3\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"Where can I find the Wagtail documentation?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">You can find the official Wagtail documentation at the following link: <a href=\\\"https://docs.wagtail.org/en/stable/index.html\\\"><b>Wagtail Documentation</b></a></p>\", \"open\": true}, \"id\": \"e2040d5f-9eb3-4176-a930-bb05d5836a54\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to BakeryDemo?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">We welcome contributions to BakeryDemo! You can find detailed guidelines and instructions on how to contribute in our <a href=\\\"https://github.com/wagtail/bakerydemo/blob/main/contributing.md\\\"><b>BakeryDemo Contribution Guide</b></a>.</p>\", \"open\": true}, \"id\": \"471ce463-3c64-4ecc-bb77-ade69d2ea716\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to the Wagtail project?\", \"content\": \"<p data-block-key=\\\"r5h7g\\\">If you&#x27;re interested in contributing to the Wagtail project itself, you can find information on how to get involved and contribute in the official <a href=\\\"https://docs.wagtail.org/en/latest/contributing/index.html\\\"><b>Wagtail Contribution Guide</b></a>.</p>\", \"open\": false}, \"id\": \"cabfcdd9-ae8e-4b54-90ca-e9a729394db9\"}]"
     }
   },
   {
