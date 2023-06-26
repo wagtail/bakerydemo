@@ -1301,6 +1301,125 @@
     }
   },
   {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 1,
+    "fields": {
+      "query_string": "patisserie"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 2,
+    "fields": {
+      "query_string": "baguette"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 3,
+    "fields": {
+      "query_string": "hofn"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 4,
+    "fields": {
+      "query_string": "baguete"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.query",
+    "pk": 5,
+    "fields": {
+      "query_string": "hoppers"
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 1,
+    "fields": {
+      "query": 1,
+      "date": "2019-06-23",
+      "hits": 15
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 2,
+    "fields": {
+      "query": 2,
+      "date": "2019-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 3,
+    "fields": {
+      "query": 3,
+      "date": "2019-06-23",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 4,
+    "fields": {
+      "query": 4,
+      "date": "2019-06-23",
+      "hits": 6
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 5,
+    "fields": {
+      "query": 4,
+      "date": "2019-06-26",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.querydailyhits",
+    "pk": 6,
+    "fields": {
+      "query": 2,
+      "date": "2019-06-26",
+      "hits": 1
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.searchpromotion",
+    "pk": 1,
+    "fields": {
+      "query": 1,
+      "page": 63,
+      "sort_order": 0,
+      "description": ""
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.searchpromotion",
+    "pk": 2,
+    "fields": {
+      "query": 4,
+      "page": 40,
+      "sort_order": 0,
+      "description": ""
+    }
+  },
+  {
+    "model": "wagtailsearchpromotions.searchpromotion",
+    "pk": 3,
+    "fields": {
+      "query": 5,
+      "page": 36,
+      "sort_order": 0,
+      "description": ""
+    }
+  },
+  {
     "model": "wagtailcore.locale",
     "pk": 1,
     "fields": {
