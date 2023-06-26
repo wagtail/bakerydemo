@@ -11,7 +11,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.blocks.field_block import BooleanBlock
 
 
-
 class ImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
@@ -69,13 +68,15 @@ class DetailsBlock(StructBlock):
 
     summary = CharBlock(required=True)
     content = RichTextBlock(required=True)
-    open = BooleanBlock(required=False, default=True, label="Open", help_text="Open by default")
+    open = BooleanBlock(
+        required=False, default=True, label="Open", help_text="Open by default"
+    )
 
     class Meta:
         icon = "collapse-down"
         template = "blocks/details_block.html"
-        
-        
+
+
 # StreamBlocks
 class BaseStreamBlock(StreamBlock):
     """
@@ -95,9 +96,11 @@ class BaseStreamBlock(StreamBlock):
     )
     details_block = DetailsBlock()
 
+
 # StreamBlocks for Details
 class DetailsStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
     """
+    
     details_block = DetailsBlock()

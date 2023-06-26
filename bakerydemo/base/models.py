@@ -207,7 +207,7 @@ class StandardPage(Page):
         FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
-        FieldPanel("questions")
+        FieldPanel("questions"),
     ]
 
 
