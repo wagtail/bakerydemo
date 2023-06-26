@@ -102,5 +102,5 @@ class DetailsStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
     """
-    
+        
     details_block = DetailsBlock()
