@@ -1261,7 +1261,7 @@ footer {
 }
 
 .details-block {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   background-color: var(--cream);
   padding: 20px;
   border: 1px solid var(--border-grey);
