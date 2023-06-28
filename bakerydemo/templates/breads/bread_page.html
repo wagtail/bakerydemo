@@ -19,6 +19,9 @@
                         <div class="hidden-md-down">
                             {{ page.body }}
                         </div>
+                        {% if page.questions %}
+                            {{page.questions}}
+                        {% endif %}
                     </div>
                 </div>
 
