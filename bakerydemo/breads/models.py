@@ -98,7 +98,7 @@ class BreadPage(Page):
     )
     questions = StreamField(
         DetailsStreamBlock(), verbose_name="Questions", blank=True, use_json_field=True
-    )   
+    )
     origin = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
