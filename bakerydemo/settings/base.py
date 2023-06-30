@@ -204,3 +204,32 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
 ]
 
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "changeme")
+
+# Content Security policy settings
+# http://django-csp.readthedocs.io/en/latest/configuration.html
+
+# Only enable CSP when enabled through environment variables.
+if "CSP_DEFAULT_SRC" in os.environ:
+    MIDDLEWARE.append("csp.middleware.CSPMiddleware")
+
+    # Only report violations, don't enforce policy
+    CSP_REPORT_ONLY = True
+
+    # The “special” source values of 'self', 'unsafe-inline', 'unsafe-eval', and 'none' must be quoted!
+    # e.g.: CSP_DEFAULT_SRC = "'self'" Without quotes they will not work as intended.
+
+    CSP_DEFAULT_SRC = os.environ.get("CSP_DEFAULT_SRC").split(",")
+    if "CSP_SCRIPT_SRC" in os.environ:
+        CSP_SCRIPT_SRC = os.environ.get("CSP_SCRIPT_SRC").split(",")
+    if "CSP_STYLE_SRC" in os.environ:
+        CSP_STYLE_SRC = os.environ.get("CSP_STYLE_SRC").split(",")
+    if "CSP_IMG_SRC" in os.environ:
+        CSP_IMG_SRC = os.environ.get("CSP_IMG_SRC").split(",")
+    if "CSP_CONNECT_SRC" in os.environ:
+        CSP_CONNECT_SRC = os.environ.get("CSP_CONNECT_SRC").split(",")
+    if "CSP_FONT_SRC" in os.environ:
+        CSP_FONT_SRC = os.environ.get("CSP_FONT_SRC").split(",")
+    if "CSP_BASE_URI" in os.environ:
+        CSP_BASE_URI = os.environ.get("CSP_BASE_URI").split(",")
+    if "CSP_OBJECT_SRC" in os.environ:
+        CSP_OBJECT_SRC = os.environ.get("CSP_OBJECT_SRC").split(",")
