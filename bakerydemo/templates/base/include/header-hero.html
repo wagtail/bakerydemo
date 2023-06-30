@@ -1,8 +1,8 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% if page.image %}
-    {% image page.image fill-1920x600 as image %}
-    <div class="container-fluid hero" style="background-image:url('{{ image.url }}')">
+    <div class="container-fluid hero">
+        {% image page.image fill-1920x600 class="hero-image" alt="" %}
         <div class="hero__container">
             <h1 class="hero__title">{{ page.title }}</h1>
         </div>

@@ -280,11 +280,17 @@ figure img {
 
 /* Hero image area */
 .hero {
-  background-size: cover;
-  background-position: center;
   padding: 300px 0 0;
   position: relative;
   margin: 0 0 10px;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 768px) {
