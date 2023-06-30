@@ -791,20 +791,11 @@ footer {
 }
 
 .footer__icon a {
-  color: var(--cream);
-  font-size: 1.5rem;
-}
-
-.footer__icon .fa-inverse {
+  display: inline-grid;
+  background-color: var(--cream);
   color: var(--orange);
-}
-
-.footer__icon:hover a {
-  color: var(--orange);
-}
-
-.footer__icon:hover .fa-inverse {
-  color: var(--cream);
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
 .copyright p {
