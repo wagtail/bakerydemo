@@ -155,7 +155,7 @@ Next, we'll set up our local environment variables. We use [django-dotenv](https
 to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
 
     cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
-    touch .env
+    cp .env.example .env
 
 To set up your database and load initial data, run the following commands:
 
@@ -207,6 +207,13 @@ In production on your own site, you'll need to change this to:
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
 and configure [SMTP settings](https://docs.djangoproject.com/en/3.2/topics/email/#smtp-backend) appropriate for your email provider.
+
+## Testing Content-Security-Policy compliance in Wagtail
+
+Bakerydemo is set up in such a way that it can be used to test [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) compatibility in Wagtail. It uses [django-csp](https://django-csp.readthedocs.io/en/latest/index.html) to generate the appropriate [CSP HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy).
+
+By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet. Set the `CSP_DEFAULT_SRC` environment variable in your `.env` file to set the default policy. An example can be found in `.env.example`.
+
 
 ### Ownership of demo content
 
