@@ -1676,7 +1676,7 @@
     "pk": 4,
     "fields": {
       "password": "pbkdf2_sha256$600000$vDpqnaE6Nb6yc4r0v9Z6MK$xHyp2mJ1UZOhNnmjgOF8Id8W8gIbif8xyCS8Vj0NICU=",
-      "last_login": null,
+      "last_login": "2019-04-23T19:58:19.460Z",
       "is_superuser": false,
       "username": "editor",
       "first_name": "Editor",
@@ -1694,7 +1694,7 @@
     "pk": 5,
     "fields": {
       "password": "pbkdf2_sha256$600000$f90XskzX2N06T8lOwkce0h$vgXRvkERlpJprzpbPs532+Q7Tw6hACddA0wYWck8u1Y=",
-      "last_login": null,
+      "last_login": "2019-04-23T19:58:19.460Z",
       "is_superuser": false,
       "username": "moderator",
       "first_name": "Moderator",
@@ -1712,7 +1712,7 @@
     "pk": 6,
     "fields": {
       "password": "pbkdf2_sha256$600000$zQKWzgiFtsrRNaYd2owW0c$Y5NyUP57J53f4YV7JfP+AUMBGFvHd3QGHQv4O7UhSLQ=",
-      "last_login": null,
+      "last_login": "2019-04-23T19:58:19.460Z",
       "is_superuser": true,
       "username": "inactive",
       "first_name": "Inactive",
@@ -1721,6 +1721,42 @@
       "is_staff": false,
       "is_active": false,
       "date_joined": "2019-02-17T08:03:33.700Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$HfWLDvRsEWtiAVtHTIex9v$FZJZ5U5KpkMcXFHRXh+y3PThUVgJx7pVqT/hePR/oDo=",
+      "last_login": "2019-04-23T19:58:19.460Z",
+      "is_superuser": true,
+      "username": "german",
+      "first_name": "German",
+      "last_name": "User",
+      "email": "german@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-02-17T08:04:33.700Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$54BR3OOHXVwLAX05PqFeFI$h9vYXGoqC5pzAd1XPY0fo+IiQx5zabzDx936NQ4cbfg=",
+      "last_login": "2019-04-23T19:59:19.460Z",
+      "is_superuser": true,
+      "username": "arabic",
+      "first_name": "Arabic",
+      "last_name": "User",
+      "email": "arabic@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-02-17T08:05:33.700Z",
       "groups": [],
       "user_permissions": []
     }
@@ -3811,6 +3847,54 @@
       "updated_comments_notifications": true,
       "preferred_language": "",
       "current_time_zone": "",
+      "avatar": "",
+      "dismissibles": {},
+      "theme": "system"
+    }
+  },
+  {
+    "model": "wagtailusers.userprofile",
+    "pk": 2,
+    "fields": {
+      "user": ["editor"],
+      "submitted_notifications": true,
+      "approved_notifications": true,
+      "rejected_notifications": true,
+      "updated_comments_notifications": true,
+      "preferred_language": "",
+      "current_time_zone": "",
+      "avatar": "",
+      "dismissibles": {},
+      "theme": "system"
+    }
+  },
+  {
+    "model": "wagtailusers.userprofile",
+    "pk": 3,
+    "fields": {
+      "user": ["german"],
+      "submitted_notifications": true,
+      "approved_notifications": true,
+      "rejected_notifications": true,
+      "updated_comments_notifications": true,
+      "preferred_language": "de",
+      "current_time_zone": "Europe/Berlin",
+      "avatar": "",
+      "dismissibles": {},
+      "theme": "system"
+    }
+  },
+  {
+    "model": "wagtailusers.userprofile",
+    "pk": 4,
+    "fields": {
+      "user": ["arabic"],
+      "submitted_notifications": true,
+      "approved_notifications": true,
+      "rejected_notifications": true,
+      "updated_comments_notifications": true,
+      "preferred_language": "ar",
+      "current_time_zone": "Asia/Beirut",
       "avatar": "",
       "dismissibles": {},
       "theme": "system"
