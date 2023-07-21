@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.cache import caches
 from django.core.files.storage import default_storage
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
@@ -33,8 +34,12 @@ class Command(BaseCommand):
         # 3. Rebuild database
         call_command("migrate", interactive=False)
 
-        # 4. Re-import data
+        # 4. Clear caches
+        for cache in caches.all():
+            cache.clear()
+
+        # 5. Re-import data
         call_command("load_initial_data")
 
-        # 5. Change the admin password (in case it's different in this environment)
+        # 6. Change the admin password (in case it's different in this environment)
         call_command("reset_admin_password")
