@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.routable_page",
     "wagtail.contrib.table_block",
     "wagtail.contrib.typed_table_block",
-    "wagtail.contrib.modeladmin",
+    "wagtail_modeladmin",
     "wagtail.contrib.search_promotions",
     "wagtail.contrib.settings",
     "wagtail.contrib.simple_translation",
