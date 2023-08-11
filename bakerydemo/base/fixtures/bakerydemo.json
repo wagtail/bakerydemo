@@ -3901,6 +3901,22 @@
     }
   },
   {
+    "model": "wagtailusers.userprofile",
+    "pk": 5,
+    "fields": {
+      "user": ["moderator"],
+      "submitted_notifications": true,
+      "approved_notifications": true,
+      "rejected_notifications": true,
+      "updated_comments_notifications": true,
+      "preferred_language": "",
+      "current_time_zone": "",
+      "avatar": "",
+      "dismissibles": {},
+      "theme": "system"
+    }
+  },
+  {
     "model": "recipes.recipeindexpage",
     "pk": 80,
     "fields": {
