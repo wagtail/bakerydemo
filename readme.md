@@ -216,56 +216,16 @@ By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet
 
 ### Users included in demo data
 
-The demo data includes some extra users with different roles and preferences. You can use these users to quickly test the permission system in Wagtail or how localization is handled in the admin interface.
+The demo data includes users with different roles and preferences. You can use these users to quickly test the permission system in Wagtail or how localization is handled in the admin interface.
 
-
-#### Admin
-
-- Username: *admin*
-- Password: *changeme*
-- Superuser: yes
-- Groups: none
-
-#### Editor
-
-- Username: *editor*
-- Password: *changeme*
-- Superuser: no
-- Groups: Editors
-
-#### Moderator
-
-- Username: *moderator*
-- Password: *changeme*
-- Superuser: no
-- Groups: Moderators
-
-#### Inactive
-
-Note: this user is marked as inactive and cannot log in to the admin interface.
-
-- Username: *inactive*
-- Password: *changeme*
-- Superuser: yes
-- Groups: none
-
-#### German
-
-Note: this user has their preferred language set to German and their timezone to Europe/Berlin.
-
-- Username: *german*
-- Password: *changeme*
-- Superuser: yes
-- Groups: none
-
-#### Arabic
-
-Note: this user has their preferred language set to Arabic and their timezone to Asia/Beirut.
-
-- Username: *arabic*
-- Password: *changeme*
-- Superuser: yes
-- Groups: none
+| Username    | Password   | Superuser | Groups     | Preferred language | Timezone      | Active |
+| ----------- | ---------- | --------- | ---------- | ------------------ | ------------- | ------ |
+| `admin`     | `changeme` | Yes       | None       | undefined          | undefined     | Yes    |
+| `editor`    | `changeme` | No        | Editors    | undefined          | undefined     | Yes    |
+| `moderator` | `changeme` | No        | Moderators | undefined          | undefined     | Yes    |
+| `inactive`  | `changeme` | yes       | None       | undefined          | undefined     | No     |
+| `german`    | `changeme` | yes       | None       | German             | Europe/Berlin | Yes    |
+| `arabic`    | `changeme` | yes       | None       | Arabic             | Asia/Beirut   | Yes    |
 
 ### Ownership of demo content
 
