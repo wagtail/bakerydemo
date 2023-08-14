@@ -1,6 +1,6 @@
 from wagtail import hooks
 from wagtail.admin.userbar import AccessibilityItem
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
     modeladmin_register,

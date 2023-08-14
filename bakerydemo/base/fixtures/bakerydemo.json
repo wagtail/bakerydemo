@@ -1774,7 +1774,7 @@
     "fields": {
       "group": ["Moderators"],
       "page": 1,
-      "permission_type": "add"
+      "permission": ["add_page", "wagtailcore", "page"]
     }
   },
   {
@@ -1783,7 +1783,7 @@
     "fields": {
       "group": ["Moderators"],
       "page": 1,
-      "permission_type": "edit"
+      "permission": ["change_page", "wagtailcore", "page"]
     }
   },
   {
@@ -1792,7 +1792,7 @@
     "fields": {
       "group": ["Moderators"],
       "page": 1,
-      "permission_type": "publish"
+      "permission": ["publish_page", "wagtailcore", "page"]
     }
   },
   {
@@ -1801,7 +1801,7 @@
     "fields": {
       "group": ["Editors"],
       "page": 1,
-      "permission_type": "add"
+      "permission": ["add_page", "wagtailcore", "page"]
     }
   },
   {
@@ -1810,7 +1810,7 @@
     "fields": {
       "group": ["Editors"],
       "page": 1,
-      "permission_type": "edit"
+      "permission": ["change_page", "wagtailcore", "page"]
     }
   },
   {
@@ -1819,7 +1819,7 @@
     "fields": {
       "group": ["Moderators"],
       "page": 1,
-      "permission_type": "lock"
+      "permission": ["lock_page", "wagtailcore", "page"]
     }
   },
   {
@@ -1828,7 +1828,7 @@
     "fields": {
       "group": ["Moderators"],
       "page": 1,
-      "permission_type": "unlock"
+      "permission": ["unlock_page", "wagtailcore", "page"]
     }
   },
   {
