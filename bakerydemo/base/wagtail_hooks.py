@@ -1,12 +1,8 @@
 from wagtail import hooks
 from wagtail.admin.userbar import AccessibilityItem
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin,
-    ModelAdminGroup,
-    modeladmin_register,
-)
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
+from wagtail_modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
 from bakerydemo.base.models import FooterText, Person
 from bakerydemo.breads.models import BreadIngredient, BreadType, Country
