@@ -12,6 +12,7 @@ from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from django_components import component
 
 from bakerydemo.base.blocks import BlockQuote, HeadingBlock, ImageBlock
 
