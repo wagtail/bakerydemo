@@ -75,7 +75,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    "django_components",
+    "django_components.safer_staticfiles",
     "django.contrib.sitemaps",
 ]
 
@@ -100,7 +101,6 @@ TEMPLATES = [
         "DIRS": [
             "bakerydemo/templates",
         ],
-        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -109,6 +109,16 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "wagtail.contrib.settings.context_processors.settings",
             ],
+            'loaders': [(
+                'django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                    'django_components.template_loader.Loader',
+                ]
+            )],
+            'builtins': [
+                'django_components.templatetags.component_tags',
+            ]
         },
     },
 ]
@@ -173,6 +183,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
+    os.path.join(PROJECT_DIR, "components"),
 ]
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, "collect_static")

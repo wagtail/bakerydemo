@@ -1,5 +1,0 @@
-node_modules
-venv
-.venv
-*.min.css
-bakerydemo/collect_static
