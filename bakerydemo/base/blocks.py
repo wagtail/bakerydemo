@@ -68,7 +68,7 @@ class BaseStreamBlock(StreamBlock):
 
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
-        icon="pilcrow", template="blocks/paragraph_block.html"
+        icon="pilcrow", template="blocks/paragraph_block.html", editor="secondary"
     )
     image_block = ImageBlock()
     block_quote = BlockQuote()

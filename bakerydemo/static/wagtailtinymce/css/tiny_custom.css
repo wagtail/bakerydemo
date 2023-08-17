@@ -1,0 +1,25 @@
+@media (min-width: 970px) {
+  .struct-block.column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1.5em;
+  }
+
+  .struct-block.column-layout > .field {
+    min-width: calc(50% - 1.5em);
+    margin-right: 1.5em;
+  }
+
+  .struct-block.column-layout > .field + .field {
+    padding-top: 0;
+    padding-bottom: 0.5em;
+  }
+
+  /*.struct-block.column-layout > .field[data-contentpath="header"] {*/
+  /*  width: 100%;*/
+  /*}*/
+
+  .struct-block.column-layout > .field[data-contentpath="column_one"], .field[data-contentpath="column_two"]  {
+    flex: 1;
+  }
+}

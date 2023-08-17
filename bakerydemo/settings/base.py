@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "bakerydemo.locations",
     "bakerydemo.recipes",
     "bakerydemo.search",
+    "bakerydemo.tinymce_editor",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -68,6 +69,7 @@ INSTALLED_APPS = [
     "taggit",
     "wagtail_modeladmin",
     "wagtailfontawesomesvg",
+    "wagtailvideos",
     "debug_toolbar",
     "django_extensions",
     "django.contrib.admin",
@@ -236,3 +238,10 @@ if "CSP_DEFAULT_SRC" in os.environ:
 
 
 WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
+
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    "secondary": {
+        "WIDGET": "bakerydemo.tinymce_editor.widget.TinyMCERichTextArea",
+    }
+}

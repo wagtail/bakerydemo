@@ -13,7 +13,7 @@ run:
 
 
 migrations:
-	$(MANAGE) migrations
+	$(MANAGE) makemigrations
 
 
 migrate:
