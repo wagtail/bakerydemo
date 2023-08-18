@@ -8,6 +8,15 @@
         // Create link
         a = document.createElement('a');
         a.setAttribute('href', pageData.url);
+        if(pageData.rel === true){
+            a.setAttribute('rel', 'nofollow');
+        }
+        if(pageData.target === true){
+            a.setAttribute('target', '_blank');
+        }
+        if(pageData.download === true){
+            a.setAttribute('download', pageData.title ? pageData.title:'File');
+        }
         if (pageData.id) {
             a.setAttribute('data-id', pageData.id);
             a.setAttribute('data-parent-id', pageData.parentId);
@@ -100,13 +109,21 @@
                 }
 
                 urlParams['link_text'] = currentText;
+                urlParams['target'] = $targetNode.attr('target');
+                urlParams['download'] = $targetNode.attr('download');
+                const rel_attr = $targetNode.attr('rel');
+                if(rel_attr !== undefined){
+                    if(rel_attr.split(' ').includes('nofollow')){
+                        urlParams['rel'] = $targetNode.attr('rel');
+                    }
+                }
 
                 ModalWorkflow({
                     url: url,
                     urlParams: urlParams,
                     onload: PAGE_CHOOSER_MODAL_ONLOAD_HANDLERS,
                     responses: {
-                        chosen: function(pageData) {
+                        pageChosen: function(pageData) {
                             editor.undoManager.transact(function() {
                                 editor.focus();
                                 insertElement(createLink(pageData, currentText));
