@@ -1,4 +1,4 @@
-from bakerydemo.tinymce_editor.patched_external_link import patched_external_link
+from src.tinymce_editor.patched_external_link import patched_external_link
 
 
 class ExternalLinkRedirectMiddleware:
