@@ -1,0 +1,54 @@
+{% extends "wagtailadmin/generic/chooser/results.html" %}
+{% load i18n wagtailadmin_tags %}
+
+{% block listing_title %}<h2>{% trans "Latest videos" %}</h2>{% endblock %}
+
+{% block results_listing %}
+    <ul class="listing horiz images chooser">
+        {% for video in results %}
+            <li>
+                <a
+                    data-chooser-modal-choice
+                    class="image-choice"
+                    title="{{ video.title }}"
+                    href="{% url 'wagtailvideos_chooser:chosen' video.id %}"
+                >
+                    <figure>
+                        {% if video.thumbnail %}
+                            <img
+                                src="{{ video.thumbnail.url }}"
+                                width="165"
+                                height="165"
+                                class="show-transparency"
+                                alt="{% trans 'Video thumbnail' %}"
+                            />
+                        {% else %}
+                            <img
+                                width="165"
+                                height="165"
+                                class="show-transparency"
+                                alt=""
+                            />
+                        {% endif %}
+                        <figcaption>{{ video.title|ellipsistrim:60 }}</figcaption>
+                    </figure>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block no_items_message %}
+    <p>
+        {% if is_filtering_by_collection %}
+            {% trans "You haven't uploaded any videos in this collection." %}
+        {% else %}
+            {% trans "You haven't uploaded any videos." %}
+        {% endif %}
+        {% if can_create %}
+            {% blocktrans trimmed %}
+                Why not <a class="upload-one-now" href="#tab-upload" data-tab-trigger>upload one now</a>?
+            {% endblocktrans %}
+        {% endif %}
+    </p>
+{% endblock %}

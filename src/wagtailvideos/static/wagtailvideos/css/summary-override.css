@@ -1,0 +1,18 @@
+section.summary > .stats {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+section.summary > .stats::before {
+    display: none !important;
+}
+
+section.summary > .stats > li {
+    display: flex !important;
+}
+
+@media only screen and (max-width: 50em) {
+    section.summary > .stats {
+       grid-template-columns: repeat(2, 1fr);
+    }
+}
