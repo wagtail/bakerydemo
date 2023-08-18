@@ -18,6 +18,7 @@ django-extensions = "^3.2.3"
 django-csp = "^3.7"
 dj-database-url = "^2.1.0"
 django-components = "^0.28.1"
+django-environ = "^0.10.0"
 
 
 [build-system]
