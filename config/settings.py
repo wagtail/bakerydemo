@@ -212,7 +212,7 @@ GOOGLE_MAP_API_KEY = "AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw"
 WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.database",
-        "INDEX": "bakerydemo",
+        "INDEX": "src",
     },
 }
 
@@ -264,6 +264,6 @@ WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     "secondary": {
-        "WIDGET": "bakerydemo.tinymce_editor.widget.TinyMCERichTextArea",
+        "WIDGET": "src.tinymce_editor.widget.TinyMCERichTextArea",
     }
 }
