@@ -1,33 +1,19 @@
-from django import forms
 from wagtail.blocks import (
     CharBlock,
-    ChoiceBlock,
     FloatBlock,
     ListBlock,
     RichTextBlock,
     StreamBlock,
-    StructBlock,
 )
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
-from src.base.blocks import HeadingBlock, ImageBlock
 from components.block_quote.block import BlockQuote
-
-
-class RecipeStepBlock(StructBlock):
-    text = RichTextBlock(features=["bold", "italic", "link"])
-    difficulty = ChoiceBlock(
-        widget=forms.RadioSelect,
-        choices=[("S", "Small"), ("M", "Medium"), ("L", "Large")],
-        default="S",
-    )
-
-    class Meta:
-        template = "blocks/recipe_step_block.html"
-        icon = "tick"
+from components.heading_block.block import HeadingBlock
+from components.image_block.block import ImageBlock
+from components.recipe_step.block import RecipeStepBlock
 
 
 class RecipeStreamBlock(StreamBlock):

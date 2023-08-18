@@ -20,6 +20,7 @@ env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(PROJECT_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+PROJECT_DIR = BASE_DIR / "src"
 
 # Read env file
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
@@ -47,6 +48,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "django_components",
     "src.base",
     "src.blog",
     "src.breads",
@@ -89,7 +91,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
-    "django_components",
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            "src/templates",
+            "src/../templates",
             "components",
         ],
         "OPTIONS": {
@@ -213,7 +214,7 @@ GOOGLE_MAP_API_KEY = "AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw"
 WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.database",
-        "INDEX": "bakerydemo",
+        "INDEX": "src",
     },
 }
 

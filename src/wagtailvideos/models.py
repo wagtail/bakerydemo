@@ -94,7 +94,7 @@ class AbstractVideo(CollectionMember, index.Indexed, models.Model):
     objects = VideoQuerySet.as_manager()
 
     search_fields = list(CollectionMember.search_fields) + [
-        index.SearchField('title', boost=10),
+        index.AutocompleteField('title', boost=10),
         index.RelatedFields('tags', [
             index.AutocompleteField('name', boost=10),
         ]),
