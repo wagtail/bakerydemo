@@ -1,11 +1,10 @@
 from django_components import component
-
-from components.heading_block import block_name, template_name, css_name, js_name
+from components.base import block_name, template_name, css_name, js_name
 
 
 @component.register(block_name)
-class HeadingComponent(component.Component):
-    """HeadingComponent component."""
+class Component(component.Component):
+    """Component."""
 
     template_name = template_name
 

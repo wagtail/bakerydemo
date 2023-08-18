@@ -5,7 +5,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
-from src.base.blocks import BaseStreamBlock
+from src.base.stream_blocks import BaseStreamBlock
 
 from .blocks import RecipeStreamBlock
 

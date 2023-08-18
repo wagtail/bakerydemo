@@ -4,9 +4,9 @@ from wagtail.blocks import (
 )
 from wagtail.embeds.blocks import EmbedBlock
 
-from components.block_quote.block_quote import BlockQuote
-from components.image_block.image_block import ImageBlock
-from components.heading_block.heading_block import HeadingBlock
+from components.block_quote.block import BlockQuote
+from components.image_block.block import ImageBlock
+from components.heading_block.block import HeadingBlock
 
 
 # StreamBlocks

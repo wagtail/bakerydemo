@@ -1,8 +1,8 @@
 from wagtail.blocks import StructBlock, CharBlock, ChoiceBlock
-from components.block_quote import template_name
+from components.heading_block import template_name
 
 
-class BlockQuote(StructBlock):
+class HeadingBlock(StructBlock):
     """
     Custom `StructBlock` that allows the user to select h2 - h4 sizes for headers
     """

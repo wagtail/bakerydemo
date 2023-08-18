@@ -8,7 +8,7 @@ from wagtail.models import DraftStateMixin, Page, RevisionMixin
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
-from src.base.blocks import BaseStreamBlock
+from src.base.stream_blocks import BaseStreamBlock
 
 
 @register_snippet

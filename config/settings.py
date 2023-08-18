@@ -47,6 +47,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "django_components",
     "src.base",
     "src.blog",
     "src.breads",
@@ -89,7 +90,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
-    "django_components",
 ]
 
 MIDDLEWARE = [
@@ -112,7 +112,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            "src/templates",
+            "src/../templates",
             "components",
         ],
         "OPTIONS": {
