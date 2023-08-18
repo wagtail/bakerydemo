@@ -8,6 +8,9 @@ WSGI_PORT=8000
 run:
 	$(MANAGE) runserver
 
+test:
+	$(MANAGE) load_initial_data
+
 install:
 	poetry install
 
