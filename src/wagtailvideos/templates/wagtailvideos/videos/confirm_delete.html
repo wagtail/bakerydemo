@@ -1,0 +1,22 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailvideos_tags %}
+{% load i18n %}
+{% block titletag %}{% trans "Delete video" %}{% endblock %}
+
+{% block content %}
+    {% trans "Delete video" as del_str %}
+    {% include "wagtailadmin/shared/header.html" with title=del_str icon="media" %}
+
+    <div class="row row-flush nice-padding">
+        <div class="col6">
+            {% video video controls style=max-width:100% %}
+        </div>
+        <div class="col6">
+            <p>{% trans "Are you sure you want to delete this video?" %}</p>
+            <form action="{% url 'wagtailvideos:delete' video.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="button serious" value="{% trans 'Yes, delete' %}" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

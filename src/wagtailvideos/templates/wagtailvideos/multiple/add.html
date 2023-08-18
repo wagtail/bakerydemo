@@ -1,0 +1,97 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n static wagtailadmin_tags %}
+{% block titletag %}{% trans "Add multiple videos" %}{% endblock %}
+{% block extra_css %}
+    {{ block.super }}
+
+    {{ form_media.css }}
+{% endblock %}
+
+
+{% block content %}
+    {% trans "Add videos" as add_str %}
+    {% include "wagtailadmin/shared/header.html" with title=add_str icon="media" %}
+    <div class="nice-padding">
+        <div class="drop-zone">
+            <p>{% trans "Drag and drop videos into this area to upload immediately." %}</p>
+            <p>{{ help_text }}</p>
+
+            <form action="{% url 'wagtailvideos:add_multiple' %}" method="POST" enctype="multipart/form-data">
+                <div class="replace-file-input">
+                    <button class="button bicolor icon icon-plus">{% trans "Or choose from your computer" %}</button>
+                    <input id="fileupload" type="file" name="files[]" data-url="{% url 'wagtailvideos:add_multiple' %}" multiple>
+                </div>
+                {% csrf_token %}
+                {% if collections %}
+                    <div class="field">
+                        <label for="id_addvideo_collection">{% trans "Add to collection:" %}</label>
+                        <div class="field-content">
+                            <select id="id_addvideo_collection" name="collection">
+                                {% for collection in collections %}
+                                    <option value="{{ collection.id }}">{{ collection.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+
+        <div id="overall-progress" class="progress progress-secondary">
+            <div class="bar" style="width: 0%;">0%</div>
+        </div>
+
+        <ul id="upload-list" class="upload-list multiple"></ul>
+    </div>
+
+    <script id="upload-list-item" type="text/template">
+        <li class="row">
+            <div class="left col3">
+                <div class="preview">
+                    <div class="progress">
+                        <div class="bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="right col9">
+                <p class="status-msg success">{% trans "Upload successful. Please update this video with a more appropriate title, if necessary. You may also delete the video completely if the upload wasn't required." %}</p>
+                <p class="status-msg failure">{% trans "Sorry, upload failed." %}</p>
+                <p class="status-msg update-success">{% trans "Video updated." %}</p>
+                <p class="status-msg failure error_messages"></p>
+            </div>
+        </li>
+    </script>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+
+    {{ form_media.js }}
+    <!-- this exact order of plugins is vital -->
+    <script src="{% versioned_static 'wagtailimages/js/vendor/load-image.min.js' %}"></script>
+    <script src="{% versioned_static 'wagtailimages/js/vendor/canvas-to-blob.min.js' %}"></script>
+    <script src="{% versioned_static 'wagtailadmin/js/vendor/jquery.iframe-transport.js' %}"></script>
+    <script src="{% versioned_static 'wagtailadmin/js/vendor/jquery.fileupload.js' %}"></script>
+    <script src="{% versioned_static 'wagtailadmin/js/vendor/jquery.fileupload-process.js' %}"></script>
+    <script src="{% versioned_static 'wagtailimages/js/vendor/jquery.fileupload-image.js' %}"></script>
+    <script src="{% versioned_static 'wagtailimages/js/vendor/jquery.fileupload-validate.js' %}"></script>
+    <script src="{% versioned_static 'wagtailadmin/js/vendor/tag-it.js' %}"></script>
+
+    <!-- Main script -->
+    <script src="{% static 'wagtailvideos/js/add-multiple.js' %}"></script>
+
+    {% url 'wagtailadmin_tag_autocomplete' as autocomplete_url %}
+    <script>
+        window.fileupload_opts = {
+            simple_upload_url: "{% url 'wagtailvideos:add' %}",
+            max_file_size: {{ max_filesize|stringformat:"s"|default:"null" }}, //numeric format
+            errormessages: {
+                max_file_size: "{{ error_max_file_size }}",
+                accepted_file_types: "{{ error_accepted_file_types }}"
+            }
+        };
+        window.tagit_opts = {
+            autocomplete: {source: "{{ autocomplete_url|addslashes }}"}
+        };
+    </script>
+{% endblock %}

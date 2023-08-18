@@ -7,6 +7,7 @@ from wagtail.blocks import (
 )
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from src.wagtailvideos.blocks import VideoChooserBlock
 
 from components.block_quote.block import BlockQuote
 
@@ -56,7 +57,7 @@ class BaseStreamBlock(StreamBlock):
 
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
-        icon="pilcrow", template="blocks/paragraph_block.html", editor="secondary"
+        icon="pilcrow", template="blocks/paragraph_block.html"
     )
     image_block = ImageBlock()
     block_quote = BlockQuote()
@@ -65,3 +66,4 @@ class BaseStreamBlock(StreamBlock):
         icon="media",
         template="blocks/embed_block.html",
     )
+    video_block = VideoChooserBlock()

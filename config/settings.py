@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "src.recipes",
     "src.search",
     "src.tinymce_editor",
+    "src.wagtailvideos",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -79,7 +80,6 @@ INSTALLED_APPS = [
     "taggit",
     "wagtail_modeladmin",
     "wagtailfontawesomesvg",
-    "wagtailvideos",
     "debug_toolbar",
     "django_extensions",
     "django.contrib.admin",
@@ -102,7 +102,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "bakerydemo.base.middleware.ExternalLinkRedirectMiddleware"
+    "src.base.middleware.ExternalLinkRedirectMiddleware"
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
@@ -264,7 +264,7 @@ WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
 
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    "secondary": {
-        "WIDGET": "bakerydemo.tinymce_editor.widget.TinyMCERichTextArea",
+    "default": {
+        "WIDGET": "src.tinymce_editor.widget.TinyMCERichTextArea",
     }
 }

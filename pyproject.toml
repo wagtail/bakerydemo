@@ -19,9 +19,11 @@ django-csp = "^3.7"
 dj-database-url = "^2.1.0"
 django-components = "^0.28.1"
 django-environ = "^0.10.0"
-wagtailvideos = "^4.2.2"
 django-redis = "^5.3.0"
 psycopg2-binary = "^2.9.7"
+bcp47 = "^0.0.4"
+django-enumchoicefield = "^3.0.1"
+jinja2 = "^3.1.2"
 
 
 [build-system]

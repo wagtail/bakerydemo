@@ -71,7 +71,7 @@ def video_feature(features):
     features.default_features.append('video')
 
 
-@hooks.register('insert_editor_css')
+@hooks.register('insert_global_admin_css')
 def insert_editor_css():
     css_files = [
         'wagtailtinymce/css/icons.css'
@@ -84,7 +84,7 @@ def insert_editor_css():
     return css_includes + hook_output('insert_tinymce_css')
 
 
-@hooks.register('insert_editor_css')
+@hooks.register('insert_global_admin_css')
 def insert_editor_css_two():
     return format_html('<link rel="stylesheet" href="{}">', static('wagtailtinymce/css/tiny_custom.css'))
 

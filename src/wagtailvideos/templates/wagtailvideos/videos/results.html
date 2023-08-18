@@ -1,0 +1,50 @@
+{% load wagtailadmin_tags %}
+{% load i18n %}
+{% if videos %}
+    {% if is_searching %}
+        <h2>
+        {% blocktrans count counter=videos.paginator.count %}
+            There is one match
+        {% plural %}
+            There are {{ counter }} matches
+        {% endblocktrans %}
+        </h2>
+
+        {% search_other %}
+    {% else %}
+        <h2>{% trans "Latest videos" %}</h2>
+    {% endif %}
+
+    <ul class="listing horiz images">
+        {% for video in videos %}
+            <li>
+                <a class="image-choice" href="{% url 'wagtailvideos:edit' video.id %}">
+                    <figure>
+                        {% if video.thumbnail %}
+                            <img src="{{ video.thumbnail.url }}" height="165" width="165" class="show-transparency" alt="{% trans 'Video thumbnail' %}"/>
+                        {% else %}
+                            <img width="165" height="165" class="show-transparency" alt="" />
+                        {% endif %}
+                        <figcaption>{{ video.title|ellipsistrim:60 }}</figcaption>
+                    </figure>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% include "wagtailadmin/shared/pagination_nav.html" with items=videos is_searching=is_searching query_string=query_string linkurl="wagtailvideos:index" %}
+
+{% else %}
+    {% if is_searching %}
+        <h2>{% blocktrans %}Sorry, no videos match "<em>{{ query_string }}</em>"{% endblocktrans %}</h2>
+
+        {% search_other %}
+    {% else %}
+        {% url 'wagtailvideos:add_multiple' as wagtailvideos_add_video_url %}
+        {% if current_collection %}
+            <p>{% blocktrans %}You've not uploaded any videos in this collection. Why not <a href="{{ wagtailvideos_add_video_url }}">add one now</a>?{% endblocktrans %}</p>
+        {% else %}
+            <p>{% blocktrans %}You've not uploaded any videos. Why not <a href="{{ wagtailvideos_add_video_url }}">add one now</a>?{% endblocktrans %}</p>
+        {% endif %}
+    {% endif %}
+{% endif %}
