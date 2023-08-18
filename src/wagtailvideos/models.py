@@ -14,6 +14,7 @@ from django.conf import settings
 from django.core.exceptions import SuspiciousFileOperation
 from django.core.files.base import ContentFile
 from django.db import models
+from django.db.models.signals import post_save
 from django.forms.utils import flatatt
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -25,6 +26,10 @@ from taggit.managers import TaggableManager
 from wagtail.models import CollectionMember, Orderable
 from wagtail.search import index
 from wagtail.search.queryset import SearchableQuerySetMixin
+
+from src.wagtailvideos import ffmpeg, get_video_model
+from src.wagtailvideos.signals import get_local_file, video_post_save
+from src.wagtailvideos.services import get_thumbnail
 
 if LooseVersion(wagtail.__version__) >= LooseVersion('2.7'):
     from wagtail.admin.models import get_object_usage
@@ -405,3 +410,34 @@ class AbstractVideoTrack(Orderable):
 
 class VideoTrack(AbstractVideoTrack):
     listing = ParentalKey(TrackListing, related_name='tracks', on_delete=models.CASCADE)
+
+
+# Fields that need the actual video file to create using ffmpeg
+def custom_video_post_save(instance, **kwargs):
+    if not ffmpeg.installed():
+        return
+
+    if hasattr(instance, '_from_signal'):
+        # Sender was us, don't run post save
+        return
+
+    has_changed = instance._initial_file is not instance.file
+    filled_out = instance.thumbnail is not None and instance.duration is not None
+    if has_changed or not filled_out:
+        with get_local_file(instance.file) as file_path:
+            if has_changed or instance.thumbnail is None:
+                instance.thumbnail = get_thumbnail(file_path)
+
+            if has_changed or instance.duration is None:
+                instance.duration = ffmpeg.get_duration(file_path)
+
+    instance.file_size = instance.file.size
+    instance._from_signal = True
+    instance.save()
+    del instance._from_signal
+
+
+def register_signal_handlers():
+    video_model = get_video_model()
+    post_save.disconnect(video_post_save)
+    post_save.connect(custom_video_post_save, sender=video_model)
