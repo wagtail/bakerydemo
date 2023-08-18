@@ -1,0 +1,21 @@
+/* Cribbed from wagtail/wagtailadmin/static_src/wagtailadmin/scss/components/_icons.scss
+ * And exact code point value extracted from:
+ * https://github.com/wagtail/wagtail/blob/c5e60ca1d4bda36cbbf2d93e37b211f5f7741a5c/client/scss/settings/_variables.icons.scss
+ */
+.mce-i-doc-full:before, .mce-i-doc-full:after {
+    font-family: "wagtail";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none !important;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align:left;
+}
+.mce-i-doc-full:after {
+    text-align:right;
+}
+.mce-i-doc-full:before {
+    content: "\e018";
+}
