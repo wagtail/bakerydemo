@@ -11,7 +11,7 @@
 /data
 .~*
 common/CACHE
-bakerydemo/settings/local.py
+config/local.py
 bakerydemodb
 node_modules
 venv
@@ -21,4 +21,6 @@ __pycache__
 /.vagrant/
 /Vagrantfile.local
 !.gitignore
-bakerydemo/collect_static
+src/collect_static
+media
+media/*
