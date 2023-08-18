@@ -36,7 +36,7 @@ from wagtail.admin.rich_text.converters.editor_html import WhitelistRule
 from wagtail.admin.templatetags.wagtailadmin_tags import hook_output
 from wagtail.whitelist import attribute_rule
 
-from bakerydemo.tinymce_editor.views import get_video_url
+from src.tinymce_editor.views import get_video_url
 
 
 def to_js_primitive(string):

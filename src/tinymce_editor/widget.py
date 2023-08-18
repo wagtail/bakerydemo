@@ -11,7 +11,7 @@ from wagtail.utils.widgets import WidgetWithScript
 from wagtail.admin.panels import RichText
 from wagtail.rich_text import features
 
-from bakerydemo.tinymce_editor.editor_utils import CustomEditorHTMLConverter
+from src.tinymce_editor.editor_utils import CustomEditorHTMLConverter
 
 
 class TinyMCERichTextArea(WidgetWithScript, widgets.Textarea):
