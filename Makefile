@@ -31,6 +31,8 @@ migrations:
 	$(MANAGE) makemigrations
 
 update_index:
+	"Rebuild search indexes to improve searching quality and speed."
+	"https://docs.wagtail.org/en/stable/topics/search/indexing.html#the-update-index-command"
 	$(MANAGE) update_index
 
 help:
