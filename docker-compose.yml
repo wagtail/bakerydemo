@@ -1,0 +1,48 @@
+version: "3.3"
+
+volumes:
+  local_postgres_data:
+  static_volume:
+  media_volume:
+
+services:
+  postgres_db:
+    build:
+      context: deploy/postgres
+      dockerfile: Dockerfile
+    container_name: wagtail_postgres_db
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data:Z
+
+    restart: always
+
+  nginx:
+    container_name: wagtail_nginx
+    depends_on:
+      - backend
+    restart: "on-failure"
+
+  backend: &backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: wagtail_backend
+    depends_on:
+      - postgres_db
+      - redis
+    restart: always
+
+  redis:
+    image: redis:5.0
+    container_name: wagtail_redis
+
+#  celery:
+#    <<: *backend
+#    container_name: wagtail_celery
+#    depends_on:
+#      - backend
+#      - postgres_db
+#      - redis
+#    command: make worker
+#    restart: always
+

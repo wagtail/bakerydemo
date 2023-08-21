@@ -6,13 +6,20 @@ PROJECT_DIR=$(shell pwd)
 WSGI_PORT=8000
 
 run:
-	$(MANAGE) runserver
+#	$(MANAGE) init_project
+	npm install --prefix ./frontend
+	npm run watch --prefix ./frontend & $(MANAGE) runserver && fg
 
-test:
+vite:
+	npm run watch --prefix ./frontend
+
+docker-run:
+	$(MANAGE) migrate
 	$(MANAGE) load_initial_data
+	$(MANAGE) runserver 0.0.0.0:$(WSGI_PORT)
 
-install:
-	poetry install
+seed:
+	$(MANAGE) load_initial_data
 
 migrate:
 	$(MANAGE) migrate
@@ -20,6 +27,10 @@ migrate:
 migrations:
 	$(MANAGE) makemigrations
 
-help:
-	@echo "lint - check style with black, flake8, sort python with isort, and indent html"
-	@echo "format - enforce a consistent code style across the codebase and sort python files with isort"
+# Local Docker
+# ------------------------------------------------------------------------------
+up:
+	sudo docker compose up --build
+
+down:
+	sudo docker compose down

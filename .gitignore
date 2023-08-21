@@ -24,3 +24,4 @@ __pycache__
 src/collect_static
 media
 media/*
+local.env

@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  postgres_db:
+    env_file:
+      - local.env
+
+  nginx:
+    build:
+      context: ./deploy/nginx
+      dockerfile: local.Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - static_volume:/usr/src/app/collect_static
+      - media_volume:/usr/src/app/media
+    restart: "on-failure"
+
+  backend: &backend
+    volumes:
+      - .:/usr/src/app:rw # map data and files from parent directory in host to directory in docker container
+      - static_volume:/usr/src/app/collect_static
+      - media_volume:/usr/src/app/media
+    command: make docker-run
+    restart: always
+    env_file:
+      - local.env
+
+#  celery:
+#    volumes:
+#      - media_volume:/usr/src/app/media

@@ -1,0 +1,55 @@
+version: "3.3"
+
+volumes:
+  local_postgres_data:
+  static_volume:
+  media_volume:
+
+services:
+  postgres_db:
+    build:
+      context: ./deploy/postgres
+      dockerfile: Dockerfile
+    container_name: uranus_postgres_db
+    volumes:
+      - ./deploy/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - local_postgres_data:/var/lib/postgresql/data:Z
+    env_file:
+      - .env
+
+    restart: always
+
+  nginx:
+    container_name: uranus_nginx
+    depends_on:
+      - backend
+    restart: "on-failure"
+
+  backend: &backend
+    build:
+      context: ./uranus_python
+      dockerfile: ./Dockerfile
+    container_name: uranus_backend
+    depends_on:
+      - postgres_db
+      - redis
+    env_file:
+      - .env
+    restart: always
+
+  redis:
+    image: redis:5.0
+    container_name: uranus_redis
+    env_file:
+      - .env
+#
+  celery:
+    <<: *backend
+    container_name: uranus_celery
+    depends_on:
+      - backend
+      - postgres_db
+      - redis
+    command: poetry run make worker
+    restart: always
+

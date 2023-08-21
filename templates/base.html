@@ -1,3 +1,4 @@
+{% load django_vite %}
 {% load navigation_tags static wagtailuserbar %}
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +28,10 @@
         <link rel="stylesheet" href="{% static 'css/font-marcellus.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         {% component_css_dependencies %}
+
+        {# Vite integration #}
+        {% vite_hmr_client %}
+        {% vite_asset 'main.js' %}
     </head>
 
     <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">

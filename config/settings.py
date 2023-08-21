@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     "wagtailvideos",
     "debug_toolbar",
     "django_extensions",
+    "django_vite",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -196,9 +197,17 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
+DJANGO_VITE_ASSETS_PATH = BASE_DIR / "static_nodejs"
+DJANGO_VITE_STATIC_URL_PREFIX = "nodejs"
+DJANGO_VITE_DEV_MODE = env.bool("DJANGO_VITE_DEV_MODE", True)
+DJANGO_VITE_DEV_SERVER_HOST = "localhost"
+DJANGO_VITE_DEV_SERVER_PORT = 3000
+DJANGO_VITE_MANIFEST_PATH = DJANGO_VITE_ASSETS_PATH / "nodejs/manifest.json"
+
 STATICFILES_DIRS = [
     BASE_DIR / "components",
-    BASE_DIR / "static"
+    BASE_DIR / "static",
+    DJANGO_VITE_ASSETS_PATH
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "collect_static")
