@@ -6,9 +6,15 @@ PROJECT_DIR=$(shell pwd)
 WSGI_PORT=8000
 
 run:
+	$(MANAGE) runserver
+
+run-both:
 #	$(MANAGE) init_project
 	npm install --prefix ./frontend
 	npm run watch --prefix ./frontend & $(MANAGE) runserver && fg
+
+seed:
+	$(MANAGE) load_initial_data
 
 vite:
 	npm run watch --prefix ./frontend
@@ -17,9 +23,6 @@ docker-run:
 	$(MANAGE) migrate
 	$(MANAGE) load_initial_data
 	$(MANAGE) runserver 0.0.0.0:$(WSGI_PORT)
-
-seed:
-	$(MANAGE) load_initial_data
 
 migrate:
 	$(MANAGE) migrate
