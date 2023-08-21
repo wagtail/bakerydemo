@@ -1,0 +1,12 @@
+{% load i18n wagtailadmin_tags %}
+
+<li>
+    {% icon name="media" %}
+    <a href="{% url 'wagtailvideos:index' %}">
+        {% blocktrans count counter=total_videos with total_videos|intcomma as total %}
+            <span>{{ total }}</span> Video <span class="visuallyhidden">created in {{ site_name }}</span>
+        {% plural %}
+            <span>{{ total }}</span> Videos <span class="visuallyhidden">created in {{ site_name }}</span>
+        {% endblocktrans %}
+    </a>
+</li>

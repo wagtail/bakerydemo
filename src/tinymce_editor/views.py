@@ -1,4 +1,4 @@
-from wagtailvideos import get_video_model
+from src.wagtailvideos import get_video_model
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 

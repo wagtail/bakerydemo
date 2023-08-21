@@ -1,0 +1,8 @@
+{% extends "wagtailadmin/shared/field.html" %}
+{% load i18n %}
+{% block form_field %}
+    <a href="{{ video.url }}" class="icon icon-media">{{ video.filename }}</a><br /><br />
+
+    {% trans "Change video file:" %}
+    {{ field }}
+{% endblock %}

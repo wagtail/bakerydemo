@@ -1,0 +1,391 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wagtailvideos\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-07 17:31+0100\n"
+"PO-Revision-Date: 2023-07-07 17:33+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#: wagtailvideos/models.py:79
+msgid "title"
+msgstr "заголовок"
+
+#: wagtailvideos/models.py:81
+msgid "file"
+msgstr "файл"
+
+#: wagtailvideos/models.py:83
+msgid "created at"
+msgstr "создан"
+
+#: wagtailvideos/models.py:86
+msgid "uploaded by user"
+msgstr "загружено пользователем"
+
+#: wagtailvideos/models.py:90
+msgid "tags"
+msgstr "теги"
+
+#: wagtailvideos/templates/wagtailvideos/chooser/chooser.html:20
+msgid "Popular tags"
+msgstr "Популярные теги"
+
+#: wagtailvideos/templates/wagtailvideos/chooser/results.html:4
+msgid "Latest videos"
+msgstr "Последние видео"
+
+#: wagtailvideos/templates/wagtailvideos/chooser/results.html:44
+msgid "You haven't uploaded any videos in this collection."
+msgstr "Вы не загрузили ни одного видео в эту коллекцию."
+
+#: wagtailvideos/templates/wagtailvideos/chooser/results.html:46
+msgid "You haven't uploaded any videos."
+msgstr "Вы не загрузили ни одного видео."
+
+#: wagtailvideos/templates/wagtailvideos/homepage/video_summary.html:7
+msgid "Video."
+msgstr "Видео."
+
+#: wagtailvideos/templates/wagtailvideos/homepage/video_summary.html:9
+msgid "Videos."
+msgstr "Видео."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:15
+msgid "Add videos"
+msgstr "Добавить видео"
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:15
+msgid "Drag and drop videos into this area to upload immediately."
+msgstr "Чтобы загрузить несколько видео - перетащите файлы в эту область."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:20
+msgid "Or choose from your computer."
+msgstr "Или выберите со своего компьютера."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:26
+msgid "Add to collection:"
+msgstr "Добавить в коллекцию."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:56
+msgid "Upload successful. Please update this video with a more appropriate title, if necessary. You may also delete the video completely if the upload wasn't required."
+msgstr "Загрузка прошла успешно. При необходимости обновите это видео, указав более подходящее название. Вы также можете полностью удалить видео, если загрузка не требуется."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:57
+msgid "Sorry, upload failed."
+msgstr "Извините, загрузка не удалась."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/add.html:26
+msgid "Video updated."
+msgstr "Видео обновлено."
+
+#: wagtailvideos/templates/wagtailvideos/multiple/edit_form.html:13
+msgid "Update"
+msgstr "Обновить"
+
+#: wagtailvideos/templates/wagtailvideos/multiple/edit_form.html:14
+msgid "Delete"
+msgstr "Удалить"
+
+#: wagtailvideos/templates/wagtailvideos/multiple/edit_form.html:20
+msgid "Video thumbnail"
+msgstr "Обложка видео"
+
+#: wagtailvideos/templates/wagtailvideos/multiple/edit_form.html:20
+msgid "File not found"
+msgstr "Файл не найден"
+
+#: wagtailvideos/templates/wagtailvideos/permissions/video_permissions_formset.html:4
+msgid "Video permissions"
+msgstr "Разрешения на видео"
+
+#: wagtailvideos/templates/wagtailvideos/permissions/video_permissions_formset.html:5
+msgid "Add an video permission"
+msgstr "Добавить разрешение на видео"
+
+#: wagtailvideos/templates/wagtailvideos/video/_file_field.html:6
+msgid "Change video file:"
+msgstr "Изменить видеофайл:"
+
+#: wagtailvideos/templates/wagtailvideos/video/add.html:3
+msgid "Add a video"
+msgstr "Добавить видео"
+
+#: wagtailvideos/templates/wagtailvideos/video/add.html:19
+msgid "Add video"
+msgstr "Добавить видео"
+
+#: wagtailvideos/templates/wagtailvideos/video/add.html:33
+msgid "Save"
+msgstr "Сохранить"
+
+#: wagtailvideos/templates/wagtailvideos/video/confirm_delete.html:4
+msgid "Delete video"
+msgstr "Удалить видео"
+
+#: wagtailvideos/templates/wagtailvideos/video/confirm_delete.html:15
+msgid "Are you sure you want to delete this video?"
+msgstr "Вы уверены, что хотите удалить это видео?"
+
+#: wagtailvideos/templates/wagtailvideos/video/confirm_delete.html:18
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:5
+msgid "Editing video"
+msgstr "Редактирование видео"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:61
+msgid "Thumbnail"
+msgstr "Обложка"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:64
+msgid "Filesize"
+msgstr "Размер файла"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:67
+msgid "Duration"
+msgstr "Продолжительность"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:70
+msgid "Usage"
+msgstr "Применение"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:5
+msgid "Editing"
+msgstr "Редактирование"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:79
+msgid "Transcodes"
+msgstr "Транскоды"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:100
+msgid "Create transcode"
+msgstr "Создать транскод"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:116
+msgid "Start"
+msgstr "Старт"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:113
+msgid "Ffmpeg is not found on your server or you have disabled transcodes. Please install Ffmepg and make sure that transcoding is enabled if you wish to transcode videos into an HTML5 video compliant format."
+msgstr "Ffmpeg не найден на вашем сервере или вы отключили транскодирование. Пожалуйста, установите Ffmepg и убедитесь, что перекодирование включено, если вы хотите перекодировать видео в формат, совместимый с HTML5."
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:116
+msgid "Tracks"
+msgstr "Треки"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:80
+msgid "If you wish to generate HTML5 compliant transcodes use the form below. This may take a while depending on the length of the video."
+msgstr "Если вы хотите сгенерировать транскоды, совместимые с HTML5, используйте форму ниже. Это может занять некоторое время в зависимости от продолжительности видео."
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:82
+msgid "Available Transcodes"
+msgstr "Доступные транскоды"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:82
+msgid "(Processing... hold tight)"
+msgstr "(Обработка... держитесь крепче)"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:82
+msgid "ERROR"
+msgstr "ОШИБКА"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:117
+msgid "You can add/edit subtitles or accessibility captions for this video. For information about the filetype that should be used see the mozilla docs on <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API\">WebVTT</a>"
+msgstr "Вы можете добавлять/редактировать субтитры или специальные подписи для этого видео. Для получения информации о типе файла, который следует использовать, см. документацию Mozilla на <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API\">WebVTT</a>"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:124
+msgid "Edit"
+msgstr "Редактировать"
+
+#: wagtailvideos/templates/wagtailvideos/video/edit.html:124
+msgid "Add tracks"
+msgstr "Добавить треки"
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:7
+msgid "There is one match"
+msgstr "Есть одно совпадение"
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:9
+msgid "There are "
+msgstr "Есть "
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:9
+msgid "matches"
+msgstr "совпадений"
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:39
+msgid "Sorry, no videos match"
+msgstr "Извините, видео не совпадают"
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:45
+msgid "You've not uploaded any videos in this collection. Why not "
+msgstr "Вы не загрузили ни одного видео из этой коллекции. Почему бы не"
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:45
+msgid "add one now"
+msgstr "добавить его сейчас"
+
+#: wagtailvideos/templates/wagtailvideos/video/result.html:47
+msgid "You've not uploaded any videos. Why not "
+msgstr "Вы не загрузили ни одного видео. Почему бы не"
+
+#: wagtailvideos/templates/wagtailvideos/video/usage.html:3
+msgid "Usage of"
+msgstr "Использование"
+
+#: wagtailvideos/templates/wagtailvideos/video/usage.html:16
+msgid "Title"
+msgstr "Заголовок"
+
+#: wagtailvideos/templates/wagtailvideos/video/usage.html:17
+msgid "Parent"
+msgstr "Родитель"
+
+#: wagtailvideos/templates/wagtailvideos/video/usage.html:18
+msgid "Type"
+msgstr "Тип"
+
+#: wagtailvideos/templates/wagtailvideos/video/usage.html:19
+msgid "Status"
+msgstr "Статус"
+
+#: wagtailvideos/templates/wagtailvideos/video/usage.html:26
+msgid "Edit this page"
+msgstr "Отредактировать эту страницу"
+
+#: wagtailvideos/fields.py:21
+msgid "Maximum filesize: %(max_upload_size)s."
+msgstr "Максимальный размер файла: %(max_upload_size)s."
+
+#: wagtailvideos/fields.py:28
+msgid "Not a valid video. Content type was %s."
+msgstr "Недопустимое видео. Тип контента был %s."
+
+#: wagtailvideos/fields.py:32
+msgid "This file is too big (%%s). Maximum filesize %s."
+msgstr "Этот файл слишком большой (%%s). Максимальный размер файла %s."
+
+#: wagtailvideos/fields.py:36
+msgid "This file is too big. Maximum filesize %s."
+msgstr "Этот файл слишком большой. Максимальный размер файла %s."
+
+#: wagtailvideos/forms.py:78
+msgid "Add"
+msgstr "Добавить"
+
+#: wagtailvideos/forms.py:78
+msgid "Add/edit videos you own"
+msgstr "Добавить/редактировать ваши видео"
+
+#: wagtailvideos/forms.py:79
+msgid "Edit any video"
+msgstr "Редактировать любое видео"
+
+#: wagtailvideos/views/chooser.py:159
+msgid "Choose a video"
+msgstr "Выберите видео"
+
+#: wagtailvideos/views/chooser.py:160
+msgid "Upload"
+msgstr "Загрузить"
+
+#: wagtailvideos/views/chooser.py:161
+msgid "Uploading…"
+msgstr "Загрузка…"
+
+#: wagtailvideos/views/videos.py:50
+msgid "Search videos"
+msgstr "Поиск видео"
+
+#: wagtailvideos/views/chooser.py:120
+msgid "The video could not be saved due to errors."
+msgstr "Видео не удалось сохранить из-за ошибок."
+
+#: wagtailvideos/views/chooser.py:120
+msgid "The source video file could not be found. Please change the source or delete the video."
+msgstr "Не удалось найти исходный видеофайл. Пожалуйста, измените источник или удалите видео."
+
+#: wagtailvideos/views/chooser.py:120
+msgid "The video could not be created due to errors."
+msgstr "Видео не может быть создано из-за ошибок."
+
+#: wagtailvideos/views/chooser.py:120
+msgid "File"
+msgstr "Файл"
+
+#: wagtailvideos/wagtail_hooks.py:78
+msgid "Manage videos"
+msgstr "Управление видео"
+
+#: wagtailvideos/wagtail_hooks.py:135
+msgid "Video"
+msgstr "Видео"
+
+#: wagtailvideos/wagtail_hooks.py:88
+msgid "Videos"
+msgstr "Видео"
+
+#: wagtailvideos/wagtail_hooks.py:26
+msgid "Text tracks"
+msgstr "Субтитры"
+
+#: wagtailvideos/models.py:356
+msgid "Subtitles"
+msgstr "Субтитры"
+
+#: wagtailvideos/models.py:357
+msgid "Captions"
+msgstr "Подписи"
+
+#: wagtailvideos/models.py:358
+msgid "Descriptions"
+msgstr "Описания"
+
+#: wagtailvideos/models.py:359
+msgid "Chapters"
+msgstr "Главы"
+
+#: wagtailvideos/models.py:360
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: wagtailvideos/models.py:367
+msgid "Kind"
+msgstr "Тип"
+
+#: wagtailvideos/models.py:367
+msgid "kind"
+msgstr "тип"
+
+#: wagtailvideos/models.py:370
+msgid "A user-readable title of the text track."
+msgstr "Читаемый пользователем заголовок текстовой дорожки."
+
+#: wagtailvideos/models.py:371
+msgid "Label"
+msgstr "Заголовок"
+
+#: wagtailvideos/models.py:371
+msgid "label"
+msgstr "пометка"
+
+#: wagtailvideos/models.py:375
+msgid "Required if type is \"Subtitle\""
+msgstr "Обязательно, если тип — «Субтитры»"
+
+#: wagtailvideos/models.py:371
+msgid "Language"
+msgstr "Язык"
+
+#: wagtailvideos/models.py:371
+msgid "language"
+msgstr "язык"
+
+

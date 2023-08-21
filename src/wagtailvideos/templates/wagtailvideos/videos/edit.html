@@ -1,0 +1,132 @@
+{% extends "wagtailadmin/base.html" %}
+
+{% load static wagtailadmin_tags i18n wagtailvideos_tags %}
+
+{% block titletag %}{% blocktrans with title=video.title %}Editing video {{ title }}{% endblocktrans %}{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'wagtailvideos/css/edit-video.css' %}" type="text/css" /> {% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+{% url 'wagtailadmin_tag_autocomplete' as autocomplete_url %}
+<script>
+    {{ form.media.css }}
+    $(function() {
+        $('#id_tags').tagit({
+            autocomplete: {
+                source: "{{ autocomplete_url|addslashes }}"
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% block content %}
+{% trans "Editing" as editing_str %}
+
+{% include "wagtailadmin/shared/header.html" with title=editing_str subtitle=video.title icon="media" %}
+
+<div class="row row-flush nice-padding">
+    <div class="col6">
+        <form action="{% url 'wagtailvideos:edit' video.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <ul class="fields">
+                {% for field in form %}
+                  {% if field.name == 'file' %}
+                    {% include "wagtailvideos/videos/_file_field_as_li.html"  with li_classes="label-above label-uppercase" %}
+                  {% elif field.is_hidden %}
+                    {{ field }}
+                  {% else %}
+                    {% include "wagtailadmin/shared/field_as_li.html" with li_classes="label-above label-uppercase" %}
+                  {% endif %}
+                {% endfor %}
+                <li>
+                    <input type="submit" class="button" value="{% trans 'Save' %}" />
+                    {% if user_can_delete %}
+                        <a href="{% url 'wagtailvideos:delete' video.id %}" class="button button-secondary no">{% trans "Delete video" %}</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="col6">
+        <div class="row">
+            <div class="col10 divider-after">
+                {% video video controls style=max-width:100%;width:100%;height:auto; %}
+            </div>
+            <div class="col2">
+                <dl style="margin-top: 0;">
+                    {% if video.thumbnail %}
+                    <dt>{% trans "Thumbnail" %}</dt>
+                    <dd><img src="{{ video.thumbnail.url }}" alt="{% trans 'Video thumbnail' %}" /></dd>
+                    {% endif %}
+                    <dt>{% trans "Filesize" %}</dt>
+                    <dd>{% if filesize %}{{ filesize|filesizeformat }}{% else %}{% trans "File not found" %}{% endif %}</dd>
+                    {% if video.duration %}
+                    <dt>{% trans "Duration" %}</dt>
+                    <dd>{{ video.formatted_duration }}</dd>
+                    {% endif %}
+                    <dt>{% trans "Usage" %}</dt>
+                    <dd>
+                        <a href="{{ video.usage_url }}">{% blocktrans count usage_count=video.get_usage.count %}Used {{ usage_count }} time{% plural %}Used {{ usage_count }} times{% endblocktrans %}</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+        {% if can_transcode %}
+            <h2 class="u-text-transform-uppercase">{% trans "Transcodes" %}</h2>
+            <p>{% trans "If you wish to generate HTML5 compliant transcodes use the form below. This may take a while depending on the length of the video." %}</p>
+            {% if transcodes %}
+            <h3 class="u-text-transform-uppercase">{% trans "Available Transcodes" %}</h3>
+            <ul>
+                {% for transcode in transcodes %}
+                <li>
+                    {% blocktrans with media_format=transcode.media_format quality=transcode.quality %}{{ media_format }} ({{ quality }} quality){% endblocktrans %}
+                    {% if transcode.processing %}
+                        <span class="processing">{% trans "(Processing... hold tight)" %} </span>
+                    {% endif %}
+                    {% if transcode.error_message %}
+                        <span class="transcode-error">{% trans "ERROR:" %}</span>
+                        <div class="transcode-error">
+                            <pre> {{ transcode.error_message }}</pre>
+                        </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <h3 class="u-text-transform-uppercase">{% trans "Create transcode" %}</h3>
+            <form action="{% url 'wagtailvideos:create_transcode' video.id %}" method="POST">
+                <ul class="fields">
+                    {% csrf_token %}
+                    {% include "wagtailadmin/shared/field_as_li.html" with field=transcode_form.media_format li_classes="label-above label-uppercase" %}
+                    {% include "wagtailadmin/shared/field_as_li.html" with field=transcode_form.quality li_classes="label-above label-uppercase" %}
+                    <li>
+                        <input class="button" type="submit" value="{% trans 'Start' %}" />
+                    </li>
+                </ul>
+            </form>
+        {% else %}
+            <br/><br/>
+            <span class="transcode-error">{% trans "Ffmpeg is not found on your server or you have disabled transcodes. Please install Ffmepg and make sure that transcoding is enabled if you wish to transcode videos into an HTML5 video compliant format." %}</span>
+        {% endif %}
+        {% if tracks_action_url %}
+            <h2 class="u-text-transform-uppercase">{% trans "Tracks" %}</h2>
+            <p>{% trans 'You can add/edit subtitles or accessibility captions for this video. For information about the filetype that should be used see the mozilla docs on <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API">WebVTT</a>' %}</p>
+                {% if video.track_listing %}
+                <ul>
+                {% for track in video.track_listing.tracks.all %}
+                    <li>{{ track }}</li>
+                {% endfor %}
+                </ul>
+                <a class="button" href="{{ tracks_action_url }}">{% trans "Edit" %}</a>
+                {% else %}
+                <a class="button" href="{{ tracks_action_url }}">{% trans "Add tracks" %}</a>
+                {% endif %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

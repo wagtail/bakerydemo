@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "src.recipes",
     "src.search",
     "src.tinymce_editor",
+    "src.wagtailvideos",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -81,7 +82,6 @@ INSTALLED_APPS = [
     "taggit",
     "wagtail_modeladmin",
     "wagtailfontawesomesvg",
-    "wagtailvideos",
     "debug_toolbar",
     "django_extensions",
     "django_vite",
@@ -274,7 +274,7 @@ WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
 
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    "secondary": {
+    "default": {
         "WIDGET": "src.tinymce_editor.widget.TinyMCERichTextArea",
     }
 }
