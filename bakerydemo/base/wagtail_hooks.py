@@ -4,7 +4,6 @@ from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
 from bakerydemo.base.models import FooterText, Person
-from bakerydemo.breads.models import BreadIngredient, BreadType, Country
 
 """
 N.B. To see what icons are available for use in Wagtail menus and StreamField block types,
@@ -43,32 +42,12 @@ def replace_userbar_accessibility_item(request, items):
     ]
 
 
-class BreadIngredientViewSet(SnippetViewSet):
-    # These stub classes allow us to put various models into the custom "Wagtail Bakery" menu item
-    # rather than under the default Snippets section.
-    model = BreadIngredient
-    search_fields = ("name",)
-    inspect_view_enabled = True
-
-
-class BreadTypeViewSet(SnippetViewSet):
-    model = BreadType
-    search_fields = ("title",)
-
-
-class BreadCountryViewSet(SnippetViewSet):
-    model = Country
-    search_fields = ("title",)
-
-
-class BreadSnippetViewSetGroup(SnippetViewSetGroup):
-    menu_label = "Bread Categories"
-    menu_icon = "suitcase"  # change as required
-    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
-    items = (BreadIngredientViewSet, BreadTypeViewSet, BreadCountryViewSet)
-
-
 class PersonViewSet(SnippetViewSet):
+    # Instead of decorating the Person model class definition in models.py with
+    # @register_snippet - which has Wagtail automatically generate an admin interface for this model - we can also provide our own
+    # SnippetViewSet class which allows us to customize the admin interface for this snippet.
+    # See the documentation for SnippetViewSet for more details
+    # https://docs.wagtail.org/en/stable/reference/viewsets.html#snippetviewset
     model = Person
     menu_label = "People"  # ditch this to use verbose_name_plural from model
     icon = "group"  # change as required
@@ -92,5 +71,4 @@ class BakerySnippetViewSetGroup(SnippetViewSetGroup):
 
 # When using a SnippetViewSetGroup class to group several SnippetViewSet classes together,
 # you only need to register the SnippetViewSetGroup class with Wagtail:
-register_snippet(BreadSnippetViewSetGroup)
 register_snippet(BakerySnippetViewSetGroup)
