@@ -6,18 +6,16 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
 from wagtail.models import DraftStateMixin, Page, RevisionMixin
 from wagtail.search import index
-from wagtail.snippets.models import register_snippet
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
 
-@register_snippet
 class Country(models.Model):
     """
     A Django model to store set of countries of origin.
-    It uses the `@register_snippet` decorator to allow it to be accessible
-    via the Snippets UI (e.g. /admin/snippets/breads/country/) In the BreadPage
-    model you'll see we use a ForeignKey to create the relationship between
+    It is made accessible in the Wagtail admin interface through the CountrySnippetViewSet
+    class in wagtail_hooks.py. This allows us to customize the admin interface for this snippet.
+    In the BreadPage model you'll see we use a ForeignKey to create the relationship between
     Country and BreadPage. This allows a single relationship (e.g only one
     Country can be added) that is one-way (e.g. Country will have no way to
     access related BreadPage objects).
@@ -32,12 +30,12 @@ class Country(models.Model):
         verbose_name_plural = "Countries of Origin"
 
 
-@register_snippet
 class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
     """
-    Standard Django model that is displayed as a snippet within the admin due
-    to the `@register_snippet` decorator. We use a new piece of functionality
-    available to Wagtail called the ParentalManyToManyField on the BreadPage
+    A Django model to store a single ingredient.
+    It is made accessible in the Wagtail admin interface through the BreadIngredientSnippetViewSet
+    class in wagtail_hooks.py. This allows us to customize the admin interface for this snippet.
+    We use a piece of functionality available to Wagtail called the ParentalManyToManyField on the BreadPage
     model to display this. The Wagtail Docs give a slightly more detailed example
     https://docs.wagtail.org/en/stable/getting_started/tutorial.html#categories
     """
@@ -55,12 +53,12 @@ class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
         verbose_name_plural = "Bread ingredients"
 
 
-@register_snippet
 class BreadType(RevisionMixin, models.Model):
     """
     A Django model to define the bread type
-    It uses the `@register_snippet` decorator to allow it to be accessible
-    via the Snippets UI. In the BreadPage model you'll see we use a ForeignKey
+    It is made accessible in the Wagtail admin interface through the BreadTypeSnippetViewSet
+    class in wagtail_hooks.py. This allows us to customize the admin interface for this snippet.
+    In the BreadPage model you'll see we use a ForeignKey
     to create the relationship between BreadType and BreadPage. This allows a
     single relationship (e.g only one BreadType can be added) that is one-way
     (e.g. BreadType will have no way to access related BreadPage objects)

@@ -1,7 +1,6 @@
 Django>=4.2,<4.3
 django-dotenv==1.4.1
 wagtail>=5.1,<5.2
-wagtail-modeladmin>=1,<2
 wagtail-font-awesome-svg>=0.0.3,<1
 django-debug-toolbar>=3.2,<4
 django-extensions==3.2.1

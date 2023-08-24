@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "modelcluster",
     "taggit",
-    "wagtail_modeladmin",
     "wagtailfontawesomesvg",
     "debug_toolbar",
     "django_extensions",
