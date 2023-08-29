@@ -9,6 +9,7 @@ from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.dataverse import fields as dataverse_fields
 
 
 @register_snippet
@@ -117,6 +118,19 @@ class BreadPage(Page):
     )
     ingredients = ParentalManyToManyField("BreadIngredient", blank=True)
 
+    primary_audience = dataverse_fields.DataverseReferenceField(
+        "primary audience",
+        table_id="cr50c_newtables",
+        pk_column="cr50c_newtableid",
+        label_column="cr50c_name",
+    )
+    other_audiences = dataverse_fields.DataverseMultipleReferenceField(
+        "other audiences",
+        table_id="cr50c_newtables",
+        pk_column="cr50c_newtableid",
+        label_column="cr50c_name",
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
         FieldPanel("image"),
@@ -133,6 +147,11 @@ class BreadPage(Page):
             heading="Additional Metadata",
             classname="collapsed",
         ),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        FieldPanel("primary_audience"),
+        FieldPanel("other_audiences"),
     ]
 
     search_fields = Page.search_fields + [

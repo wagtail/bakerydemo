@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "bakerydemo.base",
     "bakerydemo.blog",
     "bakerydemo.breads",
+    "bakerydemo.dataverse",
     "bakerydemo.locations",
     "bakerydemo.recipes",
     "bakerydemo.search",
@@ -233,3 +234,24 @@ if "CSP_DEFAULT_SRC" in os.environ:
         CSP_BASE_URI = os.environ.get("CSP_BASE_URI").split(",")
     if "CSP_OBJECT_SRC" in os.environ:
         CSP_OBJECT_SRC = os.environ.get("CSP_OBJECT_SRC").split(",")
+
+# From Power Apps, click the settings/cog item from the top menu,
+# then click 'Developer resources'. Extract the hostname from the
+# 'Web API endpoint' value provided by the modal
+DATAVERSE_API_HOSTNAME = os.environ.get("DATAVERSE_API_HOSTNAME", "")
+
+# This can also be derived from the 'Web API endpoint' value under
+# 'Developer resources' in Power Apps.
+DATAVERSE_API_VERSION = os.environ.get("DATAVERSE_API_VERSION", 9.2)
+
+# Follow these instructions to create a new app registration in Azure AD
+# https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-single-tenant-server-server-authentication
+
+# This is the 'Application (client) ID' value from the app registration overview
+DATAVERSE_API_CLIENT_ID = os.environ.get("DATAVERSE_API_CLIENT_ID", "")
+
+# This is the 'Directory (tenant) ID' value from the app registration overview
+DATAVERSE_API_TENANT_ID = os.environ.get("DATAVERSE_API_TENANT_ID", "")
+
+# This is secret value created under 'Certificates & secrets' for the app registration
+DATAVERSE_API_SECRET = os.environ.get("DATAVERSE_API_SECRET", "")
