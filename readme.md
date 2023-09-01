@@ -178,7 +178,7 @@ If you're a Python or Django developer, fork the repo and get stuck in! If you'd
 If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
 
 ```bash
-./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailcore.revision -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription -e wagtailcore.modellogentry -e wagtailcore.pagelogentry > bakerydemo/base/fixtures/bakerydemo.json
+./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription > bakerydemo/base/fixtures/bakerydemo.json
 prettier --write bakerydemo/base/fixtures/bakerydemo.json
 ```
 
