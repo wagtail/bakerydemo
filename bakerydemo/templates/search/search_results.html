@@ -49,6 +49,7 @@
                         <ul class="search__results">
                             {% for search_promotion in search_promotions %}
                                 <li class="listing-card">
+                                    {% if search_promotion.page %}
                                     <a class="listing-card__link" href="{% pageurl search_promotion.page.specific %}">
                                         {% if search_promotion.page.specific.image %}
                                             <figure class="listing-card__image">
@@ -71,6 +72,21 @@
                                             </p>
                                         </div>
                                     </a>
+                                    {% else %}
+                                    <a class="listing-card__link" href="{{ search_promotion.external_link_url }}">
+                                            <figure class="listing-card__image">
+                                            </figure>
+                                        <div class="listing-card__contents">
+                                            <h3 class="listing-card__title">{{ search_promotion.external_link_text }}</h3>
+                                            <p class="listing-card__content-type">
+                                                External link
+                                            </p>
+                                            <p class="listing-card__description">
+                                                {% if search_promotion.description %}{{ search_promotion.description|richtext }}{% endif %}
+                                            </p>
+                                        </div>
+                                    </a>
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
