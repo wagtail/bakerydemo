@@ -3,8 +3,10 @@
 
 {% if tag %}
     {% block title %}
-        Viewing all blog posts sorted by the tag {{ tag }}
+        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}: {{ tag }}
     {% endblock %}
+
+    {% block search_description %}Viewing all blog posts sorted by the tag {{ tag }}{% endblock %}
 {% endif %}
 
 {% block content %}
