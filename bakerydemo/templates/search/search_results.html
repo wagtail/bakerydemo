@@ -3,6 +3,10 @@
 
 {% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
 
+{% block search_description %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+
+{% block body_class %}template-search-results{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">

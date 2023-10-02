@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
+{% block title %}{{ object.first_name }} {{ object.last_name }} Preview{% endblock %}
+
+{% block search_description %}{{ object.job_title }}{% endblock %}
+
+{% block body_class %}template-preview-person{% endblock %}
+
 {% block content %}
     <div>
         {% image object.image fill-200x200-c100 class="blog__avatar" %}
