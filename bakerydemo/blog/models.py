@@ -188,7 +188,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             return redirect(self.url)
 
         posts = self.get_posts(tag=tag)
-        context = {"tag": tag, "posts": posts}
+        context = {"self": self, "tag": tag, "posts": posts}
         return render(request, "blog/blog_index_page.html", context)
 
     def serve_preview(self, request, mode_name):
