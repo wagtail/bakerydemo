@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags gallery_tags %}
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
@@ -13,7 +12,7 @@
             </div>
         </div>
         <div class="gallery__grid">
-            {% gallery page.collection %}
+            {% include "tags/gallery.html" %}
         </div>
     </div>
 {% endblock content %}

@@ -1,8 +1,6 @@
-{% load wagtailcore_tags wagtailimages_tags %}
-
 {% if page.image %}
     <div class="container-fluid hero hero--blog">
-        {% image page.image fill-1920x600 class="hero-image" alt="" %}
+        {{ image(page.image, "fill-1920x600", class="hero-image", alt="") }}
     </div>
 {% endif %}
 <div class="container">
@@ -19,7 +17,7 @@
             {% endif %}
             {% if page.date_published %}
                 <div class="blog__published">
-                    {{ page.date_published }}
+                    {{ page.date_published|date("DATE_FORMAT") }}
                 </div>
             {% endif %}
         </div>

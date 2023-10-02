@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
@@ -32,7 +31,7 @@
                                 <p class="bread-detail__meta-title">Type</p>
                                 <p class="bread-detail__meta-content">{{ page.bread_type }}</p>
                             {% endif %}
-                            {% with ingredients=page.ingredients.all %}
+                            {% with ingredients=page.ingredients.all() %}
                                 {% if ingredients %}
                                     <h4>Ingredients</h4>
                                     <ul>

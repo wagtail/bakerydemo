@@ -1,10 +1,8 @@
-{% load wagtailimages_tags %}
-
 <div class="listing-card">
     <a class="listing-card__link" href="{{ page.url }}">
         {% if page.image %}
             <figure class="listing-card__image">
-                {% image page.image fill-180x180-c100 loading="lazy" %}
+                {{ image(page.image, "fill-180x180-c100", loading="lazy") }}
             </figure>
         {% endif %}
         <div class="listing-card__contents">

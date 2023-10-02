@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
 
@@ -7,8 +6,9 @@
 
     <div class="container">
         <div class="location-list-page">
-            {% for location in locations %}
-                {% include "includes/card/picture-card.html" with page=location portrait=False %}
+            {% for page in locations %}
+                {% set portrait = False %}
+                {% include "includes/card/picture-card.html" %}
             {% endfor %}
         </div>
     </div>

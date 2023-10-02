@@ -1,11 +1,9 @@
-{% load wagtailcore_tags wagtailimages_tags %}
-
 <div class="container">
     <div class="row">
         <div class="col-md-7 base-header">
             {% if page.image %}
                 <div class="image">
-                    {% image page.image width-500 as photo %}
+                    {% set photo=image(page.image, "width-500") %}
                     <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" />
                 </div>
             {% endif %}

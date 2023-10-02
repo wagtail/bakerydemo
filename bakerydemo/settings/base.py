@@ -110,6 +110,25 @@ TEMPLATES = [
             ],
         },
     },
+    {
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "DIRS": [
+            "bakerydemo/jinja2",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "extensions": [
+                "wagtail.jinja2tags.core",
+                "wagtail.admin.jinja2tags.userbar",
+                "wagtail.images.jinja2tags.images",
+                "wagtail.contrib.settings.jinja2tags.settings",
+                "jinja2.ext.do",
+                "jinja2.ext.i18n",
+                "jinja2.ext.loopcontrols",
+                "bakerydemo.base.jinja2tags.base",
+            ],
+        },
+    },
 ]
 
 WSGI_APPLICATION = "bakerydemo.wsgi.application"

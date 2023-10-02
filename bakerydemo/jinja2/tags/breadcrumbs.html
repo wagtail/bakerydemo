@@ -1,5 +1,4 @@
-{% load wagtailcore_tags %}
-
+{% set ancestors = breadcrumbs().ancestors %}
 {% if ancestors %}
     <nav class="breadcrumb-container" aria-label="Breadcrumb">
         <div class="container">
@@ -7,11 +6,11 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         {% for ancestor in ancestors %}
-                            {% if forloop.last %}
+                            {% if loop.last %}
                                 <li aria-current="page">{{ ancestor }}</li>
                             {% else %}
-                                <li><a href="{% pageurl ancestor %}">{% if forloop.first %}Home{% else %}{{ ancestor }}{% endif %}</a>
-                                    {% include "includes/chevron-icon.html" with class="breadcrumb__chevron-icon" %}</li>
+                                <li><a href="{{ pageurl(ancestor) }}">{% if loop.first %}Home{% else %}{{ ancestor }}{% endif %}</a>
+                                    {% set class="breadcrumb__chevron-icon" %}{% include "includes/chevron-icon.html" %}</li>
                             {% endif %}
                         {% endfor %}
                     </ol>

@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags navigation_tags %}
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
@@ -25,14 +24,14 @@
                     <div class="row">
                         <div class="bread-detail__meta">
                             <p class="location__meta-title">Operating Status</p>
-                            {% if page.is_open %}
+                            {% if page.is_open() %}
                                 This location is currently open.
                             {% else %}
                                 Sorry, this location is currently closed.
                             {% endif %}
 
                             <p class="location__meta-title">Address</p>
-                            <address>{{ page.address|linebreaks }}</address>
+                            <address>{{ page.address|linebreaks|safe }}</address>
 
                             {% if page.operating_hours %}
                                 <p class="location__meta-title">Opening hours</p>
