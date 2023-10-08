@@ -33,7 +33,11 @@ each detail view
   --orange: #c55302;
   --dark-orange: #833701;
   --font--primary: 'Marcellus', serif;
-  --font--secondary: 'Open Sans', sans-serif;
+  /* stylelint-disable */
+  --font--secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui,
+    Roboto, 'Helvetica Neue', Arial, sans-serif, Apple Color Emoji,
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  /* stylelint-enable */
   --font-sm: 1rem;
   --font-md: 1.125rem;
 }
@@ -280,11 +284,17 @@ figure img {
 
 /* Hero image area */
 .hero {
-  background-size: cover;
-  background-position: center;
   padding: 300px 0 0;
   position: relative;
   margin: 0 0 10px;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 768px) {
@@ -785,20 +795,11 @@ footer {
 }
 
 .footer__icon a {
-  color: var(--cream);
-  font-size: 1.5rem;
-}
-
-.footer__icon .fa-inverse {
+  display: inline-grid;
+  background-color: var(--cream);
   color: var(--orange);
-}
-
-.footer__icon:hover a {
-  color: var(--orange);
-}
-
-.footer__icon:hover .fa-inverse {
-  color: var(--cream);
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
 .copyright p {

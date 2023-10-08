@@ -155,7 +155,7 @@ Next, we'll set up our local environment variables. We use [django-dotenv](https
 to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
 
     cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
-    touch .env
+    cp .env.example .env
 
 To set up your database and load initial data, run the following commands:
 
@@ -178,7 +178,7 @@ If you're a Python or Django developer, fork the repo and get stuck in! If you'd
 If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
 
 ```bash
-./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailcore.revision -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription -e wagtailcore.modellogentry -e wagtailcore.pagelogentry > bakerydemo/base/fixtures/bakerydemo.json
+./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription > bakerydemo/base/fixtures/bakerydemo.json
 prettier --write bakerydemo/base/fixtures/bakerydemo.json
 ```
 
@@ -207,6 +207,25 @@ In production on your own site, you'll need to change this to:
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
 and configure [SMTP settings](https://docs.djangoproject.com/en/3.2/topics/email/#smtp-backend) appropriate for your email provider.
+
+### Testing Content-Security-Policy compliance in Wagtail
+
+Bakerydemo is set up in such a way that it can be used to test [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) compatibility in Wagtail. It uses [django-csp](https://django-csp.readthedocs.io/en/latest/index.html) to generate the appropriate [CSP HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy).
+
+By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet. Set the `CSP_DEFAULT_SRC` environment variable in your `.env` file to set the default policy. An example can be found in `.env.example`.
+
+### Users included in demo data
+
+The demo data includes users with different roles and preferences. You can use these users to quickly test the permission system in Wagtail or how localization is handled in the admin interface.
+
+| Username    | Password   | Superuser | Groups     | Preferred language | Timezone      | Active |
+| ----------- | ---------- | --------- | ---------- | ------------------ | ------------- | ------ |
+| `admin`     | `changeme` | Yes       | None       | undefined          | undefined     | Yes    |
+| `editor`    | `changeme` | No        | Editors    | undefined          | undefined     | Yes    |
+| `moderator` | `changeme` | No        | Moderators | undefined          | undefined     | Yes    |
+| `inactive`  | `changeme` | yes       | None       | undefined          | undefined     | No     |
+| `german`    | `changeme` | yes       | None       | German             | Europe/Berlin | Yes    |
+| `arabic`    | `changeme` | yes       | None       | Arabic             | Asia/Beirut   | Yes    |
 
 ### Ownership of demo content
 

@@ -1,6 +1,11 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
-from wagtail.admin.panels import FieldPanel, HelpPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.panels import (
+    FieldPanel,
+    HelpPanel,
+    MultiFieldPanel,
+    MultipleChooserPanel,
+)
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
@@ -85,8 +90,9 @@ class RecipePage(Page):
             heading="Preface",
         ),
         FieldPanel("body"),
-        InlinePanel(
+        MultipleChooserPanel(
             "recipe_person_relationship",
+            chooser_field_name="person",
             heading="Authors",
             label="Author",
             help_text="Select between one and three authors",
