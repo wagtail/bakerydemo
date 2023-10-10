@@ -61,6 +61,135 @@
             </div>
         </div>
 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>srcset_image</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% srcset_image page.promo_image fill-{100x150,200x300} sizes="30vw" alt="" %}
+                    <p>Works</p>
+                    {% srcset_image page.promo_image fill-{100x150,200x300} %}
+                    <p>Works (but no sizes so a bit pointless)</p>
+                </div>
+                <div class="col-sm-4">
+                    {% srcset_image page.promo_image fill-{100x150,200x300} as img %}
+                    {{ img }}
+                    <p>Assignment, direct rendering</p>
+                    {% srcset_image page.promo_image fill-{100x150,200x300} as bg %}
+                    <img srcset="{% for r in bg.renditions %}{{ r.url }} {{ r.width }}w{% if not forloop.last %}, {% endif %}{% endfor %}" sizes="30vw" src="{{ bg.renditions.0.url }}" width="{{ bg.renditions.0.width }}" height="{{ bg.renditions.0.height }}" alt="">
+                    <p>Assignment, data access</p>
+                </div>
+                <div class="col-sm-4">
+                    {% srcset_image page.promo_image_missing fill-{100x150,200x300} sizes="30vw" alt="" %}
+                    <p>Missing image</p>
+                    {# {% srcset_image page.promo_image fill-{100x150,200x300}|jpegquality-40 sizes="30vw" alt="" %} #}
+                    <p>Invalid spec, detected by regex (uncomment)</p>
+                    {# {% srcset_image page.promo_image fill-}100x150,200x300} jpegquality-40 sizes="30vw" alt="" %} #}
+                    <p>Invalid spec, caught later</p>
+                    {% srcset_image page.promo_image fill-{1x1,2x2,4x4,8x8,16x16,32x32,64x64,128x128,256x256,512x512} sizes="5vw" alt="" %}
+                    <p>10 images (just because you can…)</p>
+                    {% srcset_image page.promo_image fill-100x150 %}
+                    <p>Works the same as vanilla image</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>picture, same as srcset_image</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% picture page.promo_image fill-{100x150,200x300} sizes="30vw" alt="" %}
+                    <p>Works</p>
+                    {% picture page.promo_image fill-{100x150,200x300} %}
+                    <p>Works (but no sizes so a bit pointless)</p>
+                </div>
+                <div class="col-sm-4">
+                    {% picture page.promo_image fill-{100x150,200x300} as img %}
+                    {{ img }}
+                    <p>Assignment, direct rendering</p>
+                    {% picture page.promo_image fill-{100x150,200x300} as bg %}
+                    <img srcset="{% for r in bg.renditions %}{{ r.url }} {{ r.width }}w{% if not forloop.last %}, {% endif %}{% endfor %}" sizes="30vw" src="{{ bg.renditions.0.url }}" width="{{ bg.renditions.0.width }}" height="{{ bg.renditions.0.height }}" alt="">
+                    <p>Assignment, data access</p>
+                </div>
+                <div class="col-sm-4">
+                    {% picture page.promo_image_missing fill-{100x150,200x300} sizes="30vw" alt="" %}
+                    <p>Missing image</p>
+                    {# {% picture page.promo_image fill-{100x150,200x300}|jpegquality-40 sizes="30vw" alt="" %} #}
+                    <p>Invalid spec, detected by regex (uncomment)</p>
+                    {# {% picture page.promo_image fill-}100x150,200x300} jpegquality-40 sizes="30vw" alt="" %} #}
+                    <p>Invalid spec, caught later</p>
+                    {% picture page.promo_image fill-{1x1,2x2,4x4,8x8,16x16,32x32,64x64,128x128,256x256,512x512} sizes="5vw" alt="" %}
+                    <p>10 images (just because you can…)</p>
+                    {% picture page.promo_image fill-100x150 %}
+                    <p>Works the same as vanilla image, but with a picture tag around it</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>picture, formats</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% picture page.promo_image format-{avif,jpeg} alt="" %}
+                    <p>Works</p>
+                </div>
+                <div class="col-sm-4">
+                    {% picture page.promo_image format-{avif,jpeg} as img %}
+                    {{ img }}
+                    <p>Assignment, direct rendering</p>
+                    {% picture page.promo_image format-{avif,jpeg} as bg %}
+                    <picture>
+                        <source srcset="{{ bg.formats.avif.0.url }}" type="image/avif">
+                        <img src="{{ bg.formats.jpeg.0.url }}" alt="">
+                    </picture>
+                    <p>Assignment, data access</p>
+                </div>
+                <div class="col-sm-4">
+                    {% picture page.promo_image format-{jpeg,avif,webp,gif,png} alt="" %}
+                    <p>All formats (just because you can…)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>picture, formats and sizes</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% picture page.promo_image format-{avif,jpeg} fill-{100x150,200x300} sizes="30vw" alt="" %}
+                    <p>Works</p>
+                </div>
+                <div class="col-sm-4">
+                    {% picture page.promo_image format-{avif,jpeg} fill-{100x150,200x300} as img %}
+                    {{ img }}
+                    <p>Assignment, direct rendering</p>
+                    {% picture page.promo_image format-{avif,jpeg} fill-{100x150,200x300} as bg %}
+                    {% for r in bg.formats.avif %}{{r.url}},{% endfor %}
+                    {% for r in bg.formats.jpeg %}{{r.url}},{% endfor %}
+                    <p>Assignment, data access</p>
+                </div>
+                <div class="col-sm-4">
+                    {% picture page.promo_image format-{jpeg,avif,webp,gif,png} fill-{1x1,2x2,4x4,8x8,16x16,32x32,64x64,128x128,256x256,512x512} sizes="5vw" alt="" %}
+                    <p>All formats, 10 sizes (just because you can…)</p>
+                </div>
+            </div>
+        </div>
+
         {% if page.body %}
             <div class="container-fluid streamfield">
                 <div class="row">
