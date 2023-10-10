@@ -1,12 +1,10 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
-
 {% block content %}
     <div class="container">
         <div class="blog-list">
             {% if recipes %}
-                {% for recipe in recipes %}
-                    {% include "includes/card/blog-listing-card.html" with blog=recipe %}
+                {% for blog in recipes %}
+                    {% include "includes/card/blog-listing-card.html" %}
                 {% endfor %}
             {% else %}
                 <div class="col-md-12">

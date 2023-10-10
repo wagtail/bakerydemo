@@ -1,5 +1,3 @@
-{% load navigation_tags %}
-
 <div class="header clearfix">
     <div class="container">
         <div class="navigation" data-navigation>
@@ -21,8 +19,7 @@
                 <a href="/" class="navigation__logo">The Wagtail Bakery</a>
                 <ul class="navigation__items nav-pills">
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}
-                    {% get_site_root as site_root %}
-                    {% top_menu parent=site_root calling_page=self %}
+                    {% include "tags/top_menu.html" %}
                 </ul>
                 <form action="/search" method="get" class="navigation__mobile-search" role="search">
                     <label for="mobile-search-input" class="u-sr-only">Search the bakery</label>
@@ -38,8 +35,7 @@
             <nav class="navigation__desktop" aria-label="Main">
                 <ul class="navigation__items nav-pills">
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}
-                    {% get_site_root as site_root %}
-                    {% top_menu parent=site_root calling_page=self %}
+                    {% include "tags/top_menu.html" %}
                 </ul>
             </nav>
 

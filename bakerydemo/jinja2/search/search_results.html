@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags %}
 
 {% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
 
@@ -17,10 +16,10 @@
                     <ul class="search__results">
                         {% for result in search_results %}
                             <li class="listing-card">
-                                <a class="listing-card__link" href="{% pageurl result.specific %}">
+                                <a class="listing-card__link" href="{{ pageurl(result.specific) }}">
                                     {% if result.specific.image %}
                                         <figure class="listing-card__image">
-                                            {% image result.specific.image fill-180x180-c100 loading="lazy" %}
+                                            {{ image(result.specific.image, "fill-180x180-c100", loading="lazy") }}
                                         </figure>
                                     {% endif %}
                                     <div class="listing-card__contents">
@@ -43,16 +42,16 @@
                         {% endfor %}
                     </ul>
                 {% elif search_query %}
-                    {% get_search_promotions search_query as search_promotions %}
+                    {% set search_promotions=get_search_promotions(search_query) %}
                     {% if search_promotions %}
                         <p class="search__introduction">You searched for “{{ search_query }}”, {{ search_promotions|length }} result{{ search_promotions|length|pluralize }} found.</p>
                         <ul class="search__results">
                             {% for search_promotion in search_promotions %}
                                 <li class="listing-card">
-                                    <a class="listing-card__link" href="{% pageurl search_promotion.page.specific %}">
+                                    <a class="listing-card__link" href="{{ pageurl(search_promotion.page.specific) }}">
                                         {% if search_promotion.page.specific.image %}
                                             <figure class="listing-card__image">
-                                                {% image search_promotion.page.specific.image fill-180x180-c100 loading="lazy" %}
+                                                {{ image(search_promotion.page.specific.image, "fill-180x180-c100", loading="lazy") }}
                                             </figure>
                                         {% endif %}
                                         <div class="listing-card__contents">

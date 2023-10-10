@@ -1,14 +1,13 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
     {% include "base/include/header-index.html" %}
 
     <div class="container">
         <ul class="bread-list">
-            {% for bread in breads %}
+            {% for page in breads %}
                 <li>
-                    {% include "includes/card/listing-card.html" with page=bread %}
+                    {% include "includes/card/listing-card.html" %}
                 </li>
             {% endfor %}
         </ul>
@@ -18,7 +17,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    {% include "includes/pagination.html" with subpages=breads %}
+                    {% set subpages=breads %}
+                    {% include "includes/pagination.html" %}
                 </div>
             </div>
         </div>
