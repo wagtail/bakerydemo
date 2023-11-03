@@ -1267,7 +1267,7 @@
     }
   },
   {
-    "model": "wagtailsearch.querydailyhits",
+    "model": "wagtailsearchpromotions.querydailyhits",
     "pk": 1,
     "fields": {
       "query": 1,
