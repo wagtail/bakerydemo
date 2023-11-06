@@ -214,6 +214,22 @@ Bakerydemo is set up in such a way that it can be used to test [Content-Security
 
 By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet. Set the `CSP_DEFAULT_SRC` environment variable in your `.env` file to set the default policy. An example can be found in `.env.example`.
 
+### Testing against different versions of Wagtail
+
+The `main` branch of this demo is designed to work with both the latest stable release and the latest `main` branch (development version) of Wagtail. To run the demo against a specific version of Wagtail, we have created [git tags](https://github.com/wagtail/bakerydemo/tags) for the latest commits that work with each feature release.
+
+- [`v5.1`](https://github.com/wagtail/bakerydemo/releases/tag/v5.1)
+- [`v5.0`](https://github.com/wagtail/bakerydemo/releases/tag/v5.0)
+- [`v4.2`](https://github.com/wagtail/bakerydemo/releases/tag/v4.2)
+- [`v4.1`](https://github.com/wagtail/bakerydemo/releases/tag/v4.1)
+- [`v4.0`](https://github.com/wagtail/bakerydemo/releases/tag/v4.0)
+- [`v3.0`](https://github.com/wagtail/bakerydemo/releases/tag/v3.0)
+- [`v2.16`](https://github.com/wagtail/bakerydemo/releases/tag/v2.16)
+
+The tags point to the last commit just before the requirements were updated to the next Wagtail version. For example, the `v4.2` tag points to the commit just before the bakerydemo was updated to use Wagtail 5.0. This ensures that the tagged demo code contains the latest updates possible for the supported version.
+
+There were no updates to the demo between Wagtail 4.1 and 4.2, so the `v4.1` and `v4.2` tags point to the same commit.
+
 ### Users included in demo data
 
 The demo data includes users with different roles and preferences. You can use these users to quickly test the permission system in Wagtail or how localization is handled in the admin interface.
