@@ -1,8 +1,8 @@
 Django>=4.2,<4.3
-django-dotenv==1.4.1
+django-dotenv==1.4.2
 wagtail>=5.2,<5.3
-wagtail-font-awesome-svg>=0.0.3,<1
-django-debug-toolbar>=3.2,<4
-django-extensions==3.2.1
+wagtail-font-awesome-svg>=1,<2
+django-debug-toolbar>=4.2,<5
+django-extensions==3.2.3
 django-csp==3.7
-dj-database-url==0.4.1
+dj-database-url==2.1.0
