@@ -1,3 +1,4 @@
+# ruff: noqa: F405
 import os
 import random
 import string
