@@ -27,25 +27,24 @@ repos:
     hooks:
       - id: djhtml
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.5.1
+    rev: v3.1.0
     hooks:
       - id: prettier
         types_or: [css, javascript, json, yaml]
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.8.0
+    rev: v8.55.0
     hooks:
       - id: eslint
         types: [file]
         files: \.(js)$
         args: [--report-unused-disable-directives]
         additional_dependencies:
-          - eslint@8.8.0
+          - eslint@8.55.0
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
     rev: v14.2.0
     hooks:
       - id: stylelint
         files: \.css$
         additional_dependencies:
-          - stylelint@14.9.1
-          - stylelint-config-standard@26.0.0
-          - stylelint-config-prettier@9.0.3
+          - stylelint@15.11.0
+          - stylelint-config-standard@34.0.0
