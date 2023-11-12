@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Install packages needed to run your application (not build deps):
 # We need to recreate the /usr/share/man/man{1..8} directories first because
@@ -33,7 +33,7 @@ RUN set -ex \
         zlib1g-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
-    && python3.9 -m venv ${VIRTUAL_ENV} \
+    && python3 -m venv ${VIRTUAL_ENV} \
     && pip install -U pip \
     && pip install --no-cache-dir -r /requirements/production.txt \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
@@ -45,9 +45,6 @@ ADD . /code/
 ENV PORT 8000
 EXPOSE 8000
 
-# Add custom environment variables needed by Django or your settings file here:
-ENV DJANGO_SETTINGS_MODULE=bakerydemo.settings.production DJANGO_DEBUG=off
-
 # Call collectstatic with dummy environment variables:
 RUN DATABASE_URL=postgres://none REDIS_URL=none python manage.py collectstatic --noinput
 
@@ -56,9 +53,6 @@ RUN mkdir -p /code/bakerydemo/media/images && chown -R 1000:2000 /code/bakerydem
 
 # mark the destination for images as a volume
 VOLUME ["/code/bakerydemo/media/images/"]
-
-# start uWSGI, using a wrapper script to allow us to easily add more commands to container startup:
-ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
 CMD ["uwsgi", "/code/etc/uwsgi.ini"]
