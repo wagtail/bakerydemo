@@ -5,7 +5,7 @@
     <div class="homepage">
 
         <div class="container-fluid hero">
-            {% image page.image fill-1920x600 class="hero-image" alt="" %}
+            {% picture page.image format-{avif,webp,jpeg} fill-{800x650,1920x900} sizes="100vw" class="hero-image" alt="" %}
             <div class="hero-gradient-mask"></div>
             <div class="container">
                 <div class="row">
@@ -55,7 +55,7 @@
                         </div>
                     {% endif %}
                     {% if page.promo_image %}
-                        <figure>{% image page.promo_image fill-590x413-c100 %}</figure>
+                        <figure>{% picture page.promo_image format-{avif,webp,jpeg} fill-590x413-c100 %}</figure>
                     {% endif %}
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 {% if page.image %}
     <div class="container-fluid hero">
-        {% image page.image fill-1920x600 class="hero-image" alt="" %}
+        {% picture page.image format-{avif,webp,jpeg} fill-{800x650,1920x600} sizes="100vw" class="hero-image" alt="" %}
         <div class="hero__container">
             <h1 class="hero__title">{{ page.title }}</h1>
         </div>

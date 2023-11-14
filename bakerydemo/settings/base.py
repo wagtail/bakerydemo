@@ -202,6 +202,8 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ("ar", "العربيّة"),
 ]
 
+WAGTAILIMAGES_AVIF_QUALITY = 60
+
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "changeme")
 
 # Content Security policy settings

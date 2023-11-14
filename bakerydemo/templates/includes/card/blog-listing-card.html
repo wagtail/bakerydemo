@@ -4,7 +4,7 @@
     <a class="blog-listing-card__link" href="{% pageurl blog %}">
         {% if blog.image %}
             <figure class="blog-listing-card__image">
-                {% image blog.image fill-322x247-c100 loading="lazy" %}
+                {% picture blog.image format-{avif,webp,jpeg} fill-322x247-c100 loading="lazy" %}
             </figure>
         {% endif %}
         <div class="blog-listing-card__contents">
