@@ -20,7 +20,7 @@
                                 <a class="listing-card__link" href="{% pageurl result.specific %}">
                                     {% if result.specific.image %}
                                         <figure class="listing-card__image">
-                                            {% image result.specific.image fill-180x180-c100 loading="lazy" %}
+                                            {% picture result.specific.image format-{avif,webp,jpeg} fill-180x180-c100 loading="lazy" %}
                                         </figure>
                                     {% endif %}
                                     <div class="listing-card__contents">
@@ -75,6 +75,7 @@
                                     {% else %}
                                         <a class="listing-card__link" href="{{ search_promotion.external_link_url }}">
                                             <figure class="listing-card__image">
+                                                {% picture search_promotion.page.specific.image format-{avif,webp,jpeg} fill-180x180-c100 loading="lazy" %}
                                             </figure>
                                             <div class="listing-card__contents">
                                                 <h3 class="listing-card__title">{{ search_promotion.external_link_text }}</h3>

@@ -9,7 +9,7 @@
 
 {% block content %}
     <div>
-        {% image object.image fill-200x200-c100 class="blog__avatar" %}
+        {% picture object.image format-{avif,webp,jpeg} fill-200x200-c100 class="blog__avatar" %}
         <h2>{{ object.first_name }} {{ object.last_name }}</h2>
         <p>{{ object.job_title }}</p>
     </div>

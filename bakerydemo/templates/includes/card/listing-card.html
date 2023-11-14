@@ -4,7 +4,7 @@
     <a class="listing-card__link" href="{{ page.url }}">
         {% if page.image %}
             <figure class="listing-card__image">
-                {% image page.image fill-180x180-c100 loading="lazy" %}
+                {% picture page.image format-{avif,webp,jpeg} fill-180x180-c100 loading="lazy" %}
             </figure>
         {% endif %}
         <div class="listing-card__contents">
