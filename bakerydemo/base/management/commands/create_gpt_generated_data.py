@@ -2,22 +2,19 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from django.utils import lorem_ipsum, timezone
+from django.utils import timezone
 from django.utils.text import slugify
 from wagtail.rich_text import RichText
 from django.core.files.base import ContentFile
 from wagtail.images.models import Image
 from django.db import IntegrityError
-from wagtail.blocks.stream_block import StreamValue
 
 from bakerydemo.blog.models import BlogIndexPage, BlogPage, BlogPersonRelationship
 from bakerydemo.base.models import Person
-from bakerydemo.base.blocks import BlockQuote, ImageBlock
 import requests
 import json
 import random
 import datetime
-import string
 from wagtail.models import Collection
 
 from openai import OpenAI
