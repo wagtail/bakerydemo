@@ -58,7 +58,8 @@ RUN mkdir -p /code/bakerydemo/media/images && chown -R 1000:2000 /code/bakerydem
 VOLUME ["/code/bakerydemo/media/images/"]
 
 # start uWSGI, using a wrapper script to allow us to easily add more commands to container startup:
-ENTRYPOINT ["/code/docker-entrypoint.sh"]
+#ENTRYPOINT ["/code/docker-entrypoint.sh"]
+CMD ["/bin/sh", "-c", "/code/docker-entrypoint.sh"]
 
 # Start uWSGI
 CMD ["uwsgi", "/code/etc/uwsgi.ini"]
