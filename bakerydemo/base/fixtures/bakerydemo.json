@@ -693,7 +693,7 @@
     "pk": 2,
     "fields": {
       "sort_order": 1,
-      "day": "TUES",
+      "day": "TUE",
       "opening_time": "08:00:00",
       "closing_time": "20:00:00",
       "closed": false,
@@ -717,7 +717,7 @@
     "pk": 4,
     "fields": {
       "sort_order": 3,
-      "day": "THUR",
+      "day": "THU",
       "opening_time": "08:00:00",
       "closing_time": "17:00:00",
       "closed": false,
@@ -741,7 +741,7 @@
     "pk": 6,
     "fields": {
       "sort_order": 1,
-      "day": "TUES",
+      "day": "TUE",
       "opening_time": "09:00:00",
       "closing_time": "20:00:00",
       "closed": false,
@@ -765,7 +765,7 @@
     "pk": 8,
     "fields": {
       "sort_order": 3,
-      "day": "THUR",
+      "day": "THU",
       "opening_time": "09:00:00",
       "closing_time": "22:00:00",
       "closed": false,
@@ -789,7 +789,7 @@
     "pk": 10,
     "fields": {
       "sort_order": 1,
-      "day": "TUES",
+      "day": "TUE",
       "opening_time": "05:00:00",
       "closing_time": "21:00:00",
       "closed": false,
@@ -813,7 +813,7 @@
     "pk": 12,
     "fields": {
       "sort_order": 3,
-      "day": "THUR",
+      "day": "THU",
       "opening_time": "07:00:00",
       "closing_time": "19:00:00",
       "closed": false,
@@ -837,7 +837,7 @@
     "pk": 14,
     "fields": {
       "sort_order": 1,
-      "day": "TUES",
+      "day": "TUE",
       "opening_time": null,
       "closing_time": null,
       "closed": true,
@@ -861,7 +861,7 @@
     "pk": 16,
     "fields": {
       "sort_order": 3,
-      "day": "THUR",
+      "day": "THU",
       "opening_time": "09:00:00",
       "closing_time": "18:00:00",
       "closed": false,
@@ -1029,7 +1029,7 @@
     "pk": 30,
     "fields": {
       "sort_order": 1,
-      "day": "TUES",
+      "day": "TUE",
       "opening_time": "09:00:00",
       "closing_time": "20:00:00",
       "closed": false,
@@ -1053,7 +1053,7 @@
     "pk": 32,
     "fields": {
       "sort_order": 3,
-      "day": "THUR",
+      "day": "THU",
       "opening_time": "09:00:00",
       "closing_time": "22:00:00",
       "closed": false,
@@ -1113,7 +1113,7 @@
     "pk": 37,
     "fields": {
       "sort_order": 1,
-      "day": "TUES",
+      "day": "TUE",
       "opening_time": "09:00:00",
       "closing_time": "20:00:00",
       "closed": false,
@@ -1137,7 +1137,7 @@
     "pk": 39,
     "fields": {
       "sort_order": 3,
-      "day": "THUR",
+      "day": "THU",
       "opening_time": "09:00:00",
       "closing_time": "22:00:00",
       "closed": false,
@@ -5504,7 +5504,7 @@
           {
             "pk": 2,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "08:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -5522,7 +5522,7 @@
           {
             "pk": 4,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "08:00:00",
             "closing_time": "17:00:00",
             "closed": false,
@@ -5619,7 +5619,7 @@
           {
             "pk": 2,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "08:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -5637,7 +5637,7 @@
           {
             "pk": 4,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "08:00:00",
             "closing_time": "17:00:00",
             "closed": false,
@@ -5734,7 +5734,7 @@
           {
             "pk": 6,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "09:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -5752,7 +5752,7 @@
           {
             "pk": 8,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "22:00:00",
             "closed": false,
@@ -5849,7 +5849,7 @@
           {
             "pk": 6,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "09:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -5867,7 +5867,7 @@
           {
             "pk": 8,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "22:00:00",
             "closed": false,
@@ -5964,7 +5964,7 @@
           {
             "pk": 10,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "05:00:00",
             "closing_time": "21:00:00",
             "closed": false,
@@ -5982,7 +5982,7 @@
           {
             "pk": 12,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "07:00:00",
             "closing_time": "19:00:00",
             "closed": false,
@@ -6079,7 +6079,7 @@
           {
             "pk": 10,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "05:00:00",
             "closing_time": "21:00:00",
             "closed": false,
@@ -6097,7 +6097,7 @@
           {
             "pk": 12,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "07:00:00",
             "closing_time": "19:00:00",
             "closed": false,
@@ -6194,7 +6194,7 @@
           {
             "pk": 14,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": null,
             "closing_time": null,
             "closed": true,
@@ -6212,7 +6212,7 @@
           {
             "pk": 16,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "18:00:00",
             "closed": false,
@@ -6309,7 +6309,7 @@
           {
             "pk": 14,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": null,
             "closing_time": null,
             "closed": true,
@@ -6327,7 +6327,7 @@
           {
             "pk": 16,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "18:00:00",
             "closed": false,
@@ -6424,7 +6424,7 @@
           {
             "pk": 30,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "09:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -6442,7 +6442,7 @@
           {
             "pk": 32,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "22:00:00",
             "closed": false,
@@ -6539,7 +6539,7 @@
           {
             "pk": 30,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "09:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -6557,7 +6557,7 @@
           {
             "pk": 32,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "22:00:00",
             "closed": false,
@@ -6654,7 +6654,7 @@
           {
             "pk": 37,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "09:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -6672,7 +6672,7 @@
           {
             "pk": 39,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "22:00:00",
             "closed": false,
@@ -6769,7 +6769,7 @@
           {
             "pk": 37,
             "sort_order": 1,
-            "day": "TUES",
+            "day": "TUE",
             "opening_time": "09:00:00",
             "closing_time": "20:00:00",
             "closed": false,
@@ -6787,7 +6787,7 @@
           {
             "pk": 39,
             "sort_order": 3,
-            "day": "THUR",
+            "day": "THU",
             "opening_time": "09:00:00",
             "closing_time": "22:00:00",
             "closed": false,

@@ -18,7 +18,7 @@ class OperatingHours(models.Model):
     A Django model to capture operating hours for a Location
     """
 
-    day = models.CharField(max_length=4, choices=DAY_CHOICES, default="MON")
+    day = models.CharField(max_length=3, choices=DAY_CHOICES, default="MON")
     opening_time = models.TimeField(blank=True, null=True)
     closing_time = models.TimeField(blank=True, null=True)
     closed = models.BooleanField(
