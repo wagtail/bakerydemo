@@ -87,7 +87,7 @@ Use `Ctrl+c` to stop the local server. To stop the Vagrant environment, run `exi
 Run the following commands:
 
 ```bash
-git clone https://github.com/wagtail/bakerydemo.git
+git clone https://github.com/wagtail/bakerydemo.git --config core.autocrlf=input
 cd bakerydemo
 docker compose up --build -d
 ```
