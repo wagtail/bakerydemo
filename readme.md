@@ -86,17 +86,10 @@ Use `Ctrl+c` to stop the local server. To stop the Vagrant environment, run `exi
 
 ### Installation
 
-If you are using using a windows machine, git may automatically change the line endings to  ```\r\n```  and this may cause an errors while building. [Article](https://willi.am/blog/2016/08/11/docker-for-windows-dealing-with-windows-line-endings/)
-
-The below line prevents that.
-```bash
-git config --global core.autocrlf input 
-```
-
 Run the following commands:
 
 ```bash
-git clone https://github.com/wagtail/bakerydemo.git
+git clone https://github.com/wagtail/bakerydemo.git --config core.autocrlf=input
 cd bakerydemo
 docker compose up --build -d
 ```
