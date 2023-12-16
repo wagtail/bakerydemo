@@ -1,7 +1,12 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "extends": ["stylelint-config-standard"],
   "rules": {
+    "declaration-block-no-redundant-longhand-properties": [
+      true,
+      { "ignoreShorthands": ["gap", "inset"] }
+    ],
     "no-descending-specificity": null,
+    "media-feature-range-notation": null,
     "custom-property-pattern": "^([a-z][a-z0-9]*)(-{1,2}[a-z0-9]+)*$",
     "selector-class-pattern": [
       "^[a-z]+[0-9]{0,2}(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$",

@@ -1414,7 +1414,9 @@ input[type='radio'] {
   padding: 15px 25px;
   display: inline-block;
   vertical-align: middle;
-  transition: color ease 0.1s, background-color ease 0.1s;
+  transition:
+    color ease 0.1s,
+    background-color ease 0.1s;
 }
 
 .homepage .home-hero .hero-cta-link:hover {

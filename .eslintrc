@@ -1,9 +1,7 @@
 {
-  "extends": [
-    "eslint:recommended"
-  ],
+  "extends": ["eslint:recommended"],
   "parserOptions": {
-    "ecmaVersion": 9
+    "ecmaVersion": 2020
   },
   "env": {
     "browser": true
@@ -13,9 +11,7 @@
     "lines-between-class-members": [
       "error",
       "always",
-      {
-        "exceptAfterSingleLine": true
-      }
+      { "exceptAfterSingleLine": true }
     ],
     // note you must disable the base rule as it can report incorrect errors
     "no-use-before-define": "off",
