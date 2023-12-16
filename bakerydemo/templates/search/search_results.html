@@ -49,28 +49,44 @@
                         <ul class="search__results">
                             {% for search_promotion in search_promotions %}
                                 <li class="listing-card">
-                                    <a class="listing-card__link" href="{% pageurl search_promotion.page.specific %}">
-                                        {% if search_promotion.page.specific.image %}
+                                    {% if search_promotion.page %}
+                                        <a class="listing-card__link" href="{% pageurl search_promotion.page.specific %}">
+                                            {% if search_promotion.page.specific.image %}
+                                                <figure class="listing-card__image">
+                                                    {% image search_promotion.page.specific.image fill-180x180-c100 loading="lazy" %}
+                                                </figure>
+                                            {% endif %}
+                                            <div class="listing-card__contents">
+                                                <h3 class="listing-card__title">{{ search_promotion.page.specific }}</h3>
+                                                <p class="listing-card__content-type">
+                                                    {% if search_promotion.page.specific.content_type.model == "blogpage" %}
+                                                        Blog Post
+                                                    {% elif search_promotion.page.specific.content_type.model == "locationpage" %}
+                                                        Location
+                                                    {% else %}
+                                                        Bread
+                                                    {% endif %}
+                                                </p>
+                                                <p class="listing-card__description">
+                                                    {% if search_promotion.page.specific.search_description %}{{ search_promotion.page.specific.search_description|richtext }}{% endif %}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                        <a class="listing-card__link" href="{{ search_promotion.external_link_url }}">
                                             <figure class="listing-card__image">
-                                                {% image search_promotion.page.specific.image fill-180x180-c100 loading="lazy" %}
                                             </figure>
-                                        {% endif %}
-                                        <div class="listing-card__contents">
-                                            <h3 class="listing-card__title">{{ search_promotion.page.specific }}</h3>
-                                            <p class="listing-card__content-type">
-                                                {% if search_promotion.page.specific.content_type.model == "blogpage" %}
-                                                    Blog Post
-                                                {% elif search_promotion.page.specific.content_type.model == "locationpage" %}
-                                                    Location
-                                                {% else %}
-                                                    Bread
-                                                {% endif %}
-                                            </p>
-                                            <p class="listing-card__description">
-                                                {% if search_promotion.page.specific.search_description %}{{ search_promotion.page.specific.search_description|richtext }}{% endif %}
-                                            </p>
-                                        </div>
-                                    </a>
+                                            <div class="listing-card__contents">
+                                                <h3 class="listing-card__title">{{ search_promotion.external_link_text }}</h3>
+                                                <p class="listing-card__content-type">
+                                                    External link
+                                                </p>
+                                                <p class="listing-card__description">
+                                                    {% if search_promotion.description %}{{ search_promotion.description|richtext }}{% endif %}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
