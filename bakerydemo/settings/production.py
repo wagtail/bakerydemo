@@ -24,7 +24,7 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Accept all hostnames, since we don't know in advance which hostname will be used for any given Heroku instance.
 # IMPORTANT: Set this to a real hostname when using this in production!
-# See https://docs.djangoproject.com/en/3.2/ref/settings/#allowed-hosts
+# See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -188,7 +188,7 @@ LOGGING = {
 # These settings are usually used only on the production sites.
 # This is a configuration of the CDN/front-end cache that is used to cache the
 # production websites.
-# https://docs.wagtail.org/en/latest/reference/contrib/frontendcache.html
+# https://docs.wagtail.org/en/stable/reference/contrib/frontendcache.html
 # The backend can be configured to use an account-wide API key, or an API token with
 # restricted access.
 if (
@@ -273,7 +273,7 @@ SECURE_HSTS_SECONDS = int(
 # because the apps are running on client domains (or our own for staging), that are
 # being used for other applications as well. We should therefore not impose any
 # restrictions on these unrelated applications.
-# https://docs.djangoproject.com/en/3.2/ref/settings/#secure-hsts-include-subdomains
+# https://docs.djangoproject.com/en/stable/ref/settings/#secure-hsts-include-subdomains
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
 # https://docs.djangoproject.com/en/stable/ref/settings/#secure-browser-xss-filter
@@ -290,5 +290,5 @@ REFERRER_POLICY = os.environ.get(  # noqa
 ).strip()
 
 # Allow the redirect importer to work in load-balanced / cloud environments.
-# https://docs.wagtail.io/en/v2.13/reference/settings.html#redirects
+# https://docs.wagtail.org/en/stable/reference/settings.html#redirects
 WAGTAIL_REDIRECTS_FILE_STORAGE = "cache"
