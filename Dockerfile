@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Install packages needed to run your application (not build deps):
 # We need to recreate the /usr/share/man/man{1..8} directories first because
@@ -33,9 +33,9 @@ RUN set -ex \
         zlib1g-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
-    && python3.9 -m venv ${VIRTUAL_ENV} \
-    && pip install -U pip \
-    && pip install --no-cache-dir -r /requirements/production.txt \
+    && python3.12 -m venv ${VIRTUAL_ENV} \
+    && python3.12 -m pip install -U pip \
+    && python3.12 -m pip install --no-cache-dir -r /requirements/production.txt \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
