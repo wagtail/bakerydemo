@@ -1,0 +1,3 @@
+{% for rendition in renditions.values %}
+    <img src="{{ rendition.file.url }}" width="{{ rendition.width }}" height="{{ rendition.height }}" alt="Filter spec: {{ rendition.filter_spec }}" />
+{% endfor %}
