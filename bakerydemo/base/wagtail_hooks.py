@@ -55,6 +55,7 @@ class PersonViewSet(SnippetViewSet):
     list_filter = {
         "job_title": ["icontains"],
     }
+    list_export = ("first_name", "last_name", "job_title")
 
 
 class FooterTextViewSet(SnippetViewSet):
