@@ -40,11 +40,12 @@
             {% breadcrumbs %}
         {% endblock breadcrumbs %}
 
-        {% block messages %}
-            {% include "includes/messages.html" %}
-        {% endblock messages %}
 
         <main>
+            {% block messages %}
+                {% include "includes/messages.html" %}
+            {% endblock messages %}
+
             {% block content %}
             {% endblock content %}
         </main>
