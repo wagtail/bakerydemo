@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from modelcluster.fields import ParentalManyToManyField
@@ -42,6 +43,14 @@ class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
 
     name = models.CharField(max_length=255)
 
+    revisions = GenericRelation(
+        "wagtailcore.Revision",
+        content_type_field="base_content_type",
+        object_id_field="object_id",
+        related_query_name="bread_ingredient",
+        for_concrete_model=False,
+    )
+
     panels = [
         FieldPanel("name"),
     ]
@@ -65,6 +74,14 @@ class BreadType(RevisionMixin, models.Model):
     """
 
     title = models.CharField(max_length=255)
+
+    revisions = GenericRelation(
+        "wagtailcore.Revision",
+        content_type_field="base_content_type",
+        object_id_field="object_id",
+        related_query_name="bread_type",
+        for_concrete_model=False,
+    )
 
     panels = [
         FieldPanel("title"),
