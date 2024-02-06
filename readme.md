@@ -121,11 +121,11 @@ docker compose logs -f
 
 ## Setup with Virtualenv
 
-You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/3.2/topics/install/#install-the-django-code) for Django itself.
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/stable/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
 
-- Python 3.7, 3.8, 3.9, 3.10 or 3.11
+- Python 3.10, 3.11, 3.12
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
 - [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
@@ -141,7 +141,7 @@ Confirm that this is showing a compatible version of Python 3.x. If not, and you
 
     deactivate
     rmvirtualenv wagtailbakerydemo
-    mkvirtualenv wagtailbakerydemo --python=python3.9
+    mkvirtualenv wagtailbakerydemo --python=python3.12
     python --version
 
 Now we're ready to set up the bakery demo project itself:
@@ -206,7 +206,7 @@ In production on your own site, you'll need to change this to:
 
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
-and configure [SMTP settings](https://docs.djangoproject.com/en/3.2/topics/email/#smtp-backend) appropriate for your email provider.
+and configure [SMTP settings](https://docs.djangoproject.com/en/stable/topics/email/#smtp-backend) appropriate for your email provider.
 
 ### Testing Content-Security-Policy compliance in Wagtail
 
