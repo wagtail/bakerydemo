@@ -28,6 +28,7 @@ class Country(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = "Country of Origin"
         verbose_name_plural = "Countries of Origin"
 
 
