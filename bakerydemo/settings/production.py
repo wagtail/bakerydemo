@@ -129,12 +129,12 @@ if ELASTICSEARCH_ENDPOINT:
         # This may be useful if your credentials are obtained via EC2 instance meta data.
         from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 
-        WAGTAILSEARCH_BACKENDS["default"]["HOSTS"][0][
-            "http_auth"
-        ] = BotoAWSRequestsAuth(
-            aws_host=ELASTICSEARCH_ENDPOINT,
-            aws_region=AWS_REGION,
-            aws_service="es",
+        WAGTAILSEARCH_BACKENDS["default"]["HOSTS"][0]["http_auth"] = (
+            BotoAWSRequestsAuth(
+                aws_host=ELASTICSEARCH_ENDPOINT,
+                aws_region=AWS_REGION,
+                aws_service="es",
+            )
         )
 
 # Simplified static file serving.
