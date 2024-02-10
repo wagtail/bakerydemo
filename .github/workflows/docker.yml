@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build container
-        run: docker-compose build && docker-compose pull
+        run: cp .env.example .env && docker-compose build && docker-compose pull
       - name: Run migrations
         run: docker-compose run app /venv/bin/python manage.py migrate
       - name: Load initial data
