@@ -133,35 +133,41 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 With [PIP](https://github.com/pypa/pip) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
 installed, run:
-
-    mkvirtualenv wagtailbakerydemo
-    python --version
+```bash
+mkvirtualenv wagtailbakerydemo
+python --version
+```
 
 Confirm that this is showing a compatible version of Python 3.x. If not, and you have multiple versions of Python installed on your system, you may need to specify the appropriate version when creating the virtualenv:
-
-    deactivate
-    rmvirtualenv wagtailbakerydemo
-    mkvirtualenv wagtailbakerydemo --python=python3.9
-    python --version
+```bash
+deactivate
+rmvirtualenv wagtailbakerydemo
+mkvirtualenv wagtailbakerydemo --python=python3.9
+python --version
+```
 
 Now we're ready to set up the bakery demo project itself:
-
-    cd ~/dev [or your preferred dev directory]
-    git clone https://github.com/wagtail/bakerydemo.git
-    cd bakerydemo
-    pip install -r requirements/development.txt
+```bash
+cd ~/dev [or your preferred dev directory]
+git clone https://github.com/wagtail/bakerydemo.git
+cd bakerydemo
+pip install -r requirements/development.txt
+```
 
 Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
 to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
-
-    cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
-    cp .env.example .env
+```bash
+cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
+cp .env.example .env
+# `cp` is used for bash. Windows Command Prompt uses `copy`
+```
 
 To set up your database and load initial data, run the following commands:
-
-    ./manage.py migrate
-    ./manage.py load_initial_data
-    ./manage.py runserver
+```bash
+./manage.py migrate
+./manage.py load_initial_data
+./manage.py runserver
+```
 
 Log into the admin with the credentials `admin / changeme`.
 
