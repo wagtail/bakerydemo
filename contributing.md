@@ -5,7 +5,9 @@ agree to abide by the Wagtail [code of conduct](https://github.com/wagtail/wagta
 
 If you do not have write access to the repo, fork, then clone the repo:
 
-    git clone git@github.com:your-username/bakerydemo.git
+```bash
+git clone git@github.com:your-username/bakerydemo.git
+```
 
 Set up your machine for [development](https://github.com/wagtail/bakerydemo/blob/master/readme.md).
 
