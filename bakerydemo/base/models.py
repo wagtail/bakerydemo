@@ -480,7 +480,7 @@ class FormPage(AbstractEmailForm):
     ]
 
 
-@register_setting
+@register_setting(icon="cog")
 class GenericSettings(ClusterableModel, BaseGenericSetting):
     twitter_url = models.URLField(verbose_name="Twitter URL", blank=True)
     github_url = models.URLField(verbose_name="GitHub URL", blank=True)
@@ -498,7 +498,7 @@ class GenericSettings(ClusterableModel, BaseGenericSetting):
     ]
 
 
-@register_setting
+@register_setting(icon="site")
 class SiteSettings(BaseSiteSetting):
     title_suffix = models.CharField(
         verbose_name="Title suffix",
