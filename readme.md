@@ -89,19 +89,16 @@ Run the following commands:
 ```bash
 git clone https://github.com/wagtail/bakerydemo.git --config core.autocrlf=input
 cd bakerydemo
+cp .env.example .env
 docker compose up --build -d
 ```
 
-After this command completes and returns to the command prompt, wait 10 more seconds for the database setup to complete. Then run:
+After this command completes and returns to the command prompt, run:
 
 ```bash
-docker compose run app /venv/bin/python manage.py migrate
-docker compose run app /venv/bin/python manage.py load_initial_data
-```
-If this fails with a database error, wait 10 more seconds and re-try. Finally, run:
-
-```bash
-docker compose up
+docker compose exec app python manage.py migrate --noinput
+docker compose exec app python manage.py load_initial_data
+docker compose exec app python manage.py update_index
 ```
 
 The demo site will now be accessible at [http://localhost:8000/](http://localhost:8000/) and the Wagtail admin
@@ -125,7 +122,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.7, 3.8, 3.9, 3.10 or 3.11
+- Python 3.8, 3.9, 3.10, 3.11, or 3.12
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
 - [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
@@ -141,7 +138,7 @@ Confirm that this is showing a compatible version of Python 3.x. If not, and you
 
     deactivate
     rmvirtualenv wagtailbakerydemo
-    mkvirtualenv wagtailbakerydemo --python=python3.9
+    mkvirtualenv wagtailbakerydemo --python=python3.12
     python --version
 
 Now we're ready to set up the bakery demo project itself:
@@ -161,6 +158,7 @@ To set up your database and load initial data, run the following commands:
 
     ./manage.py migrate
     ./manage.py load_initial_data
+    ./manage.py update_index
     ./manage.py runserver
 
 Log into the admin with the credentials `admin / changeme`.

@@ -1,38 +1,40 @@
-version: '2'
+volumes:
+  postgres-data:
 
 services:
-  db:
-    environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: changeme
-    restart: unless-stopped
-    image: postgres:14.1
-    expose:
-      - '5432'
-
-  redis:
-    restart: unless-stopped
-    image: redis:6.2
-    expose:
-      - '6379'
-
   app:
-    environment:
-      DJANGO_SECRET_KEY: changeme
-      DATABASE_URL: postgres://app_user:changeme@db/app_db
-      REDIS_URL: redis://redis
-      DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
     build:
       context: .
       dockerfile: ./Dockerfile
     volumes:
       - ./bakerydemo:/code/bakerydemo
-    links:
-      - db:db
-      - redis:redis
     ports:
       - '8000:8000'
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db:
+    environment:
+      - "POSTGRES_DB=${DATABASE_NAME}"
+      - "POSTGRES_USER=${DATABASE_USER}"
+      - "POSTGRES_PASSWORD=${DATABASE_PASSWORD}"
+    restart: unless-stopped
+    image: postgres:16
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready --quiet --dbname=${DATABASE_URL}"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    restart: unless-stopped
+    image: redis:7
+    expose:
+      - '6379'
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
