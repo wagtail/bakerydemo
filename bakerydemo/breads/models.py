@@ -28,7 +28,8 @@ class Country(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = "Countries of Origin"
+        verbose_name = "country of origin"
+        verbose_name_plural = "countries of origin"
 
 
 class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
@@ -59,7 +60,8 @@ class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Bread ingredients"
+        verbose_name = "bread ingredient"
+        verbose_name_plural = "bread ingredients"
 
 
 class BreadType(RevisionMixin, models.Model):
@@ -91,7 +93,8 @@ class BreadType(RevisionMixin, models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = "Bread types"
+        verbose_name = "bread type"
+        verbose_name_plural = "bread types"
 
 
 class BreadPage(Page):
