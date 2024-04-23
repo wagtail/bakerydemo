@@ -1435,6 +1435,20 @@
     }
   },
   {
+    "model": "wagtailcore.locale",
+    "pk": 2,
+    "fields": {
+      "language_code": "de"
+    }
+  },
+  {
+    "model": "wagtailcore.locale",
+    "pk": 3,
+    "fields": {
+      "language_code": "ar"
+    }
+  },
+  {
     "model": "wagtailcore.site",
     "pk": 2,
     "fields": {
