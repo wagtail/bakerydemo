@@ -42,6 +42,7 @@ class CountryModelViewSet(ModelViewSet):
     ordering = ("title",)
     search_fields = ("title",)
     icon = "globe"
+    inspect_view_enabled = True
 
     panels = [
         FieldPanel("title"),
