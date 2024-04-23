@@ -206,7 +206,8 @@ class FooterText(
         return {"footer_text": self.body}
 
     class Meta(TranslatableMixin.Meta):
-        verbose_name_plural = "Footer Text"
+        verbose_name = "footer text"
+        verbose_name_plural = "footer text"
 
 
 class StandardPage(Page):
