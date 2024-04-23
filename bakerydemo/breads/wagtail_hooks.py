@@ -1,20 +1,38 @@
+from wagtail.admin.filters import WagtailFilterSet
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
+from bakerydemo.base.filters import RevisionFilterSetMixin
 from bakerydemo.breads.models import BreadIngredient, BreadType, Country
+
+
+class BreadIngredientFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
+    class Meta:
+        model = BreadIngredient
+        fields = {
+            "live": ["exact"],
+        }
 
 
 class BreadIngredientSnippetViewSet(SnippetViewSet):
     model = BreadIngredient
     ordering = ("name",)
     search_fields = ("name",)
+    filterset_class = BreadIngredientFilterSet
     inspect_view_enabled = True
+
+
+class BreadTypeFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
+    class Meta:
+        model = BreadType
+        fields = []
 
 
 class BreadTypeSnippetViewSet(SnippetViewSet):
     model = BreadType
     ordering = ("title",)
     search_fields = ("title",)
+    filterset_class = BreadTypeFilterSet
 
 
 class CountrySnippetViewSet(SnippetViewSet):

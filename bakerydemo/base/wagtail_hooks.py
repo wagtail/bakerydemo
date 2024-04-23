@@ -1,8 +1,10 @@
 from wagtail import hooks
+from wagtail.admin.filters import WagtailFilterSet
 from wagtail.admin.userbar import AccessibilityItem
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
+from bakerydemo.base.filters import RevisionFilterSetMixin
 from bakerydemo.base.models import FooterText, Person
 
 """
@@ -42,6 +44,16 @@ def replace_userbar_accessibility_item(request, items):
     ]
 
 
+class PersonFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
+    class Meta:
+        model = Person
+        fields = {
+            "job_title": ["icontains"],
+            "live": ["exact"],
+            "locked": ["exact"],
+        }
+
+
 class PersonViewSet(SnippetViewSet):
     # Instead of decorating the Person model class definition in models.py with
     # @register_snippet - which has Wagtail automatically generate an admin interface for this model - we can also provide our own
@@ -52,15 +64,22 @@ class PersonViewSet(SnippetViewSet):
     menu_label = "People"  # ditch this to use verbose_name_plural from model
     icon = "group"  # change as required
     list_display = ("first_name", "last_name", "job_title", "thumb_image")
-    list_filter = {
-        "job_title": ["icontains"],
-    }
     list_export = ("first_name", "last_name", "job_title")
+    filterset_class = PersonFilterSet
+
+
+class FooterTextFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
+    class Meta:
+        model = FooterText
+        fields = {
+            "live": ["exact"],
+        }
 
 
 class FooterTextViewSet(SnippetViewSet):
     model = FooterText
     search_fields = ("body",)
+    filterset_class = FooterTextFilterSet
 
 
 class BakerySnippetViewSetGroup(SnippetViewSetGroup):
