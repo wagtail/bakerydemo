@@ -53,6 +53,11 @@ flow:
         command: wget --recursive --spider --no-directories http://app:8000/ -o warmup.log
         note: Warming the cache
         read-notes-stdout: False
+        # wget issues an error code 8 due to some images returning 404. We could catch the code 8 specifically, but
+        # it would not tell us if these are the known images or some other problems with the sever occured.
+        # Sadly this call is very flaky and might still show up as successful even if cache warmup did not really work :(
+        # PRs welcome!
+        ignore-errors: True
 
 
   - name: Blog filtering
