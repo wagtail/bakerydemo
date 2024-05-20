@@ -1,0 +1,22 @@
+baseURL: http://localhost:8000/
+scenarios:
+  - path: homepage-landing.js
+    name: homepage-landing
+  - path: search.js
+    name: search
+  - path: blog-filtering.js
+    name: blog-filtering
+  - path: contact-us.js
+    name: contact-us
+  - path: admin.js
+    name: admin
+projectName: gold-bakerydemo
+samples: 3
+distant: false
+useAdblock: false
+ignoreHTTPSErrors: true
+containers:
+  - "bakerydemo-gold-benchmark-app-1"
+databaseContainers:
+  - "bakerydemo-gold-benchmark-db-1"
+  - "bakerydemo-gold-benchmark-redis-1"

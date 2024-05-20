@@ -1,0 +1,106 @@
+---
+name: Bakerydemo GOLD v2.0 benchmark
+author: Arne Tarra <arne@green-coding.io>
+description: Testing all routes of the exemplary Bakery demo Gold v2.0 Benchmark
+
+compose-file: !include docker-compose.yml
+
+sci:
+  R_d: page request
+
+services:
+  db:
+    # we need the DB fully booted. Therefore we wait here a little
+    setup-commands:
+      - sleep 10
+
+  app:
+    environment:
+      WAGTAILADMIN_BASE_URL: http://app:8000/admin/
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+  green-coding-puppeteer-container:
+    image: greencoding/puppeteer-chrome
+    setup-commands:
+      - cp /tmp/repo/benchmark/puppeteer/admin.js /var/www/admin.js
+      - cp /tmp/repo/benchmark/puppeteer/blog-filtering.js /var/www/blog-filtering.js
+      - cp /tmp/repo/benchmark/puppeteer/contact-us.js /var/www/contact-us.js
+      - cp /tmp/repo/benchmark/puppeteer/homepage-landing.js /var/www/homepage-landing.js
+      - cp /tmp/repo/benchmark/puppeteer/search.js /var/www/search.js
+      - cp /tmp/repo/benchmark/puppeteer/package.json /var/www/package.json
+
+flow:
+  - name: Migrations
+    container: app
+    commands:
+      - type: console
+        command: /venv/bin/python manage.py migrate
+        note: Manage.py migrations
+
+  - name: Loading initial data
+    container: app
+    commands:
+      - type: console
+        command: /venv/bin/python manage.py load_initial_data
+        note: Manage.py load_initial_data
+
+  - name: Cache warming
+    container: app
+    commands:
+      - type: console
+        command: wget --recursive --spider --no-directories http://app:8000/ -o warmup.log
+        note: Warming the cache
+        read-notes-stdout: False
+
+
+  - name: Blog filtering
+    container: green-coding-puppeteer-container
+    commands:
+      - type: console
+        command:  USAGE_SCENARIO_DOMAIN=http://app:8000 node /var/www/blog-filtering.js
+        shell: sh
+        log-stdout: True
+        read-sci-stdout: True
+        read-notes-stdout: True
+
+  - name: Contact Us
+    container: green-coding-puppeteer-container
+    commands:
+      - type: console
+        command:  USAGE_SCENARIO_DOMAIN=http://app:8000 node /var/www/contact-us.js
+        shell: sh
+        log-stdout: True
+        read-sci-stdout: True
+        read-notes-stdout: True
+
+  - name: Homepage Landing
+    container: green-coding-puppeteer-container
+    commands:
+      - type: console
+        command:  USAGE_SCENARIO_DOMAIN=http://app:8000 node /var/www/homepage-landing.js
+        shell: sh
+        log-stdout: True
+        read-sci-stdout: True
+        read-notes-stdout: True
+
+  - name: Search
+    container: green-coding-puppeteer-container
+    commands:
+      - type: console
+        command:  USAGE_SCENARIO_DOMAIN=http://app:8000 node /var/www/search.js
+        shell: sh
+        log-stdout: True
+        read-sci-stdout: True
+        read-notes-stdout: True
+
+  - name: Admin Flow
+    container: green-coding-puppeteer-container
+    commands:
+      - type: console
+        command:  USAGE_SCENARIO_DOMAIN=http://app:8000 node /var/www/admin.js
+        shell: sh
+        log-stdout: True
+        read-sci-stdout: True
+        read-notes-stdout: True

@@ -1,0 +1,19 @@
+baseURL: http://localhost:8001/
+scenarios:
+  - path: homepage-landing.js
+    name: homepage-landing
+  # - path: search.js
+  #   name: search
+  - path: blog-filtering.js
+    name: blog-filtering
+  # - path: contact-us.js
+  #   name: contact-us
+  # - path: admin.js
+  #   name: admin
+projectName: gold-bakerydemo-static
+samples: 3
+distant: false
+useAdblock: false
+ignoreHTTPSErrors: true
+containers:
+  - "bakerydemo-static_app-1"
