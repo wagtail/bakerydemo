@@ -524,7 +524,7 @@ class UserApprovalTask(Task):
     """
     Based on https://docs.wagtail.org/en/stable/extending/custom_tasks.html.
     """
-    
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=False
     )
