@@ -154,8 +154,7 @@ cd bakerydemo
 pip install -r requirements/development.txt
 ```
 
-Next, we'll set up our local environment variables. We use [django-dotenv](https://github.com/jpadilla/django-dotenv)
-to help with this. It reads environment variables located in a file name `.env` in the top level directory of the project. The only variable we need to start is `DJANGO_SETTINGS_MODULE`:
+Next, we need to create the files `.env` and `bakerydemo/settings/local.py`, which provide a place for local configuration settings that need to be kept outside of version control. No such settings are required for a standard installation, but warnings will be displayed if these files are not present:
 ```bash
 cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
 cp .env.example .env
@@ -193,6 +192,12 @@ Please optimize any included images to 1200px wide with JPEG compression at 60%.
 Make a pull request to https://github.com/wagtail/bakerydemo
 
 # Other notes
+
+### Local configuration files
+
+The `bakerydemo/settings/local.py` file can be used to store local Django settings such as database connection details that need to be kept outside of version control.
+
+Additionally, various settings can be controlled through environment variables. The [django-dotenv](https://github.com/jpadilla/django-dotenv) package is used to load these variables from a `.env` file in the project root.
 
 ### Note on demo search
 
