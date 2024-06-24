@@ -2,3 +2,4 @@ node_modules
 venv
 .venv
 bakerydemo/collect_static
+benchmark
