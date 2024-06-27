@@ -22,7 +22,7 @@ services:
       dockerfile: ./Dockerfile
     shell: bash
     setup-commands:
-      - /venv/bin/python manage.py migrate migrate
+      - /venv/bin/python manage.py migrate
       - /venv/bin/python manage.py load_initial_data
       - wget --recursive --spider --no-directories http://app:8000/ -o warmup.log || true
        # wget issues an error code 8 due to some images returning 404. We could catch the code 8 specifically, but
