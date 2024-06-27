@@ -12,6 +12,7 @@ RUN set -ex \
         mime-support \
         postgresql-client \
         procps \
+        wget \
         zlib1g \
     " \
     && seq 1 8 | xargs -I{} mkdir -p /usr/share/man/man{} \
