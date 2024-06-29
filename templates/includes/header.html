@@ -1,0 +1,57 @@
+{% load navigation_tags %}
+
+<header class="header clearfix">
+    <div class="container">
+        <div class="navigation" data-navigation>
+            <a href="/" class="navigation__logo">The Wagtail Bakery</a>
+
+            <button
+                type="button"
+                class="navigation__mobile-toggle"
+                aria-label="Toggle mobile menu"
+                aria-expanded="false"
+                data-mobile-navigation-toggle
+            >
+                <span class="navigation__toggle-icon-bar"></span>
+                <span class="navigation__toggle-icon-bar"></span>
+                <span class="navigation__toggle-icon-bar"></span>
+            </button>
+
+            <nav class="navigation__mobile" data-mobile-navigation hidden>
+                <a href="/" class="navigation__logo">The Wagtail Bakery</a>
+                <ul class="navigation__items nav-pills">
+                    {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                    {% get_site_root as site_root %}
+                    {% top_menu parent=site_root calling_page=self %}
+                </ul>
+                <form action="/search" method="get" class="navigation__mobile-search" role="search">
+                    <label for="mobile-search-input" class="u-sr-only">Search the bakery</label>
+                    <input class="navigation__search-input" id="mobile-search-input" type="text" placeholder="Search" autocomplete="off" name="q">
+                    <div aria-hidden="true" class="navigation__search-icon">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="#333" />
+                        </svg>
+                    </div>
+                </form>
+            </nav>
+
+            <nav class="navigation__desktop" aria-label="Main">
+                <ul class="navigation__items nav-pills">
+                    {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                    {% get_site_root as site_root %}
+                    {% top_menu parent=site_root calling_page=self %}
+                </ul>
+            </nav>
+
+            <form action="/search" method="get" class="navigation__search" role="search">
+                <label for="search-input" class="u-sr-only">Search the bakery</label>
+                <input class="navigation__search-input" id="search-input" type="text" placeholder="Search" autocomplete="off" name="q">
+                <div aria-hidden="true" class="navigation__search-icon">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="#333" />
+                    </svg>
+                </div>
+            </form>
+        </div>
+    </div>
+</header>

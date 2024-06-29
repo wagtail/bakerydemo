@@ -1,0 +1,28 @@
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+<div class="blog-listing-card">
+    <a class="blog-listing-card__link" href="{% pageurl blog %}">
+        {% if blog.image %}
+            <figure class="blog-listing-card__image">
+                {% picture blog.image format-{avif,webp,jpeg} fill-322x247-c100 loading="lazy" %}
+            </figure>
+        {% endif %}
+        <div class="blog-listing-card__contents">
+            <h2 class="blog-listing-card__title">{{ blog.title }}</h2>
+            {% if blog.introduction %}
+                <p class="blog-listing-card__introduction">{{ blog.introduction|truncatewords:15 }}</p>
+            {% endif %}
+            <p class="blog-listing-card__metadata">
+                {% if blog.date_published %}
+                    {{ blog.date_published }} by
+                {% endif %}
+                {% for author in blog.authors %}
+                    {{ author }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+    </a>
+</div>
+
+
+

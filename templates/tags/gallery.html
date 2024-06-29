@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+{% for img in images %}
+    <div class="picture-card">
+        <figure class="picture-card__image">
+            {% picture img format-{avif,webp,jpeg} fill-{300x200-c75,645x480-c75} sizes="(max-width: 768px)150px,30vw" loading="lazy" %}
+            <div class="picture-card__contents">
+                <p class="picture-card__title">{{ img.title }}</p>
+            </div>
+        </figure>
+    </div>
+{% endfor %}

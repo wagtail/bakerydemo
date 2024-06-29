@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags navigation_tags %}
+
+{% block content %}
+    {% include "base/include/header-hero.html" %}
+
+    <div class="container bread-detail">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-7">
+                    <div class="row">
+                        {% if page.introduction %}
+                            <p class="bread-detail__introduction">
+                                {{ page.introduction }}
+                            </p>
+                        {% endif %}
+
+                        <div class="hidden-md-down">
+                            {{ page.body }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-md-offset-1">
+                    <div class="row">
+                        <div class="bread-detail__meta">
+                            <p class="location__meta-title">Operating Status</p>
+                            {% if page.is_open %}
+                                This location is currently open.
+                            {% else %}
+                                Sorry, this location is currently closed.
+                            {% endif %}
+
+                            <p class="location__meta-title">Address</p>
+                            <address>{{ page.address|linebreaks }}</address>
+
+                            {% if page.operating_hours %}
+                                <p class="location__meta-title">Opening hours</p>
+                                {% for hours in page.operating_hours %}
+                                    <time itemprop="openingHours" datetime="{{ hours }}" class="location__time">
+                                        <span class="location__day">{{ hours.day }}</span>:
+                                        <span class="location__hours">
+                                            {% if hours.closed == True %}
+                                                Closed
+                                            {% else %}
+                                                {% if hours.opening_time %}
+                                                    {{ hours.opening_time }}
+                                                {% endif %} -
+                                                {% if hours.closing_time %}
+                                                    {{ hours.closing_time }}
+                                                {% endif %}
+                                            {% endif %}
+                                        </span></time>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="row hidden-md-up">
+                        {{ page.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
