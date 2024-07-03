@@ -175,7 +175,9 @@ class LocationPage(Page):
         return hours
 
     # Determines if the location is currently open. It is timezone naive
-    '''def is_open(self):
+    '''
+    # original is_open
+    def is_open(self):
         now = datetime.now()
         current_time = now.time()
         current_day = now.strftime("%a").upper()
