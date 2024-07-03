@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags %}
+
+{% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+
+{% block search_description %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+
+{% block body_class %}template-search-results{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Search results</h1>
+                {% if search_results %}
+                    <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
+                    <ul class="search__results">
+                        {% for result in search_results %}
+                            <li class="listing-card">
+                                <a class="listing-card__link" href="{% pageurl result.specific %}">
+                                    {% if result.specific.image %}
+                                        <figure class="listing-card__image">
+                                            {% picture result.specific.image format-{avif,webp,jpeg} fill-180x180-c100 loading="lazy" %}
+                                        </figure>
+                                    {% endif %}
+                                    <div class="listing-card__contents">
+                                        <h3 class="listing-card__title">{{ result.specific }}</h3>
+                                        <p class="listing-card__content-type">
+                                            {% if result.specific.content_type.model == "blogpage" %}
+                                                Blog Post
+                                            {% elif result.specific.content_type.model == "locationpage" %}
+                                                Location
+                                            {% else %}
+                                                Bread
+                                            {% endif %}
+                                        </p>
+                                        <p class="listing-card__description">
+                                            {% if result.specific.search_description %}{{ result.specific.search_description|richtext }}{% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% elif search_query %}
+                    {% get_search_promotions search_query as search_promotions %}
+                    {% if search_promotions %}
+                        <p class="search__introduction">You searched for “{{ search_query }}”, {{ search_promotions|length }} result{{ search_promotions|length|pluralize }} found.</p>
+                        <ul class="search__results">
+                            {% for search_promotion in search_promotions %}
+                                <li class="listing-card">
+                                    {% if search_promotion.page %}
+                                        <a class="listing-card__link" href="{% pageurl search_promotion.page.specific %}">
+                                            {% if search_promotion.page.specific.image %}
+                                                <figure class="listing-card__image">
+                                                    {% image search_promotion.page.specific.image fill-180x180-c100 loading="lazy" %}
+                                                </figure>
+                                            {% endif %}
+                                            <div class="listing-card__contents">
+                                                <h3 class="listing-card__title">{{ search_promotion.page.specific }}</h3>
+                                                <p class="listing-card__content-type">
+                                                    {% if search_promotion.page.specific.content_type.model == "blogpage" %}
+                                                        Blog Post
+                                                    {% elif search_promotion.page.specific.content_type.model == "locationpage" %}
+                                                        Location
+                                                    {% else %}
+                                                        Bread
+                                                    {% endif %}
+                                                </p>
+                                                <p class="listing-card__description">
+                                                    {% if search_promotion.page.specific.search_description %}{{ search_promotion.page.specific.search_description|richtext }}{% endif %}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                        <a class="listing-card__link" href="{{ search_promotion.external_link_url }}">
+                                            <figure class="listing-card__image">
+                                                {% picture search_promotion.page.specific.image format-{avif,webp,jpeg} fill-180x180-c100 loading="lazy" %}
+                                            </figure>
+                                            <div class="listing-card__contents">
+                                                <h3 class="listing-card__title">{{ search_promotion.external_link_text }}</h3>
+                                                <p class="listing-card__content-type">
+                                                    External link
+                                                </p>
+                                                <p class="listing-card__description">
+                                                    {% if search_promotion.description %}{{ search_promotion.description|richtext }}{% endif %}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="search__introduction">No results found for “{{ search_query }}”.</p>
+                    {% endif %}
+                {% else %}
+                    <p class="search__introduction">You didn&apos;t search for anything!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

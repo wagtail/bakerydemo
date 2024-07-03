@@ -3,7 +3,6 @@
 *.log
 *.swp
 *.retry
-.env
 .idea
 .vscode
 *~
@@ -11,11 +10,8 @@
 /data
 .~*
 common/CACHE
-bakerydemo/settings/local.py
-bakerydemodb
 node_modules
 venv
-.venv
 __pycache__
 .vagrant/
 /.vagrant/

@@ -1,0 +1,6 @@
+logging: 30
+migrate_from_0_3_2: false
+project_name: bakerydemo
+stellar_url: postgresql+psycopg2:///stellar_data
+tracked_databases: [bakerydemo]
+url: postgresql+psycopg2:///template1

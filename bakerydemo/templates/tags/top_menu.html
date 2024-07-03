@@ -1,0 +1,14 @@
+{% load navigation_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{% for menuitem in menuitems %}
+    <li class="presentation {{ menuitem.title|lower|cut:" " }}{% if menuitem.active %} active{% endif %}{% if menuitem.show_dropdown %} has-submenu{% endif %}">
+        {% if menuitem.show_dropdown %}
+            <a href="{% pageurl menuitem %}" class="allow-toggle">{{ menuitem.title }} <span><a class="caret-custom dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a></span></a>
+            {% top_menu_children parent=menuitem %}
+            {# Used to display child menu items #}
+        {% else %}
+            <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+        {% endif %}
+    </li>
+{% endfor %}

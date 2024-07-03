@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    {% include "base/include/header-hero.html" %}
+
+    <div class="container bread-detail">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-7">
+                    <div class="row">
+                        {% if page.introduction %}
+                            <p class="bread-detail__introduction">
+                                {{ page.introduction }}
+                            </p>
+                        {% endif %}
+                        {{ page.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

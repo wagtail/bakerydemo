@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags gallery_tags %}
+
+{% block content %}
+    {% include "base/include/header-hero.html" %}
+
+    <div class="container gallery__container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if page.introduction %}
+                    <p class="gallery__introduction">{{ page.introduction }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="gallery__grid">
+            {% gallery page.collection %}
+        </div>
+    </div>
+{% endblock content %}

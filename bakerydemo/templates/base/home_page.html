@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+    <div class="homepage">
+
+        <div class="container-fluid hero">
+            {% picture page.image format-{avif,webp,jpeg} fill-{800x650,1920x900} sizes="100vw" class="hero-image" alt="" %}
+            <div class="hero-gradient-mask"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-1 col-lg-5 home-hero">
+                        <h1>{{ page.title }}</h1>
+                        <p class="lead">{{ page.hero_text }}</p>
+                        {% if page.hero_cta_link %}
+                            <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link">
+                                {{ page.hero_cta }}
+                            </a>
+                        {% else %}
+                            {{ page.hero_cta }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row promo-row">
+                <div class="featured-cards col-sm-5 col-sm-offset-1">
+                    {% if page.featured_section_1 %}
+                        <h2 class="featured-cards__title">{{ page.featured_section_1_title }}</h2>
+                        <ul class="featured-cards__list">
+                            {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
+                                <li>
+                                    {% include "includes/card/listing-card.html" with page=childpage %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <a class="featured-cards__link" href="/breads">
+                            <span>View more of our breads</span>
+                            {% include "includes/chevron-icon.html" with class="featured-cards__chevron-icon" %}
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-6 promo">
+                    {% if page.promo_image or page.promo_title or page.promo_text %}
+                        <div class="col-lg-10 promo-text">
+                            {% if page.promo_title %}
+                                <h2>{{ page.promo_title }}</h2>
+                            {% endif %}
+                            {% if page.promo_text %}
+                                {{ page.promo_text|richtext }}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    {% if page.promo_image %}
+                        <figure>{% picture page.promo_image format-{avif,webp,jpeg} fill-590x413-c100 %}</figure>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if page.body %}
+            <div class="container-fluid streamfield">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 streamfield-column">
+                        {{ page.body }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 locations-section">
+                    {% if page.featured_section_2 %}
+                        <h2 class="locations-section__title">{{ page.featured_section_2_title }}</h2>
+                        {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
+                            {% include "includes/card/location-card.html" with page=childpage %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if page.featured_section_3 %}
+            <div class="blog-section__background">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 blog-section">
+                            <h2 class="blog-section__title">{{ page.featured_section_3_title }}</h2>
+                            <div class="blog-section__grid">
+                                {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
+                                    {% include "includes/card/picture-card.html" with page=childpage portrait=True %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

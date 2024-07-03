@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+
+    {% include "base/include/header-index.html" %}
+
+    <div class="container">
+        <div class="location-list-page">
+            {% for location in locations %}
+                {% include "includes/card/picture-card.html" with page=location portrait=False %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+

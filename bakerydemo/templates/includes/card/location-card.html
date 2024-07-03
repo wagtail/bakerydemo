@@ -1,0 +1,15 @@
+{% load wagtailimages_tags %}
+
+<div class="location-card col-sm-4">
+    <a class="location-card__link" href="{{page.url}}">
+        <figure class="location-card__image">
+            {% picture page.image format-{avif,webp,jpeg} fill-{300x320-c100,430x320-c100} sizes="(max-width: 768px) 150px, 400px" loading="lazy" %}
+        </figure>
+        <div class="location-card__contents">
+            <h3 class="location-card__title">{{page.title}}</h3>
+            {% if page.introduction %}
+                <p class="location-card__text">{{ page.introduction|truncatewords:15 }}</p>
+            {% endif %}
+        </div>
+    </a>
+</div>

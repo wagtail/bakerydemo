@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  db:
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: changeme
+    restart: unless-stopped
+    image: postgres:14.1
+    expose:
+      - '5432'
+
+  redis:
+    restart: unless-stopped
+    image: redis:6.2
+    expose:
+      - '6379'
+
+  app:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@db/app_db
+      REDIS_URL: redis://redis
+      DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./bakerydemo:/code/bakerydemo
+    links:
+      - db:db
+      - redis:redis
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+      - redis

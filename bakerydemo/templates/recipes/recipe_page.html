@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load navigation_tags wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+
+    {% include "base/include/header-blog.html" %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog__meta">
+                    {% if page.authors %}
+                        <div class="blog__avatars">
+                            {% for author in page.authors %}
+                                <div class="blog__author">{% picture author.image format-{avif,webp,jpeg} fill-50x50-c100 class="blog__avatar" %}
+                                    {{ author.first_name }} {{ author.last_name }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if page.backstory %}
+                    {{ page.backstory }}
+
+                    <hr>
+                {% endif %}
+
+                {# Give a label to the recipe section for screen reader users. #}
+                <div id="recipe-headline" class="sr-only">
+                    Recipe{% if page.recipe_headline %}: {{ page.recipe_headline|richtext }}{% endif %}
+                </div>
+
+                <section aria-labelledby="recipe-headline">
+                    {{ page.body }}
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

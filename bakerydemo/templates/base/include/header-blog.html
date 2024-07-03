@@ -1,0 +1,27 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% if page.image %}
+    <div class="container-fluid hero hero--blog">
+        {% picture page.image format-{avif,webp,jpeg} fill-{800x650,1920x600} sizes="100vw" class="hero-image" alt="" %}
+    </div>
+{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-9">
+            <h1 class="index-header__title index-header__title--blog">{{ page.title }}</h1>
+            {% if page.subtitle %}
+                <p>{{ page.subtitle }}</p>
+            {% endif %}
+        </div>
+        <div class="col-sm-12 col-md-7">
+            {% if page.introduction %}
+                <p class="index-header__introduction index-header__introduction--blog">{{ page.introduction }}</p>
+            {% endif %}
+            {% if page.date_published %}
+                <div class="blog__published">
+                    {{ page.date_published }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "name": "bakerydemo",
+  "version": "1.0.0",
+  "repository": "https://github.com/wagtail/bakerydemo",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "scripts": {
+    "fix:js": "eslint --ext .js --fix .",
+    "fix:css": "stylelint --fix **/*.css",
+    "format": "prettier --write \"**/?(.)*.{css,js,json,yaml,yml}\"",
+    "lint:js": "eslint --ext .js --report-unused-disable-directives .",
+    "lint:css": "stylelint **/*.css",
+    "lint:format": "prettier --check \"**/?(.)*.{css,js,json,yaml,yml}\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:format"
+  }
+}

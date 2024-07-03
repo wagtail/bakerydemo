@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+
+<div class="picture-card">
+    <a class="picture-card__link" href="{{ page.url }}">
+        <figure class="picture-card__image">
+            {% if portrait %}
+                {% picture page.image format-{avif,webp,jpeg} fill-{250x320-c100,433x487-c100} sizes="(max-width: 768px)125px,400px" loading="lazy" %}
+            {% else %}
+                {% picture page.image format-{avif,webp,jpeg} fill-{300x200-c75,645x480-c75} sizes="(max-width: 768px)150px,30vw" loading="lazy" %}
+            {% endif %}
+            <div class="picture-card__contents">
+                <h3 class="picture-card__title">{{ page.title }}</h3>
+            </div>
+        </figure>
+    </a>
+</div>

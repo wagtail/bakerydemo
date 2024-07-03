@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "base/include/header-index.html" %}
+
+    <div class="container">
+        <ul class="bread-list">
+            {% for bread in breads %}
+                <li>
+                    {% include "includes/card/listing-card.html" with page=bread %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if breads.paginator.count > 12 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    {% include "includes/pagination.html" with subpages=breads %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

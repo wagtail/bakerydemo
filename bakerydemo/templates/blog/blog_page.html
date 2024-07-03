@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load navigation_tags wagtailimages_tags %}
+
+{% block content %}
+
+    {% include "base/include/header-blog.html" %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog__meta">
+                    {% if page.authors %}
+                        <div class="blog__avatars">
+                            {% for author in page.authors %}
+                                <div class="blog__author">{% picture author.image format-{avif,webp,jpeg} fill-50x50-c100 class="blog__avatar" %}
+                                    {{ author.first_name }} {{ author.last_name }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {{ page.body }}
+
+                {% if page.get_tags %}
+                    <p class="blog__tag-introduction">Find more blog posts with similar tags</p>
+                    <div class="blog-tags blog-tags--condensed">
+                        <span class="u-sr-only">Filter blog posts by tag</span>
+                        {% for tag in page.get_tags %}
+                            <a href="{{ tag.url }}" class="blog-tags__pill">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
