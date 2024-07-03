@@ -254,6 +254,6 @@ The demo data includes users with different roles and preferences. You can use t
 | `german`    | `changeme` | yes       | None       | German             | Europe/Berlin | Yes    |
 | `arabic`    | `changeme` | yes       | None       | Arabic             | Asia/Beirut   | Yes    |
 
-### Ownership of demo content
+### Ownership of demo content --use of Vigilant mode on GitHub
 
 All content in the demo is public domain. Textual content in this project is either sourced from Wikimedia (Wikipedia for blog posts, [Wikibooks for recipes](https://en.wikibooks.org/wiki/Cookbook:Table_of_Contents)) or is lorem ipsum. All images are from either Wikimedia Commons or other copyright-free sources.
