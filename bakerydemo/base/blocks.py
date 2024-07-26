@@ -12,7 +12,7 @@ from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
 
 
-class ImageBlock(StructBlock):
+class CaptionedImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
     attribution data
@@ -36,7 +36,7 @@ class ImageBlock(StructBlock):
 
     class Meta:
         icon = "image"
-        template = "blocks/image_block.html"
+        template = "blocks/captioned_image_block.html"
         preview_value = {"attribution": "The Wagtail Bakery"}
         description = "An image with optional caption and attribution"
 
@@ -108,7 +108,7 @@ class BaseStreamBlock(StreamBlock):
         ),
         description="A rich text paragraph",
     )
-    image_block = ImageBlock()
+    image_block = CaptionedImageBlock()
     block_quote = BlockQuote()
     embed_block = EmbedBlock(
         help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
