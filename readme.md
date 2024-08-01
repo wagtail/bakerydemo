@@ -125,7 +125,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.8, 3.9, 3.10, 3.11 or 3.12
+- Python 3.10, 3.11 or 3.12
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
 - [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
@@ -142,7 +142,7 @@ Confirm that this is showing a compatible version of Python 3.x. If not, and you
 ```bash
 deactivate
 rmvirtualenv wagtailbakerydemo
-mkvirtualenv wagtailbakerydemo --python=python3.9
+mkvirtualenv wagtailbakerydemo --python=python3.12
 python --version
 ```
 
