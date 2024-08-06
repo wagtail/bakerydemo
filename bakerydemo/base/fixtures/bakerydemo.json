@@ -96,8 +96,8 @@
     "model": "base.genericsettings",
     "pk": 1,
     "fields": {
-      "github_url": "https://github.com/wagtail/wagtail",
       "mastodon_url": "https://fosstodon.org/@wagtail",
+      "github_url": "https://github.com/wagtail/wagtail",
       "organisation_url": "https://wagtail.org/"
     }
   },
@@ -1246,54 +1246,6 @@
     }
   },
   {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 1,
-    "fields": {
-      "query_string": "chocolate"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 2,
-    "fields": {
-      "query_string": "london"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 3,
-    "fields": {
-      "query_string": "circus"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 1,
-    "fields": {
-      "query": 1,
-      "date": "2019-02-11",
-      "hits": 2
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 2,
-    "fields": {
-      "query": 2,
-      "date": "2019-02-15",
-      "hits": 1
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 3,
-    "fields": {
-      "query": 3,
-      "date": "2019-02-24",
-      "hits": 1
-    }
-  },
-  {
     "model": "wagtailforms.formsubmission",
     "pk": 1,
     "fields": {
@@ -1403,8 +1355,10 @@
     "fields": {
       "query": 1,
       "page": 63,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1413,8 +1367,10 @@
     "fields": {
       "query": 4,
       "page": 40,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1423,8 +1379,10 @@
     "fields": {
       "query": 5,
       "page": 36,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -12085,6 +12043,7 @@
       "collection": 3,
       "title": "Roberta Johnson",
       "file": "original_images/roberta_johnson.jpeg",
+      "description": "",
       "width": 300,
       "height": 282,
       "created_at": "2019-02-17T07:43:46.304Z",
@@ -12104,6 +12063,7 @@
       "collection": 2,
       "title": "Breads 1",
       "file": "original_images/breads1.jpg",
+      "description": "",
       "width": 1080,
       "height": 831,
       "created_at": "2019-02-17T08:10:34.237Z",
@@ -12123,6 +12083,7 @@
       "collection": 2,
       "title": "Breads 2",
       "file": "original_images/breads2.jpg",
+      "description": "",
       "width": 1080,
       "height": 1151,
       "created_at": "2019-02-17T08:10:34.344Z",
@@ -12142,6 +12103,7 @@
       "collection": 2,
       "title": "Breads 3",
       "file": "original_images/breads3.jpg",
+      "description": "",
       "width": 1080,
       "height": 1080,
       "created_at": "2019-02-17T08:10:34.580Z",
@@ -12161,6 +12123,7 @@
       "collection": 2,
       "title": "Breads 4",
       "file": "original_images/breads4.jpg",
+      "description": "",
       "width": 1080,
       "height": 1240,
       "created_at": "2019-02-17T08:10:34.723Z",
@@ -12180,6 +12143,7 @@
       "collection": 2,
       "title": "Breads 5",
       "file": "original_images/bread5.jpg",
+      "description": "",
       "width": 800,
       "height": 600,
       "created_at": "2019-02-19T08:08:37.723Z",
@@ -12199,6 +12163,7 @@
       "collection": 2,
       "title": "Breads 6",
       "file": "original_images/bread6.jpg",
+      "description": "",
       "width": 1008,
       "height": 756,
       "created_at": "2019-02-19T08:08:38.028Z",
@@ -12218,6 +12183,7 @@
       "collection": 2,
       "title": "Yeast",
       "file": "original_images/yeast.jpg",
+      "description": "",
       "width": 1024,
       "height": 682,
       "created_at": "2019-02-21T07:50:10.793Z",
@@ -12237,6 +12203,7 @@
       "collection": 2,
       "title": "Bedouins",
       "file": "original_images/Bedouins_making_bread.jpg",
+      "description": "",
       "width": 1000,
       "height": 669,
       "created_at": "2019-02-21T07:59:50.671Z",
@@ -12256,6 +12223,7 @@
       "collection": 2,
       "title": "Ølandshvedebrød",
       "file": "original_images/Olandshvedebrod_6082070226.jpg",
+      "description": "",
       "width": 1000,
       "height": 664,
       "created_at": "2019-02-21T08:05:08.529Z",
@@ -12275,6 +12243,7 @@
       "collection": 2,
       "title": "Soda Bread",
       "file": "original_images/soda_bread.jpg",
+      "description": "",
       "width": 733,
       "height": 481,
       "created_at": "2019-02-21T08:10:30.772Z",
@@ -12294,6 +12263,7 @@
       "collection": 2,
       "title": "Sandwich Bread",
       "file": "original_images/sliced.jpg",
+      "description": "",
       "width": 1024,
       "height": 677,
       "created_at": "2019-02-21T08:15:16.080Z",
@@ -12313,6 +12283,7 @@
       "collection": 4,
       "title": "Anadama_bread",
       "file": "original_images/Anadama_bread_1.jpg",
+      "description": "",
       "width": 1200,
       "height": 800,
       "created_at": "2019-02-23T07:48:33.730Z",
@@ -12332,6 +12303,7 @@
       "collection": 4,
       "title": "Appam",
       "file": "original_images/Appam_served_with_Coconut_Milk_in_Tamil_Nadu.JPG",
+      "description": "",
       "width": 1200,
       "height": 541,
       "created_at": "2019-02-23T07:48:34.056Z",
@@ -12351,6 +12323,7 @@
       "collection": 4,
       "title": "Arepa",
       "file": "original_images/Arepa_asada.JPG",
+      "description": "",
       "width": 1200,
       "height": 900,
       "created_at": "2019-02-23T07:48:34.189Z",
@@ -12370,6 +12343,7 @@
       "collection": 4,
       "title": "Bagel",
       "file": "original_images/Bagel.jpg",
+      "description": "",
       "width": 1200,
       "height": 1038,
       "created_at": "2019-02-23T07:48:34.296Z",
@@ -12389,6 +12363,7 @@
       "collection": 4,
       "title": "Baguette",
       "file": "original_images/Baguette_de_pain_WikiCheese_Lausanne.jpg",
+      "description": "",
       "width": 1200,
       "height": 583,
       "created_at": "2019-02-23T07:48:34.417Z",
@@ -12408,6 +12383,7 @@
       "collection": 4,
       "title": "Bammies",
       "file": "original_images/Bammies.jpg",
+      "description": "",
       "width": 1200,
       "height": 1078,
       "created_at": "2019-02-23T07:48:34.498Z",
@@ -12427,6 +12403,7 @@
       "collection": 4,
       "title": "Bazin",
       "file": "original_images/Bazin.jpg",
+      "description": "",
       "width": 1200,
       "height": 900,
       "created_at": "2019-02-23T07:48:34.571Z",
@@ -12446,6 +12423,7 @@
       "collection": 4,
       "title": "Bunanpankatori",
       "file": "original_images/Bean-jam-bunanpankatori-cityjapan.JPG",
+      "description": "",
       "width": 800,
       "height": 640,
       "created_at": "2019-02-23T07:48:34.650Z",
@@ -12465,6 +12443,7 @@
       "collection": 4,
       "title": "Belgian Waffle",
       "file": "original_images/Belgische_waffeln.jpg",
+      "description": "",
       "width": 1200,
       "height": 910,
       "created_at": "2019-02-23T07:48:34.735Z",
@@ -12484,6 +12463,7 @@
       "collection": 4,
       "title": "Afghan Bolani",
       "file": "original_images/Bolani_Afghan_bread_01.jpg",
+      "description": "",
       "width": 1280,
       "height": 960,
       "created_at": "2019-02-23T07:48:34.809Z",
@@ -12503,6 +12483,7 @@
       "collection": 4,
       "title": "Misc Breads",
       "file": "original_images/Breads_1.jpg",
+      "description": "",
       "width": 1200,
       "height": 796,
       "created_at": "2019-02-23T07:48:34.909Z",
@@ -12522,6 +12503,7 @@
       "collection": 4,
       "title": "Rye Bread",
       "file": "original_images/Sourdough_rye_with_walnuts.jpg",
+      "description": "",
       "width": 1200,
       "height": 773,
       "created_at": "2019-02-23T08:18:10.895Z",
@@ -12541,6 +12523,7 @@
       "collection": 4,
       "title": "Bhakri",
       "file": "original_images/Bhakri_1.jpg",
+      "description": "",
       "width": 1200,
       "height": 900,
       "created_at": "2019-02-23T08:25:03.822Z",
@@ -12560,6 +12543,7 @@
       "collection": 3,
       "title": "Sprint Crew",
       "file": "original_images/sprint_crew.jpg",
+      "description": "",
       "width": 1000,
       "height": 750,
       "created_at": "2019-02-24T08:01:50.590Z",
@@ -12579,6 +12563,7 @@
       "collection": 3,
       "title": "Baking Soda",
       "file": "original_images/bakingsoda.jpg",
+      "description": "",
       "width": 1024,
       "height": 678,
       "created_at": "2019-03-22T06:13:09.773Z",
@@ -12598,6 +12583,7 @@
       "collection": 3,
       "title": "Boston Cream Pie",
       "file": "original_images/bostoncream.jpg",
+      "description": "",
       "width": 1024,
       "height": 683,
       "created_at": "2019-03-22T06:29:18.751Z",
@@ -12617,6 +12603,7 @@
       "collection": 1,
       "title": "Image by Ævar Guðmundsson",
       "file": "original_images/aevar-gudmundsson-selfoss.jpg",
+      "description": "",
       "width": 1400,
       "height": 932,
       "created_at": "2019-03-29T17:27:55.769Z",
@@ -12636,6 +12623,7 @@
       "collection": 1,
       "title": "Image by Sverrir Thorolfsson",
       "file": "original_images/reykjavik-sverrir-thorolfsson.jpg",
+      "description": "",
       "width": 992,
       "height": 971,
       "created_at": "2019-03-29T17:31:36.429Z",
@@ -12655,6 +12643,7 @@
       "collection": 1,
       "title": "Glacier descending near Hof",
       "file": "original_images/hof-cornell-university-filter.jpg",
+      "description": "",
       "width": 1200,
       "height": 948,
       "created_at": "2019-03-29T17:46:14.914Z",
@@ -12674,6 +12663,7 @@
       "collection": 1,
       "title": "Old buildings above Vik",
       "file": "original_images/vik.jpg",
+      "description": "",
       "width": 1400,
       "height": 981,
       "created_at": "2019-03-29T18:00:33.977Z",
@@ -12693,6 +12683,7 @@
       "collection": 1,
       "title": "Höfn from above",
       "file": "original_images/Hofn.jpg",
+      "description": "",
       "width": 1200,
       "height": 800,
       "created_at": "2019-03-29T18:04:27.068Z",
@@ -12712,6 +12703,7 @@
       "collection": 1,
       "title": "Akranes",
       "file": "original_images/Akranes.jpg",
+      "description": "",
       "width": 1200,
       "height": 800,
       "created_at": "2019-03-29T18:08:27.770Z",
@@ -12731,6 +12723,7 @@
       "collection": 3,
       "title": "Muddy Waters",
       "file": "original_images/muddy_waters_hUPkmSW.jpg",
+      "description": "",
       "width": 611,
       "height": 672,
       "created_at": "2019-03-31T06:36:23.486Z",
@@ -12750,6 +12743,7 @@
       "collection": 3,
       "title": "Olivia Ava",
       "file": "original_images/olivia_ava.jpeg",
+      "description": "",
       "width": 300,
       "height": 294,
       "created_at": "2019-04-01T07:30:10.713Z",
@@ -12769,6 +12763,7 @@
       "collection": 3,
       "title": "Lightnin' Hopkins",
       "file": "original_images/lightnin_hopkins.jpg",
+      "description": "",
       "width": 150,
       "height": 162,
       "created_at": "2019-04-01T07:31:21.251Z",
@@ -12820,7 +12815,9 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12836,7 +12833,9 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12852,7 +12851,9 @@
       "current_time_zone": "Europe/Berlin",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12868,7 +12869,9 @@
       "current_time_zone": "Asia/Beirut",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12884,7 +12887,9 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
