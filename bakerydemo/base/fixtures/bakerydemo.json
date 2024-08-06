@@ -1246,54 +1246,6 @@
     }
   },
   {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 1,
-    "fields": {
-      "query_string": "chocolate"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 2,
-    "fields": {
-      "query_string": "london"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 3,
-    "fields": {
-      "query_string": "circus"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 1,
-    "fields": {
-      "query": 1,
-      "date": "2019-02-11",
-      "hits": 2
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 2,
-    "fields": {
-      "query": 2,
-      "date": "2019-02-15",
-      "hits": 1
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 3,
-    "fields": {
-      "query": 3,
-      "date": "2019-02-24",
-      "hits": 1
-    }
-  },
-  {
     "model": "wagtailforms.formsubmission",
     "pk": 1,
     "fields": {
@@ -1403,8 +1355,10 @@
     "fields": {
       "query": 1,
       "page": 63,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1413,8 +1367,10 @@
     "fields": {
       "query": 4,
       "page": 40,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1423,8 +1379,10 @@
     "fields": {
       "query": 5,
       "page": 36,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1690,7 +1648,7 @@
     "pk": 3,
     "fields": {
       "password": "pbkdf2_sha256$600000$yzcRrbI8n9Yfwg8S9T0nZt$4bZz0FcUIq/zFOU6XDrb31HxAFnsHqoqyR/CCSevqmE=",
-      "last_login": "2023-09-01T17:55:27.917Z",
+      "last_login": "2024-08-06T01:35:00.245Z",
       "is_superuser": true,
       "username": "admin",
       "first_name": "Admin",
@@ -12820,7 +12778,8 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12836,7 +12795,8 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12852,7 +12812,8 @@
       "current_time_zone": "Europe/Berlin",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12868,7 +12829,8 @@
       "current_time_zone": "Asia/Beirut",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12884,7 +12846,8 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
