@@ -3,7 +3,6 @@
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
-
     <div class="container bread-detail">
         <div class="row">
             <div class="col-md-12">
@@ -23,14 +22,15 @@
 
                 <div class="col-md-4 col-md-offset-1">
                     <div class="row">
-                        <div class="bread-detail__meta">
+                        <div class="bread-detail__meta"> 
                             <p class="location__meta-title">Operating Status</p>
+                            As of {{ page.loc_datetime }},<br>
+                            This location is 
                             {% if page.is_open %}
-                                This location is currently open.
+                                <font color=green>open</font>.
                             {% else %}
-                                Sorry, this location is currently closed.
+                                <font color=red>closed</font>.
                             {% endif %}
-
                             <p class="location__meta-title">Address</p>
                             <address>{{ page.address|linebreaks }}</address>
 

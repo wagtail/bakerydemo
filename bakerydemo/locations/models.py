@@ -1,5 +1,6 @@
 from datetime import datetime
-
+import pytz
+from pytz import timezone
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
@@ -120,6 +121,20 @@ class LocationPage(Page):
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
     address = models.TextField()
+    
+    timezone = models.TextField(
+        max_length=25,
+        help_text="Examples: US/Pacific, America/Los_Angeles, Etc/UTC",
+        default='Etc/UTC',
+        validators=[
+            RegexValidator(
+                regex = r'^(\w+\/?\w+)$',
+                message ='Examples: US/Pacific, America/Los_Angeles, Etc/UTC',
+                code='invalid_tz'
+            )
+        ]
+    )
+
     lat_long = models.CharField(
         max_length=36,
         help_text="Comma separated lat/long. (Ex. 64.144367, -21.939182) \
@@ -146,6 +161,7 @@ class LocationPage(Page):
         FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("address"),
+        FieldPanel('timezone', classname="full"),
         FieldPanel("lat_long"),
         InlinePanel("hours_of_operation", heading="Hours of Operation", label="Slot"),
     ]
@@ -159,6 +175,8 @@ class LocationPage(Page):
         return hours
 
     # Determines if the location is currently open. It is timezone naive
+    '''
+    # original is_open
     def is_open(self):
         now = datetime.now()
         current_time = now.time()
@@ -172,11 +190,32 @@ class LocationPage(Page):
             return True
         except LocationOperatingHours.DoesNotExist:
             return False
+    '''
+    def loc_datetime(self):
+        cur_zone = pytz.timezone(self.timezone)
+        now = datetime.now().astimezone(cur_zone)
+        return now.strftime('%a %b %d %Y %H:%M %Z')
+
+    def is_open(self):
+        cur_zone = pytz.timezone(self.timezone)
+        now = datetime.now().astimezone(cur_zone)
+        current_time = now.time()
+        current_day = now.strftime('%a').upper()
+        try:
+            self.operating_hours.get(
+                day=current_day,
+                opening_time__lte=current_time,
+                closing_time__gte=current_time
+            )
+            return True
+        except LocationOperatingHours.DoesNotExist:
+            return False
 
     # Makes additional context available to the template so that we can access
     # the latitude, longitude and map API key to render the map
     def get_context(self, request):
         context = super(LocationPage, self).get_context(request)
+        context['timezone'] = self.timezone
         context["lat"] = self.lat_long.split(",")[0]
         context["long"] = self.lat_long.split(",")[1]
         context["google_map_api_key"] = settings.GOOGLE_MAP_API_KEY
