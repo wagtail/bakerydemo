@@ -10,6 +10,12 @@ PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
 
+# Update APT database
+apt-get update -y
+
+apt install -y python3-pip
+pip3 install virtualenv
+
 # Virtualenv setup for project
 su - $DEV_USER -c "virtualenv --python=python3 $VIRTUALENV_DIR"
 # Replace previous line with this if you are using Python 2
