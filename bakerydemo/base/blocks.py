@@ -7,16 +7,16 @@ from wagtail.blocks import (
     TextBlock,
 )
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageBlock
 
 
-class ImageBlock(StructBlock):
+class CaptionedImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
     attribution data
     """
 
-    image = ImageChooserBlock(required=True)
+    image = ImageBlock(required=True)
     caption = CharBlock(required=False)
     attribution = CharBlock(required=False)
 
