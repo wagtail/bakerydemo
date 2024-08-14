@@ -22,7 +22,7 @@ class CaptionedImageBlock(StructBlock):
 
     class Meta:
         icon = "image"
-        template = "blocks/image_block.html"
+        template = "blocks/captioned_image_block.html"
 
 
 class HeadingBlock(StructBlock):
