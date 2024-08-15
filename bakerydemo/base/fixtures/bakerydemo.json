@@ -1517,13 +1517,6 @@
     }
   },
   {
-    "model": "wagtailcore.workflowcontenttype",
-    "pk": 4,
-    "fields": {
-      "workflow": 1
-    }
-  },
-  {
     "model": "wagtailcore.workflowtask",
     "pk": 1,
     "fields": {
