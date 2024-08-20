@@ -407,11 +407,12 @@ blockquote .attribute-name {
   color: var(--dark);
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
+/* stylelint-disable selector-class-pattern */
 .block-paragraph_block a,
 .block-ingredients_list a {
   text-decoration: underline;
 }
+/* stylelint-enable selector-class-pattern */
 
 /* stylelint-disable-next-line selector-class-pattern */
 .block-embed_block iframe {
