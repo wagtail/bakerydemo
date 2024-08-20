@@ -408,7 +408,8 @@ blockquote .attribute-name {
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.block-paragraph_block a, .block-ingredients_list a {
+.block-paragraph_block a,
+.block-ingredients_list a {
   text-decoration: underline;
 }
 
@@ -1761,7 +1762,7 @@ input[type='radio'] {
 }
 
 .picture-card__link:hover .picture-card__image img {
-  transform: scale(1.00);
+  transform: scale(1.05);
 }
 
 .picture-card__link:hover .picture-card__title {
