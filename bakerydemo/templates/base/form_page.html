@@ -37,7 +37,7 @@
                     {% endif %}
 
                     {% for field in form %}
-                        <div class="form-page__field" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+                        <div class="form-page__field">
 
                             {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}
 
