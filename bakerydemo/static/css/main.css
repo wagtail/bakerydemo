@@ -252,6 +252,11 @@ figure img {
   height: auto;
 }
 
+/* Overriding Bootstrap's default caption styles */
+caption {
+  color: var(--dark);
+}
+
 /* Generic detail page styles */
 .intro {
   font-family: var(--font--secondary);
@@ -403,7 +408,7 @@ blockquote .attribute-name {
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.block-paragraph_block a {
+.block-paragraph_block a, .block-ingredients_list a {
   text-decoration: underline;
 }
 
@@ -1756,7 +1761,7 @@ input[type='radio'] {
 }
 
 .picture-card__link:hover .picture-card__image img {
-  transform: scale(1.05);
+  transform: scale(1.00);
 }
 
 .picture-card__link:hover .picture-card__title {
