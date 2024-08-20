@@ -14,6 +14,7 @@ def get_site_root(context):
     # attribute 'get_children')
     return Site.find_for_request(context["request"]).root_page
 
+
 def has_children(page):
     # Generically allow index pages to list their children
     return page.get_children().live().exists()
@@ -43,6 +44,7 @@ def top_menu(context, parent, calling_page=None):
         # required by the pageurl tag that we want to use within this template
         "request": context["request"],
     }
+
 
 @register.inclusion_tag("tags/breadcrumbs.html", takes_context=True)
 def breadcrumbs(context):
