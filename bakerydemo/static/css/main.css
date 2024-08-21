@@ -448,6 +448,18 @@ blockquote .attribute-name {
   z-index: 10;
 }
 
+.skip-link {
+  z-index: 20;
+  position: absolute;
+  top: -100px;
+  padding: 20px;
+  background-color: var(--white);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 .index-header__title {
   color: var(--dark);
   font-weight: 400;
