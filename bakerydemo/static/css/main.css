@@ -451,7 +451,7 @@ blockquote .attribute-name {
 .skip-link {
   z-index: 20;
   position: absolute;
-  top: -100px;
+  top: -100%;
   padding: 20px;
   background-color: var(--white);
 }
