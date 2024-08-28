@@ -126,7 +126,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 #### Dependencies
 
 - Python 3.10, 3.11 or 3.12
-- [Virtualenv](https://virtualenv.pypa.io/en/stable/installation/)
+- [Virtualenv](https://virtualenv.pypa.io/en/stable/installation.html)
 - [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
 ### Installation
