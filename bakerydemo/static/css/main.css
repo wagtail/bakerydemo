@@ -749,38 +749,6 @@ blockquote .attribute-name {
   }
 }
 
-.dropdown-menu {
-  background-color: var(--cream);
-  border-radius: 0;
-  border: transparent;
-}
-
-.dropdown-menu > li > a {
-  border-bottom: 1px solid var(--border-grey);
-  color: var(--dark);
-  font-family: var(--font--secondary);
-  padding: 10px 20px;
-}
-
-.dropdown-menu > li > a:hover {
-  text-decoration: underline;
-}
-
-/* Menu dropdown hack to allow toggling */
-li.has-submenu a.allow-toggle {
-  float: left;
-  padding-right: 0;
-}
-
-.caret-custom {
-  float: right;
-  padding: 10px 10px 15px 5px !important;
-}
-
-.caret-custom::after {
-  content: '▼' !important;
-}
-
 /* Mobile menu styling */
 @media (max-width: 1150px) {
   .nav-pills > .presentation {
