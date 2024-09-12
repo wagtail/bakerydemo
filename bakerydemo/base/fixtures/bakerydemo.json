@@ -7541,7 +7541,7 @@
         "latest_revision_created_at": "2019-04-01T07:35:26.199Z",
         "alias_of": null,
         "introduction": "Sandwich bread (also referred to as sandwich loaf)  is bread that is prepared specifically to be used for the preparation of sandwiches.",
-        "image": 25,
+        "image": 55,
         "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich breads are produced in many varieties, such as white, whole wheat, sourdough, rye, multigrain and others. Sandwich bread may be formulated to slice easily,[8] cleanly or uniformly, and may have a fine crumb (the soft, inner part of bread) and a light texture.[4] Sandwich bread may be designed to have a balanced proportion of crumb and crust, whereby the bread holds and supports fillings in place and reduces drips and messiness. <a href=\\\"https://en.wikipedia.org/wiki/Sandwich_bread\\\">Some may be designed</a> to not become crumbly, hardened, dried or have too squishy a texture.</p>\", \"id\": \"6fbdf2bd-8994-40ed-b645-959e7dbf2d1e\"}, {\"type\": \"block_quote\", \"value\": {\"attribute_name\": \"Jim Davis\", \"text\": \"Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.\"}, \"id\": \"244030ba-e734-4c10-a819-4abac3dfdd21\"}, {\"type\": \"image_block\", \"value\": {\"image\": 35, \"attribution\": \"Creative Commons\", \"caption\": \"Belgian Waffle\"}, \"id\": \"9330b160-1111-4a25-b927-ec11a5fa10aa\"}, {\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich bread can refer to cross-sectionally square, sliced white and wheat bread, which has been described as \\\"perfectly designed for holding square luncheon meat\\\".[10] The bread used for preparing finger sandwiches is sometimes referred to as sandwich bread.[10] Pan de molde is a sandwich loaf.[11][12] Some sandwich breads are designed for use in the creation of specific types of sandwiches, such as the submarine sandwich.[13] For barbecuing, use of a high-quality white sandwich bread has been described as suitable for toasting over a fire.[14] Gluten-free sandwich bread may be prepared using gluten-free flour, teff flour.[15][16] and other ingredients.<br/></p><p>In the 1930s in the United States, the term sandwich loaf referred to sliced bread.[10] In contemporary times, U.S. consumers sometimes refer to white bread such as Wonder Bread as sandwich bread and sandwich loaf.[1] Wonder Bread produced and marketed a bread called Wonder Round sandwich bread, which was designed to be used with round-shaped cold cuts and other fillings such as eggs and hamburgers, but it was discontinued due to low consumer demand.[17] American sandwich breads have historically included some fat derived from the use of milk or oil to enrich the bread.</p>\", \"id\": \"ef3345bb-a75c-4723-8662-15b006dae55e\"}]",
         "subtitle": "Innovation in the brick oven",
         "date_published": "2019-02-02",
@@ -12275,7 +12275,7 @@
     "fields": {
       "collection": 2,
       "title": "Yeast",
-      "file": "original_images/yeast.jpg",
+      "file": "original_images/yeast.avif",
       "description": "A close-up of small brown bits on a white surface, highlighting the texture and details of yeast extract",
       "width": 1024,
       "height": 682,
@@ -12285,8 +12285,8 @@
       "focal_point_y": null,
       "focal_point_width": null,
       "focal_point_height": null,
-      "file_size": 122348,
-      "file_hash": ""
+      "file_size": 14643,
+      "file_hash": "214c67da2b04efc27497219d23a03c8abb284a9d"
     }
   },
   {
@@ -12655,7 +12655,7 @@
     "fields": {
       "collection": 3,
       "title": "Baking Soda",
-      "file": "original_images/bakingsoda.jpg",
+      "file": "original_images/bakingsoda.webp",
       "description": "A bowl of baking soda with a wooden spoon resting on top, ready for use in baking or cooking",
       "width": 1024,
       "height": 678,
@@ -12665,8 +12665,8 @@
       "focal_point_y": 319,
       "focal_point_width": 601,
       "focal_point_height": 570,
-      "file_size": 87095,
-      "file_hash": ""
+      "file_size": 42086,
+      "file_hash": "4b74a7d0e602e7b46f3442794891129f93e7dcc6"
     }
   },
   {
@@ -12675,7 +12675,7 @@
     "fields": {
       "collection": 3,
       "title": "Boston Cream Pie",
-      "file": "original_images/bostoncream.jpg",
+      "file": "original_images/bostoncream.png",
       "description": "A plate featuring three Boston Cream Pies, each adorned with rich chocolate frosting",
       "width": 1024,
       "height": 683,
@@ -12685,8 +12685,8 @@
       "focal_point_y": 291,
       "focal_point_width": 923,
       "focal_point_height": 582,
-      "file_size": 117057,
-      "file_hash": ""
+      "file_size": 116643,
+      "file_hash": "cf02dc2beaec08464e2deb27ddbe11548e5c6be9"
     }
   },
   {
@@ -12887,6 +12887,26 @@
       "focal_point_height": null,
       "file_size": 67610,
       "file_hash": "aed007ce6a10899ed8267733393e51652365e09e"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 55,
+    "fields": {
+      "collection": 3,
+      "title": "Slicing bread animation",
+      "file": "original_images/slicing-bread.gif",
+      "description": "Close-up short looping video of someone slicing a baguette on a bread board",
+      "width": 1920,
+      "height": 1080,
+      "created_at": "2019-02-21T07:50:10.793Z",
+      "uploaded_by_user": ["admin"],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 2912888,
+      "file_hash": "09d4f3b00fd28114ae54a37e4b60b108d96d155c"
     }
   },
   {
@@ -13319,7 +13339,7 @@
     "pk": 74,
     "fields": {
       "introduction": "Sandwich bread (also referred to as sandwich loaf)  is bread that is prepared specifically to be used for the preparation of sandwiches.",
-      "image": 25,
+      "image": 55,
       "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich breads are produced in many varieties, such as white, whole wheat, sourdough, rye, multigrain and others. Sandwich bread may be formulated to slice easily,[8] cleanly or uniformly, and may have a fine crumb (the soft, inner part of bread) and a light texture.[4] Sandwich bread may be designed to have a balanced proportion of crumb and crust, whereby the bread holds and supports fillings in place and reduces drips and messiness. <a href=\\\"https://en.wikipedia.org/wiki/Sandwich_bread\\\">Some may be designed</a> to not become crumbly, hardened, dried or have too squishy a texture.</p>\", \"id\": \"6fbdf2bd-8994-40ed-b645-959e7dbf2d1e\"}, {\"type\": \"block_quote\", \"value\": {\"text\": \"Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.\", \"attribute_name\": \"Jim Davis\"}, \"id\": \"244030ba-e734-4c10-a819-4abac3dfdd21\"}, {\"type\": \"image_block\", \"value\": {\"image\": 35, \"caption\": \"Belgian Waffle\", \"attribution\": \"Creative Commons\"}, \"id\": \"9330b160-1111-4a25-b927-ec11a5fa10aa\"}, {\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich bread can refer to cross-sectionally square, sliced white and wheat bread, which has been described as \\\"perfectly designed for holding square luncheon meat\\\".[10] The bread used for preparing finger sandwiches is sometimes referred to as sandwich bread.[10] Pan de molde is a sandwich loaf.[11][12] Some sandwich breads are designed for use in the creation of specific types of sandwiches, such as the submarine sandwich.[13] For barbecuing, use of a high-quality white sandwich bread has been described as suitable for toasting over a fire.[14] Gluten-free sandwich bread may be prepared using gluten-free flour, teff flour.[15][16] and other ingredients.<br/></p><p>In the 1930s in the United States, the term sandwich loaf referred to sliced bread.[10] In contemporary times, U.S. consumers sometimes refer to white bread such as Wonder Bread as sandwich bread and sandwich loaf.[1] Wonder Bread produced and marketed a bread called Wonder Round sandwich bread, which was designed to be used with round-shaped cold cuts and other fillings such as eggs and hamburgers, but it was discontinued due to low consumer demand.[17] American sandwich breads have historically included some fat derived from the use of milk or oil to enrich the bread.</p>\", \"id\": \"ef3345bb-a75c-4723-8662-15b006dae55e\"}]",
       "subtitle": "Innovation in the brick oven",
       "date_published": "2019-02-02"
