@@ -486,7 +486,7 @@ class FormPage(AbstractEmailForm):
 
 @register_setting(icon="cog")
 class GenericSettings(ClusterableModel, BaseGenericSetting):
-    twitter_url = models.URLField(verbose_name="Twitter URL", blank=True)
+    mastodon_url = models.URLField(verbose_name="Mastodon URL", blank=True)
     github_url = models.URLField(verbose_name="GitHub URL", blank=True)
     organisation_url = models.URLField(verbose_name="Organisation URL", blank=True)
 
@@ -494,7 +494,7 @@ class GenericSettings(ClusterableModel, BaseGenericSetting):
         MultiFieldPanel(
             [
                 FieldPanel("github_url"),
-                FieldPanel("twitter_url"),
+                FieldPanel("mastodon_url"),
                 FieldPanel("organisation_url"),
             ],
             "Social settings",
