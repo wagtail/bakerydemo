@@ -96,8 +96,8 @@
     "model": "base.genericsettings",
     "pk": 1,
     "fields": {
-      "twitter_url": "https://twitter.com/wagtailcms",
       "github_url": "https://github.com/wagtail/wagtail",
+      "mastodon_url": "https://fosstodon.org/@wagtail",
       "organisation_url": "https://wagtail.org/"
     }
   },
