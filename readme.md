@@ -33,11 +33,11 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 - [Gitpod](#setup-with-gitpod)
 - [Vagrant](#setup-with-vagrant)
 - [Docker](#setup-with-docker)
-- [Virtualenv](#setup-with-virtualenv)
+- [Venv](#setup-with-venv)
 
 If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
 If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
-Developers more familiar with virtualenv and traditional Django app setup instructions should skip to [Setup with virtualenv](#setup-with-virtualenv).
+Developers more familiar with Venv/Virtualenv and traditional Django app setup instructions should skip to [Setup with Venv](#setup-with-venv).
 
 ## Setup with Gitpod
 
@@ -119,17 +119,37 @@ To tail the logs from the Docker containers in realtime, run:
 docker compose logs -f
 ```
 
-## Setup with Virtualenv
+## Setup with venv
 
-You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use Virtualenv, which is the [recommended installation approach](https://docs.djangoproject.com/en/3.2/topics/install/#install-the-django-code) for Django itself.
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use venv, which is the [recommended installation approach](https://docs.djangoproject.com/en/5.1/topics/install/#installing-an-official-release-with-pip) for Django itself.
 
 #### Dependencies
 
 - Python 3.10, 3.11 or 3.12
-- [Virtualenv](https://virtualenv.pypa.io/en/stable/installation.html)
+- [Venv](https://docs.python.org/3/library/venv.html)
 - [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
 ### Installation
+
+On GNU/Linux or MacOS (bash):
+```bash
+python -m venv wagtailbakerydemo
+source wagtailbakerydemo/bin/activate
+```
+
+On Windows (cmd.exe), run the following commands:
+```bash
+wagtailbakerydemo\Scripts\activate.bat
+# if wagtailbakerydemo\Scripts\activate.bat doesn't work, run:
+wagtailbakerydemo\Scripts\Activate.ps1
+
+```
+Note: On Ubuntu systems, the [Venv](https://docs.python.org/3/library/venv.html) package may not be installed by default. To install it, use the following command:
+```bash
+sudo apt install python3-venv
+``` 
+
+### Alternatively
 
 With [PIP](https://github.com/pypa/pip) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
 installed, run:
@@ -145,6 +165,8 @@ rmvirtualenv wagtailbakerydemo
 mkvirtualenv wagtailbakerydemo --python=python3.12
 python --version
 ```
+
+# Essential Setup
 
 Now we're ready to set up the bakery demo project itself:
 ```bash
