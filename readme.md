@@ -125,7 +125,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.10, 3.11 or 3.12
+- Python 3.10, 3.11, 3.12 or 3.13
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/installation.html)
 - [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
 
@@ -229,6 +229,7 @@ By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet
 
 The `main` branch of this demo is designed to work with both the latest stable release and the latest `main` branch (development version) of Wagtail. To run the demo against a specific version of Wagtail, we have created [git tags](https://github.com/wagtail/bakerydemo/tags) for the latest commits that work with each feature release.
 
+- [`v6.2`](https://github.com/wagtail/bakerydemo/releases/tag/v6.2)
 - [`v6.1`](https://github.com/wagtail/bakerydemo/releases/tag/v6.1)
 - [`v6.0`](https://github.com/wagtail/bakerydemo/releases/tag/v6.0)
 - [`v5.2`](https://github.com/wagtail/bakerydemo/releases/tag/v5.2)
