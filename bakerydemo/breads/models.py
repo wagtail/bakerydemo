@@ -8,7 +8,7 @@ from wagtail.fields import StreamField
 from wagtail.models import DraftStateMixin, Page, RevisionMixin
 from wagtail.search import index
 
-from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.blocks import BaseStreamBlock, DetailsStreamBlock
 
 
 class Country(models.Model):
@@ -114,6 +114,9 @@ class BreadPage(Page):
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
+    questions = StreamField(
+        DetailsStreamBlock(), verbose_name="Questions", blank=True, use_json_field=True
+    )
     origin = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
@@ -139,6 +142,7 @@ class BreadPage(Page):
         FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
+        FieldPanel("questions"),
         FieldPanel("origin"),
         FieldPanel("bread_type"),
         MultiFieldPanel(

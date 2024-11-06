@@ -15,6 +15,9 @@
                             </p>
                         {% endif %}
                         {{ page.body }}
+                        {% if page.questions %}
+                            {{page.questions}}
+                        {% endif %}
                     </div>
                 </div>
             </div>
