@@ -26,8 +26,6 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    volumes:
-      - ./bakerydemo:/code/bakerydemo
     links:
       - db:db
       - redis:redis
