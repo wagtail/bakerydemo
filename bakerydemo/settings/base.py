@@ -194,7 +194,7 @@ WAGTAILSEARCH_BACKENDS = {
 }
 
 # Wagtail settings
-WAGTAIL_SITE_NAME = "bakerydemo"
+WAGTAIL_SITE_NAME = "The Wagtail Bakery"
 
 WAGTAIL_I18N_ENABLED = True
 
