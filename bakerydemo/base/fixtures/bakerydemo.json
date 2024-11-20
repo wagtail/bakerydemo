@@ -9882,6 +9882,55 @@
     }
   },
   {
+    "model": "wagtailcore.revision",
+    "pk": 112,
+    "fields": {
+      "content_type": ["base", "standardpage"],
+      "base_content_type": ["wagtailcore", "page"],
+      "object_id": "87",
+      "submitted_for_moderation": false,
+      "created_at": "2023-09-01T16:55:15.360Z",
+      "user": ["editor"],
+      "object_str": "FAQ",
+      "content": {
+        "pk": 87,
+        "path": "00010002000A",
+        "depth": 3,
+        "numchild": 0,
+        "translation_key": "b0899639-6d67-44a3-a260-ca20622c9f7a",
+        "locale": 1,
+        "latest_revision": 112,
+        "live": true,
+        "has_unpublished_changes": false,
+        "first_published_at": "2023-06-28T15:55:17.810Z",
+        "last_published_at": null,
+        "live_revision": null,
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "locked_at": null,
+        "locked_by": null,
+        "title": "FAQ",
+        "draft_title": "FAQ",
+        "slug": "FAQ",
+        "content_type": 33,
+        "url_path": "/home/FAQ/",
+        "owner": 3,
+        "seo_title": "",
+        "show_in_menus": true,
+        "search_description": "",
+        "latest_revision_created_at": "2023-09-01T16:55:15.322Z",
+        "alias_of": null,
+        "introduction": "Welcome to the FAQ page of BakeryDemo! Here you'll find answers to commonly asked questions about BakeryDemo, Wagtail CMS, and how to contribute. Browse the questions below to find the information you need. Click on a question to reveal the answer.\r\n\r\nIf you have any other questions or need further assistance, feel free to reach out to us. Enjoy your experience with BakeryDemo and Wagtail!",
+        "image": 41,
+        "body": "[{\"type\": \"paragraph_block\", \"value\": \"<h2>Welcome to the Wagtail Demo Site!</h2><p>If you've gotten this far, congratulations - you're running an instance of a killer content management system written for and on top of Django, <i>the framework for perfectionists with deadlines.</i></p><p>What does Wagtail get you that Django alone does not?\\u00a0</p><p></p><ul><li>Focus on content creators/managers, rather than developers (but developer-friendly!)</li><li>\\\"Page-centric\\\" content modeling</li><li>Beautiful, modern, intuitive user interface optimized for content people</li><li>Super-powerful hierarchical content management (\\\"content trees\\\")</li><li>User- and group-based permissions system attached to content hierarchies</li><li>Flexible image resizing with a ton of image display helpers</li><li>Innovative \\\"<a href=\\\"https://torchbox.com/blog/rich-text-fields-and-faster-horses/\\\">StreamFields</a>\\\" as an alternative to traditional \\\"anything goes\\\" rich text fields</li><li>Intuitive choosers for embedded Pages, Images, Documents and other content</li><li>Native integration with ElasticSearch to help you build powerful search features</li><li>Template tags to help create image renditions, smart links, and to navigate content trees</li></ul><p>If you're new to Wagtail, there are two primary paths to learning:</p><p></p><ul><li>The source code that powers this demo site</li><li>The official <a href=\\\"https://docs.wagtail.org/en/stable/getting_started/index.html\\\">tutorial</a></li></ul><p></p><p></p>\", \"id\": \"c6629b9b-3e70-4e30-a00c-b1ab878c8df9\"}]",
+        "wagtail_admin_comments": []
+      },
+      "approved_go_live_at": null
+    }
+  },
+  {
     "model": "wagtailcore.page",
     "pk": 1,
     "fields": {
@@ -10150,6 +10199,40 @@
       "show_in_menus": false,
       "search_description": "",
       "latest_revision_created_at": "2023-09-01T16:55:12.099Z",
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 41,
+    "fields": {
+      "path": "00010002000A",
+      "depth": 3,
+      "numchild": 0,
+      "translation_key": "b0899639-6d67-44a3-a260-ca20622c9f7a",
+      "locale": 1,
+      "latest_revision": 112,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2023-06-26T20:18:04.033Z",
+      "last_published_at": "2023-06-28T15:55:17.874Z",
+      "live_revision": 112,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "FAQ",
+      "draft_title": "FAQ",
+      "slug": "faq",
+      "content_type": ["base", "standardpage"],
+      "url_path": "/home/faq/",
+      "owner": ["admin"],
+      "seo_title": "",
+      "show_in_menus": true,
+      "search_description": "",
+      "latest_revision_created_at": "2023-06-28T15:55:17.810Z",
       "alias_of": null
     }
   },
@@ -13019,6 +13102,7 @@
       "introduction": "It is not readily agreed exactly when or where the bread originated, except it existed before 1850 in Rockport, Massachusetts. It is thought to have come from the local fishing community, but it may have come through the Finnish community of local stonecutters.",
       "image": 26,
       "body": "[]",
+      "questions": "[{\"type\": \"details_block\", \"value\": {\"summary\": \"Why is it called Anadama bread?\", \"content\": \"<p data-block-key=\\\"hlwo7\\\">One day when he came in from fishing, he found the same corn meal mush and molasses for dinner and being very tired of it, he decided to mix it with bread flour and yeast and baked it saying, &quot;Anna Damn Her.&quot; The bread was so delicious that his neighbors baked it calling it Anadama Bread.</p>\", \"open\": true}, \"id\": \"ac1ceb7f-62c4-46a2-9183-399d0d0dcee8\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"What is the origin of Anadama bread?\", \"content\": \"<p data-block-key=\\\"x0kay\\\">Anadama bread is believed to have originated in New England, particularly in Massachusetts, USA. It is named after a local fisherman&#x27;s wife, Anna, who is said to have created the recipe. Anadama bread has a rich history and has become a beloved traditional bread in the region, known for its unique flavor and texture.</p>\", \"open\": true}, \"id\": \"8ad8eeb2-1862-4da0-b29a-b26084bcadae\"}]",
       "origin": 3,
       "bread_type": 4,
       "ingredients": []
@@ -13031,6 +13115,7 @@
       "introduction": "Anpan was first made in 1875, during the Meiji period, by a man called Yasubei Kimura, a samurai who lost his job with the rise of the conscript Imperial Army and the dissolution of the samurai as a social class.",
       "image": 34,
       "body": "[]",
+      "questions": "[]",
       "origin": 4,
       "bread_type": 5,
       "ingredients": []
@@ -13043,6 +13128,7 @@
       "introduction": "Appam is a type of pancake made with fermented rice batter and coconut milk. It is a common food in Kerala, Tamil Nadu and Sri Lanka. It is eaten most frequently for breakfast or dinner.",
       "image": 28,
       "body": "[]",
+      "questions": "[]",
       "origin": 5,
       "bread_type": 6,
       "ingredients": []
@@ -13055,6 +13141,7 @@
       "introduction": "Arepa  is a type of food made of ground maize dough or cooked flour prominent in the cuisine of Colombia and Venezuela.",
       "image": 29,
       "body": "[]",
+      "questions": "[]",
       "origin": 6,
       "bread_type": 7,
       "ingredients": []
@@ -13067,6 +13154,7 @@
       "introduction": "Though the origins of bagels are somewhat obscure, it is known that they were widely consumed in eastern European Jewish communities from the 17th century.",
       "image": 30,
       "body": "[]",
+      "questions": "[]",
       "origin": 8,
       "bread_type": 4,
       "ingredients": []
@@ -13079,6 +13167,7 @@
       "introduction": "A baguette has a diameter of about 5 or 6 centimetres  and a usual length of about 65 centimetres (26 in), although a baguette can be up to a metre (39 in) long.",
       "image": 31,
       "body": "[]",
+      "questions": "[]",
       "origin": 9,
       "bread_type": 4,
       "ingredients": []
@@ -13091,6 +13180,7 @@
       "introduction": "Bammies, like wheat bread and tortillas, are served at any meal or consumed as a snack.",
       "image": 32,
       "body": "[]",
+      "questions": "[]",
       "origin": 11,
       "bread_type": 2,
       "ingredients": []
@@ -13103,6 +13193,7 @@
       "introduction": "When consumed, bazin may be \"crumpled and eaten with the fingers.\"",
       "image": 33,
       "body": "[]",
+      "questions": "[]",
       "origin": 18,
       "bread_type": 11,
       "ingredients": []
@@ -13115,6 +13206,7 @@
       "introduction": "Bhakri  is a round flat unleavened bread often used in the cuisine of the state of mainly Maharashtra, but also in Gujarat.",
       "image": 40,
       "body": "[]",
+      "questions": "[]",
       "origin": 21,
       "bread_type": 14,
       "ingredients": []
@@ -13127,6 +13219,7 @@
       "introduction": "Rye bread is a type of bread made with various proportions of flour from rye grain",
       "image": 39,
       "body": "[]",
+      "questions": "[]",
       "origin": 12,
       "bread_type": 16,
       "ingredients": []
@@ -13139,6 +13232,7 @@
       "introduction": "Perakai is made for special occasions like birthday parties, engagement parties or holidays.",
       "image": 36,
       "body": "[{\"type\": \"embed_block\", \"value\": \"https://www.youtube.com/watch?v=mwrGSfiB1Mg\", \"id\": \"90411c51-e84c-421e-aae0-d190e8430281\"}]",
+      "questions": "[]",
       "origin": 24,
       "bread_type": 2,
       "ingredients": []
@@ -13274,7 +13368,18 @@
     "fields": {
       "introduction": "Things to know about this demo site",
       "image": 41,
-      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<h2>Welcome to the Wagtail Demo Site!</h2><p>If you've gotten this far, congratulations - you're running an instance of a killer content management system written for and on top of Django, <i>the framework for perfectionists with deadlines.</i></p><p>What does Wagtail get you that Django alone does not?\\u00a0</p><p></p><ul><li>Focus on content creators/managers, rather than developers (but developer-friendly!)</li><li>\\\"Page-centric\\\" content modeling</li><li>Beautiful, modern, intuitive user interface optimized for content people</li><li>Super-powerful hierarchical content management (\\\"content trees\\\")</li><li>User- and group-based permissions system attached to content hierarchies</li><li>Flexible image resizing with a ton of image display helpers</li><li>Innovative \\\"<a href=\\\"https://torchbox.com/blog/rich-text-fields-and-faster-horses/\\\">StreamFields</a>\\\" as an alternative to traditional \\\"anything goes\\\" rich text fields</li><li>Intuitive choosers for embedded Pages, Images, Documents and other content</li><li>Native integration with ElasticSearch to help you build powerful search features</li><li>Template tags to help create image renditions, smart links, and to navigate content trees</li></ul><p>If you're new to Wagtail, there are two primary paths to learning:</p><p></p><ul><li>The source code that powers this demo site</li><li>The official <a href=\\\"https://docs.wagtail.org/en/stable/getting_started/index.html\\\">tutorial</a></li></ul><p></p><p></p>\", \"id\": \"c6629b9b-3e70-4e30-a00c-b1ab878c8df9\"}]"
+      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<h2>Welcome to the Wagtail Demo Site!</h2><p>If you've gotten this far, congratulations - you're running an instance of a killer content management system written for and on top of Django, <i>the framework for perfectionists with deadlines.</i></p><p>What does Wagtail get you that Django alone does not?\\u00a0</p><p></p><ul><li>Focus on content creators/managers, rather than developers (but developer-friendly!)</li><li>\\\"Page-centric\\\" content modeling</li><li>Beautiful, modern, intuitive user interface optimized for content people</li><li>Super-powerful hierarchical content management (\\\"content trees\\\")</li><li>User- and group-based permissions system attached to content hierarchies</li><li>Flexible image resizing with a ton of image display helpers</li><li>Innovative \\\"<a href=\\\"https://torchbox.com/blog/rich-text-fields-and-faster-horses/\\\">StreamFields</a>\\\" as an alternative to traditional \\\"anything goes\\\" rich text fields</li><li>Intuitive choosers for embedded Pages, Images, Documents and other content</li><li>Native integration with ElasticSearch to help you build powerful search features</li><li>Template tags to help create image renditions, smart links, and to navigate content trees</li></ul><p>If you're new to Wagtail, there are two primary paths to learning:</p><p></p><ul><li>The source code that powers this demo site</li><li>The official <a href=\\\"https://docs.wagtail.org/en/stable/getting_started/index.html\\\">tutorial</a></li></ul><p></p><p></p>\", \"id\": \"c6629b9b-3e70-4e30-a00c-b1ab878c8df9\"}]",
+      "questions": "[]"
+    }
+  },
+  {
+    "model": "base.standardpage",
+    "pk": 41,
+    "fields": {
+      "introduction": "Welcome to the FAQ page of BakeryDemo! Here you'll find answers to commonly asked questions about BakeryDemo, Wagtail CMS, and how to contribute. Browse the questions below to find the information you need. Click on a question to reveal the answer.\r\n\r\nIf you have any other questions or need further assistance, feel free to reach out to us. Enjoy your experience with BakeryDemo and Wagtail!",
+      "image": null,
+      "body": "[]",
+      "questions": "[{\"type\": \"details_block\", \"value\": {\"summary\": \"What is BakeryDemo?\", \"content\": \"<p data-block-key=\\\"vdgt7\\\">BakeryDemo is a sample website designed to showcase the capabilities of the Wagtail Content Management System.</p>\", \"open\": true}, \"id\": \"081a0c00-999e-4106-a954-11f2c3f54a40\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"What is Wagtail?\", \"content\": \"<p data-block-key=\\\"72di2\\\">Wagtail is a flexible and user-friendly open-source CMS built on the Python web framework Django. It allows you to create and manage websites with ease.</p>\", \"open\": true}, \"id\": \"4bdb463a-b6c7-4873-957a-6ed4f797ea3a\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"Where can I find the Wagtail documentation?\", \"content\": \"<p data-block-key=\\\"igg0l\\\">You can find the official Wagtail documentation at the following link: <a href=\\\"https://docs.wagtail.org/en/stable/index.html\\\">Wagtail Documentation</a></p>\", \"open\": true}, \"id\": \"d8697c33-1649-4650-b731-7b25e38dd6b3\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to BakeryDemo?\", \"content\": \"<p data-block-key=\\\"s8djq\\\">We welcome contributions to BakeryDemo! You can find detailed guidelines and instructions on how to contribute in our <a href=\\\"https://github.com/wagtail/bakerydemo/blob/main/contributing.md\\\">BakeryDemo Contribution Guide</a>.</p>\", \"open\": true}, \"id\": \"c3524098-d468-46b5-a225-db92e7e6b742\"}, {\"type\": \"details_block\", \"value\": {\"summary\": \"How can I contribute to the Wagtail project?\", \"content\": \"<p data-block-key=\\\"nc97k\\\">If you are interested in contributing to the Wagtail project itself, you can find information on how to get involved and contribute in the official <a href=\\\"https://docs.wagtail.org/en/latest/contributing/index.html\\\">Wagtail Contribution Guide</a>.</p>\", \"open\": true}, \"id\": \"54152127-065d-40e9-94ec-5506ce500675\"}]"
     }
   },
   {

@@ -6,6 +6,7 @@ from wagtail.blocks import (
     StructBlock,
     TextBlock,
 )
+from wagtail.blocks.field_block import BooleanBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
@@ -60,6 +61,22 @@ class BlockQuote(StructBlock):
         template = "blocks/blockquote.html"
 
 
+class DetailsBlock(StructBlock):
+    """
+    Custom `StructBlock` for creating a details block with summary, content, and open fields.
+    """
+
+    summary = CharBlock(required=True)
+    content = RichTextBlock(required=True)
+    open = BooleanBlock(
+        required=False, default=True, label="Open", help_text="Open by default"
+    )
+
+    class Meta:
+        icon = "collapse-down"
+        template = "blocks/details_block.html"
+
+
 # StreamBlocks
 class BaseStreamBlock(StreamBlock):
     """
@@ -77,3 +94,12 @@ class BaseStreamBlock(StreamBlock):
         icon="media",
         template="blocks/embed_block.html",
     )
+
+
+# StreamBlocks for Details
+class DetailsStreamBlock(StreamBlock):
+    """
+    Define the custom blocks that `StreamField` will utilize
+    """
+
+    details_block = DetailsBlock()
