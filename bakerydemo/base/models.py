@@ -160,8 +160,8 @@ class Person(
         return context
 
     class Meta:
-        verbose_name = "Person"
-        verbose_name_plural = "People"
+        verbose_name = "person"
+        verbose_name_plural = "people"
 
 
 class FooterText(
