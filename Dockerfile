@@ -42,7 +42,7 @@ RUN set -ex \
 RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
-ENV PORT 8000
+ENV PORT=8000
 EXPOSE 8000
 
 # Add custom environment variables needed by Django or your settings file here:
