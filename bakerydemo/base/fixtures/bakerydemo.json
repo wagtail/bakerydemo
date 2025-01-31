@@ -175,38 +175,6 @@
   },
   {
     "model": "blog.blogpagetag",
-    "pk": 52,
-    "fields": {
-      "tag": 3,
-      "content_object": 62
-    }
-  },
-  {
-    "model": "blog.blogpagetag",
-    "pk": 53,
-    "fields": {
-      "tag": 4,
-      "content_object": 62
-    }
-  },
-  {
-    "model": "blog.blogpagetag",
-    "pk": 76,
-    "fields": {
-      "tag": 10,
-      "content_object": 74
-    }
-  },
-  {
-    "model": "blog.blogpagetag",
-    "pk": 77,
-    "fields": {
-      "tag": 7,
-      "content_object": 74
-    }
-  },
-  {
-    "model": "blog.blogpagetag",
     "pk": 89,
     "fields": {
       "tag": 8,
@@ -275,6 +243,38 @@
     "fields": {
       "tag": 7,
       "content_object": 68
+    }
+  },
+  {
+    "model": "blog.blogpagetag",
+    "pk": 101,
+    "fields": {
+      "tag": 10,
+      "content_object": 74
+    }
+  },
+  {
+    "model": "blog.blogpagetag",
+    "pk": 102,
+    "fields": {
+      "tag": 7,
+      "content_object": 74
+    }
+  },
+  {
+    "model": "blog.blogpagetag",
+    "pk": 103,
+    "fields": {
+      "tag": 3,
+      "content_object": 62
+    }
+  },
+  {
+    "model": "blog.blogpagetag",
+    "pk": 104,
+    "fields": {
+      "tag": 4,
+      "content_object": 62
     }
   },
   {
@@ -1246,54 +1246,6 @@
     }
   },
   {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 1,
-    "fields": {
-      "query_string": "chocolate"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 2,
-    "fields": {
-      "query_string": "london"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 3,
-    "fields": {
-      "query_string": "circus"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 1,
-    "fields": {
-      "query": 1,
-      "date": "2019-02-11",
-      "hits": 2
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 2,
-    "fields": {
-      "query": 2,
-      "date": "2019-02-15",
-      "hits": 1
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 3,
-    "fields": {
-      "query": 3,
-      "date": "2019-02-24",
-      "hits": 1
-    }
-  },
-  {
     "model": "wagtailforms.formsubmission",
     "pk": 1,
     "fields": {
@@ -1403,8 +1355,10 @@
     "fields": {
       "query": 1,
       "page": 63,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1413,8 +1367,10 @@
     "fields": {
       "query": 4,
       "page": 40,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1423,8 +1379,10 @@
     "fields": {
       "query": 5,
       "page": 36,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1512,6 +1470,13 @@
   {
     "model": "wagtailcore.workflowpage",
     "pk": 1,
+    "fields": {
+      "workflow": 1
+    }
+  },
+  {
+    "model": "wagtailcore.workflowcontenttype",
+    "pk": 26,
     "fields": {
       "workflow": 1
     }
@@ -1689,8 +1654,8 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "password": "pbkdf2_sha256$600000$yzcRrbI8n9Yfwg8S9T0nZt$4bZz0FcUIq/zFOU6XDrb31HxAFnsHqoqyR/CCSevqmE=",
-      "last_login": "2023-09-01T17:55:27.917Z",
+      "password": "pbkdf2_sha256$720000$scCt6yXoSAK9PNzx1FLPPX$ylAMNDdAOgWK7rReoVDnrCAUwkSlivl1UiH+VJKg4kw=",
+      "last_login": "2024-09-12T13:36:15.106Z",
       "is_superuser": true,
       "username": "admin",
       "first_name": "Admin",
@@ -3836,6 +3801,74 @@
       "content_changed": true,
       "deleted": false,
       "page": 68
+    }
+  },
+  {
+    "model": "wagtailcore.pagelogentry",
+    "pk": 116,
+    "fields": {
+      "content_type": ["blog", "blogpage"],
+      "label": "The Greatest Thing Since Sliced Bread",
+      "action": "wagtail.edit",
+      "data": {},
+      "timestamp": "2024-09-12T12:55:33.656Z",
+      "uuid": "324c78d8-c465-4be4-b7d9-5f6f8fbd1d90",
+      "user": ["admin"],
+      "revision": 112,
+      "content_changed": true,
+      "deleted": false,
+      "page": 74
+    }
+  },
+  {
+    "model": "wagtailcore.pagelogentry",
+    "pk": 117,
+    "fields": {
+      "content_type": ["blog", "blogpage"],
+      "label": "The Greatest Thing Since Sliced Bread",
+      "action": "wagtail.publish",
+      "data": {},
+      "timestamp": "2024-09-12T12:55:33.679Z",
+      "uuid": "324c78d8-c465-4be4-b7d9-5f6f8fbd1d90",
+      "user": ["admin"],
+      "revision": 112,
+      "content_changed": true,
+      "deleted": false,
+      "page": 74
+    }
+  },
+  {
+    "model": "wagtailcore.pagelogentry",
+    "pk": 118,
+    "fields": {
+      "content_type": ["blog", "blogpage"],
+      "label": "Tracking Wild Yeast",
+      "action": "wagtail.edit",
+      "data": {},
+      "timestamp": "2024-09-12T13:31:38.226Z",
+      "uuid": "d74f673f-d905-4625-aaa3-4d73474b319d",
+      "user": ["admin"],
+      "revision": 113,
+      "content_changed": true,
+      "deleted": false,
+      "page": 62
+    }
+  },
+  {
+    "model": "wagtailcore.pagelogentry",
+    "pk": 119,
+    "fields": {
+      "content_type": ["blog", "blogpage"],
+      "label": "Tracking Wild Yeast",
+      "action": "wagtail.publish",
+      "data": {},
+      "timestamp": "2024-09-12T13:31:38.254Z",
+      "uuid": "d74f673f-d905-4625-aaa3-4d73474b319d",
+      "user": ["admin"],
+      "revision": 113,
+      "content_changed": true,
+      "deleted": false,
+      "page": 62
     }
   },
   {
@@ -9882,6 +9915,152 @@
     }
   },
   {
+    "model": "wagtailcore.revision",
+    "pk": 112,
+    "fields": {
+      "content_type": ["blog", "blogpage"],
+      "base_content_type": ["wagtailcore", "page"],
+      "object_id": "74",
+      "created_at": "2024-09-12T12:55:33.647Z",
+      "user": ["admin"],
+      "object_str": "The Greatest Thing Since Sliced Bread",
+      "content": {
+        "pk": 74,
+        "path": "0001000200040005",
+        "depth": 4,
+        "numchild": 0,
+        "translation_key": "a3cf9631-4eec-47a0-9a83-475133f430c2",
+        "locale": 1,
+        "latest_revision": 52,
+        "live": true,
+        "has_unpublished_changes": false,
+        "first_published_at": "2019-02-21T08:17:21.604Z",
+        "last_published_at": "2023-09-01T16:55:14.380Z",
+        "live_revision": 52,
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "locked_at": null,
+        "locked_by": null,
+        "title": "The Greatest Thing Since Sliced Bread",
+        "draft_title": "The Greatest Thing Since Sliced Bread",
+        "slug": "sliced-bread",
+        "content_type": 40,
+        "url_path": "/home/blog/sliced-bread/",
+        "owner": 3,
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "latest_revision_created_at": "2023-09-01T16:55:14.336Z",
+        "alias_of": null,
+        "introduction": "Sandwich bread (also referred to as sandwich loaf)  is bread that is prepared specifically to be used for the preparation of sandwiches.",
+        "image": 54,
+        "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"7kulc\\\">Sandwich breads are produced in many varieties, such as white, whole wheat, sourdough, rye, multigrain and others. Sandwich bread may be formulated to slice easily,[8] cleanly or uniformly, and may have a fine crumb (the soft, inner part of bread) and a light texture.[4] Sandwich bread may be designed to have a balanced proportion of crumb and crust, whereby the bread holds and supports fillings in place and reduces drips and messiness. <a href=\\\"https://en.wikipedia.org/wiki/Sandwich_bread\\\">Some may be designed</a> to not become crumbly, hardened, dried or have too squishy a texture.</p>\", \"id\": \"6fbdf2bd-8994-40ed-b645-959e7dbf2d1e\"}, {\"type\": \"block_quote\", \"value\": {\"text\": \"Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.\", \"attribute_name\": \"Jim Davis\"}, \"id\": \"244030ba-e734-4c10-a819-4abac3dfdd21\"}, {\"type\": \"image_block\", \"value\": {\"image\": 35, \"caption\": \"Belgian Waffle\", \"attribution\": \"Creative Commons\"}, \"id\": \"9330b160-1111-4a25-b927-ec11a5fa10aa\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"cvork\\\">Sandwich bread can refer to cross-sectionally square, sliced white and wheat bread, which has been described as &quot;perfectly designed for holding square luncheon meat&quot;.[10] The bread used for preparing finger sandwiches is sometimes referred to as sandwich bread.[10] Pan de molde is a sandwich loaf.[11][12] Some sandwich breads are designed for use in the creation of specific types of sandwiches, such as the submarine sandwich.[13] For barbecuing, use of a high-quality white sandwich bread has been described as suitable for toasting over a fire.[14] Gluten-free sandwich bread may be prepared using gluten-free flour, teff flour.[15][16] and other ingredients.<br/></p><p data-block-key=\\\"v43j4\\\">In the 1930s in the United States, the term sandwich loaf referred to sliced bread.[10] In contemporary times, U.S. consumers sometimes refer to white bread such as Wonder Bread as sandwich bread and sandwich loaf.[1] Wonder Bread produced and marketed a bread called Wonder Round sandwich bread, which was designed to be used with round-shaped cold cuts and other fillings such as eggs and hamburgers, but it was discontinued due to low consumer demand.[17] American sandwich breads have historically included some fat derived from the use of milk or oil to enrich the bread.</p>\", \"id\": \"ef3345bb-a75c-4723-8662-15b006dae55e\"}]",
+        "subtitle": "Innovation in the brick oven",
+        "date_published": "2019-02-02",
+        "wagtail_admin_comments": [],
+        "blog_person_relationship": [
+          {
+            "pk": 6,
+            "sort_order": 0,
+            "page": 74,
+            "person": 1
+          },
+          {
+            "pk": 7,
+            "sort_order": 1,
+            "page": 74,
+            "person": 3
+          }
+        ],
+        "tagged_items": [
+          {
+            "pk": null,
+            "tag": 10,
+            "content_object": 74
+          },
+          {
+            "pk": null,
+            "tag": 7,
+            "content_object": 74
+          }
+        ]
+      },
+      "approved_go_live_at": null
+    }
+  },
+  {
+    "model": "wagtailcore.revision",
+    "pk": 113,
+    "fields": {
+      "content_type": ["blog", "blogpage"],
+      "base_content_type": ["wagtailcore", "page"],
+      "object_id": "62",
+      "created_at": "2024-09-12T13:31:38.211Z",
+      "user": ["admin"],
+      "object_str": "Tracking Wild Yeast",
+      "content": {
+        "pk": 62,
+        "path": "0001000200040001",
+        "depth": 4,
+        "numchild": 0,
+        "translation_key": "ef9c6173-919b-49ec-927e-96180337a91a",
+        "locale": 1,
+        "latest_revision": 44,
+        "live": true,
+        "has_unpublished_changes": false,
+        "first_published_at": "2019-02-10T16:26:58.040Z",
+        "last_published_at": "2023-09-01T16:55:13.710Z",
+        "live_revision": 44,
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "locked_at": null,
+        "locked_by": null,
+        "title": "Tracking Wild Yeast",
+        "draft_title": "Tracking Wild Yeast",
+        "slug": "wild-yeast",
+        "content_type": 14,
+        "url_path": "/home/blog/wild-yeast/",
+        "owner": null,
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "latest_revision_created_at": "2023-09-01T16:55:13.675Z",
+        "alias_of": null,
+        "introduction": "Yeasts, with their single-celled growth habit, can be contrasted with molds, which grow hyphae. Fungal species that can take both forms (depending on temperature or other conditions) are called dimorphic fungi (\"dimorphic\" means \"having two forms\").",
+        "image": 55,
+        "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"48x9r\\\">Yeasts are eukaryotic, single-celled microorganisms classified as members of the fungus kingdom. The yeast lineage[which?] originated hundreds of millions of years ago, and 1,500 species are currently identified.[1][2][3] They are estimated to constitute 1% of all described fungal species.[4] Yeasts are unicellular organisms which evolved from multicellular ancestors,[5] with some species having the ability to develop multicellular characteristics by forming strings of connected budding cells known as pseudohyphae or false hyphae.[6] Yeast sizes vary greatly, depending on species and environment, typically measuring 3\\u20134 \\u00b5m in diameter, although some yeasts can grow to 40 \\u00b5m in size.[7] Most yeasts reproduce asexually by mitosis, and many do so by the asymmetric division process known as budding.</p><h3 data-block-key=\\\"tyew1\\\">Contrast with Molds</h3><p data-block-key=\\\"u8r61\\\">Yeasts, with their single-celled growth habit, can be contrasted with molds, which grow hyphae. Fungal species that can take both forms (depending on temperature or other conditions) are called dimorphic fungi (&quot;dimorphic&quot; means &quot;having two forms&quot;).<br/></p><p data-block-key=\\\"txg4a\\\">By fermentation, the yeast species Saccharomyces cerevisiae converts carbohydrates to carbon dioxide and alcohols \\u2013 for thousands of years the carbon dioxide has been used in baking and the alcohol in alcoholic beverages.[8] It is also a centrally important model organism in modern cell biology research, and is one of the most thoroughly researched eukaryotic microorganisms. Researchers have used it to gather information about the biology of the eukaryotic cell and ultimately human biology.[9] Other species of yeasts, such as Candida albicans, are opportunistic pathogens and can cause infections in humans. Yeasts have recently been used to generate electricity in microbial fuel cells,[10] and produce ethanol for the biofuel industry.<br/></p><p data-block-key=\\\"qjnxu\\\">Yeasts do not form a single taxonomic or phylogenetic grouping. The term &quot;yeast&quot; is often taken as a synonym for Saccharomyces cerevisiae,[11] but the phylogenetic diversity of yeasts is shown by their placement in two separate phyla: the Ascomycota and the Basidiomycota. The budding yeasts (&quot;true yeasts&quot;) are classified in the order Saccharomycetales,[12] within the phylum Ascomycota.<br/></p>\", \"id\": \"e015f74c-47d0-4631-b768-fa20e5ec1deb\"}, {\"type\": \"image_block\", \"value\": {\"image\": 39, \"caption\": \"Raised Yummy\", \"attribution\": \"Creative Commons\"}, \"id\": \"7e2a0b56-e8d7-46f1-920b-13a715dca209\"}]",
+        "subtitle": "The art of cultivating yeast",
+        "date_published": "2019-01-12",
+        "wagtail_admin_comments": [],
+        "blog_person_relationship": [
+          {
+            "pk": 2,
+            "sort_order": 0,
+            "page": 62,
+            "person": 1
+          }
+        ],
+        "tagged_items": [
+          {
+            "pk": null,
+            "tag": 3,
+            "content_object": 62
+          },
+          {
+            "pk": null,
+            "tag": 4,
+            "content_object": 62
+          }
+        ]
+      },
+      "approved_go_live_at": null
+    }
+  },
+  {
     "model": "wagtailcore.page",
     "pk": 1,
     "fields": {
@@ -10400,12 +10579,12 @@
       "numchild": 0,
       "translation_key": "ef9c6173-919b-49ec-927e-96180337a91a",
       "locale": 1,
-      "latest_revision": 44,
+      "latest_revision": 113,
       "live": true,
       "has_unpublished_changes": false,
       "first_published_at": "2019-02-10T16:26:58.040Z",
-      "last_published_at": "2023-09-01T16:55:13.710Z",
-      "live_revision": 44,
+      "last_published_at": "2024-09-12T13:31:38.234Z",
+      "live_revision": 113,
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
@@ -10421,7 +10600,7 @@
       "seo_title": "",
       "show_in_menus": false,
       "search_description": "",
-      "latest_revision_created_at": "2023-09-01T16:55:13.675Z",
+      "latest_revision_created_at": "2024-09-12T13:31:38.211Z",
       "alias_of": null
     }
   },
@@ -10774,12 +10953,12 @@
       "numchild": 0,
       "translation_key": "a3cf9631-4eec-47a0-9a83-475133f430c2",
       "locale": 1,
-      "latest_revision": 52,
+      "latest_revision": 112,
       "live": true,
       "has_unpublished_changes": false,
       "first_published_at": "2019-02-21T08:17:21.604Z",
-      "last_published_at": "2023-09-01T16:55:14.380Z",
-      "live_revision": 52,
+      "last_published_at": "2024-09-12T12:55:33.665Z",
+      "live_revision": 112,
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
@@ -10795,7 +10974,7 @@
       "seo_title": "",
       "show_in_menus": false,
       "search_description": "",
-      "latest_revision_created_at": "2023-09-01T16:55:14.336Z",
+      "latest_revision_created_at": "2024-09-12T12:55:33.647Z",
       "alias_of": null
     }
   },
@@ -11967,6 +12146,23 @@
     }
   },
   {
+    "model": "wagtailcore.modellogentry",
+    "pk": 53,
+    "fields": {
+      "content_type": ["wagtailimages", "image"],
+      "label": "Yeast",
+      "action": "wagtail.delete",
+      "data": {},
+      "timestamp": "2024-09-12T13:30:58.692Z",
+      "uuid": "fe1b351b-57f0-48c9-b3be-d10721b1323f",
+      "user": ["admin"],
+      "revision": null,
+      "content_changed": false,
+      "deleted": false,
+      "object_id": "21"
+    }
+  },
+  {
     "model": "wagtailredirects.redirect",
     "pk": 1,
     "fields": {
@@ -12208,25 +12404,6 @@
       "focal_point_width": null,
       "focal_point_height": null,
       "file_size": 247052,
-      "file_hash": ""
-    }
-  },
-  {
-    "model": "wagtailimages.image",
-    "pk": 21,
-    "fields": {
-      "collection": 2,
-      "title": "Yeast",
-      "file": "original_images/yeast.jpg",
-      "width": 1024,
-      "height": 682,
-      "created_at": "2019-02-21T07:50:10.793Z",
-      "uploaded_by_user": ["admin"],
-      "focal_point_x": null,
-      "focal_point_y": null,
-      "focal_point_width": null,
-      "focal_point_height": null,
-      "file_size": 122348,
       "file_hash": ""
     }
   },
@@ -12578,7 +12755,7 @@
     "fields": {
       "collection": 3,
       "title": "Baking Soda",
-      "file": "original_images/bakingsoda.jpg",
+      "file": "original_images/bakingsoda.webp",
       "width": 1024,
       "height": 678,
       "created_at": "2019-03-22T06:13:09.773Z",
@@ -12587,8 +12764,8 @@
       "focal_point_y": 319,
       "focal_point_width": 601,
       "focal_point_height": 570,
-      "file_size": 87095,
-      "file_hash": ""
+      "file_size": 42086,
+      "file_hash": "4b74a7d0e602e7b46f3442794891129f93e7dcc6"
     }
   },
   {
@@ -12597,7 +12774,7 @@
     "fields": {
       "collection": 3,
       "title": "Boston Cream Pie",
-      "file": "original_images/bostoncream.jpg",
+      "file": "original_images/bostoncream.png",
       "width": 1024,
       "height": 683,
       "created_at": "2019-03-22T06:29:18.751Z",
@@ -12606,8 +12783,8 @@
       "focal_point_y": 291,
       "focal_point_width": 923,
       "focal_point_height": 582,
-      "file_size": 117057,
-      "file_hash": ""
+      "file_size": 543033,
+      "file_hash": "2b09e1b27b07364ca768c6f8f1ad26a1c9e93dde"
     }
   },
   {
@@ -12782,6 +12959,44 @@
     }
   },
   {
+    "model": "wagtailimages.image",
+    "pk": 54,
+    "fields": {
+      "collection": 1,
+      "title": "slicing-bread",
+      "file": "original_images/slicing-bread.gif",
+      "width": 1920,
+      "height": 1080,
+      "created_at": "2024-09-12T12:55:23.866Z",
+      "uploaded_by_user": ["admin"],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 9217598,
+      "file_hash": "d438e68e7353a463462b834b23d62cb3b84c7546"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 55,
+    "fields": {
+      "collection": 2,
+      "title": "Yeast",
+      "file": "original_images/yeast.avif",
+      "width": 1024,
+      "height": 682,
+      "created_at": "2024-09-12T13:29:22.020Z",
+      "uploaded_by_user": ["admin"],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 14643,
+      "file_hash": "214c67da2b04efc27497219d23a03c8abb284a9d"
+    }
+  },
+  {
     "model": "wagtaildocs.document",
     "pk": 1,
     "fields": {
@@ -12820,7 +13035,8 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12836,7 +13052,8 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12852,7 +13069,8 @@
       "current_time_zone": "Europe/Berlin",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12868,7 +13086,8 @@
       "current_time_zone": "Asia/Beirut",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -12884,7 +13103,8 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "density": "default"
     }
   },
   {
@@ -13157,8 +13377,8 @@
     "pk": 62,
     "fields": {
       "introduction": "Yeasts, with their single-celled growth habit, can be contrasted with molds, which grow hyphae. Fungal species that can take both forms (depending on temperature or other conditions) are called dimorphic fungi (\"dimorphic\" means \"having two forms\").",
-      "image": 21,
-      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Yeasts are eukaryotic, single-celled microorganisms classified as members of the fungus kingdom. The yeast lineage[which?] originated hundreds of millions of years ago, and 1,500 species are currently identified.[1][2][3] They are estimated to constitute 1% of all described fungal species.[4] Yeasts are unicellular organisms which evolved from multicellular ancestors,[5] with some species having the ability to develop multicellular characteristics by forming strings of connected budding cells known as pseudohyphae or false hyphae.[6] Yeast sizes vary greatly, depending on species and environment, typically measuring 3\\u20134 \\u00b5m in diameter, although some yeasts can grow to 40 \\u00b5m in size.[7] Most yeasts reproduce asexually by mitosis, and many do so by the asymmetric division process known as budding.</p><h3>Contrast with Molds</h3><p>Yeasts, with their single-celled growth habit, can be contrasted with molds, which grow hyphae. Fungal species that can take both forms (depending on temperature or other conditions) are called dimorphic fungi (\\\"dimorphic\\\" means \\\"having two forms\\\").<br/></p><p>By fermentation, the yeast species Saccharomyces cerevisiae converts carbohydrates to carbon dioxide and alcohols \\u2013 for thousands of years the carbon dioxide has been used in baking and the alcohol in alcoholic beverages.[8] It is also a centrally important model organism in modern cell biology research, and is one of the most thoroughly researched eukaryotic microorganisms. Researchers have used it to gather information about the biology of the eukaryotic cell and ultimately human biology.[9] Other species of yeasts, such as Candida albicans, are opportunistic pathogens and can cause infections in humans. Yeasts have recently been used to generate electricity in microbial fuel cells,[10] and produce ethanol for the biofuel industry.<br/></p><p>Yeasts do not form a single taxonomic or phylogenetic grouping. The term \\\"yeast\\\" is often taken as a synonym for Saccharomyces cerevisiae,[11] but the phylogenetic diversity of yeasts is shown by their placement in two separate phyla: the Ascomycota and the Basidiomycota. The budding yeasts (\\\"true yeasts\\\") are classified in the order Saccharomycetales,[12] within the phylum Ascomycota.<br/></p>\", \"id\": \"e015f74c-47d0-4631-b768-fa20e5ec1deb\"}, {\"type\": \"image_block\", \"value\": {\"image\": 39, \"caption\": \"Raised Yummy\", \"attribution\": \"Creative Commons\"}, \"id\": \"7e2a0b56-e8d7-46f1-920b-13a715dca209\"}]",
+      "image": 55,
+      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"48x9r\\\">Yeasts are eukaryotic, single-celled microorganisms classified as members of the fungus kingdom. The yeast lineage[which?] originated hundreds of millions of years ago, and 1,500 species are currently identified.[1][2][3] They are estimated to constitute 1% of all described fungal species.[4] Yeasts are unicellular organisms which evolved from multicellular ancestors,[5] with some species having the ability to develop multicellular characteristics by forming strings of connected budding cells known as pseudohyphae or false hyphae.[6] Yeast sizes vary greatly, depending on species and environment, typically measuring 3\\u20134 \\u00b5m in diameter, although some yeasts can grow to 40 \\u00b5m in size.[7] Most yeasts reproduce asexually by mitosis, and many do so by the asymmetric division process known as budding.</p><h3 data-block-key=\\\"tyew1\\\">Contrast with Molds</h3><p data-block-key=\\\"u8r61\\\">Yeasts, with their single-celled growth habit, can be contrasted with molds, which grow hyphae. Fungal species that can take both forms (depending on temperature or other conditions) are called dimorphic fungi (&quot;dimorphic&quot; means &quot;having two forms&quot;).<br/></p><p data-block-key=\\\"txg4a\\\">By fermentation, the yeast species Saccharomyces cerevisiae converts carbohydrates to carbon dioxide and alcohols \\u2013 for thousands of years the carbon dioxide has been used in baking and the alcohol in alcoholic beverages.[8] It is also a centrally important model organism in modern cell biology research, and is one of the most thoroughly researched eukaryotic microorganisms. Researchers have used it to gather information about the biology of the eukaryotic cell and ultimately human biology.[9] Other species of yeasts, such as Candida albicans, are opportunistic pathogens and can cause infections in humans. Yeasts have recently been used to generate electricity in microbial fuel cells,[10] and produce ethanol for the biofuel industry.<br/></p><p data-block-key=\\\"qjnxu\\\">Yeasts do not form a single taxonomic or phylogenetic grouping. The term &quot;yeast&quot; is often taken as a synonym for Saccharomyces cerevisiae,[11] but the phylogenetic diversity of yeasts is shown by their placement in two separate phyla: the Ascomycota and the Basidiomycota. The budding yeasts (&quot;true yeasts&quot;) are classified in the order Saccharomycetales,[12] within the phylum Ascomycota.<br/></p>\", \"id\": \"e015f74c-47d0-4631-b768-fa20e5ec1deb\"}, {\"type\": \"image_block\", \"value\": {\"image\": 39, \"caption\": \"Raised Yummy\", \"attribution\": \"Creative Commons\"}, \"id\": \"7e2a0b56-e8d7-46f1-920b-13a715dca209\"}]",
       "subtitle": "The art of cultivating yeast",
       "date_published": "2019-01-12"
     }
@@ -13201,8 +13421,8 @@
     "pk": 74,
     "fields": {
       "introduction": "Sandwich bread (also referred to as sandwich loaf)  is bread that is prepared specifically to be used for the preparation of sandwiches.",
-      "image": 25,
-      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich breads are produced in many varieties, such as white, whole wheat, sourdough, rye, multigrain and others. Sandwich bread may be formulated to slice easily,[8] cleanly or uniformly, and may have a fine crumb (the soft, inner part of bread) and a light texture.[4] Sandwich bread may be designed to have a balanced proportion of crumb and crust, whereby the bread holds and supports fillings in place and reduces drips and messiness. <a href=\\\"https://en.wikipedia.org/wiki/Sandwich_bread\\\">Some may be designed</a> to not become crumbly, hardened, dried or have too squishy a texture.</p>\", \"id\": \"6fbdf2bd-8994-40ed-b645-959e7dbf2d1e\"}, {\"type\": \"block_quote\", \"value\": {\"text\": \"Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.\", \"attribute_name\": \"Jim Davis\"}, \"id\": \"244030ba-e734-4c10-a819-4abac3dfdd21\"}, {\"type\": \"image_block\", \"value\": {\"image\": 35, \"caption\": \"Belgian Waffle\", \"attribution\": \"Creative Commons\"}, \"id\": \"9330b160-1111-4a25-b927-ec11a5fa10aa\"}, {\"type\": \"paragraph_block\", \"value\": \"<p>Sandwich bread can refer to cross-sectionally square, sliced white and wheat bread, which has been described as \\\"perfectly designed for holding square luncheon meat\\\".[10] The bread used for preparing finger sandwiches is sometimes referred to as sandwich bread.[10] Pan de molde is a sandwich loaf.[11][12] Some sandwich breads are designed for use in the creation of specific types of sandwiches, such as the submarine sandwich.[13] For barbecuing, use of a high-quality white sandwich bread has been described as suitable for toasting over a fire.[14] Gluten-free sandwich bread may be prepared using gluten-free flour, teff flour.[15][16] and other ingredients.<br/></p><p>In the 1930s in the United States, the term sandwich loaf referred to sliced bread.[10] In contemporary times, U.S. consumers sometimes refer to white bread such as Wonder Bread as sandwich bread and sandwich loaf.[1] Wonder Bread produced and marketed a bread called Wonder Round sandwich bread, which was designed to be used with round-shaped cold cuts and other fillings such as eggs and hamburgers, but it was discontinued due to low consumer demand.[17] American sandwich breads have historically included some fat derived from the use of milk or oil to enrich the bread.</p>\", \"id\": \"ef3345bb-a75c-4723-8662-15b006dae55e\"}]",
+      "image": 54,
+      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"7kulc\\\">Sandwich breads are produced in many varieties, such as white, whole wheat, sourdough, rye, multigrain and others. Sandwich bread may be formulated to slice easily,[8] cleanly or uniformly, and may have a fine crumb (the soft, inner part of bread) and a light texture.[4] Sandwich bread may be designed to have a balanced proportion of crumb and crust, whereby the bread holds and supports fillings in place and reduces drips and messiness. <a href=\\\"https://en.wikipedia.org/wiki/Sandwich_bread\\\">Some may be designed</a> to not become crumbly, hardened, dried or have too squishy a texture.</p>\", \"id\": \"6fbdf2bd-8994-40ed-b645-959e7dbf2d1e\"}, {\"type\": \"block_quote\", \"value\": {\"text\": \"Vegetables are a must on a diet. I suggest carrot cake, zucchini bread, and pumpkin pie.\", \"attribute_name\": \"Jim Davis\"}, \"id\": \"244030ba-e734-4c10-a819-4abac3dfdd21\"}, {\"type\": \"image_block\", \"value\": {\"image\": 35, \"caption\": \"Belgian Waffle\", \"attribution\": \"Creative Commons\"}, \"id\": \"9330b160-1111-4a25-b927-ec11a5fa10aa\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"cvork\\\">Sandwich bread can refer to cross-sectionally square, sliced white and wheat bread, which has been described as &quot;perfectly designed for holding square luncheon meat&quot;.[10] The bread used for preparing finger sandwiches is sometimes referred to as sandwich bread.[10] Pan de molde is a sandwich loaf.[11][12] Some sandwich breads are designed for use in the creation of specific types of sandwiches, such as the submarine sandwich.[13] For barbecuing, use of a high-quality white sandwich bread has been described as suitable for toasting over a fire.[14] Gluten-free sandwich bread may be prepared using gluten-free flour, teff flour.[15][16] and other ingredients.<br/></p><p data-block-key=\\\"v43j4\\\">In the 1930s in the United States, the term sandwich loaf referred to sliced bread.[10] In contemporary times, U.S. consumers sometimes refer to white bread such as Wonder Bread as sandwich bread and sandwich loaf.[1] Wonder Bread produced and marketed a bread called Wonder Round sandwich bread, which was designed to be used with round-shaped cold cuts and other fillings such as eggs and hamburgers, but it was discontinued due to low consumer demand.[17] American sandwich breads have historically included some fat derived from the use of milk or oil to enrich the bread.</p>\", \"id\": \"ef3345bb-a75c-4723-8662-15b006dae55e\"}]",
       "subtitle": "Innovation in the brick oven",
       "date_published": "2019-02-02"
     }
