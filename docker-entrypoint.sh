@@ -10,6 +10,9 @@ done
 
 if [ "$1" = '/venv/bin/uwsgi' ]; then
     /venv/bin/python manage.py migrate --noinput
+    # Since we are running docker, we need to delete rendition entries from db
+    # since the docker image will have a non-populated /media/image directory
+    /venv/bin/python manage.py delete_renditions
 fi
 
 if [ "x$DJANGO_LOAD_INITIAL_DATA" = 'xon' ]; then
