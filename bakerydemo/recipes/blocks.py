@@ -11,9 +11,9 @@ from wagtail.blocks import (
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageBlock
 
-from bakerydemo.base.blocks import BlockQuote, CaptionedImageBlock, HeadingBlock
+from bakerydemo.base.blocks import BlockQuote, HeadingBlock
 
 
 class RecipeStepBlock(StructBlock):
@@ -57,7 +57,7 @@ class RecipeStreamBlock(StreamBlock):
             ("text", CharBlock()),
             ("numeric", FloatBlock()),
             ("rich_text", RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image", ImageBlock()),
         ],
         group="Content",
         description=(
@@ -104,7 +104,7 @@ class RecipeStreamBlock(StreamBlock):
         },
     )
 
-    image_block = CaptionedImageBlock(group="Media")
+    image_block = ImageBlock(group="Media")
     embed_block = EmbedBlock(
         help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
         icon="media",
