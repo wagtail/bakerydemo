@@ -17,7 +17,7 @@ class Command(BaseCommand):
             )
 
         # 1. (optional) Remove all objects from S3
-        if "s3" in settings.DEFAULT_FILE_STORAGE:
+        if "s3" in default_storage.__class__.__name__.lower():
             self.stdout.write("Removing files from S3")
             default_storage.bucket.objects.all().delete()
         else:
