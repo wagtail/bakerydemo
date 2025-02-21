@@ -141,13 +141,15 @@ if ELASTICSEARCH_ENDPOINT:
 # https://warehouse.python.org/project/whitenoise/
 
 MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STORAGES["staticfiles"][
+    "BACKEND"
+] = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
     AWS_QUERYSTRING_AUTH = False
     INSTALLED_APPS.append("storages")
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    STORAGES["default"]["BACKEND"] = "storages.backends.s3boto3.S3Boto3Storage"
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = "private"
     if "AWS_S3_CUSTOM_DOMAIN" in os.environ:
@@ -162,7 +164,7 @@ if "GS_BUCKET_NAME" in os.environ:
     GS_AUTO_CREATE_BUCKET = True
 
     INSTALLED_APPS.append("storages")
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    STORAGES["default"]["BACKEND"] = "storages.backends.gcloud.GoogleCloudStorage"
 
 LOGGING = {
     "version": 1,
