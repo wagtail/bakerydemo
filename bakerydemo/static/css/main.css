@@ -2092,3 +2092,16 @@ input[type='radio'] {
   white-space: nowrap;
   border: 0;
 }
+
+/* Block previews */
+
+.block-preview {
+  padding: 1rem;
+}
+
+.static-block-preview {
+  width: initial;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin-inline: auto;
+}
