@@ -1,4 +1,5 @@
 FROM python:3.12-slim
+ARG NIGHTLY=0
 
 # Install packages needed to run your application (not build deps):
 # We need to recreate the /usr/share/man/man{1..8} directories first because
@@ -33,6 +34,11 @@ RUN set -ex \
         zlib1g-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
+    && if [ "$NIGHTLY" = "1" ]; then \
+        NIGHTLY_URL=$(curl -s https://releases.wagtail.org/nightly/latest.json | \
+            grep -o 'https://[^"]*') \
+        && sed -i "s|wagtail>=.*|${NIGHTLY_URL}|" /requirements/base.txt; \
+    fi \
     && python3.12 -m venv ${VIRTUAL_ENV} \
     && python3.12 -m pip install -U pip \
     && python3.12 -m pip install --no-cache-dir -r /requirements/production.txt \
