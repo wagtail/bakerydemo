@@ -6,6 +6,7 @@ from wagtail.admin.panels import (
     MultiFieldPanel,
     MultipleChooserPanel,
 )
+from wagtail.api import APIField
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
@@ -35,6 +36,11 @@ class RecipePersonRelationship(Orderable, models.Model):
         on_delete=models.CASCADE,
     )
     panels = [FieldPanel("person")]
+
+    api_fields = [
+        APIField("page"),
+        APIField("person"),
+    ]
 
 
 class RecipePage(Page):
@@ -107,6 +113,16 @@ class RecipePage(Page):
         index.SearchField("body"),
     ]
 
+    api_fields = [
+        APIField("date_published"),
+        APIField("subtitle"),
+        APIField("introduction"),
+        APIField("backstory"),
+        APIField("recipe_headline"),
+        APIField("body"),
+        APIField("recipe_person_relationship"),
+    ]
+
     def authors(self):
         """
         Returns the RecipePage's related people. Again note that we are using
@@ -142,6 +158,10 @@ class RecipeIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
+    ]
+
+    api_fields = [
+        APIField("introduction"),
     ]
 
     # Specifies that only RecipePage objects can live under this index page
