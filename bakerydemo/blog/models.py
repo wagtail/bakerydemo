@@ -5,6 +5,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import Tag, TaggedItemBase
 from wagtail.admin.panels import FieldPanel, MultipleChooserPanel
+from wagtail.api import APIField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
@@ -29,6 +30,11 @@ class BlogPersonRelationship(Orderable, models.Model):
         "base.Person", related_name="person_blog_relationship", on_delete=models.CASCADE
     )
     panels = [FieldPanel("person")]
+
+    api_fields = [
+        APIField("page"),
+        APIField("person"),
+    ]
 
 
 class BlogPageTag(TaggedItemBase):
@@ -87,6 +93,16 @@ class BlogPage(Page):
 
     search_fields = Page.search_fields + [
         index.SearchField("body"),
+    ]
+
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
+        APIField("subtitle"),
+        APIField("tags"),
+        APIField("date_published"),
+        APIField("blog_person_relationship"),
     ]
 
     def authors(self):
@@ -151,6 +167,11 @@ class BlogIndexPage(RoutablePageMixin, Page):
         FieldPanel("image"),
     ]
 
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+    ]
+
     # Specifies that only BlogPage objects can live under this index page
     subpage_types = ["BlogPage"]
 
@@ -176,7 +197,6 @@ class BlogIndexPage(RoutablePageMixin, Page):
     @route(r"^tags/$", name="tag_archive")
     @route(r"^tags/([\w-]+)/$", name="tag_archive")
     def tag_archive(self, request, tag=None):
-
         try:
             tag = Tag.objects.get(slug=tag)
         except Tag.DoesNotExist:

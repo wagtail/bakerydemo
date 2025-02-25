@@ -4,6 +4,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.api import APIField
 from wagtail.fields import StreamField
 from wagtail.models import DraftStateMixin, Page, RevisionMixin
 from wagtail.search import index
@@ -23,6 +24,10 @@ class Country(models.Model):
     """
 
     title = models.CharField(max_length=100)
+
+    api_fields = [
+        APIField("title"),
+    ]
 
     def __str__(self):
         return self.title
@@ -56,6 +61,10 @@ class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
         FieldPanel("name"),
     ]
 
+    api_fields = [
+        APIField("name"),
+    ]
+
     def __str__(self):
         return self.name
 
@@ -87,6 +96,10 @@ class BreadType(RevisionMixin, models.Model):
 
     panels = [
         FieldPanel("title"),
+    ]
+
+    api_fields = [
+        APIField("title"),
     ]
 
     def __str__(self):
@@ -159,6 +172,15 @@ class BreadPage(Page):
 
     parent_page_types = ["BreadsIndexPage"]
 
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
+        APIField("origin"),
+        APIField("bread_type"),
+        APIField("ingredients"),
+    ]
+
 
 class BreadsIndexPage(Page):
     """
@@ -176,7 +198,7 @@ class BreadsIndexPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and " "3000px.",
+        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
 
     content_panels = Page.content_panels + [
@@ -186,6 +208,11 @@ class BreadsIndexPage(Page):
 
     # Can only have BreadPage children
     subpage_types = ["BreadPage"]
+
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+    ]
 
     # Returns a queryset of BreadPage objects that are live, that are direct
     # descendants of this index page with most recent first

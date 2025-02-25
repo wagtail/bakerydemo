@@ -7,10 +7,12 @@ from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import (
     FieldPanel,
     FieldRowPanel,
+    HelpPanel,
     InlinePanel,
     MultiFieldPanel,
     PublishingPanel,
 )
+from wagtail.api import APIField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from wagtail.contrib.settings.models import (
@@ -111,6 +113,13 @@ class Person(
         index.AutocompleteField("last_name"),
     ]
 
+    api_fields = [
+        APIField("first_name"),
+        APIField("last_name"),
+        APIField("job_title"),
+        APIField("image"),
+    ]
+
     @property
     def thumb_image(self):
         # Returns an empty string if there is no profile pic or the rendition
@@ -195,6 +204,10 @@ class FooterText(
         PublishingPanel(),
     ]
 
+    api_fields = [
+        APIField("body"),
+    ]
+
     def __str__(self):
         return "Footer text"
 
@@ -232,6 +245,12 @@ class StandardPage(Page):
         FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
+    ]
+
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
     ]
 
 
@@ -358,6 +377,7 @@ class HomePage(Page):
             ],
             heading="Hero section",
         ),
+        HelpPanel("This is a help panel"),
         MultiFieldPanel(
             [
                 FieldPanel("promo_image"),
@@ -365,6 +385,7 @@ class HomePage(Page):
                 FieldPanel("promo_text"),
             ],
             heading="Promo section",
+            help_text="This is just a help text",
         ),
         FieldPanel("body"),
         MultiFieldPanel(
@@ -392,6 +413,23 @@ class HomePage(Page):
         ),
     ]
 
+    api_fields = [
+        APIField("image"),
+        APIField("hero_text"),
+        APIField("hero_cta"),
+        APIField("hero_cta_link"),
+        APIField("body"),
+        APIField("promo_image"),
+        APIField("promo_title"),
+        APIField("promo_text"),
+        APIField("featured_section_1_title"),
+        APIField("featured_section_1"),
+        APIField("featured_section_2_title"),
+        APIField("featured_section_2"),
+        APIField("featured_section_3_title"),
+        APIField("featured_section_3"),
+    ]
+
     def __str__(self):
         return self.title
 
@@ -411,7 +449,7 @@ class GalleryPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and " "3000px.",
+        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
@@ -435,6 +473,13 @@ class GalleryPage(Page):
     # Defining what content type can sit under the parent. Since it's a blank
     # array no subpage can be added
     subpage_types = []
+
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
+        APIField("collection"),
+    ]
 
 
 class FormField(AbstractFormField):
@@ -481,6 +526,16 @@ class FormPage(AbstractEmailForm):
             ],
             "Email",
         ),
+    ]
+
+    api_fields = [
+        APIField("form_fields"),
+        APIField("from_address"),
+        APIField("to_address"),
+        APIField("subject"),
+        APIField("image"),
+        APIField("body"),
+        APIField("thank_you_text"),
     ]
 
 
