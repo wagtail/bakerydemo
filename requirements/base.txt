@@ -1,6 +1,6 @@
 Django>=5.1,<5.2
 django-dotenv==1.4.2
-wagtail>=6.3,<6.4
+wagtail>=6.4,<6.5
 wagtail-font-awesome-svg>=1,<2
 django-debug-toolbar>=4.2,<5
 django-extensions==3.2.3
