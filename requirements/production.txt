@@ -10,4 +10,4 @@ django-storages==1.14.2
 # For retrieving credentials and signing requests to Elasticsearch
 aws-requests-auth==0.4.3
 django-redis==5.4.0
-django-basic-auth-ip-whitelist>=0.6,<0.7
+django-basic-auth-ip-whitelist>=0.7,<0.8
