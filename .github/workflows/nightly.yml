@@ -1,0 +1,35 @@
+name: Deploy nightly build
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Run at 2 AM UTC every day
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  deploy-nightly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        # We intentionally don't set `persist-credentials` to `false` because we
+        # want to push to the nightly branch. This is safe because we only use
+        # our own commands and there are no external actions beyond this point.
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update heroku.yml
+        run: |
+          sed -i 's/NIGHTLY: 0/NIGHTLY: 1/' heroku.yml
+
+      - name: Create and push commit to nightly branch
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          git checkout -B nightly
+          git add heroku.yml
+          git commit -m "deploy: $TIMESTAMP"
+          git push --force origin nightly
