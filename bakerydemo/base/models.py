@@ -21,6 +21,7 @@ from wagtail.contrib.settings.models import (
     register_setting,
 )
 from wagtail.fields import RichTextField, StreamField
+from wagtail.images.models import Image
 from wagtail.models import (
     Collection,
     DraftStateMixin,
@@ -36,6 +37,9 @@ from wagtail.models import (
 from wagtail.search import index
 
 from .blocks import BaseStreamBlock
+
+# Allow filtering by collection
+Image.api_fields = [APIField("collection")]
 
 
 class Person(
