@@ -29,6 +29,13 @@ class RecipeStepBlock(StructBlock):
         icon = "tick"
 
 
+class CustomTypedTableBlock(TypedTableBlock):
+    # Remove this class in Wagtail 6.5+ as it will no longer be necessary
+
+    def get_preview_value(self):
+        return self.to_python(self.meta.preview_value)
+
+
 class RecipeStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
@@ -52,7 +59,7 @@ class RecipeStreamBlock(StreamBlock):
             ],
         },
     )
-    typed_table_block = TypedTableBlock(
+    typed_table_block = CustomTypedTableBlock(
         [
             ("text", CharBlock()),
             ("numeric", FloatBlock()),
