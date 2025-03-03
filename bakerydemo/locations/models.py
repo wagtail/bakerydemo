@@ -11,6 +11,7 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.headless import CustomHeadlessMixin
 from bakerydemo.locations.choices import DAY_CHOICES
 
 
@@ -71,7 +72,7 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsIndexPage(Page):
+class LocationsIndexPage(CustomHeadlessMixin, Page):
     """
     A Page model that creates an index page (a listview)
     """
@@ -116,7 +117,7 @@ class LocationsIndexPage(Page):
     ]
 
 
-class LocationPage(Page):
+class LocationPage(CustomHeadlessMixin, Page):
     """
     Detail for a specific bakery location.
     """
