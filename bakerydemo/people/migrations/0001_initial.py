@@ -173,7 +173,7 @@ class Migration(migrations.Migration):
                                 {},
                             ),
                             13: (
-                                "wagtail.embeds.blocks.EmbedBlock",
+                                "bakerydemo.base.blocks.CustomEmbedBlock",
                                 (),
                                 {
                                     "description": "An embedded video or other media",
