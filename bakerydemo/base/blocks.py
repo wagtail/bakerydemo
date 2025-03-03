@@ -12,6 +12,17 @@ from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
 
 
+def get_image_api_representation(image):
+    return {
+        "id": image.pk,
+        "title": image.title,
+        "meta": {
+            "type": type(image)._meta.label,
+            "download_url": image.file.url,
+        },
+    }
+
+
 class CaptionedImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
@@ -33,6 +44,11 @@ class CaptionedImageBlock(StructBlock):
             "image": self.preview_image,
             "caption": self.preview_image.description,
         }
+
+    def get_api_representation(self, value, context=None):
+        data = super().get_api_representation(value, context)
+        data["image"] = get_image_api_representation(value["image"])
+        return data
 
     class Meta:
         icon = "image"
