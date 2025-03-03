@@ -2,6 +2,7 @@ Django>=6.0,<6.1
 django-dotenv==1.4.2
 wagtail>=7.2,<7.3
 wagtail-font-awesome-svg>=1,<2
+wagtail-headless-preview>=0.8,<0.9
 django-debug-toolbar>=4.2,<5
 django-extensions==3.2.3
 django-csp==3.7
