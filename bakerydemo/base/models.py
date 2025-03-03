@@ -37,6 +37,8 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
+from bakerydemo.headless import CustomHeadlessMixin
+
 from .blocks import BaseStreamBlock
 
 # Allow filtering by collection
@@ -231,7 +233,7 @@ class FooterText(
         verbose_name_plural = "footer text"
 
 
-class StandardPage(Page):
+class StandardPage(CustomHeadlessMixin, Page):
     """
     A generic content page. On this demo site we use it for an about page but
     it could be used for any type of page content that only needs a title,
@@ -267,7 +269,7 @@ class StandardPage(Page):
     ]
 
 
-class HomePage(Page):
+class HomePage(CustomHeadlessMixin, Page):
     """
     The Home Page. This looks slightly more complicated than it is. You can
     see if you visit your site and edit the homepage that it is split between
@@ -464,7 +466,7 @@ class HomePage(Page):
         return self.title
 
 
-class GalleryPage(Page):
+class GalleryPage(CustomHeadlessMixin, Page):
     """
     This is a page to list locations from the selected Collection. We use a Q
     object to list any Collection created (/admin/collections/) even if they
@@ -529,7 +531,7 @@ class FormField(AbstractFormField):
     page = ParentalKey("FormPage", related_name="form_fields", on_delete=models.CASCADE)
 
 
-class FormPage(AbstractEmailForm):
+class FormPage(CustomHeadlessMixin, AbstractEmailForm):
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
