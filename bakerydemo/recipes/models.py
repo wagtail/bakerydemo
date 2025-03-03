@@ -12,6 +12,7 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.headless import CustomHeadlessMixin
 
 from .blocks import RecipeStreamBlock
 
@@ -43,7 +44,7 @@ class RecipePersonRelationship(Orderable, models.Model):
     ]
 
 
-class RecipePage(Page):
+class RecipePage(CustomHeadlessMixin, Page):
     """
     Recipe pages are more complex than blog pages, demonstrating more advanced StreamField patterns.
     """
@@ -147,7 +148,7 @@ class RecipePage(Page):
     subpage_types = []
 
 
-class RecipeIndexPage(Page):
+class RecipeIndexPage(CustomHeadlessMixin, Page):
     """
     Index page for recipe.
     We need to alter the page model's context to return the child page objects,
