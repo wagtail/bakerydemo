@@ -35,6 +35,18 @@ def register_icons(icons):
 class CustomAccessibilityItem(AccessibilityItem):
     axe_run_only = None
 
+    def get_axe_spec(self, request):
+        spec = super().get_axe_spec(request)
+        spec["allowedOrigins"] = [
+            "<unsafe_all_origins>",
+            # Can also use specific origins like the following, but a browser
+            # warning will be shown in the console because Axe tries each origin
+            # in every layer.
+            # "http://localhost:3000",
+            # "http://127.0.0.1:8000",
+        ]
+        return spec
+
 
 @hooks.register("construct_wagtail_userbar")
 def replace_userbar_accessibility_item(request, items, page):
