@@ -1,4 +1,9 @@
+from django.views.generic import TemplateView
+from wagtail.admin.userbar import (
+    Userbar,
+)
 from wagtail_headless_preview.models import HeadlessMixin
+from wagtail_headless_preview.settings import headless_preview_settings
 
 
 class CustomHeadlessMixin(HeadlessMixin):
@@ -11,3 +16,19 @@ class CustomHeadlessMixin(HeadlessMixin):
         if getattr(request, "is_preview", False):
             return f"{root_url}/api/draft"
         return root_url
+
+
+class UserbarView(TemplateView):
+    template_name = Userbar.template_name
+    http_method_names = ["get"]
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        client_url = headless_preview_settings.CLIENT_URLS["default"]
+        response["Access-Control-Allow-Origin"] = client_url
+        return response
+
+    def get_context_data(self, **kwargs):
+        return Userbar(object=None, position="bottom-left").get_context_data(
+            super().get_context_data(request=self.request, **kwargs)
+        )
