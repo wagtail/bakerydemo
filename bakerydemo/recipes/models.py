@@ -13,6 +13,7 @@ from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.headless import CustomHeadlessMixin
+from bakerydemo.serializers import RichTextSerializer
 
 from .blocks import RecipeStreamBlock
 
@@ -119,7 +120,7 @@ class RecipePage(CustomHeadlessMixin, Page):
         APIField("subtitle"),
         APIField("introduction"),
         APIField("backstory"),
-        APIField("recipe_headline"),
+        APIField("recipe_headline", serializer=RichTextSerializer()),
         APIField("body"),
         APIField("recipe_person_relationship"),
     ]
