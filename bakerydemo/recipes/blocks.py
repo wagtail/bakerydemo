@@ -4,7 +4,6 @@ from wagtail.blocks import (
     ChoiceBlock,
     FloatBlock,
     ListBlock,
-    RichTextBlock,
     StreamBlock,
     StructBlock,
 )
@@ -15,6 +14,7 @@ from wagtail.images.blocks import ImageBlock
 
 from bakerydemo.base.blocks import (
     BlockQuote,
+    CustomRichTextBlock,
     HeadingBlock,
     get_image_api_representation,
 )
@@ -28,7 +28,7 @@ class CustomImageBlock(ImageBlock):
 
 
 class RecipeStepBlock(StructBlock):
-    text = RichTextBlock(features=["bold", "italic", "link"])
+    text = CustomRichTextBlock(features=["bold", "italic", "link"])
     difficulty = ChoiceBlock(
         widget=forms.RadioSelect,
         choices=[("S", "Small"), ("M", "Medium"), ("L", "Large")],
@@ -46,7 +46,7 @@ class RecipeStreamBlock(StreamBlock):
     """
 
     heading_block = HeadingBlock(group="Content")
-    paragraph_block = RichTextBlock(
+    paragraph_block = CustomRichTextBlock(
         icon="pilcrow", template="blocks/paragraph_block.html", group="Content"
     )
     block_quote = BlockQuote(group="Content")
@@ -67,7 +67,7 @@ class RecipeStreamBlock(StreamBlock):
         [
             ("text", CharBlock()),
             ("numeric", FloatBlock()),
-            ("rich_text", RichTextBlock()),
+            ("rich_text", CustomRichTextBlock()),
             ("image", CustomImageBlock()),
         ],
         group="Content",
@@ -126,7 +126,7 @@ class RecipeStreamBlock(StreamBlock):
     )
 
     ingredients_list = ListBlock(
-        RichTextBlock(features=["bold", "italic", "link"]),
+        CustomRichTextBlock(features=["bold", "italic", "link"]),
         min_num=2,
         max_num=10,
         icon="list-ol",
