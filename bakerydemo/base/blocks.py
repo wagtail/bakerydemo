@@ -10,6 +10,7 @@ from wagtail.blocks import (
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.rich_text import expand_db_html
 
 
 def get_image_api_representation(image):
@@ -131,6 +132,11 @@ class CustomEmbedBlock(EmbedBlock):
         return {"url": value.url, "html": value.html}
 
 
+class CustomRichTextBlock(RichTextBlock):
+    def get_api_representation(self, value, context=None):
+        return expand_db_html(super().get_api_representation(value, context))
+
+
 # StreamBlocks
 class BaseStreamBlock(StreamBlock):
     """
@@ -138,7 +144,7 @@ class BaseStreamBlock(StreamBlock):
     """
 
     heading_block = HeadingBlock()
-    paragraph_block = RichTextBlock(
+    paragraph_block = CustomRichTextBlock(
         icon="pilcrow",
         template="blocks/paragraph_block.html",
         preview_value=(

@@ -37,6 +37,7 @@ from wagtail.models import (
 from wagtail.search import index
 
 from bakerydemo.headless import CustomHeadlessMixin
+from bakerydemo.serializers import RichTextSerializer
 
 from .blocks import BaseStreamBlock
 
@@ -206,7 +207,7 @@ class FooterText(
     ]
 
     api_fields = [
-        APIField("body"),
+        APIField("body", serializer=RichTextSerializer()),
     ]
 
     def __str__(self):
@@ -431,7 +432,7 @@ class HomePage(CustomHeadlessMixin, Page):
         APIField("body"),
         APIField("lead_image"),
         APIField("lead_title"),
-        APIField("lead_text"),
+        APIField("lead_text", serializer=RichTextSerializer()),
         APIField("featured_section_1_title"),
         APIField("featured_section_1"),
         APIField("featured_section_2_title"),
@@ -545,7 +546,7 @@ class FormPage(CustomHeadlessMixin, AbstractEmailForm):
         APIField("subject"),
         APIField("image"),
         APIField("body"),
-        APIField("thank_you_text"),
+        APIField("thank_you_text", serializer=RichTextSerializer()),
     ]
 
 
