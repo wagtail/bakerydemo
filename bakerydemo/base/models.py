@@ -303,7 +303,7 @@ class HomePage(Page):
     # Each list their children items that we access via the children function
     # that we define on the individual Page models e.g. BlogIndexPage
     featured_section_1_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255, help_text="Title to display above the featured section 1"
     )
     featured_section_1 = models.ForeignKey(
         "wagtailcore.Page",
@@ -317,7 +317,7 @@ class HomePage(Page):
     )
 
     featured_section_2_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255, help_text="Title to display above the featured section 2"
     )
     featured_section_2 = models.ForeignKey(
         "wagtailcore.Page",
@@ -331,7 +331,7 @@ class HomePage(Page):
     )
 
     featured_section_3_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True, max_length=255, help_text="Title to display above the featured section 3"
     )
     featured_section_3 = models.ForeignKey(
         "wagtailcore.Page",
