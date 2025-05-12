@@ -229,10 +229,10 @@ By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet
 
 The `main` branch of this demo is designed to work with both the latest stable release and the latest `main` branch (development version) of Wagtail. To run the demo against a specific version of Wagtail, we have created [git tags](https://github.com/wagtail/bakerydemo/tags) for the latest commits that work with each feature release.
 
+- [`v6.4`](https://github.com/wagtail/bakerydemo/releases/tag/v6.4)
 - [`v6.3`](https://github.com/wagtail/bakerydemo/releases/tag/v6.3)
 - [`v6.2`](https://github.com/wagtail/bakerydemo/releases/tag/v6.2)
 - [`v6.1`](https://github.com/wagtail/bakerydemo/releases/tag/v6.1)
-- [`v6.0`](https://github.com/wagtail/bakerydemo/releases/tag/v6.0)
 
 See the [complete tags list](https://github.com/wagtail/bakerydemo/tags) for older releases.
 
