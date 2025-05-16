@@ -16,7 +16,7 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 - Example of using a "base" app to contain misc additional functionality (e.g. Contact Form, About, etc.)
 - "StandardPage" model using mixins borrowed from other apps
 - Example of customizing the Wagtail Admin via _wagtail_hooks_
-- Example of using the Wagtail "snippets" system to represent bread categories, countries and ingredients
+- Example of using the Wagtail "snippets" system to represent bread categories, countries, and ingredients
 - Example of a custom "Galleries" feature that pulls in images used in other content types in the system
 - Example of creating ManyToMany relationships via the Ingredients feature on BreadPage
 - Lots more
