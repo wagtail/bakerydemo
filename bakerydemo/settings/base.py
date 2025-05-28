@@ -322,4 +322,5 @@ WAGTAIL_HEADLESS_PREVIEW = {
     "CLIENT_URLS": {
         "default": "http://localhost:3000",
     },
+    "REDIRECT_ON_PREVIEW": True,
 }
