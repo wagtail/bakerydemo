@@ -1,3 +1,5 @@
+from django.http import HttpRequest
+from django.utils.http import urlencode
 from django.views.generic import TemplateView
 from wagtail.admin.userbar import (
     Userbar,
@@ -16,6 +18,19 @@ class CustomHeadlessMixin(HeadlessMixin):
         if getattr(request, "is_preview", False):
             return f"{root_url}/api/draft"
         return root_url
+
+    def get_preview_url(self, request: HttpRequest, token: str) -> str:
+        return (
+            self.get_client_root_url(request)
+            + "?"
+            + urlencode(
+                {
+                    "content_type": self.get_content_type_str(),
+                    "token": token,
+                    "in_preview_panel": getattr(request, "in_preview_panel", False),
+                }
+            )
+        )
 
 
 class UserbarView(TemplateView):
