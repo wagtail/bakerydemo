@@ -192,6 +192,7 @@ class LocationPage(Page):
                 day=current_day,
                 opening_time__lte=current_time,
                 closing_time__gte=current_time,
+                closed=False,
             )
             return True
         except LocationOperatingHours.DoesNotExist:

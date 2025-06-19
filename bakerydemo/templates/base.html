@@ -54,6 +54,8 @@
 
         {% include "includes/footer.html" %}
 
-        <script type="module" src="{% static 'js/main.js' %}"></script>
+        {% block js %}
+            <script type="module" src="{% static 'js/main.js' %}"></script>
+        {% endblock %}
     </body>
 </html>
