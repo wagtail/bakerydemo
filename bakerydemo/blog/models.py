@@ -210,10 +210,6 @@ class BlogIndexPage(CustomHeadlessMixin, RoutablePageMixin, Page):
         context = {"self": self, "tag": tag, "posts": posts}
         return render(request, "blog/blog_index_page.html", context)
 
-    def serve_preview(self, request, mode_name):
-        # Needed for previews to work
-        return self.serve(request)
-
     # Returns the child BlogPage objects for this BlogPageIndex.
     # If a tag is used then it will filter the posts by tag.
     def get_posts(self, tag=None):
