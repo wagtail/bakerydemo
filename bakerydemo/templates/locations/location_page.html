@@ -30,9 +30,18 @@
                                 as a Wagtail API usage example and to allow for
                                 caching of the whole page without the status.
                             {% endcomment %}
-                            <location-status url="{% url 'wagtailapi:pages:detail' page.pk %}">
-                                Please wait...
-                            </location-status>
+                            {% if request.is_preview %}
+                                {% if page.is_open %}
+                                    This location is currently open.
+                                {% else %}
+                                    Sorry, this location is currently closed.
+                                {% endif %}
+                            {% else %}
+                                <location-status url="{% url 'wagtailapi:pages:detail' page.pk %}">
+                                    Please wait…
+                                </location-status>
+                            {% endif %}
+
 
                             <h2 class="location__meta-title">Address</h2>
                             <address>{{ page.address|linebreaks }}</address>
