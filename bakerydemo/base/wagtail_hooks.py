@@ -1,8 +1,10 @@
 from wagtail import hooks
 from wagtail.admin.filters import WagtailFilterSet
 from wagtail.admin.userbar import AccessibilityItem
+from wagtail.admin.utils import get_admin_base_url
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
+from wagtail_headless_preview.settings import headless_preview_settings
 
 from bakerydemo.base.filters import RevisionFilterSetMixin
 from bakerydemo.base.models import FooterText, Person
@@ -38,12 +40,9 @@ class CustomAccessibilityItem(AccessibilityItem):
     def get_axe_spec(self, request):
         spec = super().get_axe_spec(request)
         spec["allowedOrigins"] = [
-            "<unsafe_all_origins>",
-            # Can also use specific origins like the following, but a browser
-            # warning will be shown in the console because Axe tries each origin
-            # in every layer.
-            # "http://localhost:3000",
-            # "http://127.0.0.1:8000",
+            headless_preview_settings.CLIENT_URLS["default"]
+            if self.in_editor
+            else get_admin_base_url()
         ]
         return spec
 
@@ -51,7 +50,9 @@ class CustomAccessibilityItem(AccessibilityItem):
 @hooks.register("construct_wagtail_userbar")
 def replace_userbar_accessibility_item(request, items, page):
     items[:] = [
-        CustomAccessibilityItem() if isinstance(item, AccessibilityItem) else item
+        CustomAccessibilityItem(in_editor=item.in_editor)
+        if isinstance(item, AccessibilityItem)
+        else item
         for item in items
     ]
 
