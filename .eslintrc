@@ -1,10 +1,11 @@
 {
   "extends": ["eslint:recommended"],
   "parserOptions": {
-    "ecmaVersion": 2020
+    "ecmaVersion": "latest"
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "es2024": true
   },
   "rules": {
     // allow no lines between single line members (e.g. static declarations)
