@@ -26,6 +26,18 @@ class CustomImageBlock(ImageBlock):
         data["image"] = get_image_api_representation(value)
         return data
 
+    class Meta:
+        form_attrs = {
+            "data-controller": "alt-text",
+            "data-alt-text-image-input-value": "[data-contentpath='image'] input[type='hidden']",
+            "data-alt-text-caption-input-value": "[data-contentpath='alt_text'] input[type='text']",
+            "data-action": "change->alt-text#toggleSuggestTarget",
+            # Change the following to true if you want the form context to be
+            # used when generating alt text. Note that the model is not very
+            # accurate at the moment, so it may not be useful.
+            "data-alt-text-contextual-value": "false",
+        }
+
 
 class RecipeStepBlock(StructBlock):
     text = RichTextBlock(features=["bold", "italic", "link"])

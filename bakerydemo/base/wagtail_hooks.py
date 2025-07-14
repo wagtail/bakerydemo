@@ -1,3 +1,5 @@
+from django.templatetags.static import static
+from django.utils.html import format_html_join
 from wagtail import hooks
 from wagtail.admin.filters import WagtailFilterSet
 from wagtail.admin.userbar import AccessibilityItem
@@ -92,3 +94,13 @@ class BakerySnippetViewSetGroup(SnippetViewSetGroup):
 # When using a SnippetViewSetGroup class to group several SnippetViewSet classes together,
 # you only need to register the SnippetViewSetGroup class with Wagtail:
 register_snippet(BakerySnippetViewSetGroup)
+
+
+@hooks.register("insert_editor_js")
+def editor_js():
+    js_files = ["js/alt-text.js"]
+    return format_html_join(
+        "\n",
+        '<script src="{}"></script>',
+        ((static(filename),) for filename in js_files),
+    )
