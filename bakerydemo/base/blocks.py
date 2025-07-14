@@ -55,6 +55,16 @@ class CaptionedImageBlock(StructBlock):
         template = "blocks/captioned_image_block.html"
         preview_value = {"attribution": "The Wagtail Bakery"}
         description = "An image with optional caption and attribution"
+        form_attrs = {
+            "data-controller": "alt-text",
+            "data-alt-text-image-input-value": "[data-contentpath='image'] input[type='hidden']",
+            "data-alt-text-caption-input-value": "[data-contentpath='caption'] input[type='text']",
+            "data-action": "change->alt-text#toggleSuggestTarget",
+            # Change the following to true if you want the form context to be
+            # used when generating alt text. Note that the model is not very
+            # accurate at the moment, so it may not be useful.
+            "data-alt-text-contextual-value": "false",
+        }
 
 
 class HeadingBlock(StructBlock):
