@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "bakerydemo.ai",
     "bakerydemo.base",
     "bakerydemo.blog",
     "bakerydemo.breads",
