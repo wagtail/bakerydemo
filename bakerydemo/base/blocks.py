@@ -81,6 +81,29 @@ class HeadingBlock(StructBlock):
         description = "A heading with level two, three, or four"
 
 
+class ThemeSettingsBlock(StructBlock):
+    theme = ChoiceBlock(
+        choices=[
+            ("default", "Default"),
+            ("highlight", "Highlight"),
+        ],
+        required=False,
+        default="default",
+    )
+    text_size = ChoiceBlock(
+        choices=[
+            ("default", "Default"),
+            ("large", "Large"),
+        ],
+        required=False,
+        default="default",
+    )
+
+    class Meta:
+        icon = "cog"
+        label_format = "Theme: {theme}, Text size: {text_size}"
+
+
 class BlockQuote(StructBlock):
     """
     Custom `StructBlock` that allows the user to attribute a quote to the author
@@ -88,6 +111,7 @@ class BlockQuote(StructBlock):
 
     text = TextBlock()
     attribute_name = CharBlock(blank=True, required=False, label="e.g. Mary Berry")
+    settings = ThemeSettingsBlock(collapsed=True)
 
     class Meta:
         icon = "openquote"
