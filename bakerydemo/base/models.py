@@ -550,7 +550,7 @@ class FormPage(AbstractEmailForm):
 
 
 @register_setting(icon="cog")
-class GenericSettings(ClusterableModel, BaseGenericSetting):
+class GenericSettings(ClusterableModel, PreviewableMixin, BaseGenericSetting):
     mastodon_url = models.URLField(verbose_name="Mastodon URL", blank=True)
     github_url = models.URLField(verbose_name="GitHub URL", blank=True)
     organisation_url = models.URLField(verbose_name="Organisation URL", blank=True)
@@ -565,6 +565,9 @@ class GenericSettings(ClusterableModel, BaseGenericSetting):
             "Social settings",
         )
     ]
+
+    def get_preview_template(self, request, mode_name):
+        return "base.html"
 
 
 @register_setting(icon="site")
