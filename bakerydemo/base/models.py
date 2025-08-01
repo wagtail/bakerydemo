@@ -41,6 +41,16 @@ from .blocks import BaseStreamBlock
 # Allow filtering by collection
 Image.api_fields = [APIField("collection")]
 
+# Replace the default `search_description` FieldPanel with a custom one
+# that uses the `summarize` controller for generating summaries.
+Page.promote_panels[0].args[0][-1] = FieldPanel(
+    "search_description",
+    attrs={
+        "data-controller": "summarize",
+        "data-summarize-input-value": "textarea[name='search_description']",
+    },
+)
+
 
 class Person(
     WorkflowMixin,
