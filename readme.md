@@ -121,7 +121,7 @@ docker compose logs -f
 
 ## Setup with venv
 
-You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use venv, which is the [recommended installation approach](https://docs.djangoproject.com/en/5.1/topics/install/#installing-an-official-release-with-pip) for Django itself.
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use venv, which is the [recommended installation approach](https://docs.djangoproject.com/en/stable/topics/install/#installing-an-official-release-with-pip) for Django itself.
 
 #### Dependencies
 
@@ -131,7 +131,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 ### Installation
 
-On GNU/Linux or MacOS (bash):
+On GNU/Linux or macOS (bash):
 ```bash
 python -m venv wagtailbakerydemo
 source wagtailbakerydemo/bin/activate
@@ -143,11 +143,6 @@ wagtailbakerydemo\Scripts\activate.bat
 # if wagtailbakerydemo\Scripts\activate.bat doesn't work, run:
 wagtailbakerydemo\Scripts\Activate.ps1
 
-```
-Note: On Ubuntu systems, the [Venv](https://docs.python.org/3/library/venv.html) package may not be installed by default. To install it, use the following command:
-```bash
-sudo apt install python3-venv
-``` 
 
 ### Alternatively
 
@@ -165,8 +160,6 @@ rmvirtualenv wagtailbakerydemo
 mkvirtualenv wagtailbakerydemo --python=python3.12
 python --version
 ```
-
-# Essential Setup
 
 Now we're ready to set up the bakery demo project itself:
 ```bash
