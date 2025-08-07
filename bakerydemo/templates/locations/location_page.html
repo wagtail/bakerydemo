@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags navigation_tags %}
+{% load wagtailimages_tags navigation_tags static %}
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
@@ -25,11 +25,23 @@
                     <div class="row">
                         <div class="bread-detail__meta">
                             <h2 class="location__meta-title">Operating Status</h2>
-                            {% if page.is_open %}
-                                This location is currently open.
+                            {% comment %}
+                                Fetch the status of the location on the client side
+                                as a Wagtail API usage example and to allow for
+                                caching of the whole page without the status.
+                            {% endcomment %}
+                            {% if request.is_preview %}
+                                {% if page.is_open %}
+                                    This location is currently open.
+                                {% else %}
+                                    Sorry, this location is currently closed.
+                                {% endif %}
                             {% else %}
-                                Sorry, this location is currently closed.
+                                <location-status url="{% url 'wagtailapi:pages:detail' page.pk %}">
+                                    Please wait…
+                                </location-status>
                             {% endif %}
+
 
                             <h2 class="location__meta-title">Address</h2>
                             <address>{{ page.address|linebreaks }}</address>
@@ -67,3 +79,8 @@
     </div>
 
 {% endblock content %}
+
+{% block js %}
+    {{ block.super }}
+    <script type="module" src="{% static 'js/location-status.js' %}"></script>
+{% endblock js %}

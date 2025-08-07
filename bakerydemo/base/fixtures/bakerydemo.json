@@ -96,7 +96,7 @@
     "model": "base.genericsettings",
     "pk": 1,
     "fields": {
-      "twitter_url": "https://twitter.com/wagtailcms",
+      "mastodon_url": "https://fosstodon.org/@wagtail",
       "github_url": "https://github.com/wagtail/wagtail",
       "organisation_url": "https://wagtail.org/"
     }
@@ -1246,54 +1246,6 @@
     }
   },
   {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 1,
-    "fields": {
-      "query_string": "chocolate"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 2,
-    "fields": {
-      "query_string": "london"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.query",
-    "pk": 3,
-    "fields": {
-      "query_string": "circus"
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 1,
-    "fields": {
-      "query": 1,
-      "date": "2019-02-11",
-      "hits": 2
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 2,
-    "fields": {
-      "query": 2,
-      "date": "2019-02-15",
-      "hits": 1
-    }
-  },
-  {
-    "model": "wagtailsearchpromotions.querydailyhits",
-    "pk": 3,
-    "fields": {
-      "query": 3,
-      "date": "2019-02-24",
-      "hits": 1
-    }
-  },
-  {
     "model": "wagtailforms.formsubmission",
     "pk": 1,
     "fields": {
@@ -1403,8 +1355,10 @@
     "fields": {
       "query": 1,
       "page": 63,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1413,8 +1367,10 @@
     "fields": {
       "query": 4,
       "page": 40,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1423,8 +1379,10 @@
     "fields": {
       "query": 5,
       "page": 36,
-      "sort_order": 0,
-      "description": ""
+      "external_link_url": "",
+      "external_link_text": null,
+      "description": "",
+      "sort_order": 0
     }
   },
   {
@@ -1762,7 +1720,7 @@
     "pk": 7,
     "fields": {
       "password": "pbkdf2_sha256$600000$HfWLDvRsEWtiAVtHTIex9v$FZJZ5U5KpkMcXFHRXh+y3PThUVgJx7pVqT/hePR/oDo=",
-      "last_login": "2019-04-23T19:58:19.460Z",
+      "last_login": "2025-02-11T17:08:20.910Z",
       "is_superuser": true,
       "username": "german",
       "first_name": "Friedrich Wilhelm",
@@ -3836,6 +3794,40 @@
       "content_changed": true,
       "deleted": false,
       "page": 68
+    }
+  },
+  {
+    "model": "wagtailcore.pagelogentry",
+    "pk": 116,
+    "fields": {
+      "content_type": ["recipes", "recipepage"],
+      "label": "Hot Cross Bun",
+      "action": "wagtail.edit",
+      "data": {},
+      "timestamp": "2025-02-11T17:10:10.568Z",
+      "uuid": "6d9c6316-c909-4115-bfb8-78c721c95ecd",
+      "user": ["german"],
+      "revision": 112,
+      "content_changed": true,
+      "deleted": false,
+      "page": 81
+    }
+  },
+  {
+    "model": "wagtailcore.pagelogentry",
+    "pk": 117,
+    "fields": {
+      "content_type": ["recipes", "recipepage"],
+      "label": "Hot Cross Bun",
+      "action": "wagtail.publish",
+      "data": {},
+      "timestamp": "2025-02-11T17:10:10.598Z",
+      "uuid": "6d9c6316-c909-4115-bfb8-78c721c95ecd",
+      "user": ["german"],
+      "revision": 112,
+      "content_changed": true,
+      "deleted": false,
+      "page": 81
     }
   },
   {
@@ -9882,6 +9874,65 @@
     }
   },
   {
+    "model": "wagtailcore.revision",
+    "pk": 112,
+    "fields": {
+      "content_type": ["recipes", "recipepage"],
+      "base_content_type": ["wagtailcore", "page"],
+      "object_id": "81",
+      "created_at": "2025-02-11T17:10:10.554Z",
+      "user": ["german"],
+      "object_str": "Hot Cross Bun",
+      "content": {
+        "pk": 81,
+        "path": "0001000200050001",
+        "depth": 4,
+        "numchild": 0,
+        "translation_key": "3759a7a6-7add-4f38-a19c-d15a65c8d19b",
+        "locale": 1,
+        "latest_revision": 58,
+        "live": true,
+        "has_unpublished_changes": false,
+        "first_published_at": "2019-02-10T16:26:58.040Z",
+        "last_published_at": "2023-09-01T16:55:14.741Z",
+        "live_revision": 58,
+        "go_live_at": null,
+        "expire_at": null,
+        "expired": false,
+        "locked": false,
+        "locked_at": null,
+        "locked_by": null,
+        "title": "Hot Cross Bun",
+        "draft_title": "Hot Cross Bun",
+        "slug": "hot-cross-bun",
+        "content_type": 52,
+        "url_path": "/home/recipes/hot-cross-bun/",
+        "owner": 3,
+        "seo_title": "",
+        "show_in_menus": false,
+        "search_description": "",
+        "latest_revision_created_at": "2023-09-01T16:55:14.703Z",
+        "alias_of": null,
+        "date_published": "2019-03-21",
+        "subtitle": "",
+        "introduction": "Hot Cross Buns are a popular and tasty yeasted pastry traditionally served before Easter.",
+        "backstory": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"6n9mg\\\">The <a href=\\\"https://en.wikipedia.org/wiki/Greeks\\\">Greeks</a> in 6th century AD may have marked cakes with a cross.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-6\\\">[6]</a></p><p data-block-key=\\\"8rf8i\\\">One theory is that the contemporary hot cross bun originates from <a href=\\\"https://en.wikipedia.org/wiki/St_Albans\\\">St Albans</a>, in <a href=\\\"https://en.wikipedia.org/wiki/England\\\">England</a>, where, in 1361, Brother Thomas Rodcliffe, a 14th-century <a href=\\\"https://en.wikipedia.org/wiki/Monk\\\">monk</a> at <a href=\\\"https://en.wikipedia.org/wiki/St_Albans_Abbey\\\">St Albans Abbey</a>, developed a similar recipe called an 'Alban Bun' and distributed the bun to the local poor on Good Friday.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-7\\\">[7]</a></p><p data-block-key=\\\"3gg1l\\\">In 1592, during the reign of <a href=\\\"https://en.wikipedia.org/wiki/Elizabeth_I_of_England\\\">Elizabeth I of England</a>, the London Clerk of Markets issued a decree forbidding the sale of hot cross buns and other spiced breads, except at burials, on Good Friday, or at Christmas. The punishment for transgressing the decree was forfeiture of all the forbidden product to the poor. As a result of this decree, hot cross buns at the time were primarily made in domestic kitchens. Further attempts to suppress the sale of these items took place during the reign of <a href=\\\"https://en.wikipedia.org/wiki/James_I_of_England\\\">James I of England</a> (1603\\u20131625).<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-8\\\">[8]</a></p><p data-block-key=\\\"5ursv\\\">The first definite record of hot cross buns comes from a London street cry: \\\"Good Friday comes this month, the old woman runs. With one or two a penny hot cross buns\\\", which appeared in <a href=\\\"https://en.wikipedia.org/wiki/Poor_Robin\\\"><i>Poor Robin's Almanac</i></a> for 1733.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-9\\\">[9]</a> The line \\\"One a penny, two a penny, hot cross-buns\\\" appears in the English nursery rhyme \\\"<a href=\\\"https://en.wikipedia.org/wiki/Hot_Cross_Buns_(song)\\\">Hot Cross Buns</a>\\\" published in the <a href=\\\"https://en.wikipedia.org/wiki/London_Chronicle\\\"><i>London Chronicle</i></a> for 2\\u20134 June 1767.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-10\\\">[10]</a> Food historian Ivan Day states, \\\"The buns were made in London during the 18th century. But when you start looking for records or recipes earlier than that, you hit nothing.\\\"</p>\", \"id\": \"59d484e9-4be9-40bf-9a3c-f73e64b50940\"}]",
+        "recipe_headline": "<p data-block-key=\"wnjzt\">Homemade hot cross buns</p>",
+        "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"9npzb\\\">Cooking temperatures:</p>\", \"id\": \"0040ce21-b4ad-4b7d-8a49-277303070c2c\"}, {\"type\": \"typed_table_block\", \"value\": {\"columns\": [{\"type\": \"text\", \"heading\": \"Oven\"}, {\"type\": \"numeric\", \"heading\": \"\\u00b0F\"}, {\"type\": \"numeric\", \"heading\": \"\\u00b0C\"}, {\"type\": \"rich_text\", \"heading\": \"Cooking time\"}], \"rows\": [{\"values\": [\"Gas Oven\", 350.0, 180.0, \"<p data-block-key=\\\"6s6n5\\\">14 minutes</p>\"]}, {\"values\": [\"Electric Oven\", 375.0, 190.0, \"<p data-block-key=\\\"6s6n5\\\">15 minutes</p>\"]}, {\"values\": [\"Fan Oven\", 325.0, 170.0, \"<p data-block-key=\\\"6s6n5\\\">13 minutes</p>\"]}], \"caption\": \"\"}, \"id\": \"38280209-450a-4d84-b739-90c2cb19d39d\"}, {\"type\": \"table_block\", \"value\": {\"data\": [[\"Buns\", \"Prep time\", \"Cooking time\", \"Instructions\"], [\"12\", \"30min\", \"1.5h\", \"All quantities as-is\"], [\"18\", \"40min\", \"2h\", \"1.5x all amounts\"], [\"24\", \"45min\", \"Depending on oven size\", \"2x all amounts\"]], \"cell\": [], \"first_row_is_table_header\": true, \"first_col_is_header\": true, \"table_caption\": \"Expected yield\", \"table_header_choice\": \"both\"}, \"id\": \"2b9b59cb-4dd7-4ebf-ac66-1ed43471609b\"}, {\"type\": \"paragraph_block\", \"value\": \"<h2 data-block-key=\\\"7o1fp\\\">Ingredients</h2><p data-block-key=\\\"7jh9i\\\">For the buns:</p>\", \"id\": \"d82664ec-29e9-4095-8b53-cd5e6c262d45\"}, {\"type\": \"ingredients_list\", \"value\": [{\"type\": \"item\", \"value\": \"<p data-block-key=\\\"softi\\\">1 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Cup\\\">cup</a> (240 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:ML\\\">mL</a>) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Milk\\\">milk</a></p>\", \"id\": \"21a44ce4-9aa6-459c-b654-d8d2217e8c8f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">4 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Teaspoon\\\">teaspoons</a> (20 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Water\\\">water</a></p>\", \"id\": \"b7ca75fa-9ff9-401b-bd4e-8ca814efc8d8\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 cake fresh <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Yeast\\\">yeast</a></p>\", \"id\": \"8a984eeb-dc99-4f76-95e4-cc591566b73b\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">3 cups (720 mL) all-purpose <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Flour\\\">flour</a></p>\", \"id\": \"0b473c73-d8bd-41ff-97d3-4766a2caf7e2\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u2153 cup (80 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Sugar\\\">sugar</a></p>\", \"id\": \"5e68346f-b9fe-485c-8a99-ed66084bd9d4\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc teaspoon (1.25 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Cinnamon\\\">cinnamon</a></p>\", \"id\": \"7e7ceced-d961-4a73-957d-8f2d4cbbad7f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc teaspoon (1.25 mL) ground <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Nutmeg\\\">nutmeg</a></p>\", \"id\": \"4a1bc81e-9158-42e2-adac-1944f52ea8fd\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Egg\\\">egg</a> <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Beat\\\">beaten</a></p>\", \"id\": \"ee667182-4945-43f5-a647-9a2d087f18b0\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc cup (60 mL) melted <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Butter\\\">butter</a></p>\", \"id\": \"e9e70968-d2cf-43dc-948b-13f09f1af9fe\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 cup (240 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Currant\\\">currants</a></p>\", \"id\": \"49b6cf74-c684-4783-b5fd-c929cc9dcb75\"}], \"id\": \"05dc41fe-bd09-4e88-9e52-5ed7ff8b9b96\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"7o1fp\\\">For the glazing:</p>\", \"id\": \"8e5c0d92-6131-426c-891b-af2fe90b6136\"}, {\"type\": \"ingredients_list\", \"value\": [{\"type\": \"item\", \"value\": \"<p data-block-key=\\\"softi\\\">2 tbsp <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:All-purpose_flour\\\">plain flour</a></p>\", \"id\": \"4ea44c12-9aa6-459c-b654-d8d2217e8c8f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">vegetable oil</p>\", \"id\": \"c398ff9c-6bde-4535-819d-7cefe75e16f0\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 tbsp <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Golden_Syrup\\\">golden syrup</a></p>\", \"id\": \"9b08d44e-ea54-4fd1-a7ee-5a258e892eff\"}], \"id\": \"b610441f-3482-4613-80cf-688b885ac199\"}, {\"type\": \"paragraph_block\", \"value\": \"<h2 data-block-key=\\\"9npzb\\\">Procedure</h2><p data-block-key=\\\"2m305\\\">Make sure to set aside a space for the buns to rise before baking.</p>\", \"id\": \"343c9b9a-d30f-45aa-b879-5bd3e5922565\"}, {\"type\": \"steps_list\", \"value\": [{\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"urko7\\\">Heat milk and water to lukewarm.</p>\", \"difficulty\": \"S\"}, \"id\": \"725285ae-b823-404e-8439-f5ebe3b48b31\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Crumble yeast. Mix with \\u00bd cup (120 mL) flour. Stir in tepid milk/water and mix well.</p>\", \"difficulty\": \"S\"}, \"id\": \"8c6d544a-0f3f-4d74-bc25-af31d3430e5b\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Cover and set aside in warm place until yeast is active and frothing, about 10-15 minutes.</p>\", \"difficulty\": \"S\"}, \"id\": \"0d9383dd-b2fd-451f-ae74-9848d00b4bd1\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Mix remaining flour, sugar, salt, cinnamon and nutmeg.</p>\", \"difficulty\": \"S\"}, \"id\": \"1422a5d2-4ed6-4688-bc60-499222c5c4ae\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Stir egg and butter into the yeast mix, add the flour mixture and fruit. Mix well.</p>\", \"difficulty\": \"S\"}, \"id\": \"a3cc7df9-761b-4bed-8df4-0595c57d508c\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Put dough onto a floured surface and knead. Return to bowl, and let rise until double in bulk, about 1 hour.</p>\", \"difficulty\": \"L\"}, \"id\": \"664603c3-765a-444a-b88b-3189db4a7de4\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Turn onto a floured surface and knead again.</p>\", \"difficulty\": \"M\"}, \"id\": \"e06bb786-75ae-4327-b9f4-9725f60e6ce0\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Preheat oven.</p>\", \"difficulty\": \"S\"}, \"id\": \"e356ab29-b906-4c36-a61d-146eb030b633\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Divide dough into twelve pieces and shape into buns. Mark a deep cross on the top of each bun.</p>\", \"difficulty\": \"M\"}, \"id\": \"8cc7055d-0125-4f3d-b8ed-9e8834d00605\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Arrange on a baking tray, cover with tea towel, and let rise for 30 minutes. Cook in preheated oven for indicated time or until golden brown.</p>\", \"difficulty\": \"S\"}, \"id\": \"5c2a400d-8024-4865-b639-f83fa0947c72\"}], \"id\": \"df102372-cd23-463c-b594-29b224bd409e\"}, {\"type\": \"heading_block\", \"value\": {\"heading_text\": \"Results\", \"size\": \"h2\"}, \"id\": \"ffb28d90-c41e-4293-b191-8dca27c867c8\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"hfzys\\\">With enough luck, you'll end up with a stack of delicious hot cross buns. Bon app\\u00e9tit!</p>\", \"id\": \"b75db5e0-7944-4e09-b59b-dce45b11dc12\"}, {\"type\": \"image_block\", \"value\": {\"image\": 54, \"alt_text\": \"A plate stacked with freshly baked hot cross buns, made according to the recipe\", \"decorative\": false}, \"id\": \"85000435-f6f0-4649-8b70-daa43c775031\"}]",
+        "wagtail_admin_comments": [],
+        "recipe_person_relationship": [
+          {
+            "pk": 1,
+            "sort_order": 0,
+            "page": 81,
+            "person": 2
+          }
+        ]
+      },
+      "approved_go_live_at": null
+    }
+  },
+  {
     "model": "wagtailcore.page",
     "pk": 1,
     "fields": {
@@ -10978,12 +11029,12 @@
       "numchild": 0,
       "translation_key": "3759a7a6-7add-4f38-a19c-d15a65c8d19b",
       "locale": 1,
-      "latest_revision": 58,
+      "latest_revision": 112,
       "live": true,
       "has_unpublished_changes": false,
       "first_published_at": "2019-02-10T16:26:58.040Z",
-      "last_published_at": "2023-09-01T16:55:14.741Z",
-      "live_revision": 58,
+      "last_published_at": "2025-02-11T17:10:10.575Z",
+      "live_revision": 112,
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
@@ -10999,7 +11050,7 @@
       "seo_title": "",
       "show_in_menus": false,
       "search_description": "",
-      "latest_revision_created_at": "2023-09-01T16:55:14.703Z",
+      "latest_revision_created_at": "2025-02-11T17:10:10.554Z",
       "alias_of": null
     }
   },
@@ -12085,6 +12136,7 @@
       "collection": 3,
       "title": "Roberta Johnson",
       "file": "original_images/roberta_johnson.jpeg",
+      "description": "Roberta Johnson smiling with eyes closed near a plant with orange flowers",
       "width": 300,
       "height": 282,
       "created_at": "2019-02-17T07:43:46.304Z",
@@ -12104,6 +12156,7 @@
       "collection": 2,
       "title": "Breads 1",
       "file": "original_images/breads1.jpg",
+      "description": "Brown bread with powdered sugar sprinkled on top",
       "width": 1080,
       "height": 831,
       "created_at": "2019-02-17T08:10:34.237Z",
@@ -12123,6 +12176,7 @@
       "collection": 2,
       "title": "Breads 2",
       "file": "original_images/breads2.jpg",
+      "description": "High-angle close-up view of several loaves of artisan bread",
       "width": 1080,
       "height": 1151,
       "created_at": "2019-02-17T08:10:34.344Z",
@@ -12142,6 +12196,7 @@
       "collection": 2,
       "title": "Breads 3",
       "file": "original_images/breads3.jpg",
+      "description": "High-angle close-up view of a rectangular granola bar resting on a sheet of brown parchment paper, which is itself laid over a white linen cloth with thin red stripes",
       "width": 1080,
       "height": 1080,
       "created_at": "2019-02-17T08:10:34.580Z",
@@ -12161,6 +12216,7 @@
       "collection": 2,
       "title": "Breads 4",
       "file": "original_images/breads4.jpg",
+      "description": "A loaf of bread resting on a rustic wooden table, showcasing its golden crust and inviting texture",
       "width": 1080,
       "height": 1240,
       "created_at": "2019-02-17T08:10:34.723Z",
@@ -12180,6 +12236,7 @@
       "collection": 2,
       "title": "Breads 5",
       "file": "original_images/bread5.jpg",
+      "description": "Two freshly baked loaves of bread resting on a wooden tray, showcasing their golden crusts and inviting aroma",
       "width": 800,
       "height": 600,
       "created_at": "2019-02-19T08:08:37.723Z",
@@ -12199,6 +12256,7 @@
       "collection": 2,
       "title": "Breads 6",
       "file": "original_images/bread6.jpg",
+      "description": "A freshly baked loaf of bread resting on a cooling rack, showcasing its golden crust and inviting texture",
       "width": 1008,
       "height": 756,
       "created_at": "2019-02-19T08:08:38.028Z",
@@ -12218,6 +12276,7 @@
       "collection": 2,
       "title": "Yeast",
       "file": "original_images/yeast.jpg",
+      "description": "A close-up of small brown bits on a white surface, highlighting the texture and details of yeast extract",
       "width": 1024,
       "height": 682,
       "created_at": "2019-02-21T07:50:10.793Z",
@@ -12237,6 +12296,7 @@
       "collection": 2,
       "title": "Bedouins",
       "file": "original_images/Bedouins_making_bread.jpg",
+      "description": "Two Bedouin men sitting on the ground, skillfully making traditional bread",
       "width": 1000,
       "height": 669,
       "created_at": "2019-02-21T07:59:50.671Z",
@@ -12256,6 +12316,7 @@
       "collection": 2,
       "title": "Ølandshvedebrød",
       "file": "original_images/Olandshvedebrod_6082070226.jpg",
+      "description": "A loaf of Olandshvedebrod resting on a cooling rack, showcasing its golden crust and inviting texture",
       "width": 1000,
       "height": 664,
       "created_at": "2019-02-21T08:05:08.529Z",
@@ -12275,6 +12336,7 @@
       "collection": 2,
       "title": "Soda Bread",
       "file": "original_images/soda_bread.jpg",
+      "description": "A piece of soda bread resting on a wooden table, showcasing its rustic texture and golden-brown crust",
       "width": 733,
       "height": 481,
       "created_at": "2019-02-21T08:10:30.772Z",
@@ -12294,6 +12356,7 @@
       "collection": 2,
       "title": "Sandwich Bread",
       "file": "original_images/sliced.jpg",
+      "description": "A slice of sandwich bread displayed on a brown background, highlighting its texture and color",
       "width": 1024,
       "height": 677,
       "created_at": "2019-02-21T08:15:16.080Z",
@@ -12313,6 +12376,7 @@
       "collection": 4,
       "title": "Anadama_bread",
       "file": "original_images/Anadama_bread_1.jpg",
+      "description": "A loaf of anadama bread resting on a wooden cutting board, showcasing its rustic texture and golden-brown crust",
       "width": 1200,
       "height": 800,
       "created_at": "2019-02-23T07:48:33.730Z",
@@ -12332,6 +12396,7 @@
       "collection": 4,
       "title": "Appam",
       "file": "original_images/Appam_served_with_Coconut_Milk_in_Tamil_Nadu.JPG",
+      "description": "Two Appam pancakes served with coconut milk arranged neatly on a tray",
       "width": 1200,
       "height": 541,
       "created_at": "2019-02-23T07:48:34.056Z",
@@ -12351,6 +12416,7 @@
       "collection": 4,
       "title": "Arepa",
       "file": "original_images/Arepa_asada.JPG",
+      "description": "A plate featuring a golden arepa, a traditional cornmeal dish, with a cheese filling, garnished and ready to be enjoyed",
       "width": 1200,
       "height": 900,
       "created_at": "2019-02-23T07:48:34.189Z",
@@ -12370,6 +12436,7 @@
       "collection": 4,
       "title": "Bagel",
       "file": "original_images/Bagel.jpg",
+      "description": "A freshly baked bagel displayed against a clean white background, highlighting its golden-brown crust and round shape",
       "width": 1200,
       "height": 1038,
       "created_at": "2019-02-23T07:48:34.296Z",
@@ -12389,6 +12456,7 @@
       "collection": 4,
       "title": "Baguette",
       "file": "original_images/Baguette_de_pain_WikiCheese_Lausanne.jpg",
+      "description": "A baguette resting on a white surface, showcasing its long shape and crusty exterior",
       "width": 1200,
       "height": 583,
       "created_at": "2019-02-23T07:48:34.417Z",
@@ -12408,6 +12476,7 @@
       "collection": 4,
       "title": "Bammies",
       "file": "original_images/Bammies.jpg",
+      "description": "A plate displaying three pieces of Bammies, cut in half-circle shapes",
       "width": 1200,
       "height": 1078,
       "created_at": "2019-02-23T07:48:34.498Z",
@@ -12427,6 +12496,7 @@
       "collection": 4,
       "title": "Bazin",
       "file": "original_images/Bazin.jpg",
+      "description": "A plate of Bazin (center) served with a stew and whole hard-boiled eggs",
       "width": 1200,
       "height": 900,
       "created_at": "2019-02-23T07:48:34.571Z",
@@ -12444,8 +12514,9 @@
     "pk": 34,
     "fields": {
       "collection": 4,
-      "title": "Bunanpankatori",
+      "title": "Anpan",
       "file": "original_images/Bean-jam-bunanpankatori-cityjapan.JPG",
+      "description": "A plate of two Anpan, a traditional Japanese sweet bread filled with red bean paste",
       "width": 800,
       "height": 640,
       "created_at": "2019-02-23T07:48:34.650Z",
@@ -12465,6 +12536,7 @@
       "collection": 4,
       "title": "Belgian Waffle",
       "file": "original_images/Belgische_waffeln.jpg",
+      "description": "A Belgian waffle topped with fresh fruit and whipped cream, elegantly presented on a black plate",
       "width": 1200,
       "height": 910,
       "created_at": "2019-02-23T07:48:34.735Z",
@@ -12484,6 +12556,7 @@
       "collection": 4,
       "title": "Afghan Bolani",
       "file": "original_images/Bolani_Afghan_bread_01.jpg",
+      "description": "A plate of Afghan Bolani accompanied by a serving of sour cream",
       "width": 1280,
       "height": 960,
       "created_at": "2019-02-23T07:48:34.809Z",
@@ -12503,6 +12576,7 @@
       "collection": 4,
       "title": "Misc Breads",
       "file": "original_images/Breads_1.jpg",
+      "description": "A selection of various breads elegantly arranged on a table, showcasing different shapes and textures",
       "width": 1200,
       "height": 796,
       "created_at": "2019-02-23T07:48:34.909Z",
@@ -12522,6 +12596,7 @@
       "collection": 4,
       "title": "Rye Bread",
       "file": "original_images/Sourdough_rye_with_walnuts.jpg",
+      "description": "A loaf of sourdough rye with walnuts resting on a napkin atop a kitchen counter",
       "width": 1200,
       "height": 773,
       "created_at": "2019-02-23T08:18:10.895Z",
@@ -12541,6 +12616,7 @@
       "collection": 4,
       "title": "Bhakri",
       "file": "original_images/Bhakri_1.jpg",
+      "description": "Close-up of bhakri flatbreads layered on top of one another, showcasing their texture and golden-brown color",
       "width": 1200,
       "height": 900,
       "created_at": "2019-02-23T08:25:03.822Z",
@@ -12560,6 +12636,7 @@
       "collection": 3,
       "title": "Sprint Crew",
       "file": "original_images/sprint_crew.jpg",
+      "description": "A diverse group of individuals gathered around a table, holding a sign with the Caktus Group and Wagtail CMS logo in a heart shape",
       "width": 1000,
       "height": 750,
       "created_at": "2019-02-24T08:01:50.590Z",
@@ -12579,6 +12656,7 @@
       "collection": 3,
       "title": "Baking Soda",
       "file": "original_images/bakingsoda.jpg",
+      "description": "A bowl of baking soda with a wooden spoon resting on top, ready for use in baking or cooking",
       "width": 1024,
       "height": 678,
       "created_at": "2019-03-22T06:13:09.773Z",
@@ -12598,6 +12676,7 @@
       "collection": 3,
       "title": "Boston Cream Pie",
       "file": "original_images/bostoncream.jpg",
+      "description": "A plate featuring three Boston Cream Pies, each adorned with rich chocolate frosting",
       "width": 1024,
       "height": 683,
       "created_at": "2019-03-22T06:29:18.751Z",
@@ -12617,6 +12696,7 @@
       "collection": 1,
       "title": "Image by Ævar Guðmundsson",
       "file": "original_images/aevar-gudmundsson-selfoss.jpg",
+      "description": "A stunning view of the Selfoss Waterfall cascading into a river, surrounded by natural beauty and rugged terrain",
       "width": 1400,
       "height": 932,
       "created_at": "2019-03-29T17:27:55.769Z",
@@ -12636,6 +12716,7 @@
       "collection": 1,
       "title": "Image by Sverrir Thorolfsson",
       "file": "original_images/reykjavik-sverrir-thorolfsson.jpg",
+      "description": "A panoramic view of a large body of water in Reykjavik, reflecting the city's skyline and surrounding landscapes",
       "width": 992,
       "height": 971,
       "created_at": "2019-03-29T17:31:36.429Z",
@@ -12655,6 +12736,7 @@
       "collection": 1,
       "title": "Glacier descending near Hof",
       "file": "original_images/hof-cornell-university-filter.jpg",
+      "description": "A glacier descending near Hof, with water cascading over the rugged mountain landscape",
       "width": 1200,
       "height": 948,
       "created_at": "2019-03-29T17:46:14.914Z",
@@ -12674,6 +12756,7 @@
       "collection": 1,
       "title": "Old buildings above Vik",
       "file": "original_images/vik.jpg",
+      "description": "",
       "width": 1400,
       "height": 981,
       "created_at": "2019-03-29T18:00:33.977Z",
@@ -12693,6 +12776,7 @@
       "collection": 1,
       "title": "Höfn from above",
       "file": "original_images/Hofn.jpg",
+      "description": "Aerial view of Höfn showcasing a winding river surrounded by lush land and scenic landscapes",
       "width": 1200,
       "height": 800,
       "created_at": "2019-03-29T18:04:27.068Z",
@@ -12712,6 +12796,7 @@
       "collection": 1,
       "title": "Akranes",
       "file": "original_images/Akranes.jpg",
+      "description": "Snow-capped mountain range in Akranes, showcasing the beauty of nature's peaks against a clear blue sky",
       "width": 1200,
       "height": 800,
       "created_at": "2019-03-29T18:08:27.770Z",
@@ -12731,6 +12816,7 @@
       "collection": 3,
       "title": "Muddy Waters",
       "file": "original_images/muddy_waters_hUPkmSW.jpg",
+      "description": "A man named Muddy Waters wearing a stylish hat and a pair of sunglasses, smiling with his mouth open",
       "width": 611,
       "height": 672,
       "created_at": "2019-03-31T06:36:23.486Z",
@@ -12750,6 +12836,7 @@
       "collection": 3,
       "title": "Olivia Ava",
       "file": "original_images/olivia_ava.jpeg",
+      "description": "A woman named Olivia Ava with a stylish afro hairstyle, radiating confidence and charm",
       "width": 300,
       "height": 294,
       "created_at": "2019-04-01T07:30:10.713Z",
@@ -12769,6 +12856,7 @@
       "collection": 3,
       "title": "Lightnin' Hopkins",
       "file": "original_images/lightnin_hopkins.jpg",
+      "description": "A black and white portrait of Lightnin' Hopkins",
       "width": 150,
       "height": 162,
       "created_at": "2019-04-01T07:31:21.251Z",
@@ -12779,6 +12867,26 @@
       "focal_point_height": null,
       "file_size": 18521,
       "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 54,
+    "fields": {
+      "collection": 5,
+      "title": "Hot_cross_buns_(stacked)",
+      "file": "original_images/Hot_cross_buns_stacked.jpg",
+      "description": "A plate stacked with freshly baked hot cross buns",
+      "width": 640,
+      "height": 427,
+      "created_at": "2025-02-11T17:08:57.935Z",
+      "uploaded_by_user": ["german"],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 67610,
+      "file_hash": "aed007ce6a10899ed8267733393e51652365e09e"
     }
   },
   {
@@ -12820,7 +12928,9 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12836,7 +12946,9 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12852,7 +12964,9 @@
       "current_time_zone": "Europe/Berlin",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12868,7 +12982,9 @@
       "current_time_zone": "Asia/Beirut",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12884,7 +13000,9 @@
       "current_time_zone": "",
       "avatar": "",
       "dismissibles": {},
-      "theme": "system"
+      "theme": "system",
+      "contrast": "system",
+      "density": "default"
     }
   },
   {
@@ -12901,9 +13019,9 @@
       "date_published": "2019-03-21",
       "subtitle": "",
       "introduction": "Hot Cross Buns are a popular and tasty yeasted pastry traditionally served before Easter.",
-      "backstory": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"6n9mg\\\">The <a href=\\\"https://en.wikipedia.org/wiki/Greeks\\\">Greeks</a> in 6th century AD may have marked cakes with a cross.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-6\\\">[6]</a></p><p data-block-key=\\\"8rf8i\\\">One theory is that the contemporary hot cross bun originates from <a href=\\\"https://en.wikipedia.org/wiki/St_Albans\\\">St Albans</a>, in <a href=\\\"https://en.wikipedia.org/wiki/England\\\">England</a>, where, in 1361, Brother Thomas Rodcliffe, a 14th-century <a href=\\\"https://en.wikipedia.org/wiki/Monk\\\">monk</a> at <a href=\\\"https://en.wikipedia.org/wiki/St_Albans_Abbey\\\">St Albans Abbey</a>, developed a similar recipe called an &#x27;Alban Bun&#x27; and distributed the bun to the local poor on Good Friday.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-7\\\">[7]</a></p><p data-block-key=\\\"3gg1l\\\">In 1592, during the reign of <a href=\\\"https://en.wikipedia.org/wiki/Elizabeth_I_of_England\\\">Elizabeth I of England</a>, the London Clerk of Markets issued a decree forbidding the sale of hot cross buns and other spiced breads, except at burials, on Good Friday, or at Christmas. The punishment for transgressing the decree was forfeiture of all the forbidden product to the poor. As a result of this decree, hot cross buns at the time were primarily made in domestic kitchens. Further attempts to suppress the sale of these items took place during the reign of <a href=\\\"https://en.wikipedia.org/wiki/James_I_of_England\\\">James I of England</a> (1603\\u20131625).<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-8\\\">[8]</a></p><p data-block-key=\\\"5ursv\\\">The first definite record of hot cross buns comes from a London street cry: &quot;Good Friday comes this month, the old woman runs. With one or two a penny hot cross buns&quot;, which appeared in <a href=\\\"https://en.wikipedia.org/wiki/Poor_Robin\\\"><i>Poor Robin&#x27;s Almanac</i></a> for 1733.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-9\\\">[9]</a> The line &quot;One a penny, two a penny, hot cross-buns&quot; appears in the English nursery rhyme &quot;<a href=\\\"https://en.wikipedia.org/wiki/Hot_Cross_Buns_(song)\\\">Hot Cross Buns</a>&quot; published in the <a href=\\\"https://en.wikipedia.org/wiki/London_Chronicle\\\"><i>London Chronicle</i></a> for 2\\u20134 June 1767.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-10\\\">[10]</a> Food historian Ivan Day states, &quot;The buns were made in London during the 18th century. But when you start looking for records or recipes earlier than that, you hit nothing.&quot;</p>\", \"id\": \"59d484e9-4be9-40bf-9a3c-f73e64b50940\"}]",
+      "backstory": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"6n9mg\\\">The <a href=\\\"https://en.wikipedia.org/wiki/Greeks\\\">Greeks</a> in 6th century AD may have marked cakes with a cross.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-6\\\">[6]</a></p><p data-block-key=\\\"8rf8i\\\">One theory is that the contemporary hot cross bun originates from <a href=\\\"https://en.wikipedia.org/wiki/St_Albans\\\">St Albans</a>, in <a href=\\\"https://en.wikipedia.org/wiki/England\\\">England</a>, where, in 1361, Brother Thomas Rodcliffe, a 14th-century <a href=\\\"https://en.wikipedia.org/wiki/Monk\\\">monk</a> at <a href=\\\"https://en.wikipedia.org/wiki/St_Albans_Abbey\\\">St Albans Abbey</a>, developed a similar recipe called an 'Alban Bun' and distributed the bun to the local poor on Good Friday.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-7\\\">[7]</a></p><p data-block-key=\\\"3gg1l\\\">In 1592, during the reign of <a href=\\\"https://en.wikipedia.org/wiki/Elizabeth_I_of_England\\\">Elizabeth I of England</a>, the London Clerk of Markets issued a decree forbidding the sale of hot cross buns and other spiced breads, except at burials, on Good Friday, or at Christmas. The punishment for transgressing the decree was forfeiture of all the forbidden product to the poor. As a result of this decree, hot cross buns at the time were primarily made in domestic kitchens. Further attempts to suppress the sale of these items took place during the reign of <a href=\\\"https://en.wikipedia.org/wiki/James_I_of_England\\\">James I of England</a> (1603\\u20131625).<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-8\\\">[8]</a></p><p data-block-key=\\\"5ursv\\\">The first definite record of hot cross buns comes from a London street cry: \\\"Good Friday comes this month, the old woman runs. With one or two a penny hot cross buns\\\", which appeared in <a href=\\\"https://en.wikipedia.org/wiki/Poor_Robin\\\"><i>Poor Robin's Almanac</i></a> for 1733.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-9\\\">[9]</a> The line \\\"One a penny, two a penny, hot cross-buns\\\" appears in the English nursery rhyme \\\"<a href=\\\"https://en.wikipedia.org/wiki/Hot_Cross_Buns_(song)\\\">Hot Cross Buns</a>\\\" published in the <a href=\\\"https://en.wikipedia.org/wiki/London_Chronicle\\\"><i>London Chronicle</i></a> for 2\\u20134 June 1767.<a href=\\\"https://en.wikipedia.org/wiki/Hot_cross_bun#cite_note-10\\\">[10]</a> Food historian Ivan Day states, \\\"The buns were made in London during the 18th century. But when you start looking for records or recipes earlier than that, you hit nothing.\\\"</p>\", \"id\": \"59d484e9-4be9-40bf-9a3c-f73e64b50940\"}]",
       "recipe_headline": "<p data-block-key=\"wnjzt\">Homemade hot cross buns</p>",
-      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"9npzb\\\">Cooking temperatures:</p>\", \"id\": \"0040ce21-b4ad-4b7d-8a49-277303070c2c\"}, {\"type\": \"typed_table_block\", \"value\": {\"columns\": [{\"type\": \"text\", \"heading\": \"Oven\"}, {\"type\": \"numeric\", \"heading\": \"\\u00b0F\"}, {\"type\": \"numeric\", \"heading\": \"\\u00b0C\"}, {\"type\": \"rich_text\", \"heading\": \"Cooking time\"}], \"rows\": [{\"values\": [\"Gas Oven\", 350.0, 180.0, \"<p data-block-key=\\\"6s6n5\\\">14 minutes</p>\"]}, {\"values\": [\"Electric Oven\", 375.0, 190.0, \"<p data-block-key=\\\"6s6n5\\\">15 minutes</p>\"]}, {\"values\": [\"Fan Oven\", 325.0, 170.0, \"<p data-block-key=\\\"6s6n5\\\">13 minutes</p>\"]}]}, \"id\": \"38280209-450a-4d84-b739-90c2cb19d39d\"}, {\"type\": \"table_block\", \"value\": {\"data\": [[\"Buns\", \"Prep time\", \"Cooking time\", \"Instructions\"], [\"12\", \"30min\", \"1.5h\", \"All quantities as-is\"], [\"18\", \"40min\", \"2h\", \"1.5x all amounts\"], [\"24\", \"45min\", \"Depending on oven size\", \"2x all amounts\"]], \"cell\": [], \"first_row_is_table_header\": true, \"first_col_is_header\": true, \"table_caption\": \"Expected yield\"}, \"id\": \"2b9b59cb-4dd7-4ebf-ac66-1ed43471609b\"}, {\"type\": \"paragraph_block\", \"value\": \"<h2 data-block-key=\\\"7o1fp\\\">Ingredients</h2><p data-block-key=\\\"7jh9i\\\">For the buns:</p>\", \"id\": \"d82664ec-29e9-4095-8b53-cd5e6c262d45\"}, {\"type\": \"ingredients_list\", \"value\": [{\"type\": \"item\", \"value\": \"<p data-block-key=\\\"softi\\\">1 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Cup\\\">cup</a> (240 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:ML\\\">mL</a>) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Milk\\\">milk</a></p>\", \"id\": \"21a44ce4-9aa6-459c-b654-d8d2217e8c8f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">4 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Teaspoon\\\">teaspoons</a> (20 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Water\\\">water</a></p>\", \"id\": \"b7ca75fa-9ff9-401b-bd4e-8ca814efc8d8\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 cake fresh <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Yeast\\\">yeast</a></p>\", \"id\": \"8a984eeb-dc99-4f76-95e4-cc591566b73b\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">3 cups (720 mL) all-purpose <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Flour\\\">flour</a></p>\", \"id\": \"0b473c73-d8bd-41ff-97d3-4766a2caf7e2\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u2153 cup (80 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Sugar\\\">sugar</a></p>\", \"id\": \"5e68346f-b9fe-485c-8a99-ed66084bd9d4\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc teaspoon (1.25 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Cinnamon\\\">cinnamon</a></p>\", \"id\": \"7e7ceced-d961-4a73-957d-8f2d4cbbad7f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc teaspoon (1.25 mL) ground <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Nutmeg\\\">nutmeg</a></p>\", \"id\": \"4a1bc81e-9158-42e2-adac-1944f52ea8fd\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Egg\\\">egg</a> <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Beat\\\">beaten</a></p>\", \"id\": \"ee667182-4945-43f5-a647-9a2d087f18b0\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc cup (60 mL) melted <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Butter\\\">butter</a></p>\", \"id\": \"e9e70968-d2cf-43dc-948b-13f09f1af9fe\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 cup (240 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Currant\\\">currants</a></p>\", \"id\": \"49b6cf74-c684-4783-b5fd-c929cc9dcb75\"}], \"id\": \"05dc41fe-bd09-4e88-9e52-5ed7ff8b9b96\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"7o1fp\\\">For the glazing:</p>\", \"id\": \"8e5c0d92-6131-426c-891b-af2fe90b6136\"}, {\"type\": \"ingredients_list\", \"value\": [{\"type\": \"item\", \"value\": \"<p data-block-key=\\\"softi\\\">2 tbsp <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:All-purpose_flour\\\">plain flour</a></p>\", \"id\": \"4ea44c12-9aa6-459c-b654-d8d2217e8c8f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">vegetable oil</p>\", \"id\": \"c398ff9c-6bde-4535-819d-7cefe75e16f0\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 tbsp <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Golden_Syrup\\\">golden syrup</a></p>\", \"id\": \"9b08d44e-ea54-4fd1-a7ee-5a258e892eff\"}], \"id\": \"b610441f-3482-4613-80cf-688b885ac199\"}, {\"type\": \"paragraph_block\", \"value\": \"<h2 data-block-key=\\\"9npzb\\\">Procedure</h2><p data-block-key=\\\"2m305\\\">Make sure to set aside a space for the buns to rise before baking.</p>\", \"id\": \"343c9b9a-d30f-45aa-b879-5bd3e5922565\"}, {\"type\": \"steps_list\", \"value\": [{\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"urko7\\\">Heat milk and water to lukewarm.</p>\", \"difficulty\": \"S\"}, \"id\": \"725285ae-b823-404e-8439-f5ebe3b48b31\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Crumble yeast. Mix with \\u00bd cup (120 mL) flour. Stir in tepid milk/water and mix well.</p>\", \"difficulty\": \"S\"}, \"id\": \"8c6d544a-0f3f-4d74-bc25-af31d3430e5b\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Cover and set aside in warm place until yeast is active and frothing, about 10-15 minutes.</p>\", \"difficulty\": \"S\"}, \"id\": \"0d9383dd-b2fd-451f-ae74-9848d00b4bd1\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Mix remaining flour, sugar, salt, cinnamon and nutmeg.</p>\", \"difficulty\": \"S\"}, \"id\": \"1422a5d2-4ed6-4688-bc60-499222c5c4ae\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Stir egg and butter into the yeast mix, add the flour mixture and fruit. Mix well.</p>\", \"difficulty\": \"S\"}, \"id\": \"a3cc7df9-761b-4bed-8df4-0595c57d508c\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Put dough onto a floured surface and knead. Return to bowl, and let rise until double in bulk, about 1 hour.</p>\", \"difficulty\": \"L\"}, \"id\": \"664603c3-765a-444a-b88b-3189db4a7de4\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Turn onto a floured surface and knead again.</p>\", \"difficulty\": \"M\"}, \"id\": \"e06bb786-75ae-4327-b9f4-9725f60e6ce0\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Preheat oven.</p>\", \"difficulty\": \"S\"}, \"id\": \"e356ab29-b906-4c36-a61d-146eb030b633\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Divide dough into twelve pieces and shape into buns. Mark a deep cross on the top of each bun.</p>\", \"difficulty\": \"M\"}, \"id\": \"8cc7055d-0125-4f3d-b8ed-9e8834d00605\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Arrange on a baking tray, cover with tea towel, and let rise for 30 minutes. Cook in preheated oven for indicated time or until golden brown.</p>\", \"difficulty\": \"S\"}, \"id\": \"5c2a400d-8024-4865-b639-f83fa0947c72\"}], \"id\": \"df102372-cd23-463c-b594-29b224bd409e\"}]"
+      "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"9npzb\\\">Cooking temperatures:</p>\", \"id\": \"0040ce21-b4ad-4b7d-8a49-277303070c2c\"}, {\"type\": \"typed_table_block\", \"value\": {\"columns\": [{\"type\": \"text\", \"heading\": \"Oven\"}, {\"type\": \"numeric\", \"heading\": \"\\u00b0F\"}, {\"type\": \"numeric\", \"heading\": \"\\u00b0C\"}, {\"type\": \"rich_text\", \"heading\": \"Cooking time\"}], \"rows\": [{\"values\": [\"Gas Oven\", 350.0, 180.0, \"<p data-block-key=\\\"6s6n5\\\">14 minutes</p>\"]}, {\"values\": [\"Electric Oven\", 375.0, 190.0, \"<p data-block-key=\\\"6s6n5\\\">15 minutes</p>\"]}, {\"values\": [\"Fan Oven\", 325.0, 170.0, \"<p data-block-key=\\\"6s6n5\\\">13 minutes</p>\"]}], \"caption\": \"\"}, \"id\": \"38280209-450a-4d84-b739-90c2cb19d39d\"}, {\"type\": \"table_block\", \"value\": {\"data\": [[\"Buns\", \"Prep time\", \"Cooking time\", \"Instructions\"], [\"12\", \"30min\", \"1.5h\", \"All quantities as-is\"], [\"18\", \"40min\", \"2h\", \"1.5x all amounts\"], [\"24\", \"45min\", \"Depending on oven size\", \"2x all amounts\"]], \"cell\": [], \"first_row_is_table_header\": true, \"first_col_is_header\": true, \"table_caption\": \"Expected yield\", \"table_header_choice\": \"both\"}, \"id\": \"2b9b59cb-4dd7-4ebf-ac66-1ed43471609b\"}, {\"type\": \"paragraph_block\", \"value\": \"<h2 data-block-key=\\\"7o1fp\\\">Ingredients</h2><p data-block-key=\\\"7jh9i\\\">For the buns:</p>\", \"id\": \"d82664ec-29e9-4095-8b53-cd5e6c262d45\"}, {\"type\": \"ingredients_list\", \"value\": [{\"type\": \"item\", \"value\": \"<p data-block-key=\\\"softi\\\">1 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Cup\\\">cup</a> (240 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:ML\\\">mL</a>) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Milk\\\">milk</a></p>\", \"id\": \"21a44ce4-9aa6-459c-b654-d8d2217e8c8f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">4 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Teaspoon\\\">teaspoons</a> (20 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Water\\\">water</a></p>\", \"id\": \"b7ca75fa-9ff9-401b-bd4e-8ca814efc8d8\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 cake fresh <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Yeast\\\">yeast</a></p>\", \"id\": \"8a984eeb-dc99-4f76-95e4-cc591566b73b\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">3 cups (720 mL) all-purpose <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Flour\\\">flour</a></p>\", \"id\": \"0b473c73-d8bd-41ff-97d3-4766a2caf7e2\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u2153 cup (80 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Sugar\\\">sugar</a></p>\", \"id\": \"5e68346f-b9fe-485c-8a99-ed66084bd9d4\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc teaspoon (1.25 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Cinnamon\\\">cinnamon</a></p>\", \"id\": \"7e7ceced-d961-4a73-957d-8f2d4cbbad7f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc teaspoon (1.25 mL) ground <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Nutmeg\\\">nutmeg</a></p>\", \"id\": \"4a1bc81e-9158-42e2-adac-1944f52ea8fd\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Egg\\\">egg</a> <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Beat\\\">beaten</a></p>\", \"id\": \"ee667182-4945-43f5-a647-9a2d087f18b0\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">\\u00bc cup (60 mL) melted <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Butter\\\">butter</a></p>\", \"id\": \"e9e70968-d2cf-43dc-948b-13f09f1af9fe\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 cup (240 mL) <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Currant\\\">currants</a></p>\", \"id\": \"49b6cf74-c684-4783-b5fd-c929cc9dcb75\"}], \"id\": \"05dc41fe-bd09-4e88-9e52-5ed7ff8b9b96\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"7o1fp\\\">For the glazing:</p>\", \"id\": \"8e5c0d92-6131-426c-891b-af2fe90b6136\"}, {\"type\": \"ingredients_list\", \"value\": [{\"type\": \"item\", \"value\": \"<p data-block-key=\\\"softi\\\">2 tbsp <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:All-purpose_flour\\\">plain flour</a></p>\", \"id\": \"4ea44c12-9aa6-459c-b654-d8d2217e8c8f\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">vegetable oil</p>\", \"id\": \"c398ff9c-6bde-4535-819d-7cefe75e16f0\"}, {\"type\": \"item\", \"value\": \"<p data-block-key=\\\"a8o1o\\\">1 tbsp <a href=\\\"https://en.wikibooks.org/wiki/Cookbook:Golden_Syrup\\\">golden syrup</a></p>\", \"id\": \"9b08d44e-ea54-4fd1-a7ee-5a258e892eff\"}], \"id\": \"b610441f-3482-4613-80cf-688b885ac199\"}, {\"type\": \"paragraph_block\", \"value\": \"<h2 data-block-key=\\\"9npzb\\\">Procedure</h2><p data-block-key=\\\"2m305\\\">Make sure to set aside a space for the buns to rise before baking.</p>\", \"id\": \"343c9b9a-d30f-45aa-b879-5bd3e5922565\"}, {\"type\": \"steps_list\", \"value\": [{\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"urko7\\\">Heat milk and water to lukewarm.</p>\", \"difficulty\": \"S\"}, \"id\": \"725285ae-b823-404e-8439-f5ebe3b48b31\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Crumble yeast. Mix with \\u00bd cup (120 mL) flour. Stir in tepid milk/water and mix well.</p>\", \"difficulty\": \"S\"}, \"id\": \"8c6d544a-0f3f-4d74-bc25-af31d3430e5b\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Cover and set aside in warm place until yeast is active and frothing, about 10-15 minutes.</p>\", \"difficulty\": \"S\"}, \"id\": \"0d9383dd-b2fd-451f-ae74-9848d00b4bd1\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Mix remaining flour, sugar, salt, cinnamon and nutmeg.</p>\", \"difficulty\": \"S\"}, \"id\": \"1422a5d2-4ed6-4688-bc60-499222c5c4ae\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Stir egg and butter into the yeast mix, add the flour mixture and fruit. Mix well.</p>\", \"difficulty\": \"S\"}, \"id\": \"a3cc7df9-761b-4bed-8df4-0595c57d508c\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Put dough onto a floured surface and knead. Return to bowl, and let rise until double in bulk, about 1 hour.</p>\", \"difficulty\": \"L\"}, \"id\": \"664603c3-765a-444a-b88b-3189db4a7de4\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Turn onto a floured surface and knead again.</p>\", \"difficulty\": \"M\"}, \"id\": \"e06bb786-75ae-4327-b9f4-9725f60e6ce0\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Preheat oven.</p>\", \"difficulty\": \"S\"}, \"id\": \"e356ab29-b906-4c36-a61d-146eb030b633\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Divide dough into twelve pieces and shape into buns. Mark a deep cross on the top of each bun.</p>\", \"difficulty\": \"M\"}, \"id\": \"8cc7055d-0125-4f3d-b8ed-9e8834d00605\"}, {\"type\": \"item\", \"value\": {\"text\": \"<p data-block-key=\\\"94uy8\\\">Arrange on a baking tray, cover with tea towel, and let rise for 30 minutes. Cook in preheated oven for indicated time or until golden brown.</p>\", \"difficulty\": \"S\"}, \"id\": \"5c2a400d-8024-4865-b639-f83fa0947c72\"}], \"id\": \"df102372-cd23-463c-b594-29b224bd409e\"}, {\"type\": \"heading_block\", \"value\": {\"heading_text\": \"Results\", \"size\": \"h2\"}, \"id\": \"ffb28d90-c41e-4293-b191-8dca27c867c8\"}, {\"type\": \"paragraph_block\", \"value\": \"<p data-block-key=\\\"hfzys\\\">With enough luck, you'll end up with a stack of delicious hot cross buns. Bon app\\u00e9tit!</p>\", \"id\": \"b75db5e0-7944-4e09-b59b-dce45b11dc12\"}, {\"type\": \"image_block\", \"value\": {\"image\": 54, \"alt_text\": \"A plate stacked with freshly baked hot cross buns, made according to the recipe\", \"decorative\": false}, \"id\": \"85000435-f6f0-4649-8b70-daa43c775031\"}]"
     }
   },
   {

@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
@@ -9,17 +7,21 @@ from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import (
     FieldPanel,
     FieldRowPanel,
+    HelpPanel,
     InlinePanel,
     MultiFieldPanel,
     PublishingPanel,
 )
+from wagtail.api import APIField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from wagtail.contrib.settings.models import (
     BaseGenericSetting,
     BaseSiteSetting,
     register_setting,
 )
 from wagtail.fields import RichTextField, StreamField
+from wagtail.images.models import Image
 from wagtail.models import (
     Collection,
     DraftStateMixin,
@@ -35,6 +37,9 @@ from wagtail.models import (
 from wagtail.search import index
 
 from .blocks import BaseStreamBlock
+
+# Allow filtering by collection
+Image.api_fields = [APIField("collection")]
 
 
 class Person(
@@ -112,6 +117,13 @@ class Person(
         index.AutocompleteField("last_name"),
     ]
 
+    api_fields = [
+        APIField("first_name"),
+        APIField("last_name"),
+        APIField("job_title"),
+        APIField("image"),
+    ]
+
     @property
     def thumb_image(self):
         # Returns an empty string if there is no profile pic or the rendition
@@ -162,8 +174,8 @@ class Person(
         return context
 
     class Meta:
-        verbose_name = "Person"
-        verbose_name_plural = "People"
+        verbose_name = "person"
+        verbose_name_plural = "people"
 
 
 class FooterText(
@@ -194,6 +206,10 @@ class FooterText(
     panels = [
         FieldPanel("body"),
         PublishingPanel(),
+    ]
+
+    api_fields = [
+        APIField("body"),
     ]
 
     def __str__(self):
@@ -233,6 +249,12 @@ class StandardPage(Page):
         FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
+    ]
+
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
     ]
 
 
@@ -304,7 +326,9 @@ class HomePage(Page):
     # Each list their children items that we access via the children function
     # that we define on the individual Page models e.g. BlogIndexPage
     featured_section_1_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True,
+        max_length=255,
+        help_text="Title to display above the featured section 1",
     )
     featured_section_1 = models.ForeignKey(
         "wagtailcore.Page",
@@ -318,7 +342,9 @@ class HomePage(Page):
     )
 
     featured_section_2_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True,
+        max_length=255,
+        help_text="Title to display above the featured section 2",
     )
     featured_section_2 = models.ForeignKey(
         "wagtailcore.Page",
@@ -332,7 +358,9 @@ class HomePage(Page):
     )
 
     featured_section_3_title = models.CharField(
-        blank=True, max_length=255, help_text="Title to display above the promo copy"
+        blank=True,
+        max_length=255,
+        help_text="Title to display above the featured section 3",
     )
     featured_section_3 = models.ForeignKey(
         "wagtailcore.Page",
@@ -359,6 +387,7 @@ class HomePage(Page):
             ],
             heading="Hero section",
         ),
+        HelpPanel("This is a help panel"),
         MultiFieldPanel(
             [
                 FieldPanel("promo_image"),
@@ -366,6 +395,7 @@ class HomePage(Page):
                 FieldPanel("promo_text"),
             ],
             heading="Promo section",
+            help_text="This is just a help text",
         ),
         FieldPanel("body"),
         MultiFieldPanel(
@@ -393,6 +423,23 @@ class HomePage(Page):
         ),
     ]
 
+    api_fields = [
+        APIField("image"),
+        APIField("hero_text"),
+        APIField("hero_cta"),
+        APIField("hero_cta_link"),
+        APIField("body"),
+        APIField("promo_image"),
+        APIField("promo_title"),
+        APIField("promo_text"),
+        APIField("featured_section_1_title"),
+        APIField("featured_section_1"),
+        APIField("featured_section_2_title"),
+        APIField("featured_section_2"),
+        APIField("featured_section_3_title"),
+        APIField("featured_section_3"),
+    ]
+
     def __str__(self):
         return self.title
 
@@ -412,7 +459,7 @@ class GalleryPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and " "3000px.",
+        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
@@ -436,6 +483,13 @@ class GalleryPage(Page):
     # Defining what content type can sit under the parent. Since it's a blank
     # array no subpage can be added
     subpage_types = []
+
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
+        APIField("collection"),
+    ]
 
 
 class FormField(AbstractFormField):
@@ -465,6 +519,7 @@ class FormPage(AbstractEmailForm):
     # Note how we include the FormField object via an InlinePanel using the
     # related_name value
     content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
         FieldPanel("image"),
         FieldPanel("body"),
         InlinePanel("form_fields", heading="Form fields", label="Field"),
@@ -483,10 +538,20 @@ class FormPage(AbstractEmailForm):
         ),
     ]
 
+    api_fields = [
+        APIField("form_fields"),
+        APIField("from_address"),
+        APIField("to_address"),
+        APIField("subject"),
+        APIField("image"),
+        APIField("body"),
+        APIField("thank_you_text"),
+    ]
+
 
 @register_setting(icon="cog")
-class GenericSettings(ClusterableModel, BaseGenericSetting):
-    twitter_url = models.URLField(verbose_name="Twitter URL", blank=True)
+class GenericSettings(ClusterableModel, PreviewableMixin, BaseGenericSetting):
+    mastodon_url = models.URLField(verbose_name="Mastodon URL", blank=True)
     github_url = models.URLField(verbose_name="GitHub URL", blank=True)
     organisation_url = models.URLField(verbose_name="Organisation URL", blank=True)
 
@@ -494,12 +559,15 @@ class GenericSettings(ClusterableModel, BaseGenericSetting):
         MultiFieldPanel(
             [
                 FieldPanel("github_url"),
-                FieldPanel("twitter_url"),
+                FieldPanel("mastodon_url"),
                 FieldPanel("organisation_url"),
             ],
             "Social settings",
         )
     ]
+
+    def get_preview_template(self, request, mode_name):
+        return "base.html"
 
 
 @register_setting(icon="site")

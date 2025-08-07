@@ -4,7 +4,7 @@
   "repository": "https://github.com/wagtail/bakerydemo",
   "private": true,
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22"
   },
   "devDependencies": {
     "eslint": "^8.55.0",

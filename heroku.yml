@@ -2,6 +2,8 @@ build:
   docker:
     web:
       dockerfile: Dockerfile
+  config:
+    NIGHTLY: 0
 
 release:
   image: web

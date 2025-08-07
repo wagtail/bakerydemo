@@ -4,7 +4,7 @@ from wagtail.models import Page, Site
 from bakerydemo.base.models import FooterText
 
 register = template.Library()
-# https://docs.djangoproject.com/en/3.2/howto/custom-template-tags/
+# https://docs.djangoproject.com/en/stable/howto/custom-template-tags/
 
 
 @register.simple_tag(takes_context=True)

@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.api import APIField
 from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
@@ -24,6 +25,14 @@ class OperatingHours(models.Model):
     closed = models.BooleanField(
         "Closed?", blank=True, help_text="Tick if location is closed on this day"
     )
+
+    api_fields = [
+        APIField("day"),
+        APIField("get_day_display"),
+        APIField("opening_time"),
+        APIField("closing_time"),
+        APIField("closed"),
+    ]
 
     panels = [
         FieldPanel("day"),
@@ -101,6 +110,11 @@ class LocationsIndexPage(Page):
         FieldPanel("image"),
     ]
 
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+    ]
+
 
 class LocationPage(Page):
     """
@@ -150,6 +164,16 @@ class LocationPage(Page):
         InlinePanel("hours_of_operation", heading="Hours of Operation", label="Slot"),
     ]
 
+    api_fields = [
+        APIField("introduction"),
+        APIField("image"),
+        APIField("body"),
+        APIField("address"),
+        APIField("lat_long"),
+        APIField("is_open"),
+        APIField("hours_of_operation"),
+    ]
+
     def __str__(self):
         return self.title
 
@@ -168,6 +192,7 @@ class LocationPage(Page):
                 day=current_day,
                 opening_time__lte=current_time,
                 closing_time__gte=current_time,
+                closed=False,
             )
             return True
         except LocationOperatingHours.DoesNotExist:

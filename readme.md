@@ -2,7 +2,7 @@
 
 This is a demonstration project for the amazing [Wagtail CMS](https://github.com/wagtail/wagtail).
 
-The demo site is designed to provide examples of common features and recipes to introduce you to Wagtail development. Beyond the code, it will also let you explore the admin / editorial interface of the CMS.
+The demo site is designed to provide examples of common features and recipes to introduce you to Wagtail development. Beyond the code, it will also let you explore the admin/editorial interface of the CMS.
 
 Note we do _not_ recommend using this project to start your own site - the demo is intended to be a springboard to get you started. Feel free to copy code from the demo into your own project.
 
@@ -16,7 +16,7 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 - Example of using a "base" app to contain misc additional functionality (e.g. Contact Form, About, etc.)
 - "StandardPage" model using mixins borrowed from other apps
 - Example of customizing the Wagtail Admin via _wagtail_hooks_
-- Example of using the Wagtail "snippets" system to represent bread categories, countries and ingredients
+- Example of using the Wagtail "snippets" system to represent bread categories, countries, and ingredients
 - Example of a custom "Galleries" feature that pulls in images used in other content types in the system
 - Example of creating ManyToMany relationships via the Ingredients feature on BreadPage
 - Lots more
@@ -121,7 +121,7 @@ docker compose logs -f
 
 ## Setup with venv
 
-You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use venv, which is the [recommended installation approach](https://docs.djangoproject.com/en/stable/topics/install/#installing-an-official-release-with-pip) for Django itself.
+You can run the Wagtail demo locally without setting up Vagrant or Docker and simply use venv, which is the [recommended installation approach](https://docs.djangoproject.com/en/5.2/topics/install/#install-the-django-code) for Django itself.
 
 #### Dependencies
 
@@ -181,8 +181,8 @@ If you're a Python or Django developer, fork the repo and get stuck in! If you'd
 If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
 
 ```bash
-./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription > bakerydemo/base/fixtures/bakerydemo.json
-prettier --write bakerydemo/base/fixtures/bakerydemo.json
+./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription -e wagtailcore.workflowcontenttype -e wagtailadmin.editingsession > bakerydemo/base/fixtures/bakerydemo.json
+npx prettier --write bakerydemo/base/fixtures/bakerydemo.json
 ```
 
 Please optimize any included images to 1200px wide with JPEG compression at 60%. Note that `media/images` is ignored in the repo by `.gitignore` but `media/original_images` is not. Wagtail's local image "renditions" are excluded in the fixture recipe above.
@@ -215,7 +215,7 @@ In production on your own site, you'll need to change this to:
 
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
-and configure [SMTP settings](https://docs.djangoproject.com/en/3.2/topics/email/#smtp-backend) appropriate for your email provider.
+and configure [SMTP settings](https://docs.djangoproject.com/en/stable/topics/email/#smtp-backend) appropriate for your email provider.
 
 ### Testing Content-Security-Policy compliance in Wagtail
 
@@ -227,23 +227,12 @@ By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet
 
 The `main` branch of this demo is designed to work with both the latest stable release and the latest `main` branch (development version) of Wagtail. To run the demo against a specific version of Wagtail, we have created [git tags](https://github.com/wagtail/bakerydemo/tags) for the latest commits that work with each feature release.
 
+- [`v6.4`](https://github.com/wagtail/bakerydemo/releases/tag/v6.4)
+- [`v6.3`](https://github.com/wagtail/bakerydemo/releases/tag/v6.3)
+- [`v6.2`](https://github.com/wagtail/bakerydemo/releases/tag/v6.2)
 - [`v6.1`](https://github.com/wagtail/bakerydemo/releases/tag/v6.1)
-- [`v6.0`](https://github.com/wagtail/bakerydemo/releases/tag/v6.0)
-- [`v5.2`](https://github.com/wagtail/bakerydemo/releases/tag/v5.2)
 
-<details>
-
-<summary>Older tags</summary>
-
-- [`v5.1`](https://github.com/wagtail/bakerydemo/releases/tag/v5.1)
-- [`v5.0`](https://github.com/wagtail/bakerydemo/releases/tag/v5.0)
-- [`v4.2`](https://github.com/wagtail/bakerydemo/releases/tag/v4.2)
-- [`v4.1`](https://github.com/wagtail/bakerydemo/releases/tag/v4.1)
-- [`v4.0`](https://github.com/wagtail/bakerydemo/releases/tag/v4.0)
-- [`v3.0`](https://github.com/wagtail/bakerydemo/releases/tag/v3.0)
-- [`v2.16`](https://github.com/wagtail/bakerydemo/releases/tag/v2.16)
-
-</details>
+See the [complete tags list](https://github.com/wagtail/bakerydemo/tags) for older releases.
 
 The tags point to the last commit just before the requirements were updated to the next Wagtail version. For example, the `v4.2` tag points to the commit just before the bakerydemo was updated to use Wagtail 5.0. This ensures that the tagged demo code contains the latest updates possible for the supported version.
 
