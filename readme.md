@@ -37,7 +37,7 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 
 If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
 If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
-Developers more familiar with Venv/Virtualenv and traditional Django app setup instructions should skip to [Setup with Venv](#setup-with-venv).
+Developers more familiar with venv/virtualenv and traditional Django app setup instructions should skip to [Setup with venv](#setup-with-venv).
 
 ## Setup with Gitpod
 
@@ -125,40 +125,23 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.10, 3.11 or 3.12
-- [Venv](https://docs.python.org/3/library/venv.html)
-- [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) (optional)
+- Python 3.10+
+- [venv](https://docs.python.org/3/library/venv.html)
 
 ### Installation
 
 On GNU/Linux or macOS (bash):
+
 ```bash
-python -m venv wagtailbakerydemo
-source wagtailbakerydemo/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 ```
 
 On Windows (cmd.exe), run the following commands:
 ```bash
-wagtailbakerydemo\Scripts\activate.bat
+.venv\Scripts\activate.bat
 # if wagtailbakerydemo\Scripts\activate.bat doesn't work, run:
-wagtailbakerydemo\Scripts\Activate.ps1
-
-
-### Alternatively
-
-With [PIP](https://github.com/pypa/pip) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
-installed, run:
-```bash
-mkvirtualenv wagtailbakerydemo
-python --version
-```
-
-Confirm that this is showing a compatible version of Python 3.x. If not, and you have multiple versions of Python installed on your system, you may need to specify the appropriate version when creating the virtualenv:
-```bash
-deactivate
-rmvirtualenv wagtailbakerydemo
-mkvirtualenv wagtailbakerydemo --python=python3.12
-python --version
+.venv\Scripts\Activate.ps1
 ```
 
 Now we're ready to set up the bakery demo project itself:
