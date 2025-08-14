@@ -8,21 +8,11 @@ class AltTextController extends window.StimulusModule.Controller {
     contextual: { default: false, type: Boolean },
   };
 
+  static transformers;
   /** An image-to-text pipeline, shared between all instances of this controller. */
   static captioner;
   /** A text-to-text pipeline for enhancing captions, shared between all instances of this controller. */
   static text2text;
-  static {
-    import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2').then(
-      ({ pipeline }) => {
-        this.captioner = pipeline('image-to-text', 'Mozilla/distilvit');
-        this.text2text = pipeline(
-          'text2text-generation',
-          'Xenova/LaMini-Flan-T5-783M',
-        );
-      },
-    );
-  }
 
   /**
    * Convert an array of input elements into a single string,
@@ -107,6 +97,25 @@ class AltTextController extends window.StimulusModule.Controller {
     }
   }
 
+  initializeTransformers() {
+    if (AltTextController.transformers) return;
+    import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2').then(
+      (transformers) => {
+        if (AltTextController.transformers) return;
+        const { pipeline } = transformers;
+        AltTextController.transformers = transformers;
+        AltTextController.captioner = pipeline(
+          'image-to-text',
+          'Mozilla/distilvit',
+        );
+        AltTextController.text2text = pipeline(
+          'text2text-generation',
+          'Xenova/LaMini-Flan-T5-783M',
+        );
+      },
+    );
+  }
+
   toggleSuggestTarget(event) {
     if (event?.target && event.target !== this.imageInput) return;
     this.suggestTarget.disabled = !this.imageInput?.value;
@@ -173,6 +182,7 @@ class AltTextController extends window.StimulusModule.Controller {
   }
 
   async caption(imageURL) {
+    this.initializeTransformers();
     const captioner = await AltTextController.captioner;
     return (await captioner(imageURL))[0].generated_text;
   }
