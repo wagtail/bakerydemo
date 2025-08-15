@@ -54,32 +54,7 @@ class SummarizeController extends window.StimulusModule.Controller {
   /** Promise of a browser Summarizer instance. */
   get summarizer() {
     if (this.#summarizer) return this.#summarizer; // Return from cache
-
-    const sharedContext =
-      'A summary of the content on a webpage, suitable for use as a meta description.';
-
-    // eslint-disable-next-line no-undef
-    this.#summarizer = Summarizer.create({
-      sharedContext,
-      type: this.typeValue,
-      length: this.lengthValue,
-      format: 'plain-text',
-      expectedInputLanguages: [this.contentLanguage],
-      outputLanguage: document.documentElement.lang,
-      monitor: (m) => {
-        m.addEventListener('downloadprogress', (event) => {
-          const label = this.suggestLabel;
-          const { loaded, total } = event;
-          if (loaded === total) {
-            label.textContent = 'Generating…';
-            return;
-          }
-          const percent = Math.round((loaded / total) * 100);
-          label.textContent = `Loading AI… ${percent}%`;
-        });
-      },
-    });
-    return this.#summarizer;
+    return this.createSummarizer();
   }
 
   // Override only for JSDoc/typing purposes, not for functionality
@@ -96,6 +71,46 @@ class SummarizeController extends window.StimulusModule.Controller {
     this.generate = this.generate.bind(this);
     this.input = this.element.querySelector(this.inputValue);
     this.renderFurniture();
+  }
+
+  createSummarizer() {
+    const sharedContext =
+      'A summary of the content on a webpage, suitable for use as a meta description.';
+
+    // eslint-disable-next-line no-undef
+    this.#summarizer = Summarizer.create({
+      sharedContext,
+      type: this.typeValue,
+      length: this.lengthValue,
+      format: 'plain-text',
+      expectedInputLanguages: [this.contentLanguage],
+      outputLanguage: document.documentElement.lang,
+      monitor: (m) => {
+        m.addEventListener('downloadprogress', (event) => {
+          const label = this.suggestLabel;
+          const { loaded, total } = event;
+          if (loaded === total) {
+            if (this.suggestTarget.disabled) {
+              label.textContent = 'Generating…';
+            } else {
+              label.textContent = 'Generate suggestions';
+            }
+            return;
+          }
+          const percent = Math.round((loaded / total) * 100);
+          label.textContent = `Loading AI… ${percent}%`;
+        });
+      },
+    });
+    return this.#summarizer;
+  }
+
+  typeValueChanged(newValue, oldValue) {
+    if (oldValue) this.createSummarizer();
+  }
+
+  lengthValueChanged(newValue, oldValue) {
+    if (oldValue) this.createSummarizer();
   }
 
   renderFurniture() {

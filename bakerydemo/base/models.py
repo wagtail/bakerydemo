@@ -48,6 +48,8 @@ Page.promote_panels[0].args[0][-1] = FieldPanel(
     attrs={
         "data-controller": "summarize",
         "data-summarize-input-value": "textarea[name='search_description']",
+        "data-summarize-type-value": "tldr",
+        "data-summarize-length-value": "short",
     },
 )
 
