@@ -98,7 +98,7 @@ register_snippet(BakerySnippetViewSetGroup)
 
 @hooks.register("insert_editor_js")
 def editor_js():
-    js_files = ["js/alt-text.js", "js/summarize.js"]
+    js_files = ["js/alt-text.js", "js/summarize.js", "js/prompt.js"]
     return format_html_join(
         "\n",
         '<script src="{}"></script>',
