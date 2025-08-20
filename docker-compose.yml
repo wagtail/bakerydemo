@@ -24,7 +24,7 @@ services:
       REDIS_URL: redis://redis
       DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
     build:
-      context: .
+      context: . 
       dockerfile: ./Dockerfile
     volumes:
       - ./bakerydemo:/code/bakerydemo

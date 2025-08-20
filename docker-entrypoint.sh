@@ -1,19 +1,21 @@
 #!/bin/sh
 set -e
 
-until psql $DATABASE_URL -c '\q'; do
+# Wait for Postgres to become available
+until psql "$DATABASE_URL" -c '\q' >/dev/null 2>&1; do
   >&2 echo "Postgres is unavailable - sleeping"
   sleep 1
 done
 
 >&2 echo "Postgres is up - continuing"
 
-if [ "$1" = '/venv/bin/uwsgi' ]; then
-    /venv/bin/python manage.py migrate --noinput
+# Run database migrations
+/venv/bin/python manage.py migrate --noinput
+
+# Load initial data if DJANGO_LOAD_INITIAL_DATA is set to 'on'
+if [ "x$DJANGO_LOAD_INITIAL_DATA" = "xon" ]; then
+  /venv/bin/python manage.py loaddata initial_data.json
 fi
 
-if [ "x$DJANGO_LOAD_INITIAL_DATA" = 'xon' ]; then
-	/venv/bin/python manage.py load_initial_data
-fi
-
+# Execute the container CMD
 exec "$@"

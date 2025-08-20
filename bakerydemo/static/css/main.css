@@ -2102,3 +2102,11 @@ input[type='radio'] {
   max-height: 100vh;
   margin-inline: auto;
 }
+
+.picture-card__title.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}

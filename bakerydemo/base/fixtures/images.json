@@ -1,0 +1,17 @@
+[
+  {
+    "model": "wagtailimages.image",
+    "pk": 1001,
+    "fields": {
+      "title": "this-is-a-very-long-image-file-name-used-for-testing-ui-display-behaviour-in-the-chooser-and-listing-components-version-01.png",
+      "file": "images/this-is-a-very-long-image-file-name-used-for-testing-ui-display-behaviour-in-the-chooser-and-listing-components-version-01.png",
+      "width": 800,
+      "height": 600,
+      "created_at": "2025-08-20T12:00:00Z",
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null
+    }
+  }
+]
