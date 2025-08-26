@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12-slim AS base
 ARG NIGHTLY=0
 
 # Install packages needed to run your application (not build deps):
@@ -42,8 +42,20 @@ RUN set -ex \
     && python3.12 -m venv ${VIRTUAL_ENV} \
     && python3.12 -m pip install -U pip \
     && python3.12 -m pip install --no-cache-dir -r /requirements/production.txt \
+    && git clone -b dev --single-branch https://github.com/wagtail/wagtail-ai.git /wagtail-ai \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
+
+FROM node:22-slim AS node
+
+COPY --from=base /wagtail-ai /wagtail-ai
+WORKDIR /wagtail-ai
+RUN npm ci && npm run build
+
+FROM base AS final
+
+COPY --from=node /wagtail-ai/src/wagtail_ai/static /wagtail-ai/src/wagtail_ai/static
+RUN python3.12 -m pip install /wagtail-ai
 
 RUN mkdir /code/
 WORKDIR /code/
