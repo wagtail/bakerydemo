@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "bakerydemo.locations",
     "bakerydemo.recipes",
     "bakerydemo.search",
+    "wagtail_ai",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -220,6 +221,40 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
 WAGTAILIMAGES_AVIF_QUALITY = 60
 
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "changeme")
+
+# Wagtail AI settings
+# https://wagtail-ai.readthedocs.io
+
+WAGTAIL_AI = {
+    "BACKENDS": {
+        "default": {
+            "CLASS": "wagtail_ai.ai.llm.LLMBackend",
+            "CONFIG": {
+                # Model ID recognizable by the "LLM" library.
+                "MODEL_ID": os.environ.get(
+                    "WAGTAIL_AI_DEFAULT_MODEL_ID", "gpt-4.1-mini"
+                ),
+                "TOKEN_LIMIT": int(
+                    os.environ.get("WAGTAIL_AI_DEFAULT_TOKEN_LIMIT", 32768)
+                ),
+            },
+        },
+        "vision": {
+            "CLASS": "wagtail_ai.ai.openai.OpenAIBackend",
+            "CONFIG": {
+                "MODEL_ID": os.environ.get(
+                    "WAGTAIL_AI_VISION_MODEL_ID", "gpt-4.1-mini"
+                ),
+                "TOKEN_LIMIT": int(
+                    os.environ.get("WAGTAIL_AI_VISION_TOKEN_LIMIT", 32768)
+                ),
+            },
+        },
+    },
+    "IMAGE_DESCRIPTION_BACKEND": "vision",
+}
+WAGTAILIMAGES_IMAGE_FORM_BASE = "wagtail_ai.forms.DescribeImageForm"
+
 
 # Content Security policy settings
 # http://django-csp.readthedocs.io/en/latest/configuration.html
