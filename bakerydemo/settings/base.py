@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/stable/ref/settings/
 import os
 
 import dj_database_url
-from django.utils.csp import CSP
+import django
 
 # Build paths inside the project like this: os.path.join(PROJECT_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -227,14 +227,67 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "changeme")
 
 # Only enable CSP when enabled through environment variables.
 if "CSP_DEFAULT_SRC" in os.environ:
-    MIDDLEWARE.append("django.middleware.csp.ContentSecurityPolicyMiddleware")
-    # Gravatar images should be disabled for strict CSP
-    WAGTAIL_GRAVATAR_PROVIDER_URL = None
+    if django.VERSION >= (6, 0):
 
-# To enforce a CSP policy in report-only mode:
-SECURE_CSP_REPORT_ONLY = {
-    "default-src": [CSP.SELF, "*.wagtail.org"],
-    # Add more directives as needed.
-}
+        MIDDLEWARE.append("django.middleware.csp.ContentSecurityPolicyMiddleware")
+        # Gravatar images should be disabled for strict CSP
+        WAGTAIL_GRAVATAR_PROVIDER_URL = None
+
+        # Helper function to convert comma-separated env vars into lists
+        def get_csp_sources(env_var, default=None):
+            # From env var, split commas, remove whitespace, and remove quotes
+            if env_var in os.environ:
+                return [
+                    item.strip().strip("'\"")
+                    for item in os.environ.get(env_var).split(",")
+                ]
+            return default or []
+
+        # To enforce a CSP policy in report-only mode:
+        SECURE_CSP_REPORT_ONLY = {}
+
+        # Configure CSP directives from environment variables
+        if "CSP_DEFAULT_SRC" in os.environ:
+            SECURE_CSP_REPORT_ONLY["default-src"] = get_csp_sources("CSP_DEFAULT_SRC")
+        if "CSP_SCRIPT_SRC" in os.environ:
+            SECURE_CSP_REPORT_ONLY["script-src"] = get_csp_sources("CSP_SCRIPT_SRC")
+        if "CSP_STYLE_SRC" in os.environ:
+            SECURE_CSP_REPORT_ONLY["style-src"] = get_csp_sources("CSP_STYLE_SRC")
+        if "CSP_IMG_SRC" in os.environ:
+            SECURE_CSP_REPORT_ONLY["img-src"] = get_csp_sources("CSP_IMG_SRC")
+        if "CSP_CONNECT_SRC" in os.environ:
+            SECURE_CSP_REPORT_ONLY["connect-src"] = get_csp_sources("CSP_CONNECT_SRC")
+        if "CSP_FRAME_SRC" in os.environ:
+            SECURE_CSP_REPORT_ONLY["frame-src"] = get_csp_sources("CSP_FRAME_SRC")
+        # Add more directives here as required
+
+    else:
+        MIDDLEWARE.append("csp.middleware.CSPMiddleware")
+
+        # Only report violations, don't enforce policy
+        CSP_REPORT_ONLY = True
+
+        # The “special” source values of 'self', 'unsafe-inline', 'unsafe-eval', and 'none' must be quoted!
+        # e.g.: CSP_DEFAULT_SRC = "'self'" Without quotes they will not work as intended.
+
+        CSP_DEFAULT_SRC = os.environ.get("CSP_DEFAULT_SRC").split(",")
+        if "CSP_SCRIPT_SRC" in os.environ:
+            CSP_SCRIPT_SRC = os.environ.get("CSP_SCRIPT_SRC").split(",")
+        if "CSP_STYLE_SRC" in os.environ:
+            CSP_STYLE_SRC = os.environ.get("CSP_STYLE_SRC").split(",")
+        if "CSP_IMG_SRC" in os.environ:
+            CSP_IMG_SRC = os.environ.get("CSP_IMG_SRC").split(",")
+        if "CSP_CONNECT_SRC" in os.environ:
+            CSP_CONNECT_SRC = os.environ.get("CSP_CONNECT_SRC").split(",")
+        if "CSP_FONT_SRC" in os.environ:
+            CSP_FONT_SRC = os.environ.get("CSP_FONT_SRC").split(",")
+        if "CSP_BASE_URI" in os.environ:
+            CSP_BASE_URI = os.environ.get("CSP_BASE_URI").split(",")
+        if "CSP_OBJECT_SRC" in os.environ:
+            CSP_OBJECT_SRC = os.environ.get("CSP_OBJECT_SRC").split(",")
+        if "CSP_FRAME_SRC" in os.environ:
+            CSP_FRAME_SRC = os.environ.get("CSP_FRAME_SRC").split(",")
+        if "CSP_REPORT_URI" in os.environ:
+            CSP_REPORT_URI = os.environ.get("CSP_REPORT_URI")
 
 WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
