@@ -11,6 +11,7 @@ from wagtail.fields import StreamField
 from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
+from wagtail_ai.panels import AIFieldPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -77,7 +78,7 @@ class BlogPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("subtitle"),
-        FieldPanel("introduction"),
+        AIFieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("date_published"),
