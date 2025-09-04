@@ -35,13 +35,15 @@ from wagtail.models import (
     WorkflowMixin,
 )
 from wagtail.search import index
-from wagtail_ai.panels import AIFieldPanel
+from wagtail_ai.panels import AIFieldPanel, AITitleFieldPanel
 
 from .blocks import BaseStreamBlock
 
 # Allow filtering by collection
 Image.api_fields = [APIField("collection")]
 
+# Enable AI prompts on the title field
+Page.content_panels[0] = AITitleFieldPanel("title")
 # Enable AI prompts on the search_description field
 Page.promote_panels[0].args[0][-1] = AIFieldPanel("search_description")
 
