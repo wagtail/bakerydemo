@@ -36,6 +36,7 @@ from wagtail.models import (
 )
 from wagtail.search import index
 from wagtail_ai.panels import AIFieldPanel, AITitleFieldPanel
+from wagtail_ai.prompts import DefaultPrompt
 
 from .blocks import BaseStreamBlock
 
@@ -43,9 +44,12 @@ from .blocks import BaseStreamBlock
 Image.api_fields = [APIField("collection")]
 
 # Enable AI prompts on the title field
-Page.content_panels[0] = AITitleFieldPanel("title")
+Page.content_panels[0] = AITitleFieldPanel("title", prompts=[DefaultPrompt.TITLE])
 # Enable AI prompts on the search_description field
-Page.promote_panels[0].args[0][-1] = AIFieldPanel("search_description")
+Page.promote_panels[0].args[0][-1] = AIFieldPanel(
+    "search_description",
+    prompts=[DefaultPrompt.DESCRIPTION],
+)
 
 
 class Person(
