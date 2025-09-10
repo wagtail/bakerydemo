@@ -10,6 +10,7 @@ from wagtail.blocks import (
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail_ai.prompts import DefaultPrompt
 
 
 def get_image_api_representation(image):
@@ -55,6 +56,12 @@ class CaptionedImageBlock(StructBlock):
         template = "blocks/captioned_image_block.html"
         preview_value = {"attribution": "The Wagtail Bakery"}
         description = "An image with optional caption and attribution"
+        form_attrs = {
+            "data-controller": "wai-field-panel",
+            "data-wai-field-panel-main-input-value": '[data-contentpath="caption"] input',
+            "data-wai-field-panel-image-input-value": '[data-contentpath="image"] input',
+            "data-wai-field-panel-prompts-value": f"[{DefaultPrompt.CONTEXTUAL_ALT_TEXT}]",
+        }
 
 
 class HeadingBlock(StructBlock):
