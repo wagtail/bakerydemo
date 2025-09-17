@@ -6,7 +6,7 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
-from wagtail.models import DraftStateMixin, Page, RevisionMixin
+from wagtail.models import DraftStateMixin, Orderable, Page, RevisionMixin
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
@@ -73,7 +73,7 @@ class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
         verbose_name_plural = "bread ingredients"
 
 
-class BreadType(RevisionMixin, models.Model):
+class BreadType(Orderable, RevisionMixin, models.Model):
     """
     A Django model to define the bread type
     It is made accessible in the Wagtail admin interface through the BreadTypeSnippetViewSet

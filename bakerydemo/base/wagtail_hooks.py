@@ -104,3 +104,13 @@ def editor_js():
         '<script src="{}"></script>',
         ((static(filename),) for filename in js_files),
     )
+
+
+@hooks.register("insert_global_admin_css")
+def global_admin_css():
+    css_files = ["css/wai.css"]
+    return format_html_join(
+        "\n",
+        '<link rel="stylesheet" href="{}">',
+        ((static(filename),) for filename in css_files),
+    )
