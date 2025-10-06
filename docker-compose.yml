@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: app_user
       POSTGRES_PASSWORD: changeme
     restart: unless-stopped
-    image: postgres:18.1
+    image: pgvector/pgvector:pg18-trixie
     expose:
       - '5432'
 
