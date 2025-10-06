@@ -11,7 +11,7 @@ from wagtail.fields import StreamField
 from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
-from wagtail_ai.panels import AIFieldPanel
+from wagtail_ai.panels import AIFieldPanel, AIMultipleChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -36,6 +36,23 @@ class BlogPersonRelationship(Orderable, models.Model):
     api_fields = [
         APIField("page", writable=True),
         APIField("person", writable=True),
+    ]
+
+
+class BlogRelatedPage(Orderable, models.Model):
+    page = ParentalKey(
+        "BlogPage", related_name="blog_page_relationship", on_delete=models.CASCADE
+    )
+    related_page = models.ForeignKey(
+        "wagtailcore.Page",
+        related_name="page_blog_relationship",
+        on_delete=models.CASCADE,
+    )
+    panels = [FieldPanel("related_page")]
+
+    api_fields = [
+        APIField("page"),
+        APIField("person"),
     ]
 
 
@@ -89,6 +106,14 @@ class BlogPage(Page):
             label="Author",
             panels=None,
             min_num=1,
+        ),
+        AIMultipleChooserPanel(
+            "blog_page_relationship",
+            chooser_field_name="related_page",
+            heading="Related Pages",
+            label="Page",
+            panels=None,
+            vector_index="PageIndex",
         ),
         FieldPanel("tags"),
     ]
