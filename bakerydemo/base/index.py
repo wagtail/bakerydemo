@@ -1,3 +1,4 @@
+from django.utils.functional import classproperty
 from django_ai_core.contrib.index import (
     CachedEmbeddingTransformer,
     CoreEmbeddingTransformer,
@@ -6,13 +7,9 @@ from django_ai_core.contrib.index import (
 )
 from django_ai_core.contrib.index.source import ModelSource
 from django_ai_core.contrib.index.storage.pgvector import PgVectorProvider
-from django_ai_core.llm import LLMService
+from wagtail_ai.agents.base import get_llm_service
 
 from bakerydemo.blog.models import BlogPage
-
-llm_embedding_service = LLMService.create(
-    provider="openai", model="text-embedding-3-small"
-)
 
 
 @registry.register()
@@ -23,6 +20,13 @@ class PageIndex(VectorIndex):
         ),
     ]
     storage_provider = PgVectorProvider()
-    embedding_transformer = CachedEmbeddingTransformer(
-        base_transformer=CoreEmbeddingTransformer(llm_service=llm_embedding_service),
-    )
+
+    # Use classproperty to avoid creating LLMService instance at import time,
+    # as it requires API keys to be set in environment, which is not necessary
+    # during collectstatic etc at build time.
+    @classproperty
+    def embedding_transformer(cls):
+        llm_service = get_llm_service("embedding")
+        return CachedEmbeddingTransformer(
+            base_transformer=CoreEmbeddingTransformer(llm_service=llm_service),
+        )
