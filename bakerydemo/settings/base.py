@@ -256,6 +256,19 @@ WAGTAIL_AI = {
         },
     },
     "IMAGE_DESCRIPTION_BACKEND": "vision",
+    "PROVIDERS": {
+        "default": {
+            "provider": os.environ.get("WAGTAIL_AI_DEFAULT_PROVIDER", "openai"),
+            "model": os.environ.get(
+                "WAGTAIL_AI_DEFAULT_MODEL",
+                # Fall back to old setting
+                os.environ.get("WAGTAIL_AI_DEFAULT_MODEL_ID", "gpt-4.1-mini"),
+            ),
+            # If not provided, AnyLLM will default to the provider's (openai) values
+            "api_key": os.environ.get("WAGTAIL_AI_DEFAULT_API_KEY"),
+            "api_base": os.environ.get("WAGTAIL_AI_DEFAULT_API_BASE"),
+        },
+    },
 }
 WAGTAILIMAGES_IMAGE_FORM_BASE = "wagtail_ai.forms.DescribeImageForm"
 
