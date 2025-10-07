@@ -268,6 +268,14 @@ WAGTAIL_AI = {
             "api_key": os.environ.get("WAGTAIL_AI_DEFAULT_API_KEY"),
             "api_base": os.environ.get("WAGTAIL_AI_DEFAULT_API_BASE"),
         },
+        "embedding": {
+            "provider": os.environ.get("WAGTAIL_AI_EMBEDDING_PROVIDER", "openai"),
+            "model": os.environ.get(
+                "WAGTAIL_AI_EMBEDDING_MODEL", "text-embedding-3-small"
+            ),
+            "api_key": os.environ.get("WAGTAIL_AI_EMBEDDING_API_KEY"),
+            "api_base": os.environ.get("WAGTAIL_AI_EMBEDDING_API_BASE"),
+        },
     },
 }
 WAGTAILIMAGES_IMAGE_FORM_BASE = "wagtail_ai.forms.DescribeImageForm"
