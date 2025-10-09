@@ -10,7 +10,7 @@ from wagtail.blocks import (
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail_ai.prompts import DefaultPrompt
+from wagtail_ai.blocks import ai_image_block
 
 
 def get_image_api_representation(image):
@@ -24,6 +24,7 @@ def get_image_api_representation(image):
     }
 
 
+@ai_image_block(alt_text_field_name="caption", image_field_name="image")
 class CaptionedImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
@@ -56,12 +57,6 @@ class CaptionedImageBlock(StructBlock):
         template = "blocks/captioned_image_block.html"
         preview_value = {"attribution": "The Wagtail Bakery"}
         description = "An image with optional caption and attribution"
-        form_attrs = {
-            "data-controller": "wai-field-panel",
-            "data-wai-field-panel-main-input-value": '[data-contentpath="caption"] input',
-            "data-wai-field-panel-image-input-value": '[data-contentpath="image"] input',
-            "data-wai-field-panel-prompts-value": f"[{DefaultPrompt.CONTEXTUAL_ALT_TEXT}]",
-        }
 
 
 class HeadingBlock(StructBlock):
