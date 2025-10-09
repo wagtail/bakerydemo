@@ -10,7 +10,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
-from wagtail_ai.panels import AIFieldPanel, AIMultipleChooserPanel
+from wagtail_ai.panels import AIMultipleChooserPanel
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
@@ -94,7 +94,7 @@ class BlogPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("subtitle"),
-        AIFieldPanel("introduction"),
+        FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("date_published"),
