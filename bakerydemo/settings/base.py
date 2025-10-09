@@ -255,7 +255,7 @@ WAGTAIL_AI = {
             },
         },
     },
-    "IMAGE_DESCRIPTION_BACKEND": "vision",
+    "IMAGE_DESCRIPTION_PROVIDER": "vision",
     "PROVIDERS": {
         "default": {
             "provider": os.environ.get("WAGTAIL_AI_DEFAULT_PROVIDER", "openai"),
@@ -271,10 +271,21 @@ WAGTAIL_AI = {
         "embedding": {
             "provider": os.environ.get("WAGTAIL_AI_EMBEDDING_PROVIDER", "openai"),
             "model": os.environ.get(
-                "WAGTAIL_AI_EMBEDDING_MODEL", "text-embedding-3-small"
+                "WAGTAIL_AI_EMBEDDING_MODEL",
+                "text-embedding-3-small",
             ),
             "api_key": os.environ.get("WAGTAIL_AI_EMBEDDING_API_KEY"),
             "api_base": os.environ.get("WAGTAIL_AI_EMBEDDING_API_BASE"),
+        },
+        "vision": {
+            "provider": os.environ.get("WAGTAIL_AI_VISION_PROVIDER", "openai"),
+            "model": os.environ.get(
+                "WAGTAIL_AI_VISION_MODEL",
+                "mistral-small-3.2-24b-instruct-2506",
+            ),
+            # If not provided, AnyLLM will default to the provider's (openai) values
+            "api_key": os.environ.get("WAGTAIL_AI_VISION_API_KEY"),
+            "api_base": os.environ.get("WAGTAIL_AI_VISION_API_BASE"),
         },
     },
 }
