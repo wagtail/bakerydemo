@@ -11,8 +11,7 @@ from wagtail.blocks import (
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageBlock
-from wagtail_ai.prompts import DefaultPrompt
+from wagtail_ai.blocks import AIImageBlock
 
 from bakerydemo.base.blocks import (
     BlockQuote,
@@ -21,19 +20,11 @@ from bakerydemo.base.blocks import (
 )
 
 
-class CustomImageBlock(ImageBlock):
+class CustomImageBlock(AIImageBlock):
     def get_api_representation(self, value, context=None):
         data = super().get_api_representation(value, context)
         data["image"] = get_image_api_representation(value)
         return data
-
-    class Meta:
-        form_attrs = {
-            "data-controller": "wai-field-panel",
-            "data-wai-field-panel-main-input-value": '[data-contentpath="alt_text"] input',
-            "data-wai-field-panel-image-input-value": '[data-contentpath="image"] input',
-            "data-wai-field-panel-prompts-value": f"[{DefaultPrompt.CONTEXTUAL_ALT_TEXT}]",
-        }
 
 
 class RecipeStepBlock(StructBlock):
