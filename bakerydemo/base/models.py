@@ -35,21 +35,27 @@ from wagtail.models import (
     WorkflowMixin,
 )
 from wagtail.search import index
-from wagtail_ai.panels import AIFieldPanel, AITitleFieldPanel
-from wagtail_ai.prompts import DefaultPrompt
+from wagtail_ai.panels import AIDescriptionFieldPanel, AITitleFieldPanel
 
 from .blocks import BaseStreamBlock
 
 # Allow filtering by collection
 Image.api_fields = [APIField("collection")]
 
-# Enable AI prompts on the title field
-Page.content_panels[0] = AITitleFieldPanel("title", prompts=[DefaultPrompt.TITLE])
-# Enable AI prompts on the search_description field
-Page.promote_panels[0].args[0][-1] = AIFieldPanel(
-    "search_description",
-    prompts=[DefaultPrompt.DESCRIPTION],
-)
+# Enable AI prompt on the title field
+Page.content_panels = [AITitleFieldPanel("title")]
+Page.promote_panels = [
+    MultiFieldPanel(
+        [
+            "slug",
+            "seo_title",
+            # Enable AI prompt on the search_description field
+            AIDescriptionFieldPanel("search_description"),
+        ],
+        heading="For search engines",
+    ),
+    MultiFieldPanel(["show_in_menus"], heading="For site menus"),
+]
 
 
 class Person(
