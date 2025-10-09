@@ -259,11 +259,7 @@ WAGTAIL_AI = {
     "PROVIDERS": {
         "default": {
             "provider": os.environ.get("WAGTAIL_AI_DEFAULT_PROVIDER", "openai"),
-            "model": os.environ.get(
-                "WAGTAIL_AI_DEFAULT_MODEL",
-                # Fall back to old setting
-                os.environ.get("WAGTAIL_AI_DEFAULT_MODEL_ID", "gpt-4.1-mini"),
-            ),
+            "model": os.environ.get("WAGTAIL_AI_DEFAULT_MODEL", "gpt-oss-120b"),
             # If not provided, AnyLLM will default to the provider's (openai) values
             "api_key": os.environ.get("WAGTAIL_AI_DEFAULT_API_KEY"),
             "api_base": os.environ.get("WAGTAIL_AI_DEFAULT_API_BASE"),
@@ -272,18 +268,17 @@ WAGTAIL_AI = {
             "provider": os.environ.get("WAGTAIL_AI_EMBEDDING_PROVIDER", "openai"),
             "model": os.environ.get(
                 "WAGTAIL_AI_EMBEDDING_MODEL",
-                "text-embedding-3-small",
+                "bge-multilingual-gemma2",
             ),
             "api_key": os.environ.get("WAGTAIL_AI_EMBEDDING_API_KEY"),
             "api_base": os.environ.get("WAGTAIL_AI_EMBEDDING_API_BASE"),
         },
         "vision": {
-            "provider": os.environ.get("WAGTAIL_AI_VISION_PROVIDER", "openai"),
+            "provider": os.environ.get("WAGTAIL_AI_VISION_PROVIDER", "mistral"),
             "model": os.environ.get(
                 "WAGTAIL_AI_VISION_MODEL",
                 "mistral-small-3.2-24b-instruct-2506",
             ),
-            # If not provided, AnyLLM will default to the provider's (openai) values
             "api_key": os.environ.get("WAGTAIL_AI_VISION_API_KEY"),
             "api_base": os.environ.get("WAGTAIL_AI_VISION_API_BASE"),
         },
