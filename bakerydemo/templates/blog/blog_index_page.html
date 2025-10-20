@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags wagtail_cache %}
 
 {% if tag %}
     {% block title %}
@@ -27,19 +27,23 @@
         {% endif %}
 
         {% if page.get_child_tags %}
-            <ul class="blog-tags">
-                <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
-                {% for tag in page.get_child_tags %}
-                    <li><a class="blog-tags__pill" aria-label="Filter by tag name {{ tag }}" href="{{ tag.url }}">{{ tag }}</a></li>
-                {% endfor %}
-            </ul>
+            {% wagtailcache 500 page.get_child_tags  %}
+                <ul class="blog-tags">
+                    <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
+                    {% for tag in page.get_child_tags %}
+                        <li><a class="blog-tags__pill" aria-label="Filter by tag name {{ tag }}" href="{{ tag.url }}">{{ tag }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endwagtailcache %}
         {% endif %}
 
         <div class="blog-list">
             {% if posts %}
-                {% for blog in posts %}
-                    {% include "includes/card/blog-listing-card.html" %}
-                {% endfor %}
+                {% wagtailcache 500 posts %}
+                    {% for blog in posts %}
+                            {% include "includes/card/blog-listing-card.html" %}
+                    {% endfor %}
+                {% endwagtailcache %}
             {% else %}
                 <div class="col-md-12">
                     <p>Oh, snap. Looks like we were too busy baking to write any blog posts. Sorry.</p>
