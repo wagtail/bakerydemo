@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% load navigation_tags wagtailimages_tags %}
+{% load navigation_tags wagtailimages_tags wagtail_cache %}
 
 {% block content %}
 
     {% include "base/include/header-blog.html" %}
-
+    {% wagtailpagecache 500 page %}
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -33,4 +33,5 @@
             </div>
         </div>
     </div>
+    {% endwagtailpagecache %}
 {% endblock content %}
