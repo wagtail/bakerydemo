@@ -20,5 +20,6 @@ __pycache__
 .vagrant/
 /.vagrant/
 /Vagrantfile.local
+/bakerydemo/cache
 !.gitignore
 bakerydemo/collect_static

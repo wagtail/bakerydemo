@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     "taggit",
     "wagtailfontawesomesvg",
     # Uncomment to enable django-debug-toolbar
-    # "debug_toolbar",
+    "debug_toolbar",
     "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -81,7 +81,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     # Uncomment to enable django-debug-toolbar
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -253,3 +253,11 @@ if "CSP_DEFAULT_SRC" in os.environ:
         CSP_FRAME_SRC = os.environ.get("CSP_FRAME_SRC").split(",")
     if "CSP_REPORT_URI" in os.environ:
         CSP_REPORT_URI = os.environ.get("CSP_REPORT_URI")
+
+# Cache settings
+CACHES = {
+    "default": {
+       "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+         "LOCATION": os.path.join(PROJECT_DIR, "cache"),
+    }
+}
