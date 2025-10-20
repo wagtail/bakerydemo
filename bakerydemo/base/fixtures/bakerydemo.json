@@ -532,7 +532,6 @@
       "name": "Salt"
     }
   },
-  
   {
     "model": "breads.breadtype",
     "pk": 2,
@@ -9213,7 +9212,6 @@
       "approved_go_live_at": null
     }
   },
-  
   {
     "model": "wagtailcore.revision",
     "pk": 90,
@@ -11608,7 +11606,6 @@
       "object_id": "5"
     }
   },
-  
   {
     "model": "wagtailcore.modellogentry",
     "pk": 32,
