@@ -27,7 +27,7 @@
         {% endif %}
 
         {% if page.get_child_tags %}
-            {% wagtailcache 500 page.get_child_tags  %}
+            {% wagtailcache 500 page.get_child_tags %}
                 <ul class="blog-tags">
                     <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
                     {% for tag in page.get_child_tags %}
@@ -41,7 +41,7 @@
             {% if posts %}
                 {% wagtailcache 500 posts %}
                     {% for blog in posts %}
-                            {% include "includes/card/blog-listing-card.html" %}
+                        {% include "includes/card/blog-listing-card.html" %}
                     {% endfor %}
                 {% endwagtailcache %}
             {% else %}
