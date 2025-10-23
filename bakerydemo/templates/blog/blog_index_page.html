@@ -27,14 +27,12 @@
         {% endif %}
 
         {% if page.get_child_tags %}
-            {% wagtailcache 500 page.get_child_tags %}
-                <ul class="blog-tags">
-                    <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
-                    {% for tag in page.get_child_tags %}
-                        <li><a class="blog-tags__pill" aria-label="Filter by tag name {{ tag }}" href="{{ tag.url }}">{{ tag }}</a></li>
-                    {% endfor %}
-                </ul>
-            {% endwagtailcache %}
+            <ul class="blog-tags">
+                <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
+                {% for tag in page.get_child_tags %}
+                    <li><a class="blog-tags__pill" aria-label="Filter by tag name {{ tag }}" href="{{ tag.url }}">{{ tag }}</a></li>
+                {% endfor %}
+            </ul>
         {% endif %}
 
         <div class="blog-list">
