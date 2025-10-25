@@ -6,6 +6,7 @@
     {% include "base/include/header-index.html" %}
 
     <div class="container">
+        <h2 class="u-sr-only">{{ page.title }}</h2>
         <div class="location-list-page">
             {% for location in locations %}
                 {% include "includes/card/picture-card.html" with page=location portrait=False %}
@@ -13,4 +14,3 @@
         </div>
     </div>
 {% endblock content %}
-
