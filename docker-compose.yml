@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: app_user
       POSTGRES_PASSWORD: changeme
     restart: unless-stopped
-    image: postgres:14.1
+    image: postgres:17
     expose:
       - '5432'
 
