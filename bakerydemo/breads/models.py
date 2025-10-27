@@ -6,7 +6,7 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
-from wagtail.models import DraftStateMixin, Page, RevisionMixin
+from wagtail.models import DraftStateMixin, Orderable, Page, RevisionMixin
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
@@ -24,6 +24,7 @@ class Country(models.Model):
     """
 
     title = models.CharField(max_length=100)
+    sort_order = models.IntegerField(null=True, blank=True, db_index=True)
 
     api_fields = [
         APIField("title"),
@@ -35,9 +36,10 @@ class Country(models.Model):
     class Meta:
         verbose_name = "country of origin"
         verbose_name_plural = "countries of origin"
+        ordering = ["sort_order", "title"]
 
 
-class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
+class BreadIngredient(Orderable, DraftStateMixin, RevisionMixin, models.Model):
     """
     A Django model to store a single ingredient.
     It is made accessible in the Wagtail admin interface through the BreadIngredientSnippetViewSet
@@ -71,6 +73,7 @@ class BreadIngredient(DraftStateMixin, RevisionMixin, models.Model):
     class Meta:
         verbose_name = "bread ingredient"
         verbose_name_plural = "bread ingredients"
+        ordering = ["sort_order", "name"]
 
 
 class BreadType(RevisionMixin, models.Model):
