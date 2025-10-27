@@ -32,7 +32,7 @@
                         <ul class="featured-cards__list">
                             {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
                                 <li>
-                                    {% include "includes/card/listing-card.html" with page=childpage %}
+                                    {% include "includes/card/listing-card.html" with page=childpage h2=False %}
                                 </li>
                             {% endfor %}
                         </ul>

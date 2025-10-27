@@ -8,7 +8,11 @@
             </figure>
         {% endif %}
         <div class="listing-card__contents">
-            <h3 class="listing-card__title">{{ page.title }}</h3>
+            {% if h2 %}
+                <h2 class="listing-card__title">{{ page.title }}</h2>
+            {% else %}
+                <h3 class="listing-card__title">{{ page.title }}</h3>
+            {% endif %}
             {% if page.origin or page.bread_type %}
                 <table class="listing-card__meta">
                     {% if page.origin %}

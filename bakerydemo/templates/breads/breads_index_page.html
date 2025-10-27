@@ -8,7 +8,7 @@
         <ul class="bread-list">
             {% for bread in breads %}
                 <li>
-                    {% include "includes/card/listing-card.html" with page=bread %}
+                    {% include "includes/card/listing-card.html" with page=bread h2=True %}
                 </li>
             {% endfor %}
         </ul>
