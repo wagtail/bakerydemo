@@ -281,175 +281,200 @@
     "model": "breads.country",
     "pk": 1,
     "fields": {
-      "title": "Egypt"
+      "title": "Egypt",
+      "sort_order": 4
     }
   },
   {
     "model": "breads.country",
     "pk": 2,
     "fields": {
-      "title": "Slovenia"
+      "title": "Slovenia",
+      "sort_order": 19
     }
   },
   {
     "model": "breads.country",
     "pk": 3,
     "fields": {
-      "title": "United States (New England)"
+      "title": "United States (New England)",
+      "sort_order": 25
     }
   },
   {
     "model": "breads.country",
     "pk": 4,
     "fields": {
-      "title": "Japan"
+      "title": "Japan",
+      "sort_order": 12
     }
   },
   {
     "model": "breads.country",
     "pk": 5,
     "fields": {
-      "title": "India (Kerala)\nSri Lanka"
+      "title": "India (Kerala)\nSri Lanka",
+      "sort_order": 7
     }
   },
   {
     "model": "breads.country",
     "pk": 6,
     "fields": {
-      "title": "South America (Northern)"
+      "title": "South America (Northern)",
+      "sort_order": 20
     }
   },
   {
     "model": "breads.country",
     "pk": 7,
     "fields": {
-      "title": "China (Northwestern Yunnan, Naxi people)"
+      "title": "China (Northwestern Yunnan, Naxi people)",
+      "sort_order": 3
     }
   },
   {
     "model": "breads.country",
     "pk": 8,
     "fields": {
-      "title": "Polish/Ashkenazi Jewish"
+      "title": "Polish/Ashkenazi Jewish",
+      "sort_order": 16
     }
   },
   {
     "model": "breads.country",
     "pk": 9,
     "fields": {
-      "title": "France"
+      "title": "France",
+      "sort_order": 5
     }
   },
   {
     "model": "breads.country",
     "pk": 10,
     "fields": {
-      "title": "Tibet (Central)"
+      "title": "Tibet (Central)",
+      "sort_order": 21
     }
   },
   {
     "model": "breads.country",
     "pk": 11,
     "fields": {
-      "title": "Jamaica"
+      "title": "Jamaica",
+      "sort_order": 11
     }
   },
   {
     "model": "breads.country",
     "pk": 12,
     "fields": {
-      "title": "Scandinavia"
+      "title": "Scandinavia",
+      "sort_order": 18
     }
   },
   {
     "model": "breads.country",
     "pk": 13,
     "fields": {
-      "title": "United Kingdom (Scotland)"
+      "title": "United Kingdom (Scotland)",
+      "sort_order": 23
     }
   },
   {
     "model": "breads.country",
     "pk": 14,
     "fields": {
-      "title": "United Kingdom (Wales)"
+      "title": "United Kingdom (Wales)",
+      "sort_order": 24
     }
   },
   {
     "model": "breads.country",
     "pk": 15,
     "fields": {
-      "title": "Iran\nAfghanistan (northwestern)"
+      "title": "Iran\nAfghanistan (northwestern)",
+      "sort_order": 8
     }
   },
   {
     "model": "breads.country",
     "pk": 16,
     "fields": {
-      "title": "Ireland"
+      "title": "Ireland",
+      "sort_order": 9
     }
   },
   {
     "model": "breads.country",
     "pk": 17,
     "fields": {
-      "title": "Italy"
+      "title": "Italy",
+      "sort_order": 10
     }
   },
   {
     "model": "breads.country",
     "pk": 18,
     "fields": {
-      "title": "Libya"
+      "title": "Libya",
+      "sort_order": 13
     }
   },
   {
     "model": "breads.country",
     "pk": 19,
     "fields": {
-      "title": "Turkey"
+      "title": "Turkey",
+      "sort_order": 22
     }
   },
   {
     "model": "breads.country",
     "pk": 20,
     "fields": {
-      "title": "North America"
+      "title": "North America",
+      "sort_order": 14
     }
   },
   {
     "model": "breads.country",
     "pk": 21,
     "fields": {
-      "title": "India\nPakistan"
+      "title": "India\nPakistan",
+      "sort_order": 6
     }
   },
   {
     "model": "breads.country",
     "pk": 22,
     "fields": {
-      "title": "Poland"
+      "title": "Poland",
+      "sort_order": 15
     }
   },
   {
     "model": "breads.country",
     "pk": 23,
     "fields": {
-      "title": "China"
+      "title": "China",
+      "sort_order": 2
     }
   },
   {
     "model": "breads.country",
     "pk": 24,
     "fields": {
-      "title": "Afghanistan"
+      "title": "Afghanistan",
+      "sort_order": 1
     }
   },
   {
     "model": "breads.country",
     "pk": 25,
     "fields": {
-      "title": "Portugal (Madeira)"
+      "title": "Portugal (Madeira)",
+      "sort_order": 17
     }
   },
   {
@@ -465,7 +490,8 @@
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
-      "name": "Yeast"
+      "name": "Yeast",
+      "sort_order": 5
     }
   },
   {
@@ -481,7 +507,8 @@
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
-      "name": "Flour"
+      "name": "Flour",
+      "sort_order": 2
     }
   },
   {
@@ -497,7 +524,8 @@
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
-      "name": "Water"
+      "name": "Water",
+      "sort_order": 4
     }
   },
   {
@@ -513,7 +541,8 @@
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
-      "name": "Cinnamon"
+      "name": "Cinnamon",
+      "sort_order": 1
     }
   },
   {
@@ -529,7 +558,8 @@
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
-      "name": "Salt"
+      "name": "Salt",
+      "sort_order": 3
     }
   },
   {
