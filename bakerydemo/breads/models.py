@@ -184,6 +184,11 @@ class BreadPage(Page):
         APIField("ingredients"),
     ]
 
+    @property
+    def ordered_ingredients(self):
+        """Return ingredients ordered by sort_order, then name."""
+        return self.ingredients.order_by("sort_order", "name")
+
 
 class BreadsIndexPage(Page):
     """
