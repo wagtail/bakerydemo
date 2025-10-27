@@ -32,7 +32,7 @@
                                 <p class="bread-detail__meta-title">Type</p>
                                 <p class="bread-detail__meta-content">{{ page.bread_type }}</p>
                             {% endif %}
-                            {% with ingredients=page.ingredients.all %}
+                            {% with ingredients=page.ordered_ingredients %}
                                 {% if ingredients %}
                                     <h4>Ingredients</h4>
                                     <ul>

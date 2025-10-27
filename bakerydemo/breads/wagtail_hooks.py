@@ -18,10 +18,11 @@ class BreadIngredientFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
 
 class BreadIngredientSnippetViewSet(SnippetViewSet):
     model = BreadIngredient
-    ordering = ("name",)
+    ordering = ("sort_order", "name")
     search_fields = ("name",)
     filterset_class = BreadIngredientFilterSet
     inspect_view_enabled = True
+    sort_order_field = "sort_order"
 
 
 class BreadTypeFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
@@ -39,10 +40,11 @@ class BreadTypeSnippetViewSet(SnippetViewSet):
 
 class CountryModelViewSet(ModelViewSet):
     model = Country
-    ordering = ("title",)
+    ordering = ("sort_order", "title")
     search_fields = ("title",)
     icon = "globe"
     inspect_view_enabled = True
+    sort_order_field = "sort_order"
 
     panels = [
         FieldPanel("title"),
