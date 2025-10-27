@@ -7,7 +7,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
-from wagtail.models import Orderable, Page
+from wagtail.models import ClusterableModel, Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
@@ -50,13 +50,13 @@ class OperatingHours(models.Model):
         else:
             opening = "--"
         if self.closing_time:
-            closed = self.closing_time.strftime("%H:%M")
+            closing = self.closing_time.strftime("%H:%M")
         else:
-            closed = "--"
-        return "{}: {} - {} {}".format(self.day, opening, closed, settings.TIME_ZONE)
+            closing = "--"
+        return f"{self.day}: {opening} - {closing} {settings.TIME_ZONE}"
 
 
-class LocationOperatingHours(Orderable, OperatingHours):
+class LocationOperatingHours(ClusterableModel, Orderable, OperatingHours):
     """
     A model creating a relationship between the OperatingHours and Location
     Note that unlike BlogPersonRelationship we don't include a ForeignKey to
@@ -70,6 +70,29 @@ class LocationOperatingHours(Orderable, OperatingHours):
         "LocationPage", related_name="hours_of_operation", on_delete=models.CASCADE
     )
 
+    panels = OperatingHours.panels + [
+        InlinePanel("special_hours", label="Special Hours", min_num=0, max_num=10),
+    ]
+
+class SpecialOpeningHour(Orderable):
+    operating_hour = ParentalKey(
+        "LocationOperatingHours",
+        related_name="special_hours",
+        on_delete=models.CASCADE
+    )
+
+    note = models.CharField(max_length=255, blank=True)
+    special_open_time = models.TimeField(blank=True, null=True)
+    special_close_time = models.TimeField(blank=True, null=True)
+    
+    panels = [
+        FieldPanel("note"),
+        FieldPanel("special_open_time"),
+        FieldPanel("special_close_time"),
+    ]
+
+    class Meta:
+        ordering = ['sort_order']  
 
 class LocationsIndexPage(Page):
     """
@@ -202,8 +225,7 @@ class LocationPage(Page):
     # the latitude, longitude and map API key to render the map
     def get_context(self, request):
         context = super(LocationPage, self).get_context(request)
-        context["lat"] = self.lat_long.split(",")[0]
-        context["long"] = self.lat_long.split(",")[1]
+        context["lat"], context["long"] = self.lat_long.split(",")
         context["google_map_api_key"] = settings.GOOGLE_MAP_API_KEY
         return context
 
