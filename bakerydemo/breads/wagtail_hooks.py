@@ -18,7 +18,7 @@ class BreadIngredientFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
 
 class BreadIngredientSnippetViewSet(SnippetViewSet):
     model = BreadIngredient
-    ordering = ("name")
+    ordering = "name"
     search_fields = ("name",)
     filterset_class = BreadIngredientFilterSet
     inspect_view_enabled = True
@@ -39,7 +39,7 @@ class BreadTypeSnippetViewSet(SnippetViewSet):
 
 class CountryModelViewSet(ModelViewSet):
     model = Country
-    ordering = ("title")
+    ordering = "title"
     search_fields = ("title",)
     icon = "globe"
     inspect_view_enabled = True
