@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "bakerydemo.locations",
     "bakerydemo.recipes",
     "bakerydemo.search",
+    "bakerydemo.people",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.simple_translation",
     "wagtail.contrib.styleguide",
     "wagtail",
+    'image_url_upload',  # ← Add this line
     "rest_framework",
     "modelcluster",
     "taggit",
