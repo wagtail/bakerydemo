@@ -111,7 +111,7 @@ class Command(BaseCommand):
                 title="Our Team",
                 slug="team",
                 introduction=PEOPLE_INDEX_INTRO,
-                show_in_menus=True,  # 👈 ensures it shows in navigation
+                show_in_menus=True,
             )
             home_page.add_child(instance=people_index)
             people_index.save_revision().publish()
@@ -137,7 +137,6 @@ class Command(BaseCommand):
                 twitter=person_data.get("twitter", ""),
             )
 
-            # ✅ Set StreamField content
             if "bio" in person_data:
                 person_page.body = [("paragraph", person_data["bio"])]
 
