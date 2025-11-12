@@ -15,7 +15,9 @@ class PersonPage(Page):
     Detail view for a specific person
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(
+        help_text="Text to describe the page", blank=True
+        )
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -92,7 +94,9 @@ class PeopleIndexPage(Page):
     # descendants of this index page with most recent first
     def get_people(self):
         return (
-            PersonPage.objects.live().descendant_of(self).order_by("-first_published_at")
+            PersonPage.objects.live()
+            .descendant_of(self)
+            .order_by("-first_published_at")
         )
 
     # Allows child objects (e.g. PersonPage objects) to be accessible via the
