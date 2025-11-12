@@ -4,40 +4,205 @@ import django.db.models.deletion
 import wagtail.fields
 from django.db import migrations, models
 
-
 class Migration(migrations.Migration):
 
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0095_groupsitepermission'),
-        ('wagtailimages', '0027_image_description'),
+        ("wagtailcore", "0095_groupsitepermission"),
+        ("wagtailimages", "0027_image_description"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PeopleIndexPage',
+            name="PeopleIndexPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('introduction', models.TextField(blank=True, help_text='Text to describe the page')),
-                ('image', models.ForeignKey(blank=True, help_text='Landscape mode only; horizontal width between 1000px and 3000px.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "introduction",
+                    models.TextField(blank=True, help_text="Text to describe the page"),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='PersonPage',
+            name="PersonPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('introduction', models.TextField(blank=True, help_text='Text to describe the page')),
-                ('body', wagtail.fields.StreamField([('heading_block', 2), ('paragraph_block', 3), ('image_block', 6), ('block_quote', 12), ('embed_block', 13)], blank=True, block_lookup={0: ('wagtail.blocks.CharBlock', (), {'form_classname': 'title', 'required': True}), 1: ('wagtail.blocks.ChoiceBlock', [], {'blank': True, 'choices': [('', 'Select a header size'), ('h2', 'H2'), ('h3', 'H3'), ('h4', 'H4')], 'required': False}), 2: ('wagtail.blocks.StructBlock', [[('heading_text', 0), ('size', 1)]], {}), 3: ('wagtail.blocks.RichTextBlock', (), {'description': 'A rich text paragraph', 'icon': 'pilcrow', 'preview_value': '\n            <h2>Our bread pledge</h2>\n            <p>As a bakery, <b>breads</b> have <i>always</i> been in our hearts.\n            <a href="https://en.wikipedia.org/wiki/Staple_food">Staple foods</a>\n            are essential for society, and – bread is the tastiest of all.\n            We love to transform batters and doughs into baked goods with a firm\n            dry crust and fluffy center.</p>\n            ', 'template': 'blocks/paragraph_block.html'}), 4: ('wagtail.images.blocks.ImageChooserBlock', (), {'required': True}), 5: ('wagtail.blocks.CharBlock', (), {'required': False}), 6: ('wagtail.blocks.StructBlock', [[('image', 4), ('caption', 5), ('attribution', 5)]], {}), 7: ('wagtail.blocks.TextBlock', (), {}), 8: ('wagtail.blocks.CharBlock', (), {'blank': True, 'label': 'e.g. Mary Berry', 'required': False}), 9: ('wagtail.blocks.ChoiceBlock', [], {'choices': [('default', 'Default'), ('highlight', 'Highlight')], 'required': False}), 10: ('wagtail.blocks.ChoiceBlock', [], {'choices': [('default', 'Default'), ('large', 'Large')], 'required': False}), 11: ('wagtail.blocks.StructBlock', [[('theme', 9), ('text_size', 10)]], {'collapsed': True}), 12: ('wagtail.blocks.StructBlock', [[('text', 7), ('attribute_name', 8), ('settings', 11)]], {}), 13: ('wagtail.embeds.blocks.EmbedBlock', (), {'description': 'An embedded video or other media', 'help_text': 'Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks', 'icon': 'media', 'preview_template': 'base/preview/static_embed_block.html', 'preview_value': 'https://www.youtube.com/watch?v=mwrGSfiB1Mg', 'template': 'blocks/embed_block.html'})}, verbose_name='Page body')),
-                ('image', models.ForeignKey(blank=True, help_text='Landscape mode only; horizontal width between 1000px and 3000px.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "introduction",
+                    models.TextField(blank=True, help_text="Text to describe the page"),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        [
+                            ("heading_block", 2),
+                            ("paragraph_block", 3),
+                            ("image_block", 6),
+                            ("block_quote", 12),
+                            ("embed_block", 13),
+                        ],
+                        blank=True,
+                        block_lookup={
+                            0: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "title", "required": True},
+                            ),
+                            1: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "blank": True,
+                                    "choices": [
+                                        ("", "Select a header size"),
+                                        ("h2", "H2"),
+                                        ("h3", "H3"),
+                                        ("h4", "H4"),
+                                    ],
+                                    "required": False,
+                                },
+                            ),
+                            2: (
+                                "wagtail.blocks.StructBlock",
+                                [[("heading_text", 0), ("size", 1)]],
+                                {},
+                            ),
+                            3: (
+                                "wagtail.blocks.RichTextBlock",
+                                (),
+                                {
+                                    "description": "A rich text paragraph",
+                                    "icon": "pilcrow",
+                                    "preview_value": '\n            <h2>Our bread pledge</h2>\n            <p>As a bakery, <b>breads</b> have <i>always</i> been in our hearts.\n            <a href="https://en.wikipedia.org/wiki/Staple_food">Staple foods</a>\n            are essential for society, and – bread is the tastiest of all.\n            We love to transform batters and doughs into baked goods with a firm\n            dry crust and fluffy center.</p>\n            ',
+                                    "template": "blocks/paragraph_block.html",
+                                },
+                            ),
+                            4: (
+                                "wagtail.images.blocks.ImageChooserBlock",
+                                (),
+                                {"required": True},
+                            ),
+                            5: ("wagtail.blocks.CharBlock", (), {"required": False}),
+                            6: (
+                                "wagtail.blocks.StructBlock",
+                                [[("image", 4), ("caption", 5), ("attribution", 5)]],
+                                {},
+                            ),
+                            7: ("wagtail.blocks.TextBlock", (), {}),
+                            8: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {
+                                    "blank": True,
+                                    "label": "e.g. Mary Berry",
+                                    "required": False,
+                                },
+                            ),
+                            9: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "choices": [
+                                        ("default", "Default"),
+                                        ("highlight", "Highlight"),
+                                    ],
+                                    "required": False,
+                                },
+                            ),
+                            10: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "choices": [
+                                        ("default", "Default"),
+                                        ("large", "Large"),
+                                    ],
+                                    "required": False,
+                                },
+                            ),
+                            11: (
+                                "wagtail.blocks.StructBlock",
+                                [[("theme", 9), ("text_size", 10)]],
+                                {"collapsed": True},
+                            ),
+                            12: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("text", 7),
+                                        ("attribute_name", 8),
+                                        ("settings", 11),
+                                    ]
+                                ],
+                                {},
+                            ),
+                            13: (
+                                "wagtail.embeds.blocks.EmbedBlock",
+                                (),
+                                {
+                                    "description": "An embedded video or other media",
+                                    "help_text": "Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
+                                    "icon": "media",
+                                    "preview_template": "base/preview/static_embed_block.html",
+                                    "preview_value": "https://www.youtube.com/watch?v=mwrGSfiB1Mg",
+                                    "template": "blocks/embed_block.html",
+                                },
+                            ),
+                        },
+                        verbose_name="Page body",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

@@ -7,14 +7,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('breads', '0009_alter_breadpage_body'),
-        ('people', '0001_initial'),
+        ("breads", "0009_alter_breadpage_body"),
+        ("people", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='personpage',
-            name='origin',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='breads.country'),
+            model_name="personpage",
+            name="origin",
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to="breads.country"),
         ),
     ]
