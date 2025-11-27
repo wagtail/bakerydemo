@@ -1,11 +1,13 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
+
 from wagtail.admin.panels import FieldPanel
 from wagtail.api import APIField
+from wagtail.blocks import ChoiceBlock, StructBlock, URLBlock
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
-from wagtail.blocks import StructBlock, ChoiceBlock, URLBlock
+
 from ..breads.models import Country
 
 from bakerydemo.base.blocks import BaseStreamBlock
