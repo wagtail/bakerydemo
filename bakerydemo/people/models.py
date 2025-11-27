@@ -5,7 +5,7 @@ from wagtail.api import APIField
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
-from wagtail.blocks import StructBlock, CharBlock, ChoiceBlock, URLBlock
+from wagtail.blocks import StructBlock, ChoiceBlock, URLBlock
 from ..breads.models import Country
 
 from bakerydemo.base.blocks import BaseStreamBlock
