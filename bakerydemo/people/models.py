@@ -8,6 +8,7 @@ from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 
+from bakerydemo.base.blocks import BaseStreamBlock
 from ..breads.models import Country
 
 
