@@ -5,9 +5,36 @@ from wagtail.api import APIField
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
+from wagtail.blocks import StructBlock, CharBlock, ChoiceBlock, URLBlock
 from ..breads.models import Country
 
 from bakerydemo.base.blocks import BaseStreamBlock
+
+
+class SocialMediaBlock(StructBlock):
+    """
+    Block for social media links
+    """
+
+    platform = ChoiceBlock(
+        choices=[
+            ("github", "GitHub"),
+            ("twitter", "Twitter/X"),
+            ("linkedin", "LinkedIn"),
+            ("instagram", "Instagram"),
+            ("facebook", "Facebook"),
+            ("mastodon", "Mastodon"),
+            ("website", "Personal Website"),
+        ],
+        help_text="Select the social media platform",
+    )
+    url = URLBlock(
+        help_text="Full URL to your profile (e.g., https://github.com/username)"
+    )
+
+    class Meta:
+        icon = "link"
+        label = "Social Media Link"
 
 
 class PersonPage(Page):
@@ -34,11 +61,20 @@ class PersonPage(Page):
         null=True,
         blank=True,
     )
+
+    social_links = StreamField(
+        [("social", SocialMediaBlock())],
+        blank=True,
+        use_json_field=True,
+        help_text="Add social media profiles",
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("origin"),
         FieldPanel("body"),
+        FieldPanel("social_links"),
     ]
 
     search_fields = Page.search_fields + [
@@ -52,6 +88,7 @@ class PersonPage(Page):
         APIField("image"),
         APIField("body"),
         APIField("origin"),
+        APIField("social_links"),
     ]
 
 
