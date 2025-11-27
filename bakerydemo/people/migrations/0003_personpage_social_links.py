@@ -7,13 +7,47 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('people', '0002_personpage_origin'),
+        ("people", "0002_personpage_origin"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='personpage',
-            name='social_links',
-            field=wagtail.fields.StreamField([('social', 2)], blank=True, block_lookup={0: ('wagtail.blocks.ChoiceBlock', [], {'choices': [('github', 'GitHub'), ('twitter', 'Twitter/X'), ('linkedin', 'LinkedIn'), ('instagram', 'Instagram'), ('facebook', 'Facebook'), ('mastodon', 'Mastodon'), ('website', 'Personal Website')], 'help_text': 'Select the social media platform'}), 1: ('wagtail.blocks.URLBlock', (), {'help_text': 'Full URL to your profile (e.g., https://github.com/username)'}), 2: ('wagtail.blocks.StructBlock', [[('platform', 0), ('url', 1)]], {})}, help_text='Add social media profiles'),
+            model_name="personpage",
+            name="social_links",
+            field=wagtail.fields.StreamField(
+                [("social", 2)],
+                blank=True,
+                block_lookup={
+                    0: (
+                        "wagtail.blocks.ChoiceBlock",
+                        [],
+                        {
+                            "choices": [
+                                ("github", "GitHub"),
+                                ("twitter", "Twitter/X"),
+                                ("linkedin", "LinkedIn"),
+                                ("instagram", "Instagram"),
+                                ("facebook", "Facebook"),
+                                ("mastodon", "Mastodon"),
+                                ("website", "Personal Website"),
+                            ],
+                            "help_text": "Select the social media platform",
+                        },
+                    ),
+                    1: (
+                        "wagtail.blocks.URLBlock",
+                        (),
+                        {
+                            "help_text": "Full URL to your profile (e.g., https://github.com/username)"
+                        },
+                    ),
+                    2: (
+                        "wagtail.blocks.StructBlock",
+                        [[("platform", 0), ("url", 1)]],
+                        {},
+                    ),
+                },
+                help_text="Add social media profiles",
+            ),
         ),
     ]
