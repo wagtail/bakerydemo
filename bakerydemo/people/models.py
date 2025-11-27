@@ -10,8 +10,6 @@ from wagtail.search import index
 
 from ..breads.models import Country
 
-from bakerydemo.base.blocks import BaseStreamBlock
-
 
 class SocialMediaBlock(StructBlock):
     """
