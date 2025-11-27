@@ -9,7 +9,7 @@
         {% endif %}
         <div class="listing-card__contents">
             <h3 class="listing-card__title">{{ page.title }}</h3>
-            {% if page.origin or page.bread_type %}
+            {% if page.origin or page.bread_type or page.social_links %}
                 <table class="listing-card__meta">
                     {% if page.origin %}
                         <tr>
