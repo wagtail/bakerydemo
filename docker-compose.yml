@@ -29,7 +29,6 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - ./bakerydemo:/code/bakerydemo
       - bakerydemo_media:/code/bakerydemo/media
     links:
       - db:db
