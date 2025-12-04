@@ -1,3 +1,16 @@
+exclude = ["wagtail/project_template/*","node_modules","venv",".venv","migrations"]
+line-length = 88
+
+target-version = "py312"  # minimum target version
+
+[lint]
+# E: pycodestyle errors
+# F: Pyflakes
+# I: isort
+# T20: flake8-print
+# BLE: flake8-blind-except
+# C4: flake8-comprehensions
+select = ["E", "F", "I", "T20", "BLE", "C4"]
 # D100: Missing docstring in public module
 # D101: Missing docstring in public class
 # D102: Missing docstring in public method
@@ -6,15 +19,3 @@
 # N806: Variable in function should be lowercase
 # E501: Line too long
 ignore = ["D100","D101","D102","D103","D105","N806","E501"]
-exclude = ["wagtail/project_template/*","node_modules","venv",".venv","migrations"]
-line-length = 88
-
-target-version = "py38"  # minimum target version
-
-# E: pycodestyle errors
-# F: Pyflakes
-# I: isort
-# T20: flake8-print
-# BLE: flake8-blind-except
-# C4: flake8-comprehensions
-select = ["E", "F", "I", "T20", "BLE", "C4"]

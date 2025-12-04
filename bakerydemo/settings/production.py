@@ -129,21 +129,21 @@ if ELASTICSEARCH_ENDPOINT:
         # This may be useful if your credentials are obtained via EC2 instance meta data.
         from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 
-        WAGTAILSEARCH_BACKENDS["default"]["HOSTS"][0][
-            "http_auth"
-        ] = BotoAWSRequestsAuth(
-            aws_host=ELASTICSEARCH_ENDPOINT,
-            aws_region=AWS_REGION,
-            aws_service="es",
+        WAGTAILSEARCH_BACKENDS["default"]["HOSTS"][0]["http_auth"] = (
+            BotoAWSRequestsAuth(
+                aws_host=ELASTICSEARCH_ENDPOINT,
+                aws_region=AWS_REGION,
+                aws_service="es",
+            )
         )
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
 MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
-STORAGES["staticfiles"][
-    "BACKEND"
-] = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STORAGES["staticfiles"]["BACKEND"] = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
 if "AWS_STORAGE_BUCKET_NAME" in os.environ:
     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
@@ -265,9 +265,7 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # dev and testing settings.
 # https://docs.djangoproject.com/en/stable/ref/settings/#secure-hsts-seconds
 DEFAULT_HSTS_SECONDS = 30 * 24 * 60 * 60  # 30 days
-SECURE_HSTS_SECONDS = int(
-    os.environ.get("SECURE_HSTS_SECONDS", DEFAULT_HSTS_SECONDS)
-)  # noqa
+SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", DEFAULT_HSTS_SECONDS))  # noqa
 
 # Do not use the `includeSubDomains` directive for HSTS. This needs to be prevented
 # because the apps are running on client domains (or our own for staging), that are
