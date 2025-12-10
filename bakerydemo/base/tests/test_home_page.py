@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import override_settings
 from wagtail.models import Page, Site
 from wagtail.test.utils import WagtailPageTestCase
-from wagtail.test.utils.form_data import nested_form_data
+from wagtail.test.utils.form_data import nested_form_data, streamfield
 
 from bakerydemo.base.models import HomePage
 
@@ -89,7 +89,11 @@ class HomePageRenderTest(WagtailPageTestCase):
                 "slug": "test-home-2",
                 "hero_text": "Welcome",
                 "hero_cta": "Get Started",
-                "body-count": "0",
+                "body": streamfield(
+                    [
+                        ("text", "This is some dummy content for the body block"),
+                    ]
+                ),
             }
         )
 
