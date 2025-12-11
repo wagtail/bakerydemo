@@ -65,7 +65,10 @@ def get_footer_text(context):
     # Get the footer text from the context if exists,
     # so that it's possible to pass a custom instance e.g. for previews
     # or page types that need a custom footer
-    footer_text = context.get("footer_text", "")
+    footer_text = (
+        "Copyright The Wagtail Bakery Demo. Content © 2019 is for demonstration "
+        "purposes and is in the public domain."
+    )
 
     # If the context doesn't have footer_text defined, get one that's live
     if not footer_text:
