@@ -7,13 +7,13 @@ services:
       POSTGRES_USER: app_user
       POSTGRES_PASSWORD: changeme
     restart: unless-stopped
-    image: postgres:14.1
+    image: postgres:18.1
     expose:
       - '5432'
 
   redis:
     restart: unless-stopped
-    image: redis:6.2
+    image: redis:8.4
     expose:
       - '6379'
 
