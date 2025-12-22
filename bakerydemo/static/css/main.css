@@ -34,9 +34,10 @@ each detail view
   --dark-orange: #833701;
   --font--primary: 'Marcellus', serif;
   /* stylelint-disable */
-  --font--secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui,
-    Roboto, 'Helvetica Neue', Arial, sans-serif, Apple Color Emoji,
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font--secondary:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto,
+    'Helvetica Neue', Arial, sans-serif, Apple Color Emoji, 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
   /* stylelint-enable */
   --font-sm: 1rem;
   --font-md: 1.125rem;
@@ -1550,7 +1551,6 @@ input[type='radio'] {
 .homepage .featured-cards__link {
   display: flex;
   flex-direction: row;
-  justify-content: baseline;
   font-family: var(--font--primary);
   margin: 0 auto;
   width: max-content;
@@ -1702,9 +1702,6 @@ input[type='radio'] {
 
 /* Bootstrap Equal height rows */
 .row-eq-height {
-  display: box;
-  display: flex;
-  display: flexbox;
   display: flex;
   flex-wrap: wrap;
 }
@@ -2085,7 +2082,7 @@ input[type='radio'] {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
 }

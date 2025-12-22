@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "repository": "https://github.com/wagtail/bakerydemo",
   "private": true,
-  "engines": {
-    "node": ">=22"
+  "devEngines": {
+    "packageManager": {
+      "name": "npm"
+    }
   },
   "devDependencies": {
-    "eslint": "^8.55.0",
-    "prettier": "^3.1.0",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0"
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
+    "prettier": "^3.7.4",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1"
   },
   "scripts": {
     "fix:js": "eslint --ext .js --fix .",

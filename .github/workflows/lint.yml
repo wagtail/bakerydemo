@@ -12,31 +12,20 @@ jobs:
   lint-server:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
           cache: 'pip'
           cache-dependency-path: 'requirements/*.txt'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements/development.txt
-      - name: Lint server
-        run: |
-          make lint-server
+      - run: pip install -r requirements/development.txt
+      - run: make lint-server
   lint-client:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Lint client
-        run: |
-          make lint-client
+      - run: npm ci
+      - run: make lint-client
