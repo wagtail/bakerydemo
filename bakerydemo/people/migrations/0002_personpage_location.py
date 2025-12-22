@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name="personpage",
-            name="origin",
+            name="location",
             field=models.ForeignKey(
                 blank=True,
                 null=True,

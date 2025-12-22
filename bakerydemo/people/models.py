@@ -2,7 +2,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.api import APIField
-from wagtail.blocks import ChoiceBlock, StructBlock, URLBlock
+from wagtail.blocks import ChoiceBlock, StructBlock, StructValue, URLBlock
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
@@ -10,6 +10,13 @@ from wagtail.search import index
 from bakerydemo.base.blocks import BaseStreamBlock
 
 from ..breads.models import Country
+
+
+class SocialMediaValue(StructValue):
+    def get_platform_label(self):
+        return dict(self.block.child_blocks["platform"].field.choices).get(
+            self["platform"]
+        )
 
 
 class SocialMediaBlock(StructBlock):
@@ -30,12 +37,14 @@ class SocialMediaBlock(StructBlock):
         help_text="Select the social media platform",
     )
     url = URLBlock(
-        help_text="Full URL to your profile (e.g., https://github.com/username)"
+        label="URL",
+        help_text="Full URL to your profile (e.g., https://github.com/username)",
     )
 
     class Meta:
         icon = "link"
         label = "Social Media Link"
+        value_class = SocialMediaValue
 
 
 class PersonPage(Page):
@@ -52,11 +61,9 @@ class PersonPage(Page):
         related_name="+",
         help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
-    body = StreamField(
-        BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
-    )
+    body = StreamField(BaseStreamBlock(), verbose_name="Page body", blank=True)
 
-    origin = models.ForeignKey(
+    location = models.ForeignKey(
         Country,
         on_delete=models.SET_NULL,
         null=True,
@@ -66,19 +73,19 @@ class PersonPage(Page):
     social_links = StreamField(
         [("social", SocialMediaBlock())],
         blank=True,
-        use_json_field=True,
         help_text="Add social media profiles",
     )
 
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
         FieldPanel("image"),
-        FieldPanel("origin"),
+        FieldPanel("location"),
         FieldPanel("body"),
         FieldPanel("social_links"),
     ]
 
     search_fields = Page.search_fields + [
+        index.SearchField("introduction"),
         index.SearchField("body"),
     ]
 
@@ -88,9 +95,29 @@ class PersonPage(Page):
         APIField("introduction"),
         APIField("image"),
         APIField("body"),
-        APIField("origin"),
+        APIField("location"),
         APIField("social_links"),
     ]
+
+    def get_context(self, request):
+        context = super(PersonPage, self).get_context(request)
+
+        platform_block = SocialMediaBlock().child_blocks["platform"]
+        platform_labels = dict(platform_block.field.choices)
+        social_links = [
+            {
+                "platform": link.value["platform"],
+                "label": platform_labels.get(
+                    link.value["platform"], link.value["platform"]
+                ),
+                "url": link.value["url"],
+            }
+            for link in (self.social_links or [])
+        ]
+
+        context["social_links"] = social_links
+
+        return context
 
 
 class PeopleIndexPage(Page):

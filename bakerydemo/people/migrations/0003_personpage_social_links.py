@@ -7,7 +7,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("people", "0002_personpage_origin"),
+        ("people", "0002_personpage_location"),
     ]
 
     operations = [
@@ -38,6 +38,7 @@ class Migration(migrations.Migration):
                         "wagtail.blocks.URLBlock",
                         (),
                         {
+                            "label": "URL",
                             "help_text": "Full URL to your profile (e.g., https://github.com/username)"
                         },
                     ),
