@@ -1,4 +1,4 @@
-name: Bakerydemo CI
+name: CI
 
 on:
   push:
@@ -29,3 +29,18 @@ jobs:
           node-version-file: '.nvmrc'
       - run: npm ci
       - run: make lint-client
+  test-server:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SETTINGS_MODULE: bakerydemo.settings.test
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'requirements/*.txt'
+      - run: pip install -r requirements/development.txt
+      - run: ./manage.py check
+      - run: ./manage.py makemigrations --check --noinput
+      - run: ./manage.py test
