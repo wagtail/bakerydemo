@@ -17,7 +17,7 @@ from bakerydemo.locations.models import LocationOperatingHours, LocationPage, Lo
 
 
 class Command(BaseCommand):
-    help = 'Load benchmark data for performance testing using existing content types'
+    help = 'Load benchmark data for performance testing'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -48,7 +48,7 @@ class Command(BaseCommand):
             '--streamfield-depth',
             type=int,
             default=10,
-            help='Nesting depth for StreamField blocks (default: 1, max: 10)',
+            help='Nesting depth for StreamField blocks (default: 10, max: 10)',
         )
         parser.add_argument(
             '--inline-panel-items',
@@ -94,7 +94,7 @@ class Command(BaseCommand):
         self.stdout.write(f'Created {created} bread pages')
 
         created = self.create_location_pages(home_page, self.location_pages)
-        self.stdout.write(f'Created {created} new location pages')
+        self.stdout.write(f'Created {created} location pages')
 
         self.stdout.write('Benchmark data generation complete!')
 
