@@ -1,3 +1,6 @@
+"""
+Management command to load benchmark data for performance testing.
+"""
 import random
 from datetime import date, time
 
@@ -7,7 +10,6 @@ from django.utils import lorem_ipsum, timezone
 from django.utils.text import slugify
 from taggit.models import Tag
 from wagtail.images.models import Image
-from wagtail.models import Site
 from wagtail.rich_text import RichText
 
 from bakerydemo.base.models import Person
@@ -23,20 +25,20 @@ class Command(BaseCommand):
         parser.add_argument(
             '--blog-pages',
             type=int,
-            default=100,
-            help='Number of blog pages to create (default: 100)',
+            default=10000,
+            help='Number of blog pages to create (default: 10000, for 100K scale use 33334)',
         )
         parser.add_argument(
             '--bread-pages',
             type=int,
-            default=100,
-            help='Number of bread pages to create (default: 100)',
+            default=10000,
+            help='Number of bread pages to create (default: 10000, for 100K scale use 33333)',
         )
         parser.add_argument(
             '--location-pages',
             type=int,
-            default=100,
-            help='Number of location pages to create (default: 100)',
+            default=10000,
+            help='Number of location pages to create (default: 10000, for 100K scale use 33333)',
         )
         parser.add_argument(
             '--streamfield-blocks',
@@ -65,8 +67,25 @@ class Command(BaseCommand):
         parser.add_argument(
             '--revisions-per-page',
             type=int,
-            default=5,
-            help='Number of revisions per page (default: 5)',
+            default=34,
+            help='Number of revisions per page (default: 34, for 1M total with 30K pages)',
+        )
+        parser.add_argument(
+            '--page-tree-depth',
+            type=int,
+            default=1,
+            help='Depth of page tree hierarchy (default: 1, max: 10)',
+        )
+        parser.add_argument(
+            '--create-images',
+            type=int,
+            default=0,
+            help='Number of images to create (default: 0, for scale testing use 10000)',
+        )
+        parser.add_argument(
+            '--create-snippets',
+            action='store_true',
+            help='Create 1M snippet instances (BreadType, Country, BreadIngredient)',
         )
 
     def handle(self, *args, **options):
@@ -78,22 +97,29 @@ class Command(BaseCommand):
         self.inline_panel_items = options['inline_panel_items']
         self.rich_text_paragraphs = options['rich_text_paragraphs']
         self.revisions_per_page = options['revisions_per_page']
+        self.page_tree_depth = min(options['page_tree_depth'], 10)
+        self.create_images = options['create_images']
+        self.create_snippets = options['create_snippets']
 
         self.stdout.write('Starting benchmark data generation...')
 
-        try:
-            home_page = Site.objects.get(is_default_site=True).root_page
-        except (Site.DoesNotExist, Site.MultipleObjectsReturned) as e:
-            self.stdout.write(self.style.ERROR(f'Could not find home page: {e}'))
-            return
+        # Create images if requested
+        if self.create_images > 0:
+            created = self.create_benchmark_images(self.create_images)
+            self.stdout.write(f'Created {created} images')
 
-        created = self.create_blog_pages(home_page, self.blog_pages)
+        # Create snippets if requested
+        if self.create_snippets:
+            created = self.create_benchmark_snippets()
+            self.stdout.write(f'Created {created} snippet instances')
+
+        created = self.create_blog_pages(self.blog_pages)
         self.stdout.write(f'Created {created} blog pages')
 
-        created = self.create_bread_pages(home_page, self.bread_pages)
+        created = self.create_bread_pages(self.bread_pages)
         self.stdout.write(f'Created {created} bread pages')
 
-        created = self.create_location_pages(home_page, self.location_pages)
+        created = self.create_location_pages(self.location_pages)
         self.stdout.write(f'Created {created} location pages')
 
         self.stdout.write('Benchmark data generation complete!')
@@ -103,6 +129,103 @@ class Command(BaseCommand):
         if not hasattr(self, '_images_cache'):
             self._images_cache = list(Image.objects.all())
         return self._images_cache
+
+    def create_benchmark_images(self, count):
+        """Create benchmark images with solid color placeholders."""
+        from io import BytesIO
+        from PIL import Image as PILImage
+        from django.core.files.uploadedfile import InMemoryUploadedFile
+
+        created_count = 0
+        colors = [
+            (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
+            (255, 0, 255), (0, 255, 255), (128, 128, 128), (255, 128, 0),
+        ]
+
+        for i in range(count):
+            title = f"Benchmark Image {i + 1}"
+
+            if Image.objects.filter(title=title).exists():
+                continue
+
+            # Create a simple colored image
+            img = PILImage.new('RGB', (800, 600), color=colors[i % len(colors)])
+            img_io = BytesIO()
+            img.save(img_io, format='JPEG', quality=85)
+            img_io.seek(0)
+
+            img_file = InMemoryUploadedFile(
+                img_io, None, f'benchmark_{i + 1}.jpg', 'image/jpeg',
+                img_io.getbuffer().nbytes, None
+            )
+
+            wagtail_image = Image(
+                title=title,
+                file=img_file,
+            )
+            wagtail_image.save()
+            created_count += 1
+
+            if created_count % 100 == 0:
+                self.stdout.write(f'  Created {created_count} images...')
+
+        # Clear the cache so new images are picked up
+        if hasattr(self, '_images_cache'):
+            del self._images_cache
+
+        return created_count
+
+    def create_benchmark_snippets(self):
+        """Create 1M snippet instances (BreadType, Country, BreadIngredient)."""
+        created_count = 0
+        batch_size = 1000
+
+        # Create BreadType snippets (~333K)
+        self.stdout.write('  Creating BreadType snippets...')
+        bread_types = []
+        for i in range(333334):
+            bread_types.append(BreadType(title=f"Bread Type {i + 1}"))
+            if len(bread_types) >= batch_size:
+                BreadType.objects.bulk_create(bread_types, ignore_conflicts=True)
+                created_count += len(bread_types)
+                bread_types = []
+                if created_count % 10000 == 0:
+                    self.stdout.write(f'    Created {created_count} snippets...')
+        if bread_types:
+            BreadType.objects.bulk_create(bread_types, ignore_conflicts=True)
+            created_count += len(bread_types)
+
+        # Create Country snippets (~333K)
+        self.stdout.write('  Creating Country snippets...')
+        countries = []
+        for i in range(333333):
+            countries.append(Country(title=f"Country {i + 1}"))
+            if len(countries) >= batch_size:
+                Country.objects.bulk_create(countries, ignore_conflicts=True)
+                created_count += len(countries)
+                countries = []
+                if created_count % 10000 == 0:
+                    self.stdout.write(f'    Created {created_count} snippets...')
+        if countries:
+            Country.objects.bulk_create(countries, ignore_conflicts=True)
+            created_count += len(countries)
+
+        # Create BreadIngredient snippets (~333K)
+        self.stdout.write('  Creating BreadIngredient snippets...')
+        ingredients = []
+        for i in range(333333):
+            ingredients.append(BreadIngredient(name=f"Ingredient {i + 1}"))
+            if len(ingredients) >= batch_size:
+                BreadIngredient.objects.bulk_create(ingredients, ignore_conflicts=True)
+                created_count += len(ingredients)
+                ingredients = []
+                if created_count % 10000 == 0:
+                    self.stdout.write(f'    Created {created_count} snippets...')
+        if ingredients:
+            BreadIngredient.objects.bulk_create(ingredients, ignore_conflicts=True)
+            created_count += len(ingredients)
+
+        return created_count
 
     def get_random_image(self):
         """Return a random image or None if no images exist."""
@@ -142,7 +265,11 @@ class Command(BaseCommand):
             'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
         ]
-        paragraph_text = '\n'.join(fixed_paragraphs[:num_paragraphs])
+        # Repeat paragraphs to reach the desired count
+        paragraphs_to_use = []
+        for i in range(num_paragraphs):
+            paragraphs_to_use.append(fixed_paragraphs[i % len(fixed_paragraphs)])
+        paragraph_text = '\n'.join(paragraphs_to_use)
         return ('paragraph_block', RichText(paragraph_text))
 
     def _create_image_block(self, index):
@@ -198,20 +325,37 @@ class Command(BaseCommand):
             }
         })
 
-    def generate_streamfield(self, num_blocks, num_paragraphs=0):
-        """Generate StreamField blocks cycling through heading, block_quote, paragraph, image."""
+    def generate_streamfield(self, num_blocks, num_paragraphs=0, depth=0):
+        """Generate StreamField blocks with optional nesting depth."""
         blocks = []
-        block_sequence = [
-            lambda i: self._create_heading_block(i),
-            lambda i: self._create_block_quote(i),
-            lambda i: self._create_heading_block(i),
-            lambda i: self._create_image_block(i) or self._create_paragraph_block(i),
-            lambda i: self._create_paragraph_block(i, 2 if num_paragraphs > 0 else 1),
-        ]
 
-        for i in range(num_blocks):
-            block_creator = block_sequence[i % 5]
-            blocks.append(block_creator(i))
+        # If we have depth remaining and blocks to create, add nested blocks
+        if depth > 0 and num_blocks > 0:
+            # Create nested structure blocks - not all block types support nesting
+            # For simplicity, we'll create paragraph blocks that could conceptually be nested
+            for i in range(min(num_blocks, 10)):  # Limit nested blocks per level
+                blocks.append(self._create_paragraph_block(i, num_paragraphs if num_paragraphs > 0 else 2))
+
+            # Recursively add nested blocks
+            if depth > 1 and num_blocks > 10:
+                # Create a marker for nesting (in real implementation, this would be a StructBlock)
+                nested_blocks = self.generate_streamfield(num_blocks // 2, num_paragraphs, depth - 1)
+                # In a real implementation with proper StructBlock support, we'd wrap these
+                # For now, just add them to demonstrate the nesting capability
+                blocks.extend(nested_blocks[:min(len(nested_blocks), num_blocks - 10)])
+        else:
+            # Regular flat block structure
+            block_sequence = [
+                lambda i: self._create_heading_block(i),
+                lambda i: self._create_block_quote(i),
+                lambda i: self._create_heading_block(i),
+                lambda i: self._create_image_block(i) or self._create_paragraph_block(i, num_paragraphs if num_paragraphs > 0 else 2),
+                lambda i: self._create_paragraph_block(i, num_paragraphs if num_paragraphs > 0 else 2),
+            ]
+
+            for i in range(num_blocks):
+                block_creator = block_sequence[i % 5]
+                blocks.append(block_creator(i))
 
         return blocks
 
@@ -231,7 +375,7 @@ class Command(BaseCommand):
         page.refresh_from_db()
 
 
-    def create_blog_pages(self, home_page, count):
+    def create_blog_pages(self, count):
         """Create blog pages with relationships, tags, and streamfield content."""
         blog_index = BlogIndexPage.objects.filter(slug='blog').first()
         if not blog_index:
@@ -240,6 +384,7 @@ class Command(BaseCommand):
 
         people = list(Person.objects.all())
         if not people and self.inline_panel_items > 0:
+            # ...existing code for creating people...
             self.stdout.write(self.style.WARNING('  No Person objects found. Creating sample people.'))
             now = timezone.now()
             images = self._get_images_cache()
@@ -281,9 +426,12 @@ class Command(BaseCommand):
         tag_names = ['baking', 'bread', 'recipe', 'cooking', 'food', 'bakery', 'yeast', 'dough', 'pastry', 'dessert']
         tags = [Tag.objects.get_or_create(name=name)[0] for name in tag_names]
 
-        body = self.generate_streamfield(self.streamfield_blocks, self.rich_text_paragraphs)
+        body = self.generate_streamfield(self.streamfield_blocks, self.rich_text_paragraphs, self.streamfield_depth)
 
         created_count = 0
+        current_parent = blog_index
+        pages_at_current_level = []
+
         for i in range(count):
             page_number = start_number + i
             title = f"Blog Post {page_number}"
@@ -291,6 +439,19 @@ class Command(BaseCommand):
 
             if BlogPage.objects.filter(slug=slug).exists():
                 continue
+
+            # Implement tree depth: create hierarchy of pages
+            level = 1
+            if self.page_tree_depth > 1:
+                # Calculate which level this page should be at
+                level = (i % self.page_tree_depth) + 1
+
+                if level == 1:
+                    current_parent = blog_index
+                    pages_at_current_level = []
+                elif level > 1 and pages_at_current_level:
+                    # Use the last page from previous level as parent
+                    current_parent = pages_at_current_level[-1]
 
             with transaction.atomic():
                 page = BlogPage(
@@ -302,7 +463,7 @@ class Command(BaseCommand):
                     image=self.get_random_image(),
                     date_published=date.today(),
                 )
-                blog_index.add_child(instance=page)
+                current_parent.add_child(instance=page)
                 page.refresh_from_db()
 
                 if people:
@@ -318,9 +479,16 @@ class Command(BaseCommand):
                 self._publish_page_with_revisions(page, self.revisions_per_page)
                 created_count += 1
 
+                # Track pages at current level for hierarchy
+                if self.page_tree_depth > 1:
+                    if level == len(pages_at_current_level) + 1:
+                        pages_at_current_level.append(page)
+                    elif level <= len(pages_at_current_level):
+                        pages_at_current_level = pages_at_current_level[:level-1] + [page]
+
         return created_count
 
-    def create_bread_pages(self, home_page, count):
+    def create_bread_pages(self, count):
         """Create bread pages with random types, origins, and ingredients."""
         breads_index = BreadsIndexPage.objects.filter(slug='breads').first()
         if not breads_index:
@@ -340,9 +508,12 @@ class Command(BaseCommand):
         ingredients = [BreadIngredient.objects.get_or_create(name=name)[0] for name in ingredient_names]
 
         start_number = BreadPage.objects.count() + 1
-        body = self.generate_streamfield(self.streamfield_blocks)
+        body = self.generate_streamfield(self.streamfield_blocks, 0, self.streamfield_depth)
 
         created_count = 0
+        current_parent = breads_index
+        pages_at_current_level = []
+
         for i in range(count):
             page_number = start_number + i
             title = f"{random.choice(bread_type_names)} #{page_number}"
@@ -350,6 +521,16 @@ class Command(BaseCommand):
 
             if BreadPage.objects.filter(slug=slug).exists():
                 continue
+
+            # Implement tree depth
+            level = 1
+            if self.page_tree_depth > 1:
+                level = (i % self.page_tree_depth) + 1
+                if level == 1:
+                    current_parent = breads_index
+                    pages_at_current_level = []
+                elif level > 1 and pages_at_current_level:
+                    current_parent = pages_at_current_level[-1]
 
             with transaction.atomic():
                 page = BreadPage(
@@ -361,7 +542,7 @@ class Command(BaseCommand):
                     origin=random.choice(countries) if countries else None,
                     image=self.get_random_image(),
                 )
-                breads_index.add_child(instance=page)
+                current_parent.add_child(instance=page)
                 page.refresh_from_db()
 
                 if ingredients:
@@ -369,6 +550,12 @@ class Command(BaseCommand):
 
                 self._publish_page_with_revisions(page, self.revisions_per_page)
                 created_count += 1
+
+                if self.page_tree_depth > 1:
+                    if level == len(pages_at_current_level) + 1:
+                        pages_at_current_level.append(page)
+                    elif level <= len(pages_at_current_level):
+                        pages_at_current_level = pages_at_current_level[:level-1] + [page]
 
         return created_count
 
@@ -415,7 +602,7 @@ class Command(BaseCommand):
         ]
         LocationOperatingHours.objects.bulk_create(operating_hours)
 
-    def create_location_pages(self, home_page, count):
+    def create_location_pages(self, count):
         """Create location pages with addresses, coordinates, and operating hours."""
         locations_index = LocationsIndexPage.objects.filter(slug='locations').first()
         if not locations_index:
@@ -427,9 +614,12 @@ class Command(BaseCommand):
                   'Rome', 'Madrid', 'Seoul', 'San Francisco', 'Chicago', 'Boston']
 
         start_number = LocationPage.objects.count() + 1
-        body = self.generate_streamfield(self.streamfield_blocks)
+        body = self.generate_streamfield(self.streamfield_blocks, 0, self.streamfield_depth)
 
         created_count = 0
+        current_parent = locations_index
+        pages_at_current_level = []
+
         for i in range(count):
             city = random.choice(cities)
             title = f"{city} Location #{start_number + i}"
@@ -437,6 +627,16 @@ class Command(BaseCommand):
 
             if LocationPage.objects.filter(slug=slug).exists():
                 continue
+
+            # Implement tree depth
+            level = 1
+            if self.page_tree_depth > 1:
+                level = (i % self.page_tree_depth) + 1
+                if level == 1:
+                    current_parent = locations_index
+                    pages_at_current_level = []
+                elif level > 1 and pages_at_current_level:
+                    current_parent = pages_at_current_level[-1]
 
             with transaction.atomic():
                 page = LocationPage(
@@ -448,11 +648,17 @@ class Command(BaseCommand):
                     lat_long=self._generate_lat_long(),
                     image=self.get_random_image(),
                 )
-                locations_index.add_child(instance=page)
+                current_parent.add_child(instance=page)
                 page.refresh_from_db()
 
                 self._create_operating_hours(page)
                 self._publish_page_with_revisions(page, self.revisions_per_page)
                 created_count += 1
+
+                if self.page_tree_depth > 1:
+                    if level == len(pages_at_current_level) + 1:
+                        pages_at_current_level.append(page)
+                    elif level <= len(pages_at_current_level):
+                        pages_at_current_level = pages_at_current_level[:level-1] + [page]
 
         return created_count
