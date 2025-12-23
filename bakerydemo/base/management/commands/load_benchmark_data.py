@@ -1,8 +1,6 @@
 import random
 from datetime import date, time
-from pathlib import Path
 
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import lorem_ipsum, timezone
@@ -11,46 +9,91 @@ from taggit.models import Tag
 from wagtail.images.models import Image
 from wagtail.models import Site
 from wagtail.rich_text import RichText
-from willow.image import Image as WillowImage
 
-from bakerydemo.base.models import HomePage, Person
+from bakerydemo.base.models import Person
 from bakerydemo.blog.models import BlogIndexPage, BlogPage, BlogPersonRelationship
 from bakerydemo.breads.models import BreadIngredient, BreadPage, BreadsIndexPage, BreadType, Country
 from bakerydemo.locations.models import LocationOperatingHours, LocationPage, LocationsIndexPage
-
-FIXTURE_MEDIA_DIR = Path(settings.PROJECT_DIR) / "base/fixtures/media/original_images"
-
-# Benchmark configuration constants
-STREAMFIELD_BLOCKS = 100
-INLINE_PANEL_ITEMS = 100
-RICH_TEXT_PARAGRAPHS = 100
-REVISIONS_PER_PAGE = 5
-
-# Page count constants
-BLOG_PAGES = 100
-BREAD_PAGES = 100
-LOCATION_PAGES = 100
 
 
 class Command(BaseCommand):
     help = 'Load benchmark data for performance testing using existing content types'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--blog-pages',
+            type=int,
+            default=100,
+            help='Number of blog pages to create (default: 100)',
+        )
+        parser.add_argument(
+            '--bread-pages',
+            type=int,
+            default=100,
+            help='Number of bread pages to create (default: 100)',
+        )
+        parser.add_argument(
+            '--location-pages',
+            type=int,
+            default=100,
+            help='Number of location pages to create (default: 100)',
+        )
+        parser.add_argument(
+            '--streamfield-blocks',
+            type=int,
+            default=100,
+            help='Number of blocks in each StreamField (default: 100)',
+        )
+        parser.add_argument(
+            '--streamfield-depth',
+            type=int,
+            default=10,
+            help='Nesting depth for StreamField blocks (default: 1, max: 10)',
+        )
+        parser.add_argument(
+            '--inline-panel-items',
+            type=int,
+            default=100,
+            help='Number of inline panel items to create (default: 100)',
+        )
+        parser.add_argument(
+            '--rich-text-paragraphs',
+            type=int,
+            default=100,
+            help='Number of paragraphs in rich text fields (default: 100)',
+        )
+        parser.add_argument(
+            '--revisions-per-page',
+            type=int,
+            default=5,
+            help='Number of revisions per page (default: 5)',
+        )
+
     def handle(self, *args, **options):
-        self.stdout.write('Starting benchmark data generation.')
+        self.blog_pages = options['blog_pages']
+        self.bread_pages = options['bread_pages']
+        self.location_pages = options['location_pages']
+        self.streamfield_blocks = options['streamfield_blocks']
+        self.streamfield_depth = min(options['streamfield_depth'], 10)
+        self.inline_panel_items = options['inline_panel_items']
+        self.rich_text_paragraphs = options['rich_text_paragraphs']
+        self.revisions_per_page = options['revisions_per_page']
+
+        self.stdout.write('Starting benchmark data generation...')
 
         try:
             home_page = Site.objects.get(is_default_site=True).root_page
         except (Site.DoesNotExist, Site.MultipleObjectsReturned) as e:
-            self.stdout.write(f'Could not find home page: {e}. Please set up the site first.')
+            self.stdout.write(self.style.ERROR(f'Could not find home page: {e}'))
             return
 
-        created = self.create_blog_pages(home_page, BLOG_PAGES)
-        self.stdout.write(f'Created {created} new blog pages')
+        created = self.create_blog_pages(home_page, self.blog_pages)
+        self.stdout.write(f'Created {created} blog pages')
 
-        created = self.create_bread_pages(home_page, BREAD_PAGES)
-        self.stdout.write(f'Created {created} new bread pages')
+        created = self.create_bread_pages(home_page, self.bread_pages)
+        self.stdout.write(f'Created {created} bread pages')
 
-        created = self.create_location_pages(home_page, LOCATION_PAGES)
+        created = self.create_location_pages(home_page, self.location_pages)
         self.stdout.write(f'Created {created} new location pages')
 
         self.stdout.write('Benchmark data generation complete!')
@@ -58,7 +101,7 @@ class Command(BaseCommand):
     def _get_images_cache(self):
         """Cache images to avoid repeated queries."""
         if not hasattr(self, '_images_cache'):
-            self._images_cache = list(Image.objects.all()   )
+            self._images_cache = list(Image.objects.all())
         return self._images_cache
 
     def get_random_image(self):
@@ -145,7 +188,7 @@ class Command(BaseCommand):
         ]
         themes = ['default', 'highlight']
         text_sizes = ['default', 'large']
-        
+
         return ('block_quote', {
             'text': quote_texts[index % len(quote_texts)],
             'attribute_name': attribute_names[index % len(attribute_names)],
@@ -159,11 +202,11 @@ class Command(BaseCommand):
         """Generate StreamField blocks cycling through heading, block_quote, paragraph, image."""
         blocks = []
         block_sequence = [
-            lambda i: self._create_heading_block(i),      # 0
-            lambda i: self._create_block_quote(i),        # 1
-            lambda i: self._create_heading_block(i),      # 2
-            lambda i: self._create_image_block(i) or self._create_paragraph_block(i),  # 3
-            lambda i: self._create_paragraph_block(i, 2 if num_paragraphs > 0 else 1),  # 4
+            lambda i: self._create_heading_block(i),
+            lambda i: self._create_block_quote(i),
+            lambda i: self._create_heading_block(i),
+            lambda i: self._create_image_block(i) or self._create_paragraph_block(i),
+            lambda i: self._create_paragraph_block(i, 2 if num_paragraphs > 0 else 1),
         ]
 
         for i in range(num_blocks):
@@ -196,17 +239,17 @@ class Command(BaseCommand):
             return 0
 
         people = list(Person.objects.all())
-        if not people and INLINE_PANEL_ITEMS > 0:
+        if not people and self.inline_panel_items > 0:
             self.stdout.write(self.style.WARNING('  No Person objects found. Creating sample people.'))
             now = timezone.now()
             images = self._get_images_cache()
-            
+
             # Fixed names and job titles for consistent benchmark data
             first_names = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Emily', 'Robert', 'Jessica', 'William', 'Ashley']
             last_names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Wilson', 'Moore']
             job_titles = ['Senior Developer', 'Product Manager', 'Design Lead', 'Content Writer', 'Marketing Specialist']
-            
-            num_people = max(10, INLINE_PANEL_ITEMS)
+
+            num_people = max(10, self.inline_panel_items)
             people_to_create = []
             for i in range(num_people):
                 person = Person(
@@ -238,7 +281,7 @@ class Command(BaseCommand):
         tag_names = ['baking', 'bread', 'recipe', 'cooking', 'food', 'bakery', 'yeast', 'dough', 'pastry', 'dessert']
         tags = [Tag.objects.get_or_create(name=name)[0] for name in tag_names]
 
-        body = self.generate_streamfield(STREAMFIELD_BLOCKS, RICH_TEXT_PARAGRAPHS)
+        body = self.generate_streamfield(self.streamfield_blocks, self.rich_text_paragraphs)
 
         created_count = 0
         for i in range(count):
@@ -272,7 +315,7 @@ class Command(BaseCommand):
                 if tags:
                     page.tags.add(*random.sample(tags, min(random.randint(2, 5), len(tags))))
 
-                self._publish_page_with_revisions(page, REVISIONS_PER_PAGE)
+                self._publish_page_with_revisions(page, self.revisions_per_page)
                 created_count += 1
 
         return created_count
@@ -297,7 +340,7 @@ class Command(BaseCommand):
         ingredients = [BreadIngredient.objects.get_or_create(name=name)[0] for name in ingredient_names]
 
         start_number = BreadPage.objects.count() + 1
-        body = self.generate_streamfield(STREAMFIELD_BLOCKS)
+        body = self.generate_streamfield(self.streamfield_blocks)
 
         created_count = 0
         for i in range(count):
@@ -324,7 +367,7 @@ class Command(BaseCommand):
                 if ingredients:
                     page.ingredients.set(random.sample(ingredients, min(random.randint(3, 8), len(ingredients))))
 
-                self._publish_page_with_revisions(page, REVISIONS_PER_PAGE)
+                self._publish_page_with_revisions(page, self.revisions_per_page)
                 created_count += 1
 
         return created_count
@@ -347,7 +390,7 @@ class Command(BaseCommand):
         # Define hours for weekdays and weekends
         weekday_hours = {'opening': time(9, 0), 'closing': time(17, 0)}
         weekend_hours = {'opening': time(10, 0), 'closing': time(16, 0)}
-        
+
         # Map days to their respective hours
         days_config = {
             'MON': weekday_hours,
@@ -358,7 +401,7 @@ class Command(BaseCommand):
             'SAT': weekend_hours,
             'SUN': weekend_hours,
         }
-        
+
         # Create operating hours using a loop
         operating_hours = [
             LocationOperatingHours(
@@ -384,7 +427,7 @@ class Command(BaseCommand):
                   'Rome', 'Madrid', 'Seoul', 'San Francisco', 'Chicago', 'Boston']
 
         start_number = LocationPage.objects.count() + 1
-        body = self.generate_streamfield(STREAMFIELD_BLOCKS)
+        body = self.generate_streamfield(self.streamfield_blocks)
 
         created_count = 0
         for i in range(count):
@@ -409,7 +452,7 @@ class Command(BaseCommand):
                 page.refresh_from_db()
 
                 self._create_operating_hours(page)
-                self._publish_page_with_revisions(page, REVISIONS_PER_PAGE)
+                self._publish_page_with_revisions(page, self.revisions_per_page)
                 created_count += 1
 
         return created_count
