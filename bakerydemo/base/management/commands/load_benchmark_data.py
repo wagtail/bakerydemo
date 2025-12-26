@@ -91,7 +91,7 @@ class Command(BaseCommand):
         self.create_blog_pages()
         self.create_inline_panel_items()
         self.create_benchmark_snippets()
-        self.create_revisionss()
+        self.create_revisions()
         self.create_translations()
         self.generate_streamfield(self.streamfield_blocks_count, self.paragraphs_count, self.streamfield_depth)
 
@@ -262,6 +262,7 @@ class Command(BaseCommand):
                 'caption': captions[index % len(captions)],
                 'attribution': attributions[index % len(attributions)],
             })
+        return None
 
     def _create_block_quote(self, index):
         """Create a block quote with fixed content."""
@@ -326,7 +327,7 @@ class Command(BaseCommand):
 
         return blocks
 
-    def create_revisionss(self):
+    def create_revisions(self):
         self.stdout.write(f'  Creating revisions for pages...')
 
         pages = BlogPage.objects.all()[:10]
@@ -346,9 +347,9 @@ class Command(BaseCommand):
             page.save_revision()
 
             if (rev_num + 1) % 1000 == 0:
-                self.stdout.write(f'  Progress: {rev_num:,}/{revisions:,} revisions created for page ID {page.title}.')
+                self.stdout.write(f' Progress:{rev_num:,}/{revisions:,} revisions created for page title {page.title}.')
 
-        self.stdout.write(f'  ✓ Created {revisions} for page {page.title}')
+        self.stdout.write(f'  ✓ Created {revisions} revisions for page {page.title}')
 
         page.introduction = original_introduction
         page.refresh_from_db()
@@ -410,7 +411,7 @@ class Command(BaseCommand):
                 if created_count % 10 == 0:
                     self.stdout.write(f'  Progress: {created_count}/{len(locales)} translations created...')
             except Exception as e:
-                self.stdout.write(f'  Error creating translation for {locale.language_code}: {str(e)[:50]}')
+                self.stdout.write(f'  Error creating translation for {locale.language_code}: {str(e)}')
 
         self.stdout.write(f'  ✓ Created {created_count} page translations across {len(locales)} locales\n')
 
