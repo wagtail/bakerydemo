@@ -3,9 +3,11 @@ Management command to load benchmark data for performance testing.
 """
 import random
 from datetime import date, time
+from io import BytesIO
 
+from PIL import Image as PILImage
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management.base import BaseCommand
-from django.db import transaction
 from django.utils import lorem_ipsum, timezone
 from django.utils.text import slugify
 from taggit.models import Tag
@@ -23,25 +25,25 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--blog-pages',
+            '--blog-pages-count',
             type=int,
-            default=10000,
-            help='Number of blog pages to create (default: 10000, for 100K scale use 33334)',
+            default=1000,
+            help='Number of blog pages to create (default: 33334, for 100K total)',
         )
         parser.add_argument(
-            '--bread-pages',
+            '--bread-pages-count',
             type=int,
-            default=10000,
-            help='Number of bread pages to create (default: 10000, for 100K scale use 33333)',
+            default=1000,
+            help='Number of bread pages to create (default: 33333, for 100K total)',
         )
         parser.add_argument(
-            '--location-pages',
+            '--location-pages-count',
             type=int,
-            default=10000,
-            help='Number of location pages to create (default: 10000, for 100K scale use 33333)',
+            default=1000,
+            help='Number of location pages to create (default: 33333, for 100K total)',
         )
         parser.add_argument(
-            '--streamfield-blocks',
+            '--streamfield-blocks-count',
             type=int,
             default=100,
             help='Number of blocks in each StreamField (default: 100)',
@@ -53,76 +55,79 @@ class Command(BaseCommand):
             help='Nesting depth for StreamField blocks (default: 10, max: 10)',
         )
         parser.add_argument(
-            '--inline-panel-items',
+            '--inline-panel-items-count',
             type=int,
             default=100,
             help='Number of inline panel items to create (default: 100)',
         )
         parser.add_argument(
-            '--rich-text-paragraphs',
+            '--rich-text-paragraphs-count',
             type=int,
             default=100,
             help='Number of paragraphs in rich text fields (default: 100)',
         )
         parser.add_argument(
-            '--revisions-per-page',
+            '--revisions-per-page-count',
             type=int,
-            default=34,
-            help='Number of revisions per page (default: 34, for 1M total with 30K pages)',
+            default=10000,
+            help='Number of revisions per page (default: 10, for 1M total with 100K pages)',
         )
         parser.add_argument(
             '--page-tree-depth',
             type=int,
-            default=1,
-            help='Depth of page tree hierarchy (default: 1, max: 10)',
+            default=10,
+            help='Depth of page tree hierarchy (default: 10, max: 10)',
         )
         parser.add_argument(
-            '--create-images',
+            '--images-count',
             type=int,
-            default=0,
-            help='Number of images to create (default: 0, for scale testing use 10000)',
+            default=100,
+            help='Number of images to create (default: 1000, range: hundreds to 10000)',
         )
         parser.add_argument(
-            '--create-snippets',
-            action='store_true',
-            help='Create 1M snippet instances (BreadType, Country, BreadIngredient)',
+            '--snippets-count',
+            type=int,
+            default=1000000,
+            help='Number of snippet instances to create (default: 1000000)',
         )
 
     def handle(self, *args, **options):
-        self.blog_pages = options['blog_pages']
-        self.bread_pages = options['bread_pages']
-        self.location_pages = options['location_pages']
-        self.streamfield_blocks = options['streamfield_blocks']
+        self.set_input_params(options)
+        self.print_configurations()
+        self.create_benchmark_images()
+        self.create_benchmark_snippets()
+        self.create_blog_pages()
+        self.create_bread_pages(self.bread_pages_count)
+        self.create_location_pages(self.location_pages_count)
+        self.create_revisions_for_page()
+
+        self.stdout.write(self.style.SUCCESS('\n=== Benchmark Data Generation Complete! ==='))
+
+    def set_input_params(self, options):
+        self.blog_pages_count = options['blog_pages_count']
+        self.bread_pages_count = options['bread_pages_count']
+        self.location_pages_count = options['location_pages_count']
+        self.streamfield_blocks_count = options['streamfield_blocks_count']
         self.streamfield_depth = min(options['streamfield_depth'], 10)
-        self.inline_panel_items = options['inline_panel_items']
-        self.rich_text_paragraphs = options['rich_text_paragraphs']
-        self.revisions_per_page = options['revisions_per_page']
+        self.inline_panel_items_count = options['inline_panel_items_count']
+        self.rich_text_paragraphs_count = options['rich_text_paragraphs_count']
+        self.revisions_per_page_count = options['revisions_per_page_count']
         self.page_tree_depth = min(options['page_tree_depth'], 10)
-        self.create_images = options['create_images']
-        self.create_snippets = options['create_snippets']
+        self.images_count = options['images_count']
+        self.snippets_count = options['snippets_count']
 
-        self.stdout.write('Starting benchmark data generation...')
-
-        # Create images if requested
-        if self.create_images > 0:
-            created = self.create_benchmark_images(self.create_images)
-            self.stdout.write(f'Created {created} images')
-
-        # Create snippets if requested
-        if self.create_snippets:
-            created = self.create_benchmark_snippets()
-            self.stdout.write(f'Created {created} snippet instances')
-
-        created = self.create_blog_pages(self.blog_pages)
-        self.stdout.write(f'Created {created} blog pages')
-
-        created = self.create_bread_pages(self.bread_pages)
-        self.stdout.write(f'Created {created} bread pages')
-
-        created = self.create_location_pages(self.location_pages)
-        self.stdout.write(f'Created {created} location pages')
-
-        self.stdout.write('Benchmark data generation complete!')
+    def print_configurations(self):
+        self.stdout.write('\nConfiguration:')
+        self.stdout.write(f'  Blog pages: {self.blog_pages_count}')
+        self.stdout.write(f'  Bread pages: {self.bread_pages_count}')
+        self.stdout.write(f'  Location pages: {self.location_pages_count}')
+        self.stdout.write(f'  StreamField blocks: {self.streamfield_blocks_count} (depth: {self.streamfield_depth})')
+        self.stdout.write(f'  Inline panel items: {self.inline_panel_items_count}')
+        self.stdout.write(f'  Rich text paragraphs: {self.rich_text_paragraphs_count}')
+        self.stdout.write(f'  Revisions per page: {self.revisions_per_page_count}')
+        self.stdout.write(f'  Page tree depth: {self.page_tree_depth}')
+        self.stdout.write(f'  Images count: {self.images_count}')
+        self.stdout.write(f'  Snippets count: {self.snippets_count}\n')
 
     def _get_images_cache(self):
         """Cache images to avoid repeated queries."""
@@ -130,22 +135,22 @@ class Command(BaseCommand):
             self._images_cache = list(Image.objects.all())
         return self._images_cache
 
-    def create_benchmark_images(self, count):
+    def create_benchmark_images(self):
         """Create benchmark images with solid color placeholders."""
-        from io import BytesIO
-        from PIL import Image as PILImage
-        from django.core.files.uploadedfile import InMemoryUploadedFile
 
+        self.stdout.write('  Initializing image creation...')
         created_count = 0
+        skipped_count = 0
         colors = [
             (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
             (255, 0, 255), (0, 255, 255), (128, 128, 128), (255, 128, 0),
         ]
 
-        for i in range(count):
+        for i in range(self.images_count):
             title = f"Benchmark Image {i + 1}"
 
             if Image.objects.filter(title=title).exists():
+                skipped_count += 1
                 continue
 
             # Create a simple colored image
@@ -166,66 +171,35 @@ class Command(BaseCommand):
             wagtail_image.save()
             created_count += 1
 
-            if created_count % 100 == 0:
-                self.stdout.write(f'  Created {created_count} images...')
-
         # Clear the cache so new images are picked up
         if hasattr(self, '_images_cache'):
             del self._images_cache
+            self.stdout.write('  Cleared image cache')
 
-        return created_count
+        self.stdout.write(f'  Skipped {skipped_count} existing images')
+        self.stdout.write(self.style.SUCCESS(f'✓ Created {created_count} images\n'))
 
     def create_benchmark_snippets(self):
-        """Create 1M snippet instances (BreadType, Country, BreadIngredient)."""
+        """Create snippet instances (BreadType, Country, BreadIngredient)."""
+        self.stdout.write('  Starting snippet creation in bulk batches...')
         created_count = 0
         batch_size = 1000
 
-        # Create BreadType snippets (~333K)
-        self.stdout.write('  Creating BreadType snippets...')
-        bread_types = []
-        for i in range(333334):
-            bread_types.append(BreadType(title=f"Bread Type {i + 1}"))
-            if len(bread_types) >= batch_size:
-                BreadType.objects.bulk_create(bread_types, ignore_conflicts=True)
-                created_count += len(bread_types)
-                bread_types = []
-                if created_count % 10000 == 0:
-                    self.stdout.write(f'    Created {created_count} snippets...')
-        if bread_types:
+        for i in range(self.snippets_count // (batch_size * 3) + self.snippets_count % 3):
+            bread_types = [BreadType(title=f"Bread Type {i * j + 1}") for j in range(batch_size)]
             BreadType.objects.bulk_create(bread_types, ignore_conflicts=True)
-            created_count += len(bread_types)
 
-        # Create Country snippets (~333K)
-        self.stdout.write('  Creating Country snippets...')
-        countries = []
-        for i in range(333333):
-            countries.append(Country(title=f"Country {i + 1}"))
-            if len(countries) >= batch_size:
-                Country.objects.bulk_create(countries, ignore_conflicts=True)
-                created_count += len(countries)
-                countries = []
-                if created_count % 10000 == 0:
-                    self.stdout.write(f'    Created {created_count} snippets...')
-        if countries:
+            countries = [Country(title=f"Country {i * j + 1}") for j in range(batch_size)]
             Country.objects.bulk_create(countries, ignore_conflicts=True)
-            created_count += len(countries)
 
-        # Create BreadIngredient snippets (~333K)
-        self.stdout.write('  Creating BreadIngredient snippets...')
-        ingredients = []
-        for i in range(333333):
-            ingredients.append(BreadIngredient(name=f"Ingredient {i + 1}"))
-            if len(ingredients) >= batch_size:
-                BreadIngredient.objects.bulk_create(ingredients, ignore_conflicts=True)
-                created_count += len(ingredients)
-                ingredients = []
-                if created_count % 10000 == 0:
-                    self.stdout.write(f'    Created {created_count} snippets...')
-        if ingredients:
+            ingredients = [BreadIngredient(name=f"Ingredient {i * j + 1}") for j in range(batch_size)]
             BreadIngredient.objects.bulk_create(ingredients, ignore_conflicts=True)
-            created_count += len(ingredients)
 
-        return created_count
+            created_count += batch_size*3
+            if created_count % 60000 == 0:
+                self.stdout.write(f'    Progress: {created_count:,} total snippets created...')
+
+        self.stdout.write(f'Created {created_count} snippet instances')
 
     def get_random_image(self):
         """Return a random image or None if no images exist."""
@@ -359,7 +333,13 @@ class Command(BaseCommand):
 
         return blocks
 
-    def _publish_page_with_revisions(self, page, revisions):
+    def create_revisions_for_page(self):
+        self.stdout.write(f'  Creating {self.revisions_per_page_count:,} revisions for a page...')
+
+        page = BlogPage.objects.first()
+        self.publish_page_with_revisions(page, self.revisions_per_page_count)
+
+    def publish_page_with_revisions(self, page, revisions):
         """Publish page and create additional draft revisions."""
         original_introduction = page.introduction
 
@@ -371,193 +351,147 @@ class Command(BaseCommand):
             page.introduction = f"[Revision {rev_num + 2}] " + original_introduction
             page.save_revision()
 
+            # Progress every 1000 pages
+            if rev_num % 1000 == 0:
+                self.stdout.write(f'  Progress: {rev_num:,}/{revisions:,} revisions created...')
+
         page.introduction = original_introduction
         page.refresh_from_db()
 
 
-    def create_blog_pages(self, count):
+    def create_blog_pages(self):
         """Create blog pages with relationships, tags, and streamfield content."""
+        self.stdout.write('  Checking for blog index page...')
         blog_index = BlogIndexPage.objects.filter(slug='blog').first()
         if not blog_index:
             self.stdout.write(self.style.WARNING('  Blog index not found. Skipping blog pages.'))
             return 0
+        self.stdout.write(f'  ✓ Found blog index: {blog_index.title}')
 
-        people = list(Person.objects.all())
-        if not people and self.inline_panel_items > 0:
-            # ...existing code for creating people...
-            self.stdout.write(self.style.WARNING('  No Person objects found. Creating sample people.'))
+        # Only load/create 10 people objects (not 100+)
+        self.stdout.write('  Loading existing Person objects...')
+        people = list(Person.objects.all()[:10])
+        if not people:
+            self.stdout.write(self.style.WARNING('  No Person objects found. Creating 10 sample people...'))
             now = timezone.now()
-            images = self._get_images_cache()
+            images = self._get_images_cache()[:10] if self._get_images_cache() else []
 
-            # Fixed names and job titles for consistent benchmark data
             first_names = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Emily', 'Robert', 'Jessica', 'William', 'Ashley']
             last_names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Wilson', 'Moore']
-            job_titles = ['Senior Developer', 'Product Manager', 'Design Lead', 'Content Writer', 'Marketing Specialist']
+            job_titles = ['Developer', 'Manager', 'Designer', 'Writer', 'Specialist']
 
-            num_people = max(10, self.inline_panel_items)
-            people_to_create = []
-            for i in range(num_people):
-                person = Person(
-                    first_name=first_names[i % len(first_names)],
-                    last_name=last_names[i % len(last_names)],
-                    job_title=job_titles[i % len(job_titles)],
+            people_to_create = [
+                Person(
+                    first_name=first_names[i],
+                    last_name=last_names[i],
+                    job_title=job_titles[i % 5],
                     live=True,
                     first_published_at=now,
                     last_published_at=now,
-                    image=images[i % len(images)] if images else None,
+                    image=images[i] if images and i < len(images) else None,
                 )
-                people_to_create.append(person)
+                for i in range(10)
+            ]
             Person.objects.bulk_create(people_to_create)
-            people = list(Person.objects.all())
-
-        # Assign images to existing Person objects that don't have images
-        people_without_images = [p for p in people if not p.image]
-        if people_without_images:
-            images = self._get_images_cache()
-            if images:
-                for i, person in enumerate(people_without_images):
-                    person.image = images[i % len(images)]
-                Person.objects.bulk_update(people_without_images, ['image'])
-                # Refresh the people list
-                people = list(Person.objects.all())
+            people = list(Person.objects.all()[:10])
+            self.stdout.write(f'  ✓ Created {len(people)} Person objects')
+        else:
+            self.stdout.write(f'  ✓ Found {len(people)} existing Person objects')
 
         start_number = BlogPage.objects.count() + 1
+        self.stdout.write(f'  Starting page number: {start_number}')
 
-        tag_names = ['baking', 'bread', 'recipe', 'cooking', 'food', 'bakery', 'yeast', 'dough', 'pastry', 'dessert']
+        self.stdout.write('  Preparing tags...')
+        tag_names = ['baking', 'bread', 'recipe', 'cooking', 'food']
         tags = [Tag.objects.get_or_create(name=name)[0] for name in tag_names]
+        self.stdout.write(f'  ✓ Prepared {len(tags)} tags')
 
-        body = self.generate_streamfield(self.streamfield_blocks, self.rich_text_paragraphs, self.streamfield_depth)
+        # Create lightweight StreamField template
+        self.stdout.write(f'  Generating lightweight StreamField template...')
+        body_template = self.generate_streamfield(self.streamfield_blocks_count, 2, 1)
+        self.stdout.write(f'  ✓ Generated StreamField template (reusable)')
 
+        # Use add_child (required for Wagtail) but optimize by reducing operations
+        self.stdout.write(f'  Creating {self.blog_pages_count:,} blog pages...')
         created_count = 0
-        current_parent = blog_index
-        pages_at_current_level = []
 
-        for i in range(count):
+        for i in range(self.blog_pages_count):
             page_number = start_number + i
             title = f"Blog Post {page_number}"
-            slug = slugify(title)
 
-            if BlogPage.objects.filter(slug=slug).exists():
-                continue
+            page = BlogPage(
+                title=title,
+                slug=slugify(title),
+                subtitle=lorem_ipsum.words(5, common=False),
+                introduction=lorem_ipsum.paragraph(),
+                body=body_template,
+                image=self.get_random_image(),
+                date_published=date.today(),
+            )
 
-            # Implement tree depth: create hierarchy of pages
-            level = 1
-            if self.page_tree_depth > 1:
-                # Calculate which level this page should be at
-                level = (i % self.page_tree_depth) + 1
+            blog_index.add_child(instance=page)
 
-                if level == 1:
-                    current_parent = blog_index
-                    pages_at_current_level = []
-                elif level > 1 and pages_at_current_level:
-                    # Use the last page from previous level as parent
-                    current_parent = pages_at_current_level[-1]
-
-            with transaction.atomic():
-                page = BlogPage(
-                    title=title,
-                    slug=slug,
-                    subtitle=lorem_ipsum.words(random.randint(5, 12), common=False),
-                    introduction=self._generate_paragraph(),
-                    body=body,
-                    image=self.get_random_image(),
-                    date_published=date.today(),
+            if people:
+                BlogPersonRelationship.objects.create(
+                    page=page,
+                    person=people[i % len(people)]
                 )
-                current_parent.add_child(instance=page)
-                page.refresh_from_db()
 
-                if people:
-                    selected_person = random.choice(people)
-                    BlogPersonRelationship.objects.create(
-                        page=page,
-                        person=selected_person
-                    )
+            created_count += 1
 
-                if tags:
-                    page.tags.add(*random.sample(tags, min(random.randint(2, 5), len(tags))))
+            # Progress every 1000 pages
+            if created_count % 1000 == 0:
+                self.stdout.write(f'  Progress: {created_count:,}/{self.blog_pages_count:,} blog pages created...')
 
-                self._publish_page_with_revisions(page, self.revisions_per_page)
-                created_count += 1
-
-                # Track pages at current level for hierarchy
-                if self.page_tree_depth > 1:
-                    if level == len(pages_at_current_level) + 1:
-                        pages_at_current_level.append(page)
-                    elif level <= len(pages_at_current_level):
-                        pages_at_current_level = pages_at_current_level[:level-1] + [page]
-
-        return created_count
+        self.stdout.write(f'  ✓ Created {created_count:,} pages with relationships')
 
     def create_bread_pages(self, count):
         """Create bread pages with random types, origins, and ingredients."""
+        self.stdout.write('  Checking for breads index page...')
         breads_index = BreadsIndexPage.objects.filter(slug='breads').first()
         if not breads_index:
             self.stdout.write(self.style.WARNING('  Breads index not found. Skipping bread pages.'))
             return 0
+        self.stdout.write(f'  ✓ Found breads index: {breads_index.title}')
 
-        bread_type_names = ['Sourdough', 'Baguette', 'Ciabatta', 'Rye', 'Whole Wheat',
-                            'Multigrain', 'Pumpernickel', 'Focaccia', 'Challah', 'Brioche',
-                            'Naan', 'Pita', 'Cornbread', 'Flatbread', 'Tortilla']
-        country_names = ['France', 'Italy', 'Germany', 'United States', 'United Kingdom',
-                         'Spain', 'Greece', 'Turkey', 'India', 'Mexico', 'Canada', 'Australia']
-        ingredient_names = ['Flour', 'Water', 'Yeast', 'Salt', 'Sugar', 'Olive Oil',
-                            'Butter', 'Eggs', 'Milk', 'Honey', 'Seeds', 'Nuts']
+        bread_type_names = ['Sourdough', 'Baguette', 'Ciabatta', 'Rye', 'Whole Wheat']
+        country_names = ['France', 'Italy', 'Germany', 'United States', 'United Kingdom']
 
         bread_types = [BreadType.objects.get_or_create(title=name)[0] for name in bread_type_names]
         countries = [Country.objects.get_or_create(title=name)[0] for name in country_names]
-        ingredients = [BreadIngredient.objects.get_or_create(name=name)[0] for name in ingredient_names]
 
         start_number = BreadPage.objects.count() + 1
-        body = self.generate_streamfield(self.streamfield_blocks, 0, self.streamfield_depth)
+        self.stdout.write(f'  Starting page number: {start_number}')
 
+        # Reuse lightweight StreamField template
+        self.stdout.write(f'  Generating lightweight StreamField template...')
+        body_template = self.generate_streamfield(self.streamfield_blocks_count, 0, 1)
+        self.stdout.write(f'  ✓ Generated StreamField template')
+
+        self.stdout.write(f'  Creating {count:,} bread pages...')
         created_count = 0
-        current_parent = breads_index
-        pages_at_current_level = []
 
         for i in range(count):
             page_number = start_number + i
-            title = f"{random.choice(bread_type_names)} #{page_number}"
-            slug = slugify(title)
+            title = f"{bread_type_names[i % len(bread_type_names)]} #{page_number}"
 
-            if BreadPage.objects.filter(slug=slug).exists():
-                continue
+            page = BreadPage(
+                title=title,
+                slug=slugify(title),
+                introduction=lorem_ipsum.paragraph(),
+                body=body_template,
+                bread_type=bread_types[i % len(bread_types)],
+                origin=countries[i % len(countries)],
+                image=self.get_random_image(),
+            )
 
-            # Implement tree depth
-            level = 1
-            if self.page_tree_depth > 1:
-                level = (i % self.page_tree_depth) + 1
-                if level == 1:
-                    current_parent = breads_index
-                    pages_at_current_level = []
-                elif level > 1 and pages_at_current_level:
-                    current_parent = pages_at_current_level[-1]
+            breads_index.add_child(instance=page)
+            created_count += 1
 
-            with transaction.atomic():
-                page = BreadPage(
-                    title=title,
-                    slug=slug,
-                    introduction=self._generate_paragraph(),
-                    body=body,
-                    bread_type=random.choice(bread_types),
-                    origin=random.choice(countries) if countries else None,
-                    image=self.get_random_image(),
-                )
-                current_parent.add_child(instance=page)
-                page.refresh_from_db()
+            if created_count % 1000 == 0:
+                self.stdout.write(f'  Progress: {created_count:,}/{count:,} bread pages created...')
 
-                if ingredients:
-                    page.ingredients.set(random.sample(ingredients, min(random.randint(3, 8), len(ingredients))))
-
-                self._publish_page_with_revisions(page, self.revisions_per_page)
-                created_count += 1
-
-                if self.page_tree_depth > 1:
-                    if level == len(pages_at_current_level) + 1:
-                        pages_at_current_level.append(page)
-                    elif level <= len(pages_at_current_level):
-                        pages_at_current_level = pages_at_current_level[:level-1] + [page]
-
-        return created_count
+        self.stdout.write(f'  ✓ Created {created_count:,} pages')
 
     def _generate_location_address(self, city):
         """Generate a random address for the given city."""
@@ -604,61 +538,45 @@ class Command(BaseCommand):
 
     def create_location_pages(self, count):
         """Create location pages with addresses, coordinates, and operating hours."""
+        self.stdout.write('  Checking for locations index page...')
         locations_index = LocationsIndexPage.objects.filter(slug='locations').first()
         if not locations_index:
             self.stdout.write(self.style.WARNING('  Locations index not found. Skipping location pages.'))
             return 0
+        self.stdout.write(f'  ✓ Found locations index: {locations_index.title}')
 
-        cities = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Berlin',
-                  'Toronto', 'Mumbai', 'Singapore', 'Dubai', 'Barcelona', 'Amsterdam',
-                  'Rome', 'Madrid', 'Seoul', 'San Francisco', 'Chicago', 'Boston']
+        cities = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Berlin']
 
         start_number = LocationPage.objects.count() + 1
-        body = self.generate_streamfield(self.streamfield_blocks, 0, self.streamfield_depth)
+        self.stdout.write(f'  Starting page number: {start_number}')
 
+        self.stdout.write(f'  Generating lightweight StreamField template...')
+        body_template = self.generate_streamfield(min(10, self.streamfield_blocks_count), 0, 1)
+        self.stdout.write(f'  ✓ Generated StreamField template')
+
+        # Use add_child (required for Wagtail)
+        self.stdout.write(f'  Creating {count:,} location pages...')
         created_count = 0
-        current_parent = locations_index
-        pages_at_current_level = []
 
         for i in range(count):
-            city = random.choice(cities)
-            title = f"{city} Location #{start_number + i}"
-            slug = slugify(title)
+            city = cities[i % len(cities)]
+            page_number = start_number + i
+            title = f"{city} Location #{page_number}"
 
-            if LocationPage.objects.filter(slug=slug).exists():
-                continue
+            page = LocationPage(
+                title=title,
+                slug=slugify(title),
+                introduction=lorem_ipsum.paragraph(),
+                body=body_template,
+                address=self._generate_location_address(city),
+                lat_long=self._generate_lat_long(),
+                image=self.get_random_image(),
+            )
 
-            # Implement tree depth
-            level = 1
-            if self.page_tree_depth > 1:
-                level = (i % self.page_tree_depth) + 1
-                if level == 1:
-                    current_parent = locations_index
-                    pages_at_current_level = []
-                elif level > 1 and pages_at_current_level:
-                    current_parent = pages_at_current_level[-1]
+            locations_index.add_child(instance=page)
+            created_count += 1
 
-            with transaction.atomic():
-                page = LocationPage(
-                    title=title,
-                    slug=slug,
-                    introduction=self._generate_paragraph(),
-                    body=body,
-                    address=self._generate_location_address(city),
-                    lat_long=self._generate_lat_long(),
-                    image=self.get_random_image(),
-                )
-                current_parent.add_child(instance=page)
-                page.refresh_from_db()
+            if created_count % 1000 == 0:
+                self.stdout.write(f'  Progress: {created_count:,}/{count:,} location pages created...')
 
-                self._create_operating_hours(page)
-                self._publish_page_with_revisions(page, self.revisions_per_page)
-                created_count += 1
-
-                if self.page_tree_depth > 1:
-                    if level == len(pages_at_current_level) + 1:
-                        pages_at_current_level.append(page)
-                    elif level <= len(pages_at_current_level):
-                        pages_at_current_level = pages_at_current_level[:level-1] + [page]
-
-        return created_count
+        self.stdout.write(f'  ✓ Created {created_count:,} pages')
