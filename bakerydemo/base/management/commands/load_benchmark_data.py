@@ -25,7 +25,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--blog-pages-count',
             type=int,
-            default=1000,
+            default=100000,
             help='Number of blog pages to create',
         )
         parser.add_argument(
@@ -55,7 +55,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--revisions-per-page-count',
             type=int,
-            default=100,
+            default=100000,
             help='Number of revisions per page',
         )
         parser.add_argument(
