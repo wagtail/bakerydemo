@@ -2,22 +2,20 @@
 Management command to load benchmark data for performance testing.
 """
 import random
-from datetime import date, time
+from datetime import date
 from io import BytesIO
 
 from PIL import Image as PILImage
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management.base import BaseCommand
 from django.utils import lorem_ipsum, timezone
-from django.utils.text import slugify
-from taggit.models import Tag
 from wagtail.images.models import Image
+from wagtail.models import Locale
 from wagtail.rich_text import RichText
 
 from bakerydemo.base.models import Person
 from bakerydemo.blog.models import BlogIndexPage, BlogPage, BlogPersonRelationship
-from bakerydemo.breads.models import BreadIngredient, BreadPage, BreadsIndexPage, BreadType, Country
-from bakerydemo.locations.models import LocationOperatingHours, LocationPage, LocationsIndexPage
+from bakerydemo.breads.models import BreadIngredient, BreadType, Country
 
 
 class Command(BaseCommand):
@@ -28,106 +26,100 @@ class Command(BaseCommand):
             '--blog-pages-count',
             type=int,
             default=1000,
-            help='Number of blog pages to create (default: 33334, for 100K total)',
-        )
-        parser.add_argument(
-            '--bread-pages-count',
-            type=int,
-            default=1000,
-            help='Number of bread pages to create (default: 33333, for 100K total)',
-        )
-        parser.add_argument(
-            '--location-pages-count',
-            type=int,
-            default=1000,
-            help='Number of location pages to create (default: 33333, for 100K total)',
+            help='Number of blog pages to create',
         )
         parser.add_argument(
             '--streamfield-blocks-count',
             type=int,
             default=100,
-            help='Number of blocks in each StreamField (default: 100)',
+            help='Number of blocks in each StreamField',
         )
         parser.add_argument(
             '--streamfield-depth',
             type=int,
             default=10,
-            help='Nesting depth for StreamField blocks (default: 10, max: 10)',
+            help='Nesting depth for StreamField blocks',
         )
         parser.add_argument(
             '--inline-panel-items-count',
             type=int,
             default=100,
-            help='Number of inline panel items to create (default: 100)',
+            help='Number of inline panel items to create',
         )
         parser.add_argument(
-            '--rich-text-paragraphs-count',
+            '--paragraphs-count',
             type=int,
             default=100,
-            help='Number of paragraphs in rich text fields (default: 100)',
+            help='Number of paragraphs in rich text fields',
         )
         parser.add_argument(
             '--revisions-per-page-count',
             type=int,
-            default=10000,
-            help='Number of revisions per page (default: 10, for 1M total with 100K pages)',
+            default=100,
+            help='Number of revisions per page',
         )
         parser.add_argument(
             '--page-tree-depth',
             type=int,
             default=10,
-            help='Depth of page tree hierarchy (default: 10, max: 10)',
+            help='Depth of page tree hierarchy',
         )
         parser.add_argument(
             '--images-count',
             type=int,
             default=100,
-            help='Number of images to create (default: 1000, range: hundreds to 10000)',
+            help='Number of images to create',
         )
         parser.add_argument(
             '--snippets-count',
             type=int,
-            default=1000000,
-            help='Number of snippet instances to create (default: 1000000)',
+            default=100000,
+            help='Number of snippet instances to create',
+        )
+        parser.add_argument(
+            '--translations-count',
+            type=int,
+            default=100,
+            help='Number of language translations to create',
         )
 
     def handle(self, *args, **options):
         self.set_input_params(options)
         self.print_configurations()
+
         self.create_benchmark_images()
-        self.create_benchmark_snippets()
         self.create_blog_pages()
-        self.create_bread_pages(self.bread_pages_count)
-        self.create_location_pages(self.location_pages_count)
-        self.create_revisions_for_page()
+        self.create_inline_panel_items()
+        self.create_benchmark_snippets()
+        self.create_revisionss()
+        self.create_translations()
+        self.generate_streamfield(self.streamfield_blocks_count, self.paragraphs_count, self.streamfield_depth)
 
         self.stdout.write(self.style.SUCCESS('\n=== Benchmark Data Generation Complete! ==='))
 
     def set_input_params(self, options):
         self.blog_pages_count = options['blog_pages_count']
-        self.bread_pages_count = options['bread_pages_count']
-        self.location_pages_count = options['location_pages_count']
         self.streamfield_blocks_count = options['streamfield_blocks_count']
         self.streamfield_depth = min(options['streamfield_depth'], 10)
         self.inline_panel_items_count = options['inline_panel_items_count']
-        self.rich_text_paragraphs_count = options['rich_text_paragraphs_count']
+        self.paragraphs_count = options['paragraphs_count']
         self.revisions_per_page_count = options['revisions_per_page_count']
         self.page_tree_depth = min(options['page_tree_depth'], 10)
         self.images_count = options['images_count']
         self.snippets_count = options['snippets_count']
+        self.translations_count = min(options['translations_count'], 100)
 
     def print_configurations(self):
         self.stdout.write('\nConfiguration:')
         self.stdout.write(f'  Blog pages: {self.blog_pages_count}')
-        self.stdout.write(f'  Bread pages: {self.bread_pages_count}')
-        self.stdout.write(f'  Location pages: {self.location_pages_count}')
         self.stdout.write(f'  StreamField blocks: {self.streamfield_blocks_count} (depth: {self.streamfield_depth})')
         self.stdout.write(f'  Inline panel items: {self.inline_panel_items_count}')
-        self.stdout.write(f'  Rich text paragraphs: {self.rich_text_paragraphs_count}')
+        self.stdout.write(f'  Rich text paragraphs: {self.paragraphs_count}')
         self.stdout.write(f'  Revisions per page: {self.revisions_per_page_count}')
         self.stdout.write(f'  Page tree depth: {self.page_tree_depth}')
         self.stdout.write(f'  Images count: {self.images_count}')
-        self.stdout.write(f'  Snippets count: {self.snippets_count}\n')
+        self.stdout.write(f'  Snippets count: {self.snippets_count}')
+        self.stdout.write(f'  Translations count: {self.translations_count}\n')
 
     def _get_images_cache(self):
         """Cache images to avoid repeated queries."""
@@ -185,21 +177,22 @@ class Command(BaseCommand):
         created_count = 0
         batch_size = 1000
 
-        for i in range(self.snippets_count // (batch_size * 3) + self.snippets_count % 3):
-            bread_types = [BreadType(title=f"Bread Type {i * j + 1}") for j in range(batch_size)]
+        for batch_num in range((self.snippets_count + batch_size * 3 - 1) // (batch_size * 3)):
+            bread_types = [BreadType(title=f"Bread Type {batch_num * batch_size + j + 1}") for j in range(batch_size)]
             BreadType.objects.bulk_create(bread_types, ignore_conflicts=True)
 
-            countries = [Country(title=f"Country {i * j + 1}") for j in range(batch_size)]
+            countries = [Country(title=f"Country {batch_num * batch_size + j + 1}") for j in range(batch_size)]
             Country.objects.bulk_create(countries, ignore_conflicts=True)
 
-            ingredients = [BreadIngredient(name=f"Ingredient {i * j + 1}") for j in range(batch_size)]
+            ingredients = [BreadIngredient(name=f"Ingredient {batch_num * batch_size + j + 1}")
+                           for j in range(batch_size)]
             BreadIngredient.objects.bulk_create(ingredients, ignore_conflicts=True)
 
-            created_count += batch_size*3
-            if created_count % 60000 == 0:
+            created_count += batch_size * 3
+            if created_count % (batch_size * 90) == 0:
                 self.stdout.write(f'    Progress: {created_count:,} total snippets created...')
 
-        self.stdout.write(f'Created {created_count} snippet instances')
+        self.stdout.write(f'Total available snippet instances are: {created_count}')
 
     def get_random_image(self):
         """Return a random image or None if no images exist."""
@@ -233,10 +226,10 @@ class Command(BaseCommand):
     def _create_paragraph_block(self, index, num_paragraphs=2):
         """Create a paragraph block with fixed paragraphs."""
         fixed_paragraphs = [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            'Lorem ipsum dolor st amet, consectetur adiscing elit. Sed do eimod temport labore et dolore magna aliqua.',
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo cequat.',
             'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt m anim id est laborum.',
             'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
         ]
         # Repeat paragraphs to reach the desired count
@@ -269,7 +262,6 @@ class Command(BaseCommand):
                 'caption': captions[index % len(captions)],
                 'attribution': attributions[index % len(attributions)],
             })
-        return None
 
     def _create_block_quote(self, index):
         """Create a block quote with fixed content."""
@@ -323,7 +315,8 @@ class Command(BaseCommand):
                 lambda i: self._create_heading_block(i),
                 lambda i: self._create_block_quote(i),
                 lambda i: self._create_heading_block(i),
-                lambda i: self._create_image_block(i) or self._create_paragraph_block(i, num_paragraphs if num_paragraphs > 0 else 2),
+                lambda i: self._create_image_block(i) or
+                          self._create_paragraph_block(i, num_paragraphs if num_paragraphs > 0 else 2),
                 lambda i: self._create_paragraph_block(i, num_paragraphs if num_paragraphs > 0 else 2),
             ]
 
@@ -333,13 +326,14 @@ class Command(BaseCommand):
 
         return blocks
 
-    def create_revisions_for_page(self):
-        self.stdout.write(f'  Creating {self.revisions_per_page_count:,} revisions for a page...')
+    def create_revisionss(self):
+        self.stdout.write(f'  Creating revisions for pages...')
 
-        page = BlogPage.objects.first()
-        self.publish_page_with_revisions(page, self.revisions_per_page_count)
+        pages = BlogPage.objects.all()[:10]
+        for page in pages:
+            self.create_page_revisions(page, self.revisions_per_page_count)
 
-    def publish_page_with_revisions(self, page, revisions):
+    def create_page_revisions(self, page, revisions):
         """Publish page and create additional draft revisions."""
         original_introduction = page.introduction
 
@@ -351,232 +345,192 @@ class Command(BaseCommand):
             page.introduction = f"[Revision {rev_num + 2}] " + original_introduction
             page.save_revision()
 
-            # Progress every 1000 pages
-            if rev_num % 1000 == 0:
-                self.stdout.write(f'  Progress: {rev_num:,}/{revisions:,} revisions created...')
+            if (rev_num + 1) % 1000 == 0:
+                self.stdout.write(f'  Progress: {rev_num:,}/{revisions:,} revisions created for page ID {page.title}.')
+
+        self.stdout.write(f'  ✓ Created {revisions} for page {page.title}')
 
         page.introduction = original_introduction
         page.refresh_from_db()
 
+    def create_translations(self):
+        """Create language translations for pages."""
+        self.stdout.write(f'  Creating {self.translations_count} language translations...')
+
+        # Generate language codes for locales (e.g., lang-01, lang-02, ..., lang-100)
+        # Using synthetic language codes since we need 100 unique ones
+
+        default_locale = Locale.objects.filter(language_code='en').first() or Locale.objects.first()
+        if not default_locale:
+            self.stdout.write(self.style.WARNING('  No default locale found. Skipping translations.'))
+            return
+
+        self.stdout.write('  Creating locales...')
+        existing_locales = set(Locale.objects.values_list('language_code', flat=True))
+        language_codes = [f"lg{i:03d}" for i in range(1, self.translations_count + 1)]
+
+        locales_to_create = [Locale(language_code=lang_code)
+                             for lang_code in language_codes if lang_code not in existing_locales]
+
+        if locales_to_create:
+            Locale.objects.bulk_create(locales_to_create, ignore_conflicts=True)
+            self.stdout.write(f'  ✓ Created {len(locales_to_create)} new locales')
+
+        locales = list(Locale.objects.filter(language_code__in=language_codes))
+
+        blog_index = BlogIndexPage.objects.filter(slug='blog').first()
+        sample_page = BlogPage.objects.first()
+
+        if not blog_index:
+            self.stdout.write(self.style.WARNING('  No blog index found. Skipping translations.'))
+            return
+
+        if not sample_page:
+            self.stdout.write(self.style.WARNING('  No pages found to translate. Skipping translations.'))
+            return
+
+        # Create translations for each locale
+        created_count = 0
+        for locale in locales:
+            try:
+                # First, translate the parent page (blog index) if not already translated
+                if not BlogIndexPage.objects.filter(translation_key=blog_index.translation_key, locale=locale).exists():
+                    translated_index = blog_index.copy_for_translation(locale)
+                    translated_index.title = f"{blog_index.title} ({locale.language_code})"
+                    translated_index.save_revision().publish()
+
+                if BlogPage.objects.filter(translation_key=sample_page.translation_key, locale=locale).exists():
+                    continue
+
+                translated_page = sample_page.copy_for_translation(locale)
+                translated_page.title = f"{sample_page.title} ({locale.language_code})"
+                translated_page.save_revision().publish()
+                created_count += 1
+
+                if created_count % 10 == 0:
+                    self.stdout.write(f'  Progress: {created_count}/{len(locales)} translations created...')
+            except Exception as e:
+                self.stdout.write(f'  Error creating translation for {locale.language_code}: {str(e)[:50]}')
+
+        self.stdout.write(f'  ✓ Created {created_count} page translations across {len(locales)} locales\n')
+
 
     def create_blog_pages(self):
-        """Create blog pages with relationships, tags, and streamfield content."""
-        self.stdout.write('  Checking for blog index page...')
+        """Create blog pages with streamfield content."""
         blog_index = BlogIndexPage.objects.filter(slug='blog').first()
         if not blog_index:
             self.stdout.write(self.style.WARNING('  Blog index not found. Skipping blog pages.'))
-            return 0
-        self.stdout.write(f'  ✓ Found blog index: {blog_index.title}')
+            return
 
-        # Only load/create 10 people objects (not 100+)
-        self.stdout.write('  Loading existing Person objects...')
-        people = list(Person.objects.all()[:10])
-        if not people:
-            self.stdout.write(self.style.WARNING('  No Person objects found. Creating 10 sample people...'))
-            now = timezone.now()
-            images = self._get_images_cache()[:10] if self._get_images_cache() else []
+        body_template = self.generate_streamfield(1, 2, 1)
+        subtitle = lorem_ipsum.words(5, common=False)
+        introduction = lorem_ipsum.paragraph()
+        image = self.get_random_image()
+        today = date.today()
 
-            first_names = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Emily', 'Robert', 'Jessica', 'William', 'Ashley']
-            last_names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Wilson', 'Moore']
-            job_titles = ['Developer', 'Manager', 'Designer', 'Writer', 'Specialist']
-
-            people_to_create = [
-                Person(
-                    first_name=first_names[i],
-                    last_name=last_names[i],
-                    job_title=job_titles[i % 5],
-                    live=True,
-                    first_published_at=now,
-                    last_published_at=now,
-                    image=images[i] if images and i < len(images) else None,
-                )
-                for i in range(10)
-            ]
-            Person.objects.bulk_create(people_to_create)
-            people = list(Person.objects.all()[:10])
-            self.stdout.write(f'  ✓ Created {len(people)} Person objects')
-        else:
-            self.stdout.write(f'  ✓ Found {len(people)} existing Person objects')
+        existing_slugs = set(BlogPage.objects.values_list('slug', flat=True))
+        created_count = 0
+        skipped_count = 0
 
         start_number = BlogPage.objects.count() + 1
-        self.stdout.write(f'  Starting page number: {start_number}')
-
-        self.stdout.write('  Preparing tags...')
-        tag_names = ['baking', 'bread', 'recipe', 'cooking', 'food']
-        tags = [Tag.objects.get_or_create(name=name)[0] for name in tag_names]
-        self.stdout.write(f'  ✓ Prepared {len(tags)} tags')
-
-        # Create lightweight StreamField template
-        self.stdout.write(f'  Generating lightweight StreamField template...')
-        body_template = self.generate_streamfield(self.streamfield_blocks_count, 2, 1)
-        self.stdout.write(f'  ✓ Generated StreamField template (reusable)')
-
-        # Use add_child (required for Wagtail) but optimize by reducing operations
         self.stdout.write(f'  Creating {self.blog_pages_count:,} blog pages...')
-        created_count = 0
 
         for i in range(self.blog_pages_count):
             page_number = start_number + i
-            title = f"Blog Post {page_number}"
+            slug = f"blog-post-{page_number}"
+
+            if slug in existing_slugs:
+                skipped_count += 1
+                continue
 
             page = BlogPage(
-                title=title,
-                slug=slugify(title),
-                subtitle=lorem_ipsum.words(5, common=False),
-                introduction=lorem_ipsum.paragraph(),
+                title=f"Blog Post {page_number}",
+                slug=slug,
+                subtitle=subtitle,
+                introduction=introduction,
                 body=body_template,
-                image=self.get_random_image(),
-                date_published=date.today(),
+                image=image,
+                date_published=today,
             )
 
             blog_index.add_child(instance=page)
-
-            if people:
-                BlogPersonRelationship.objects.create(
-                    page=page,
-                    person=people[i % len(people)]
-                )
-
             created_count += 1
 
-            # Progress every 1000 pages
             if created_count % 1000 == 0:
                 self.stdout.write(f'  Progress: {created_count:,}/{self.blog_pages_count:,} blog pages created...')
 
-        self.stdout.write(f'  ✓ Created {created_count:,} pages with relationships')
+        self.stdout.write(f'  ✓ Created {created_count:,} pages (skipped {skipped_count:,} existing)')
 
-    def create_bread_pages(self, count):
-        """Create bread pages with random types, origins, and ingredients."""
-        self.stdout.write('  Checking for breads index page...')
-        breads_index = BreadsIndexPage.objects.filter(slug='breads').first()
-        if not breads_index:
-            self.stdout.write(self.style.WARNING('  Breads index not found. Skipping bread pages.'))
-            return 0
-        self.stdout.write(f'  ✓ Found breads index: {breads_index.title}')
+        # Create page tree depth
+        parent = blog_index
+        for i in range(self.page_tree_depth):
+            slug = f"blog-post-depth-{i}"
+            if slug in existing_slugs:
+                continue
 
-        bread_type_names = ['Sourdough', 'Baguette', 'Ciabatta', 'Rye', 'Whole Wheat']
-        country_names = ['France', 'Italy', 'Germany', 'United States', 'United Kingdom']
-
-        bread_types = [BreadType.objects.get_or_create(title=name)[0] for name in bread_type_names]
-        countries = [Country.objects.get_or_create(title=name)[0] for name in country_names]
-
-        start_number = BreadPage.objects.count() + 1
-        self.stdout.write(f'  Starting page number: {start_number}')
-
-        # Reuse lightweight StreamField template
-        self.stdout.write(f'  Generating lightweight StreamField template...')
-        body_template = self.generate_streamfield(self.streamfield_blocks_count, 0, 1)
-        self.stdout.write(f'  ✓ Generated StreamField template')
-
-        self.stdout.write(f'  Creating {count:,} bread pages...')
-        created_count = 0
-
-        for i in range(count):
-            page_number = start_number + i
-            title = f"{bread_type_names[i % len(bread_type_names)]} #{page_number}"
-
-            page = BreadPage(
-                title=title,
-                slug=slugify(title),
-                introduction=lorem_ipsum.paragraph(),
+            page = BlogPage(
+                title=f"Blog Post in tree depth {i}",
+                slug=slug,
+                subtitle=subtitle,
+                introduction=introduction,
                 body=body_template,
-                bread_type=bread_types[i % len(bread_types)],
-                origin=countries[i % len(countries)],
-                image=self.get_random_image(),
+                image=image,
+                date_published=today,
             )
 
-            breads_index.add_child(instance=page)
-            created_count += 1
+            parent.add_child(instance=page)
+            parent = page
 
-            if created_count % 1000 == 0:
-                self.stdout.write(f'  Progress: {created_count:,}/{count:,} bread pages created...')
+        self.stdout.write(f'  ✓ Created Page tree with depth {self.page_tree_depth}\n')
 
-        self.stdout.write(f'  ✓ Created {created_count:,} pages')
+    def create_inline_panel_items(self):
+        """Create 100 InlinePanel items for ONE page to demonstrate the requirement."""
+        self.stdout.write(f'  Creating {self.inline_panel_items_count} InlinePanel items...')
 
-    def _generate_location_address(self, city):
-        """Generate a random address for the given city."""
-        street_number = random.randint(1, 999)
-        street_name = random.choice(['Main Street', 'Oak Avenue', 'Park Road', 'High Street', 'Church Lane'])
-        country = random.choice(['Iceland', 'United States', 'United Kingdom', 'France', 'Germany'])
-        return f"{street_number} {street_name},\r\n{city},\r\n{country}"
+        # Get or create the first blog page
+        sample_page = BlogPage.objects.first()
+        if not sample_page:
+            self.stdout.write(self.style.WARNING('  No blog pages found. Skipping InlinePanel items.'))
+            return
 
-    def _generate_lat_long(self):
-        """Generate random latitude and longitude coordinates."""
-        lat = random.uniform(-90, 90)
-        lng = random.uniform(-180, 180)
-        return f"{lat:.6f}, {lng:.6f}"
+        # Check how many relationships already exist for this page
+        existing_count = BlogPersonRelationship.objects.filter(page=sample_page).count()
+        if existing_count >= self.inline_panel_items_count:
+            self.stdout.write(f'  ✓ Page already has {existing_count} InlinePanel items')
+            return
 
-    def _create_operating_hours(self, page):
-        """Create operating hours for all days of the week"""
-        # Define hours for weekdays and weekends
-        weekday_hours = {'opening': time(9, 0), 'closing': time(17, 0)}
-        weekend_hours = {'opening': time(10, 0), 'closing': time(16, 0)}
+        # Ensure we have enough Person objects
+        existing_people = Person.objects.count()
+        if existing_people < self.inline_panel_items_count:
+            people_to_create = []
+            now = timezone.now()
+            for i in range(existing_people, self.inline_panel_items_count):
+                people_to_create.append(Person(
+                    first_name=f"Person {i + 1}",
+                    last_name="Benchmark",
+                    job_title="Benchmark User",
+                    live=True,
+                    first_published_at=now,
+                    last_published_at=now,
+                ))
+            Person.objects.bulk_create(people_to_create, ignore_conflicts=True)
+            self.stdout.write(f'  ✓ Created {len(people_to_create)} Person objects')
 
-        # Map days to their respective hours
-        days_config = {
-            'MON': weekday_hours,
-            'TUE': weekday_hours,
-            'WED': weekday_hours,
-            'THU': weekday_hours,
-            'FRI': weekday_hours,
-            'SAT': weekend_hours,
-            'SUN': weekend_hours,
-        }
+        people = list(Person.objects.all()[:self.inline_panel_items_count])
 
-        # Create operating hours using a loop
-        operating_hours = [
-            LocationOperatingHours(
-                location=page,
-                day=day,
-                opening_time=hours['opening'],
-                closing_time=hours['closing'],
-                closed=False
-            )
-            for day, hours in days_config.items()
+        # Get existing person IDs for this page to avoid duplicates
+        existing_person_ids = set(
+            BlogPersonRelationship.objects.filter(page=sample_page).values_list('person_id', flat=True)
+        )
+
+        # Create relationships for the sample page
+        relationships = [
+            BlogPersonRelationship(page=sample_page, person=person)
+            for person in people if person.id not in existing_person_ids
         ]
-        LocationOperatingHours.objects.bulk_create(operating_hours)
 
-    def create_location_pages(self, count):
-        """Create location pages with addresses, coordinates, and operating hours."""
-        self.stdout.write('  Checking for locations index page...')
-        locations_index = LocationsIndexPage.objects.filter(slug='locations').first()
-        if not locations_index:
-            self.stdout.write(self.style.WARNING('  Locations index not found. Skipping location pages.'))
-            return 0
-        self.stdout.write(f'  ✓ Found locations index: {locations_index.title}')
+        if relationships:
+            BlogPersonRelationship.objects.bulk_create(relationships, ignore_conflicts=True)
 
-        cities = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Berlin']
-
-        start_number = LocationPage.objects.count() + 1
-        self.stdout.write(f'  Starting page number: {start_number}')
-
-        self.stdout.write(f'  Generating lightweight StreamField template...')
-        body_template = self.generate_streamfield(min(10, self.streamfield_blocks_count), 0, 1)
-        self.stdout.write(f'  ✓ Generated StreamField template')
-
-        # Use add_child (required for Wagtail)
-        self.stdout.write(f'  Creating {count:,} location pages...')
-        created_count = 0
-
-        for i in range(count):
-            city = cities[i % len(cities)]
-            page_number = start_number + i
-            title = f"{city} Location #{page_number}"
-
-            page = LocationPage(
-                title=title,
-                slug=slugify(title),
-                introduction=lorem_ipsum.paragraph(),
-                body=body_template,
-                address=self._generate_location_address(city),
-                lat_long=self._generate_lat_long(),
-                image=self.get_random_image(),
-            )
-
-            locations_index.add_child(instance=page)
-            created_count += 1
-
-            if created_count % 1000 == 0:
-                self.stdout.write(f'  Progress: {created_count:,}/{count:,} location pages created...')
-
-        self.stdout.write(f'  ✓ Created {created_count:,} pages')
+        total_count = BlogPersonRelationship.objects.filter(page=sample_page).count()
+        self.stdout.write(f'  ✓ Page "{sample_page.title}" now has {total_count} InlinePanel items\n')
