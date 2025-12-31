@@ -37,7 +37,7 @@
 
         <div class="blog-list">
             {% if posts %}
-                {% wagtailcache 500 posts %}
+                {% wagtailcache 500 posts tag %}
                     {% for blog in posts %}
                         {% include "includes/card/blog-listing-card.html" %}
                     {% endfor %}
