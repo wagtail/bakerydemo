@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
@@ -69,6 +70,90 @@ class LocationOperatingHours(Orderable, OperatingHours):
     location = ParentalKey(
         "LocationPage", related_name="hours_of_operation", on_delete=models.CASCADE
     )
+
+
+class LocationWeekDaySlot(ClusterableModel, Orderable):
+    """
+    A model representing a week day slot for nested InlinePanel demonstration.
+    This is the parent level that contains multiple hour slots.
+    Demonstrates nested InlinePanel functionality for testing expand/collapse
+    and scroll issues (related to issue #13352).
+    """
+
+    location = ParentalKey(
+        "LocationPage", related_name="week_day_slots", on_delete=models.CASCADE
+    )
+    day = models.CharField(
+        max_length=3,
+        choices=DAY_CHOICES,
+        default="MON",
+        help_text="Select the day of the week",
+    )
+
+    panels = [
+        FieldPanel("day"),
+        InlinePanel("hour_slots", heading="Hour Slots", label="Time Slot"),
+    ]
+
+    api_fields = [
+        APIField("day"),
+        APIField("get_day_display"),
+        APIField("hour_slots"),
+    ]
+
+    class Meta:
+        ordering = ["sort_order"]
+        verbose_name = "Week Day Slot"
+        verbose_name_plural = "Week Day Slots"
+
+    def __str__(self):
+        return f"{self.get_day_display()}"
+
+
+class LocationHourSlot(Orderable):
+    """
+    A model representing individual hour slots within a week day.
+    This is the nested/child level of the InlinePanel structure.
+    Multiple hour slots can exist per day (e.g., for split shifts).
+    """
+
+    week_day_slot = ParentalKey(
+        "LocationWeekDaySlot", related_name="hour_slots", on_delete=models.CASCADE
+    )
+    opening_time = models.TimeField(blank=True, null=True)
+    closing_time = models.TimeField(blank=True, null=True)
+    closed = models.BooleanField(
+        "Closed?",
+        default=False,
+        blank=True,
+        help_text="Tick if location is closed during this time slot",
+    )
+
+    panels = [
+        FieldPanel("opening_time"),
+        FieldPanel("closing_time"),
+        FieldPanel("closed"),
+    ]
+
+    api_fields = [
+        APIField("opening_time"),
+        APIField("closing_time"),
+        APIField("closed"),
+    ]
+
+    class Meta:
+        ordering = ["sort_order"]
+        verbose_name = "Hour Slot"
+        verbose_name_plural = "Hour Slots"
+
+    def __str__(self):
+        if self.closed:
+            return "Closed"
+        if self.opening_time and self.closing_time:
+            opening = self.opening_time.strftime("%H:%M")
+            closing = self.closing_time.strftime("%H:%M")
+            return f"{opening} - {closing}"
+        return "Time not set"
 
 
 class LocationsIndexPage(Page):
@@ -161,7 +246,17 @@ class LocationPage(Page):
         FieldPanel("body"),
         FieldPanel("address"),
         FieldPanel("lat_long"),
-        InlinePanel("hours_of_operation", heading="Hours of Operation", label="Slot"),
+        InlinePanel(
+            "hours_of_operation",
+            heading="Hours of Operation (Flat Structure)",
+            label="Slot",
+        ),
+        InlinePanel(
+            "week_day_slots",
+            heading="Hours of Operation (Nested InlinePanel Demo)",
+            label="Day",
+            help_text="Demonstration of nested InlinePanel - each day can have multiple time slots",
+        ),
     ]
 
     api_fields = [
