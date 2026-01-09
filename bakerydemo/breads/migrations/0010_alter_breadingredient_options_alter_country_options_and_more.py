@@ -21,7 +21,6 @@ class Migration(migrations.Migration):
         migrations.AlterModelOptions(
             name="country",
             options={
-                "ordering": ["sort_order", "title"],
                 "verbose_name": "country of origin",
                 "verbose_name_plural": "countries of origin",
             },
