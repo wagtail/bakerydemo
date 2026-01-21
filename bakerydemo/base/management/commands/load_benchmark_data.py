@@ -4,6 +4,7 @@ Management command to load benchmark data for performance testing.
 import random
 from datetime import date
 from io import BytesIO
+from typing import List, Optional, Tuple
 
 from PIL import Image as PILImage
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -20,6 +21,19 @@ from bakerydemo.breads.models import BreadIngredient, BreadType, Country
 
 class Command(BaseCommand):
     help = 'Load benchmark data for performance testing'
+
+    # Constants for better maintainability
+    DEFAULT_BATCH_SIZE = 1000
+    MAX_DEPTH = 10
+    MAX_TRANSLATIONS = 100
+    IMAGE_SIZE = (800, 600)
+    IMAGE_QUALITY = 85
+
+    # Color palette for test images
+    COLORS = [
+        (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
+        (255, 0, 255), (0, 255, 255), (128, 128, 128), (255, 128, 0),
+    ]
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -82,100 +96,130 @@ class Command(BaseCommand):
             default=100,
             help='Number of language translations to create',
         )
+        parser.add_argument(
+            '--batch-size',
+            type=int,
+            default=self.DEFAULT_BATCH_SIZE,
+            help='Batch size for bulk operations',
+        )
+        parser.add_argument(
+            '--skip-images',
+            action='store_true',
+            help='Skip image creation',
+        )
+        parser.add_argument(
+            '--skip-snippets',
+            action='store_true',
+            help='Skip snippet creation',
+        )
 
     def handle(self, *args, **options):
         self.set_input_params(options)
         self.print_configurations()
+        try:
+            if not options.get('skip_images'):
+                self.create_benchmark_images()
 
-        self.create_benchmark_images()
-        self.create_blog_pages()
-        self.create_inline_panel_items()
-        self.create_benchmark_snippets()
-        self.create_revisions()
-        self.create_translations()
-        self.generate_streamfield(self.streamfield_blocks_count, self.paragraphs_count, self.streamfield_depth)
+            self.create_blog_pages()
+            print("hello")
+            self.create_inline_panel_items()
+            self.create_benchmark_snippets()
+            if not options.get('skip_revisions'):
+                self.create_revisions()
 
-        self.stdout.write(self.style.SUCCESS('\n=== Benchmark Data Generation Complete! ==='))
+            self.create_translations()
+            self.generate_streamfield(self.streamfield_blocks_count, self.paragraphs_count, self.streamfield_depth)
 
-    def set_input_params(self, options):
+            self.stdout.write(self.style.SUCCESS('\n=== Benchmark Data Generation Complete! ==='))
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'\n=== Error during benchmark generation: {e} ==='))
+
+    def set_input_params(self, options: dict) -> None:
+        """Extract and validate input parameters."""
         self.blog_pages_count = options['blog_pages_count']
         self.streamfield_blocks_count = options['streamfield_blocks_count']
-        self.streamfield_depth = min(options['streamfield_depth'], 10)
+        self.streamfield_depth = min(options['streamfield_depth'], self.MAX_DEPTH)
         self.inline_panel_items_count = options['inline_panel_items_count']
         self.paragraphs_count = options['paragraphs_count']
         self.revisions_per_page_count = options['revisions_per_page_count']
-        self.page_tree_depth = min(options['page_tree_depth'], 10)
+        self.page_tree_depth = min(options['page_tree_depth'], self.MAX_DEPTH)
         self.images_count = options['images_count']
         self.snippets_count = options['snippets_count']
-        self.translations_count = min(options['translations_count'], 100)
+        self.translations_count = min(options['translations_count'], self.MAX_TRANSLATIONS)
+        self.batch_size = options.get('batch_size', self.DEFAULT_BATCH_SIZE)
 
-    def print_configurations(self):
-        self.stdout.write('\nConfiguration:')
-        self.stdout.write(f'  Blog pages: {self.blog_pages_count}')
+        self._images_cache = None
+
+    def print_configurations(self) -> None:
+        """Display configuration summary."""
+        self.stdout.write('\n' + '=' * 50)
+        self.stdout.write('Configuration:')
+        self.stdout.write('=' * 50)
+        self.stdout.write(f'  Blog pages: {self.blog_pages_count:,}')
         self.stdout.write(f'  StreamField blocks: {self.streamfield_blocks_count} (depth: {self.streamfield_depth})')
         self.stdout.write(f'  Inline panel items: {self.inline_panel_items_count}')
         self.stdout.write(f'  Rich text paragraphs: {self.paragraphs_count}')
-        self.stdout.write(f'  Revisions per page: {self.revisions_per_page_count}')
+        self.stdout.write(f'  Revisions per page: {self.revisions_per_page_count:,}')
         self.stdout.write(f'  Page tree depth: {self.page_tree_depth}')
         self.stdout.write(f'  Images count: {self.images_count}')
-        self.stdout.write(f'  Snippets count: {self.snippets_count}')
-        self.stdout.write(f'  Translations count: {self.translations_count}\n')
+        self.stdout.write(f'  Snippets count: {self.snippets_count:,}')
+        self.stdout.write(f'  Translations count: {self.translations_count}')
+        self.stdout.write(f'  Batch size: {self.batch_size:,}')
+        self.stdout.write('=' * 50 + '\n')
 
-    def _get_images_cache(self):
+    def _get_images_cache(self) -> List[Image]:
         """Cache images to avoid repeated queries."""
-        if not hasattr(self, '_images_cache'):
+        if self._images_cache is None:
             self._images_cache = list(Image.objects.all())
         return self._images_cache
 
-    def create_benchmark_images(self):
-        """Create benchmark images with solid color placeholders."""
+    def _create_image_file(self, index: int) -> InMemoryUploadedFile:
+        """Create a simple colored image file."""
+        color = self.COLORS[index % len(self.COLORS)]
+        img = PILImage.new('RGB', self.IMAGE_SIZE, color=color)
+        img_io = BytesIO()
+        img.save(img_io, format='JPEG', quality=self.IMAGE_QUALITY)
+        img_io.seek(0)
 
+        return InMemoryUploadedFile(
+            img_io, None, f'benchmark_{index + 1}.jpg', 'image/jpeg',
+            img_io.getbuffer().nbytes, None
+        )
+
+    def create_benchmark_images(self) -> None:
+        """Create benchmark images with solid color placeholders."""
+        self.stdout.write('\n📷 Creating Images')
         self.stdout.write('  Initializing image creation...')
+
         created_count = 0
-        skipped_count = 0
-        colors = [
-            (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
-            (255, 0, 255), (0, 255, 255), (128, 128, 128), (255, 128, 0),
-        ]
+        existing_titles = set(Image.objects.values_list('title', flat=True))
 
         for i in range(self.images_count):
             title = f"Benchmark Image {i + 1}"
 
-            if Image.objects.filter(title=title).exists():
-                skipped_count += 1
+            if title in existing_titles:
                 continue
 
-            # Create a simple colored image
-            img = PILImage.new('RGB', (800, 600), color=colors[i % len(colors)])
-            img_io = BytesIO()
-            img.save(img_io, format='JPEG', quality=85)
-            img_io.seek(0)
-
-            img_file = InMemoryUploadedFile(
-                img_io, None, f'benchmark_{i + 1}.jpg', 'image/jpeg',
-                img_io.getbuffer().nbytes, None
-            )
-
-            wagtail_image = Image(
-                title=title,
-                file=img_file,
-            )
+            img_file = self._create_image_file(i)
+            wagtail_image = Image(title=title, file=img_file)
             wagtail_image.save()
             created_count += 1
 
-        # Clear the cache so new images are picked up
-        if hasattr(self, '_images_cache'):
-            del self._images_cache
-            self.stdout.write('  Cleared image cache')
+            if created_count % 10 == 0:
+                self.stdout.write(f'  Progress: {created_count}/{self.images_count} images created...')
 
-        self.stdout.write(f'  Skipped {skipped_count} existing images')
-        self.stdout.write(self.style.SUCCESS(f'✓ Created {created_count} images\n'))
+        # Refresh cache
+        self._images_cache = None
+
+        skipped = self.images_count - created_count
+        self.stdout.write(f'  Skipped {skipped} existing images')
+        self.stdout.write(self.style.SUCCESS(f'  ✓ Created {created_count} new images'))
 
     def create_benchmark_snippets(self):
         """Create snippet instances (BreadType, Country, BreadIngredient)."""
         self.stdout.write('  Starting snippet creation in bulk batches...')
         created_count = 0
-        batch_size = 1000
+        batch_size = self.batch_size
 
         for batch_num in range((self.snippets_count + batch_size * 3 - 1) // (batch_size * 3)):
             bread_types = [BreadType(title=f"Bread Type {batch_num * batch_size + j + 1}") for j in range(batch_size)]
@@ -194,21 +238,17 @@ class Command(BaseCommand):
 
         self.stdout.write(f'Total available snippet instances are: {created_count}')
 
-    def get_random_image(self):
+    def get_random_image(self)-> Optional[Image]:
         """Return a random image or None if no images exist."""
         images = self._get_images_cache()
         return random.choice(images) if images else None
 
-    def _generate_paragraph(self):
-        """Generate a random lorem ipsum paragraph."""
-        return lorem_ipsum.paragraph()
-
-    def _get_first_image(self):
+    def _get_first_image(self) -> Optional[Image]:
         """Return the first available image or None."""
         images = self._get_images_cache()
         return images[0] if images else None
 
-    def _create_heading_block(self, index):
+    def _create_heading_block(self, index)-> Tuple[str, dict]:
         """Create a heading block with fixed text based on index."""
         heading_sizes = ['h2', 'h3', 'h4', '']
         heading_texts = [
@@ -223,7 +263,7 @@ class Command(BaseCommand):
             'size': heading_sizes[index % len(heading_sizes)]
         })
 
-    def _create_paragraph_block(self, index, num_paragraphs=2):
+    def _create_paragraph_block(self, index, num_paragraphs=2) -> Tuple[str, RichText]:
         """Create a paragraph block with fixed paragraphs."""
         fixed_paragraphs = [
             'Lorem ipsum dolor st amet, consectetur adiscing elit. Sed do eimod temport labore et dolore magna aliqua.',
@@ -237,34 +277,34 @@ class Command(BaseCommand):
         for i in range(num_paragraphs):
             paragraphs_to_use.append(fixed_paragraphs[i % len(fixed_paragraphs)])
         paragraph_text = '\n'.join(paragraphs_to_use)
-        return ('paragraph_block', RichText(paragraph_text))
+        return 'paragraph_block', RichText(paragraph_text)
 
-    def _create_image_block(self, index):
+    def _create_image_block(self, index: int) -> Optional[Tuple[str, dict]]:
         """Create an image block with a fixed image."""
         image = self._get_first_image()
-        if image:
-            captions = [
-                'Traditional baking methods',
-                'Fresh ingredients',
-                'Artisan craftsmanship',
-                'Quality products',
-                '',
-            ]
-            attributions = [
-                'Photo by Baker',
-                'Courtesy of Bakery',
-                '',
-                'Professional photography',
-                '',
-            ]
-            return ('image_block', {
-                'image': image,
-                'caption': captions[index % len(captions)],
-                'attribution': attributions[index % len(attributions)],
-            })
-        return None
+        if not image:
+            return None
+        captions = [
+            'Traditional baking methods',
+            'Fresh ingredients',
+            'Artisan craftsmanship',
+            'Quality products',
+            '',
+        ]
+        attributions = [
+            'Photo by Baker',
+            'Courtesy of Bakery',
+            '',
+            'Professional photography',
+            '',
+        ]
+        return ('image_block', {
+            'image': image,
+            'caption': captions[index % len(captions)],
+            'attribution': attributions[index % len(attributions)],
+        })
 
-    def _create_block_quote(self, index):
+    def _create_block_quote(self, index: int) -> Tuple[str, dict]:
         """Create a block quote with fixed content."""
         quote_texts = [
             'The secret to great bread is patience and quality ingredients.',
@@ -292,11 +332,10 @@ class Command(BaseCommand):
             }
         })
 
-    def generate_streamfield(self, num_blocks, num_paragraphs=0, depth=0):
+    def generate_streamfield(self, num_blocks: int, num_paragraphs: int = 0, depth: int = 0) -> List[tuple]:
         """Generate StreamField blocks with optional nesting depth."""
         blocks = []
 
-        # If we have depth remaining and blocks to create, add nested blocks
         if depth > 0 and num_blocks > 0:
             # Create nested structure blocks - not all block types support nesting
             # For simplicity, we'll create paragraph blocks that could conceptually be nested
@@ -327,14 +366,14 @@ class Command(BaseCommand):
 
         return blocks
 
-    def create_revisions(self):
+    def create_revisions(self)-> None:
         self.stdout.write(f'  Creating revisions for pages...')
 
         pages = BlogPage.objects.all()[:10]
         for page in pages:
             self.create_page_revisions(page, self.revisions_per_page_count)
 
-    def create_page_revisions(self, page, revisions):
+    def create_page_revisions(self, page, revisions) -> None:
         """Publish page and create additional draft revisions."""
         original_introduction = page.introduction
 
@@ -354,53 +393,80 @@ class Command(BaseCommand):
         page.introduction = original_introduction
         page.refresh_from_db()
 
-    def create_translations(self):
+    def create_translations(self) -> None:
         """Create language translations for pages."""
         self.stdout.write(f'  Creating {self.translations_count} language translations...')
 
-        # Generate language codes for locales (e.g., lang-01, lang-02, ..., lang-100)
-        # Using synthetic language codes since we need 100 unique ones
-
+        # Get or create default locale
         default_locale = Locale.objects.filter(language_code='en').first() or Locale.objects.first()
         if not default_locale:
             self.stdout.write(self.style.WARNING('  No default locale found. Skipping translations.'))
             return
 
+        # Create locales
+        locales = self._create_locales()
+        if not locales:
+            return
+
+        # Get pages to translate
+        blog_index = BlogIndexPage.objects.filter(slug='blog').first()
+        sample_page = BlogPage.objects.first()
+
+        if not blog_index or not sample_page:
+            self.stdout.write(self.style.WARNING('  Missing required pages. Skipping translations.'))
+            return
+
+        # Create translations
+        created_count = self._create_page_translations(blog_index, sample_page, locales)
+
+        self.stdout.write(self.style.SUCCESS(
+            f'  ✓ Created {created_count} page translations across {len(locales)} locales'
+        ))
+
+    def _create_locales(self) -> List[Locale]:
+        """Create required locales for translations."""
         self.stdout.write('  Creating locales...')
+
         existing_locales = set(Locale.objects.values_list('language_code', flat=True))
         language_codes = [f"lg{i:03d}" for i in range(1, self.translations_count + 1)]
 
-        locales_to_create = [Locale(language_code=lang_code)
-                             for lang_code in language_codes if lang_code not in existing_locales]
+        locales_to_create = [
+            Locale(language_code=lang_code)
+            for lang_code in language_codes
+            if lang_code not in existing_locales
+        ]
 
         if locales_to_create:
             Locale.objects.bulk_create(locales_to_create, ignore_conflicts=True)
             self.stdout.write(f'  ✓ Created {len(locales_to_create)} new locales')
 
-        locales = list(Locale.objects.filter(language_code__in=language_codes))
+        return list(Locale.objects.filter(language_code__in=language_codes))
 
-        blog_index = BlogIndexPage.objects.filter(slug='blog').first()
-        sample_page = BlogPage.objects.first()
-
-        if not blog_index:
-            self.stdout.write(self.style.WARNING('  No blog index found. Skipping translations.'))
-            return
-
-        if not sample_page:
-            self.stdout.write(self.style.WARNING('  No pages found to translate. Skipping translations.'))
-            return
-
-        # Create translations for each locale
+    def _create_page_translations(
+        self,
+        blog_index: BlogIndexPage,
+        sample_page: BlogPage,
+        locales: List[Locale]
+    ) -> int:
+        """Create translated versions of pages."""
         created_count = 0
+
         for locale in locales:
             try:
-                # First, translate the parent page (blog index) if not already translated
-                if not BlogIndexPage.objects.filter(translation_key=blog_index.translation_key, locale=locale).exists():
+                # Translate blog index if needed
+                if not BlogIndexPage.objects.filter(
+                    translation_key=blog_index.translation_key,
+                    locale=locale
+                ).exists():
                     translated_index = blog_index.copy_for_translation(locale)
                     translated_index.title = f"{blog_index.title} ({locale.language_code})"
                     translated_index.save_revision().publish()
 
-                if BlogPage.objects.filter(translation_key=sample_page.translation_key, locale=locale).exists():
+                # Translate sample page if needed
+                if BlogPage.objects.filter(
+                    translation_key=sample_page.translation_key,
+                    locale=locale
+                ).exists():
                     continue
 
                 translated_page = sample_page.copy_for_translation(locale)
@@ -409,12 +475,15 @@ class Command(BaseCommand):
                 created_count += 1
 
                 if created_count % 10 == 0:
-                    self.stdout.write(f'  Progress: {created_count}/{len(locales)} translations created...')
+                    self.stdout.write(
+                        f'  Progress: {created_count}/{len(locales)} translations created...'
+                    )
             except Exception as e:
-                self.stdout.write(f'  Error creating translation for {locale.language_code}: {str(e)}')
+                self.stdout.write(self.style.WARNING(
+                    f'  Error creating translation for {locale.language_code}: {str(e)}'
+                ))
 
-        self.stdout.write(f'  ✓ Created {created_count} page translations across {len(locales)} locales\n')
-
+        return created_count
 
     def create_blog_pages(self):
         """Create blog pages with streamfield content."""
