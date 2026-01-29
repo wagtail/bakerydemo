@@ -143,6 +143,11 @@ On Windows (cmd.exe), run the following commands:
 # if wagtailbakerydemo\Scripts\activate.bat doesn't work, run:
 .venv\Scripts\Activate.ps1
 ```
+> **Note (PowerShell Execution Policy)**
+> If activating with `Activate.ps1` fails with an error like “running scripts is disabled on this system”, you can either:
+> - use `.venv\Scripts\activate.bat` in Command Prompt, or
+> - allow scripts in PowerShell for your user account:
+>   `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 
 Now we're ready to set up the bakery demo project itself:
 ```bash
