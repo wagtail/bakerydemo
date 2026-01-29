@@ -12,6 +12,7 @@ from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
 
 
+
 def get_image_api_representation(image):
     return {
         "id": image.pk,
