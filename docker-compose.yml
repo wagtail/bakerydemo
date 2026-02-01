@@ -1,38 +1,49 @@
-version: '2'
+version: "3.8"
 
 services:
   db:
+    image: postgres
+    restart: always
+    ports:
+      - ${DATABASE_PORT}:5432
+    volumes:
+      - wagtail_cloud_cms_postgres_data_local:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: changeme
-    restart: unless-stopped
-    image: postgres:18.1
-    expose:
-      - '5432'
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_HOST: ${DATABASE_HOST}
+      POSTGRES_PORT: ${DATABASE_PORT}
 
   redis:
-    restart: unless-stopped
     image: redis:8.4
-    expose:
-      - '6379'
-
-  app:
-    environment:
-      DJANGO_SECRET_KEY: changeme
-      DATABASE_URL: postgres://app_user:changeme@db/app_db
-      REDIS_URL: redis://redis
-      DJANGO_SETTINGS_MODULE: bakerydemo.settings.dev
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    volumes:
-      - ./bakerydemo:/code/bakerydemo
-    links:
-      - db:db
-      - redis:redis
+    restart: always
     ports:
-      - '8000:8000'
+      - "6379:6379"
+
+  web:
+    image: bitbytecyber/wagtail-cloud-cms:local
+    build: .
+    restart: always
+    ports:
+      - 8090:8000
     depends_on:
       - db
       - redis
+    volumes:
+      - ./:/code/
+      - ./bakerydemo/media/images:/code/bakerydemo/media/images
+      - ./bakerydemo/media/original_images:/code/bakerydemo/media/original_images
+    environment:
+      - DATABASE_NAME
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - DATABASE_HOST
+      - DATABASE_PORT
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY
+      - DEBUG
+      - DJANGO_SETTINGS_MODULE
+
+volumes:
+  wagtail_cloud_cms_postgres_data_local:
