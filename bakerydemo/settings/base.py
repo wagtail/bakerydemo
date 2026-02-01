@@ -27,7 +27,8 @@ SECRET_KEY = "c6u0-9c!7nilj_ysatsda0(f@e_2mws2f!6m0n^o*4#*q#kzp)"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ["*"]
 
 # Uncomment (and adjust as appropriate) to enable django-debug-toolbar
 # INTERNAL_IPS = [
@@ -121,15 +122,24 @@ WSGI_APPLICATION = "bakerydemo.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/stable/ref/settings/#databases
 
-if "DATABASE_URL" in os.environ:
-    DATABASES = {"default": dj_database_url.config(conn_max_age=500)}
-    if os.environ["DATABASE_URL"].startswith("postgres://"):
-        INSTALLED_APPS.append("django.contrib.postgres")
+if "DATABASE_NAME" in os.environ:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DATABASE_NAME"),
+            "USER": os.environ.get("DATABASE_USER"),
+            "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+            "HOST": os.environ.get("DATABASE_HOST", "localhost"),
+            "PORT": os.environ.get("DATABASE_PORT", 5432),
+        }
+    }
+    INSTALLED_APPS.append("django.contrib.postgres")
 else:
+    # Fallback for local dev / sqlite
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "bakerydemodb"),
+            "NAME": os.path.join(BASE_DIR, "bakerydemodb.sqlite3"),
         }
     }
 
