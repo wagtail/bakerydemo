@@ -66,4 +66,5 @@ RUN mkdir -p /code/bakerydemo/media/images \
 VOLUME ["/code/bakerydemo/media/images/"]
 
 # Start Gunicorn instead of uWSGI
-CMD ["gunicorn", "bakerydemo.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120", "--log-level", "debug"]
+# CMD ["gunicorn", "bakerydemo.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120", "--log-level", "debug"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
