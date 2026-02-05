@@ -6,3 +6,4 @@ django-debug-toolbar>=4.2,<5
 django-extensions==3.2.3
 django-csp==3.7
 dj-database-url==2.1.0
+django-waffle>=4.2,<5.0

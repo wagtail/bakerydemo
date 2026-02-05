@@ -1,3 +1,4 @@
+from bakerydemo.views import FeatureFlagViewSet
 import debug_toolbar
 from django.conf import settings
 from django.contrib import admin
@@ -10,7 +11,7 @@ from wagtail.images.views.serve import ServeView
 
 from bakerydemo.search import views as search_views
 
-from .api import api_router
+from .api import api_router,drf_router
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -24,6 +25,8 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("sitemap.xml", sitemap),
     path("api/v2/", api_router.urls),
+    path("api/internal/", include(drf_router.urls)),
+
     path("__debug__/", include(debug_toolbar.urls)),
 ]
 

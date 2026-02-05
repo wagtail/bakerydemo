@@ -31,7 +31,7 @@ services:
       - db
       - redis
     volumes:
-      - ./:/code/
+      # - ./:/code/
       - ./bakerydemo/media/images:/code/bakerydemo/media/images
       - ./bakerydemo/media/original_images:/code/bakerydemo/media/original_images
     environment:
