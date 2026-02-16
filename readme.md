@@ -195,7 +195,7 @@ Make a pull request to https://github.com/wagtail/bakerydemo
 
 The `bakerydemo/settings/local.py` file can be used to store local Django settings such as database connection details that need to be kept outside of version control.
 
-Additionally, various settings can be controlled through environment variables. The [django-dotenv](https://github.com/jpadilla/django-dotenv) package is used to load these variables from a `.env` file in the project root.
+Additionally, various settings can be controlled through environment variables. The [python-dotenv](https://github.com/theskumar/python-dotenv) package is used to load these variables from a `.env` file in the project root.
 
 ### Note on demo search
 

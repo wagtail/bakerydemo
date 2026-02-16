@@ -5,7 +5,7 @@ import sys
 import dotenv
 
 if __name__ == "__main__":
-    dotenv.read_dotenv()
+    dotenv.load_dotenv()
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bakerydemo.settings.dev")
 
