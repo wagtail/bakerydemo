@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   db:
-    image: postgres
+    image: postgres:17
     restart: always
     ports:
       - ${DATABASE_PORT}:5432
@@ -22,7 +22,7 @@ services:
       - "6379:6379"
 
   web:
-    image: bitbytecyber/wagtail-cloud-cms:local
+    image: dockstackhub/wagtail-cloud-cms:local
     build: .
     restart: always
     ports:
