@@ -35,13 +35,13 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 - [Docker](#setup-with-docker)
 - [Venv](#setup-with-venv)
 
-If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
+If you want to see what Wagtail is all about, we suggest trying it out using [Gitpod](#setup-with-gitpod).
 If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
 Developers more familiar with venv/virtualenv and traditional Django app setup instructions should skip to [Setup with venv](#setup-with-venv).
 
 ## Setup with Gitpod
 
-Set up a development environment and run this demo website with a single click (requires a Github account):
+Set up a development environment and run this demo website with a single click (requires a GitHub account):
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
 
@@ -125,7 +125,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.10+
+- Python 3.12+
 - [venv](https://docs.python.org/3/library/venv.html)
 
 ### Installation
@@ -149,7 +149,7 @@ Now we're ready to set up the bakery demo project itself:
 cd ~/dev [or your preferred dev directory]
 git clone https://github.com/wagtail/bakerydemo.git
 cd bakerydemo
-pip install -r requirements/development.txt
+pip install -r requirements/base.txt
 ```
 
 Next, we need to create the files `.env` and `bakerydemo/settings/local.py`, which provide a place for local configuration settings that need to be kept outside of version control. No such settings are required for a standard installation, but warnings will be displayed if these files are not present:
@@ -178,7 +178,7 @@ If you're a Python or Django developer, fork the repo and get stuck in! If you'd
 
 ### Preparing this archive for distribution
 
-If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
+If you change content or images in this repository and need to prepare a new fixture file for export, do the following on a branch:
 
 ```bash
 ./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription -e wagtailcore.workflowcontenttype -e wagtailadmin.editingsession > bakerydemo/base/fixtures/bakerydemo.json
