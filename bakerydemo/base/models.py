@@ -305,7 +305,7 @@ class HomePage(Page):
     )
 
     # Promo section of the HomePage
-    promo_image = models.ForeignKey(
+    lead_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -313,10 +313,10 @@ class HomePage(Page):
         related_name="+",
         help_text="Promo image",
     )
-    promo_title = models.CharField(
+    lead_title = models.CharField(
         blank=True, max_length=255, help_text="Title to display above the promo copy"
     )
-    promo_text = RichTextField(
+    lead_text = RichTextField(
         null=True, blank=True, max_length=1000, help_text="Write some promotional copy"
     )
 
@@ -390,9 +390,9 @@ class HomePage(Page):
         HelpPanel("This is a help panel"),
         MultiFieldPanel(
             [
-                FieldPanel("promo_image"),
-                FieldPanel("promo_title"),
-                FieldPanel("promo_text"),
+                FieldPanel("lead_image"),
+                FieldPanel("lead_title"),
+                FieldPanel("lead_text"),
             ],
             heading="Promo section",
             help_text="This is just a help text",
@@ -429,9 +429,9 @@ class HomePage(Page):
         APIField("hero_cta"),
         APIField("hero_cta_link"),
         APIField("body"),
-        APIField("promo_image"),
-        APIField("promo_title"),
-        APIField("promo_text"),
+        APIField("lead_image"),
+        APIField("lead_title"),
+        APIField("lead_text"),
         APIField("featured_section_1_title"),
         APIField("featured_section_1"),
         APIField("featured_section_2_title"),
