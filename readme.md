@@ -125,7 +125,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.12+
+- Python 3.10+
 - [venv](https://docs.python.org/3/library/venv.html)
 
 ### Installation
@@ -149,7 +149,7 @@ Now we're ready to set up the bakery demo project itself:
 cd ~/dev [or your preferred dev directory]
 git clone https://github.com/wagtail/bakerydemo.git
 cd bakerydemo
-pip install -r requirements/base.txt
+pip install -r requirements/development.txt
 ```
 
 Next, we need to create the files `.env` and `bakerydemo/settings/local.py`, which provide a place for local configuration settings that need to be kept outside of version control. No such settings are required for a standard installation, but warnings will be displayed if these files are not present:
