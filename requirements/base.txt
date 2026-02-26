@@ -1,8 +1,8 @@
 Django>=6.0,<6.1
-python-dotenv==1.2.1
+python-dotenv>=1.2.1,<2
 wagtail>=7.2,<7.3
 wagtail-font-awesome-svg>=1,<2
 django-debug-toolbar>=4.2,<5
-django-extensions==3.2.3
-django-csp==3.7
-dj-database-url==2.1.0
+django-extensions>=4.1,<5
+django-csp>=3.8,<4
+dj-database-url>=3.1.0,<4
