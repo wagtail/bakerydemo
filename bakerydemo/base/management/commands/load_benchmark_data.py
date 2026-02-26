@@ -35,72 +35,58 @@ class Command(BaseCommand):
         (255, 0, 255), (0, 255, 255), (128, 128, 128), (255, 128, 0),
     ]
 
+    SCALE_CONFIGS = {
+        'low': {
+            'blog_pages_count': 100,
+            'streamfield_blocks_count': 10,
+            'streamfield_depth': 3,
+            'inline_panel_items_count': 10,
+            'paragraphs_count': 10,
+            'revisions_per_page_count': 10,
+            'page_tree_depth': 3,
+            'images_count': 10,
+            'snippets_count': 100,
+            'translations_count': 5,
+            'batch_size': 100,
+        },
+        'medium': {
+            'blog_pages_count': 1000,
+            'streamfield_blocks_count': 50,
+            'streamfield_depth': 5,
+            'inline_panel_items_count': 50,
+            'paragraphs_count': 50,
+            'revisions_per_page_count': 1000,
+            'page_tree_depth': 5,
+            'images_count': 50,
+            'snippets_count': 1000,
+            'translations_count': 25,
+            'batch_size': 500,
+        },
+        'high': {
+            'blog_pages_count': 100000,
+            'streamfield_blocks_count': 100,
+            'streamfield_depth': 10,
+            'inline_panel_items_count': 100,
+            'paragraphs_count': 100,
+            'revisions_per_page_count': 100000,
+            'page_tree_depth': 10,
+            'images_count': 100,
+            'snippets_count': 100000,
+            'translations_count': 100,
+            'batch_size': 1000,
+        },
+    }
+
     def add_arguments(self, parser):
         parser.add_argument(
-            '--blog-pages-count',
-            type=int,
-            default=100000,
-            help='Number of blog pages to create',
-        )
-        parser.add_argument(
-            '--streamfield-blocks-count',
-            type=int,
-            default=100,
-            help='Number of blocks in each StreamField',
-        )
-        parser.add_argument(
-            '--streamfield-depth',
-            type=int,
-            default=10,
-            help='Nesting depth for StreamField blocks',
-        )
-        parser.add_argument(
-            '--inline-panel-items-count',
-            type=int,
-            default=100,
-            help='Number of inline panel items to create',
-        )
-        parser.add_argument(
-            '--paragraphs-count',
-            type=int,
-            default=100,
-            help='Number of paragraphs in rich text fields',
-        )
-        parser.add_argument(
-            '--revisions-per-page-count',
-            type=int,
-            default=100000,
-            help='Number of revisions per page',
-        )
-        parser.add_argument(
-            '--page-tree-depth',
-            type=int,
-            default=10,
-            help='Depth of page tree hierarchy',
-        )
-        parser.add_argument(
-            '--images-count',
-            type=int,
-            default=100,
-            help='Number of images to create',
-        )
-        parser.add_argument(
-            '--snippets-count',
-            type=int,
-            default=100000,
-            help='Number of snippet instances to create',
-        )
-        parser.add_argument(
-            '--translations-count',
-            type=int,
-            default=100,
-            help='Number of language translations to create',
-        )
-        parser.add_argument(
-            '--batch-size',
-            type=int,
-            default=self.DEFAULT_BATCH_SIZE,
-            help='Batch size for bulk operations',
+            '--scale',
+            choices=['low', 'medium', 'high'],
+            default='high',
+            help=(
+                'Scale of benchmark data to generate: '
+                'low (quick smoke test), medium, or high (full load). '
+                'Defaults to high.'
+            ),
         )
         parser.add_argument(
             '--skip-images',
@@ -135,25 +121,28 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'\n=== Error during benchmark generation: {e} ==='))
 
     def set_input_params(self, options: dict) -> None:
-        """Extract and validate input parameters."""
-        self.blog_pages_count = options['blog_pages_count']
-        self.streamfield_blocks_count = options['streamfield_blocks_count']
-        self.streamfield_depth = min(options['streamfield_depth'], self.MAX_DEPTH)
-        self.inline_panel_items_count = options['inline_panel_items_count']
-        self.paragraphs_count = options['paragraphs_count']
-        self.revisions_per_page_count = options['revisions_per_page_count']
-        self.page_tree_depth = min(options['page_tree_depth'], self.MAX_DEPTH)
-        self.images_count = options['images_count']
-        self.snippets_count = options['snippets_count']
-        self.translations_count = min(options['translations_count'], self.MAX_TRANSLATIONS)
-        self.batch_size = options.get('batch_size', self.DEFAULT_BATCH_SIZE)
+        """Extract and validate input parameters from the selected scale."""
+        self.scale = options['scale']
+        config = self.SCALE_CONFIGS[self.scale]
+
+        self.blog_pages_count = config['blog_pages_count']
+        self.streamfield_blocks_count = config['streamfield_blocks_count']
+        self.streamfield_depth = min(config['streamfield_depth'], self.MAX_DEPTH)
+        self.inline_panel_items_count = config['inline_panel_items_count']
+        self.paragraphs_count = config['paragraphs_count']
+        self.revisions_per_page_count = config['revisions_per_page_count']
+        self.page_tree_depth = min(config['page_tree_depth'], self.MAX_DEPTH)
+        self.images_count = config['images_count']
+        self.snippets_count = config['snippets_count']
+        self.translations_count = min(config['translations_count'], self.MAX_TRANSLATIONS)
+        self.batch_size = config['batch_size']
 
         self._images_cache = None
 
     def print_configurations(self) -> None:
         """Display configuration summary."""
         self.stdout.write('\n' + '=' * 50)
-        self.stdout.write('Configuration:')
+        self.stdout.write(f'Configuration (scale: {self.scale}):')
         self.stdout.write('=' * 50)
         self.stdout.write(f'  Blog pages: {self.blog_pages_count:,}')
         self.stdout.write(f'  StreamField blocks: {self.streamfield_blocks_count} (depth: {self.streamfield_depth})')
@@ -442,6 +431,30 @@ class Command(BaseCommand):
 
         return list(Locale.objects.filter(language_code__in=language_codes))
 
+    def _ensure_page_translated(self, page, locale) -> None:
+        """Recursively ensure a page and all its ancestors are translated for the given locale.
+
+        Wagtail's copy_for_translation requires the parent page to already exist in the
+        target locale. This method walks up the ancestor chain and translates each level
+        before translating the requested page.
+        """
+        from wagtail.models import Page
+
+        # Root page (depth 1) is never translated — it is a global tree root.
+        if page.depth <= 1:
+            return
+
+        # Already translated — nothing to do.
+        if Page.objects.filter(translation_key=page.translation_key, locale=locale).exists():
+            return
+
+        # Translate the parent first so copy_for_translation can find it.
+        parent = page.get_parent().specific
+        self._ensure_page_translated(parent, locale)
+
+        translated = page.copy_for_translation(locale)
+        translated.save_revision().publish()
+
     def _create_page_translations(
         self,
         blog_index: BlogIndexPage,
@@ -453,16 +466,10 @@ class Command(BaseCommand):
 
         for locale in locales:
             try:
-                # Translate blog index if needed
-                if not BlogIndexPage.objects.filter(
-                    translation_key=blog_index.translation_key,
-                    locale=locale
-                ).exists():
-                    translated_index = blog_index.copy_for_translation(locale)
-                    translated_index.title = f"{blog_index.title} ({locale.language_code})"
-                    translated_index.save_revision().publish()
+                # Translate the blog index and all its ancestors for this locale.
+                self._ensure_page_translated(blog_index, locale)
 
-                # Translate sample page if needed
+                # Translate sample page if not already done.
                 if BlogPage.objects.filter(
                     translation_key=sample_page.translation_key,
                     locale=locale
