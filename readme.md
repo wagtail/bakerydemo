@@ -137,10 +137,17 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-On Windows (cmd.exe), run the following commands:
+On Windows, activate the virtual environment using the appropriate command for your shell:
+
+For Command Prompt (cmd.exe):
+
 ```bash
 .venv\Scripts\activate.bat
-# if wagtailbakerydemo\Scripts\activate.bat doesn't work, run:
+```
+
+For PowerShell (recommended on Windows):
+
+```bash
 .venv\Scripts\Activate.ps1
 ```
 
