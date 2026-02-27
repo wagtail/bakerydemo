@@ -20,7 +20,7 @@ lint: lint-server lint-client
 format-server:
 	ruff format .
 	ruff check . --fix
-	git ls-files '*.html' | xargs djhtml -i
+	git ls-files '*.html' | xargs djhtml
 
 format-client:
 	npm run format
