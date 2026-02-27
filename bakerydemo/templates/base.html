@@ -20,7 +20,7 @@
 
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}
-            <base target="_blank">
+            <base target="_blank" rel="noopener noreferrer">
         {% endif %}
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
