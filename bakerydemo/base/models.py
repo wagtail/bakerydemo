@@ -124,13 +124,30 @@ class Person(
         APIField("image"),
     ]
 
+    # old code
+    # @property
+    # def thumb_image(self):
+    #     # Returns an empty string if there is no profile pic or the rendition
+    #     # file can't be found.
+    #     try:
+    #         return self.image.get_rendition("fill-50x50").img_tag()
+    #     except:  # noqa: E722 FIXME: remove bare 'except:'
+    #         return ""
+
+    # Fixed Code
     @property
     def thumb_image(self):
-        # Returns an empty string if there is no profile pic or the rendition
-        # file can't be found.
+        """
+        Returns thumbnail image HTML for the person.
+
+        Returns empty string if image is missing or rendition cannot be generated.
+        """
+        if not self.image:
+            return ""
+
         try:
             return self.image.get_rendition("fill-50x50").img_tag()
-        except:  # noqa: E722 FIXME: remove bare 'except:'
+        except Exception:
             return ""
 
     @property
