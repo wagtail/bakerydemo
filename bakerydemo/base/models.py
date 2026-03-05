@@ -36,7 +36,7 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
-from .blocks import BaseStreamBlock
+from .blocks import BaseStreamBlock, SectionBlock
 
 # Allow filtering by collection
 Image.api_fields = [APIField("collection")]
@@ -224,6 +224,35 @@ class FooterText(
     class Meta(TranslatableMixin.Meta):
         verbose_name = "footer text"
         verbose_name_plural = "footer text"
+
+
+class FooterMenu(
+    DraftStateMixin,
+    RevisionMixin,
+    PreviewableMixin,
+    TranslatableMixin,
+    models.Model,
+):
+    name = models.CharField(max_length=255)
+    sections = StreamField([("section", SectionBlock())])
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("sections"),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    def get_preview_template(self, request, mode_name):
+        return "base.html"
+
+    def get_preview_context(self, request, mode_name):
+        return {"footer_menu": self}
+
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "footer menu"
+        verbose_name_plural = "footer menus"
 
 
 class StandardPage(Page):

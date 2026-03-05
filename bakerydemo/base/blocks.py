@@ -2,11 +2,15 @@ from django.utils.functional import cached_property
 from wagtail.blocks import (
     CharBlock,
     ChoiceBlock,
+    ListBlock,
+    PageChooserBlock,
     RichTextBlock,
     StreamBlock,
     StructBlock,
     TextBlock,
+    URLBlock,
 )
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
@@ -158,3 +162,35 @@ class BaseStreamBlock(StreamBlock):
         preview_value="https://www.youtube.com/watch?v=mwrGSfiB1Mg",
         description="An embedded video or other media",
     )
+
+
+class PageLinkBlock(StructBlock):
+    page = PageChooserBlock(required=False)
+
+
+class DocumentBlock(StructBlock):
+    document = DocumentChooserBlock(required=False)
+
+
+class ExternalLinkBlock(StructBlock):
+    url = URLBlock(required=False)
+
+
+class LinkStreamBlock(StreamBlock):
+    page = PageLinkBlock()
+    document = DocumentBlock()
+    external_url = ExternalLinkBlock()
+
+    class Meta:
+        min_num = 1
+        max_num = 1
+
+
+class MenuItemBlock(StructBlock):
+    title = CharBlock(required=False)
+    link = LinkStreamBlock()
+
+
+class SectionBlock(StructBlock):
+    heading = CharBlock()
+    links = ListBlock(MenuItemBlock())
