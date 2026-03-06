@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "base/include/header-index.html" %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="index-header__title">{{ page.title }}</h1>
+            </div>
+            {% if page.intro %}
+                <div class="col-md-12 index-header__body-introduction">
+                    {{ page.intro|richtext }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="location-list-page">
+            {% for person in people %}
+                <article class="location-card">
+                    {% if person.photo %}
+                        <figure class="location-card__image">
+                            {% picture person.photo format-{avif,webp,jpeg} fill-600x400 %}
+                        </figure>
+                    {% endif %}
+
+                    <div class="location-card__contents">
+                        <h2 class="location-card__title">
+                            <a href="{{ person.url }}">
+                                {{ person.first_name }} {{ person.last_name }}
+                            </a>
+                        </h2>
+                        <p class="location-card__text">
+                            {{ person.role }}{% if person.department %} — {{ person.department }}{% endif %}
+                        </p>
+                    </div>
+                </article>
+            {% empty %}
+                <p>No people have been added yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+

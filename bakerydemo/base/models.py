@@ -64,8 +64,10 @@ class Person(
     https://github.com/wagtail/django-modelcluster
     """
 
-    first_name = models.CharField("First name", max_length=254)
-    last_name = models.CharField("Last name", max_length=254)
+    # first_name = models.CharField("First name", max_length=254)
+    # last_name = models.CharField("Last name", max_length=254)
+    first_name = models.CharField(max_length=100, default='')
+    last_name = models.CharField(max_length=100, default='')
     job_title = models.CharField("Job title", max_length=254)
 
     image = models.ForeignKey(
@@ -641,3 +643,4 @@ class UserApprovalTask(Task):
     @classmethod
     def get_description(cls):
         return _("Only a specific user can approve this task")
+

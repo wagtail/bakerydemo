@@ -41,6 +41,22 @@ each detail view
   /* stylelint-enable */
   --font-sm: 1rem;
   --font-md: 1.125rem;
+  /* Theme tokens */
+  --color-bg: var(--white);
+  --color-text: var(--dark);
+  --color-border: var(--border-grey);
+  --color-surface: var(--cream);
+  /* Layout */
+  --max-width: 1400px;
+  --grid-gutter: 20px;
+}
+
+/* Dark theme overrides (applied when JS sets data-theme="dark" on <html>) */
+html[data-theme='dark'] {
+  --color-bg: #121212;
+  --color-text: #e0e0e0;
+  --color-border: #333333;
+  --color-surface: #1e1e1e;
 }
 
 html {
@@ -59,8 +75,8 @@ body {
   line-height: 1.5;
   padding-top: 0;
   padding-bottom: 0;
-  background: var(--white);
-  color: var(--dark);
+  background: var(--color-bg);
+  color: var(--color-text);
   min-height: 100vh;
 }
 
@@ -449,7 +465,7 @@ caption {
 .header {
   padding: 0;
   width: 100%;
-  background: var(--white);
+  background: var(--color-surface);
   z-index: 10;
 }
 
@@ -603,14 +619,9 @@ caption {
 .navigation__search-icon {
   display: block;
   position: absolute;
-  right: 13px;
-  top: 13px;
-}
-
-@media (min-width: 768px) {
-  .navigation__search-icon {
-    top: 11px;
-  }
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .navigation__search-input {
@@ -631,14 +642,42 @@ caption {
   display: none;
 }
 
+/* Theme toggle button */
+.theme-toggle {
+  margin-left: 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border-grey);
+  background-color: transparent;
+  color: var(--dark);
+  font-size: 0.875rem;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+html[data-theme='dark'] .theme-toggle {
+  color: var(--color-text, #e0e0e0);
+  border-color: var(--color-border, #333333);
+}
+
 @media (min-width: 1150px) {
   .navigation__desktop {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    flex: 1;
+    min-width: 0;
   }
 
   .navigation__search {
     display: block;
-    margin: 0 0 0 auto;
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
   .navigation__items {
@@ -776,7 +815,7 @@ hr {
 
 footer {
   padding: 55px 0 30px;
-  background-color: var(--white);
+  background-color: var(--color-surface);
 }
 
 .footer__icon a {
@@ -802,16 +841,35 @@ footer {
 }
 
 .container {
-  width: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--grid-gutter);
 }
 
 @media (min-width: 768px) {
-  .container {
-    max-width: 1400px;
-    padding-left: 40px;
-    padding-right: 40px;
+  :root {
+    --grid-gutter: 40px;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gutter);
+  grid-template-columns: 1fr;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -2098,4 +2156,44 @@ input[type='radio'] {
   max-width: 100vw;
   max-height: 100vh;
   margin-inline: auto;
+}
+
+
+/* Search form: relative so absolute clear button doesn't affect flex layout */
+.navigation__search form,
+.navigation__mobile-search form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Clear button: right side of input, vertically centered; no layout shift (absolute) */
+.search-clear-btn {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--grey);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  z-index: 5;
+  transition: color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  color: var(--orange);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+/* Input padding so text doesn't overlap clear button and search icon */
+.navigation__search-input {
+  padding-left: 50px !important;
+  padding-right: 65px !important;
 }
