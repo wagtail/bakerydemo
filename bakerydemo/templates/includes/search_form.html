@@ -1,0 +1,9 @@
+<form action="/search" method="get" class="{{ form_class|default:'navigation__search' }}" role="search">
+    <label for="{{ input_id|default:'search-input' }}" class="u-sr-only">{{ label_text|default:'Search the bakery'
+        }}</label>
+    <input class="navigation__search-input" id="{{ input_id|default:'search-input' }}" type="text" placeholder="Search"
+        autocomplete="off" name="q">
+    <div aria-hidden="true" class="navigation__search-icon">
+        {% include "includes/search_icon_svg.html" %}
+    </div>
+</form>
