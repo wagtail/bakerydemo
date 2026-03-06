@@ -2,12 +2,12 @@
 elasticsearch==5.5.3
 # Additional dependencies for Heroku, AWS, and Google Cloud deployment
 uwsgi>=2.0.17,<2.1
-psycopg[binary]>=3.2.2,<3.3
-whitenoise==6.6.0
-boto3>=1.37,<1.38
-google-cloud-storage==2.13.0
-django-storages==1.14.2
+psycopg[binary]>=3.3.3,<3.4
+whitenoise>=6.11.0,<7
+boto3>=1.42,<1.43
+google-cloud-storage>=3.9.0,<4
+django-storages>=1.14.6,<2
 # For retrieving credentials and signing requests to Elasticsearch
 aws-requests-auth==0.4.3
-django-redis==5.4.0
-django-basic-auth-ip-whitelist>=0.7,<0.8
+django-redis>=6.0.0,<7
+django-basic-auth-ip-whitelist>=0.8,<0.9
