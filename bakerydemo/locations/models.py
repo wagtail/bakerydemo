@@ -199,13 +199,24 @@ class LocationPage(Page):
             return False
 
     # Makes additional context available to the template so that we can access
-    # the latitude, longitude and map API key to render the map
+    # the latitude and longitude to render the OpenStreetMap embed
     def get_context(self, request):
         context = super(LocationPage, self).get_context(request)
         context["lat"] = self.lat_long.split(",")[0]
         context["long"] = self.lat_long.split(",")[1]
-        context["google_map_api_key"] = settings.GOOGLE_MAP_API_KEY
         return context
 
     # Can only be placed under a LocationsIndexPage object
     parent_page_types = ["LocationsIndexPage"]
+
+    @property
+    def lat(self):
+        if self.lat_long:
+            return self.lat_long.split(",")[0].strip()
+        return None
+
+    @property
+    def long(self):
+        if self.lat_long:
+            return self.lat_long.split(",")[1].strip()
+        return None

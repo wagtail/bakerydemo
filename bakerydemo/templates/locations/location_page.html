@@ -46,6 +46,23 @@
                             <h2 class="location__meta-title">Address</h2>
                             <address>{{ page.address|linebreaks }}</address>
 
+                            {% if page.lat_long %}
+                                <h2 class="location__meta-title">Map</h2>
+                                <div class="location-map">
+                                    <iframe
+                                        width="100%"
+                                        height="250"
+                                        frameborder="0"
+                                        scrolling="no"
+                                        marginheight="0"
+                                        marginwidth="0"
+                                        src="https://www.openstreetmap.org/export/embed.html?marker={{ lat }},{{ long }}&layer=mapnik"
+                                        style="border: 1px solid #ccc; border-radius: 4px;">
+                                    </iframe>
+                                    <a href="https://www.openstreetmap.org/?mlat={{ lat }}&mlon={{ long }}#map=15/{{ lat }}/{{ long }}" target="_blank" rel="noopener noreferrer" class="location-map__link">View on OpenStreetMap</a>
+                                </div>
+                            {% endif %}
+
                             {% if page.operating_hours %}
                                 <h2 class="location__meta-title">Opening hours</h2>
                                 {% for hours in page.operating_hours %}
