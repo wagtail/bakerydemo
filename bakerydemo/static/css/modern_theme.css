@@ -1,0 +1,138 @@
+@media (min-width: 768px) {
+  figure {
+    margin: 40px 10px;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 1500px;
+    padding-left: 40px;
+    padding-right: -40px;
+  }
+}
+
+.homepage .hero {
+  margin: 0;
+  padding: 30px 0 30px;
+}
+
+@media (min-width: 768px) {
+  .homepage .home-hero {
+    padding-bottom: 100px;
+  }
+}
+
+@media (min-width: 992px) {
+  .homepage .streamfield-column {
+    padding: 50px 0;
+  }
+
+  .homepage .streamfield-column p:first-child {
+    font-size: 20px;
+    line-height: 1.47;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage .promo {
+    margin-top: 100px;
+    margin-right: -120px;
+    padding: 80px 40px 200px;
+    max-width: 520px;
+  }
+
+  .homepage .promo figure img {
+    width: calc(50% + 60px);
+    height: auto;
+    margin-right: -60px;
+    margin-bottom: -164px;
+    padding-top: 20px;
+  }
+
+  .homepage .promo p {
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+}
+
+.homepage .featured-cards__title {
+  margin-top: 0;
+  margin-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .homepage .locations-section {
+    text-align: left;
+    padding: 120px 0 160px;
+  }
+
+  .homepage .locations-section__title {
+    font-size: 40px;
+    line-height: 1.07;
+
+    /* Aligns title with below cards */
+    padding-left: 10px;
+  }
+}
+
+.homepage .blog-section {
+  padding: 80px 20px 100px;
+  text-align: left;
+}
+
+@media (min-width: 966px) {
+  .homepage .blog-section__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .homepage .blog-section__title {
+    margin-bottom: 40px;
+    font-size: 40px;
+    line-height: 1.21;
+  }
+}
+
+@media (min-width: 768px) {
+  .picture-card__title {
+    font-size: 2rem;
+    line-height: 1.31;
+  }
+
+  .picture-card__contents {
+    padding: 40px 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .location-card {
+    margin-bottom: 0;
+  }
+
+  .location-card__image {
+    margin-bottom: 30px;
+  }
+
+  .location-card__image img {
+    min-height: 30px;
+  }
+
+  .location-card__title {
+    font-size: 2rem;
+    line-height: 1.31;
+    margin-bottom: 20px;
+  }
+
+  .location-card__text {
+    font-size: var(--font-md);
+    line-height: 1.55;
+  }
+}
