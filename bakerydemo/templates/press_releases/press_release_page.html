@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<article class="press-release">
+    <header>
+        <span class="date">{{ page.date }}</span>
+        <h1>{{ page.title }}</h1>
+        {% if page.source %}
+            <span class="source">Source: {{ page.source }}</span>
+        {% endif %}
+    </header>
+
+    <div class="intro">{{ page.intro }}</div>
+    <div class="body">{{ page.body|richtext }}</div>
+
+    {% if page.contact_email %}
+    <footer>
+        <p>Contact: <a href="mailto:{{ page.contact_email }}">{{ page.contact_email }}</a></p>
+    </footer>
+    {% endif %}
+</article>
+{% endblock %}

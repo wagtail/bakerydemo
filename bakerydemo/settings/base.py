@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "bakerydemo.people",
+    "bakerydemo.press_releases",
 ]
 
 MIDDLEWARE = [

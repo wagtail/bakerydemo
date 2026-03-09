@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<section class="press-releases-index">
+    <h1>{{ page.title }}</h1>
+    {% if page.intro %}
+        <div class="intro">{{ page.intro|richtext }}</div>
+    {% endif %}
+
+    <div class="press-releases-list">
+        {% for release in press_releases %}
+        <article class="press-release-card">
+            <span class="date">{{ release.date }}</span>
+            <h2><a href="{% pageurl release %}">{{ release.title }}</a></h2>
+            <p>{{ release.intro }}</p>
+            {% if release.source %}
+                <span class="source">{{ release.source }}</span>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
