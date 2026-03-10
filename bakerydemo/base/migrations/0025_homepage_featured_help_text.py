@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name="featured_section_1_title",
             field=models.CharField(
                 blank=True,
-                help_text="Title to display above the featured section 1",
+                help_text="Heading for the first featured section",
                 max_length=255,
             ),
         ),
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             name="featured_section_2_title",
             field=models.CharField(
                 blank=True,
-                help_text="Title to display above the featured section 2",
+                help_text="Heading for the second featured section",
                 max_length=255,
             ),
         ),
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             name="featured_section_3_title",
             field=models.CharField(
                 blank=True,
-                help_text="Title to display above the featured section 3",
+                help_text="Heading for the third featured section",
                 max_length=255,
             ),
         ),

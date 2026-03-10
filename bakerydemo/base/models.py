@@ -328,7 +328,7 @@ class HomePage(Page):
     featured_section_1_title = models.CharField(
         blank=True,
         max_length=255,
-        help_text="Title to display above the featured section 1",
+        help_text="Heading for the first featured section",
     )
     featured_section_1 = models.ForeignKey(
         "wagtailcore.Page",
@@ -344,7 +344,7 @@ class HomePage(Page):
     featured_section_2_title = models.CharField(
         blank=True,
         max_length=255,
-        help_text="Title to display above the featured section 2",
+        help_text="Heading for the second featured section",
     )
     featured_section_2 = models.ForeignKey(
         "wagtailcore.Page",
@@ -360,7 +360,7 @@ class HomePage(Page):
     featured_section_3_title = models.CharField(
         blank=True,
         max_length=255,
-        help_text="Title to display above the featured section 3",
+        help_text="Heading for the third featured section",
     )
     featured_section_3 = models.ForeignKey(
         "wagtailcore.Page",
