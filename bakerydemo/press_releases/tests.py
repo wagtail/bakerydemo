@@ -1,18 +1,36 @@
+from django.contrib.auth.models import User
+from wagtail.models import Page, Site
 from wagtail.test.utils import WagtailPageTestCase
-from wagtail.models import Page
 from bakerydemo.press_releases.models import PressReleaseIndexPage, PressReleasePage
 import datetime
 
 
 class PressReleaseIndexPageTest(WagtailPageTestCase):
-    def setUp(self):
-        root = Page.objects.first()
-        self.index = PressReleaseIndexPage(
-            title="Press Releases",
-            slug="press-releases",
+    @classmethod
+    def setUpTestData(cls):
+        cls.root = Page.get_first_root_node()
+
+        cls.site, _ = Site.objects.update_or_create(
+            hostname="testserver",
+            defaults={
+                "root_page": cls.root,
+                "is_default_site": True,
+            },
         )
-        root.add_child(instance=self.index)
-        self.index.save_revision().publish()
+
+        cls.index = PressReleaseIndexPage(
+            title="Press Releases",
+            slug="press-releases-test",
+        )
+        cls.root.add_child(instance=cls.index)
+        cls.index.save_revision().publish()
+
+    def setUp(self):
+        super().setUp()
+        self.user = User.objects.create_superuser(
+            username="testadmin", email="test@example.com", password="password"
+        )
+        self.client.login(username="testadmin", password="password")
 
     def test_index_page_status_code(self):
         response = self.client.get(self.index.url)
@@ -27,16 +45,26 @@ class PressReleaseIndexPageTest(WagtailPageTestCase):
 
 
 class PressReleasePageTest(WagtailPageTestCase):
-    def setUp(self):
-        root = Page.objects.first()
-        self.index = PressReleaseIndexPage(
-            title="Press Releases",
-            slug="press-releases",
-        )
-        root.add_child(instance=self.index)
-        self.index.save_revision().publish()
+    @classmethod
+    def setUpTestData(cls):
+        cls.root = Page.get_first_root_node()
 
-        self.release = PressReleasePage(
+        cls.site, _ = Site.objects.update_or_create(
+            hostname="testserver",
+            defaults={
+                "root_page": cls.root,
+                "is_default_site": True,
+            },
+        )
+
+        cls.index = PressReleaseIndexPage(
+            title="Press Releases",
+            slug="press-releases-page-test",
+        )
+        cls.root.add_child(instance=cls.index)
+        cls.index.save_revision().publish()
+
+        cls.release = PressReleasePage(
             title="Bakery Wins Award",
             slug="bakery-wins-award",
             date=datetime.date.today(),
@@ -44,8 +72,15 @@ class PressReleasePageTest(WagtailPageTestCase):
             body="<p>Full details here.</p>",
             source="Bakery News",
         )
-        self.index.add_child(instance=self.release)
-        self.release.save_revision().publish()
+        cls.index.add_child(instance=cls.release)
+        cls.release.save_revision().publish()
+
+    def setUp(self):
+        super().setUp()
+        self.user = User.objects.create_superuser(
+            username="testadmin2", email="test2@example.com", password="password"
+        )
+        self.client.login(username="testadmin2", password="password")
 
     def test_press_release_page_status_code(self):
         response = self.client.get(self.release.url)
