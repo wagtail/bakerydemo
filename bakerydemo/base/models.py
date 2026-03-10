@@ -130,7 +130,7 @@ class Person(
         # file can't be found.
         try:
             return self.image.get_rendition("fill-50x50").img_tag()
-        except:  # noqa: E722 FIXME: remove bare 'except:'
+        except Exception:
             return ""
 
     @property
