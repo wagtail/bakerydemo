@@ -126,12 +126,7 @@ class Person(
 
     @property
     def thumb_image(self):
-        # Returns an empty string if there is no profile pic or the rendition
-        # file can't be found.
-        try:
-            return self.image.get_rendition("fill-50x50").img_tag()
-        except Exception:
-            return ""
+        return self.image.get_rendition("fill-50x50").img_tag() if self.image else ""
 
     @property
     def preview_modes(self):
