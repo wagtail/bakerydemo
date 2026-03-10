@@ -44,18 +44,18 @@
                 </div>
 
                 <div class="col-sm-6 promo">
-                    {% if page.promo_image or page.promo_title or page.promo_text %}
+                    {% if page.lead_image or page.lead_title or page.lead_text %}
                         <div class="col-lg-10 promo-text">
-                            {% if page.promo_title %}
-                                <h2>{{ page.promo_title }}</h2>
+                            {% if page.lead_title %}
+                                <h2>{{ page.lead_title }}</h2>
                             {% endif %}
-                            {% if page.promo_text %}
-                                {{ page.promo_text|richtext }}
+                            {% if page.lead_text %}
+                                {{ page.lead_text|richtext }}
                             {% endif %}
                         </div>
                     {% endif %}
-                    {% if page.promo_image %}
-                        <figure>{% picture page.promo_image format-{avif,webp,jpeg} fill-590x413-c100 %}</figure>
+                    {% if page.lead_image %}
+                        <figure>{% picture page.lead_image format-{avif,webp,jpeg} fill-590x413-c100 %}</figure>
                     {% endif %}
                 </div>
             </div>
