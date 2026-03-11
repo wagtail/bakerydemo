@@ -139,8 +139,6 @@ source .venv/bin/activate
 
 On Windows, activate the virtual environment using the appropriate command for your shell:
 
-On Windows, activate the virtual environment using the appropriate command for your shell:
-
 ```bash
 # PowerShell
 .venv\Scripts\Activate.ps1
