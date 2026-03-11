@@ -137,11 +137,13 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-On Windows (cmd.exe), run the following commands:
+On Windows, activate the virtual environment using the appropriate command for your shell:
+
 ```bash
-.venv\Scripts\activate.bat
-# if wagtailbakerydemo\Scripts\activate.bat doesn't work, run:
+# PowerShell
 .venv\Scripts\Activate.ps1
+# Command Prompt (cmd.exe)
+.venv\Scripts\activate.bat
 ```
 > **Note (PowerShell Execution Policy)**
 > If activating with `Activate.ps1` fails with an error like “running scripts is disabled on this system”, you can either:
