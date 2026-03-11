@@ -139,16 +139,13 @@ source .venv/bin/activate
 
 On Windows, activate the virtual environment using the appropriate command for your shell:
 
-For Command Prompt (cmd.exe):
+On Windows, activate the virtual environment using the appropriate command for your shell:
 
 ```bash
-.venv\Scripts\activate.bat
-```
-
-For PowerShell (recommended on Windows):
-
-```bash
+# PowerShell
 .venv\Scripts\Activate.ps1
+# Command Prompt (cmd.exe)
+.venv\Scripts\activate.bat
 ```
 
 Now we're ready to set up the bakery demo project itself:
