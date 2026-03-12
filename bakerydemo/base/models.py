@@ -126,12 +126,7 @@ class Person(
 
     @property
     def thumb_image(self):
-        # Returns an empty string if there is no profile pic or the rendition
-        # file can't be found.
-        try:
-            return self.image.get_rendition("fill-50x50").img_tag()
-        except:  # noqa: E722 FIXME: remove bare 'except:'
-            return ""
+        return self.image.get_rendition("fill-50x50").img_tag() if self.image else ""
 
     @property
     def preview_modes(self):
@@ -305,7 +300,7 @@ class HomePage(Page):
     )
 
     # Promo section of the HomePage
-    promo_image = models.ForeignKey(
+    lead_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -313,10 +308,10 @@ class HomePage(Page):
         related_name="+",
         help_text="Promo image",
     )
-    promo_title = models.CharField(
+    lead_title = models.CharField(
         blank=True, max_length=255, help_text="Title to display above the promo copy"
     )
-    promo_text = RichTextField(
+    lead_text = RichTextField(
         null=True, blank=True, max_length=1000, help_text="Write some promotional copy"
     )
 
@@ -328,7 +323,7 @@ class HomePage(Page):
     featured_section_1_title = models.CharField(
         blank=True,
         max_length=255,
-        help_text="Title to display above the featured section 1",
+        help_text="Heading for the first featured section",
     )
     featured_section_1 = models.ForeignKey(
         "wagtailcore.Page",
@@ -344,7 +339,7 @@ class HomePage(Page):
     featured_section_2_title = models.CharField(
         blank=True,
         max_length=255,
-        help_text="Title to display above the featured section 2",
+        help_text="Heading for the second featured section",
     )
     featured_section_2 = models.ForeignKey(
         "wagtailcore.Page",
@@ -360,7 +355,7 @@ class HomePage(Page):
     featured_section_3_title = models.CharField(
         blank=True,
         max_length=255,
-        help_text="Title to display above the featured section 3",
+        help_text="Heading for the third featured section",
     )
     featured_section_3 = models.ForeignKey(
         "wagtailcore.Page",
@@ -390,9 +385,9 @@ class HomePage(Page):
         HelpPanel("This is a help panel"),
         MultiFieldPanel(
             [
-                FieldPanel("promo_image"),
-                FieldPanel("promo_title"),
-                FieldPanel("promo_text"),
+                FieldPanel("lead_image"),
+                FieldPanel("lead_title"),
+                FieldPanel("lead_text"),
             ],
             heading="Promo section",
             help_text="This is just a help text",
@@ -429,9 +424,9 @@ class HomePage(Page):
         APIField("hero_cta"),
         APIField("hero_cta_link"),
         APIField("body"),
-        APIField("promo_image"),
-        APIField("promo_title"),
-        APIField("promo_text"),
+        APIField("lead_image"),
+        APIField("lead_title"),
+        APIField("lead_text"),
         APIField("featured_section_1_title"),
         APIField("featured_section_1"),
         APIField("featured_section_2_title"),

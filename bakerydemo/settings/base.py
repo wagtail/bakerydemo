@@ -216,8 +216,8 @@ WAGTAIL_I18N_ENABLED = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ("en", "English"),
-    ("de", "Deutsch"),
-    ("ar", "العربيّة"),
+    ("de", "German"),
+    ("ar", "Arabic"),
 ]
 
 WAGTAILIMAGES_AVIF_QUALITY = 60
