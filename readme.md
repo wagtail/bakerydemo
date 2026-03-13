@@ -30,23 +30,13 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 
 # Installation
 
-- [Gitpod](#setup-with-gitpod)
+- [Venv](#setup-with-venv)
 - [Vagrant](#setup-with-vagrant)
 - [Docker](#setup-with-docker)
-- [Venv](#setup-with-venv)
 
-If you want to see what Wagtail is all about, we suggest trying it out through [Gitpod](#setup-with-gitpod).
-If you want to set up Wagtail locally instead, and you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Vagrant](#setup-with-vagrant) or [Docker](#setup-with-docker) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
-Developers more familiar with venv/virtualenv and traditional Django app setup instructions should skip to [Setup with venv](#setup-with-venv).
+If you want to see what Wagtail is all about, we suggest trying it out locally in a virtual environment: [Setup with venv](#setup-with-venv).
 
-## Setup with Gitpod
-
-Set up a development environment and run this demo website with a single click (requires a Github account):
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/wagtail/bakerydemo/)
-
-Once Gitpod has fully started, and a preview of the bakery website has appeared in the "Simple Browser" panel, click the arrow button to the right of the URL bar to open the website in a new tab.
-Go to `/admin/` and login with `admin / changeme`.
+If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Docker](#setup-with-docker) or [Vagrant](#setup-with-vagrant) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
 
 ## Setup with Vagrant
 
