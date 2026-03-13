@@ -1,127 +1,66 @@
-# Contributing to Bakerydemo
+# Contributing
 
-Thank you for contributing to **Wagtail Bakerydemo**! This project demonstrates common Wagtail CMS features and is used as a learning resource.  
+Thank you for your interest in improving this project! There are many ways to contribute - see the [Wagtail contributing documentation](https://docs.wagtail.org/en/latest/contributing/index.html) for some suggestions.
 
-## Getting Started
+To contribute, first fork the repository then clone your copy:
 
-### 1. Clone & install
 ```bash
-git clone https://github.com/wagtail/bakerydemo.git
-cd bakerydemo
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements/development.txt
+git clone git@github.com:your-username/bakerydemo.git
+```
 
-2. Create local config
-cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
-cp .env.example .env
+Follow the [README instrubtions](readme.md) to set up your local development environment.
 
-3. Migrate & load data
-./manage.py migrate
-./manage.py load_initial_data
-./manage.py runserver
+## AI policy
 
-Development Tasks
-Lint & format
-ruff check .
-ruff format .
+- **Purely AI-generated contributions are not welcome.** If you have made use of AI assistance, please disclose this in your pull request description, and detail the steps you have taken to verify that the code is correct. See the guidelines for [use of generative AI](https://docs.wagtail.org/en/latest/contributing/general_guidelines.html#use-of-generative-ai).
 
-Run tests
-pytest
+## Development tasks
 
-Update fixture data
-./manage.py dumpdata --natural-foreign --indent 2 \
-  -e auth.permission -e contenttypes -e wagtailimages.rendition \
-  -e wagtailsearch.indexentry -e sessions \
-  > bakerydemo/base/fixtures/bakerydemo.json
+### Quality assurance
 
-npx prettier --write bakerydemo/base/fixtures/bakerydemo.json
+Our `Makefile` has ready-made commands for common needs:
 
-Pull Request Guidelines
-
-Keep PRs focused and well-explained.
-
-Ensure formatting and lint checks pass.
-
-Update documentation when needed.
-
-Link related issues.
-
-Thank you for helping improve Bakerydemo!
-
-```md
-# Contributing to Bakerydemo
-
-We appreciate your interest in contributing to **Wagtail Bakerydemo**.  
-This repository serves as an educational reference implementation for Wagtail CMS and is maintained to support developers exploring Wagtail’s features and best practices.
-
-This document outlines the recommended development setup, coding standards, and contribution workflow.
-
----
-
-## 1. Development Environment Setup
-
-### Clone the repository
 ```bash
-git clone https://github.com/wagtail/bakerydemo.git
-cd bakerydemo
+make lint - check style with ruff, sort python with ruff, indent html, and lint frontend css/js
+make format - enforce a consistent code style across the codebase, sort python files with ruff and fix frontend css/js
+```
 
-Create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate   # macOS/Linux
-.venv\Scripts\activate      # Windows
+You can also run the project test suite with:
 
-Install development dependencies
-pip install -r requirements/development.txt
+```bash
+./manage.py test
+```
 
-Create local configuration files
-cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
-cp .env.example .env
+### Demo data management
 
-Apply migrations and load initial data
-./manage.py migrate
-./manage.py load_initial_data
-./manage.py runserver
+If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
 
-
-Access the admin interface at /admin/ using:
-
-Username: admin
-Password: changeme
-
-2. Development Standards
-Code formatting and linting
-
-This project uses Ruff for both linting and code formatting.
-
-ruff check .
-ruff format .
-
-Running tests
-pytest
-
-Updating demo fixtures
-
-If modifying content included in the demo data, regenerate the fixture:
-
-./manage.py dumpdata --natural-foreign --indent 2 \
-  -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission \
-  -e wagtailimages.rendition -e wagtailsearch.indexentry -e sessions \
-  > bakerydemo/base/fixtures/bakerydemo.json
-
+```bash
+./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription -e wagtailcore.workflowcontenttype -e wagtailadmin.editingsession > bakerydemo/base/fixtures/bakerydemo.json
 npx prettier --write bakerydemo/base/fixtures/bakerydemo.json
+```
 
-3. Contribution Workflow
-To maintain quality and clarity across contributions:
-Open an issue before large changes when possible.
-Keep pull requests focused on a single change or topic.
-Ensure all tests and linters pass before submitting your PR.
-Add or update documentation if you introduce new behavior.
-Reference related issues in your pull request description.
-Be open to feedback during code review.
+Please optimize any included images to 1200px wide with JPEG compression at 60%. Note that `media/images` is ignored in the repo by `.gitignore` but `media/original_images` is not. Wagtail's local image "renditions" are excluded in the fixture recipe above.
 
-4. Further Resources
-Wagtail documentation: https://docs.wagtail.org/en/stable/
-Wagtail contributor guide: https://docs.wagtail.org/en/stable/contributing/
+Make a pull request to https://github.com/wagtail/bakerydemo
 
-Thank you for contributing to Bakerydemo. Your work directly supports the Wagtail community by improving its most widely used learning resource.
+### Testing Content-Security-Policy compliance in Wagtail
+
+Bakerydemo is set up in such a way that it can be used to test [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) compatibility in Wagtail. It uses [django-csp](https://django-csp.readthedocs.io/en/latest/index.html) to generate the appropriate [CSP HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy).
+
+By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet. Set the `CSP_DEFAULT_SRC` environment variable in your `.env` file to set the default policy. An example can be found in `.env.example`.
+
+### Testing against different versions of Wagtail
+
+The `main` branch of this demo is designed to work with both the latest stable release and the latest `main` branch (development version) of Wagtail. To run the demo against a specific version of Wagtail, we have created [git tags](https://github.com/wagtail/bakerydemo/tags) for the latest commits that work with each feature release.
+
+- [`v6.4`](https://github.com/wagtail/bakerydemo/releases/tag/v6.4)
+- [`v6.3`](https://github.com/wagtail/bakerydemo/releases/tag/v6.3)
+- [`v6.2`](https://github.com/wagtail/bakerydemo/releases/tag/v6.2)
+- [`v6.1`](https://github.com/wagtail/bakerydemo/releases/tag/v6.1)
+
+See the [complete tags list](https://github.com/wagtail/bakerydemo/tags) for older releases.
+
+The tags point to the last commit just before the requirements were updated to the next Wagtail version. For example, the `v4.2` tag points to the commit just before the bakerydemo was updated to use Wagtail 5.0. This ensures that the tagged demo code contains the latest updates possible for the supported version.
+
+There were no updates to the demo between Wagtail 4.1 and 4.2, so the `v4.1` and `v4.2` tags point to the same commit.

@@ -174,20 +174,7 @@ Hopefully after you've experimented with the demo you'll want to create your own
 
 # Contributing
 
-If you're a Python or Django developer, fork the repo and get stuck in! If you'd like to get involved you may find our [contributing guidelines](https://github.com/wagtail/bakerydemo/blob/master/contributing.md) a useful read.
-
-### Preparing this archive for distribution
-
-If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
-
-```bash
-./manage.py dumpdata --natural-foreign --indent 2 -e auth.permission -e contenttypes -e wagtailcore.GroupCollectionPermission -e wagtailimages.rendition -e sessions -e wagtailsearch.indexentry -e wagtailsearch.sqliteftsindexentry -e wagtailcore.referenceindex -e wagtailcore.pagesubscription -e wagtailcore.workflowcontenttype -e wagtailadmin.editingsession > bakerydemo/base/fixtures/bakerydemo.json
-npx prettier --write bakerydemo/base/fixtures/bakerydemo.json
-```
-
-Please optimize any included images to 1200px wide with JPEG compression at 60%. Note that `media/images` is ignored in the repo by `.gitignore` but `media/original_images` is not. Wagtail's local image "renditions" are excluded in the fixture recipe above.
-
-Make a pull request to https://github.com/wagtail/bakerydemo
+Check out our [contributing documentation](contributing.md) for our contributing guidelines and docs for common tasks.
 
 # Other notes
 
@@ -216,27 +203,6 @@ In production on your own site, you'll need to change this to:
 `EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'`
 
 and configure [SMTP settings](https://docs.djangoproject.com/en/stable/topics/email/#smtp-backend) appropriate for your email provider.
-
-### Testing Content-Security-Policy compliance in Wagtail
-
-Bakerydemo is set up in such a way that it can be used to test [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) compatibility in Wagtail. It uses [django-csp](https://django-csp.readthedocs.io/en/latest/index.html) to generate the appropriate [CSP HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy).
-
-By default, `django-csp` is not enabled since Wagtail isn't fully compatible yet. Set the `CSP_DEFAULT_SRC` environment variable in your `.env` file to set the default policy. An example can be found in `.env.example`.
-
-### Testing against different versions of Wagtail
-
-The `main` branch of this demo is designed to work with both the latest stable release and the latest `main` branch (development version) of Wagtail. To run the demo against a specific version of Wagtail, we have created [git tags](https://github.com/wagtail/bakerydemo/tags) for the latest commits that work with each feature release.
-
-- [`v6.4`](https://github.com/wagtail/bakerydemo/releases/tag/v6.4)
-- [`v6.3`](https://github.com/wagtail/bakerydemo/releases/tag/v6.3)
-- [`v6.2`](https://github.com/wagtail/bakerydemo/releases/tag/v6.2)
-- [`v6.1`](https://github.com/wagtail/bakerydemo/releases/tag/v6.1)
-
-See the [complete tags list](https://github.com/wagtail/bakerydemo/tags) for older releases.
-
-The tags point to the last commit just before the requirements were updated to the next Wagtail version. For example, the `v4.2` tag points to the commit just before the bakerydemo was updated to use Wagtail 5.0. This ensures that the tagged demo code contains the latest updates possible for the supported version.
-
-There were no updates to the demo between Wagtail 4.1 and 4.2, so the `v4.1` and `v4.2` tags point to the same commit.
 
 ### Users included in demo data
 
