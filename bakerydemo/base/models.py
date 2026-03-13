@@ -372,7 +372,7 @@ class HomePage(Page):
         MultiFieldPanel(
             [
                 FieldPanel("image"),
-                FieldPanel("hero_text"),
+                FieldPanel("hero_text", required_on_save=True),
                 MultiFieldPanel(
                     [
                         FieldPanel("hero_cta"),
