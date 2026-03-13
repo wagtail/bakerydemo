@@ -11,7 +11,7 @@ from bakerydemo.locations.models import LocationPage
 
 def search(request):
     # Search
-    search_query = request.GET.get("q", None)
+    search_query = request.GET.get("q", "").strip()
     if search_query:
         if "elasticsearch" in settings.WAGTAILSEARCH_BACKENDS["default"]["BACKEND"]:
             # In production, use ElasticSearch and a simplified search query, per
