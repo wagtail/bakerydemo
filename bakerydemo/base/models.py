@@ -36,7 +36,7 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
-from .blocks import BaseStreamBlock
+from .blocks import BaseStreamBlock, MenuItemBlock, MenuSectionBlock
 
 # Allow filtering by collection
 Image.api_fields = [APIField("collection")]
@@ -219,6 +219,94 @@ class FooterText(
     class Meta(TranslatableMixin.Meta):
         verbose_name = "footer text"
         verbose_name_plural = "footer text"
+
+
+class FooterMenu(
+    DraftStateMixin,
+    RevisionMixin,
+    PreviewableMixin,
+    models.Model,
+):
+    """
+    A block-based footer menu managed via StreamField.
+    Editors can create menu sections, each containing links to pages,
+    external URLs, or documents. Registered as a snippet in wagtail_hooks.py.
+    """
+
+    name = models.CharField(max_length=255)
+    sections = StreamField(
+        [("section", MenuSectionBlock())],
+        blank=True,
+        use_json_field=True,
+    )
+
+    revisions = GenericRelation(
+        "wagtailcore.Revision",
+        content_type_field="base_content_type",
+        object_id_field="object_id",
+        related_query_name="footer_menu",
+        for_concrete_model=False,
+    )
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("sections"),
+        PublishingPanel(),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    def get_preview_template(self, request, mode_name):
+        return "base/include/footer_menu.html"
+
+    def get_preview_context(self, request, mode_name):
+        return {"footer_menu": self}
+
+    class Meta:
+        verbose_name = "footer menu"
+        verbose_name_plural = "footer menus"
+
+
+class MainMenu(
+    DraftStateMixin,
+    RevisionMixin,
+    PreviewableMixin,
+    models.Model,
+):
+    name = models.CharField(max_length=255)
+    items = StreamField(
+        [("item", MenuItemBlock())],
+        blank=True,
+        use_json_field=True,
+    )
+
+    revisions = GenericRelation(
+        "wagtailcore.Revision",
+        content_type_field="base_content_type",
+        object_id_field="object_id",
+        related_query_name="main_menu",
+        for_concrete_model=False,
+    )
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("items"),
+        PublishingPanel(),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    def get_preview_template(self, request, mode_name):
+        return "base/include/main_menu.html"
+
+    def get_preview_context(self, request, mode_name):
+        return {"main_menu": self}
+
+    class Meta:
+        verbose_name = "main menu"
+        verbose_name_plural = "main menus"
 
 
 class StandardPage(Page):

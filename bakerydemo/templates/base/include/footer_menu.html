@@ -1,0 +1,37 @@
+{% load wagtailcore_tags %}
+{% if footer_menu %}
+<nav class="footer-menu" aria-label="Footer navigation">
+    <div class="container">
+        <div class="row">
+            {% for block in footer_menu.sections %}
+                {% if block.block_type == "section" %}
+                <div class="col-sm footer-menu__section">
+                    <h3 class="footer-menu__heading">{{ block.value.heading }}</h3>
+                    <ul class="footer-menu__list">
+                        {% for item in block.value.items %}
+                        <li class="footer-menu__item">
+                            {% for link_block in item.link %}
+                                {% if link_block.block_type == "page" and link_block.value %}
+                                    <a href="{% pageurl link_block.value %}">
+                                        {% if item.title %}{{ item.title }}{% else %}{{ link_block.value.title }}{% endif %}
+                                    </a>
+                                {% elif link_block.block_type == "external_url" %}
+                                    <a href="{{ link_block.value }}" rel="noreferrer" target="_blank">
+                                        {{ item.title|default:link_block.value }}
+                                    </a>
+                                {% elif link_block.block_type == "document" and link_block.value %}
+                                    <a href="{{ link_block.value.url }}">
+                                        {% if item.title %}{{ item.title }}{% else %}{{ link_block.value.title }}{% endif %}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</nav>
+{% endif %}
