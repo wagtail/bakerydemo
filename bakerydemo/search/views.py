@@ -31,7 +31,7 @@ def search(request):
             location_results = LocationPage.objects.live().search(search_query)
             location_result_ids = [p.page_ptr.id for p in location_results]
 
-            page_ids = blog_page_ids + bread_page_ids + location_result_ids
+            page_ids = list(set(blog_page_ids + bread_page_ids + location_result_ids))
             search_results = Page.objects.live().filter(id__in=page_ids)
 
         query = Query.get(search_query)
