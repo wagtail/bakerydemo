@@ -10,6 +10,8 @@ services:
     image: postgres:18.1
     expose:
       - '5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
   redis:
     restart: unless-stopped
@@ -27,7 +29,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - ./bakerydemo:/code/bakerydemo
+      - bakerydemo_media:/code/bakerydemo/media
     links:
       - db:db
       - redis:redis
@@ -36,3 +38,7 @@ services:
     depends_on:
       - db
       - redis
+
+volumes:
+  postgres_data:
+  bakerydemo_media:
