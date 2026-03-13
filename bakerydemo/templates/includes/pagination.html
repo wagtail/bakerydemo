@@ -16,7 +16,7 @@
             {% if subpages.number == i %}
                 <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
             {% else %}
-                <li class="page-item"><a href="?page={{ query_string|urlencode }}&amp;page={{ i }}" class="page-link">{{ i }}</a></li>
+                <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
 
