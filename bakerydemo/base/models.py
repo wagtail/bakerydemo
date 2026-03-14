@@ -36,6 +36,8 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 from .blocks import BaseStreamBlock
 
 # Allow filtering by collection
@@ -641,3 +643,23 @@ class UserApprovalTask(Task):
     @classmethod
     def get_description(cls):
         return _("Only a specific user can approve this task")
+
+
+class PaginatedIndexMixin:
+    """
+    A mixin to add standard pagination to index pages.
+    """
+
+    items_per_page = 12
+
+    def paginate(self, request, queryset):
+        page = request.GET.get("page")
+        paginator = Paginator(queryset, self.items_per_page)
+        try:
+            pages = paginator.page(page)
+        except PageNotAnInteger:
+            pages = paginator.page(1)
+        except EmptyPage:
+            pages = paginator.page(paginator.num_pages)
+        return pages
+
