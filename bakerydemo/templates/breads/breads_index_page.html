@@ -2,25 +2,25 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 
 {% block content %}
-    {% include "base/include/header-index.html" %}
+{% include "base/include/header-index.html" %}
 
-    <div class="container">
-        <ul class="bread-list">
-            {% for bread in breads %}
-                <li>
-                    {% include "includes/card/listing-card.html" with page=bread h2=True %}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+<div class="container">
+    <ul class="bread-list">
+        {% for bread in breads %}
+        <li>
+            {% include "includes/card/listing-card.html" with page=bread h2=True %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 
-    {% if breads.paginator.count > 12 %}
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    {% include "includes/pagination.html" with subpages=breads %}
-                </div>
-            </div>
+{% if breads.paginator.num_pages > 1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {% include "includes/pagination.html" with subpages=breads %}
         </div>
-    {% endif %}
+    </div>
+</div>
+{% endif %}
 {% endblock content %}

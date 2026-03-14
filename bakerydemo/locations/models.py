@@ -11,6 +11,7 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.models import PaginatedIndexMixin
 from bakerydemo.locations.choices import DAY_CHOICES
 
 
@@ -71,7 +72,7 @@ class LocationOperatingHours(Orderable, OperatingHours):
     )
 
 
-class LocationsIndexPage(Page):
+class LocationsIndexPage(PaginatedIndexMixin, Page):
     """
     A Page model that creates an index page (a listview)
     """
@@ -100,9 +101,8 @@ class LocationsIndexPage(Page):
     # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(LocationsIndexPage, self).get_context(request)
-        context["locations"] = (
-            LocationPage.objects.descendant_of(self).live().order_by("title")
-        )
+        locations = LocationPage.objects.descendant_of(self).live().order_by("title")
+        context["locations"] = self.paginate(request, locations)
         return context
 
     content_panels = Page.content_panels + [
