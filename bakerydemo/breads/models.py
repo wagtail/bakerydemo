@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.contenttypes.fields import GenericRelation
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
@@ -10,6 +9,7 @@ from wagtail.models import DraftStateMixin, Orderable, Page, RevisionMixin
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.models import PaginatedIndexMixin
 
 
 class Country(models.Model):
@@ -189,7 +189,7 @@ class BreadPage(Page):
         return self.ingredients.order_by("sort_order", "name")
 
 
-class BreadsIndexPage(Page):
+class BreadsIndexPage(PaginatedIndexMixin, Page):
     """
     Index page for breads.
 
@@ -233,20 +233,6 @@ class BreadsIndexPage(Page):
     # content
     def children(self):
         return self.get_children().specific().live()
-
-    # Pagination for the index page. We use the `django.core.paginator` as any
-    # standard Django app would, but the difference here being we have it as a
-    # method on the model rather than within a view function
-    def paginate(self, request, *args):
-        page = request.GET.get("page")
-        paginator = Paginator(self.get_breads(), 12)
-        try:
-            pages = paginator.page(page)
-        except PageNotAnInteger:
-            pages = paginator.page(1)
-        except EmptyPage:
-            pages = paginator.page(paginator.num_pages)
-        return pages
 
     # Returns the above to the get_context method that is used to populate the
     # template

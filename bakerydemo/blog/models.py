@@ -12,6 +12,7 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.models import PaginatedIndexMixin
 
 
 class BlogPersonRelationship(Orderable, models.Model):
@@ -142,7 +143,7 @@ class BlogPage(Page):
     subpage_types = []
 
 
-class BlogIndexPage(RoutablePageMixin, Page):
+class BlogIndexPage(PaginatedIndexMixin, RoutablePageMixin, Page):
     """
     Index page for blogs.
     We need to alter the page model's context to return the child page objects,
@@ -185,9 +186,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
     # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
-        context["posts"] = (
-            BlogPage.objects.descendant_of(self).live().order_by("-date_published")
-        )
+        posts = BlogPage.objects.descendant_of(self).live().order_by("-date_published")
+        context["posts"] = self.paginate(request, posts)
         return context
 
     # This defines a Custom view that utilizes Tags. This view will return all
@@ -206,6 +206,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             return redirect(self.url)
 
         posts = self.get_posts(tag=tag)
+        posts = self.paginate(request, posts)
         context = {"self": self, "tag": tag, "posts": posts}
         return render(request, "blog/blog_index_page.html", context)
 
