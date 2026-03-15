@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Case, When
 from django.shortcuts import render
 from wagtail.contrib.search_promotions.models import Query
 from wagtail.models import Page
@@ -32,7 +33,12 @@ def search(request):
             location_result_ids = [p.page_ptr.id for p in location_results]
 
             page_ids = blog_page_ids + bread_page_ids + location_result_ids
-            search_results = Page.objects.live().filter(id__in=page_ids)
+            preserved_order = Case(
+                *[When(id=pk, then=pos) for pos, pk in enumerate(page_ids)]
+            )
+            search_results = Page.objects.live().filter(
+                id__in=page_ids
+            ).order_by(preserved_order)
 
         query = Query.get(search_query)
 
