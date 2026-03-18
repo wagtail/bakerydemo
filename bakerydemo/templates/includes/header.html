@@ -1,10 +1,12 @@
-{% load navigation_tags %}
+{% load wagtailcore_tags navigation_tags %}
+
+{% get_site_root as site_root %}
 
 <header class="header clearfix">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="container">
         <div class="navigation" data-navigation>
-            <a href="/" class="navigation__logo">The Wagtail Bakery</a>
+            <a href="{% pageurl site_root %}" class="navigation__logo">The Wagtail Bakery</a>
 
             <button
                 type="button"
@@ -19,10 +21,9 @@
             </button>
 
             <nav class="navigation__mobile" data-mobile-navigation hidden>
-                <a href="/" class="navigation__logo">The Wagtail Bakery</a>
+                <a href="{% pageurl site_root %}" class="navigation__logo">The Wagtail Bakery</a>
                 <ul class="navigation__items nav-pills">
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}
-                    {% get_site_root as site_root %}
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
                 <form action="/search" method="get" class="navigation__mobile-search" role="search">
@@ -39,7 +40,6 @@
             <nav class="navigation__desktop" aria-label="Main">
                 <ul class="navigation__items nav-pills">
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}
-                    {% get_site_root as site_root %}
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
             </nav>
