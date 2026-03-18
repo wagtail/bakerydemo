@@ -237,7 +237,8 @@ class BreadsIndexPage(Page):
     # Pagination for the index page. We use the `django.core.paginator` as any
     # standard Django app would, but the difference here being we have it as a
     # method on the model rather than within a view function
-    def paginate(self, request, *args):
+    def paginate(self, request, queryset=None):
+        queryset = queryset or self.get_breads()
         page = request.GET.get("page")
         paginator = Paginator(self.get_breads(), 12)
         try:
@@ -254,7 +255,7 @@ class BreadsIndexPage(Page):
         context = super(BreadsIndexPage, self).get_context(request)
 
         # BreadPage objects (get_breads) are passed through pagination
-        breads = self.paginate(request, self.get_breads())
+        breads = self.paginate(request)
 
         context["breads"] = breads
 
