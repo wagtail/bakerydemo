@@ -8,7 +8,7 @@ To contribute, first fork the repository then clone your copy:
 git clone git@github.com:your-username/bakerydemo.git
 ```
 
-Follow the [README instrubtions](readme.md) to set up your local development environment.
+Follow the [README instructions](readme.md) to set up your local development environment.
 
 ## AI policy
 
