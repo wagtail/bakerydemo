@@ -1,0 +1,28 @@
+{% load wagtailcore_tags %}
+{% if main_menu %}
+    {% for block in main_menu.items %}
+        {% if block.block_type == "item" %}
+            {% for link_block in block.value.link %}
+                {% if link_block.block_type == "page" and link_block.value %}
+                    <li class="presentation{% if calling_page and calling_page.url_path|default:'' == link_block.value.url_path|default:'none' %} active{% endif %}">
+                        <a href="{% pageurl link_block.value %}">
+                            {% if block.value.title %}{{ block.value.title }}{% else %}{{ link_block.value.title }}{% endif %}
+                        </a>
+                    </li>
+                {% elif link_block.block_type == "external_url" %}
+                    <li class="presentation">
+                        <a href="{{ link_block.value }}" rel="noreferrer" target="_blank">
+                            {{ block.value.title|default:link_block.value }}
+                        </a>
+                    </li>
+                {% elif link_block.block_type == "document" and link_block.value %}
+                    <li class="presentation">
+                        <a href="{{ link_block.value.url }}">
+                            {% if block.value.title %}{{ block.value.title }}{% else %}{{ link_block.value.title }}{% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

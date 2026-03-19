@@ -2,11 +2,15 @@ from django.utils.functional import cached_property
 from wagtail.blocks import (
     CharBlock,
     ChoiceBlock,
+    ListBlock,
+    PageChooserBlock,
     RichTextBlock,
     StreamBlock,
     StructBlock,
     TextBlock,
+    URLBlock,
 )
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
@@ -158,3 +162,53 @@ class BaseStreamBlock(StreamBlock):
         preview_value="https://www.youtube.com/watch?v=mwrGSfiB1Mg",
         description="An embedded video or other media",
     )
+
+
+# Navigation Blocks
+class MenuItemLinkBlock(StreamBlock):
+    """
+    A link that can point to a page, an external URL, or a document.
+    Uses StreamBlock with max_num=1 so editors pick exactly one link type.
+    """
+
+    page = PageChooserBlock(label="Page", required=False)
+    external_url = URLBlock(label="External URL", required=False)
+    document = DocumentChooserBlock(label="Document", required=False)
+
+    class Meta:
+        icon = "link"
+        max_num = 1
+        label = "Link"
+
+
+class MenuItemBlock(StructBlock):
+    """
+    A single menu item with an optional custom title and a link.
+    If the title is left blank, the linked page's title will be used.
+    """
+
+    title = CharBlock(
+        max_length=255,
+        required=False,
+        help_text="Optional. If left blank, the linked page's title will be used.",
+    )
+    link = MenuItemLinkBlock(required=True)
+
+    class Meta:
+        icon = "link"
+        label = "Menu item"
+
+
+class MenuSectionBlock(StructBlock):
+    """
+    A footer menu section with a heading and a list of menu items.
+    This creates a column in the footer navigation.
+    """
+
+    heading = CharBlock(max_length=255)
+    items = ListBlock(MenuItemBlock())
+
+    class Meta:
+        icon = "list-ul"
+        label = "Menu section"
+

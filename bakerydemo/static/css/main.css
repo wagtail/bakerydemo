@@ -767,6 +767,64 @@ caption {
   }
 }
 
+/* Footer menu */
+.footer-menu {
+  background-color: var(--cream);
+  padding: 40px 0;
+}
+
+.footer-menu .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-menu__section {
+  flex: 1;
+  min-width: 150px;
+}
+
+.footer-menu__heading {
+  font-family: var(--font--primary);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--dark);
+  margin: 0 0 15px;
+  line-height: 1.35;
+}
+
+.footer-menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu__item {
+  margin-bottom: 8px;
+}
+
+.footer-menu__item a,
+.footer-menu__item a:visited {
+  color: var(--grey);
+  font-family: var(--font--secondary);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.footer-menu__item a:hover,
+.footer-menu__item a:focus {
+  color: var(--orange);
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .footer-menu .row {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+
 /* Custom page footer */
 hr {
   margin: 0;
