@@ -2099,3 +2099,270 @@ input[type='radio'] {
   max-height: 100vh;
   margin-inline: auto;
 }
+
+/* ── Theme Toggle Button ────────────────────────────────────────────────── */
+
+.theme-toggle {
+  background: transparent;
+  border: 1.5px solid var(--border-grey);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--dark);
+  margin-left: 16px;
+  flex-shrink: 0;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--cream);
+  border-color: var(--light-brown);
+}
+
+/* Sun icon: hidden by default (in light mode), shown in dark mode */
+.theme-toggle__sun {
+  display: none;
+}
+
+/* Moon icon: shown by default (in light mode), hidden in dark mode */
+.theme-toggle__moon {
+  display: block;
+}
+
+[data-theme='dark'] .theme-toggle__sun {
+  display: block;
+}
+
+[data-theme='dark'] .theme-toggle__moon {
+  display: none;
+}
+
+/* Mobile: ensure the toggle is part of the flex nav row */
+@media (max-width: 1149px) {
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  /* When hamburger is expanded, keep toggle accessible */
+  .navigation__mobile-toggle[aria-expanded='true'] ~ .theme-toggle {
+    position: absolute;
+    top: 30px;
+    right: 70px;
+    z-index: 15;
+  }
+}
+
+/* ── Dark Theme ─────────────────────────────────────────────────────────── */
+
+[data-theme='dark'] {
+  /* Remap CSS variables so all var()-based colours flip automatically */
+  --dark: #e8e0d0;
+  --grey: #a89880;
+  --border-grey: #3d3528;
+  --transparent-border: rgb(200 180 140 / 25%);
+  --white: #1a1510;
+  --cream: #2a2218;
+  --light-brown: #b09060;
+  --mid-brown: #d4a050;
+  --dark-brown: #e8c080;
+  --orange: #e07040;
+  --dark-orange: #c05020;
+}
+
+/* Page background and base text */
+[data-theme='dark'] body {
+  background-color: #1a1510;
+  color: #e8e0d0;
+}
+
+/* Headings */
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4 {
+  color: #e8e0d0;
+}
+
+/* Paragraphs */
+[data-theme='dark'] p {
+  color: #e8e0d0;
+}
+
+/* Caption, table */
+[data-theme='dark'] caption {
+  color: #e8e0d0;
+}
+
+/* Links (non-button) */
+[data-theme='dark'] a,
+[data-theme='dark'] a:focus,
+[data-theme='dark'] a:visited {
+  color: #e07040;
+}
+
+[data-theme='dark'] a:hover {
+  color: #c05020;
+}
+
+/* Header / nav */
+[data-theme='dark'] .header {
+  background: #1a1510;
+}
+
+[data-theme='dark'] .navigation__logo,
+[data-theme='dark'] .navigation__logo:visited,
+[data-theme='dark'] .navigation__logo:focus {
+  color: #e8e0d0;
+}
+
+[data-theme='dark'] .navigation__items > li > a {
+  color: #e8e0d0;
+}
+
+[data-theme='dark'] .navigation__items > li.active > a,
+[data-theme='dark'] .navigation__items > li.active > a:focus,
+[data-theme='dark'] .navigation__items > li.active > a:hover {
+  color: #e8e0d0;
+}
+
+[data-theme='dark'] .navigation__mobile {
+  background-color: #1a1510;
+}
+
+[data-theme='dark'] .navigation__toggle-icon-bar {
+  background-color: #e8e0d0;
+}
+
+[data-theme='dark'] .navigation__search-input {
+  background-color: #2a2218;
+  color: #e8e0d0;
+  border-color: #3d3528;
+}
+
+/* Fix the search magnifier SVG in the nav — it uses fill="#333" inline */
+[data-theme='dark'] .navigation__search-icon svg path {
+  fill: #e8e0d0;
+}
+
+/* Index page header */
+[data-theme='dark'] .index-header__title,
+[data-theme='dark'] .index-header__introduction,
+[data-theme='dark'] .index-header__body-introduction p:first-child {
+  color: #e8e0d0;
+}
+
+/* Breadcrumbs */
+[data-theme='dark'] .breadcrumb {
+  background-color: #2a2218;
+}
+
+[data-theme='dark'] .breadcrumb__link {
+  color: #e8e0d0;
+}
+
+[data-theme='dark'] .breadcrumb__item {
+  color: #e8e0d0;
+}
+
+/* Page header (detail pages) */
+[data-theme='dark'] .page-header {
+  background-color: #2a2218;
+}
+
+[data-theme='dark'] .page-header__title,
+[data-theme='dark'] .page-header__subtitle {
+  color: #e8e0d0;
+}
+
+/* Blog */
+[data-theme='dark'] .blog-listing__title {
+  color: #e8e0d0;
+}
+
+[data-theme='dark'] .blog-listing__author,
+[data-theme='dark'] .blog-listing__date,
+[data-theme='dark'] .blog-entry__intro {
+  color: #a89880;
+}
+
+/* Breads */
+[data-theme='dark'] .bread-type {
+  color: #a89880;
+}
+
+/* Locations */
+[data-theme='dark'] .location-card__title {
+  color: #e8e0d0;
+}
+
+[data-theme='dark'] .location-card__text {
+  color: #a89880;
+}
+
+/* Forms */
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select {
+  background-color: #2a2218;
+  color: #e8e0d0;
+  border-color: #3d3528;
+}
+
+[data-theme='dark'] label {
+  color: #e8e0d0;
+}
+
+/* Footer */
+[data-theme='dark'] footer {
+  background-color: #1a1510;
+}
+
+[data-theme='dark'] .copyright p {
+  color: #a89880;
+}
+
+[data-theme='dark'] hr {
+  border-color: #3d3528;
+}
+
+/* Blockquote */
+[data-theme='dark'] .blockquote .attribute-name {
+  color: #e8e0d0;
+}
+
+/* Richtext paragraphs */
+/* stylelint-disable-next-line selector-class-pattern */
+[data-theme='dark'] .block-paragraph_block p {
+  color: #e8e0d0;
+}
+
+/* Table borders */
+/* stylelint-disable-next-line selector-class-pattern */
+[data-theme='dark'] :is(.block-table_block, .block-typed_table_block) :is(table, tr, td, th) {
+  border-color: #3d3528;
+}
+
+/* Figcaption */
+[data-theme='dark'] figcaption {
+  color: #a89880;
+}
+
+/* Hero intro text (homepage "A sample site designed to…") */
+[data-theme='dark'] .hero-text {
+  color: #e8e0d0 !important;
+}
+
+/* Transition all colour properties smoothly when toggling */
+html {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
