@@ -10,7 +10,7 @@
     if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
       document.documentElement.classList.add('dark');
     }
-  } catch (e) {
+  } catch {
     // Fail silently if localStorage is unavailable
   }
 })();

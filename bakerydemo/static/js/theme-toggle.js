@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleBtn.setAttribute('aria-pressed', 'true');
       }
     });
-  } catch (e) {
+  } catch {
     // Fail silently if localStorage is unavailable
   }
 });
