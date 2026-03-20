@@ -1,34 +1,15 @@
 body,
 header,
 footer,
-.header,
-.footer,
-.jumbotron,
 .navigation__mobile,
 .card,
-.well,
 input,
 textarea,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-.navigation__toggle-icon-bar,
-.navigation__search-icon svg path,
-img,
-.footer__icon a,
-.copyright p,
-hr,
-.blog-tags__pill {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    fill 0.3s ease,
-    opacity 0.3s ease;
+a {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 /* Dark Theme Color Variables & Base Styles */
@@ -44,6 +25,7 @@ html.dark {
   --dark-brown: #fff;
   --orange: #f97316;
   --dark-orange: #ea580c;
+  --dark-cream: #2c2c2c;
 }
 
 html.dark body {
@@ -57,11 +39,7 @@ html.dark h3,
 html.dark h4,
 html.dark h5,
 html.dark h6 {
-  color: #fff;
-}
-
-html.dark img {
-  opacity: 0.9;
+  color: var(--dark-brown);
 }
 
 html.dark header,
@@ -69,38 +47,38 @@ html.dark .header,
 html.dark footer,
 html.dark .footer,
 html.dark .jumbotron {
-  background-color: #1f1f1f;
-  color: #e0e0e0;
+  background-color: var(--cream);
+  color: var(--dark);
 }
 
 /* Footer */
 html.dark .footer__icon a {
-  background-color: #2c2c2c;
+  background-color: var(--dark-cream);
 }
 
 html.dark .copyright p {
-  color: #e0e0e0;
+  color: var(--dark);
 }
 
 html.dark hr {
-  border-top-color: #444;
+  border-top-color: var(--border-grey);
 }
 
 /* Navigation */
 html.dark .navigation__mobile {
-  background-color: #1f1f1f;
+  background-color: var(--cream);
 }
 
 html.dark .navigation__logo {
-  color: #fff;
+  color: var(--dark-brown);
 }
 
 html.dark .navigation__items a {
-  color: #e0e0e0;
+  color: var(--dark);
 }
 
 html.dark .navigation__toggle-icon-bar {
-  background-color: #e0e0e0;
+  background-color: var(--dark);
 }
 
 /* Search and Form Inputs */
@@ -109,23 +87,23 @@ html.dark input[type='text'],
 html.dark input[type='email'],
 html.dark textarea,
 html.dark select {
-  background-color: #2c2c2c;
-  color: #e0e0e0;
-  border: 1px solid #444;
+  background-color: var(--dark-cream);
+  color: var(--dark);
+  border: 1px solid var(--border-grey);
 }
 
 html.dark .navigation__search-input::placeholder {
-  color: #aaa;
+  color: var(--grey);
 }
 
 html.dark .navigation__search-icon svg path {
-  fill: #e0e0e0;
+  fill: var(--dark);
 }
 
 html.dark .blog__author,
 html.dark .blog__tag-introduction,
 html.dark .index-header__introduction {
-  color: #e0e0e0;
+  color: var(--dark);
 }
 
 /* Theme Toggle Button */
@@ -259,11 +237,11 @@ html.dark .form-control {
 /* Home Page Hero text and CTA */
 html.dark .homepage .home-hero .lead,
 html.dark .homepage .home-hero .hero-cta-link {
-  color: #fff;
+  color: var(--dark-brown);
 }
 
 html.dark .homepage .home-hero .hero-cta-link:hover {
-  background-color: #fff;
+  background-color: var(--dark-brown);
   color: var(--dark-orange);
 }
 
