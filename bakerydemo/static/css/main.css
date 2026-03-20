@@ -275,7 +275,7 @@ caption {
   padding: 40px;
 }
 
-.alert > .alert__title {
+.alert>.alert__title {
   color: var(--white);
   font-family: var(--font--primary);
   font-size: 1.625rem;
@@ -410,6 +410,7 @@ caption {
 .block-ingredients_list a {
   text-decoration: underline;
 }
+
 /* stylelint-enable selector-class-pattern */
 
 /* stylelint-disable-next-line selector-class-pattern */
@@ -438,6 +439,7 @@ caption {
 }
 
 @media screen and (min-width: 768px) {
+
   .header,
   .footer {
     padding-right: 0;
@@ -577,14 +579,12 @@ caption {
   opacity: 0;
 }
 
-.navigation__mobile-toggle[aria-expanded='true']
-  .navigation__toggle-icon-bar:first-of-type {
+.navigation__mobile-toggle[aria-expanded='true'] .navigation__toggle-icon-bar:first-of-type {
   transform: translateY(10px) rotate(45deg);
   opacity: 1;
 }
 
-.navigation__mobile-toggle[aria-expanded='true']
-  .navigation__toggle-icon-bar:last-child {
+.navigation__mobile-toggle[aria-expanded='true'] .navigation__toggle-icon-bar:last-child {
   transform: translateY(-10px) rotate(-45deg);
   opacity: 1;
 }
@@ -646,11 +646,11 @@ caption {
   }
 }
 
-.navigation__items > li {
+.navigation__items>li {
   padding: 10px 0;
 }
 
-.navigation__items > li > a {
+.navigation__items>li>a {
   color: var(--dark);
   font-family: var(--font--secondary);
   font-size: var(--font-md);
@@ -663,33 +663,33 @@ caption {
     display: block;
   }
 
-  .navigation__items > li {
+  .navigation__items>li {
     padding: 0 0 0 20px;
   }
 
-  .navigation__items > li > a {
+  .navigation__items>li>a {
     padding: 10px;
   }
 
-  .navigation__items > li:first-child {
+  .navigation__items>li:first-child {
     padding: 0 0 0 20px;
   }
 }
 
 /* N.B. We're overriding Bootstrap's default nav styles here,
    these rules set what the currently active nav tab looks like. */
-.navigation__items > li.active > a,
-.navigation__items > li.active > a:focus,
-.navigation__items > li.active > a:hover {
+.navigation__items>li.active>a,
+.navigation__items>li.active>a:focus,
+.navigation__items>li.active>a:hover {
   color: var(--dark);
   border-radius: 0;
   border: none;
   background-color: transparent;
 }
 
-.navigation__items > li:hover,
-.navigation__items > li > a:focus,
-.navigation__items > li > a:hover {
+.navigation__items>li:hover,
+.navigation__items>li>a:focus,
+.navigation__items>li>a:hover {
   text-decoration: underline;
 }
 
@@ -761,7 +761,7 @@ caption {
 
 /* Mobile menu styling */
 @media (max-width: 1149px) {
-  .nav-pills > .presentation {
+  .nav-pills>.presentation {
     float: none;
     width: 100%;
   }
@@ -815,7 +815,7 @@ footer {
   }
 }
 
-.container-narrow > hr {
+.container-narrow>hr {
   margin: 30px 0;
 }
 
@@ -836,7 +836,7 @@ footer {
   background-color: transparent;
 }
 
-.breadcrumb > li + li::before {
+.breadcrumb>li+li::before {
   display: none;
 }
 
@@ -1037,12 +1037,10 @@ footer {
 }
 
 .blog-list-item .text {
-  background: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0%) 0%,
-    rgb(0 0 0 / 60%) 23%,
-    rgb(0 0 0 / 100%) 50%
-  );
+  background: linear-gradient(to bottom,
+      rgb(0 0 0 / 0%) 0%,
+      rgb(0 0 0 / 60%) 23%,
+      rgb(0 0 0 / 100%) 50%);
   margin-top: -150px;
   padding: 20px;
   position: relative;
@@ -1328,6 +1326,7 @@ input[type='radio'] {
 }
 
 @media (min-width: 766px) {
+
   .form-page input,
   textarea,
   select {
@@ -1694,8 +1693,8 @@ input[type='radio'] {
   }
 }
 
-.row.no-gutters > [class^='col-'],
-.row.no-gutters > [class*=' col-'] {
+.row.no-gutters>[class^='col-'],
+.row.no-gutters>[class*=' col-'] {
   padding-right: 0;
   padding-left: 0;
 }
@@ -2100,7 +2099,6 @@ input[type='radio'] {
   margin-inline: auto;
 }
 
-/* ── Theme Toggle Button ────────────────────────────────────────────────── */
 
 .theme-toggle {
   background: transparent;
@@ -2152,7 +2150,7 @@ input[type='radio'] {
   }
 
   /* When hamburger is expanded, keep toggle accessible */
-  .navigation__mobile-toggle[aria-expanded='true'] ~ .theme-toggle {
+  .navigation__mobile-toggle[aria-expanded='true']~.theme-toggle {
     position: absolute;
     top: 30px;
     right: 70px;
@@ -2160,7 +2158,6 @@ input[type='radio'] {
   }
 }
 
-/* ── Dark Theme ─────────────────────────────────────────────────────────── */
 
 [data-theme='dark'] {
   /* Remap CSS variables so all var()-based colours flip automatically */
@@ -2223,13 +2220,13 @@ input[type='radio'] {
   color: #e8e0d0;
 }
 
-[data-theme='dark'] .navigation__items > li > a {
+[data-theme='dark'] .navigation__items>li>a {
   color: #e8e0d0;
 }
 
-[data-theme='dark'] .navigation__items > li.active > a,
-[data-theme='dark'] .navigation__items > li.active > a:focus,
-[data-theme='dark'] .navigation__items > li.active > a:hover {
+[data-theme='dark'] .navigation__items>li.active>a,
+[data-theme='dark'] .navigation__items>li.active>a:focus,
+[data-theme='dark'] .navigation__items>li.active>a:hover {
   color: #e8e0d0;
 }
 

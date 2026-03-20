@@ -22,14 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleMobileNavigation();
   });
 
-  // ── Theme Toggle ──────────────────────────────────────────────────────────
   const themeToggle = document.getElementById('theme-toggle');
 
-  /**
-   * Apply a theme ('light' | 'dark') to the document:
-   *  - Sets / removes [data-theme="dark"] on <html>
-   *  - Shows the correct icon inside the toggle button
-   */
+
   function applyTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
