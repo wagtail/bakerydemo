@@ -6426,7 +6426,8 @@
         "search_description": "",
         "latest_revision_created_at": "2019-03-29T18:05:47.930Z",
         "alias_of": null,
-        "introduction": "Where the glacier\u2019s edge meets the sea, every bite of our cinnamon rolls and cardamom buns carries the soul of this welcoming harbor town.",        "image": 48,
+        "introduction": "Settled between the peaks and the tides, every bite of our cinnamon rolls and cardamom buns carries the soul of this welcoming harbor town.",        
+        "image": 48,
         "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>H\\u00f6fn\\u2019s fishermen return from the harbor with stories of the day\\u2019s catch, and we turn those stories into something sweet. Our rye bread, baked with a hint of smoked sea salt, is a staple for locals who know the value of a hearty loaf after a long shift. For travelers, our skyr-infused cinnamon buns offer a taste of Iceland\\u2019s dairy traditions, wrapped in a flaky crust that melts on the tongue. Tourists linger over our plokkfiskur pie, a dish that is the closest thing to warmth.</p><p>At Wagtail Bakery, we don\\u2019t just bake for H\\u00f6fn\\u2014we bake with H\\u00f6fn in every bite.</p><p></p>\", \"id\": \"abd62c2d-1bf1-47df-8831-b1fabb886181\"}]",        
         "address": "Hafnarbraut,\r\n780 Höfn í Hornafirði,\r\nIceland",
         "lat_long": "64.2518583,-15.2037097",
@@ -6540,7 +6541,7 @@
         "search_description": "",
         "latest_revision_created_at": "2023-09-01T16:55:13.284Z",
         "alias_of": null,
-        "introduction": "Where the glacier\u2019s edge meets the sea, every bite of our cinnamon rolls and cardamom buns carries the soul of this welcoming harbor town.",        "image": 48,
+        "introduction": "Settled between the peaks and the tides, every bite of our cinnamon rolls and cardamom buns carries the soul of this welcoming harbor town.",        
         "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>H\\u00f6fn\\u2019s fishermen return from the harbor with stories of the day\\u2019s catch, and we turn those stories into something sweet. Our rye bread, baked with a hint of smoked sea salt, is a staple for locals who know the value of a hearty loaf after a long shift. For travelers, our skyr-infused cinnamon buns offer a taste of Iceland\\u2019s dairy traditions, wrapped in a flaky crust that melts on the tongue. Tourists linger over our plokkfiskur pie, a dish that is the closest thing to warmth.</p><p>At Wagtail Bakery, we don\\u2019t just bake for H\\u00f6fn\\u2014we bake with H\\u00f6fn in every bite.</p><p></p>\", \"id\": \"abd62c2d-1bf1-47df-8831-b1fabb886181\"}]",        
         "address": "Hafnarbraut,\r\n780 Höfn í Hornafirði,\r\nIceland",
         "lat_long": "64.2518583,-15.2037097",
@@ -13098,7 +13099,7 @@
     "model": "locations.locationpage",
     "pk": 78,
     "fields": {
-      "introduction": "Where the glacier\u2019s edge meets the sea, every bite of our cinnamon rolls and cardamom buns carries the soul of this welcoming harbor town.",
+      "introduction": "Settled between the peaks and the tides, every bite of our cinnamon rolls and cardamom buns carries the soul of this welcoming harbor town.",        
       "image": 48,
       "body": "[{\"type\": \"paragraph_block\", \"value\": \"<p>H\\u00f6fn\\u2019s fishermen return from the harbor with stories of the day\\u2019s catch, and we turn those stories into something sweet. Our rye bread, baked with a hint of smoked sea salt, is a staple for locals who know the value of a hearty loaf after a long shift. For travelers, our skyr-infused cinnamon buns offer a taste of Iceland\\u2019s dairy traditions, wrapped in a flaky crust that melts on the tongue. Tourists linger over our plokkfiskur pie, a dish that is the closest thing to warmth.</p><p>At Wagtail Bakery, we don\\u2019t just bake for H\\u00f6fn\\u2014we bake with H\\u00f6fn in every bite.</p><p></p>\", \"id\": \"abd62c2d-1bf1-47df-8831-b1fabb886181\"}]",      "address": "Hafnarbraut,\r\n780 Höfn í Hornafirði,\r\nIceland",
       "lat_long": "64.2518583,-15.2037097"
