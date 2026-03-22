@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags %}
 
-{% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+{% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for "{{ search_query }}"{% endif %}{% endblock %}
 
-{% block search_description %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+{% block search_description %}Search{% if search_results %} results{% endif %}{% if search_query %} for "{{ search_query }}"{% endif %}{% endblock %}
 
 {% block body_class %}template-search-results{% endblock %}
 
@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <h1>Search results</h1>
                 {% if search_results %}
-                    <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
+                    <p class="search__introduction">You searched{% if search_query %} for "{{ search_query }}"{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
                     <ul class="search__results">
                         {% for result in search_results %}
                             <li class="listing-card">
@@ -45,7 +45,7 @@
                 {% elif search_query %}
                     {% get_search_promotions search_query as search_promotions %}
                     {% if search_promotions %}
-                        <p class="search__introduction">You searched for “{{ search_query }}”, {{ search_promotions|length }} result{{ search_promotions|length|pluralize }} found.</p>
+                        <p class="search__introduction">You searched for "{{ search_query }}", {{ search_promotions|length }} result{{ search_promotions|length|pluralize }} found.</p>
                         <ul class="search__results">
                             {% for search_promotion in search_promotions %}
                                 <li class="listing-card">
@@ -92,7 +92,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <p class="search__introduction">No results found for “{{ search_query }}”.</p>
+                        <p class="search__introduction">No results found for "{{ search_query }}".</p>
                     {% endif %}
                 {% else %}
                     <p class="search__introduction">You didn&apos;t search for anything!</p>
