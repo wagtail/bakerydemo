@@ -1,13 +1,45 @@
 {% extends "base.html" %}
-
-{% block title %}404 - Page not found{% endblock %}
-
-{% block search_description %}Sorry, this page could not be found{% endblock %}
-
-{% block body_class %}template-404{% endblock %}
+{% load static %}
+{% load wagtailimages_tags %}
 
 {% block content %}
-    <h1>Page not found</h1>
+<div class="error-page-container">
 
-    <h2>Sorry, this page could not be found.</h2>
-{% endblock content %}
+    <p class="error-eyebrow">The Wagtail Bakery</p>
+
+    <div class="error-404-number" aria-hidden="true">404</div>
+
+    <div class="error-image">
+        {% if settings.illustration %}
+        {% image settings.illustration original %}
+        {% else %}
+        <img src="{% static 'img/404_Watermark.webp' %}" alt="Sad bread illustration">
+        {% endif %}
+    </div>
+
+    <h1 class="error-heading">
+        {{ settings.heading|default:"Page not found" }}
+    </h1>
+
+    <p class="error-subheading">
+        {{ settings.subheading|default:"This page isn't on today's menu." }}
+    </p>
+
+    <div class="error-divider"></div>
+
+    <nav class="error-nav" aria-label="Explore the bakery">
+        <a href="/breads/">Breads</a>
+        <a href="/recipes/">Recipes</a>
+        <a href="/blog/">Blog</a>
+        <a href="/locations/">Locations</a>
+    </nav>
+
+    <div class="back-home">
+        <a href="/" class="back-link">
+            <span class="back-link__arrow" aria-hidden="true"></span>
+            Back to homepage
+        </a>
+    </div>
+
+</div>
+{% endblock %}

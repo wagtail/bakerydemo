@@ -7,6 +7,8 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView
+from bakerydemo.base.views import test_404
+
 
 from bakerydemo.search import views as search_views
 
@@ -46,10 +48,12 @@ if settings.DEBUG:
 
     # Add views for testing 404 and 500 templates
     urlpatterns += [
-        path("test404/", TemplateView.as_view(template_name="404.html")),
+        # path("test404/", TemplateView.as_view(template_name="404.html")),
+        path("test404/", test_404),
         path("test500/", TemplateView.as_view(template_name="500.html")),
     ]
 
 urlpatterns += [
     path("", include(wagtail_urls)),
 ]
+
