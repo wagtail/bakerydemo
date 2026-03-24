@@ -3,43 +3,43 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
-<div class="error-page-container">
+    <div class="error-page-container">
 
-    <p class="error-eyebrow">The Wagtail Bakery</p>
+        <p class="error-eyebrow">The Wagtail Bakery</p>
 
-    <div class="error-404-number" aria-hidden="true">404</div>
+        <div class="error-404-number" aria-hidden="true">404</div>
 
-    <div class="error-image">
-        {% if settings.illustration %}
-        {% image settings.illustration original %}
-        {% else %}
-        <img src="{% static 'img/404_Watermark.webp' %}" alt="Sad bread illustration">
-        {% endif %}
+        <div class="error-image">
+            {% if settings.illustration %}
+                {% image settings.illustration original %}
+            {% else %}
+                <img src="{% static 'img/404_Watermark.webp' %}" alt="Sad bread illustration">
+            {% endif %}
+        </div>
+
+        <h1 class="error-heading">
+            {{ settings.heading|default:"Page not found" }}
+        </h1>
+
+        <p class="error-subheading">
+            {{ settings.subheading|default:"This page isn't on today's menu." }}
+        </p>
+
+        <div class="error-divider"></div>
+
+        <nav class="error-nav" aria-label="Explore the bakery">
+            <a href="/breads/">Breads</a>
+            <a href="/recipes/">Recipes</a>
+            <a href="/blog/">Blog</a>
+            <a href="/locations/">Locations</a>
+        </nav>
+
+        <div class="back-home">
+            <a href="/" class="back-link">
+                <span class="back-link__arrow" aria-hidden="true"></span>
+                Back to homepage
+            </a>
+        </div>
+
     </div>
-
-    <h1 class="error-heading">
-        {{ settings.heading|default:"Page not found" }}
-    </h1>
-
-    <p class="error-subheading">
-        {{ settings.subheading|default:"This page isn't on today's menu." }}
-    </p>
-
-    <div class="error-divider"></div>
-
-    <nav class="error-nav" aria-label="Explore the bakery">
-        <a href="/breads/">Breads</a>
-        <a href="/recipes/">Recipes</a>
-        <a href="/blog/">Blog</a>
-        <a href="/locations/">Locations</a>
-    </nav>
-
-    <div class="back-home">
-        <a href="/" class="back-link">
-            <span class="back-link__arrow" aria-hidden="true"></span>
-            Back to homepage
-        </a>
-    </div>
-
-</div>
 {% endblock %}
