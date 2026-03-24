@@ -637,12 +637,10 @@ class UserApprovalTask(Task):
     def get_description(cls):
         return _("Only a specific user can approve this task")
 
+
 @register_setting(icon="warning")
 class NotFoundPageSettings(BaseSiteSetting):
-    heading = models.CharField(
-        max_length=255,
-        default="Page not found"
-    )
+    heading = models.CharField(max_length=255, default="Page not found")
     subheading = models.TextField(
         default="Sorry, we couldn't find what you're looking for."
     )
@@ -651,7 +649,7 @@ class NotFoundPageSettings(BaseSiteSetting):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name="+"
+        related_name="+",
     )
 
     panels = [

@@ -56,4 +56,3 @@ if settings.DEBUG:
 urlpatterns += [
     path("", include(wagtail_urls)),
 ]
-

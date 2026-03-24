@@ -2238,8 +2238,8 @@ input[type='radio'] {
   display: block;
   width: 10px;
   height: 10px;
-  border-left: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
+  border-left: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
   transform: rotate(45deg);
   transition: transform 0.15s;
 }
