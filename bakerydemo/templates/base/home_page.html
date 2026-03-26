@@ -4,20 +4,22 @@
 {% block content %}
     <div class="homepage">
 
-        <div class="container-fluid hero">
-            {% picture page.image format-{avif,webp,jpeg} fill-{800x650,1920x900} sizes="100vw" class="hero-image" alt="" %}
-            <div class="hero-gradient-mask"></div>
-            <div class="container">
+        <div class="container-fluid hero homepage-hero">
+            {% if page.image %}
+                {% image page.image fill-1600x900 class="hero-image homepage-hero__image" %}
+            {% endif %}
+            <div class="homepage-hero__overlay"></div>
+            <div class="container homepage-hero__content-wrap">
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-1 col-lg-5 home-hero">
-                        <h1>{{ page.title }}</h1>
-                        <p class="lead">{{ page.hero_text }}</p>
+                    <div class="col-md-7 col-md-offset-1 col-lg-6 homepage-hero__content">
+                        <h1 class="homepage-hero__title">{{ page.title }}</h1>
+                        <p class="homepage-hero__text">{{ page.hero_text }}</p>
                         {% if page.hero_cta_link %}
-                            <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link">
+                            <a href="{% pageurl page.hero_cta_link %}" class="hero-cta-link homepage-hero__cta">
                                 {{ page.hero_cta }}
                             </a>
-                        {% else %}
-                            {{ page.hero_cta }}
+                        {% elif page.hero_cta %}
+                            <span class="hero-cta-link homepage-hero__cta">{{ page.hero_cta }}</span>
                         {% endif %}
                     </div>
                 </div>

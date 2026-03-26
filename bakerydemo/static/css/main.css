@@ -450,7 +450,10 @@ caption {
   padding: 0;
   width: 100%;
   background: var(--white);
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 14px rgb(0 0 0 / 8%);
 }
 
 .skip-link {
@@ -656,6 +659,8 @@ caption {
   font-size: var(--font-md);
   line-height: 1.55;
   padding: 10px 0;
+  position: relative;
+  text-decoration: none;
 }
 
 @media (min-width: 1150px) {
@@ -691,6 +696,24 @@ caption {
 .navigation__items > li > a:focus,
 .navigation__items > li > a:hover {
   text-decoration: underline;
+}
+
+.navigation__items > li.active > a::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 2px;
+  background-color: var(--dark);
+}
+
+@media (max-width: 1149px) {
+  .navigation__items > li.active > a::after {
+    left: 0;
+    right: 0;
+    bottom: 2px;
+  }
 }
 
 /* Required as bootstrap nav automatically hides this otherwise */
@@ -1362,37 +1385,68 @@ input[type='radio'] {
 /* #region -- Hero -- */
 .homepage .hero {
   margin: 0;
-  padding: 200px 0 30px;
+  padding: 0;
+  min-height: 540px;
 }
 
-.homepage .home-hero {
+.homepage .homepage-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.homepage .homepage-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.homepage .homepage-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 82%) 0%,
+    rgb(0 0 0 / 68%) 28%,
+    rgb(0 0 0 / 26%) 58%,
+    rgb(0 0 0 / 8%) 100%
+  );
+}
+
+.homepage .homepage-hero__content-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.homepage .homepage-hero__content {
   margin-bottom: 0;
-  padding-bottom: 20px;
 }
 
-@media (min-width: 768px) {
-  .homepage .home-hero {
-    padding-bottom: 140px;
-  }
+.homepage .homepage-hero__title {
+  color: var(--white);
+  margin: 0;
+  max-width: 8ch;
+  font-size: clamp(3.2rem, 6vw, 6rem);
+  line-height: 0.95;
 }
 
-.homepage .home-hero .lead {
+.homepage .homepage-hero__text {
   font-family: var(--font--primary);
   font-weight: 400;
   color: var(--white);
-  margin: 40px auto;
-  font-size: 1.625rem;
-  line-height: 1.15;
+  margin: 32px 0;
+  max-width: 18ch;
+  font-size: 1.75rem;
+  line-height: 1.18;
 }
 
-@media (min-width: 768px) {
-  .homepage .home-hero .lead {
-    font-size: 2rem;
-    line-height: 1.31;
-  }
-}
-
-.homepage .home-hero .hero-cta-link {
+.homepage .homepage-hero__cta {
   color: var(--white);
   background-color: var(--orange);
   font-weight: 700;
@@ -1402,11 +1456,29 @@ input[type='radio'] {
   transition:
     color ease 0.1s,
     background-color ease 0.1s;
+  margin-top: 8px;
 }
 
-.homepage .home-hero .hero-cta-link:hover {
+.homepage .homepage-hero__cta:hover {
   background-color: var(--white);
   color: var(--dark-orange);
+}
+
+@media (min-width: 768px) {
+  .homepage .hero {
+    min-height: 720px;
+  }
+
+  .homepage .homepage-hero__content-wrap {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  .homepage .homepage-hero__text {
+    font-size: 2.125rem;
+    line-height: 1.2;
+    margin: 42px 0;
+  }
 }
 
 /* #endregion */
