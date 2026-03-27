@@ -47,9 +47,9 @@ html {
   font-size: 16px;
 }
 
-[hidden] {
-  display: none !important;
-}
+/* [hidden] {
+  display: flex !important;
+} */
 
 /* Body */
 
@@ -552,12 +552,38 @@ caption {
   align-items: center;
   text-align: center;
   padding-top: 80px;
+
+  /* Starting hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-30px);
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* SHOW MENU */
+.navigation__mobile-toggle[aria-expanded='true'] ~ .navigation__mobile,
+.navigation__mobile.in,
+.navigation__mobile.collapse.in,
+.navigation__mobile.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .navigation__mobile-toggle {
   background-color: transparent;
   border: none;
   margin: 0 0 0 auto;
+  padding: 8px;
+}
+
+.navigation__toggle-icon-bar {
+  background-color: var(--dark);
+  width: 30px;
+  height: 2px;
+  margin-bottom: 8px;
+  display: block;
+  transition: all 0.35s ease;
 }
 
 .navigation__mobile-toggle[aria-expanded='true'] {
@@ -587,6 +613,48 @@ caption {
   .navigation__toggle-icon-bar:last-child {
   transform: translateY(-10px) rotate(-45deg);
   opacity: 1;
+}
+
+/* === STAGGERED MENU ITEMS === */
+.navigation__mobile .navigation__items > li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Trigger stagger when menu is visible */
+.navigation__mobile-toggle[aria-expanded='true']
+  ~ .navigation__mobile
+  .navigation__items
+  > li,
+.navigation__mobile.in .navigation__items > li,
+.navigation__mobile.collapse.in .navigation__items > li,
+.navigation__mobile.show .navigation__items > li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.navigation__items > li:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.navigation__items > li:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.navigation__items > li:nth-child(3) {
+  transition-delay: 0.19s;
+}
+.navigation__items > li:nth-child(4) {
+  transition-delay: 0.26s;
+}
+.navigation__items > li:nth-child(5) {
+  transition-delay: 0.33s;
+}
+.navigation__items > li:nth-child(6) {
+  transition-delay: 0.4s;
+}
+.navigation__items > li:nth-child(7) {
+  transition-delay: 0.47s;
 }
 
 .navigation__mobile-search {
@@ -712,6 +780,7 @@ caption {
   height: 2px;
   margin-bottom: 8px;
   display: block;
+  transition: all 0.35s ease;
 }
 
 .navigation__toggle-icon-bar:last-child {
