@@ -1477,6 +1477,7 @@ input[type='radio'] {
   .homepage .promo-row {
     padding-top: 80px;
     margin-right: -45px;
+    overflow-x: hidden;
   }
 }
 
