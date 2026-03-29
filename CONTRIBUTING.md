@@ -2,7 +2,7 @@
 
 Thank you for your interest in improving this project! There are many ways to contribute - see the [Wagtail contributing documentation](https://docs.wagtail.org/en/latest/contributing/index.html) for some suggestions.
 
-To contribute, first fork the repository then clone your copy:
+To contribute, first fork the repository, then clone your copy:
 
 ```bash
 git clone git@github.com:your-username/bakerydemo.git
