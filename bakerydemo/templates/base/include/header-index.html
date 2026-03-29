@@ -1,14 +1,18 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="container">
+<div class="container text-center">
     <div class="row">
         <div class="col-md-12">
+
+            <!-- Title -->
             <h1 class="index-header__title">{{ page.title }}</h1>
-        </div>
-        <div class="col-sm-12 col-md-7">
+
+            
+            <!-- Introduction -->
             {% if page.introduction %}
-                <p class="index-header__introduction">{{ page.introduction }}</p>
+                <p class="index-header__introduction">"Fresh stories, baked daily"</p>
             {% endif %}
+
         </div>
     </div>
 </div>
