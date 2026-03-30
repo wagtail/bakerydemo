@@ -1476,7 +1476,7 @@ input[type='radio'] {
 @media (min-width: 768px) {
   .homepage .promo-row {
     padding-top: 80px;
-    margin-right: -45px;
+    margin-right: -40px;
   }
 }
 
