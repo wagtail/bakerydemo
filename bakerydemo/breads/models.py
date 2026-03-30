@@ -169,6 +169,7 @@ class BreadPage(Page):
     ]
 
     search_fields = Page.search_fields + [
+        index.SearchField("introduction"),
         index.SearchField("body"),
     ]
 
