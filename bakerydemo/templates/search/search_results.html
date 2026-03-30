@@ -24,7 +24,7 @@
                                         </figure>
                                     {% endif %}
                                     <div class="listing-card__contents">
-                                        <h3 class="listing-card__title">{{ result.specific }}</h3>
+                                        <h2 class="listing-card__title">{{ result.specific }}</h2>
                                         <p class="listing-card__content-type">
                                             {% if result.specific.content_type.model == "blogpage" %}
                                                 Blog Post
@@ -57,7 +57,7 @@
                                                 </figure>
                                             {% endif %}
                                             <div class="listing-card__contents">
-                                                <h3 class="listing-card__title">{{ search_promotion.page.specific }}</h3>
+                                                <h2 class="listing-card__title">{{ search_promotion.page.specific }}</h2>
                                                 <p class="listing-card__content-type">
                                                     {% if search_promotion.page.specific.content_type.model == "blogpage" %}
                                                         Blog Post
@@ -78,7 +78,7 @@
                                                 {% picture search_promotion.page.specific.image format-{avif,webp,jpeg} fill-180x180-c100 loading="lazy" %}
                                             </figure>
                                             <div class="listing-card__contents">
-                                                <h3 class="listing-card__title">{{ search_promotion.external_link_text }}</h3>
+                                                <h2 class="listing-card__title">{{ search_promotion.external_link_text }}</h2>
                                                 <p class="listing-card__content-type">
                                                     External link
                                                 </p>
