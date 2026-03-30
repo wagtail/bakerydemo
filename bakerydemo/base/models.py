@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django import forms              
 from django.utils.translation import gettext as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -241,9 +242,26 @@ class StandardPage(Page):
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
     content_panels = Page.content_panels + [
-        FieldPanel("introduction"),
-        FieldPanel("body"),
-        FieldPanel("image"),
+    FieldPanel("image"),
+    FieldPanel(
+        "hero_text",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "e.g. Welcome to our family bakery, "
+                "baking fresh bread since 1985."
+            }
+        ),
+    ),
+    FieldPanel(
+        "hero_cta",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "e.g. Order Now, Explore Our Breads"
+            }
+        ),
+    ),
+    FieldPanel("hero_cta_link"),    #  no placeholder needed
+    FieldPanel("body"),         
     ]
 
     api_fields = [
