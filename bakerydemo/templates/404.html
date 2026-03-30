@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load wagtailimages_tags %}
 
 {% block content %}
     <div class="error-page-container">
@@ -10,19 +9,15 @@
         <div class="error-404-number" aria-hidden="true">404</div>
 
         <div class="error-image">
-            {% if settings.illustration %}
-                {% image settings.illustration original %}
-            {% else %}
-                <img src="{% static 'img/404_Watermark.webp' %}" alt="Sad bread illustration">
-            {% endif %}
+            <img src="{% static 'img/404_Watermark.webp' %}" alt="Sad bread illustration">
         </div>
 
         <h1 class="error-heading">
-            {{ settings.heading|default:"Page not found" }}
+            Page not found
         </h1>
 
         <p class="error-subheading">
-            {{ settings.subheading|default:"This page isn't on today's menu." }}
+            This page isn't on today's menu.
         </p>
 
         <div class="error-divider"></div>
