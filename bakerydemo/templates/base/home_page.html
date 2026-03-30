@@ -36,8 +36,8 @@
                                 </li>
                             {% endfor %}
                         </ul>
-                        <a class="featured-cards__link" href="/breads">
-                            <span>View more of our breads</span>
+                        <a class="featured-cards__link" href="{% pageurl page.featured_section_1 %}">
+                            <span>View more of {{ page.featured_section_1_title|lower }}</span>
                             {% include "includes/chevron-icon.html" with class="featured-cards__chevron-icon" %}
                         </a>
                     {% endif %}
