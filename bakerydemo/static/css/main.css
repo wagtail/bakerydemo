@@ -20,27 +20,53 @@ each detail view
 /* Global styles */
 
 /* CSS Variables */
+/* GSoC 2026 Proof of Concept */
+
+/* This section introduces semantic color variables tailored for a modern 
+   dark theme aesthetic. It replaces the legacy hardcoded colors (like --white,
+   --cream) with functional names (like --bg-main, --bg-surface) to improve 
+   maintainability across this legacy codebase. */
 :root {
-  --dark: #333;
-  --grey: #6e6e6e;
-  --border-grey: #e1dcd3;
-  --transparent-border: rgb(135 116 79 / 25%);
-  --white: #fff;
-  --cream: #f5f3e9;
-  --light-brown: #87744f;
-  --mid-brown: #825600;
-  --dark-brown: #553801;
-  --orange: #c55302;
-  --dark-orange: #833701;
+  /* Updated colors for a more modern look */
+  --bg-main: #0d0d0d;
+  --text-secondary: #a0a0a0;
+  --text-muted: #6b6b6b;
+  --color-border: rgba(196, 163, 81, 0.274);
+  --color-border-transparent: rgba(200, 169, 110, 0.15);
+  --text-primary: #f5f5f5;
+  --bg-surface: #1a1a1a;
+  --bg-panel: #242424;
+  --bg-elevated: #2a2a2a;
+  --bg-header: #1a1a1a;
+  --color-accent: #c8a96e;
+  --color-accent-hover: #e8d5a3;
+
+  /* Mapping legacy variables to the new design system so old pages don't break */
+  --dark: var(--text-primary);
+  --grey: var(--text-secondary);
+  --border-grey: var(--color-border);
+  --transparent-border: var(--color-border-transparent);
+  --white: var(--bg-panel);
+  --cream: var(--bg-main);
+  --light-brown: var(--color-accent);
+  --mid-brown: var(--color-accent);
+  --dark-brown: var(--bg-elevated);
+  --orange: var(--color-accent);
+  --dark-orange: var(--color-accent-hover);
+
+  /* Fonts and Typography */
   --font--primary: 'Marcellus', serif;
-  /* stylelint-disable */
   --font--secondary:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto,
-    'Helvetica Neue', Arial, sans-serif, Apple Color Emoji, 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
-  /* stylelint-enable */
+    'Helvetica Neue', Arial, sans-serif;
   --font-sm: 1rem;
   --font-md: 1.125rem;
+
+  /* GSoC Proof of Concept - New Variables for a more modern look */
+  --radius-lg: 16px;
+  --radius-md: 8px;
+  --transition-smooth: all 0.3s ease-in-out;
+  --glow-hover: rgba(200, 169, 110, 0.15);
 }
 
 html {
@@ -59,8 +85,8 @@ body {
   line-height: 1.5;
   padding-top: 0;
   padding-bottom: 0;
-  background: var(--white);
-  color: var(--dark);
+  background: var(--bg-main); /* Updated background color for a more modern look */
+  color: var(--text-primary);/* Updated text color for better contrast */
   min-height: 100vh;
 }
 
@@ -82,7 +108,7 @@ h2,
 h3 {
   font-family: var(--font--primary);
   font-weight: 400;
-  color: var(--dark);
+  color: var(--text-primary); /* Updated heading color for better contrast */
 }
 
 h1 {
@@ -106,7 +132,7 @@ h4 {
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.35;
-  color: var(--dark);
+  color: var(--text-primary); /* Updated heading color for better contrast */
 }
 
 p {
@@ -115,7 +141,7 @@ p {
   font-weight: 400;
   font-size: var(--font-sm);
   line-height: 1.5;
-  color: var(--dark);
+  color: var(--text-secondary); /* Updated paragraph color for better contrast */
 }
 
 @media (min-width: 768px) {
@@ -157,7 +183,7 @@ ul {
 }
 
 .hero h1 {
-  color: var(--white);
+  color: var(--text-primary);
   position: relative;
 }
 
@@ -173,17 +199,17 @@ ul {
 a,
 a:focus,
 a:visited {
-  color: var(--orange);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--dark-orange);
+  color: var(--color-accent-hover);
   text-decoration: none;
 }
 
 a.btn {
-  background-color: var(--orange);
+  background-color: var(--color-accent);
   color: var(--white);
   display: inline-block;
   font-family: var(--font--secondary);
@@ -194,8 +220,8 @@ a.btn {
 }
 
 a.btn:hover {
-  background-color: var(--grey);
-  color: var(--white);
+  background-color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 a.btn-sm {
@@ -227,7 +253,7 @@ figure {
 }
 
 figcaption {
-  color: var(--grey);
+  color: var(--text-secondary);
   font-family: var(--font--secondary);
   font-size: 0.875rem;
   line-height: 1.57;
@@ -255,7 +281,7 @@ figure img {
 
 /* Overriding Bootstrap's default caption styles */
 caption {
-  color: var(--dark);
+  color: var(--bg-main);
 }
 
 /* Generic detail page styles */
@@ -270,13 +296,13 @@ caption {
   margin: 40px auto 0;
   max-width: 1400px;
   border-radius: 0;
-  background-color: var(--orange);
-  color: var(--white);
+  background-color: var(--color-accent);
+  color: var(--text-primary);
   padding: 40px;
 }
 
 .alert > .alert__title {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: var(--font--primary);
   font-size: 1.625rem;
   margin-bottom: 5px;
@@ -331,7 +357,7 @@ caption {
 .hero__container {
   width: 100%;
   padding: 30px 20px 100px;
-  background-color: var(--orange);
+  background-color: var(--color-accent);
   margin: 0 auto;
 }
 
@@ -344,7 +370,7 @@ caption {
 }
 
 .hero__title {
-  color: var(--white);
+  color: var(--text-primary);
   font-weight: 400;
   font-size: 2.875rem;
   line-height: 1.09;
@@ -354,7 +380,7 @@ caption {
 
 @media (min-width: 768px) {
   .hero__title {
-    background-color: var(--orange);
+    background-color: var(--color-accent);
     width: max-content;
     max-width: 100%;
     font-size: 6.25rem;
@@ -368,9 +394,9 @@ caption {
 }
 
 .blockquote {
-  border-left: 3px solid var(--orange);
+  border-left: 3px solid var(--color-accent);
   padding: 30px 0 10px 20px;
-  color: var(--orange);
+  color: var(--color-accent);
 
   .text {
     color: inherit;
@@ -381,16 +407,16 @@ caption {
   }
 
   .attribute-name {
-    color: var(--dark);
+    color: var(--bg-main);
     font-size: var(--font-md);
   }
 
   &.blockquote--highlight {
-    background-color: var(--dark);
-    color: var(--cream);
+    background-color: var(--bg-main);
+    color: var(--bg-surface);
 
     .attribute-name {
-      color: var(--white);
+      color: var(--text-primary);
     }
   }
 
@@ -402,7 +428,7 @@ caption {
 /* Richtext Styles */
 /* stylelint-disable-next-line selector-class-pattern */
 .block-paragraph_block p {
-  color: var(--dark);
+  color: var(--bg-main);
 }
 
 /* stylelint-disable selector-class-pattern */
@@ -410,6 +436,7 @@ caption {
 .block-ingredients_list a {
   text-decoration: underline;
 }
+
 /* stylelint-enable selector-class-pattern */
 
 /* stylelint-disable-next-line selector-class-pattern */
@@ -428,7 +455,7 @@ caption {
 
 /* stylelint-disable-next-line selector-class-pattern */
 :is(.block-table_block, .block-typed_table_block) :is(table, tr, td, th) {
-  border: 1px solid var(--dark);
+  border: 1px solid var(--bg-main);
   padding: 0.25em;
 }
 
@@ -449,7 +476,8 @@ caption {
 .header {
   padding: 0;
   width: 100%;
-  background: var(--white);
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--color-border); /* Added border color for a more modern look */
   z-index: 10;
 }
 
@@ -458,7 +486,7 @@ caption {
   position: absolute;
   top: -100%;
   padding: 20px;
-  background-color: var(--white);
+  background-color: var(--bg-main);
 }
 
 .skip-link:focus {
@@ -466,7 +494,7 @@ caption {
 }
 
 .index-header__title {
-  color: var(--dark);
+  color: var(--text-primary);
   font-weight: 400;
   font-size: 2.875rem;
   line-height: 1.09;
@@ -474,7 +502,7 @@ caption {
 }
 
 .index-header__introduction {
-  color: var(--dark);
+  color: var(--text-secondary);
   font-family: var(--font--primary);
   font-weight: 400;
   font-size: 1.625rem;
@@ -488,7 +516,7 @@ caption {
 }
 
 .index-header__body-introduction p:first-child {
-  color: var(--dark);
+  color: var(--text-primary);
   font-family: var(--font--primary);
   font-weight: 400;
   font-size: 1.625rem;
@@ -545,7 +573,7 @@ caption {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--white);
+  background-color: var(--bg-header);
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -614,10 +642,12 @@ caption {
 }
 
 .navigation__search-input {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: var(--font-sm);
   line-height: 1.5;
-  border: 1px solid var(--dark);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: transparent;
   padding: 10px;
 }
 
@@ -651,7 +681,7 @@ caption {
 }
 
 .navigation__items > li > a {
-  color: var(--dark);
+  color: var(--text-secondary);
   font-family: var(--font--secondary);
   font-size: var(--font-md);
   line-height: 1.55;
@@ -681,16 +711,17 @@ caption {
 .navigation__items > li.active > a,
 .navigation__items > li.active > a:focus,
 .navigation__items > li.active > a:hover {
-  color: var(--dark);
+  color: var(--color-accent);
   border-radius: 0;
   border: none;
   background-color: transparent;
 }
 
-.navigation__items > li:hover,
+.navigation__items > li:hover > a, /* added ' > a' to prevent hover styles applying to parent li when hovering over child elements like dropdowns */
 .navigation__items > li > a:focus,
 .navigation__items > li > a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: var(--color-accent);
 }
 
 /* Required as bootstrap nav automatically hides this otherwise */
@@ -707,7 +738,7 @@ caption {
 }
 
 .navigation__toggle-icon-bar {
-  background-color: var(--dark);
+  background-color: var(--color-accent);
   width: 30px;
   height: 2px;
   margin-bottom: 8px;
@@ -737,7 +768,7 @@ caption {
 .navigation__logo:visited,
 .navigation__logo:focus {
   display: inline-block;
-  color: var(--dark);
+  color: var(--color-accent);
   font-family: var(--font--primary);
   font-weight: 400;
   font-size: 1.5rem;
@@ -755,7 +786,7 @@ caption {
     bottom: 0;
     width: 1px;
     height: 42px;
-    background-color: var(--border-grey);
+    background-color: var(--color-border);
   }
 }
 
@@ -770,25 +801,31 @@ caption {
 /* Custom page footer */
 hr {
   margin: 0;
-  border-top: 1px solid var(--light-brown);
+  border-top: 1px solid var(--bg-panel);
   opacity: 0.25;
 }
 
 footer {
   padding: 55px 0 30px;
-  background-color: var(--white);
+  background-color: var(--bg-main );
 }
 
 .footer__icon a {
   display: inline-grid;
-  background-color: var(--cream);
-  color: var(--orange);
+  background-color: var(--bg-panel);
+  color: var(--color-accent);
   padding: 0.5rem;
   border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.footer__icon a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px var(--glow-hover);
 }
 
 .copyright p {
-  color: var(--dark);
+  color: var(--text-secondary);
   font-family: var(--font--secondary);
   font-size: var(--font-sm);
   line-height: 1.5;
@@ -1379,7 +1416,7 @@ input[type='radio'] {
 .homepage .home-hero .lead {
   font-family: var(--font--primary);
   font-weight: 400;
-  color: var(--white);
+  color: var(--dark);
   margin: 40px auto;
   font-size: 1.625rem;
   line-height: 1.15;
@@ -1394,11 +1431,12 @@ input[type='radio'] {
 
 .homepage .home-hero .hero-cta-link {
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--color-accent);
   font-weight: 700;
   padding: 15px 25px;
   display: inline-block;
   vertical-align: middle;
+  border-radius: var(--radius-md);
   transition:
     color ease 0.1s,
     background-color ease 0.1s;
@@ -1425,7 +1463,7 @@ input[type='radio'] {
 }
 
 .homepage .streamfield-column p:first-child {
-  color: var(--dark-brown);
+  color: var(--text-secondary);
   font-family: var(--font--primary);
   font-size: 1.5rem;
   line-height: 1.31;
@@ -1439,6 +1477,7 @@ input[type='radio'] {
 }
 
 .homepage .streamfield-column p {
+  color: var(--text-secondary);
   font-size: 0.875rem;
   line-height: 1.57;
 }
@@ -1483,16 +1522,16 @@ input[type='radio'] {
 .homepage .promo h2 {
   margin-top: 0;
   margin-bottom: 20px;
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .homepage .promo p,
 .homepage .promo li {
-  color: var(--white);
+  color: var(--dark-brown);
 }
 
 .homepage .promo a {
-  color: var(--white);
+  color: var(--dark-orange);
   text-decoration: underline;
 }
 
@@ -1640,7 +1679,7 @@ input[type='radio'] {
 }
 
 .homepage .blog-section__title {
-  color: var(--dark-brown);
+  color: var(--text-primary);
   font-weight: 400;
   font-size: 2.375rem;
   line-height: 1.16;
@@ -1745,7 +1784,7 @@ input[type='radio'] {
 }
 
 .picture-card__title {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: var(--font--primary);
   font-size: 1.625rem;
   line-height: 1.15;
@@ -2041,7 +2080,7 @@ input[type='radio'] {
 }
 
 .location-card__text {
-  color: var(--dark);
+  color: var(--text-secondary);
   font-size: var(--font-sm);
   line-height: 1.5;
 }
