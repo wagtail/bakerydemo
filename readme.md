@@ -4,7 +4,7 @@ This is a demonstration project for the amazing [Wagtail CMS](https://github.com
 
 The demo site is designed to provide examples of common features and recipes to introduce you to Wagtail development. Beyond the code, it will also let you explore the admin/editorial interface of the CMS.
 
-Note we do _not_ recommend using this project to start your own site - the demo is intended to be a springboard to get you started. Feel free to copy code from the demo into your own project.
+Note that we do _not_ recommend using this project to start your own site - the demo is intended to be a springboard to get you started. Feel free to copy code from the demo into your own project.
 
 ### Wagtail Features Demonstrated in This Demo
 
@@ -13,13 +13,13 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 - Dividing a project up into multiple apps
 - Custom content models and "contexts" in the "breads" and "locations" apps
 - A typical weblog in the "blog" app
-- Example of using a "base" app to contain misc additional functionality (e.g. Contact Form, About, etc.)
+- Example of using a "base" app to contain miscellaneous functionality (e.g. Contact Form, About, etc.)
 - "StandardPage" model using mixins borrowed from other apps
 - Example of customizing the Wagtail Admin via _wagtail_hooks_
 - Example of using the Wagtail "snippets" system to represent bread categories, countries, and ingredients
 - Example of a custom "Galleries" feature that pulls in images used in other content types in the system
 - Example of creating ManyToMany relationships via the Ingredients feature on BreadPage
-- Lots more
+- And much more
 
 **Document contents**
 
@@ -34,9 +34,9 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 - [Vagrant](#setup-with-vagrant)
 - [Docker](#setup-with-docker)
 
-If you want to see what Wagtail is all about, we suggest trying it out locally in a virtual environment: [Setup with venv](#setup-with-venv).
+If you want to see what Wagtail is all about, we suggest trying it out locally in a virtual environment. See [Setup with venv](#setup-with-venv).
 
-If you're new to Python and/or Django, we suggest you run this project on a Virtual Machine using [Docker](#setup-with-docker) or [Vagrant](#setup-with-vagrant) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
+If you're new to Python and/or Django, we suggest you run this project on a virtual machine using [Docker](#setup-with-docker) or [Vagrant](#setup-with-vagrant) (whichever you're most comfortable with). Both Vagrant and Docker will help resolve common software dependency issues.
 
 ## Setup with Vagrant
 
@@ -47,7 +47,7 @@ If you're new to Python and/or Django, we suggest you run this project on a Virt
 
 #### Installation
 
-Once you've installed the necessary dependencies run the following commands:
+Once you've installed the necessary dependencies, run the following commands:
 
 ```bash
 git clone https://github.com/wagtail/bakerydemo.git
@@ -103,7 +103,7 @@ Log into the admin with the credentials `admin / changeme`.
 
 ### Debugging
 
-To tail the logs from the Docker containers in realtime, run:
+To tail the logs from the Docker containers in real time, run:
 
 ```bash
 docker compose logs -f
@@ -167,7 +167,7 @@ Log into the admin with the credentials `admin / changeme`.
 
 # Next steps
 
-Hopefully after you've experimented with the demo you'll want to create your own site. To do that you'll want to run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](https://docs.wagtail.org/en/stable/getting_started/index.html).
+After experimenting with the demo, you may want to create your own site. To do that, run the `wagtail start` command in your environment of choice. You can find more information in the [getting started Wagtail CMS docs](https://docs.wagtail.org/en/stable/getting_started/index.html).
 
 # Contributing
 
@@ -210,10 +210,10 @@ The demo data includes users with different roles and preferences. You can use t
 | `admin`     | `changeme` | Yes       | None       | undefined          | undefined     | Yes    |
 | `editor`    | `changeme` | No        | Editors    | undefined          | undefined     | Yes    |
 | `moderator` | `changeme` | No        | Moderators | undefined          | undefined     | Yes    |
-| `inactive`  | `changeme` | yes       | None       | undefined          | undefined     | No     |
-| `german`    | `changeme` | yes       | None       | German             | Europe/Berlin | Yes    |
-| `arabic`    | `changeme` | yes       | None       | Arabic             | Asia/Beirut   | Yes    |
+| `inactive`  | `changeme` | Yes       | None       | undefined          | undefined     | No     |
+| `german`    | `changeme` | Yes       | None       | German             | Europe/Berlin | Yes    |
+| `arabic`    | `changeme` | Yes       | None       | Arabic             | Asia/Beirut   | Yes    |
 
 ### Ownership of demo content
 
-All content in the demo is public domain. Textual content in this project is either sourced from Wikimedia (Wikipedia for blog posts, [Wikibooks for recipes](https://en.wikibooks.org/wiki/Cookbook:Table_of_Contents)) or is lorem ipsum. All images are from either Wikimedia Commons or other copyright-free sources.
+All content in the demo is public domain. Textual content in this project is either sourced from Wikimedia (Wikipedia for blog posts, [Wikibooks for recipes](https://en.wikibooks.org/wiki/Cookbook:Table_of_Contents)) or consists of lorem ipsum text. All images are from either Wikimedia Commons or other copyright-free sources.
