@@ -29,9 +29,21 @@
         {% if page.get_child_tags %}
             <nav aria-label="Blog tag filters">
                 <ul class="blog-tags">
-                    <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
-                    {% for tag in page.get_child_tags %}
-                        <li><a class="blog-tags__pill" aria-label="Filter by tag name {{ tag }}" href="{{ tag.url }}">{{ tag }}</a></li>
+                    <li>
+                        {% if tag %}
+                            <a class="blog-tags__pill" href="{{ self.url }}">All</a>
+                        {% else %}
+                            <span class="blog-tags__pill blog-tags__pill--selected">All</span>
+                        {% endif %}
+                    </li>
+                    {% for child_tag in page.get_child_tags %}
+                        <li>
+                            {% if tag and child_tag.slug == tag.slug %}
+                                <span class="blog-tags__pill blog-tags__pill--selected">{{ child_tag }}</span>
+                            {% else %}
+                                <a class="blog-tags__pill" href="{{ child_tag.url }}">{{ child_tag }}</a>
+                            {% endif %}
+                        </li>
                     {% endfor %}
                 </ul>
             </nav>
