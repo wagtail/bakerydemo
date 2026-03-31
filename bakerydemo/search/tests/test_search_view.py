@@ -1,12 +1,17 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from wagtail.models import Page, Site
 
 from bakerydemo.blog.models import BlogPage
 from bakerydemo.breads.models import BreadPage
 from bakerydemo.locations.models import LocationPage
+from bakerydemo.recipes.models import RecipePage
+from django.core.management import call_command
 
-
+@override_settings(STORAGES={
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+})
 class SearchViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -16,8 +21,15 @@ class SearchViewTest(TestCase):
             root_page=root,
             is_default_site=True,
         )
+        cls.recipe = RecipePage(
+            title="Hot Cross Bun", slug="hot-cross-bun", introduction="spiced bun"
+        )
+        root.add_child(instance=cls.recipe)
+        cls.recipe.save_revision().publish()
 
-        cls.blog = BlogPage(title="Sourdough Guide", slug="sourdough-guide", introduction="sourdough")
+        cls.blog = BlogPage(
+            title="Sourdough Guide", slug="sourdough-guide", introduction="sourdough"
+        )
         root.add_child(instance=cls.blog)
         cls.blog.save_revision().publish()
 
@@ -25,9 +37,16 @@ class SearchViewTest(TestCase):
         root.add_child(instance=cls.bread)
         cls.bread.save_revision().publish()
 
-        cls.location = LocationPage(title="Maputo Bakery", slug="maputo-bakery", address="123 Maputo St", lat_long="-25.969248, 32.573289")
+        cls.location = LocationPage(
+            title="Maputo Bakery",
+            slug="maputo-bakery",
+            address="123 Maputo St",
+            lat_long="-25.969248, 32.573289",
+        )
         root.add_child(instance=cls.location)
         cls.location.save_revision().publish()
+        
+        call_command("update_index", verbosity=0)
 
     def test_search_returns_200(self):
         response = self.client.get(reverse("search"), {"q": "bread"})
@@ -64,3 +83,7 @@ class SearchViewTest(TestCase):
         results = response.context["search_results"].object_list
         ids = [p.id for p in results]
         self.assertEqual(ids, sorted(ids, key=lambda pk: ids.index(pk)))
+
+    def test_search_finds_recipe_page(self):
+        response = self.client.get(reverse("search"), {"q": "hot cross bun"})
+        self.assertContains(response, "Hot Cross Bun")
