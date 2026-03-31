@@ -1,0 +1,48 @@
+/*
+  Design tokens for Wagtail Bakerydemo.
+  Central source of truth for the current demo theme.
+*/
+
+:root {
+  /* Colors */
+  --color-brand-primary: #c55302;
+  --color-brand-primary-dark: #833701;
+  --color-brand-secondary: #f5f3e9;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text-primary: #333;
+  --color-text-muted: #6e6e6e;
+  --color-text-on-dark-muted: #e3e3e3;
+  --color-border: #e1dcd3;
+  --color-background-page: #fff;
+  --color-background-alt: #f5f3e9;
+  --color-blog-card-image-background: #eb7400;
+  --color-overlay-solid: #000;
+  --color-overlay-transparent: rgb(0 0 0 / 0%);
+
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-heading: 'Marcellus', serif;
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --line-height-base: 1.5;
+
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 40px;
+  --spacing-xl: 60px;
+  --spacing-2xl: 120px;
+
+  /* Layout */
+  --container-max-width: 1400px;
+  --border-radius-sm: 3px;
+  --border-radius-md: 6px;
+
+  /* Motion */
+  --transition-base: 0.2s ease-in-out;
+}

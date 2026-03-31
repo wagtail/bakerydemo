@@ -21,30 +21,27 @@ each detail view
 
 /* CSS Variables */
 :root {
-  --dark: #333;
-  --grey: #6e6e6e;
-  --border-grey: #e1dcd3;
+  --dark: var(--color-text-primary, #333);
+  --grey: var(--color-text-muted, #6e6e6e);
+  --border-grey: var(--color-border, #e1dcd3);
   --transparent-border: rgb(135 116 79 / 25%);
-  --white: #fff;
-  --cream: #f5f3e9;
+  --white: var(--color-white, #fff);
+  --cream: var(--color-background-alt, #f5f3e9);
   --light-brown: #87744f;
   --mid-brown: #825600;
   --dark-brown: #553801;
-  --orange: #c55302;
-  --dark-orange: #833701;
-  --font--primary: 'Marcellus', serif;
+  --orange: var(--color-brand-primary, #c55302);
+  --dark-orange: var(--color-brand-primary-dark, #833701);
+  --font--primary: var(--font-family-heading, 'Marcellus', serif);
   /* stylelint-disable */
-  --font--secondary:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto,
-    'Helvetica Neue', Arial, sans-serif, Apple Color Emoji, 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font--secondary: var(--font-family-base, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif, Apple Color Emoji, 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji');
   /* stylelint-enable */
-  --font-sm: 1rem;
-  --font-md: 1.125rem;
+  --font-sm: var(--font-size-base, 1rem);
+  --font-md: var(--font-size-lg, 1.125rem);
 }
 
 html {
-  font-size: 16px;
+  font-size: var(--font-size-base, 16px);
 }
 
 [hidden] {
@@ -54,13 +51,13 @@ html {
 /* Body */
 
 body {
-  font-family: var(--font--secondary);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: var(--font-family-base, var(--font--secondary));
+  font-size: var(--font-size-base, 1rem);
+  line-height: var(--line-height-base, 1.5);
   padding-top: 0;
   padding-bottom: 0;
-  background: var(--white);
-  color: var(--dark);
+  background: var(--color-background-page, var(--white));
+  color: var(--color-text-primary, var(--dark));
   min-height: 100vh;
 }
 
@@ -80,9 +77,9 @@ body.no-scroll {
 h1,
 h2,
 h3 {
-  font-family: var(--font--primary);
+  font-family: var(--font-family-heading, var(--font--primary));
   font-weight: 400;
-  color: var(--dark);
+  color: var(--color-text-primary, var(--dark));
 }
 
 h1 {
@@ -101,21 +98,21 @@ h3 {
 }
 
 h4 {
-  font-family: var(--font--secondary);
+  font-family: var(--font-family-base, var(--font--secondary));
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.35;
-  color: var(--dark);
+  color: var(--color-text-primary, var(--dark));
 }
 
 p {
-  font-family: var(--font--secondary);
+  font-family: var(--font-family-base, var(--font--secondary));
   font-style: normal;
   font-weight: 400;
   font-size: var(--font-sm);
   line-height: 1.5;
-  color: var(--dark);
+  color: var(--color-text-primary, var(--dark));
 }
 
 @media (min-width: 768px) {
@@ -173,12 +170,12 @@ ul {
 a,
 a:focus,
 a:visited {
-  color: var(--orange);
+  color: var(--color-brand-primary, var(--orange));
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--dark-orange);
+  color: var(--color-brand-primary-dark, var(--dark-orange));
   text-decoration: none;
 }
 
@@ -319,12 +316,20 @@ caption {
   width: 100%;
   height: 100%;
   bottom: 0;
-  background: linear-gradient(0deg, #000 11.33%, rgb(0 0 0 / 0%) 100%);
+  background: linear-gradient(
+    0deg,
+    var(--color-overlay-solid, #000) 11.33%,
+    var(--color-overlay-transparent, rgb(0 0 0 / 0%)) 100%
+  );
 }
 
 @media (min-width: 768px) {
   .hero-gradient-mask {
-    background: linear-gradient(90deg, #000 11.33%, rgb(0 0 0 / 0%) 100%);
+    background: linear-gradient(
+      90deg,
+      var(--color-overlay-solid, #000) 11.33%,
+      var(--color-overlay-transparent, rgb(0 0 0 / 0%)) 100%
+    );
   }
 }
 
@@ -803,15 +808,13 @@ footer {
 
 .container {
   width: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: var(--container-max-width, 1400px);
+  padding: 0 var(--spacing-md, 20px);
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 1400px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 0 var(--spacing-lg, 40px);
   }
 }
 
@@ -1026,7 +1029,7 @@ footer {
 
 .blog-list-item .image {
   overflow: hidden;
-  background-color: #eb7400;
+  background-color: var(--color-blog-card-image-background, #eb7400);
   flex: 1 0 auto;
 }
 
@@ -1050,20 +1053,20 @@ footer {
 }
 
 .blog-list-item .text h2 {
-  color: #fff;
+  color: var(--color-white, #fff);
   font-weight: 200;
   margin-top: 0;
 }
 
 .blog-list-item .text p {
-  color: #e3e3e3;
+  color: var(--color-text-on-dark-muted, #e3e3e3);
   font-size: 0.875rem;
   margin-bottom: 0;
 }
 
 .blog-list-item .footer {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-text-primary, #333);
+  color: var(--color-white, #fff);
   margin-top: 0;
   padding: 20px;
   position: relative;
@@ -1768,7 +1771,11 @@ input[type='radio'] {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, #000 67.69%);
+  background: linear-gradient(
+    180deg,
+    var(--color-overlay-transparent, rgb(0 0 0 / 0%)) 0%,
+    var(--color-overlay-solid, #000) 67.69%
+  );
   z-index: 2;
 }
 
