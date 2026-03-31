@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.conf import settings
 from django.core.validators import RegexValidator
@@ -182,9 +182,9 @@ class LocationPage(Page):
         hours = self.hours_of_operation.all()
         return hours
 
-    # Determines if the location is currently open. It is timezone naive
+    # Determines if the location is currently open.
     def is_open(self):
-        now = datetime.now()
+        now = timezone.localtime()
         current_time = now.time()
         current_day = now.strftime("%a").upper()
         try:
