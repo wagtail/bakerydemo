@@ -1,0 +1,18 @@
+{% load wagtailcore_tags %}
+
+<div class="block-detailed-recipe">
+    {% include_block value.recipe %}
+    {% with n=value.nutrition %}
+        {% if n.calories or n.carbohydrates or n.protein or n.fat or n.fibre %}
+            <table>
+                <caption>Nutrition per serving</caption>
+                {% if n.calories %}<tr><th>Calories</th><td>{{ n.calories }}</td></tr>{% endif %}
+                {% if n.carbohydrates %}<tr><th>Carbohydrates</th><td>{{ n.carbohydrates }}</td></tr>{% endif %}
+                {% if n.protein %}<tr><th>Protein</th><td>{{ n.protein }}</td></tr>{% endif %}
+                {% if n.fat %}<tr><th>Fat</th><td>{{ n.fat }}</td></tr>{% endif %}
+                {% if n.fibre %}<tr><th>Fibre</th><td>{{ n.fibre }}</td></tr>{% endif %}
+            </table>
+        {% endif %}
+    {% endwith %}
+    {% if value.notes %}<p>{{ value.notes }}</p>{% endif %}
+</div>

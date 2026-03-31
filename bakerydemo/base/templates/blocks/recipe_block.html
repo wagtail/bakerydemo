@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+
+<div class="block-recipe">
+    <h2>{{ value.title }}</h2>
+    {% if value.difficulty %}<p>{{ value.difficulty }}</p>{% endif %}
+    {% if value.makes %}<p>{{ value.makes }}</p>{% endif %}
+    {% if value.bake_time %}<p>{{ value.bake_time }}</p>{% endif %}
+    {% include_block value.baker %}
+    <ul>
+        {% for ingredient in value.ingredients %}
+            <li>{% if ingredient.quantity %}{{ ingredient.quantity }} {% endif %}{{ ingredient.name }}</li>
+        {% endfor %}
+    </ul>
+    <div>{{ value.method }}</div>
+</div>

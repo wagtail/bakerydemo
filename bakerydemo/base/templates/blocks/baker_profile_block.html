@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+<div class="block-baker-profile">
+    {% if value.image %}
+        {% image value.image fill-80x80 as baker_img %}
+        <img src="{{ baker_img.url }}" alt="{{ value.name }}">
+    {% endif %}
+    <p>{{ value.name }}</p>
+    {% if value.specialty %}<p>{{ value.specialty }}</p>{% endif %}
+    {% if value.bio %}<p>{{ value.bio }}</p>{% endif %}
+    {% if value.years_baking %}<p>Baking for {{ value.years_baking }}</p>{% endif %}
+    {% if value.favourite_loaf %}<p>Favourite loaf: {{ value.favourite_loaf }}</p>{% endif %}
+</div>

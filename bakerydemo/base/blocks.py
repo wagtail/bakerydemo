@@ -2,7 +2,9 @@ from django.utils.functional import cached_property
 from wagtail.blocks import (
     CharBlock,
     ChoiceBlock,
+    ListBlock,
     RichTextBlock,
+    StaticBlock,
     StreamBlock,
     StructBlock,
     TextBlock,
@@ -126,6 +128,146 @@ class BlockQuote(StructBlock):
         description = "A quote with an optional attribution"
 
 
+class BakerProfileBlock(StructBlock):
+    """
+    Custom `StructBlock` for a baker profile with optional biographical fields
+    """
+
+    name = CharBlock()
+    specialty = CharBlock(required=False, label="e.g. Sourdough, Pastry")
+    bio = TextBlock(required=False)
+    years_baking = CharBlock(required=False, label="e.g. 12 years")
+    favourite_loaf = CharBlock(required=False)
+    image = ImageChooserBlock(required=False)
+
+    class Meta:
+        icon = "user"
+        template = "blocks/baker_profile_block.html"
+        preview_value = {
+            "name": "Mary Berry",
+            "specialty": "Pastry",
+            "bio": (
+                "Mary has been baking at the Wagtail Bakery for over a decade. "
+                "She trained in Vienna and specialises in laminated doughs."
+            ),
+            "years_baking": "14 years",
+            "favourite_loaf": "Kouign-amann",
+        }
+        description = "A baker profile with optional biographical details"
+
+
+class IngredientBlock(StructBlock):
+    """
+    Custom `StructBlock` for a single recipe ingredient
+    """
+
+    name = CharBlock()
+    quantity = CharBlock(required=False, label="e.g. 500g, 2 tsp")
+
+    class Meta:
+        icon = "list-ul"
+        preview_value = {"name": "Strong white flour", "quantity": "500g"}
+
+
+class RecipeBlock(StructBlock):
+    """
+    Custom `StructBlock` for a bread recipe with ingredients and baker profile
+    """
+
+    title = CharBlock()
+    baker = BakerProfileBlock()
+    ingredients = ListBlock(IngredientBlock())
+    method = RichTextBlock()
+    makes = CharBlock(required=False, label="e.g. 1 large loaf, 12 rolls")
+    bake_time = CharBlock(required=False, label="e.g. 35–40 minutes at 220°C")
+    difficulty = ChoiceBlock(
+        choices=[
+            ("", "Select a difficulty"),
+            ("easy", "Easy"),
+            ("medium", "Medium"),
+            ("challenging", "Challenging"),
+        ],
+        blank=True,
+        required=False,
+    )
+
+    class Meta:
+        icon = "doc-full"
+        template = "blocks/recipe_block.html"
+        preview_value = {
+            "title": "Classic sourdough loaf",
+            "makes": "1 large loaf",
+            "bake_time": "45 minutes at 230°C",
+            "difficulty": "challenging",
+        }
+        description = "A bread recipe with ingredients, method, and baker profile"
+
+
+class PageSectionBlock(StructBlock):
+    """
+    Custom `StructBlock` with a nested StreamBlock for flexible page sections
+    """
+
+    heading = CharBlock()
+    body = StreamBlock(
+        [
+            ("text", RichTextBlock(template="blocks/paragraph_block.html")),
+            ("image", CaptionedImageBlock()),
+            ("quote", BlockQuote()),
+        ]
+    )
+    settings = ThemeSettingsBlock(collapsed=True)
+
+    class Meta:
+        icon = "folder-open-inverse"
+        template = "blocks/page_section_block.html"
+        preview_value = {"heading": "About our bread"}
+        description = "A page section with a heading and flexible body content"
+
+
+class NutritionBlock(StructBlock):
+    """
+    Custom `StructBlock` for nutritional information per serving
+    """
+
+    calories = CharBlock(required=False, label="e.g. 210 kcal")
+    carbohydrates = CharBlock(required=False, label="e.g. 42g")
+    protein = CharBlock(required=False, label="e.g. 8g")
+    fat = CharBlock(required=False, label="e.g. 1g")
+    fibre = CharBlock(required=False, label="e.g. 2g")
+
+    class Meta:
+        icon = "pick"
+        preview_value = {
+            "calories": "210 kcal",
+            "carbohydrates": "42g",
+            "protein": "8g",
+            "fat": "1g",
+            "fibre": "2g",
+        }
+
+
+class DetailedRecipeBlock(StructBlock):
+    """
+    Custom `StructBlock` for a bread recipe with nested nutritional information
+    """
+
+    recipe = RecipeBlock()
+    nutrition = NutritionBlock()
+    notes = TextBlock(required=False, label="Baker's notes")
+
+    class Meta:
+        icon = "doc-full-inverse"
+        template = "blocks/detailed_recipe_block.html"
+        preview_value = {
+            "notes": (
+                "This loaf keeps well for up to three days wrapped in a clean "
+                "tea towel. Freeze sliced for up to one month."
+            ),
+        }
+        description = "A bread recipe with nutritional information and baker's notes"
+
+
 # StreamBlocks
 class BaseStreamBlock(StreamBlock):
     """
@@ -157,4 +299,13 @@ class BaseStreamBlock(StreamBlock):
         preview_template="base/preview/static_embed_block.html",
         preview_value="https://www.youtube.com/watch?v=mwrGSfiB1Mg",
         description="An embedded video or other media",
+    )
+    recipe_block = RecipeBlock()
+    page_section_block = PageSectionBlock()
+    detailed_recipe_block = DetailedRecipeBlock()
+    separator_block = StaticBlock(
+        admin_text="Horizontal separator — no configuration needed.",
+        template="blocks/separator_block.html",
+        icon="horizontalrule",
+        description="A visual separator between content blocks",
     )

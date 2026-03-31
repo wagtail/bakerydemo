@@ -1,0 +1,8 @@
+{% load wagtailcore_tags %}
+
+<section class="block-page-section">
+    <h2>{{ value.heading }}</h2>
+    {% for block in value.body %}
+        {% include_block block %}
+    {% endfor %}
+</section>
