@@ -382,15 +382,17 @@ class HomePage(Page):
             ],
             heading="Hero section",
         ),
-        HelpPanel("This is a help panel"),
+        HelpPanel(
+        "The homepage sections allow editors to manage hero, promo, and featured content displayed on the front page. Use this panel as a guide for adding or editing homepage content."
+        ),
         MultiFieldPanel(
-            [
-                FieldPanel("lead_image"),
-                FieldPanel("lead_title"),
-                FieldPanel("lead_text"),
-            ],
-            heading="Promo section",
-            help_text="This is just a help text",
+        [
+        FieldPanel("lead_image"),
+        FieldPanel("lead_title"),
+        FieldPanel("lead_text"),
+        ],
+        heading="Promo section",
+        help_text="Provide content for the lead/promo section to highlight important messages, offers, or announcements on the homepage.",
         ),
         FieldPanel("body"),
         MultiFieldPanel(
