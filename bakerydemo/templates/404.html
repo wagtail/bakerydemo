@@ -7,7 +7,20 @@
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-    <h1>Page not found</h1>
-
-    <h2>Sorry, this page could not be found.</h2>
+    <div class="error-page">
+        <div class="container">
+            <div class="error-page__inner">
+                <p class="error-page__code">404</p>
+                <h1 class="error-page__title">Page not found</h1>
+                <p class="error-page__description">
+                    Sorry, the page you were looking for could not be found.
+                    It may have been moved, deleted, or never existed.
+                </p>
+                <div class="error-page__actions">
+                    <a href="/" class="btn">Go to homepage</a>
+                    <a href="/search" class="error-page__search-link">or try searching</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

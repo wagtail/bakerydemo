@@ -2099,3 +2099,68 @@ input[type='radio'] {
   max-height: 100vh;
   margin-inline: auto;
 }
+
+/* ---- 404 Error Page ---- */
+.error-page {
+  padding: 80px 0 120px;
+}
+
+.error-page__inner {
+  max-width: 600px;
+}
+
+.error-page__code {
+  font-family: var(--font--primary);
+  font-size: 8rem;
+  line-height: 1;
+  color: var(--orange);
+  margin: 0 0 10px;
+}
+
+.error-page__title {
+  font-size: 2.375rem;
+  line-height: 1.16;
+  margin: 0 0 20px;
+}
+
+.error-page__description {
+  color: var(--grey);
+  margin: 0 0 40px;
+}
+
+.error-page__actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.error-page__search-link {
+  color: var(--dark);
+  text-decoration: underline;
+}
+
+.error-page__search-link:hover {
+  color: var(--dark-orange);
+}
+
+@media (min-width: 768px) {
+  .error-page {
+    padding: 140px 0 200px;
+  }
+
+  .error-page__code {
+    font-size: 12rem;
+  }
+
+  .error-page__title {
+    font-size: 3.75rem;
+    line-height: 1.07;
+    margin-bottom: 30px;
+  }
+
+  .error-page__description {
+    font-size: var(--font-md);
+    margin-bottom: 60px;
+  }
+}
