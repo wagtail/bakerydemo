@@ -383,7 +383,7 @@ class HomePage(Page):
             heading="Hero section",
         ),
         HelpPanel(
-        "The homepage sections allow editors to manage hero, promo, and featured content displayed on the front page. Use this panel as a guide for adding or editing homepage content."
+        "Use the sections below to edit the homepage content. The Hero section controls the main banner, the Promo section highlights key messages, and the Featured sections display selected content from other parts of the site."
         ),
         MultiFieldPanel(
         [
@@ -392,7 +392,7 @@ class HomePage(Page):
         FieldPanel("lead_text"),
         ],
         heading="Promo section",
-        help_text="Provide content for the lead/promo section to highlight important messages, offers, or announcements on the homepage.",
+        help_text="Content entered here appears in the promotional section of the homepage. Use it to highlight key messages, announcements, or featured items.",
         ),
         FieldPanel("body"),
         MultiFieldPanel(
