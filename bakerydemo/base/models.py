@@ -382,7 +382,10 @@ class HomePage(Page):
             ],
             heading="Hero section",
         ),
-        HelpPanel("This is a help panel"),
+        HelpPanel(
+            "Use the sections below to configure "
+            "the homepage hero, promo, and featured sections."
+        ),
         MultiFieldPanel(
             [
                 FieldPanel("lead_image"),
@@ -390,7 +393,7 @@ class HomePage(Page):
                 FieldPanel("lead_text"),
             ],
             heading="Promo section",
-            help_text="This is just a help text",
+            help_text="Configure the lead image, title and text for the promotional section.",
         ),
         FieldPanel("body"),
         MultiFieldPanel(
