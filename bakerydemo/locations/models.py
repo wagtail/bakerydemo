@@ -1,8 +1,7 @@
-from django.utils import timezone
-
 from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.api import APIField

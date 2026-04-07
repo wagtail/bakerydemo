@@ -35,7 +35,9 @@ def search(request):
             recipe_results = RecipePage.objects.live().search(search_query)
             recipe_page_ids = [p.page_ptr.id for p in recipe_results]
 
-            page_ids = blog_page_ids + bread_page_ids + location_result_ids + recipe_page_ids
+            page_ids = (
+                blog_page_ids + bread_page_ids + location_result_ids + recipe_page_ids
+            )
             search_results = Page.objects.live().filter(id__in=page_ids)
 
         query = Query.get(search_query)
