@@ -30,6 +30,8 @@
                                                 Blog Post
                                             {% elif result.specific.content_type.model == "locationpage" %}
                                                 Location
+                                            {% elif result.specific.content_type.model == "recipepage" %}
+                                                Recipe
                                             {% else %}
                                                 Bread
                                             {% endif %}

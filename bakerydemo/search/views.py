@@ -7,6 +7,7 @@ from wagtail.models import Page
 from bakerydemo.blog.models import BlogPage
 from bakerydemo.breads.models import BreadPage
 from bakerydemo.locations.models import LocationPage
+from bakerydemo.recipes.models import RecipePage
 
 
 def search(request):
@@ -31,7 +32,12 @@ def search(request):
             location_results = LocationPage.objects.live().search(search_query)
             location_result_ids = [p.page_ptr.id for p in location_results]
 
-            page_ids = blog_page_ids + bread_page_ids + location_result_ids
+            recipe_results = RecipePage.objects.live().search(search_query)
+            recipe_page_ids = [p.page_ptr.id for p in recipe_results]
+
+            page_ids = (
+                blog_page_ids + bread_page_ids + location_result_ids + recipe_page_ids
+            )
             search_results = Page.objects.live().filter(id__in=page_ids)
 
         query = Query.get(search_query)
