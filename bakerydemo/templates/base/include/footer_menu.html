@@ -1,0 +1,29 @@
+{% load wagtailcore_tags %}
+
+{% if footer_menu %}
+    <div style="display: flex; justify-content: center; gap: 40px;">
+        {% for section in footer_menu.sections %}
+            <div style="text-align: center;">
+                <h2>{{ section.value.heading }}</h2>
+                <ul style="list-style: none; padding: 0;">
+                    {% for item in section.value.links %}
+                        <li>
+                            <a href="{% for block in item.link %}{% if block.block_type == 'page' %}{% pageurl block.value.page %}{% elif block.block_type == 'external_url' %}{{ block.value.url }}{% elif block.block_type == 'document' %}{{ block.value.document.url }}{% endif %}{% endfor %}">
+                                {% if item.title %}
+                                    {{ item.title }}
+                                {% else %}
+                                    {% for block in item.link %}
+                                        {% if block.block_type == "page" %}{{ block.value.page.title }}
+                                        {% elif block.block_type == "external_url" %}{{ block.value.url }}
+                                        {% elif block.block_type == "document" %}{{ block.value.document.title }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
