@@ -1,8 +1,9 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Authentication Required</title>
+        <title>{% trans "Authentication Required" %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {# Prevent the demo site from being indexed #}
@@ -19,9 +20,9 @@
 
     <body>
         <article>
-            <h1>Authentication Required</h1>
-            <p>You must login to view this site</p>
-            <h3>Looking for Wagtail? Visit <a href="https://wagtail.org">wagtail.org</a>.</h3>
+            <h1>{% trans "Authentication Required" %}</h1>
+            <p>{% trans "You must login to view this site" %}</p>
+            <h3>{% blocktrans %}Looking for Wagtail? Visit <a href="https://wagtail.org">wagtail.org</a>.{% endblocktrans %}</h3>
         </article>
     </body>
 </html>

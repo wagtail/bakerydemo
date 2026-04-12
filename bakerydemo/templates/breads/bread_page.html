@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags i18n %}
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
@@ -25,16 +25,16 @@
                     <div class="row">
                         <div class="bread-detail__meta">
                             {% if page.origin %}
-                                <p class="bread-detail__meta-title">Origin</p>
+                                <p class="bread-detail__meta-title">{% trans "Origin" %}</p>
                                 <p class="bread-detail__meta-content">{{ page.origin }}</p>
                             {% endif %}
                             {% if page.bread_type %}
-                                <p class="bread-detail__meta-title">Type</p>
+                                <p class="bread-detail__meta-title">{% trans "Type" %}</p>
                                 <p class="bread-detail__meta-content">{{ page.bread_type }}</p>
                             {% endif %}
                             {% with ingredients=page.ordered_ingredients %}
                                 {% if ingredients %}
-                                    <h4>Ingredients</h4>
+                                    <h4>{% trans "Ingredients" %}</h4>
                                     <ul>
                                         {% for ingredient in ingredients %}
                                             <li>
@@ -44,9 +44,9 @@
                                                 {% else %}
                                                     {# EXAMPLE: we can show a placeholder element for instances that are not live #}
                                                     <span class="bread-detail__meta-ingredient--draft">
-                                                        Draft ingredient
+                                                        {% trans "Draft ingredient" %}
                                                     </span>
-                                                    (draft)
+                                                    ({% trans "draft" %})
                                                 {% endif %}
                                             </li>
                                         {% endfor %}

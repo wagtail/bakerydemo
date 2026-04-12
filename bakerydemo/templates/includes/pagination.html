@@ -1,20 +1,20 @@
-{% load navigation_tags %}
+{% load navigation_tags i18n %}
 
-<nav class="pagination" aria-label="Pagination">
+<nav class="pagination" aria-label="{% trans "Pagination" %}">
     <ul class="pagination__list">
         {% if subpages.has_previous %}
             <li class="page-item">
-                <a href="?page={{ subpages.previous_page_number }}" class="page-link previous arrows">previous</a>
+                <a href="?page={{ subpages.previous_page_number }}" class="page-link previous arrows">{% trans "previous" %}</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <a class="page-link">previous</a>
+                <a class="page-link">{% trans "previous" %}</a>
             </li>
         {% endif %}
 
         {% for i in subpages.paginator.page_range %}
             {% if subpages.number == i %}
-                <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                <li class="page-item active"><span>{{ i }} <span class="sr-only">{% trans "(current)" %}</span></span></li>
             {% else %}
                 <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
             {% endif %}
@@ -22,11 +22,11 @@
 
         {% if subpages.has_next %}
             <li class="page-item">
-                <a href="?page={{ subpages.next_page_number }}" class="page-link next arrows">next</a>
+                <a href="?page={{ subpages.next_page_number }}" class="page-link next arrows">{% trans "next" %}</a>
             </li>
         {% else %}
             <li class="page-item disabled">
-                <a class="page-link">next</a>
+                <a class="page-link">{% trans "next" %}</a>
             </li>
         {% endif %}
     </ul>

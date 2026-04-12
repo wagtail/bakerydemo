@@ -1,9 +1,9 @@
 {% extends "wagtailcore/shared/block_preview.html" %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
     <svg class="static-block-preview" viewBox="0 0 360 246">
-        <title>Preview of an embedded video</title>
+        <title>{% trans "Preview of an embedded video" %}</title>
         <rect fill="light-dark(#fff, #1d1d1d)" height="245.5" rx="10" width="360" y=".5" />
         <rect fill="light-dark(#e0e0e0, #464646)" height="211.5" rx="7" width="340" x="10" y="10.5" />
         <path

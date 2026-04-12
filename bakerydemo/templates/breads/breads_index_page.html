@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags i18n %}
 
 {% block content %}
     {% include "base/include/header-index.html" %}
@@ -14,7 +14,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No breads available at the moment.</p>
+            <p>{% trans "No breads available at the moment." %}</p>
         {% endif %}
     </div>
 

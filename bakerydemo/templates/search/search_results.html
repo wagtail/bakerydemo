@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags i18n %}
 
-{% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+{% block title %}{% trans "Search" %}{% if search_results %} {% trans "results" %}{% endif %}{% if search_query %} {% trans "for" %} “{{ search_query }}”{% endif %}{% endblock %}
 
-{% block search_description %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+{% block search_description %}{% trans "Search" %}{% if search_results %} {% trans "results" %}{% endif %}{% if search_query %} {% trans "for" %} “{{ search_query }}”{% endif %}{% endblock %}
 
 {% block body_class %}template-search-results{% endblock %}
 
@@ -11,9 +11,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h1>Search results</h1>
+                <h1>{% trans "Search results" %}</h1>
                 {% if search_results %}
-                    <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
+                    <p class="search__introduction">{% blocktrans count count=search_results|length %}You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ count }} result found.{% plural %}You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ count }} results found.{% endblocktrans %}</p>
                     <ul class="search__results">
                         {% for result in search_results %}
                             <li class="listing-card">
@@ -27,13 +27,13 @@
                                         <h2 class="listing-card__title">{{ result.specific }}</h2>
                                         <p class="listing-card__content-type">
                                             {% if result.specific.content_type.model == "blogpage" %}
-                                                Blog Post
+                                                {% trans "Blog Post" %}
                                             {% elif result.specific.content_type.model == "locationpage" %}
-                                                Location
+                                                {% trans "Location" %}
                                             {% elif result.specific.content_type.model == "recipepage" %}
-                                                Recipe
+                                                {% trans "Recipe" %}
                                             {% else %}
-                                                Bread
+                                                {% trans "Bread" %}
                                             {% endif %}
                                         </p>
                                         <p class="listing-card__description">
@@ -47,7 +47,7 @@
                 {% elif search_query %}
                     {% get_search_promotions search_query as search_promotions %}
                     {% if search_promotions %}
-                        <p class="search__introduction">You searched for “{{ search_query }}”, {{ search_promotions|length }} result{{ search_promotions|length|pluralize }} found.</p>
+                        <p class="search__introduction">{% blocktrans count count=search_promotions|length %}You searched for “{{ search_query }}”, {{ count }} result found.{% plural %}You searched for “{{ search_query }}”, {{ count }} results found.{% endblocktrans %}</p>
                         <ul class="search__results">
                             {% for search_promotion in search_promotions %}
                                 <li class="listing-card">
@@ -62,11 +62,11 @@
                                                 <h2 class="listing-card__title">{{ search_promotion.page.specific }}</h2>
                                                 <p class="listing-card__content-type">
                                                     {% if search_promotion.page.specific.content_type.model == "blogpage" %}
-                                                        Blog Post
+                                                        {% trans "Blog Post" %}
                                                     {% elif search_promotion.page.specific.content_type.model == "locationpage" %}
-                                                        Location
+                                                        {% trans "Location" %}
                                                     {% else %}
-                                                        Bread
+                                                        {% trans "Bread" %}
                                                     {% endif %}
                                                 </p>
                                                 <p class="listing-card__description">
@@ -82,7 +82,7 @@
                                             <div class="listing-card__contents">
                                                 <h2 class="listing-card__title">{{ search_promotion.external_link_text }}</h2>
                                                 <p class="listing-card__content-type">
-                                                    External link
+                                                    {% trans "External link" %}
                                                 </p>
                                                 <p class="listing-card__description">
                                                     {% if search_promotion.description %}{{ search_promotion.description|richtext }}{% endif %}
@@ -94,10 +94,10 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <p class="search__introduction">No results found for “{{ search_query }}”.</p>
+                        <p class="search__introduction">{% blocktrans %}No results found for “{{ search_query }}”.{% endblocktrans %}</p>
                     {% endif %}
                 {% else %}
-                    <p class="search__introduction">You didn&apos;t search for anything!</p>
+                    <p class="search__introduction">{% trans "You didn't search for anything!" %}</p>
                 {% endif %}
             </div>
         </div>

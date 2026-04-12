@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags i18n %}
 
 {% block content %}
     {% include "base/include/header-hero.html" %}
@@ -25,11 +25,11 @@
                     <div class="row">
                         <div class="bread-detail__meta">
                             {% if page.location %}
-                                <p class="bread-detail__meta-title">Location</p>
+                                <p class="bread-detail__meta-title">{% trans "Location" %}</p>
                                 <p class="bread-detail__meta-content">{{ page.location }}</p>
                             {% endif %}
                             {% if page.social_links %}
-                                <p class="bread-detail__meta-title">Socials</p>
+                                <p class="bread-detail__meta-title">{% trans "Socials" %}</p>
                                 <div class="social-links">
                                     {% for block in page.social_links %}
                                         <a href="{{ block.value.url }}" target="_blank" rel="noopener noreferrer" title="{{ block.value.get_platform_label }}">

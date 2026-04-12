@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags i18n %}
 
 <div class="listing-card">
     <a class="listing-card__link" href="{{ page.url }}">
@@ -17,13 +17,13 @@
                 <table class="listing-card__meta">
                     {% if page.origin %}
                         <tr>
-                            <th scope="row" class="listing-card__meta-category">Origin</th>
+                            <th scope="row" class="listing-card__meta-category">{% trans "Origin" %}</th>
                             <td class="listing-card__meta-content">{{ page.origin }}</td>
                         </tr>
                     {% endif %}
                     {% if page.bread_type %}
                         <tr>
-                            <th scope="row" class="listing-card__meta-category">Type</th>
+                            <th scope="row" class="listing-card__meta-category">{% trans "Type" %}</th>
                             <td class="listing-card__meta-content">{{ page.bread_type }}</td>
                         </tr>
                     {% endif %}
