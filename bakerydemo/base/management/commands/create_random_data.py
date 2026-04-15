@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils import lorem_ipsum, timezone
 from django.utils.text import slugify
+from faker import Faker
 from wagtail.images.models import Image
 from wagtail.rich_text import RichText
 from willow.image import Image as WillowImage
@@ -19,7 +20,6 @@ from bakerydemo.breads.models import (
     Country,
 )
 from bakerydemo.locations.models import LocationPage, LocationsIndexPage
-from faker import Faker
 
 FIXTURE_MEDIA_DIR = Path(settings.PROJECT_DIR) / "base/fixtures/media/original_images"
 
