@@ -7,9 +7,15 @@
 
     <div class="container">
         <div class="location-list-page">
-            {% for location in locations %}
-                {% include "includes/card/picture-card.html" with page=location portrait=False %}
-            {% endfor %}
+            {% if locations %}
+                {% for location in locations %}
+                    {% include "includes/card/picture-card.html" with page=location portrait=False %}
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12">
+                    <p>No locations available right now.</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
