@@ -7,7 +7,13 @@
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-    <h1>Page not found</h1>
-
-    <h2>Sorry, this page could not be found.</h2>
+<div class="error-404">
+    <div class="error-404__number">404</div>
+    <h1 class="error-404__heading">Page not found</h1>
+    <p class="error-404__message">Sorry, this page could not be found.</p>
+    <div class="error-404__links">
+        <a href="/" class="error-404__link">Go to homepage</a>
+        <a href="{% url 'search' %}" class="error-404__link">Search the site</a>
+    </div>
+</div>
 {% endblock content %}

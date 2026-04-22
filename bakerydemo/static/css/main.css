@@ -2099,3 +2099,57 @@ input[type='radio'] {
   max-height: 100vh;
   margin-inline: auto;
 }
+
+/* 404 page styles */
+
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.error-404__number {
+  font-family: var(--font--primary);
+  font-size: clamp(6rem, 20vw, 12rem);
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.error-404__heading {
+  font-family: var(--font--primary);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+}
+
+.error-404__message {
+  color: var(--grey);
+  font-size: var(--font-md);
+  margin-bottom: 2rem;
+}
+
+.error-404__links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.error-404__link {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  border: 2px solid var(--orange);
+  color: var(--orange);
+  font-family: var(--font--primary);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.error-404__link:hover {
+  background-color: var(--orange);
+  color: var(--white);
+}
