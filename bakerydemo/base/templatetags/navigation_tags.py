@@ -1,7 +1,7 @@
 from django import template
 from wagtail.models import Page, Site
 
-from bakerydemo.base.models import FooterText
+from bakerydemo.base.models import FooterMenu, FooterText
 
 register = template.Library()
 # https://docs.djangoproject.com/en/stable/howto/custom-template-tags/
@@ -74,4 +74,18 @@ def get_footer_text(context):
 
     return {
         "footer_text": footer_text,
+    }
+
+
+@register.inclusion_tag("base/include/footer_menu.html", takes_context=True)
+def get_footer_menu(context):
+
+    footer_menu = context.get("footer_menu", None)
+
+    if not footer_menu:
+        instance = FooterMenu.objects.filter(live=True).first()
+        footer_menu = instance if instance else None
+
+    return {
+        "footer_menu": footer_menu,
     }
