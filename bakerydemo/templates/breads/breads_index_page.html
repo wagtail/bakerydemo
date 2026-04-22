@@ -5,16 +5,20 @@
     {% include "base/include/header-index.html" %}
 
     <div class="container">
-        <ul class="bread-list">
-            {% for bread in breads %}
-                <li>
-                    {% include "includes/card/listing-card.html" with page=bread h2=True %}
-                </li>
-            {% endfor %}
-        </ul>
+        {% if breads %}
+            <ul class="bread-list">
+                {% for bread in breads %}
+                    <li>
+                        {% include "includes/card/listing-card.html" with page=bread h2=True %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No breads available at the moment.</p>
+        {% endif %}
     </div>
 
-    {% if breads.paginator.count > 12 %}
+    {% if breads.has_other_pages %}
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">

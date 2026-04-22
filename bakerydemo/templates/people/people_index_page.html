@@ -14,7 +14,7 @@
         </ul>
     </div>
 
-    {% if people.paginator.count > 12 %}
+    {% if people.has_other_pages %}
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
