@@ -13,7 +13,6 @@ from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
 
-
 class BlogPersonRelationship(Orderable, models.Model):
     """
     This defines the relationship between the `Person` within the `base`
@@ -225,9 +224,11 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     # Returns the list of Tags for all child posts of this BlogPage.
     def get_child_tags(self):
-        tags = []
-        for post in self.get_posts():
-            # Not tags.append() because we don't want a list of lists
-            tags += post.get_tags
-        tags = sorted(set(tags))
-        return tags
+        posts = self.get_posts()
+        tags = (
+            Tag.objects.filter(
+                blog_blogpagetag_items__content_object__in=posts,
+            )
+            .distinct()
+        )
+        return sorted(tags, key=lambda t: t.name)
