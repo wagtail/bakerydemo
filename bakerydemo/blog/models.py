@@ -229,5 +229,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
         for post in self.get_posts():
             # Not tags.append() because we don't want a list of lists
             tags += post.get_tags
-        tags = sorted(set(tags))
+        # Tag instances do not implement __lt__, so `sorted(set(tags))` with
+        # no key raises TypeError as soon as any blog post has tags (#735).
+        # Deduplicate by slug, then sort by display name.
+        tags = sorted({tag.slug: tag for tag in tags}.values(), key=lambda t: t.name)
         return tags
