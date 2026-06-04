@@ -1,4 +1,5 @@
 -r base.txt
 ruff==0.15.2
+pre-commit==4.6.0
 curlylint==0.13.1
 djhtml==3.0.10
