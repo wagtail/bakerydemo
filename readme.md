@@ -31,6 +31,7 @@ This demo is aimed primarily at developers wanting to learn more about the inter
 # Installation
 
 - [Venv](#setup-with-venv)
+- [uv](#setup-with-uv)
 - [Vagrant](#setup-with-vagrant)
 - [Docker](#setup-with-docker)
 
@@ -141,7 +142,7 @@ On Windows, activate the virtual environment using the appropriate command for y
 > - allow scripts in PowerShell for your user account:
 >   `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 
-Now we're ready to set up the bakery demo project itself:
+Now we're ready to set up the bakerydemo project itself:
 ```bash
 cd ~/dev [or your preferred dev directory]
 git clone https://github.com/wagtail/bakerydemo.git
@@ -164,6 +165,64 @@ To set up your database and load initial data, run the following commands:
 ```
 
 Log into the admin with the credentials `admin / changeme`.
+
+## Setup with uv
+
+If you prefer [uv](https://docs.astral.sh/uv/), bakerydemo also supports the existing requirements-based workflow with uv-managed environments. This is optional and is intended as an additional local development path alongside manual `venv` usage.
+
+#### Dependencies
+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+Install `uv` using one of the methods from the official installation guide.
+For example, on macOS and Linux:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### Installation
+
+Now we're ready to set up the bakerydemo project itself:
+
+```bash
+cd ~/dev [or your preferred dev directory]
+git clone https://github.com/wagtail/bakerydemo.git
+cd bakerydemo
+```
+
+Create and activate a virtual environment with uv:
+
+On macOS / GNU/Linux:
+```bash
+uv venv .venv
+source .venv/bin/activate
+```
+
+On Windows, activate the virtual environment using the appropriate command for your shell:
+
+```bash
+# PowerShell
+.venv\Scripts\Activate.ps1
+# Command Prompt (cmd.exe)
+.venv\Scripts\activate.bat
+```
+
+Install the development dependencies:
+
+```bash
+uv pip install -r requirements/development.txt
+```
+
+Then continue with the same local configuration and database setup steps as in the `venv` instructions above:
+
+```bash
+cp bakerydemo/settings/local.py.example bakerydemo/settings/local.py
+cp .env.example .env
+./manage.py migrate
+./manage.py load_initial_data
+./manage.py runserver
+```
 
 # Next steps
 

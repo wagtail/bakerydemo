@@ -1,5 +1,10 @@
+ARG UV_VERSION=0.11.16
+FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv
+
 FROM python:3.12-slim
 ARG NIGHTLY=0
+
+COPY --from=uv /uv /uvx /bin/
 
 # Install packages needed to run your application (not build deps):
 # We need to recreate the /usr/share/man/man{1..8} directories first because
@@ -39,9 +44,8 @@ RUN set -ex \
             grep -o 'https://[^"]*') \
         && sed -i "s|wagtail>=.*|${NIGHTLY_URL}|" /requirements/base.txt; \
     fi \
-    && python3.12 -m venv ${VIRTUAL_ENV} \
-    && python3.12 -m pip install -U pip \
-    && python3.12 -m pip install --no-cache-dir -r /requirements/production.txt \
+    && uv venv ${VIRTUAL_ENV} \
+    && uv pip install --python ${VIRTUAL_ENV}/bin/python -r /requirements/production.txt \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
