@@ -1,4 +1,4 @@
 -r base.txt
-ruff==0.15.2
+ruff==0.15.15
 curlylint==0.13.1
 djhtml==3.0.10

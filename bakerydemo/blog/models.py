@@ -186,7 +186,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
     # date that they were published
     # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
-        context = super(BlogIndexPage, self).get_context(request)
+        context = super().get_context(request)
         context["posts"] = (
             BlogPage.objects.descendant_of(self).live().order_by("-date_published")
         )
@@ -203,7 +203,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             tag = Tag.objects.get(slug=tag)
         except Tag.DoesNotExist:
             if tag:
-                msg = 'There are no blog posts tagged with "{}"'.format(tag)
+                msg = f'There are no blog posts tagged with "{tag}"'
                 messages.add_message(request, messages.INFO, msg)
             return redirect(self.url)
 

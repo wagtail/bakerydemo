@@ -176,7 +176,7 @@ class RecipeIndexPage(Page):
     # date that they were published
     # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
-        context = super(RecipeIndexPage, self).get_context(request)
+        context = super().get_context(request)
         context["recipes"] = (
             RecipePage.objects.descendant_of(self).live().order_by("-date_published")
         )

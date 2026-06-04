@@ -265,7 +265,7 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # dev and testing settings.
 # https://docs.djangoproject.com/en/stable/ref/settings/#secure-hsts-seconds
 DEFAULT_HSTS_SECONDS = 30 * 24 * 60 * 60  # 30 days
-SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", DEFAULT_HSTS_SECONDS))  # noqa
+SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", DEFAULT_HSTS_SECONDS))
 
 # Do not use the `includeSubDomains` directive for HSTS. This needs to be prevented
 # because the apps are running on client domains (or our own for staging), that are
@@ -283,7 +283,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Referrer-policy header settings.
 # https://django-referrer-policy.readthedocs.io/en/1.0/
 
-REFERRER_POLICY = os.environ.get(  # noqa
+REFERRER_POLICY = os.environ.get(
     "SECURE_REFERRER_POLICY", "no-referrer-when-downgrade"
 ).strip()
 

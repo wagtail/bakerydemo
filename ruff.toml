@@ -1,16 +1,21 @@
-exclude = ["wagtail/project_template/*","node_modules","venv",".venv","migrations"]
+exclude = ["node_modules","venv",".venv","migrations"]
 line-length = 88
 
 target-version = "py312"  # minimum target version
 
 [lint]
+# B: flake8-bugbear
 # E: pycodestyle errors
 # F: Pyflakes
 # I: isort
 # T20: flake8-print
 # BLE: flake8-blind-except
 # C4: flake8-comprehensions
-select = ["E", "F", "I", "T20", "BLE", "C4"]
+# RUF100: unused noqa
+# UP: pyupgrade
+# W: pycodestyle warnings
+select = ["B", "BLE", "C4", "E", "F", "I", "RUF100", "T20", "UP", "W"]
+fixable = ["C4", "E", "F", "I", "RUF100", "UP"]
 # D100: Missing docstring in public module
 # D101: Missing docstring in public class
 # D102: Missing docstring in public method
@@ -18,4 +23,7 @@ select = ["E", "F", "I", "T20", "BLE", "C4"]
 # D105: Missing docstring in magic method
 # N806: Variable in function should be lowercase
 # E501: Line too long
-ignore = ["D100","D101","D102","D103","D105","N806","E501"]
+ignore = ["D100","D101","D102","D103","D105","E501","N806"]
+
+[format]
+docstring-code-format = true

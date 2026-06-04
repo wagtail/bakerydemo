@@ -7,8 +7,8 @@ class Command(BaseCommand):
     def handle(self, **options):
         try:
             admin_user = User.objects.get(username="admin")
-        except User.DoesNotExist:
-            raise CommandError("Cannot find admin user.")
+        except User.DoesNotExist as err:
+            raise CommandError("Cannot find admin user.") from err
 
         admin_user.set_password(settings.ADMIN_PASSWORD)
         admin_user.save(update_fields=["password"])
