@@ -1,6 +1,6 @@
 from wagtail import hooks
 from wagtail.admin.filters import WagtailFilterSet
-from wagtail.admin.userbar import AccessibilityItem
+from wagtail.admin.userbar import ContentCheckerItem
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
@@ -32,14 +32,14 @@ def register_icons(icons):
     ]
 
 
-class CustomAccessibilityItem(AccessibilityItem):
+class CustomAccessibilityItem(ContentCheckerItem):
     axe_run_only = None
 
 
 @hooks.register("construct_wagtail_userbar")
 def replace_userbar_accessibility_item(request, items, page):
     items[:] = [
-        CustomAccessibilityItem() if isinstance(item, AccessibilityItem) else item
+        CustomAccessibilityItem() if isinstance(item, ContentCheckerItem) else item
         for item in items
     ]
 
