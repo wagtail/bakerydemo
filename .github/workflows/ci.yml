@@ -28,6 +28,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: npm ci
+      - uses: j178/prek-action@v2
       - run: make lint-client
   test-server:
     runs-on: ubuntu-latest

@@ -25,6 +25,12 @@ make lint - check style with ruff, sort python with ruff, indent html, and lint 
 make format - enforce a consistent code style across the codebase, sort python files with ruff and fix frontend css/js
 ```
 
+You can install the Git hooks locally with [prek](https://github.com/j178/prek) so the configured checks run before each commit:
+
+```bash
+prek install
+```
+
 You can also run the project test suite with:
 
 ```bash
