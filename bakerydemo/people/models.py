@@ -100,7 +100,7 @@ class PersonPage(Page):
     ]
 
     def get_context(self, request):
-        context = super(PersonPage, self).get_context(request)
+        context = super().get_context(request)
 
         platform_block = SocialMediaBlock().child_blocks["platform"]
         platform_labels = dict(platform_block.field.choices)
@@ -179,7 +179,7 @@ class PeopleIndexPage(Page):
     # Returns the above to the get_context method that is used to populate the
     # template
     def get_context(self, request):
-        context = super(PeopleIndexPage, self).get_context(request)
+        context = super().get_context(request)
 
         # PersonPage objects (get_people) are passed through pagination
         people = self.paginate(request, self.get_people())

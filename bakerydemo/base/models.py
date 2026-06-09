@@ -134,7 +134,7 @@ class Person(
         return PreviewableMixin.DEFAULT_PREVIEW_MODES + [("blog_post", _("Blog post"))]
 
     def __str__(self):
-        return "{} {}".format(self.first_name, self.last_name)
+        return f"{self.first_name} {self.last_name}"
 
     def get_preview_template(self, request, mode_name):
         from bakerydemo.blog.models import BlogPage

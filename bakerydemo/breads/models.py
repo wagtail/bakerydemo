@@ -252,7 +252,7 @@ class BreadsIndexPage(Page):
     # Returns the above to the get_context method that is used to populate the
     # template
     def get_context(self, request):
-        context = super(BreadsIndexPage, self).get_context(request)
+        context = super().get_context(request)
 
         # BreadPage objects (get_breads) are passed through pagination
         breads = self.paginate(request, self.get_breads())

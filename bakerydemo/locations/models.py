@@ -52,7 +52,7 @@ class OperatingHours(models.Model):
             closed = self.closing_time.strftime("%H:%M")
         else:
             closed = "--"
-        return "{}: {} - {} {}".format(self.day, opening, closed, settings.TIME_ZONE)
+        return f"{self.day}: {opening} - {closed} {settings.TIME_ZONE}"
 
 
 class LocationOperatingHours(Orderable, OperatingHours):
@@ -98,7 +98,7 @@ class LocationsIndexPage(Page):
     # items, that are live, by the title alphabetical order.
     # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
-        context = super(LocationsIndexPage, self).get_context(request)
+        context = super().get_context(request)
         context["locations"] = (
             LocationPage.objects.descendant_of(self).live().order_by("title")
         )
@@ -200,7 +200,7 @@ class LocationPage(Page):
     # Makes additional context available to the template so that we can access
     # the latitude, longitude and map API key to render the map
     def get_context(self, request):
-        context = super(LocationPage, self).get_context(request)
+        context = super().get_context(request)
         context["lat"] = self.lat_long.split(",")[0]
         context["long"] = self.lat_long.split(",")[1]
         context["google_map_api_key"] = settings.GOOGLE_MAP_API_KEY
