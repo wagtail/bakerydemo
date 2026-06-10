@@ -58,7 +58,6 @@ html {
 }
 
 /* Body */
-
 body {
   font-family: var(--font--secondary);
   font-size: 1rem;
@@ -82,7 +81,6 @@ body.no-scroll {
 }
 
 /* Headings and Paragraphs */
-
 h1,
 h2,
 h3 {
@@ -175,7 +173,6 @@ ul {
 }
 
 /* Links, Lists, Figures */
-
 a,
 a:focus,
 a:visited {
@@ -692,6 +689,7 @@ caption {
 
 /* N.B. We're overriding Bootstrap's default nav styles here,
    these rules set what the currently active nav tab looks like. */
+
 .navigation__items > li.active > a,
 .navigation__items > li.active > a:focus,
 .navigation__items > li.active > a:hover {
@@ -1082,7 +1080,6 @@ footer {
 }
 
 /* ---- Blog Page ---- */
-
 .blog__meta {
   margin-bottom: 20px;
 }
@@ -1134,7 +1131,6 @@ footer {
 }
 
 /* ---- Gallery Page ---- */
-
 .gallery__container {
   padding-top: 40px;
   padding-bottom: 60px;
@@ -1999,7 +1995,6 @@ input[type='radio'] {
 /* #endregion */
 
 /* #region ---- Location Card ---- */
-
 .location-card {
   display: flex;
   flex-direction: column;
@@ -2086,7 +2081,6 @@ input[type='radio'] {
 /* #endregion */
 
 /* Utilities */
-
 .u-sr-only {
   position: absolute;
   width: 1px;
@@ -2100,7 +2094,6 @@ input[type='radio'] {
 }
 
 /* Block previews */
-
 .block-preview {
   padding: 1rem;
 }
