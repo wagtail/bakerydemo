@@ -41,7 +41,7 @@ repos:
         files: \.css$
         additional_dependencies:
           - stylelint@16.26.1
-          - stylelint-config-standard@39.0.1
+          - '@wagtail/stylelint-config-wagtail@2.0.0'
   - repo: https://github.com/rtts/djhtml
     rev: 3.0.10
     hooks:
