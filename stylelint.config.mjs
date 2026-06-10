@@ -1,5 +1,5 @@
 export default {
-  extends: ['stylelint-config-standard'],
+  extends: ['@wagtail/stylelint-config-wagtail'],
   rules: {
     'declaration-block-no-redundant-longhand-properties': [
       true,
