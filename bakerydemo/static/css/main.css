@@ -21,17 +21,23 @@ each detail view
 
 /* CSS Variables */
 :root {
-  --dark: #333;
-  --grey: #6e6e6e;
-  --border-grey: #e1dcd3;
-  --transparent-border: rgb(135 116 79 / 25%);
-  --white: #fff;
-  --cream: #f5f3e9;
-  --light-brown: #87744f;
-  --mid-brown: #825600;
-  --dark-brown: #553801;
-  --orange: #c55302;
-  --dark-orange: #833701;
+  color-scheme: light dark;
+
+  --dark: light-dark(#333, #f1f4f8);
+  --grey: light-dark(#6e6e6e, #acb5c0);
+  --border-grey: light-dark(#e1dcd3, #3e4855);
+  --transparent-border: light-dark(
+    rgb(135 116 79 / 25%),
+    rgb(164 180 201 / 30%)
+  );
+  --white: light-dark(#fff, #11161d);
+  --cream: light-dark(#f5f3e9, #1a222d);
+  --light-brown: light-dark(#87744f, #c8b083);
+  --mid-brown: light-dark(#825600, #f0b45d);
+  --dark-brown: light-dark(#553801, #ffe0b0);
+  --orange: light-dark(#c55302, #f0b45d);
+  --dark-orange: light-dark(#833701, #ffd29b);
+  --color-text: light-dark(#333, #f1f4f8);
   --black: #000;
   --transparent-black: rgb(0 0 0 / 0%);
   --shadow-black: rgb(0 0 0 / 50%);
@@ -88,7 +94,7 @@ h2,
 h3 {
   font-family: var(--font--primary);
   font-weight: 400;
-  color: var(--dark);
+  color: var(--color-text);
 }
 
 h1 {
@@ -112,7 +118,7 @@ h4 {
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.35;
-  color: var(--dark);
+  color: var(--color-text);
 }
 
 p {
@@ -121,7 +127,7 @@ p {
   font-weight: 400;
   font-size: var(--font-sm);
   line-height: 1.5;
-  color: var(--dark);
+  color: var(--color-text);
 }
 
 @media (min-width: 768px) {
@@ -163,7 +169,7 @@ ul {
 }
 
 .hero h1 {
-  color: var(--white);
+  color: var(--color-text);
   position: relative;
 }
 
@@ -652,11 +658,98 @@ caption {
 
   .navigation__search {
     display: block;
-    margin: 0 0 0 auto;
+    margin: 0 0 0 16px;
   }
 
   .navigation__items {
     padding: 0 0 0 20px;
+  }
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  margin: 15px 12px 0 auto;
+}
+
+.theme-toggle--mobile {
+  margin: 20px 0 0;
+}
+
+.theme-toggle__label {
+  color: var(--dark);
+  font-family: var(--font--secondary);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.theme-toggle__button {
+  padding: 0;
+  width: 48px;
+  height: 28px;
+  border: 0;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  border-radius: 14px;
+  margin: 0 8px;
+  display: inline-block;
+  cursor: pointer;
+  background: light-dark(var(--grey), var(--light-grey));
+}
+
+.theme-toggle__button::before {
+  top: 4px;
+  inset-inline-start: 24px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  border-radius: 12px;
+  background-color: light-dark(var(--light-grey), var(--black));
+  transition: inset-inline-start 0.2s ease-in-out;
+}
+
+.theme-toggle__button::after {
+  content: '';
+  top: 14px;
+  inset-inline-end: 2px;
+  width: 1px;
+  height: 1px;
+  display: block;
+  position: absolute;
+  border-radius: 0.5px;
+  background: light-dark(var(--dark), var(--light-grey));
+}
+
+.dark-only {
+  display: none;
+}
+
+html:has([name='color-scheme'][content^='dark']) .dark-only {
+  display: block;
+}
+
+html:has([name='color-scheme'][content^='dark']) .light-only {
+  display: none;
+}
+
+html:has([name='color-scheme'][content^='dark']) .theme-toggle__button::before {
+  inset-inline-start: 4px;
+}
+
+html:has([name='color-scheme'][content^='dark']) .theme-toggle__button::after {
+  top: -2px;
+  inset-inline-end: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+}
+
+@media (min-width: 1150px) {
+  .theme-toggle {
+    margin: 0 24px 0 auto;
   }
 }
 
@@ -1390,7 +1483,7 @@ input[type='radio'] {
 .homepage .home-hero .lead {
   font-family: var(--font--primary);
   font-weight: 400;
-  color: var(--white);
+  color: var(--color-text);
   margin: 40px auto;
   font-size: 1.625rem;
   line-height: 1.15;
@@ -1753,7 +1846,7 @@ input[type='radio'] {
 }
 
 .picture-card__title {
-  color: var(--white);
+  color: var(--color-text);
   font-family: var(--font--primary);
   font-size: 1.625rem;
   line-height: 1.15;

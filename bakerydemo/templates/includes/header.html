@@ -26,6 +26,20 @@
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
+                <div class="theme-toggle theme-toggle--mobile">
+                    <span class="theme-toggle__label">Dark</span>
+                    <button
+                        class="theme-toggle__button"
+                        type="button"
+                        data-theme-toggle
+                        aria-label="Toggle between dark and light theme"
+                        aria-pressed="false"
+                    >
+                        <span class="dark-only u-sr-only">Light mode</span>
+                        <span class="light-only u-sr-only">Dark mode</span>
+                    </button>
+                    <span class="theme-toggle__label">Light</span>
+                </div>
                 <form action="/search" method="get" class="navigation__mobile-search" role="search">
                     <label for="mobile-search-input" class="u-sr-only">Search the bakery</label>
                     <input class="navigation__search-input" id="mobile-search-input" type="text" placeholder="Search" autocomplete="off" name="q">
@@ -43,6 +57,21 @@
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
             </nav>
+
+            <div class="theme-toggle">
+                <span class="theme-toggle__label">Dark</span>
+                <button
+                    class="theme-toggle__button"
+                    type="button"
+                    data-theme-toggle
+                    aria-label="Toggle between dark and light theme"
+                    aria-pressed="false"
+                >
+                    <span class="dark-only u-sr-only">Light mode</span>
+                    <span class="light-only u-sr-only">Dark mode</span>
+                </button>
+                <span class="theme-toggle__label">Light</span>
+            </div>
 
             <form action="/search" method="get" class="navigation__search" role="search">
                 <label for="search-input" class="u-sr-only">Search the bakery</label>
