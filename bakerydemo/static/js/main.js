@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navigation = document.querySelector('[data-navigation]');
-  const mobileNavigation = navigation.querySelector('[data-mobile-navigation]');
   const body = document.querySelector('body');
-  const mobileNavigationToggle = navigation.querySelector(
+  const mobileNavigation = navigation?.querySelector(
+    '[data-mobile-navigation]',
+  );
+  const mobileNavigationToggle = navigation?.querySelector(
     '[data-mobile-navigation-toggle]',
   );
+  const themeToggles = document.querySelectorAll('[data-theme-toggle]');
 
   function toggleMobileNavigation() {
     if (mobileNavigation.hidden) {
@@ -18,7 +21,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  mobileNavigationToggle.addEventListener('click', () => {
-    toggleMobileNavigation();
+  if (mobileNavigation && mobileNavigationToggle) {
+    mobileNavigationToggle.addEventListener('click', () => {
+      toggleMobileNavigation();
+    });
+  }
+
+  function updateThemeToggleState() {
+    const isDark =
+      document.documentElement.style.colorScheme === 'dark' ||
+      document.querySelector('meta[name="color-scheme"]')?.content === 'dark';
+
+    themeToggles.forEach((toggle) => {
+      toggle.setAttribute('aria-pressed', String(isDark));
+      toggle.setAttribute(
+        'aria-label',
+        `Switch to ${isDark ? 'light' : 'dark'} theme`,
+      );
+    });
+  }
+
+  document.addEventListener('theme:toggle-theme-mode', () => {
+    window.requestAnimationFrame(() => {
+      updateThemeToggleState();
+    });
+  });
+
+  updateThemeToggleState();
+
+  themeToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('theme:toggle-theme-mode'));
+    });
   });
 });
