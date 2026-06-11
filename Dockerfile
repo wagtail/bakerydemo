@@ -45,7 +45,7 @@ RUN set -ex \
         && sed -i "s|wagtail>=.*|${NIGHTLY_URL}|" /requirements/base.txt; \
     fi \
     && uv venv ${VIRTUAL_ENV} \
-    && uv pip install --python ${VIRTUAL_ENV}/bin/python -r /requirements/production.txt \
+    && uv pip install --no-cache -r /requirements/production.txt \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 

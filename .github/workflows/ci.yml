@@ -18,10 +18,8 @@ jobs:
           version: '0.11.16'
           python-version: '3.12'
           enable-cache: true
-      - run: uv venv .venv
-      - run: echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
-      - run: uv pip install --python .venv/bin/python -r requirements/development.txt
-      - run: make lint-server
+      - run: uv pip install -r requirements/development.txt
+      - run: uv run make lint-server
   lint-client:
     runs-on: ubuntu-latest
     steps:
@@ -42,10 +40,7 @@ jobs:
         with:
           version: '0.11.16'
           python-version: '3.12'
-          enable-cache: true
-      - run: uv venv .venv
-      - run: echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
-      - run: uv pip install --python .venv/bin/python -r requirements/development.txt
-      - run: ./manage.py check
-      - run: ./manage.py makemigrations --check --noinput
-      - run: ./manage.py test
+      - run: uv pip install --system -r requirements/development.txt
+      - run: uv run ./manage.py check
+      - run: uv run ./manage.py makemigrations --check --noinput
+      - run: uv run ./manage.py test
