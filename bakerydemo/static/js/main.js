@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navigation = document.querySelector('[data-navigation]');
   const body = document.querySelector('body');
-  const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
   const mobileNavigation = navigation?.querySelector(
     '[data-mobile-navigation]',
   );
@@ -9,51 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '[data-mobile-navigation-toggle]',
   );
   const themeToggles = document.querySelectorAll('[data-theme-toggle]');
-
-  function getPreferredTheme() {
-    try {
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme === 'light' || storedTheme === 'dark') {
-        return storedTheme;
-      }
-    } catch {
-      // Ignore storage access errors and fall back to the system preference.
-    }
-
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.style.colorScheme = theme;
-
-    if (colorSchemeMeta) {
-      colorSchemeMeta.setAttribute('content', theme);
-    }
-
-    themeToggles.forEach((toggle) => {
-      const isDark = theme === 'dark';
-
-      toggle.setAttribute('aria-pressed', String(isDark));
-      toggle.setAttribute(
-        'aria-label',
-        `Switch to ${isDark ? 'light' : 'dark'} theme`,
-      );
-    });
-  }
-
-  function toggleTheme() {
-    const nextTheme = getPreferredTheme() === 'dark' ? 'light' : 'dark';
-
-    try {
-      localStorage.setItem('theme', nextTheme);
-    } catch {
-      // Ignore storage access errors and still apply the theme for this page view.
-    }
-
-    applyTheme(nextTheme);
-  }
 
     function toggleMobileNavigation() {
       if (mobileNavigation.hidden) {
@@ -73,11 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  applyTheme(getPreferredTheme());
+  function updateThemeToggleState() {
+    const isDark =
+      document.documentElement.style.colorScheme === 'dark' ||
+      document.querySelector('meta[name="color-scheme"]')?.content === 'dark';
+
+    themeToggles.forEach((toggle) => {
+      toggle.setAttribute('aria-pressed', String(isDark));
+      toggle.setAttribute(
+        'aria-label',
+        `Switch to ${isDark ? 'light' : 'dark'} theme`,
+      );
+    });
+  }
+
+  document.addEventListener('theme:toggle-theme-mode', () => {
+    window.requestAnimationFrame(() => {
+      updateThemeToggleState();
+    });
+  });
+
+  updateThemeToggleState();
 
   themeToggles.forEach((toggle) => {
     toggle.addEventListener('click', () => {
-      toggleTheme();
+      document.dispatchEvent(new CustomEvent('theme:toggle-theme-mode'));
     });
   });
 });

@@ -25,20 +25,60 @@
         {% endif %}
 
         <script>
-            (() => {
-                let storedTheme = null;
+            /**
+             * IMPORTANT: This script runs before the rest of the page to avoid
+             * showing the wrong theme on first paint.
+             */
+            function updateThemeMode(event, { isInitial = false } = {}) {
+                const DARK = "dark";
+                const LIGHT = "light";
+                const STORAGE_KEY = "wagtail-theme";
+
+                let currentMode;
+                let applyMode;
+                let savedThemeMode;
+
                 try {
-                    storedTheme = localStorage.getItem("theme");
+                    savedThemeMode = localStorage.getItem(STORAGE_KEY);
                 } catch (error) {
-                    storedTheme = null;
+                    savedThemeMode = null;
                 }
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                const theme = storedTheme || (prefersDark ? "dark" : "light");
-                document.documentElement.style.colorScheme = theme;
+
+                if (savedThemeMode) {
+                    currentMode = savedThemeMode === LIGHT ? LIGHT : DARK;
+                } else {
+                    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    currentMode = prefersDarkMode ? DARK : LIGHT;
+                }
+
+                if (isInitial) {
+                    applyMode = currentMode === DARK ? DARK : LIGHT;
+                } else {
+                    applyMode = currentMode === DARK ? LIGHT : DARK;
+                }
+
+                document.documentElement.style.colorScheme = applyMode;
+
                 const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
                 if (colorSchemeMeta) {
-                    colorSchemeMeta.setAttribute("content", theme);
+                    colorSchemeMeta.setAttribute("content", applyMode);
                 }
+
+                if (savedThemeMode || event) {
+                    try {
+                        localStorage.setItem(STORAGE_KEY, applyMode);
+                    } catch (error) {
+                        // Ignore storage write failures and continue with the in-memory choice.
+                    }
+                }
+            }
+
+            document.addEventListener("theme:toggle-theme-mode", updateThemeMode, {
+                passive: true,
+            });
+
+            (() => {
+                updateThemeMode(null, { isInitial: true });
             })();
         </script>
 
