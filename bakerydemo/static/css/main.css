@@ -23,6 +23,9 @@ each detail view
 :root {
   color-scheme: light dark;
 
+  --page-bg: light-dark(#fff, #11161d);
+  --surface-bg: light-dark(#fff, #11161d);
+  --surface-alt: light-dark(#f5f3e9, #1a222d);
   --dark: light-dark(#333, #f1f4f8);
   --grey: light-dark(#6e6e6e, #acb5c0);
   --border-grey: light-dark(#e1dcd3, #3e4855);
@@ -30,14 +33,14 @@ each detail view
     rgb(135 116 79 / 25%),
     rgb(164 180 201 / 30%)
   );
-  --white: light-dark(#fff, #11161d);
-  --cream: light-dark(#f5f3e9, #1a222d);
+  --white: #fff;
+  --cream: var(--surface-alt);
   --light-brown: light-dark(#87744f, #c8b083);
   --mid-brown: light-dark(#825600, #f0b45d);
   --dark-brown: light-dark(#553801, #ffe0b0);
   --orange: light-dark(#c55302, #f0b45d);
   --dark-orange: light-dark(#833701, #ffd29b);
-  --black: light-dark(#000, #d9d3d3);
+  --black: #000;
   --transparent-black: rgb(0 0 0 / 0%);
   --shadow-black: rgb(0 0 0 / 50%);
   --overlay-black: rgb(0 0 0 / 60%);
@@ -70,7 +73,7 @@ body {
   line-height: 1.5;
   padding-top: 0;
   padding-bottom: 0;
-  background: var(--white);
+  background: var(--page-bg);
   color: var(--dark);
   min-height: 100vh;
 }
@@ -468,7 +471,7 @@ caption {
 .header {
   padding: 0;
   width: 100%;
-  background: var(--white);
+  background: var(--surface-bg);
   z-index: 10;
 }
 
@@ -477,7 +480,7 @@ caption {
   position: absolute;
   top: -100%;
   padding: 20px;
-  background-color: var(--white);
+  background-color: var(--surface-bg);
 }
 
 .skip-link:focus {
@@ -564,7 +567,7 @@ caption {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--white);
+  background-color: var(--surface-bg);
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -882,7 +885,7 @@ hr {
 
 footer {
   padding: 55px 0 30px;
-  background-color: var(--white);
+  background-color: var(--surface-bg);
 }
 
 .footer__icon a {
