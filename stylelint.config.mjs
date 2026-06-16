@@ -6,7 +6,6 @@ export default {
       { ignoreShorthands: ['gap', 'inset'] },
     ],
 
-    'no-descending-specificity': null, // catch CSS where selector order and specificity create maintenance problems.
     'media-feature-range-notation': null, // Preserve current range-notation usage.
     'custom-property-pattern': '^([a-z][a-z0-9]*)(-{1,2}[a-z0-9]+)*$', // Keep current custom-property naming.
 
