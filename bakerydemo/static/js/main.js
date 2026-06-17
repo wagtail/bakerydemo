@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     const isDarkTheme = htmlElement.dataset.theme === 'dark';
-    themeToggle.textContent = isDarkTheme ? 'Light mode' : 'Dark mode';
+    themeToggle.textContent = isDarkTheme ? 'Light theme' : 'Dark theme';
     themeToggle.setAttribute('aria-pressed', isDarkTheme ? 'true' : 'false');
     themeToggle.setAttribute(
       'aria-label',
