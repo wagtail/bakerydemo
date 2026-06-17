@@ -10,11 +10,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@wagtail/stylelint-config-wagtail": "^2.0.0",
     "eslint": "^9.39.2",
     "globals": "^16.5.0",
     "prettier": "^3.8.3",
-    "stylelint": "^17.12.0",
-    "stylelint-config-standard": "^40.0.0"
+    "stylelint": "^17.13.0"
   },
   "scripts": {
     "fix:js": "eslint --ext .js --fix .",
