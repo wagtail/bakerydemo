@@ -200,6 +200,55 @@ STORAGES = {
     },
 }
 
+# Logging
+# This logging is configured to be used with Sentry and console logs. Console
+# logs are widely used by platforms offering Docker deployments, e.g. Heroku.
+# We use Sentry to only send error logs so we're notified about errors that are
+# not Python exceptions.
+# We do not use default mail or file handlers because they are of no use for
+# us.
+# https://docs.djangoproject.com/en/stable/topics/logging/
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        # Send logs with at least INFO level to the console.
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s][%(process)d][%(levelname)s][%(name)s] %(message)s"
+        }
+    },
+    "loggers": {
+        "wagtailkit_repo_name": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "wagtail": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+        "django.security": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+        "xff": {"handlers": ["console"], "level": "WARNING", "propagate": False},
+    },
+}
+
 # Override in local settings or replace with your own key. Please don't use our demo key in production!
 GOOGLE_MAP_API_KEY = "AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw"
 
