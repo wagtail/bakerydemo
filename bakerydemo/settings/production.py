@@ -251,7 +251,7 @@ if os.environ.get("BASIC_AUTH_ENABLED", "false").lower().strip() == "true":
 
 # Force HTTPS redirect (enabled by default!)
 # https://docs.djangoproject.com/en/stable/ref/settings/#secure-ssl-redirect
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "True").lower() == "true"
 
 # This will allow the cache to swallow the fact that the website is behind TLS
 # and inform the Django using "X-Forwarded-Proto" HTTP header.
