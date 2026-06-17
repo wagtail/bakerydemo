@@ -9,17 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   const themeToggles = document.querySelectorAll('[data-theme-toggle]');
 
-    function toggleMobileNavigation() {
-      if (mobileNavigation.hidden) {
-        body.classList.add('no-scroll');
-        mobileNavigation.hidden = false;
-        mobileNavigationToggle.setAttribute('aria-expanded', 'true');
-      } else {
-        body.classList.remove('no-scroll');
-        mobileNavigation.hidden = true;
-        mobileNavigationToggle.setAttribute('aria-expanded', 'false');
-      }
+  function toggleMobileNavigation() {
+    if (mobileNavigation.hidden) {
+      body.classList.add('no-scroll');
+      mobileNavigation.hidden = false;
+      mobileNavigationToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      body.classList.remove('no-scroll');
+      mobileNavigation.hidden = true;
+      mobileNavigationToggle.setAttribute('aria-expanded', 'false');
     }
+  }
 
   if (mobileNavigation && mobileNavigationToggle) {
     mobileNavigationToggle.addEventListener('click', () => {

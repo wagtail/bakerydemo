@@ -381,7 +381,7 @@ caption {
 }
 
 .hero__title {
-  color: var(--text-on-media);
+  color: var(--white);
   font-weight: 400;
   font-size: 2.875rem;
   line-height: 1.09;
@@ -642,7 +642,6 @@ caption {
   position: absolute;
   right: 13px;
   top: 13px;
-  color: var(--dark);
 }
 
 @media (min-width: 768px) {
@@ -652,29 +651,11 @@ caption {
 }
 
 .navigation__search-input {
-  background-color: var(--white);
   color: var(--dark);
   font-size: var(--font-sm);
   line-height: 1.5;
   border: 1px solid var(--dark);
   padding: 10px;
-}
-
-.navigation__theme-toggle {
-  appearance: none;
-  margin: 0 0 0 10px;
-  border: 1px solid var(--dark);
-  background-color: var(--white);
-  color: var(--dark);
-  padding: 10px 12px;
-  font-size: 0.875rem;
-  line-height: 1;
-}
-
-.navigation__theme-toggle:hover,
-.navigation__theme-toggle:focus {
-  background-color: var(--dark);
-  color: var(--white);
 }
 
 .navigation__items {
