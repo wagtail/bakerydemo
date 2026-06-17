@@ -1373,7 +1373,7 @@ select {
 
 .form-page input[type='submit'] {
   border: none;
-  color: var(--white);
+  color: light-dark(var(--white), var(--black));
   background-color: var(--orange);
   font-weight: 700;
   padding: 15px 25px;
@@ -1495,7 +1495,7 @@ input[type='radio'] {
 }
 
 .homepage .home-hero .hero-cta-link {
-  color: var(--white);
+  color: light-dark(var(--white), var(--black));
   background-color: var(--orange);
   font-weight: 700;
   padding: 15px 25px;
@@ -1507,7 +1507,7 @@ input[type='radio'] {
 }
 
 .homepage .home-hero .hero-cta-link:hover {
-  background-color: var(--white);
+  background-color: light-dark(var(--white), var(--black));
   color: var(--dark-orange);
 }
 
