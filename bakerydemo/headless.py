@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from wagtail.admin.userbar import (
     Userbar,
 )
+from wagtail.models import Page
 from wagtail_headless_preview.models import HeadlessMixin
 from wagtail_headless_preview.settings import headless_preview_settings
 
@@ -41,9 +42,15 @@ class UserbarView(TemplateView):
         response = super().dispatch(request, *args, **kwargs)
         client_url = headless_preview_settings.CLIENT_URLS["default"]
         response["Access-Control-Allow-Origin"] = client_url
+        response["Access-Control-Allow-Credentials"] = "true"
         return response
 
     def get_context_data(self, **kwargs):
-        return Userbar(object=None, position="bottom-left").get_context_data(
+        object = None
+        page_id = self.request.GET.get("page_id", None)
+        if page_id:
+            object = Page.objects.filter(id=page_id).first()
+
+        return Userbar(object=object, position="bottom-left").get_context_data(
             super().get_context_data(request=self.request, **kwargs)
         )
