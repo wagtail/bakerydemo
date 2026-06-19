@@ -28,6 +28,7 @@ class BreadIngredientSnippetViewSet(SnippetViewSet):
     search_fields = ("name",)
     filterset_class = BreadIngredientFilterSet
     inspect_view_enabled = True
+    menu_order = 999 # will place it last.
 
 
 class BreadTypeFilterSet(RevisionFilterSetMixin, WagtailFilterSet):
