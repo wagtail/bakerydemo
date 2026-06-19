@@ -34,7 +34,6 @@ class Migration(migrations.Migration):
                         {
                             "blank": True,
                             "choices": [
-                                ("", "Select a header size"),
                                 ("h2", "H2"),
                                 ("h3", "H3"),
                                 ("h4", "H4"),
@@ -142,7 +141,6 @@ class Migration(migrations.Migration):
                         {
                             "blank": True,
                             "choices": [
-                                ("", "Select a header size"),
                                 ("h2", "H2"),
                                 ("h3", "H3"),
                                 ("h4", "H4"),
@@ -251,7 +249,6 @@ class Migration(migrations.Migration):
                         {
                             "blank": True,
                             "choices": [
-                                ("", "Select a header size"),
                                 ("h2", "H2"),
                                 ("h3", "H3"),
                                 ("h4", "H4"),
@@ -360,7 +357,6 @@ class Migration(migrations.Migration):
                         {
                             "blank": True,
                             "choices": [
-                                ("", "Select a header size"),
                                 ("h2", "H2"),
                                 ("h3", "H3"),
                                 ("h4", "H4"),
