@@ -59,13 +59,12 @@ class CaptionedImageBlock(StructBlock):
 
 class HeadingBlock(StructBlock):
     """
-    Custom `StructBlock` that allows the user to select h2 - h4 sizes for headers
+    Custom `StructBlock` that allows the user to select h2 - h4 sizes for headings
     """
 
     heading_text = CharBlock(classname="title", required=True)
     size = ChoiceBlock(
         choices=[
-            ("", "Select a header size"),
             ("h2", "H2"),
             ("h3", "H3"),
             ("h4", "H4"),
