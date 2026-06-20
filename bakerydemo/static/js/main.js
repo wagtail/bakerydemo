@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navigation = document.querySelector('[data-navigation]');
   const themeToggle = document.querySelector('[data-theme-toggle]');
+  const languageSwitcherToggles = document.querySelectorAll(
+    '[data-language-switcher-toggle]',
+  );
   const htmlElement = document.documentElement;
   const storage = {
     get(key) {
@@ -68,4 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
       updateThemeToggleLabel();
     });
   }
+
+  languageSwitcherToggles.forEach((toggle) => {
+    const popoverId = toggle.getAttribute('aria-controls');
+    const popover = popoverId ? document.getElementById(popoverId) : null;
+
+    if (!popover) {
+      return;
+    }
+
+    popover.addEventListener('toggle', (event) => {
+      toggle.setAttribute(
+        'aria-expanded',
+        event.newState === 'open' ? 'true' : 'false',
+      );
+    });
+  });
 });

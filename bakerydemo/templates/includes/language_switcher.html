@@ -1,25 +1,56 @@
 {% if render_language_switcher %}
-    <div class="language-switcher">
-        <span class="language-switcher__current" lang="{{ current_language.code }}">
-            {{ current_language.name_local }}
-        </span>
+    <div class="language-switcher language-switcher--{{ placement }}">
+        <button
+            type="button"
+            class="language-switcher__toggle"
+            id="{{ popover_id }}-toggle"
+            popovertarget="{{ popover_id }}"
+            popovertargetaction="toggle"
+            aria-controls="{{ popover_id }}"
+            aria-expanded="false"
+            data-language-switcher-toggle
+        >
+            <span class="language-switcher__current" lang="{{ current_language.code }}">
+                {{ current_language.name_local }}
+            </span>
+            <span class="u-sr-only">Open language switcher</span>
+            <svg class="language-switcher__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 5.25 7 9.25 11 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
 
-        <ul class="language-switcher__list">
-            {% for language in languages %}
-                {% if not language.is_current %}
+        <div
+            id="{{ popover_id }}"
+            class="language-switcher__popover"
+            popover
+            aria-labelledby="{{ popover_id }}-toggle"
+            data-language-switcher-popover
+        >
+            <ul class="language-switcher__list">
+                {% for language in languages %}
                     <li class="language-switcher__item">
-                        <a
-                            href="{{ language.url }}"
-                            class="language-switcher__link"
-                            rel="alternate"
-                            hreflang="{{ language.code }}"
-                            lang="{{ language.code }}"
-                        >
-                            {{ language.name_local }}
-                        </a>
+                        {% if language.is_current %}
+                            <span
+                                class="language-switcher__link language-switcher__link--current"
+                                aria-current="page"
+                                lang="{{ language.code }}"
+                            >
+                                {{ language.name_local }}
+                            </span>
+                        {% else %}
+                            <a
+                                href="{{ language.url }}"
+                                class="language-switcher__link"
+                                rel="alternate"
+                                hreflang="{{ language.code }}"
+                                lang="{{ language.code }}"
+                            >
+                                {{ language.name_local }}
+                            </a>
+                        {% endif %}
                     </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endif %}

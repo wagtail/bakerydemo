@@ -44,7 +44,7 @@ def hreflangs(context):
 
 
 @register.inclusion_tag("includes/language_switcher.html", takes_context=True)
-def language_switcher(context):
+def language_switcher(context, placement="desktop"):
     page = get_current_page(context)
     entries = get_page_language_entries(page, context["request"])
 
@@ -52,11 +52,14 @@ def language_switcher(context):
         return {"render_language_switcher": False}
 
     current_language = next(entry for entry in entries if entry["is_current"])
+    popover_id = f"language-switcher-{placement}-{page.pk}"
 
     return {
         "render_language_switcher": True,
         "current_language": current_language,
         "languages": entries,
+        "placement": placement,
+        "popover_id": popover_id,
     }
 
 
