@@ -1,9 +1,21 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags wagtailsearchpromotions_tags %}
 
-{% block title %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+{% block title %}
+    {% if search_query %}
+        {% blocktranslate trimmed with query=search_query %}Search results for “{{ query }}”{% endblocktranslate %}
+    {% else %}
+        {% translate "Search" %}
+    {% endif %}
+{% endblock %}
 
-{% block search_description %}Search{% if search_results %} results{% endif %}{% if search_query %} for “{{ search_query }}”{% endif %}{% endblock %}
+{% block search_description %}
+    {% if search_query %}
+        {% blocktranslate trimmed with query=search_query %}Search results for “{{ query }}”{% endblocktranslate %}
+    {% else %}
+        {% translate "Search" %}
+    {% endif %}
+{% endblock %}
 
 {% block body_class %}template-search-results{% endblock %}
 
@@ -11,9 +23,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h1>Search results</h1>
+                <h1>{% translate "Search results" %}</h1>
                 {% if search_results %}
-                    <p class="search__introduction">You searched{% if search_query %} for “{{ search_query }}”{% endif %}, {{ search_results|length }} result{{ search_results|length|pluralize }} found.</p>
+                    <p class="search__introduction">
+                        {% blocktranslate trimmed count result_count=search_results | length with query=search_query %}
+                            You searched for “{{ query }}”, {{ result_count }} result found.
+                        {% plural %}
+                            You searched for “{{ query }}”, {{ result_count }} results found.
+                        {% endblocktranslate %}
+                    </p>
                     <ul class="search__results">
                         {% for result in search_results %}
                             <li class="listing-card">
@@ -62,11 +80,11 @@
                                                 <h2 class="listing-card__title">{{ search_promotion.page.specific }}</h2>
                                                 <p class="listing-card__content-type">
                                                     {% if search_promotion.page.specific.content_type.model == "blogpage" %}
-                                                        Blog Post
+                                                        {% translate "Blog post" %}
                                                     {% elif search_promotion.page.specific.content_type.model == "locationpage" %}
-                                                        Location
+                                                        {% translate "Location" %}
                                                     {% else %}
-                                                        Bread
+                                                        {% translate "Bread" %}
                                                     {% endif %}
                                                 </p>
                                                 <p class="listing-card__description">
@@ -82,7 +100,7 @@
                                             <div class="listing-card__contents">
                                                 <h2 class="listing-card__title">{{ search_promotion.external_link_text }}</h2>
                                                 <p class="listing-card__content-type">
-                                                    External link
+                                                    {% translate "External link" %}
                                                 </p>
                                                 <p class="listing-card__description">
                                                     {% if search_promotion.description %}{{ search_promotion.description|richtext }}{% endif %}
@@ -94,10 +112,14 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <p class="search__introduction">No results found for “{{ search_query }}”.</p>
+                        <p class="search__introduction">
+                            {% blocktranslate trimmed with query=search_query %}
+                                No results found for “{{ query }}”.
+                            {% endblocktranslate %}
+                        </p>
                     {% endif %}
                 {% else %}
-                    <p class="search__introduction">You didn&apos;t search for anything!</p>
+                    <p class="search__introduction">{% translate "You didn&apos;t search for anything!" %}</p>
                 {% endif %}
             </div>
         </div>
