@@ -1,6 +1,8 @@
-{% load navigation_tags static wagtailuserbar %}
+{% load i18n navigation_tags static wagtailuserbar %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="{% if page %}{{ page.locale.language_code }}{% elif self %}{{ self.locale.language_code }}{% else %}en{% endif %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <head>
         <meta charset="utf-8">
         {% hreflangs %}
