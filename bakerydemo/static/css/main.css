@@ -625,10 +625,6 @@ caption {
   position: relative;
 }
 
-.language-switcher {
-  position: relative;
-}
-
 .language-switcher--desktop {
   display: none;
 }
@@ -661,8 +657,6 @@ caption {
 }
 
 .language-switcher__popover {
-  inset: auto auto auto 0;
-  margin: 8px 0 0;
   min-width: 10rem;
   border: 1px solid var(--border-grey);
   background-color: var(--white);
