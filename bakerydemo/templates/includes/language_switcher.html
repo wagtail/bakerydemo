@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if render_language_switcher %}
     <div class="language-switcher language-switcher--{{ placement }}">
         <button
@@ -13,7 +14,7 @@
             <span class="language-switcher__current" lang="{{ current_language.code }}">
                 {{ current_language.name_local }}
             </span>
-            <span class="u-sr-only">Open language switcher</span>
+            <span class="u-sr-only">{% translate "Open language switcher" %}</span>
             <svg class="language-switcher__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 5.25 7 9.25 11 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
