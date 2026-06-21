@@ -26,7 +26,7 @@
                 <h1>{% translate "Search results" %}</h1>
                 {% if search_results %}
                     <p class="search__introduction">
-                        {% blocktranslate trimmed count result_count=search_results | length with query=search_query %}
+                        {% blocktranslate trimmed count result_count=search_results|length with query=search_query %}
                             You searched for “{{ query }}”, {{ result_count }} result found.
                         {% plural %}
                             You searched for “{{ query }}”, {{ result_count }} results found.
