@@ -38,7 +38,9 @@ class BlogPersonRelationship(Orderable, models.Model):
 
     class Meta(Orderable.Meta):
         constraints = [
-            models.UniqueConstraint(fields=["page", "person"], name="unique_blog_person")
+            models.UniqueConstraint(
+                fields=["page", "person"], name="unique_blog_person"
+            ),
         ]
 
 
