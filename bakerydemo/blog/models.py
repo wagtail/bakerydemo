@@ -36,6 +36,34 @@ class BlogPersonRelationship(Orderable, models.Model):
         APIField("person"),
     ]
 
+    # FIX for M2M autosave IntegrityError (unique_blog_person constraint).
+    # When an id-less BlogPersonRelationship is submitted (e.g. from a stale
+    # autosave form in a second tab) and a committed row for the same
+    # (page, person) pair already exists, modelcluster would attempt an INSERT
+    # and hit the unique constraint. This save() override detects that case,
+    # fetches the existing PK, and flips _state.adding=False so Django issues
+    # an UPDATE instead — silently deduplicating without raising IntegrityError.
+    # See: ONSdigital/dis-wagtail#697 and bud-m2m-autosave-integrity-error.md
+    #
+    def save(self, **kwargs):
+        if (
+            not kwargs.get("force_insert")
+            and self._state.adding
+            and self.page_id
+            and self.person_id
+        ):
+            existing_pk = (
+                BlogPersonRelationship.objects.filter(
+                    page_id=self.page_id, person_id=self.person_id
+                )
+                .values_list("pk", flat=True)
+                .first()
+            )
+            if existing_pk is not None:
+                self.pk = existing_pk
+                self._state.adding = False
+        super().save(**kwargs)
+
     class Meta(Orderable.Meta):
         constraints = [
             models.UniqueConstraint(
