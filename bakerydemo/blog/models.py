@@ -36,6 +36,11 @@ class BlogPersonRelationship(Orderable, models.Model):
         APIField("person"),
     ]
 
+    class Meta(Orderable.Meta):
+        constraints = [
+            models.UniqueConstraint(fields=["page", "person"], name="unique_blog_person")
+        ]
+
 
 class BlogPageTag(TaggedItemBase):
     """
