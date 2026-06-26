@@ -7,12 +7,11 @@ class LocationStatus extends HTMLElement {
   async updateStatus() {
     const data = await this.fetchPage();
     if (!data || typeof data.is_open !== 'boolean') {
-      this.textContent =
-        "Sorry, we couldn't retrieve the status of this location.";
+      this.textContent = this.dataset.unavailableLabel;
     } else if (data.is_open) {
-      this.textContent = 'This location is currently open.';
+      this.textContent = this.dataset.availableLabel;
     } else {
-      this.textContent = 'Sorry, this location is currently closed.';
+      this.textContent = this.dataset.closedLabel;
     }
   }
 

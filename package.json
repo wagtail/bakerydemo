@@ -18,10 +18,10 @@
   },
   "scripts": {
     "fix:js": "eslint --ext .js --fix .",
-    "fix:css": "stylelint --fix **/*.css",
+    "fix:css": "stylelint --fix \"bakerydemo/static/css/**/*.css\"",
     "format": "prettier --write \"**/?(.)*.{css,js,json,yaml,yml}\"",
     "lint:js": "eslint --ext .js --report-unused-disable-directives .",
-    "lint:css": "stylelint **/*.css",
+    "lint:css": "stylelint \"bakerydemo/static/css/**/*.css\"",
     "lint:format": "prettier --check \"**/?(.)*.{css,js,json,yaml,yml}\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:format"
   }
