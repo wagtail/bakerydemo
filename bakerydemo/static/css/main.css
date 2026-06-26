@@ -44,7 +44,7 @@ each detail view
   --transparent-black: rgb(0 0 0 / 0%);
   --shadow-black: rgb(0 0 0 / 50%);
   --overlay-black: rgb(0 0 0 / 60%);
-  --bright-orange: #eb7400;
+  --vivid-orange: #eb7400;
   --light-grey: #e3e3e3;
   --font--primary: 'Marcellus', serif;
   /* stylelint-disable */
@@ -990,7 +990,6 @@ footer {
 }
 
 .pagination .page-item a {
-  text-transform: capitalize;
   text-decoration: underline;
 }
 
@@ -1091,7 +1090,6 @@ footer {
   border: 1px solid var(--orange);
   border-radius: 60px;
   margin-inline-start: 20px;
-  text-transform: capitalize;
 }
 
 .blog-tags__pill--selected {
@@ -1115,7 +1113,6 @@ footer {
 
 .blog-tags__tag {
   color: var(--orange);
-  text-transform: capitalize;
 }
 
 .blog-list {
