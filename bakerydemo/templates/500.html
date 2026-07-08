@@ -1,13 +1,16 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <head>
         <meta charset="utf-8" />
-        <title>Internal server error</title>
+        <title>{% translate "Internal server error" %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <h1>Internal server error</h1>
+        <h1>{% translate "Internal server error" %}</h1>
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
+        <h2>{% translate "Sorry, there seems to be an error. Please try again soon." %}</h2>
     </body>
 </html>

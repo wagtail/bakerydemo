@@ -1,8 +1,11 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
     <head>
         <meta charset="utf-8">
-        <title>Authentication Required</title>
+        <title>{% translate "Authentication Required" %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {# Prevent the demo site from being indexed #}
@@ -19,9 +22,9 @@
 
     <body>
         <article>
-            <h1>Authentication Required</h1>
-            <p>You must login to view this site</p>
-            <h3>Looking for Wagtail? Visit <a href="https://wagtail.org">wagtail.org</a>.</h3>
+            <h1>{% translate "Authentication Required" %}</h1>
+            <p>{% translate "You must login to view this site" %}</p>
+            <h3>{% blocktranslate trimmed %}Looking for Wagtail? Visit <a href="https://wagtail.org">wagtail.org</a>.{% endblocktranslate %}</h3>
         </article>
     </body>
 </html>
