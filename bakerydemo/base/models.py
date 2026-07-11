@@ -505,6 +505,7 @@ class FormField(AbstractFormField):
 
 
 class FormPage(AbstractEmailForm):
+    introduction = models.TextField(help_text="Text to describe the page", blank=True)
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -519,6 +520,7 @@ class FormPage(AbstractEmailForm):
     # related_name value
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
+        FieldPanel("introduction"),
         FieldPanel("image"),
         FieldPanel("body"),
         InlinePanel("form_fields", heading="Form fields", label="Field"),
@@ -542,6 +544,7 @@ class FormPage(AbstractEmailForm):
         APIField("from_address"),
         APIField("to_address"),
         APIField("subject"),
+        APIField("introduction"),
         APIField("image"),
         APIField("body"),
         APIField("thank_you_text"),
