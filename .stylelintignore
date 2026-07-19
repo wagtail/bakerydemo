@@ -1,4 +1,7 @@
 node_modules
+playwright-report
+test-results
+uvenv
 venv
 .venv
 *.min.css
