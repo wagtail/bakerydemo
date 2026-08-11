@@ -21,6 +21,7 @@ from wagtail.contrib.settings.models import (
     register_setting,
 )
 from wagtail.fields import RichTextField, StreamField
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.images.models import Image
 from wagtail.models import (
     Collection,
@@ -126,6 +127,14 @@ class Person(
         APIField("last_name"),
         APIField("job_title"),
         APIField("image"),
+        APIField(
+            "image_avatar",
+            serializer=ImageRenditionField("fill-50x50", source="image"),
+        ),
+        APIField(
+            "image_listing",
+            serializer=ImageRenditionField("fill-180x180", source="image"),
+        ),
     ]
 
     @property
@@ -254,6 +263,10 @@ class StandardPage(CustomHeadlessMixin, Page):
         APIField("introduction"),
         APIField("image"),
         APIField("body"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
     ]
 
 
@@ -440,6 +453,14 @@ class HomePage(CustomHeadlessMixin, Page):
         APIField("featured_section_2"),
         APIField("featured_section_3_title"),
         APIField("featured_section_3"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x900", source="image"),
+        ),
+        APIField(
+            "lead_image_promo",
+            serializer=ImageRenditionField("fill-590x413", source="lead_image"),
+        ),
     ]
 
     def __str__(self):
@@ -491,6 +512,10 @@ class GalleryPage(CustomHeadlessMixin, Page):
         APIField("image"),
         APIField("body"),
         APIField("collection"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
     ]
 
 
@@ -548,6 +573,10 @@ class FormPage(CustomHeadlessMixin, AbstractEmailForm):
         APIField("image"),
         APIField("body"),
         APIField("thank_you_text", serializer=RichTextSerializer()),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
     ]
 
 

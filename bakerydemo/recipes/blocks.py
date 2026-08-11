@@ -23,7 +23,7 @@ from bakerydemo.base.blocks import (
 class CustomImageBlock(ImageBlock):
     def get_api_representation(self, value, context=None):
         data = super().get_api_representation(value, context)
-        data["image"] = get_image_api_representation(value)
+        data["image"] = get_image_api_representation(value, "fill-100x100")
         return data
 
 

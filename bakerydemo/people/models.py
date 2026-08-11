@@ -4,6 +4,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.api import APIField
 from wagtail.blocks import ChoiceBlock, StructBlock, StructValue, URLBlock
 from wagtail.fields import StreamField
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import Page
 from wagtail.search import index
 
@@ -97,6 +98,14 @@ class PersonPage(Page):
         APIField("body"),
         APIField("location"),
         APIField("social_links"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
+        APIField(
+            "image_listing",
+            serializer=ImageRenditionField("fill-180x180", source="image"),
+        ),
     ]
 
     def get_context(self, request):
