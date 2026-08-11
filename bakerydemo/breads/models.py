@@ -6,6 +6,7 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import DraftStateMixin, Orderable, Page, RevisionMixin
 from wagtail.search import index
 
@@ -182,6 +183,14 @@ class BreadPage(Page):
         APIField("origin"),
         APIField("bread_type"),
         APIField("ingredients"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
+        APIField(
+            "image_listing",
+            serializer=ImageRenditionField("fill-180x180", source="image"),
+        ),
     ]
 
     @property

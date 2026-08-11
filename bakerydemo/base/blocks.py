@@ -12,8 +12,14 @@ from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
 
 
-def get_image_api_representation(image):
-    return {
+def get_image_api_representation(image, filter_spec=None):
+    """
+    Build the API representation for an image used in a StreamField block.
+
+    When ``filter_spec`` is provided, also serialise a ``meta.rendition`` with
+    the details of the rendered image (same keys as ``ImageRenditionField``).
+    """
+    representation = {
         "id": image.pk,
         "title": image.title,
         "meta": {
@@ -21,6 +27,16 @@ def get_image_api_representation(image):
             "download_url": image.file.url,
         },
     }
+    if filter_spec:
+        rendition = image.get_rendition(filter_spec)
+        representation["meta"]["rendition"] = {
+            "url": rendition.url,
+            "full_url": rendition.full_url,
+            "width": rendition.width,
+            "height": rendition.height,
+            "alt": rendition.alt,
+        }
+    return representation
 
 
 class CaptionedImageBlock(StructBlock):
@@ -47,7 +63,7 @@ class CaptionedImageBlock(StructBlock):
 
     def get_api_representation(self, value, context=None):
         data = super().get_api_representation(value, context)
-        data["image"] = get_image_api_representation(value["image"])
+        data["image"] = get_image_api_representation(value["image"], "fill-600x338")
         return data
 
     class Meta:

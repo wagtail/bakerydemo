@@ -8,6 +8,7 @@ from wagtail.admin.panels import FieldPanel, MultipleChooserPanel
 from wagtail.api import APIField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
@@ -105,6 +106,18 @@ class BlogPage(Page):
         APIField("tags"),
         APIField("date_published"),
         APIField("blog_person_relationship"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
+        APIField(
+            "image_listing",
+            serializer=ImageRenditionField("fill-322x247", source="image"),
+        ),
+        APIField(
+            "image_picture_card",
+            serializer=ImageRenditionField("fill-433x487", source="image"),
+        ),
     ]
 
     def authors(self):

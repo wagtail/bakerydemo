@@ -6,6 +6,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
@@ -171,6 +172,18 @@ class LocationPage(Page):
         APIField("lat_long"),
         APIField("is_open"),
         APIField("hours_of_operation"),
+        APIField(
+            "image_hero",
+            serializer=ImageRenditionField("fill-1920x600", source="image"),
+        ),
+        APIField(
+            "image_location_card",
+            serializer=ImageRenditionField("fill-430x320", source="image"),
+        ),
+        APIField(
+            "image_picture_card",
+            serializer=ImageRenditionField("fill-645x480", source="image"),
+        ),
     ]
 
     def __str__(self):
