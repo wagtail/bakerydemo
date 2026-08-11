@@ -50,6 +50,7 @@ each detail view
   --text-on-media: #fff;
 }
 
+/* stylelint-disable-next-line selector-attribute-name-disallowed-list */
 :root[data-theme='dark'] {
   --dark: #f1f4f8;
   --grey: #acb5c0;
@@ -63,6 +64,7 @@ each detail view
   --orange: #f0b45d;
   --dark-orange: #ffd29b;
   --text-on-media: #fff;
+  color-scheme: dark;
 }
 
 html {
@@ -83,10 +85,6 @@ body {
   background: var(--white);
   color: var(--dark);
   min-height: 100vh;
-}
-
-html[data-theme='dark'] {
-  color-scheme: dark;
 }
 
 body.no-scroll {
