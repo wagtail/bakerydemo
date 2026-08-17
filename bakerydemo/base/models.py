@@ -552,8 +552,8 @@ class FormPage(AbstractEmailForm):
             [
                 FieldRowPanel(
                     [
-                        FieldPanel("from_address"),
-                        FieldPanel("to_address"),
+                        FieldPanel("from_address", permission="superuser"),
+                        FieldPanel("to_address", permission="superuser"),
                     ]
                 ),
                 FieldPanel("subject"),
