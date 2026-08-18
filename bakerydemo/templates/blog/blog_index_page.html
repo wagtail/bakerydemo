@@ -1,12 +1,16 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags navigation_tags wagtailimages_tags wagtail_cache %}
+{% load i18n wagtailcore_tags navigation_tags wagtailimages_tags wagtail_cache %}
 
 {% if tag %}
     {% block title %}
         {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}: {{ tag }}
     {% endblock %}
 
-    {% block search_description %}Viewing all blog posts sorted by the tag {{ tag }}{% endblock %}
+    {% block search_description %}
+        {% blocktranslate trimmed with tag_name=tag %}
+            Viewing all blog posts sorted by the tag {{ tag_name }}
+        {% endblocktranslate %}
+    {% endblock %}
 {% endif %}
 
 {% block content %}
@@ -18,18 +22,22 @@
         {% if tag %}
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="index-header__title">Blog</h1>
+                    <h1 class="index-header__title">{{ self.title }}</h1>
                 </div>
                 <div class="col-md-12">
-                    <p class="index-header__introduction">Viewing all blog posts sorted by the tag <span class="blog-tags__tag">{{ tag }}</span>.</p>
+                    <p class="index-header__introduction">
+                        {% blocktranslate trimmed with tag_name=tag %}
+                            Viewing all blog posts sorted by the tag <span class="blog-tags__tag">{{ tag_name }}</span>.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
             </div>
         {% endif %}
 
         {% if page.get_child_tags %}
-            <nav aria-label="Blog tag filters">
+            <nav aria-label="{% translate 'Blog tag filters' %}">
                 <ul class="blog-tags">
-                    <li><span class="blog-tags__pill blog-tags__pill--selected">All</span></li>
+                    <li><span class="blog-tags__pill blog-tags__pill--selected">{% translate "All" %}</span></li>
                     {% for tag in page.get_child_tags %}
                         <li><a class="blog-tags__pill" href="{{ tag.url }}">{{ tag }}</a></li>
                     {% endfor %}
@@ -46,7 +54,7 @@
                 {% endwagtailcache %}
             {% else %}
                 <div class="col-md-12">
-                    <p>Oh, snap. Looks like we were too busy baking to write any blog posts. Sorry.</p>
+                    <p>{% translate "Oh, snap. Looks like we were too busy baking to write any blog posts. Sorry." %}</p>
                 </div>
             {% endif %}
         </div>
