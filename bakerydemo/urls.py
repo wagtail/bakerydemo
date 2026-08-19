@@ -1,5 +1,6 @@
 import debug_toolbar
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import include, path, re_path
 from wagtail import urls as wagtail_urls
@@ -21,7 +22,6 @@ urlpatterns = [
         ServeView.as_view(),
         name="wagtailimages_serve",
     ),
-    path("search/", search_views.search, name="search"),
     path("sitemap.xml", sitemap),
     path("api/v2/", api_router.urls),
     path("__debug__/", include(debug_toolbar.urls)),
@@ -50,6 +50,7 @@ if settings.DEBUG:
         path("test500/", TemplateView.as_view(template_name="500.html")),
     ]
 
-urlpatterns += [
+urlpatterns += i18n_patterns(
+    path("search/", search_views.search, name="search"),
     path("", include(wagtail_urls)),
-]
+)
