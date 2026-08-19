@@ -1,9 +1,65 @@
 from django import template
+from django.utils.translation import get_language_info
 from wagtail.models import Page, Site
 
 from bakerydemo.base.models import FooterText
 
 register = template.Library()
+
+
+def get_current_page(context):
+    return context.get("page") or context.get("self")
+
+
+def get_page_language_entries(page, request):
+    if page is None or not hasattr(page, "locale"):
+        return []
+
+    translated_pages = [page, *page.get_translations().live().public()]
+    entries_by_code = {}
+
+    for translated_page in translated_pages:
+        language_code = translated_page.locale.language_code
+        language_info = get_language_info(language_code)
+
+        entries_by_code[language_code] = {
+            "code": language_code,
+            "name_local": language_info["name_local"],
+            "name_translated": language_info["name_translated"],
+            "url": request.build_absolute_uri(translated_page.url),
+            "is_current": translated_page.pk == page.pk,
+        }
+
+    return list(entries_by_code.values())
+
+
+@register.inclusion_tag("tags/hreflangs.html", takes_context=True)
+def hreflangs(context):
+    page = get_current_page(context)
+    entries = get_page_language_entries(page, context["request"])
+
+    return {
+        "translations": [entry for entry in entries if not entry["is_current"]],
+    }
+
+
+@register.inclusion_tag("includes/language_switcher.html", takes_context=True)
+def language_switcher(context):
+    page = get_current_page(context)
+    entries = get_page_language_entries(page, context["request"])
+
+    if len(entries) <= 1:
+        return {"render_language_switcher": False}
+
+    current_language = next(entry for entry in entries if entry["is_current"])
+
+    return {
+        "render_language_switcher": True,
+        "current_language": current_language,
+        "languages": entries,
+    }
+
+
 # https://docs.djangoproject.com/en/stable/howto/custom-template-tags/
 
 
