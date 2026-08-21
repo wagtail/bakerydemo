@@ -17,6 +17,7 @@
         </title>
         <meta name="description" content="{% block search_description %}{% if page.search_description %}{{ page.search_description }}{% endif %}{% endblock %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
 
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}
@@ -24,15 +25,60 @@
         {% endif %}
 
         <script>
-            (() => {
-                let storedTheme = null;
+            /**
+             * IMPORTANT: This script runs before the rest of the page to avoid
+             * showing the wrong theme on first paint.
+             */
+            function updateThemeMode(event, { isInitial = false } = {}) {
+                const DARK = "dark";
+                const LIGHT = "light";
+                const STORAGE_KEY = "demo-theme";
+
+                let currentMode;
+                let applyMode;
+                let savedThemeMode;
+
                 try {
-                    storedTheme = localStorage.getItem("theme");
+                    savedThemeMode = localStorage.getItem(STORAGE_KEY);
                 } catch (error) {
-                    storedTheme = null;
+                    savedThemeMode = null;
                 }
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+
+                if (savedThemeMode) {
+                    currentMode = savedThemeMode === LIGHT ? LIGHT : DARK;
+                } else {
+                    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    currentMode = prefersDarkMode ? DARK : LIGHT;
+                }
+
+                if (isInitial) {
+                    applyMode = currentMode === DARK ? DARK : LIGHT;
+                } else {
+                    applyMode = currentMode === DARK ? LIGHT : DARK;
+                }
+
+                document.documentElement.style.colorScheme = applyMode;
+
+                const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
+                if (colorSchemeMeta) {
+                    colorSchemeMeta.setAttribute("content", applyMode);
+                }
+
+                if (savedThemeMode || event) {
+                    try {
+                        localStorage.setItem(STORAGE_KEY, applyMode);
+                    } catch (error) {
+                        // Ignore storage write failures and continue with the in-memory choice.
+                    }
+                }
+            }
+
+            document.addEventListener("theme:toggle-theme-mode", updateThemeMode, {
+                passive: true,
+            });
+
+            (() => {
+                updateThemeMode(null, { isInitial: true });
             })();
         </script>
 
