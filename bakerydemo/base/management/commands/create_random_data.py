@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils import lorem_ipsum, timezone
 from django.utils.text import slugify
+from faker import Faker
 from wagtail.images.models import Image
 from wagtail.rich_text import RichText
 from willow.image import Image as WillowImage
@@ -139,11 +140,24 @@ class Command(BaseCommand):
             BreadType.objects.create(title=self.make_title())
 
         self.stdout.write("Creating people...")
+        fake = Faker()
+        BAKERY_JOB_TITLES = [
+            "Head Baker",
+            "Pastry Chef",
+            "Sous Chef",
+            "Bread Artisan",
+            "Bakery Manager",
+            "Cake Decorator",
+            "Dough Specialist",
+            "Confectionery Chef",
+            "Bakery Assistant",
+            "Production Baker",
+        ]
         for _ in range(snippet_count):
             Person.objects.create(
-                first_name=lorem_ipsum.words(1, common=False),
-                last_name=lorem_ipsum.words(1, common=False),
-                job_title=lorem_ipsum.words(1, common=False),
+                first_name=fake.first_name(),
+                last_name=fake.last_name(),
+                job_title=random.choice(BAKERY_JOB_TITLES),
                 image=self.get_random_model(Image),
             )
 
