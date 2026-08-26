@@ -33,8 +33,8 @@ class BlogPersonRelationship(Orderable, models.Model):
     panels = [FieldPanel("person")]
 
     api_fields = [
-        APIField("page"),
-        APIField("person"),
+        APIField("page", writable=True),
+        APIField("person", writable=True),
     ]
 
 
@@ -99,13 +99,13 @@ class BlogPage(Page):
     ]
 
     api_fields = [
-        APIField("introduction"),
-        APIField("image"),
-        APIField("body"),
-        APIField("subtitle"),
+        APIField("introduction", writable=True),
+        APIField("image", writable=True),
+        APIField("body", writable=True),
+        APIField("subtitle", writable=True),
         APIField("tags"),
-        APIField("date_published"),
-        APIField("blog_person_relationship"),
+        APIField("date_published", writable=True),
+        APIField("blog_person_relationship", writable=True),
         APIField(
             "image_hero",
             serializer=ImageRenditionField("fill-1920x600", source="image"),
@@ -183,8 +183,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
     ]
 
     api_fields = [
-        APIField("introduction"),
-        APIField("image"),
+        APIField("introduction", writable=True),
+        APIField("image", writable=True),
     ]
 
     # Specifies that only BlogPage objects can live under this index page
