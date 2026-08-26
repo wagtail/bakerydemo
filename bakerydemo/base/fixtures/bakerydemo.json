@@ -14254,5 +14254,83 @@
       "job_title": "Assistant Editor",
       "image": 51
     }
+  },
+  {
+    "model": "wagtailcore.apitoken",
+    "pk": 1,
+    "fields": {
+      "user": ["admin"],
+      "name": "Admin API access",
+      "key_hash": "1ef1e402c8520e716846a25efa523ed5d1352a932a3d290c77d404bd26894dc3",
+      "prefix": "wagtail_C3qh",
+      "created": "2026-08-26T17:11:11.916Z",
+      "revoked_at": null,
+      "last_used_at": null
+    }
+  },
+  {
+    "model": "wagtailcore.apitoken",
+    "pk": 2,
+    "fields": {
+      "user": ["editor"],
+      "name": "Editor API access",
+      "key_hash": "57e262987ca805e5a6f01f29714931c49382db6bc7871ff912093a0c97299b27",
+      "prefix": "wagtail_KbX5",
+      "created": "2026-08-26T17:11:52.639Z",
+      "revoked_at": null,
+      "last_used_at": null
+    }
+  },
+  {
+    "model": "wagtailcore.apitoken",
+    "pk": 3,
+    "fields": {
+      "user": ["moderator"],
+      "name": "Moderator API access",
+      "key_hash": "9535aee2fbd2c1542ce8e26daba5df3774b35c0f56ca98442fbd2971c0549011",
+      "prefix": "wagtail_XeNI",
+      "created": "2026-08-26T17:12:12.595Z",
+      "revoked_at": null,
+      "last_used_at": null
+    }
+  },
+  {
+    "model": "wagtailcore.apitoken",
+    "pk": 4,
+    "fields": {
+      "user": ["inactive"],
+      "name": "Inactive API access",
+      "key_hash": "81574112063831dc58d49a977be9631204c7bfcccd4c93dafaeb3363fb898e6b",
+      "prefix": "wagtail_3Oo2",
+      "created": "2026-08-26T17:12:52.360Z",
+      "revoked_at": null,
+      "last_used_at": null
+    }
+  },
+  {
+    "model": "wagtailcore.apitoken",
+    "pk": 5,
+    "fields": {
+      "user": ["german"],
+      "name": "German API access",
+      "key_hash": "c69c4c0ce2ca8a9959278a8df9f7e0917d0d372e44f47c3d8c1a9042f2c88bd9",
+      "prefix": "wagtail_AXzz",
+      "created": "2026-08-26T17:13:29.700Z",
+      "revoked_at": "2026-08-26T17:14:42.834Z",
+      "last_used_at": null
+    }
+  },
+  {
+    "model": "wagtailcore.apitoken",
+    "pk": 6,
+    "fields": {
+      "user": ["arabic"],
+      "name": "Arabic API access",
+      "key_hash": "b4934d7779b4258c5d98a1402c1ca05062a068d45a60f825d1232cdd55d58a12",
+      "prefix": "wagtail_Wk5r",
+      "created": "2026-08-26T17:13:53.985Z",
+      "revoked_at": null,
+      "last_used_at": null
+    }
   }
 ]
