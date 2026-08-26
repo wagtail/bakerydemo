@@ -212,14 +212,15 @@ and configure [SMTP settings](https://docs.djangoproject.com/en/stable/topics/em
 
 The demo data includes users with different roles and preferences. You can use these users to quickly test the permission system in Wagtail or how localization is handled in the admin interface.
 
-| Username    | Password   | Superuser | Groups     | Preferred language | Timezone      | Active |
-| ----------- | ---------- | --------- | ---------- | ------------------ | ------------- | ------ |
-| `admin`     | `changeme` | Yes       | None       | undefined          | undefined     | Yes    |
-| `editor`    | `changeme` | No        | Editors    | undefined          | undefined     | Yes    |
-| `moderator` | `changeme` | No        | Moderators | undefined          | undefined     | Yes    |
-| `inactive`  | `changeme` | Yes       | None       | undefined          | undefined     | No     |
-| `german`    | `changeme` | Yes       | None       | German             | Europe/Berlin | Yes    |
-| `arabic`    | `changeme` | Yes       | None       | Arabic             | Asia/Beirut   | Yes    |
+| Username    | Password   | Superuser | Groups     | Language  | Timezone      | Active | API token                                             |
+| ----------- | ---------- | --------- | ---------- | --------- | ------------- | ------ | ----------------------------------------------------- |
+| `admin`     | `changeme` | Yes       | None       | undefined | undefined     | Yes    | `wagtail_C3qhlJUUj75vWvK5bbcb73bZ4JC4cQKWt`           |
+| `editor`    | `changeme` | No        | Editors    | undefined | undefined     | Yes    | `wagtail_KbX51h5BjfoVDtzQZSziixrFR2R02g9vI`           |
+| `moderator` | `changeme` | No        | Moderators | undefined | undefined     | Yes    | `wagtail_XeNIQwWz5Uo876IOD6ct3jUUM1o1SdXxk`           |
+| `inactive`  | `changeme` | Yes       | None       | undefined | undefined     | No     | `wagtail_3Oo2Tiuz92J63rDsZQMoyKmb2wr0nf9Sf`           |
+| `german`    | `changeme` | Yes       | None       | German    | Europe/Berlin | Yes    | `wagtail_AXzzlyovkJ7eqJNDrCxlcaFtbNv0sWVGF` (revoked) |
+| `arabic`    | `changeme` | Yes       | None       | Arabic    | Asia/Beirut   | Yes    | `wagtail_Wk5r5jQli3ieyxuAO2gjHK4RnAF00YejP`           |
+
 
 ### Ownership of demo content
 
