@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "bakerydemo.recipes",
     "bakerydemo.search",
     "wagtail_ai",
+    "django.contrib.postgres",
     "django_ai_core.contrib.index",
     "django_ai_core.contrib.index.storage.pgvector",
     "django_ai_core",
@@ -128,8 +129,6 @@ WSGI_APPLICATION = "bakerydemo.wsgi.application"
 
 if "DATABASE_URL" in os.environ:
     DATABASES = {"default": dj_database_url.config(conn_max_age=500)}
-    if os.environ["DATABASE_URL"].startswith("postgres://"):
-        INSTALLED_APPS.append("django.contrib.postgres")
 else:
     DATABASES = {
         "default": {
