@@ -188,6 +188,28 @@ The `bakerydemo/settings/local.py` file can be used to store local Django settin
 
 Additionally, various settings can be controlled through environment variables. The [python-dotenv](https://github.com/theskumar/python-dotenv) package is used to load these variables from a `.env` file in the project root.
 
+### API demo
+
+The website is configured for API usage in parallel to server-rendered page, using Wagtail’s [v2 API](https://docs.wagtail.org/en/stable/advanced_topics/api/v2/configuration.html) and [v3 API](https://docs.wagtail.org/en/stable/advanced_topics/api/v3/index.html). For a full headless demo, view the [headless branch](https://github.com/wagtail/bakerydemo/tree/headless) and [bakerydemo-headless](https://github.com/wagtail/bakerydemo-headless).
+
+To get started with the v3 API, access the API dashboard at `http://localhost:8000/api/v3-preview/docs/`. You can also use the API with the [Wagtail CLI](https://github.com/wagtail/wagtail-cli). Here is an example with `uv`:
+
+```bash
+uv tool install wagtail-cli
+
+export WAGTAIL_CLI_TOKEN=wagtail_C3qhlJUUj75vWvK5bbcb73bZ4JC4cQKWt
+export WAGTAIL_CLI_BASE_URL=http://localhost:8000/api/v3-preview
+
+# Check what account your API token corresponds to
+wt api whoami
+# List pages
+wt api pages list
+# Fetch one page.
+wt api pages get 76
+# Create a new page under the homepage, as a draft.
+wt api pages create base.StandardPage --parent 60 --title "Demo page"
+```
+
 ### Note on demo search
 
 Because we can't (easily) use ElasticSearch for this demo, we use wagtail's native DB search.
