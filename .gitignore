@@ -15,6 +15,9 @@ bakerydemo/settings/local.py
 bakerydemodb
 *.db
 node_modules
+playwright-report
+test-results
+uvenv
 venv
 .venv
 __pycache__

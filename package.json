@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@playwright/test": "^1.61.1",
     "@wagtail/stylelint-config-wagtail": "^2.0.0",
     "eslint": "^9.39.2",
     "globals": "^16.5.0",
@@ -23,6 +24,7 @@
     "lint:js": "eslint --ext .js --report-unused-disable-directives .",
     "lint:css": "stylelint **/*.css",
     "lint:format": "prettier --check \"**/?(.)*.{css,js,json,yaml,yml}\"",
-    "lint": "npm run lint:js && npm run lint:css && npm run lint:format"
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:format",
+    "test:e2e": "playwright test"
   }
 }
