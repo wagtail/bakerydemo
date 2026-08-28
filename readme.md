@@ -192,7 +192,7 @@ Additionally, various settings can be controlled through environment variables. 
 
 The website is configured for API usage in parallel to server-rendered page, using Wagtail’s [v2 API](https://docs.wagtail.org/en/stable/advanced_topics/api/v2/configuration.html) and [v3 API](https://docs.wagtail.org/en/stable/advanced_topics/api/v3/index.html). For a full headless demo, view the [headless branch](https://github.com/wagtail/bakerydemo/tree/headless) and [bakerydemo-headless](https://github.com/wagtail/bakerydemo-headless).
 
-To get started with the v3 API, access the API dashboard at `http://localhost:8000/api/v3-preview/docs/`. You can also use the API with the [Wagtail CLI](https://github.com/wagtail/wagtail-cli). Here is an example with `uv`:
+To get started with the v3 API, access the API dashboard at `http://localhost:8000/api/v3-preview/docs/`. You can also use the API with the prototype [Wagtail CLI](https://github.com/wagtail/wagtail-cli). Here is an example with `uv`:
 
 ```bash
 uv tool install wagtail-cli
