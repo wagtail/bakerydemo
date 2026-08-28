@@ -4,7 +4,6 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.api.v3.urls import api
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import ServeView
@@ -12,7 +11,7 @@ from wagtail.images.views.serve import ServeView
 from bakerydemo.headless import UserbarView
 from bakerydemo.search import views as search_views
 
-from .api import v2_router
+from .api import v2_router, v3_api
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -27,7 +26,7 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("sitemap.xml", sitemap),
     path("api/v2/", v2_router.urls),
-    path("api/v3-preview/", api.urls),
+    path("api/v3-preview/", v3_api.urls),
     path("__debug__/", include(debug_toolbar.urls)),
 ]
 
