@@ -15,6 +15,8 @@ from .api import api_router
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
+    # Must be mounted before the admin URLconf, or the admin catch-all swallows the path.
+    path("admin/wagtail_mcp/agent/api/", include("wagtail_mcp.agent.urls")),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     re_path(
@@ -25,8 +27,9 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("sitemap.xml", sitemap),
     path("api/v2/", api_router.urls),
-    path("api/v3-preview/", api.urls),
+    path("api/v3/", api.urls),
     path("__debug__/", include(debug_toolbar.urls)),
+    path("mcp/", include("wagtail_mcp.urls")),
 ]
 
 

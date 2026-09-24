@@ -9,3 +9,4 @@ dj-database-url>=3.1.0,<4
 pgvector>=0.4.1
 psycopg[binary]>=3.3.3,<3.4
 wagtail-ai>=3.1.1
+wagtail-mcp[agent]>=0.3.0,<0.4

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "bakerydemo.locations",
     "bakerydemo.recipes",
     "bakerydemo.search",
+    "wagtail_mcp",
     "wagtail_ai",
     "django.contrib.postgres",
     "django_ai_core.contrib.index",
@@ -338,6 +339,28 @@ WAGTAIL_AI = {
     },
 }
 WAGTAILIMAGES_IMAGE_FORM_BASE = "wagtail_ai.forms.DescribeImageForm"
+
+# Wagtail MCP settings
+# https://github.com/wagtail/wagtail-mcp
+
+WAGTAIL_MCP = {
+    "require_auth": True,
+    # Make sure to prefix the model with `openai:`
+    "agent_model": os.environ.get("WAGTAIL_MCP_AGENT_MODEL", ""),
+    "agent_api_key": os.environ.get("WAGTAIL_MCP_AGENT_API_KEY", ""),
+    "agent_base_url": os.environ.get("WAGTAIL_MCP_AGENT_BASE_URL", ""),
+}
+
+# django-ag-ui 0.64.0 crashes on runs when client context is enabled with
+# ag-ui-protocol 1.0.0 (context became optional and the null case is not
+# iterated safely). Disable both context sources until the fix ships
+# upstream.
+DJANGO_AG_UI = {
+    "RUN_CONTEXT": {
+        "CLIENT_CONTEXT": False,
+        "ATTACHMENT_MANIFEST": False,
+    },
+}
 
 
 # Content Security policy settings
