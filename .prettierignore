@@ -8,3 +8,4 @@ venv
 # Files which contain incompatible syntax.
 *.html
 bakerydemo/collect_static
+bakerydemo/static/
