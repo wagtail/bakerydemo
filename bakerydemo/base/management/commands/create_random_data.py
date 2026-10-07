@@ -127,8 +127,9 @@ class Command(BaseCommand):
 
     def create_snippets(self, snippet_count):
         self.stdout.write("Creating countries...")
-        for _ in range(snippet_count):
-            Country.objects.create(title=self.make_title())
+        for i in range(snippet_count):
+            country_id = chr(65 + (i // 26) % 26) + chr(65 + i % 26)
+            Country.objects.create(id=country_id, title=self.make_title())
 
         self.stdout.write("Creating bread ingredients...")
         for _ in range(snippet_count):
