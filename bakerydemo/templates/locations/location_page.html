@@ -55,12 +55,11 @@
                                             {% if hours.closed == True %}
                                                 Closed
                                             {% else %}
-                                                {% if hours.opening_time %}
-                                                    {{ hours.opening_time }}
-                                                {% endif %} -
-                                                {% if hours.closing_time %}
-                                                    {{ hours.closing_time }}
-                                                {% endif %}
+                                                {% for slot in hours.time_slots.all %}
+                                                    {{ slot.opening_time }} - {{ slot.closing_time }}{% if not forloop.last %},{% endif %}
+                                                {% empty %}
+                                                    -
+                                                {% endfor %}
                                             {% endif %}
                                         </span></time>
                                 {% endfor %}
