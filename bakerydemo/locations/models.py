@@ -6,7 +6,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
-from modelcluster.models import ClusterableModel
+from modelcluster.models import ClusterableModel, model_from_serializable_data
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
@@ -73,7 +73,11 @@ class LocationOperatingTimeSlot(Orderable):
     non-default primary keys.
     """
 
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # The UUID is assigned on save rather than with a field default. With a
+    # default, unsaved time slots in a draft revision would already have a
+    # primary key, which makes them look like existing database rows when the
+    # revision is loaded back into the edit form.
+    uuid = models.UUIDField(primary_key=True, editable=False)
     day = ParentalKey(
         "LocationOperatingDay", related_name="time_slots", on_delete=models.CASCADE
     )
@@ -98,11 +102,22 @@ class LocationOperatingTimeSlot(Orderable):
         closing = self.closing_time.strftime("%H:%M")
         return f"{opening} - {closing}"
 
-    # Wagtail's API includes an `id` field by default when serializing child
-    # relations, which does not exist on models with a custom primary key.
-    @property
-    def id(self):
-        return self.pk
+    @classmethod
+    def from_serializable_data(cls, data, check_fks=True, strict_fks=False):
+        # When loading a revision, modelcluster sets the primary key from the
+        # JSON data as-is, i.e. as a string rather than a UUID. Convert it so
+        # that the edit form can match it to the submitted time slot.
+        obj = model_from_serializable_data(
+            cls, data, check_fks=check_fks, strict_fks=strict_fks
+        )
+        if obj is not None:
+            obj.pk = cls._meta.pk.to_python(obj.pk)
+        return obj
+
+    def save(self, *args, **kwargs):
+        if self.uuid is None:
+            self.uuid = uuid.uuid4()
+        super().save(*args, **kwargs)
 
     def clean(self):
         super().clean()
