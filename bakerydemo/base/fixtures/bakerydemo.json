@@ -1464,507 +1464,803 @@
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 1,
     "fields": {
       "sort_order": 0,
+      "location": 64,
       "day": "MON",
-      "opening_time": "08:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 64
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 2,
     "fields": {
       "sort_order": 1,
+      "location": 64,
       "day": "TUE",
-      "opening_time": "08:00:00",
-      "closing_time": "20:00:00",
-      "closed": false,
-      "location": 64
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 3,
     "fields": {
       "sort_order": 2,
+      "location": 64,
       "day": "WED",
-      "opening_time": "08:00:00",
-      "closing_time": "20:00:00",
-      "closed": false,
-      "location": 64
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 4,
     "fields": {
       "sort_order": 3,
+      "location": 64,
       "day": "THU",
-      "opening_time": "08:00:00",
-      "closing_time": "17:00:00",
-      "closed": false,
-      "location": 64
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 5,
     "fields": {
       "sort_order": 0,
+      "location": 65,
       "day": "MON",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 65
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 6,
     "fields": {
       "sort_order": 1,
+      "location": 65,
       "day": "TUE",
-      "opening_time": "09:00:00",
-      "closing_time": "20:00:00",
-      "closed": false,
-      "location": 65
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 7,
     "fields": {
       "sort_order": 2,
+      "location": 65,
       "day": "WED",
-      "opening_time": "06:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 65
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 8,
     "fields": {
       "sort_order": 3,
+      "location": 65,
       "day": "THU",
-      "opening_time": "09:00:00",
-      "closing_time": "22:00:00",
-      "closed": false,
-      "location": 65
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 9,
     "fields": {
       "sort_order": 0,
+      "location": 66,
       "day": "MON",
-      "opening_time": "06:00:00",
-      "closing_time": "20:00:00",
-      "closed": false,
-      "location": 66
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 10,
     "fields": {
       "sort_order": 1,
+      "location": 66,
       "day": "TUE",
-      "opening_time": "05:00:00",
-      "closing_time": "21:00:00",
-      "closed": false,
-      "location": 66
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 11,
     "fields": {
       "sort_order": 2,
+      "location": 66,
       "day": "WED",
-      "opening_time": "08:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 66
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 12,
     "fields": {
       "sort_order": 3,
+      "location": 66,
       "day": "THU",
-      "opening_time": "07:00:00",
-      "closing_time": "19:00:00",
-      "closed": false,
-      "location": 66
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 13,
     "fields": {
       "sort_order": 0,
+      "location": 67,
       "day": "MON",
-      "opening_time": "08:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 67
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 14,
     "fields": {
       "sort_order": 1,
+      "location": 67,
       "day": "TUE",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 67
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 15,
     "fields": {
       "sort_order": 2,
+      "location": 67,
       "day": "WED",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 67
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 16,
     "fields": {
       "sort_order": 3,
+      "location": 67,
       "day": "THU",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 67
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 17,
     "fields": {
       "sort_order": 4,
+      "location": 67,
       "day": "FRI",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 67
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 18,
     "fields": {
       "sort_order": 5,
+      "location": 67,
       "day": "SAT",
-      "opening_time": "07:00:00",
-      "closing_time": "13:00:00",
-      "closed": false,
-      "location": 67
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 19,
     "fields": {
       "sort_order": 6,
+      "location": 67,
       "day": "SUN",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 67
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 20,
     "fields": {
       "sort_order": 4,
+      "location": 65,
       "day": "FRI",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 65
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 21,
     "fields": {
       "sort_order": 5,
+      "location": 65,
       "day": "SAT",
-      "opening_time": "09:00:00",
-      "closing_time": "13:00:00",
-      "closed": false,
-      "location": 65
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 22,
     "fields": {
       "sort_order": 6,
+      "location": 65,
       "day": "SUN",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 65
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 23,
     "fields": {
       "sort_order": 4,
+      "location": 64,
       "day": "FRI",
-      "opening_time": "08:00:00",
-      "closing_time": "17:00:00",
-      "closed": false,
-      "location": 64
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 24,
     "fields": {
       "sort_order": 5,
+      "location": 64,
       "day": "SAT",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 64
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 25,
     "fields": {
       "sort_order": 6,
+      "location": 64,
       "day": "SUN",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 64
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 26,
     "fields": {
       "sort_order": 4,
+      "location": 66,
       "day": "FRI",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 66
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 27,
     "fields": {
       "sort_order": 5,
+      "location": 66,
       "day": "SAT",
-      "opening_time": "07:00:00",
-      "closing_time": "19:00:00",
-      "closed": false,
-      "location": 66
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 28,
     "fields": {
       "sort_order": 6,
+      "location": 66,
       "day": "SUN",
-      "opening_time": "09:00:00",
-      "closing_time": "12:00:00",
-      "closed": false,
-      "location": 66
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 29,
     "fields": {
       "sort_order": 0,
+      "location": 78,
       "day": "MON",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 78
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 30,
     "fields": {
       "sort_order": 1,
+      "location": 78,
       "day": "TUE",
-      "opening_time": "09:00:00",
-      "closing_time": "20:00:00",
-      "closed": false,
-      "location": 78
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 31,
     "fields": {
       "sort_order": 2,
+      "location": 78,
       "day": "WED",
-      "opening_time": "06:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 78
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 32,
     "fields": {
       "sort_order": 3,
+      "location": 78,
       "day": "THU",
-      "opening_time": "09:00:00",
-      "closing_time": "22:00:00",
-      "closed": false,
-      "location": 78
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 33,
     "fields": {
       "sort_order": 4,
+      "location": 78,
       "day": "FRI",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 78
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 34,
     "fields": {
       "sort_order": 5,
+      "location": 78,
       "day": "SAT",
-      "opening_time": "09:00:00",
-      "closing_time": "13:00:00",
-      "closed": false,
-      "location": 78
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 35,
     "fields": {
       "sort_order": 6,
+      "location": 78,
       "day": "SUN",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 78
+      "closed": true
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 36,
     "fields": {
       "sort_order": 0,
+      "location": 79,
       "day": "MON",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 79
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 37,
     "fields": {
       "sort_order": 1,
+      "location": 79,
       "day": "TUE",
-      "opening_time": "09:00:00",
-      "closing_time": "20:00:00",
-      "closed": false,
-      "location": 79
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 38,
     "fields": {
       "sort_order": 2,
+      "location": 79,
       "day": "WED",
-      "opening_time": "06:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 79
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 39,
     "fields": {
       "sort_order": 3,
+      "location": 79,
       "day": "THU",
-      "opening_time": "09:00:00",
-      "closing_time": "22:00:00",
-      "closed": false,
-      "location": 79
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 40,
     "fields": {
       "sort_order": 4,
+      "location": 79,
       "day": "FRI",
-      "opening_time": "09:00:00",
-      "closing_time": "18:00:00",
-      "closed": false,
-      "location": 79
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 41,
     "fields": {
       "sort_order": 5,
+      "location": 79,
       "day": "SAT",
-      "opening_time": "09:00:00",
-      "closing_time": "13:00:00",
-      "closed": false,
-      "location": 79
+      "closed": false
     }
   },
   {
-    "model": "locations.locationoperatinghours",
+    "model": "locations.locationoperatingday",
     "pk": 42,
     "fields": {
       "sort_order": 6,
+      "location": 79,
       "day": "SUN",
-      "opening_time": null,
-      "closing_time": null,
-      "closed": true,
-      "location": 79
+      "closed": true
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "11065213-2be4-5053-b78e-a9f3c97fe94b",
+    "fields": {
+      "sort_order": 0,
+      "day": 1,
+      "opening_time": "08:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "45811d67-965a-5847-92f7-52bc8f0f27b6",
+    "fields": {
+      "sort_order": 0,
+      "day": 2,
+      "opening_time": "08:00:00",
+      "closing_time": "20:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "e87e8d5f-b21a-5326-9201-32b124b7aea4",
+    "fields": {
+      "sort_order": 0,
+      "day": 3,
+      "opening_time": "08:00:00",
+      "closing_time": "20:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "8fc5cf3d-2332-57a8-a33c-ba8482fe1825",
+    "fields": {
+      "sort_order": 0,
+      "day": 4,
+      "opening_time": "08:00:00",
+      "closing_time": "17:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "0ef80104-629b-54ff-b702-66863ac8c95d",
+    "fields": {
+      "sort_order": 0,
+      "day": 5,
+      "opening_time": "09:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "8237604a-3739-5ab1-a7a8-db00cebdee6b",
+    "fields": {
+      "sort_order": 0,
+      "day": 6,
+      "opening_time": "09:00:00",
+      "closing_time": "20:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "7d342561-63ee-58d1-8ad0-50064612ad97",
+    "fields": {
+      "sort_order": 0,
+      "day": 7,
+      "opening_time": "06:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "06cdcd6b-fd37-521a-96de-3003e1c047ab",
+    "fields": {
+      "sort_order": 0,
+      "day": 8,
+      "opening_time": "09:00:00",
+      "closing_time": "22:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "3599e553-2a0c-507a-b257-70897fd45564",
+    "fields": {
+      "sort_order": 0,
+      "day": 9,
+      "opening_time": "06:00:00",
+      "closing_time": "20:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "3c05d614-06d4-5912-8343-bc390c423513",
+    "fields": {
+      "sort_order": 0,
+      "day": 10,
+      "opening_time": "05:00:00",
+      "closing_time": "21:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "ad763bf5-3fdf-5ebc-a1b1-93b12f728116",
+    "fields": {
+      "sort_order": 0,
+      "day": 11,
+      "opening_time": "08:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "c1560e03-0b98-5cad-b037-c5f75cade140",
+    "fields": {
+      "sort_order": 0,
+      "day": 12,
+      "opening_time": "07:00:00",
+      "closing_time": "19:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "8967c784-cd1e-5962-a87e-535c944c1e16",
+    "fields": {
+      "sort_order": 0,
+      "day": 13,
+      "opening_time": "08:00:00",
+      "closing_time": "12:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "ea33ac59-db1c-5988-b2c0-36983c653344",
+    "fields": {
+      "sort_order": 1,
+      "day": 13,
+      "opening_time": "13:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "3e5b618f-56be-5b1e-8379-03ec710154bd",
+    "fields": {
+      "sort_order": 0,
+      "day": 15,
+      "opening_time": "09:00:00",
+      "closing_time": "12:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "09bfa10d-b048-530a-9686-57deaebcc341",
+    "fields": {
+      "sort_order": 1,
+      "day": 15,
+      "opening_time": "13:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "e4594f65-d556-5b72-98a5-243de0cc22ad",
+    "fields": {
+      "sort_order": 0,
+      "day": 16,
+      "opening_time": "09:00:00",
+      "closing_time": "12:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "dd86995b-b168-5031-9cd5-c11d0abe1b49",
+    "fields": {
+      "sort_order": 1,
+      "day": 16,
+      "opening_time": "13:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "cfb12314-be32-5a25-8cb6-d4dcd3ebdd30",
+    "fields": {
+      "sort_order": 0,
+      "day": 17,
+      "opening_time": "09:00:00",
+      "closing_time": "12:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "785c3c8a-86ab-5783-8d6b-a9bc5bf89f41",
+    "fields": {
+      "sort_order": 1,
+      "day": 17,
+      "opening_time": "13:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "674e518f-3101-5709-a42e-5cc049a1da46",
+    "fields": {
+      "sort_order": 0,
+      "day": 18,
+      "opening_time": "07:00:00",
+      "closing_time": "13:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "bb5ce6d7-1da8-547f-be92-0dd75cc411f3",
+    "fields": {
+      "sort_order": 0,
+      "day": 20,
+      "opening_time": "09:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "0fc57e8a-bfed-5252-95e1-818120a002f3",
+    "fields": {
+      "sort_order": 0,
+      "day": 21,
+      "opening_time": "09:00:00",
+      "closing_time": "13:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "e2400f6d-05ec-5b04-944f-c9ccabd332a4",
+    "fields": {
+      "sort_order": 0,
+      "day": 23,
+      "opening_time": "08:00:00",
+      "closing_time": "17:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "31bfc3e7-61c9-5434-bd75-4511368168a3",
+    "fields": {
+      "sort_order": 0,
+      "day": 27,
+      "opening_time": "07:00:00",
+      "closing_time": "19:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "105ebf72-575a-5244-b0e1-60347eca81b1",
+    "fields": {
+      "sort_order": 0,
+      "day": 28,
+      "opening_time": "09:00:00",
+      "closing_time": "12:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "98d91baa-f377-5c3d-b12c-3ab957b220b8",
+    "fields": {
+      "sort_order": 0,
+      "day": 29,
+      "opening_time": "09:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "03a43730-f024-5e4f-b5cf-620461e95963",
+    "fields": {
+      "sort_order": 0,
+      "day": 30,
+      "opening_time": "09:00:00",
+      "closing_time": "20:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "55ca5b10-6303-5c94-b1ec-0667c250b29b",
+    "fields": {
+      "sort_order": 0,
+      "day": 31,
+      "opening_time": "06:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "5f05946f-d2b9-57ff-b5df-582cb2d19fa7",
+    "fields": {
+      "sort_order": 0,
+      "day": 32,
+      "opening_time": "09:00:00",
+      "closing_time": "22:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "64dbcd90-084a-5979-ae2a-0f57629f256b",
+    "fields": {
+      "sort_order": 0,
+      "day": 33,
+      "opening_time": "09:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "0cbd1f58-62ee-56a9-acd1-2bb03bf1cb25",
+    "fields": {
+      "sort_order": 0,
+      "day": 34,
+      "opening_time": "09:00:00",
+      "closing_time": "13:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "ce50629e-e041-5c53-be92-bf23bfc99f99",
+    "fields": {
+      "sort_order": 0,
+      "day": 36,
+      "opening_time": "09:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "117c5124-9ef2-56aa-9320-0196a2cbc4da",
+    "fields": {
+      "sort_order": 0,
+      "day": 37,
+      "opening_time": "09:00:00",
+      "closing_time": "20:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "e5e0d595-7468-56cf-86e7-1e5a7ecc4aa0",
+    "fields": {
+      "sort_order": 0,
+      "day": 38,
+      "opening_time": "06:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "af3dce93-aa90-5bf8-9ea9-8ffe41ce8554",
+    "fields": {
+      "sort_order": 0,
+      "day": 39,
+      "opening_time": "09:00:00",
+      "closing_time": "22:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "9ce57e54-4bdc-5e9f-88a5-bd9eaec44299",
+    "fields": {
+      "sort_order": 0,
+      "day": 40,
+      "opening_time": "09:00:00",
+      "closing_time": "18:00:00"
+    }
+  },
+  {
+    "model": "locations.locationoperatingtimeslot",
+    "pk": "efce5e05-7e09-5c67-8312-24c2d10bcc8f",
+    "fields": {
+      "sort_order": 0,
+      "day": 41,
+      "opening_time": "09:00:00",
+      "closing_time": "13:00:00"
     }
   },
   {
@@ -6282,64 +6578,97 @@
             "pk": 1,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "08:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "11065213-2be4-5053-b78e-a9f3c97fe94b",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "18:00:00",
+                "day": 1
+              }
+            ]
           },
           {
             "pk": 2,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "08:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "45811d67-965a-5847-92f7-52bc8f0f27b6",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "20:00:00",
+                "day": 2
+              }
+            ]
           },
           {
             "pk": 3,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "08:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "e87e8d5f-b21a-5326-9201-32b124b7aea4",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "20:00:00",
+                "day": 3
+              }
+            ]
           },
           {
             "pk": 4,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "08:00:00",
-            "closing_time": "17:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "8fc5cf3d-2332-57a8-a33c-ba8482fe1825",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "17:00:00",
+                "day": 4
+              }
+            ]
           },
           {
             "pk": 23,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "08:00:00",
-            "closing_time": "17:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "e2400f6d-05ec-5b04-944f-c9ccabd332a4",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "17:00:00",
+                "day": 23
+              }
+            ]
           },
           {
             "pk": 24,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 64
+            "location": 64,
+            "time_slots": []
           },
           {
             "pk": 25,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 64
+            "location": 64,
+            "time_slots": []
           }
         ]
       },
@@ -6397,64 +6726,97 @@
             "pk": 1,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "08:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "11065213-2be4-5053-b78e-a9f3c97fe94b",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "18:00:00",
+                "day": 1
+              }
+            ]
           },
           {
             "pk": 2,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "08:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "45811d67-965a-5847-92f7-52bc8f0f27b6",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "20:00:00",
+                "day": 2
+              }
+            ]
           },
           {
             "pk": 3,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "08:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "e87e8d5f-b21a-5326-9201-32b124b7aea4",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "20:00:00",
+                "day": 3
+              }
+            ]
           },
           {
             "pk": 4,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "08:00:00",
-            "closing_time": "17:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "8fc5cf3d-2332-57a8-a33c-ba8482fe1825",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "17:00:00",
+                "day": 4
+              }
+            ]
           },
           {
             "pk": 23,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "08:00:00",
-            "closing_time": "17:00:00",
             "closed": false,
-            "location": 64
+            "location": 64,
+            "time_slots": [
+              {
+                "pk": "e2400f6d-05ec-5b04-944f-c9ccabd332a4",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "17:00:00",
+                "day": 23
+              }
+            ]
           },
           {
             "pk": 24,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 64
+            "location": 64,
+            "time_slots": []
           },
           {
             "pk": 25,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 64
+            "location": 64,
+            "time_slots": []
           }
         ]
       },
@@ -6512,64 +6874,105 @@
             "pk": 5,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "0ef80104-629b-54ff-b702-66863ac8c95d",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 5
+              }
+            ]
           },
           {
             "pk": 6,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "09:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "8237604a-3739-5ab1-a7a8-db00cebdee6b",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "20:00:00",
+                "day": 6
+              }
+            ]
           },
           {
             "pk": 7,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "06:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "7d342561-63ee-58d1-8ad0-50064612ad97",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "18:00:00",
+                "day": 7
+              }
+            ]
           },
           {
             "pk": 8,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "22:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "06cdcd6b-fd37-521a-96de-3003e1c047ab",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "22:00:00",
+                "day": 8
+              }
+            ]
           },
           {
             "pk": 20,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "bb5ce6d7-1da8-547f-be92-0dd75cc411f3",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 20
+              }
+            ]
           },
           {
             "pk": 21,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "09:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "0fc57e8a-bfed-5252-95e1-818120a002f3",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "13:00:00",
+                "day": 21
+              }
+            ]
           },
           {
             "pk": 22,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 65
+            "location": 65,
+            "time_slots": []
           }
         ]
       },
@@ -6627,64 +7030,105 @@
             "pk": 5,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "0ef80104-629b-54ff-b702-66863ac8c95d",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 5
+              }
+            ]
           },
           {
             "pk": 6,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "09:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "8237604a-3739-5ab1-a7a8-db00cebdee6b",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "20:00:00",
+                "day": 6
+              }
+            ]
           },
           {
             "pk": 7,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "06:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "7d342561-63ee-58d1-8ad0-50064612ad97",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "18:00:00",
+                "day": 7
+              }
+            ]
           },
           {
             "pk": 8,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "22:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "06cdcd6b-fd37-521a-96de-3003e1c047ab",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "22:00:00",
+                "day": 8
+              }
+            ]
           },
           {
             "pk": 20,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "bb5ce6d7-1da8-547f-be92-0dd75cc411f3",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 20
+              }
+            ]
           },
           {
             "pk": 21,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "09:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 65
+            "location": 65,
+            "time_slots": [
+              {
+                "pk": "0fc57e8a-bfed-5252-95e1-818120a002f3",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "13:00:00",
+                "day": 21
+              }
+            ]
           },
           {
             "pk": 22,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 65
+            "location": 65,
+            "time_slots": []
           }
         ]
       },
@@ -6742,64 +7186,105 @@
             "pk": 9,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "06:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "3599e553-2a0c-507a-b257-70897fd45564",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "20:00:00",
+                "day": 9
+              }
+            ]
           },
           {
             "pk": 10,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "05:00:00",
-            "closing_time": "21:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "3c05d614-06d4-5912-8343-bc390c423513",
+                "sort_order": 0,
+                "opening_time": "05:00:00",
+                "closing_time": "21:00:00",
+                "day": 10
+              }
+            ]
           },
           {
             "pk": 11,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "08:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "ad763bf5-3fdf-5ebc-a1b1-93b12f728116",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "18:00:00",
+                "day": 11
+              }
+            ]
           },
           {
             "pk": 12,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "07:00:00",
-            "closing_time": "19:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "c1560e03-0b98-5cad-b037-c5f75cade140",
+                "sort_order": 0,
+                "opening_time": "07:00:00",
+                "closing_time": "19:00:00",
+                "day": 12
+              }
+            ]
           },
           {
             "pk": 26,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 66
+            "location": 66,
+            "time_slots": []
           },
           {
             "pk": 27,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "07:00:00",
-            "closing_time": "19:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "31bfc3e7-61c9-5434-bd75-4511368168a3",
+                "sort_order": 0,
+                "opening_time": "07:00:00",
+                "closing_time": "19:00:00",
+                "day": 27
+              }
+            ]
           },
           {
             "pk": 28,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": "09:00:00",
-            "closing_time": "12:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "105ebf72-575a-5244-b0e1-60347eca81b1",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 28
+              }
+            ]
           }
         ]
       },
@@ -6857,64 +7342,105 @@
             "pk": 9,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "06:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "3599e553-2a0c-507a-b257-70897fd45564",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "20:00:00",
+                "day": 9
+              }
+            ]
           },
           {
             "pk": 10,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "05:00:00",
-            "closing_time": "21:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "3c05d614-06d4-5912-8343-bc390c423513",
+                "sort_order": 0,
+                "opening_time": "05:00:00",
+                "closing_time": "21:00:00",
+                "day": 10
+              }
+            ]
           },
           {
             "pk": 11,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "08:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "ad763bf5-3fdf-5ebc-a1b1-93b12f728116",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "18:00:00",
+                "day": 11
+              }
+            ]
           },
           {
             "pk": 12,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "07:00:00",
-            "closing_time": "19:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "c1560e03-0b98-5cad-b037-c5f75cade140",
+                "sort_order": 0,
+                "opening_time": "07:00:00",
+                "closing_time": "19:00:00",
+                "day": 12
+              }
+            ]
           },
           {
             "pk": 26,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 66
+            "location": 66,
+            "time_slots": []
           },
           {
             "pk": 27,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "07:00:00",
-            "closing_time": "19:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "31bfc3e7-61c9-5434-bd75-4511368168a3",
+                "sort_order": 0,
+                "opening_time": "07:00:00",
+                "closing_time": "19:00:00",
+                "day": 27
+              }
+            ]
           },
           {
             "pk": 28,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": "09:00:00",
-            "closing_time": "12:00:00",
             "closed": false,
-            "location": 66
+            "location": 66,
+            "time_slots": [
+              {
+                "pk": "105ebf72-575a-5244-b0e1-60347eca81b1",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 28
+              }
+            ]
           }
         ]
       },
@@ -6972,64 +7498,125 @@
             "pk": 13,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "08:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "8967c784-cd1e-5962-a87e-535c944c1e16",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "12:00:00",
+                "day": 13
+              },
+              {
+                "pk": "ea33ac59-db1c-5988-b2c0-36983c653344",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 13
+              }
+            ]
           },
           {
             "pk": 14,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 67
+            "location": 67,
+            "time_slots": []
           },
           {
             "pk": 15,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "3e5b618f-56be-5b1e-8379-03ec710154bd",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 15
+              },
+              {
+                "pk": "09bfa10d-b048-530a-9686-57deaebcc341",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 15
+              }
+            ]
           },
           {
             "pk": 16,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "e4594f65-d556-5b72-98a5-243de0cc22ad",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 16
+              },
+              {
+                "pk": "dd86995b-b168-5031-9cd5-c11d0abe1b49",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 16
+              }
+            ]
           },
           {
             "pk": 17,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "cfb12314-be32-5a25-8cb6-d4dcd3ebdd30",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 17
+              },
+              {
+                "pk": "785c3c8a-86ab-5783-8d6b-a9bc5bf89f41",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 17
+              }
+            ]
           },
           {
             "pk": 18,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "07:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "674e518f-3101-5709-a42e-5cc049a1da46",
+                "sort_order": 0,
+                "opening_time": "07:00:00",
+                "closing_time": "13:00:00",
+                "day": 18
+              }
+            ]
           },
           {
             "pk": 19,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 67
+            "location": 67,
+            "time_slots": []
           }
         ]
       },
@@ -7087,64 +7674,125 @@
             "pk": 13,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "08:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "8967c784-cd1e-5962-a87e-535c944c1e16",
+                "sort_order": 0,
+                "opening_time": "08:00:00",
+                "closing_time": "12:00:00",
+                "day": 13
+              },
+              {
+                "pk": "ea33ac59-db1c-5988-b2c0-36983c653344",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 13
+              }
+            ]
           },
           {
             "pk": 14,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 67
+            "location": 67,
+            "time_slots": []
           },
           {
             "pk": 15,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "3e5b618f-56be-5b1e-8379-03ec710154bd",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 15
+              },
+              {
+                "pk": "09bfa10d-b048-530a-9686-57deaebcc341",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 15
+              }
+            ]
           },
           {
             "pk": 16,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "e4594f65-d556-5b72-98a5-243de0cc22ad",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 16
+              },
+              {
+                "pk": "dd86995b-b168-5031-9cd5-c11d0abe1b49",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 16
+              }
+            ]
           },
           {
             "pk": 17,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "cfb12314-be32-5a25-8cb6-d4dcd3ebdd30",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "12:00:00",
+                "day": 17
+              },
+              {
+                "pk": "785c3c8a-86ab-5783-8d6b-a9bc5bf89f41",
+                "sort_order": 1,
+                "opening_time": "13:00:00",
+                "closing_time": "18:00:00",
+                "day": 17
+              }
+            ]
           },
           {
             "pk": 18,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "07:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 67
+            "location": 67,
+            "time_slots": [
+              {
+                "pk": "674e518f-3101-5709-a42e-5cc049a1da46",
+                "sort_order": 0,
+                "opening_time": "07:00:00",
+                "closing_time": "13:00:00",
+                "day": 18
+              }
+            ]
           },
           {
             "pk": 19,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 67
+            "location": 67,
+            "time_slots": []
           }
         ]
       },
@@ -7202,64 +7850,105 @@
             "pk": 29,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "98d91baa-f377-5c3d-b12c-3ab957b220b8",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 29
+              }
+            ]
           },
           {
             "pk": 30,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "09:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "03a43730-f024-5e4f-b5cf-620461e95963",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "20:00:00",
+                "day": 30
+              }
+            ]
           },
           {
             "pk": 31,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "06:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "55ca5b10-6303-5c94-b1ec-0667c250b29b",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "18:00:00",
+                "day": 31
+              }
+            ]
           },
           {
             "pk": 32,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "22:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "5f05946f-d2b9-57ff-b5df-582cb2d19fa7",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "22:00:00",
+                "day": 32
+              }
+            ]
           },
           {
             "pk": 33,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "64dbcd90-084a-5979-ae2a-0f57629f256b",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 33
+              }
+            ]
           },
           {
             "pk": 34,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "09:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "0cbd1f58-62ee-56a9-acd1-2bb03bf1cb25",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "13:00:00",
+                "day": 34
+              }
+            ]
           },
           {
             "pk": 35,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 78
+            "location": 78,
+            "time_slots": []
           }
         ]
       },
@@ -7317,64 +8006,105 @@
             "pk": 29,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "98d91baa-f377-5c3d-b12c-3ab957b220b8",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 29
+              }
+            ]
           },
           {
             "pk": 30,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "09:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "03a43730-f024-5e4f-b5cf-620461e95963",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "20:00:00",
+                "day": 30
+              }
+            ]
           },
           {
             "pk": 31,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "06:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "55ca5b10-6303-5c94-b1ec-0667c250b29b",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "18:00:00",
+                "day": 31
+              }
+            ]
           },
           {
             "pk": 32,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "22:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "5f05946f-d2b9-57ff-b5df-582cb2d19fa7",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "22:00:00",
+                "day": 32
+              }
+            ]
           },
           {
             "pk": 33,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "64dbcd90-084a-5979-ae2a-0f57629f256b",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 33
+              }
+            ]
           },
           {
             "pk": 34,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "09:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 78
+            "location": 78,
+            "time_slots": [
+              {
+                "pk": "0cbd1f58-62ee-56a9-acd1-2bb03bf1cb25",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "13:00:00",
+                "day": 34
+              }
+            ]
           },
           {
             "pk": 35,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 78
+            "location": 78,
+            "time_slots": []
           }
         ]
       },
@@ -7432,64 +8162,105 @@
             "pk": 36,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "ce50629e-e041-5c53-be92-bf23bfc99f99",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 36
+              }
+            ]
           },
           {
             "pk": 37,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "09:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "117c5124-9ef2-56aa-9320-0196a2cbc4da",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "20:00:00",
+                "day": 37
+              }
+            ]
           },
           {
             "pk": 38,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "06:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "e5e0d595-7468-56cf-86e7-1e5a7ecc4aa0",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "18:00:00",
+                "day": 38
+              }
+            ]
           },
           {
             "pk": 39,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "22:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "af3dce93-aa90-5bf8-9ea9-8ffe41ce8554",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "22:00:00",
+                "day": 39
+              }
+            ]
           },
           {
             "pk": 40,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "9ce57e54-4bdc-5e9f-88a5-bd9eaec44299",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 40
+              }
+            ]
           },
           {
             "pk": 41,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "09:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "efce5e05-7e09-5c67-8312-24c2d10bcc8f",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "13:00:00",
+                "day": 41
+              }
+            ]
           },
           {
             "pk": 42,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 79
+            "location": 79,
+            "time_slots": []
           }
         ]
       },
@@ -7547,64 +8318,105 @@
             "pk": 36,
             "sort_order": 0,
             "day": "MON",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "ce50629e-e041-5c53-be92-bf23bfc99f99",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 36
+              }
+            ]
           },
           {
             "pk": 37,
             "sort_order": 1,
             "day": "TUE",
-            "opening_time": "09:00:00",
-            "closing_time": "20:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "117c5124-9ef2-56aa-9320-0196a2cbc4da",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "20:00:00",
+                "day": 37
+              }
+            ]
           },
           {
             "pk": 38,
             "sort_order": 2,
             "day": "WED",
-            "opening_time": "06:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "e5e0d595-7468-56cf-86e7-1e5a7ecc4aa0",
+                "sort_order": 0,
+                "opening_time": "06:00:00",
+                "closing_time": "18:00:00",
+                "day": 38
+              }
+            ]
           },
           {
             "pk": 39,
             "sort_order": 3,
             "day": "THU",
-            "opening_time": "09:00:00",
-            "closing_time": "22:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "af3dce93-aa90-5bf8-9ea9-8ffe41ce8554",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "22:00:00",
+                "day": 39
+              }
+            ]
           },
           {
             "pk": 40,
             "sort_order": 4,
             "day": "FRI",
-            "opening_time": "09:00:00",
-            "closing_time": "18:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "9ce57e54-4bdc-5e9f-88a5-bd9eaec44299",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "18:00:00",
+                "day": 40
+              }
+            ]
           },
           {
             "pk": 41,
             "sort_order": 5,
             "day": "SAT",
-            "opening_time": "09:00:00",
-            "closing_time": "13:00:00",
             "closed": false,
-            "location": 79
+            "location": 79,
+            "time_slots": [
+              {
+                "pk": "efce5e05-7e09-5c67-8312-24c2d10bcc8f",
+                "sort_order": 0,
+                "opening_time": "09:00:00",
+                "closing_time": "13:00:00",
+                "day": 41
+              }
+            ]
           },
           {
             "pk": 42,
             "sort_order": 6,
             "day": "SUN",
-            "opening_time": null,
-            "closing_time": null,
             "closed": true,
-            "location": 79
+            "location": 79,
+            "time_slots": []
           }
         ]
       },

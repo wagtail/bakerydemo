@@ -1,8 +1,12 @@
+import uuid
+
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.api import APIField
 from wagtail.fields import StreamField
@@ -14,61 +18,102 @@ from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.locations.choices import DAY_CHOICES
 
 
-class OperatingHours(models.Model):
+class LocationOperatingDay(Orderable, ClusterableModel):
     """
-    A Django model to capture operating hours for a Location
-    """
-
-    day = models.CharField(max_length=3, choices=DAY_CHOICES, default="MON")
-    opening_time = models.TimeField(blank=True, null=True)
-    closing_time = models.TimeField(blank=True, null=True)
-    closed = models.BooleanField(
-        "Closed?", blank=True, help_text="Tick if location is closed on this day"
-    )
-
-    api_fields = [
-        APIField("day"),
-        APIField("get_day_display"),
-        APIField("opening_time"),
-        APIField("closing_time"),
-        APIField("closed"),
-    ]
-
-    panels = [
-        FieldPanel("day"),
-        FieldPanel("opening_time"),
-        FieldPanel("closing_time"),
-        FieldPanel("closed"),
-    ]
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        if self.opening_time:
-            opening = self.opening_time.strftime("%H:%M")
-        else:
-            opening = "--"
-        if self.closing_time:
-            closed = self.closing_time.strftime("%H:%M")
-        else:
-            closed = "--"
-        return f"{self.day}: {opening} - {closed} {settings.TIME_ZONE}"
-
-
-class LocationOperatingHours(Orderable, OperatingHours):
-    """
-    A model creating a relationship between the OperatingHours and Location
-    Note that unlike BlogPersonRelationship we don't include a ForeignKey to
-    OperatingHours as we don't need that relationship (e.g. any Location open
-    a certain day of the week). The ParentalKey is the minimum required to
-    relate the two objects to one another. We use the ParentalKey's related_
-    name to access it from the LocationPage admin
+    A day of the week on which a Location has operating hours. Each day holds
+    its own time slots (e.g. to allow for a lunch break), which are edited
+    with an InlinePanel nested inside the LocationPage's InlinePanel. To be
+    used as the parent of a nested InlinePanel, the model must be a
+    ClusterableModel.
     """
 
     location = ParentalKey(
         "LocationPage", related_name="hours_of_operation", on_delete=models.CASCADE
     )
+    day = models.CharField(max_length=3, choices=DAY_CHOICES, default="MON")
+    closed = models.BooleanField(
+        "Closed?",
+        default=False,
+        blank=True,
+        help_text="Tick if location is closed on this day",
+    )
+
+    api_fields = [
+        APIField("day"),
+        APIField("get_day_display"),
+        APIField("closed"),
+        APIField("time_slots"),
+    ]
+
+    panels = [
+        FieldPanel("day"),
+        FieldPanel("closed"),
+        InlinePanel("time_slots", heading="Opening hours", label="Time slot"),
+    ]
+
+    class Meta(Orderable.Meta):
+        verbose_name = "operating day"
+
+    def __str__(self):
+        if self.closed:
+            hours = "Closed"
+        else:
+            hours = ", ".join(str(slot) for slot in self.time_slots.all()) or "--"
+        return f"{self.day}: {hours} {settings.TIME_ZONE}"
+
+
+class LocationOperatingTimeSlot(Orderable):
+    """
+    An opening and closing time within a LocationOperatingDay. The ParentalKey
+    to LocationOperatingDay is what allows it to be edited with a nested
+    InlinePanel.
+
+    This model also uses a custom UUID primary key (rather than Django's default
+    auto-incrementing `id`) to demonstrate that InlinePanel works with
+    non-default primary keys.
+    """
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    day = ParentalKey(
+        "LocationOperatingDay", related_name="time_slots", on_delete=models.CASCADE
+    )
+    opening_time = models.TimeField()
+    closing_time = models.TimeField()
+
+    api_fields = [
+        APIField("opening_time"),
+        APIField("closing_time"),
+    ]
+
+    panels = [
+        FieldPanel("opening_time"),
+        FieldPanel("closing_time"),
+    ]
+
+    class Meta(Orderable.Meta):
+        verbose_name = "time slot"
+
+    def __str__(self):
+        opening = self.opening_time.strftime("%H:%M")
+        closing = self.closing_time.strftime("%H:%M")
+        return f"{opening} - {closing}"
+
+    # Wagtail's API includes an `id` field by default when serializing child
+    # relations, which does not exist on models with a custom primary key.
+    @property
+    def id(self):
+        return self.pk
+
+    def clean(self):
+        super().clean()
+        if (
+            self.opening_time
+            and self.closing_time
+            and self.opening_time >= self.closing_time
+        ):
+            raise ValidationError(
+                {"closing_time": "Closing time must be after opening time."}
+            )
 
 
 class LocationsIndexPage(Page):
@@ -161,7 +206,7 @@ class LocationPage(Page):
         FieldPanel("body"),
         FieldPanel("address"),
         FieldPanel("lat_long"),
-        InlinePanel("hours_of_operation", heading="Hours of Operation", label="Slot"),
+        InlinePanel("hours_of_operation", heading="Hours of Operation", label="Day"),
     ]
 
     api_fields = [
@@ -195,20 +240,19 @@ class LocationPage(Page):
         return hours
 
     # Determines if the location is currently open.
+    # This iterates over the related objects in Python rather than querying
+    # the database, so that it also works with unsaved data in previews.
     def is_open(self):
         now = timezone.localtime()
         current_time = now.time()
         current_day = now.strftime("%a").upper()
-        try:
-            self.operating_hours.get(
-                day=current_day,
-                opening_time__lte=current_time,
-                closing_time__gte=current_time,
-                closed=False,
-            )
-            return True
-        except LocationOperatingHours.DoesNotExist:
-            return False
+        for operating_day in self.operating_hours:
+            if operating_day.day != current_day or operating_day.closed:
+                continue
+            for slot in operating_day.time_slots.all():
+                if slot.opening_time <= current_time <= slot.closing_time:
+                    return True
+        return False
 
     # Makes additional context available to the template so that we can access
     # the latitude, longitude and map API key to render the map
