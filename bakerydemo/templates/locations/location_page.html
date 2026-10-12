@@ -37,7 +37,7 @@
                                     Sorry, this location is currently closed.
                                 {% endif %}
                             {% else %}
-                                <location-status url="{% url 'wagtailapi:pages:detail' page.pk %}">
+                                <location-status url="{% url 'wagtailapi_v3:detail_page' page.pk %}">
                                     Please wait…
                                 </location-status>
                             {% endif %}
