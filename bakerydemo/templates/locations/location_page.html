@@ -46,24 +46,26 @@
                             <h2 class="location__meta-title">Address</h2>
                             <address>{{ page.address|linebreaks }}</address>
 
-                            {% if page.operating_hours %}
-                                <h2 class="location__meta-title">Opening hours</h2>
-                                {% for hours in page.operating_hours %}
-                                    <time itemprop="openingHours" datetime="{{ hours }}" class="location__time">
-                                        <span class="location__day">{{ hours.day }}</span>:
-                                        <span class="location__hours">
-                                            {% if hours.closed == True %}
-                                                Closed
-                                            {% else %}
-                                                {% for slot in hours.time_slots.all %}
-                                                    {{ slot.opening_time }} - {{ slot.closing_time }}{% if not forloop.last %},{% endif %}
-                                                {% empty %}
-                                                    -
-                                                {% endfor %}
-                                            {% endif %}
-                                        </span></time>
-                                {% endfor %}
-                            {% endif %}
+                            {% with operating_days=page.operating_days.all %}
+                                {% if operating_days %}
+                                    <h2 class="location__meta-title">Opening hours</h2>
+                                    {% for operating_day in operating_days %}
+                                        <time itemprop="openingHours" datetime="{{ operating_day }}" class="location__time">
+                                            <span class="location__day">{{ operating_day.day }}</span>:
+                                            <span class="location__hours">
+                                                {% if operating_day.closed == True %}
+                                                    Closed
+                                                {% else %}
+                                                    {% for slot in operating_day.time_slots.all %}
+                                                        {{ slot.opening_time }} - {{ slot.closing_time }}{% if not forloop.last %},{% endif %}
+                                                    {% empty %}
+                                                        -
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </span></time>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
                         </div>
                     </div>
                 </div>

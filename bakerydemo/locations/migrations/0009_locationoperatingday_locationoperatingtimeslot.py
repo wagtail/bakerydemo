@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                     "location",
                     modelcluster.fields.ParentalKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="hours_of_operation",
+                        related_name="operating_days",
                         to="locations.locationpage",
                     ),
                 ),

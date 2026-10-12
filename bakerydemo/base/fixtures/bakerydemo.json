@@ -6573,7 +6573,7 @@
         "address": "Hof 2,\r\nLækjarhús,\r\n785 Öræfi,\r\nIceland",
         "lat_long": "63.9095213,-16.7093877",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 1,
             "sort_order": 0,
@@ -6721,7 +6721,7 @@
         "address": "Hof 2,\r\nLækjarhús,\r\n785 Öræfi,\r\nIceland",
         "lat_long": "63.9095213,-16.7093877",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 1,
             "sort_order": 0,
@@ -6869,7 +6869,7 @@
         "address": "Laugavegur 36,\r\n101 Reykjavík,\r\nIceland",
         "lat_long": "64.144018, -21.950953",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 5,
             "sort_order": 0,
@@ -7025,7 +7025,7 @@
         "address": "Laugavegur 36,\r\n101 Reykjavík,\r\nIceland",
         "lat_long": "64.144018, -21.950953",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 5,
             "sort_order": 0,
@@ -7181,7 +7181,7 @@
         "address": "Klettsvegi 1,\r\n870 Vík,\r\nIceland",
         "lat_long": "63.419061,-19.0064982",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 9,
             "sort_order": 0,
@@ -7337,7 +7337,7 @@
         "address": "Klettsvegi 1,\r\n870 Vík,\r\nIceland",
         "lat_long": "63.419061,-19.0064982",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 9,
             "sort_order": 0,
@@ -7493,7 +7493,7 @@
         "address": "Eyravegur,\r\n800 Selfoss,\r\nIceland",
         "lat_long": "63.9375899, -21.0419085",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 13,
             "sort_order": 0,
@@ -7669,7 +7669,7 @@
         "address": "Eyravegur,\r\n800 Selfoss,\r\nIceland",
         "lat_long": "63.9375899, -21.0419085",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 13,
             "sort_order": 0,
@@ -7845,7 +7845,7 @@
         "address": "Hafnarbraut,\r\n780 Höfn í Hornafirði,\r\nIceland",
         "lat_long": "64.2518583,-15.2037097",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 29,
             "sort_order": 0,
@@ -8001,7 +8001,7 @@
         "address": "Hafnarbraut,\r\n780 Höfn í Hornafirði,\r\nIceland",
         "lat_long": "64.2518583,-15.2037097",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 29,
             "sort_order": 0,
@@ -8157,7 +8157,7 @@
         "address": "Skagabraut 43,\r\n300 Akranes,\r\nIceland",
         "lat_long": "64.3214253,-22.0674947",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 36,
             "sort_order": 0,
@@ -8313,7 +8313,7 @@
         "address": "Skagabraut 43,\r\n300 Akranes,\r\nIceland",
         "lat_long": "64.3214253,-22.0674947",
         "wagtail_admin_comments": [],
-        "hours_of_operation": [
+        "operating_days": [
           {
             "pk": 36,
             "sort_order": 0,

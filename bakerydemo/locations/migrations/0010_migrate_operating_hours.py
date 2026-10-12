@@ -82,8 +82,8 @@ def forwards_func(apps, schema_editor):
         content = revision.content
         if "hours_of_operation" not in content:
             continue
-        content["hours_of_operation"] = convert_serialized_hours(
-            content["hours_of_operation"]
+        content["operating_days"] = convert_serialized_hours(
+            content.pop("hours_of_operation")
         )
         revision.content = content
         revision.save(update_fields=["content"])

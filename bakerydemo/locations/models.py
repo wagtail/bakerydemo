@@ -30,7 +30,9 @@ class LocationOperatingDay(Orderable, ClusterableModel):
 
     custom_id = models.AutoField(primary_key=True)
     location = ParentalKey(
-        "LocationPage", related_name="hours_of_operation", on_delete=models.CASCADE
+        "LocationPage",
+        related_name="operating_days",
+        on_delete=models.CASCADE,
     )
     day = models.CharField(max_length=3, choices=DAY_CHOICES, default="MON")
     closed = models.BooleanField(
@@ -196,7 +198,7 @@ class LocationPage(Page):
         FieldPanel("body"),
         FieldPanel("address"),
         FieldPanel("lat_long"),
-        InlinePanel("hours_of_operation", heading="Hours of Operation", label="Day"),
+        InlinePanel("operating_days", heading="Hours of Operation", label="Day"),
     ]
 
     api_fields = [
@@ -206,7 +208,7 @@ class LocationPage(Page):
         APIField("address"),
         APIField("lat_long"),
         APIField("is_open"),
-        APIField("hours_of_operation", writable=True),
+        APIField("operating_days", writable=True),
         APIField(
             "image_hero",
             serializer=ImageRenditionField("fill-1920x600", source="image"),
@@ -224,11 +226,6 @@ class LocationPage(Page):
     def __str__(self):
         return self.title
 
-    @property
-    def operating_hours(self):
-        hours = self.hours_of_operation.all()
-        return hours
-
     # Determines if the location is currently open.
     # This iterates over the related objects in Python rather than querying
     # the database, so that it also works with unsaved data in previews.
@@ -236,7 +233,7 @@ class LocationPage(Page):
         now = timezone.localtime()
         current_time = now.time()
         current_day = now.strftime("%a").upper()
-        for operating_day in self.operating_hours:
+        for operating_day in self.operating_days.all():
             if operating_day.day != current_day or operating_day.closed:
                 continue
             for slot in operating_day.time_slots.all():
