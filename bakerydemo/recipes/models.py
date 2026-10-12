@@ -39,7 +39,7 @@ class RecipePersonRelationship(Orderable, models.Model):
 
     api_fields = [
         APIField("page"),
-        APIField("person"),
+        APIField("person", writable=True),
     ]
 
 
@@ -114,13 +114,13 @@ class RecipePage(Page):
     ]
 
     api_fields = [
-        APIField("date_published"),
-        APIField("subtitle"),
-        APIField("introduction"),
-        APIField("backstory"),
-        APIField("recipe_headline"),
-        APIField("body"),
-        APIField("recipe_person_relationship"),
+        APIField("date_published", writable=True),
+        APIField("subtitle", writable=True),
+        APIField("introduction", writable=True),
+        APIField("backstory", writable=True),
+        APIField("recipe_headline", writable=True),
+        APIField("body", writable=True),
+        APIField("recipe_person_relationship", writable=True),
     ]
 
     def authors(self):
