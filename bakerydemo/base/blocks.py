@@ -19,6 +19,8 @@ def get_image_api_representation(image, filter_spec=None):
     When ``filter_spec`` is provided, also serialise a ``meta.rendition`` with
     the details of the rendered image (same keys as ``ImageRenditionField``).
     """
+    if image is None:
+        return None
     representation = {
         "id": image.pk,
         "title": image.title,
