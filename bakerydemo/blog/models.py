@@ -33,7 +33,7 @@ class BlogPersonRelationship(Orderable, models.Model):
     panels = [FieldPanel("person")]
 
     api_fields = [
-        APIField("page", writable=True),
+        APIField("page"),
         APIField("person", writable=True),
     ]
 
