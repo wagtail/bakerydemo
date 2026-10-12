@@ -32,6 +32,7 @@ class LocationOperatingDay(Orderable, ClusterableModel):
     location = ParentalKey(
         "LocationPage",
         related_name="operating_days",
+        related_query_name="operating_day",
         on_delete=models.CASCADE,
     )
     day = models.CharField(max_length=3, choices=DAY_CHOICES, default="MON")
