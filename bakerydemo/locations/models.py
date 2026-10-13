@@ -47,7 +47,7 @@ class LocationOperatingDay(Orderable, ClusterableModel):
         APIField("day", writable=True),
         APIField("get_day_display"),
         APIField("closed", writable=True),
-        APIField("time_slots"),
+        APIField("time_slots", writable=True),
     ]
 
     panels = [
@@ -80,8 +80,8 @@ class LocationOperatingTimeSlot(Orderable):
     closing_time = models.TimeField()
 
     api_fields = [
-        APIField("opening_time"),
-        APIField("closing_time"),
+        APIField("opening_time", writable=True),
+        APIField("closing_time", writable=True),
     ]
 
     panels = [
