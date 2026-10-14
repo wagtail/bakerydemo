@@ -9,6 +9,7 @@ from wagtail.models import Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.markdown import MarkdownPageMixin
 
 from ..breads.models import Country
 
@@ -48,7 +49,7 @@ class SocialMediaBlock(StructBlock):
         value_class = SocialMediaValue
 
 
-class PersonPage(Page):
+class PersonPage(MarkdownPageMixin, Page):
     """
     Detail view for a specific person
     """
@@ -129,7 +130,7 @@ class PersonPage(Page):
         return context
 
 
-class PeopleIndexPage(Page):
+class PeopleIndexPage(MarkdownPageMixin, Page):
     """
     Index page for people.
 

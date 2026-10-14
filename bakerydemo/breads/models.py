@@ -11,6 +11,7 @@ from wagtail.models import DraftStateMixin, Orderable, Page, RevisionMixin
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.markdown import MarkdownPageMixin
 
 
 class Country(models.Model):
@@ -113,7 +114,7 @@ class BreadType(RevisionMixin, models.Model):
         verbose_name_plural = "bread types"
 
 
-class BreadPage(Page):
+class BreadPage(MarkdownPageMixin, Page):
     """
     Detail view for a specific bread
     """
@@ -199,7 +200,7 @@ class BreadPage(Page):
         return self.ingredients.order_by("sort_order", "name")
 
 
-class BreadsIndexPage(Page):
+class BreadsIndexPage(MarkdownPageMixin, Page):
     """
     Index page for breads.
 
