@@ -26,6 +26,7 @@
                     {# main_menu is defined in base/templatetags/navigation_tags.py #}
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
+                {% language_switcher "mobile" %}
                 <form action="/search" method="get" class="navigation__mobile-search" role="search">
                     <label for="mobile-search-input" class="u-sr-only">Search the bakery</label>
                     <input class="navigation__search-input" id="mobile-search-input" type="text" placeholder="Search" autocomplete="off" name="q">
@@ -43,6 +44,8 @@
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
             </nav>
+
+            {% language_switcher "desktop" %}
 
             <button
                 type="button"
