@@ -1,6 +1,10 @@
 {% load wagtailimages_tags %}
 
 <figure>
-    {% picture self.image format-{avif,webp,jpeg} fill-{400x220,600x338} sizes="(max-width: 768px) 200px, 900px" loading="lazy" %}
+    {% if ".svg" in self.image.file.name|lower %}
+        {% image self.image width-600 preserve-svg %}
+    {% else %}
+        {% picture self.image format-{avif,webp,jpeg} fill-{400x220,600x338} sizes="(max-width: 768px) 200px, 900px" loading="lazy" %}
+    {% endif %}
     <figcaption>{{ self.caption }} - {{ self.attribution }}</figcaption>
 </figure>
