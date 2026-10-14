@@ -1,6 +1,8 @@
 Django>=6.0,<6.1
 python-dotenv>=1.2.1,<2
-wagtail>=8.0,<8.1
+# Unreleased Wagtail APIs used for Markdown page responses: response_media_types
+# (varying responses) and HTMLToMarkdownConverter (wagtail/wagtail#14721).
+wagtail @ git+https://github.com/albinazs/wagtail.git@demo/markdown-responses
 wagtail-font-awesome-svg>=1,<2
 django-debug-toolbar>=4.2,<5
 django-extensions>=4.1,<5
