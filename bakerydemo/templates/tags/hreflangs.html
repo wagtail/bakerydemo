@@ -1,0 +1,3 @@
+{% for translation in translations %}
+    <link rel="alternate" hreflang="{{ translation.code }}" href="{{ translation.url }}">
+{% endfor %}
