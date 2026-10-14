@@ -1,5 +1,7 @@
 {% load wagtailcore_tags %}
 
+{% wagtail_site as current_site %}
 <div class="copyright">
     {{ footer_text|richtext }}
+    <p>Copyright <b>{{ current_site.site_name }}</b>, {% now "Y" %}. All rights reserved.</p>
 </div>

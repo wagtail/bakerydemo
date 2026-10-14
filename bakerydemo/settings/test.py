@@ -13,6 +13,10 @@ STORAGES["staticfiles"]["BACKEND"] = (
     "django.contrib.staticfiles.storage.StaticFilesStorage"
 )
 
+# WhiteNoise runs in tests too, so skip the startup static files scan.
+# https://whitenoise.readthedocs.io/en/stable/django.html#whitenoise-makes-my-tests-run-slow
+WHITENOISE_AUTOREFRESH = True
+
 # Use local memory caching instead of redis when testing locally
 # to prevent caching shenanigans
 CACHES = {

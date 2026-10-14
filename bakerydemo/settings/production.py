@@ -140,7 +140,6 @@ if ELASTICSEARCH_ENDPOINT:
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 STORAGES["staticfiles"]["BACKEND"] = (
     "whitenoise.storage.CompressedManifestStaticFilesStorage"
 )

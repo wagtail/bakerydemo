@@ -14,7 +14,7 @@
       "go_live_at": null,
       "expire_at": null,
       "expired": false,
-      "body": "<p>Copyright <b>The Wagtail Bakery</b>, 2019. All rights reserved.<br/><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
+      "body": "<p><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
     }
   },
   {
@@ -2495,7 +2495,7 @@
     "fields": {
       "hostname": "127.0.0.1",
       "port": 8000,
-      "site_name": "Wagtail Bakery",
+      "site_name": "The Wagtail Bakery",
       "root_page": 60,
       "is_default_site": true
     }
@@ -8458,7 +8458,7 @@
         "content_type": 36,
         "url_path": "/home/blog/",
         "owner": null,
-        "seo_title": "Wagtail Bakeries Blog",
+        "seo_title": "Blog",
         "show_in_menus": true,
         "search_description": "",
         "latest_revision_created_at": "2019-04-23T20:04:30.432Z",
@@ -8505,7 +8505,7 @@
         "content_type": 36,
         "url_path": "/home/blog/",
         "owner": null,
-        "seo_title": "Wagtail Bakeries Blog",
+        "seo_title": "Blog",
         "show_in_menus": true,
         "search_description": "",
         "latest_revision_created_at": "2023-09-01T16:55:13.538Z",
@@ -10270,7 +10270,7 @@
         "go_live_at": null,
         "expire_at": null,
         "expired": false,
-        "body": "<p>Copyright <b>The Wagtail Bakery</b>, 2019. All rights reserved.<br/><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
+        "body": "<p><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
       },
       "approved_go_live_at": null
     }
@@ -10298,7 +10298,7 @@
         "go_live_at": null,
         "expire_at": null,
         "expired": false,
-        "body": "<p>Copyright <b>The Wagtail Bakery</b>, 2019. All rights reserved.<br/><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
+        "body": "<p><i>\"If you read a lot you're well read / If you eat a lot you're well bread.\"</i></p>"
       },
       "approved_go_live_at": null
     }
@@ -12016,7 +12016,7 @@
       "content_type": ["blog", "blogindexpage"],
       "url_path": "/home/blog/",
       "owner": null,
-      "seo_title": "Wagtail Bakeries Blog",
+      "seo_title": "Blog",
       "show_in_menus": true,
       "search_description": "",
       "latest_revision_created_at": "2023-09-01T16:55:13.565Z",
