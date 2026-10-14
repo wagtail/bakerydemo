@@ -39,3 +39,21 @@ jobs:
       - run: uv run ./manage.py check
       - run: uv run ./manage.py makemigrations --check --noinput
       - run: uv run ./manage.py test
+  test-client-integration:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SETTINGS_MODULE: bakerydemo.settings.test
+      PLAYWRIGHT_WEB_SERVER_COMMAND: uv run python manage.py runserver 127.0.0.1:8000 --noreload
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+      - run: uv venv
+      - run: uv pip install -r requirements/development.txt
+      - run: uv run ./manage.py migrate
+      - run: uv run ./manage.py load_initial_data
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
