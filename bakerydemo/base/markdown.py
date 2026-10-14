@@ -12,6 +12,13 @@ class MarkdownPageMixin:
 
     response_media_types = ["text/html", "text/markdown"]
 
+    def get_response_media_type(self, request):
+        # Demo only: ?format=md shows the Markdown in a browser, which can't
+        # easily send an Accept: text/markdown header.
+        if request.GET.get("format") == "md":
+            return "text/markdown"
+        return super().get_response_media_type(request)
+
     def serve(self, request, *args, **kwargs):
         response = super().serve(request, *args, **kwargs)
         if self.get_response_media_type(request) != "text/markdown":
