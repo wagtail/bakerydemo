@@ -30,7 +30,7 @@
             <meta property="og:site_name" content="{{ current_site.site_name }}">
             {% if page.image %}
                 {% image page.image fill-1200x630 as og_image %}
-                <meta property="og:image" content="{{ current_site.root_url }}{{ og_image.url }}">
+                <meta property="og:image" content="{{ og_image.url }}">
             {% endif %}
         {% endif %}
 
