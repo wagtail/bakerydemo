@@ -1,4 +1,5 @@
-{% load navigation_tags static wagtailuserbar %}
+{% load navigation_tags static wagtailuserbar wagtailcore_tags wagtailimages_tags %}
+{% wagtail_site as current_site %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,6 +18,21 @@
         </title>
         <meta name="description" content="{% block search_description %}{% if page.search_description %}{{ page.search_description }}{% endif %}{% endblock %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% if page %}
+            <link rel="canonical" href="{{ page.full_url }}">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="{{ page.full_url }}">
+            <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
+            {% if page.search_description %}
+                <meta property="og:description" content="{{ page.search_description }}">
+            {% endif %}
+            <meta property="og:site_name" content="{{ current_site.site_name }}">
+            {% if page.image %}
+                {% image page.image fill-1200x630 as og_image %}
+                <meta property="og:image" content="{{ current_site.root_url }}{{ og_image.url }}">
+            {% endif %}
+        {% endif %}
 
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}

@@ -74,4 +74,5 @@ def get_footer_text(context):
 
     return {
         "footer_text": footer_text,
+        "request": context["request"],
     }

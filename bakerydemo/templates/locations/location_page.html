@@ -50,7 +50,7 @@
                                 {% if operating_days %}
                                     <h2 class="location__meta-title">Opening hours</h2>
                                     {% for operating_day in operating_days %}
-                                        <time itemprop="openingHours" datetime="{{ operating_day }}" class="location__time">
+                                        <time datetime="{{ operating_day }}" class="location__time">
                                             <span class="location__day">{{ operating_day.day }}</span>:
                                             <span class="location__hours">
                                                 {% if operating_day.closed == True %}

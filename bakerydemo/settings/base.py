@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",  # Must be before `django.contrib.staticfiles`
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "bakerydemo.people",
@@ -85,6 +86,9 @@ MIDDLEWARE = [
     # Uncomment to enable django-debug-toolbar
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    # Serve static files in production and development.
+    # https://whitenoise.readthedocs.io/en/stable/django.html
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -185,6 +189,10 @@ STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
 MEDIA_URL = "/media/"
+
+# Serve files such as robots.txt at the site root.
+# https://whitenoise.readthedocs.io/en/stable/django.html#whitenoise-root
+WHITENOISE_ROOT = os.path.join(BASE_DIR, "public")
 
 # Default storage settings, with the staticfiles storage updated.
 # See https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-STORAGES

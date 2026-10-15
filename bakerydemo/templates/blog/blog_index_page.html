@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags navigation_tags wagtailimages_tags wagtail_cache %}
 
-{% if tag %}
-    {% block title %}
-        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}: {{ tag }}
-    {% endblock %}
+{% block title %}
+    {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% if tag %}: {{ tag }}{% endif %}
+{% endblock %}
 
-    {% block search_description %}Viewing all blog posts sorted by the tag {{ tag }}{% endblock %}
-{% endif %}
+{% block search_description %}{% if tag %}Viewing all blog posts sorted by the tag {{ tag }}{% endif %}{% endblock %}
 
 {% block content %}
     {% if not tag %}
