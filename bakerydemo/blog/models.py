@@ -13,6 +13,7 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.markdown import MarkdownPageMixin
 
 
 class BlogPersonRelationship(Orderable, models.Model):
@@ -50,7 +51,7 @@ class BlogPageTag(TaggedItemBase):
     )
 
 
-class BlogPage(Page):
+class BlogPage(MarkdownPageMixin, Page):
     """
     A Blog Page
 
@@ -157,7 +158,7 @@ class BlogPage(Page):
     subpage_types = []
 
 
-class BlogIndexPage(RoutablePageMixin, Page):
+class BlogIndexPage(MarkdownPageMixin, RoutablePageMixin, Page):
     """
     Index page for blogs.
     We need to alter the page model's context to return the child page objects,
