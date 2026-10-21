@@ -8,7 +8,6 @@ would otherwise have to fetch each page's detail separately.
 
 This endpoint accepts the same filters, ordering, search, and pagination as
 ``GET /pages/``, but returns the same schema as ``GET /pages/{page_id}/``.
-Without an explicit ``order``, pages are returned in the page tree order.
 """
 
 from typing import cast
@@ -92,10 +91,6 @@ def list_pages(
         pagination_info,
         base_fields=BASE_PAGE_READ_FIELDS,
     )
-    if not ordering.order and not search.search:
-        # Unlike GET /pages/ (which orders by ID), default to the page tree
-        # order like API v2 does, so that e.g. menus follow the editor's order
-        queryset = queryset.order_by("path")
     queryset = search.search_queryset(request, queryset)
 
     return SpecificPages(queryset)
