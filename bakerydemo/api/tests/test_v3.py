@@ -108,24 +108,18 @@ class TestListingPages(APIV3TestCase):
         self.assertEqual(titles, ["First post"])
 
 
-class TestPageLinkField(APIV3TestCase):
+class TestPageForeignKeys(APIV3TestCase):
     def test_page_foreign_keys_are_links(self):
         response = self.client.get(
             reverse("wagtailapi_v3:detail_page", args=[self.home.pk])
         )
 
         data = response.json()
-        self.assertEqual(
-            data["hero_cta_link"],
-            {
-                "id": self.about.pk,
-                "title": "About",
-                "meta": {
-                    "type": "base.StandardPage",
-                    "html_url": "http://testserver/about/",
-                },
-            },
-        )
+        link = data["hero_cta_link"]
+        self.assertEqual(link["id"], self.about.pk)
+        self.assertEqual(link["title"], "About")
+        self.assertEqual(link["meta"]["type"], "base.StandardPage")
+        self.assertEqual(link["meta"]["html_url"], "http://testserver/about/")
         self.assertEqual(data["featured_section_3"]["id"], self.blog.pk)
         self.assertIsNone(data["featured_section_1"])
 

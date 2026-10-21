@@ -37,7 +37,6 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
-from bakerydemo.api.v3.fields import PageLinkField
 from bakerydemo.headless import CustomHeadlessMixin
 
 from .blocks import BaseStreamBlock
@@ -442,17 +441,17 @@ class HomePage(CustomHeadlessMixin, Page):
         APIField("image"),
         APIField("hero_text"),
         APIField("hero_cta"),
-        APIField("hero_cta_link", serializer=PageLinkField()),
+        APIField("hero_cta_link"),
         APIField("body"),
         APIField("lead_image"),
         APIField("lead_title"),
         APIField("lead_text"),
         APIField("featured_section_1_title"),
-        APIField("featured_section_1", serializer=PageLinkField()),
+        APIField("featured_section_1"),
         APIField("featured_section_2_title"),
-        APIField("featured_section_2", serializer=PageLinkField()),
+        APIField("featured_section_2"),
         APIField("featured_section_3_title"),
-        APIField("featured_section_3", serializer=PageLinkField()),
+        APIField("featured_section_3"),
         APIField(
             "image_hero",
             serializer=ImageRenditionField("fill-1920x900", source="image"),
