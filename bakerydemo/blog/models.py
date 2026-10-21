@@ -8,10 +8,11 @@ from wagtail.admin.panels import FieldPanel, MultipleChooserPanel
 from wagtail.api import APIField
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
-from wagtail.images.api.fields import ImageRenditionField
+from wagtail.images.api.v3.fields import ImageRenditionField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
+from bakerydemo.api.v3.fields import PageLinkField
 from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.headless import CustomHeadlessMixin
 
@@ -34,7 +35,7 @@ class BlogPersonRelationship(Orderable, models.Model):
     panels = [FieldPanel("person")]
 
     api_fields = [
-        APIField("page"),
+        APIField("page", serializer=PageLinkField()),
         APIField("person", writable=True),
     ]
 

@@ -21,7 +21,7 @@ from wagtail.contrib.settings.models import (
     register_setting,
 )
 from wagtail.fields import RichTextField, StreamField
-from wagtail.images.api.fields import ImageRenditionField
+from wagtail.images.api.v3.fields import ImageRenditionField
 from wagtail.images.models import Image
 from wagtail.models import (
     Collection,
@@ -37,6 +37,7 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
+from bakerydemo.api.v3.fields import PageLinkField
 from bakerydemo.headless import CustomHeadlessMixin
 
 from .blocks import BaseStreamBlock
@@ -441,17 +442,17 @@ class HomePage(CustomHeadlessMixin, Page):
         APIField("image"),
         APIField("hero_text"),
         APIField("hero_cta"),
-        APIField("hero_cta_link"),
+        APIField("hero_cta_link", serializer=PageLinkField()),
         APIField("body"),
         APIField("lead_image"),
         APIField("lead_title"),
         APIField("lead_text"),
         APIField("featured_section_1_title"),
-        APIField("featured_section_1"),
+        APIField("featured_section_1", serializer=PageLinkField()),
         APIField("featured_section_2_title"),
-        APIField("featured_section_2"),
+        APIField("featured_section_2", serializer=PageLinkField()),
         APIField("featured_section_3_title"),
-        APIField("featured_section_3"),
+        APIField("featured_section_3", serializer=PageLinkField()),
         APIField(
             "image_hero",
             serializer=ImageRenditionField("fill-1920x900", source="image"),
