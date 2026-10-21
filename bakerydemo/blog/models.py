@@ -12,7 +12,6 @@ from wagtail.images.api.v3.fields import ImageRenditionField
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
-from bakerydemo.api.v3.fields import PageLinkField
 from bakerydemo.base.blocks import BaseStreamBlock
 from bakerydemo.headless import CustomHeadlessMixin
 
@@ -35,7 +34,7 @@ class BlogPersonRelationship(Orderable, models.Model):
     panels = [FieldPanel("person")]
 
     api_fields = [
-        APIField("page", serializer=PageLinkField()),
+        APIField("page"),
         APIField("person", writable=True),
     ]
 
