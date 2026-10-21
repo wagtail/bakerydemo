@@ -6,6 +6,9 @@ from wagtail.api.v3.routers.pages import PageDetailSchema, PageTypeLiteral
 
 from bakerydemo.api.preview import get_preview_page
 
+from .blocks import register_block_schemas
+from .listing import router as listing_router
+
 router = Router(tags=["preview"])
 
 
@@ -21,4 +24,7 @@ def get_preview(request: HttpRequest, type: PageTypeLiteral, token: str):
     return get_preview_page(type, token).specific
 
 
+register_block_schemas()
+
 api.add_router("/preview/", router)
+api.add_router("/listing/", listing_router)

@@ -11,7 +11,8 @@ from wagtail.images.views.serve import ServeView
 from bakerydemo.headless import UserbarView
 from bakerydemo.search import views as search_views
 
-from .api import v2_router, v3_api
+from .api.v2.router import api_router as v2_router
+from .api.v3.router import api as v3_api
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
