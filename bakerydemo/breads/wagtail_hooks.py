@@ -28,6 +28,7 @@ class BreadIngredientSnippetViewSet(SnippetViewSet):
     search_fields = ("name",)
     filterset_class = BreadIngredientFilterSet
     inspect_view_enabled = True
+    inspect_view_fields_exclude = ["id"]
     menu_order = 999  # will place it last.
 
 
@@ -53,8 +54,20 @@ class CountryModelViewSet(ModelViewSet):
     sort_order_field = "sort_order"
 
     panels = [
+        FieldPanel("id"),
         FieldPanel("title"),
     ]
+
+    def get_edit_view_kwargs(self, **kwargs):
+        kwargs = super().get_edit_view_kwargs(**kwargs)
+        from wagtail.admin.panels import FieldPanel, ObjectList
+        panel = ObjectList([
+            FieldPanel("id", read_only=True),
+            FieldPanel("title"),
+        ]).bind_to_model(self.model)
+        kwargs["panel"] = panel
+        kwargs["form_class"] = panel.get_form_class()
+        return kwargs
 
 
 class BreadPageFilterSet(PageFilterSet):
