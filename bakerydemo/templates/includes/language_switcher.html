@@ -1,0 +1,25 @@
+{% if render_language_switcher %}
+    <div class="language-switcher">
+        <span class="language-switcher__current" lang="{{ current_language.code }}">
+            {{ current_language.name_local }}
+        </span>
+
+        <ul class="language-switcher__list">
+            {% for language in languages %}
+                {% if not language.is_current %}
+                    <li class="language-switcher__item">
+                        <a
+                            href="{{ language.url }}"
+                            class="language-switcher__link"
+                            rel="alternate"
+                            hreflang="{{ language.code }}"
+                            lang="{{ language.code }}"
+                        >
+                            {{ language.name_local }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
