@@ -37,6 +37,19 @@ You can also run the project test suite with:
 ./manage.py test
 ```
 
+The browser integration tests use Playwright and the demo fixture data:
+
+```bash
+npm ci
+npx playwright install chromium
+./manage.py migrate
+./manage.py load_initial_data
+npm run test:e2e
+
+# To open HTML report run below commmand
+npx playwright show-report
+```
+
 ### Demo data management
 
 If you change content or images in this repo and need to prepare a new fixture file for export, do the following on a branch:
