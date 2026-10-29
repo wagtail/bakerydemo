@@ -136,5 +136,26 @@ class TestPreview(APIV3TestCase):
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
+        self.assertEqual(data["id"], self.post_1.id)
         self.assertEqual(data["meta"]["type"], "blog.BlogPage")
         self.assertEqual(data["title"], "Changed title")
+
+    def test_preview_new_page(self):
+        page = BlogPage(title="New post", slug="new", introduction="New")
+        # Place the page in the tree without saving it, like Wagtail's preview
+        # of a new page does
+        page.depth = self.blog.depth + 1
+        page.path = self.blog.get_last_child()._inc_path()
+        page.set_url_path(self.blog)
+        preview = page.create_page_preview()
+
+        response = self.client.get(
+            reverse("wagtailapi_v3:detail_preview"),
+            {"type": "blog.BlogPage", "token": preview.token},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["id"], 0)
+        self.assertEqual(data["meta"]["type"], "blog.BlogPage")
+        self.assertEqual(data["title"], "New post")
