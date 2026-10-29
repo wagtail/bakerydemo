@@ -21,7 +21,13 @@ router = Router(tags=["preview"])
     auth=[BearerTokenAuth(), AllowAnonymous()],
 )
 def get_preview(request: HttpRequest, type: PageTypeLiteral, token: str):
-    return get_preview_page(type, token).specific
+    page = get_preview_page(type, token).specific
+    if page.id is None:
+        # A new page that hasn't been saved yet. The page schemas require an
+        # ID, so use a fake one that no page can have. As 0 is falsy, clients
+        # can still tell that the page has no real ID.
+        page.id = 0
+    return page
 
 
 register_block_schemas()
