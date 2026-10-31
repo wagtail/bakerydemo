@@ -3,7 +3,7 @@ build:
     web:
       dockerfile: Dockerfile
   config:
-    NIGHTLY: 0
+    NIGHTLY: 1
 
 release:
   image: web
