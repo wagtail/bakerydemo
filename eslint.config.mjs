@@ -3,7 +3,15 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['node_modules', 'venv', '.venv', 'bakerydemo/collect_static'],
+    ignores: [
+      'node_modules',
+      'playwright-report',
+      'test-results',
+      'uvenv',
+      'venv',
+      '.venv',
+      'bakerydemo/collect_static',
+    ],
   },
   {
     ...js.configs.recommended,
