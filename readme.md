@@ -115,7 +115,7 @@ You can run the Wagtail demo locally without setting up Vagrant or Docker and si
 
 #### Dependencies
 
-- Python 3.10+
+- Python 3.11+
 - [venv](https://docs.python.org/3/library/venv.html)
 - Optionally, [uv](https://docs.astral.sh/uv/getting-started/installation/) as a faster alternative to venv & pip
 
