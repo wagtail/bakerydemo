@@ -1,3 +1,5 @@
+import uuid
+
 from django import forms
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -24,6 +26,8 @@ class Country(models.Model):
     access related BreadPage objects).
     """
 
+    id = models.CharField(max_length=2, primary_key=True)
+
     title = models.CharField(max_length=100)
     sort_order = models.IntegerField(null=True, blank=True, db_index=True)
 
@@ -48,6 +52,8 @@ class BreadIngredient(Orderable, DraftStateMixin, RevisionMixin, models.Model):
     model to display this. The Wagtail Docs give a slightly more detailed example
     https://docs.wagtail.org/en/stable/getting_started/tutorial.html#categories
     """
+
+    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
 
     name = models.CharField(max_length=255)
 
