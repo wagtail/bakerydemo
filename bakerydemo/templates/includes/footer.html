@@ -3,6 +3,8 @@
 <footer class="container">
     <div class="row">
         <div class="col-sm-12">
+            {% get_footer_menu %}
+            {% get_footer_text %}
             {% with mastodon_url=settings.base.GenericSettings.mastodon_url github_url=settings.base.GenericSettings.github_url organisation_url=settings.base.GenericSettings.organisation_url %}
                 {% if mastodon_url or github_url or organisation_url %}
                     <ul class="list-inline">
@@ -30,7 +32,6 @@
                     </ul>
                 {% endif %}
             {% endwith %}
-            {% get_footer_text %}
         </div>
     </div>
 </footer>
