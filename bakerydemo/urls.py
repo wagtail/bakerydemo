@@ -2,6 +2,7 @@ import debug_toolbar
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.views.decorators.cache import cache_page
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.api.v3.urls import api
@@ -23,7 +24,8 @@ urlpatterns = [
         name="wagtailimages_serve",
     ),
     path("search/", search_views.search, name="search"),
-    path("sitemap.xml", sitemap),
+    # Cache the sitemap for an hour, in Django's cache and downstream caches.
+    path("sitemap.xml", cache_page(60 * 60)(sitemap)),
     path("api/v2/", api_router.urls),
     path("api/v3-preview/", api.urls),
     path("__debug__/", include(debug_toolbar.urls)),
