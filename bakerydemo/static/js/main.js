@@ -1,71 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navigation = document.querySelector('[data-navigation]');
-  const themeToggle = document.querySelector('[data-theme-toggle]');
-  const htmlElement = document.documentElement;
-  const storage = {
-    get(key) {
-      try {
-        return localStorage.getItem(key);
-      } catch {
-        return null;
-      }
-    },
-    set(key, value) {
-      try {
-        localStorage.setItem(key, value);
-      } catch {
-        // Ignore storage failures and keep the theme change in-memory only.
-      }
-    },
-  };
+  const body = document.querySelector('body');
+  const mobileNavigation = navigation?.querySelector(
+    '[data-mobile-navigation]',
+  );
+  const mobileNavigationToggle = navigation?.querySelector(
+    '[data-mobile-navigation-toggle]',
+  );
+  const themeToggles = document.querySelectorAll('[data-theme-toggle]');
 
-  function updateThemeToggleLabel() {
-    if (!themeToggle) {
-      return;
+  function toggleMobileNavigation() {
+    if (mobileNavigation.hidden) {
+      body.classList.add('no-scroll');
+      mobileNavigation.hidden = false;
+      mobileNavigationToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      body.classList.remove('no-scroll');
+      mobileNavigation.hidden = true;
+      mobileNavigationToggle.setAttribute('aria-expanded', 'false');
     }
-    const isDarkTheme = htmlElement.dataset.theme === 'dark';
-    themeToggle.textContent = isDarkTheme ? 'Light theme' : 'Dark theme';
-    themeToggle.setAttribute('aria-pressed', isDarkTheme ? 'true' : 'false');
-    themeToggle.setAttribute(
-      'aria-label',
-      isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme',
-    );
   }
 
-  if (navigation) {
-    const mobileNavigation = navigation.querySelector(
-      '[data-mobile-navigation]',
-    );
-    const body = document.querySelector('body');
-    const mobileNavigationToggle = navigation.querySelector(
-      '[data-mobile-navigation-toggle]',
-    );
-
-    function toggleMobileNavigation() {
-      if (mobileNavigation.hidden) {
-        body.classList.add('no-scroll');
-        mobileNavigation.hidden = false;
-        mobileNavigationToggle.setAttribute('aria-expanded', 'true');
-      } else {
-        body.classList.remove('no-scroll');
-        mobileNavigation.hidden = true;
-        mobileNavigationToggle.setAttribute('aria-expanded', 'false');
-      }
-    }
-
+  if (mobileNavigation && mobileNavigationToggle) {
     mobileNavigationToggle.addEventListener('click', () => {
       toggleMobileNavigation();
     });
   }
 
-  if (themeToggle) {
-    updateThemeToggleLabel();
+  function updateThemeToggleState() {
+    const isDark =
+      document.documentElement.style.colorScheme === 'dark' ||
+      document.querySelector('meta[name="color-scheme"]')?.content === 'dark';
 
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = htmlElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      htmlElement.dataset.theme = nextTheme;
-      storage.set('theme', nextTheme);
-      updateThemeToggleLabel();
+    themeToggles.forEach((toggle) => {
+      toggle.setAttribute('aria-pressed', String(isDark));
+      toggle.setAttribute(
+        'aria-label',
+        `Switch to ${isDark ? 'light' : 'dark'} theme`,
+      );
     });
   }
+
+  document.addEventListener('theme:toggle-theme-mode', () => {
+    window.requestAnimationFrame(() => {
+      updateThemeToggleState();
+    });
+  });
+
+  updateThemeToggleState();
+
+  themeToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('theme:toggle-theme-mode'));
+    });
+  });
 });
